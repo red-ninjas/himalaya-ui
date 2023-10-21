@@ -56,6 +56,3 @@ Give a ⭐️ if this project helped you!
 
 Copyright © 2023 [RedNinjas LTD](https://github.com/red-ninjas).<br />
 This project is [MIT](https://github.com/red-ninjas/himalaya-ui/blob/master/LICENSE) licensed.
-
-***
-_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
