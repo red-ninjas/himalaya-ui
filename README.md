@@ -1,4 +1,4 @@
-<h1 align="center">Welcome to himalaya-ui 👋</h1>
+<h1 align="center">Welcome to Himalaya UI 👋</h1>
 <p>
   <a href="https://www.npmjs.com/package/himalaya-ui" target="_blank">
     <img alt="Version" src="https://img.shields.io/npm/v/himalaya-ui.svg">
