@@ -1,0 +1,64 @@
+import { Layout, Playground, Attributes } from 'lib/components'
+import { Footer, FooterNavigation, FooterBottom, Logo, Link } from 'components'
+
+export const meta = {
+  title: 'Footer',
+  group: 'Layout',
+}
+
+## Footer
+
+<Playground
+  scope={{ Footer, FooterNavigation, FooterBottom, Logo, Link }}
+  title={'Footer example'}
+  desc={'Example of a footer'}
+  code={`
+  <>
+    <Footer>
+      <Footer.Block justify="space-between">
+        <FooterNavigation title="Footer Title">
+            <FooterNavigation.Item href="#">Item 1</FooterNavigation.Item>
+            <FooterNavigation.Item href="#">Item 2</FooterNavigation.Item>
+            <FooterNavigation.Item href="#">Item 3</FooterNavigation.Item>
+        </FooterNavigation>
+      </Footer.Block>
+      <Footer.Block justify="flex-end">
+        Test
+      </Footer.Block>
+    </Footer>
+    <FooterBottom>
+      <FooterBottom.Block>
+        <div className='logo-footer'><Logo></Logo></div>
+      </FooterBottom.Block>
+      <FooterBottom.Block justify='flex-end'>
+        Copyright by <Link color href='https://redninjas.dev' target='_blank'>{' '}RedNinjas LTD</Link>
+      </FooterBottom.Block>
+    </FooterBottom>
+  </>
+  `}
+/>
+
+<Attributes edit="/pages/components/footer.mdx">
+<Attributes.Title>Footer.Block.Props & FooterBottom.Block.Props</Attributes.Title>
+
+| Attribute | Description       | Type             | Accepted values                                                                        | Default      |
+| --------- | ----------------- | ---------------- | -------------------------------------------------------------------------------------- | ------------ |
+| justify?  | position of block | `string`         | `'flex-start', 'center', 'flex-end', 'space-between', 'space-around', 'space-evenly',` | `flex-start` |
+| ...       | native props      | `HTMLAttributes` | `'id', 'className', ...`                                                               | -            |
+
+<Attributes.Title>FooterNavigation.Props</Attributes.Title>
+
+| Attribute | Description                  | Type             | Accepted values          | Default |
+| --------- | ---------------------------- | ---------------- | ------------------------ | ------- |
+| title     | Heading of Footer Navigation | `string`         | -                        | -       |
+| ...       | native props                 | `HTMLAttributes` | `'id', 'className', ...` | -       |
+
+<Attributes.Title>FooterNavigation.Item.Props</Attributes.Title>
+
+| Attribute | Description                     | Type             | Accepted values                | Default |
+| --------- | ------------------------------- | ---------------- | ------------------------------ | ------- |
+| href      | Link for navigation item        | `string`         | -                              | -       |
+| target    | Target property for anchor link | `string`         | `_blank, _self, _parent, _top` | `_self` |
+| ...       | native props                    | `HTMLAttributes` | `'id', 'className', ...`       | -       |
+
+</Attributes>

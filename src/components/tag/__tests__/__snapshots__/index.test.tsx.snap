@@ -1,0 +1,1945 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tag should work with invert 1`] = `
+LoadedCheerio {
+  "0": Node {
+    "attribs": Object {
+      "class": "",
+    },
+    "children": Array [
+      Node {
+        "data": "success",
+        "next": Node {
+          "attribs": Object {},
+          "children": Array [
+            Node {
+              "data": "
+        span {
+          display: inline-block;
+          border: 1px solid transparent;
+          background-color: #0070f3;
+          color: #fff;
+          box-sizing: border-box;
+          line-height: 1em;
+          border-radius: calc(0.3125 * 16px);
+          font-size: calc(0.875 * 16px);
+          width: auto;
+          height: calc(1.75 * 16px);
+          padding: calc(0.375 * 16px) calc(0.375 * 16px) calc(0.375 * 16px)
+            calc(0.375 * 16px);
+          margin: 0 0 0 0;
+        }
+      ",
+              "next": null,
+              "parent": [Circular],
+              "prev": null,
+              "type": "text",
+            },
+          ],
+          "name": "style",
+          "namespace": "http://www.w3.org/1999/xhtml",
+          "next": null,
+          "parent": [Circular],
+          "prev": [Circular],
+          "type": "style",
+          "x-attribsNamespace": Object {},
+          "x-attribsPrefix": Object {},
+        },
+        "parent": [Circular],
+        "prev": null,
+        "type": "text",
+      },
+      Node {
+        "attribs": Object {},
+        "children": Array [
+          Node {
+            "data": "
+        span {
+          display: inline-block;
+          border: 1px solid transparent;
+          background-color: #0070f3;
+          color: #fff;
+          box-sizing: border-box;
+          line-height: 1em;
+          border-radius: calc(0.3125 * 16px);
+          font-size: calc(0.875 * 16px);
+          width: auto;
+          height: calc(1.75 * 16px);
+          padding: calc(0.375 * 16px) calc(0.375 * 16px) calc(0.375 * 16px)
+            calc(0.375 * 16px);
+          margin: 0 0 0 0;
+        }
+      ",
+            "next": null,
+            "parent": [Circular],
+            "prev": null,
+            "type": "text",
+          },
+        ],
+        "name": "style",
+        "namespace": "http://www.w3.org/1999/xhtml",
+        "next": null,
+        "parent": [Circular],
+        "prev": Node {
+          "data": "success",
+          "next": [Circular],
+          "parent": [Circular],
+          "prev": null,
+          "type": "text",
+        },
+        "type": "style",
+        "x-attribsNamespace": Object {},
+        "x-attribsPrefix": Object {},
+      },
+    ],
+    "name": "span",
+    "namespace": "http://www.w3.org/1999/xhtml",
+    "next": null,
+    "parent": Node {
+      "children": Array [
+        [Circular],
+      ],
+      "name": "root",
+      "next": null,
+      "parent": null,
+      "prev": null,
+      "type": "root",
+    },
+    "prev": null,
+    "type": "tag",
+    "x-attribsNamespace": Object {
+      "class": undefined,
+    },
+    "x-attribsPrefix": Object {
+      "class": undefined,
+    },
+  },
+  "_root": LoadedCheerio {
+    "0": Node {
+      "children": Array [
+        Node {
+          "attribs": Object {},
+          "children": Array [
+            Node {
+              "attribs": Object {},
+              "children": Array [],
+              "name": "head",
+              "namespace": "http://www.w3.org/1999/xhtml",
+              "next": Node {
+                "attribs": Object {},
+                "children": Array [],
+                "name": "body",
+                "namespace": "http://www.w3.org/1999/xhtml",
+                "next": null,
+                "parent": [Circular],
+                "prev": [Circular],
+                "type": "tag",
+                "x-attribsNamespace": Object {},
+                "x-attribsPrefix": Object {},
+              },
+              "parent": [Circular],
+              "prev": null,
+              "type": "tag",
+              "x-attribsNamespace": Object {},
+              "x-attribsPrefix": Object {},
+            },
+            Node {
+              "attribs": Object {},
+              "children": Array [],
+              "name": "body",
+              "namespace": "http://www.w3.org/1999/xhtml",
+              "next": null,
+              "parent": [Circular],
+              "prev": Node {
+                "attribs": Object {},
+                "children": Array [],
+                "name": "head",
+                "namespace": "http://www.w3.org/1999/xhtml",
+                "next": [Circular],
+                "parent": [Circular],
+                "prev": null,
+                "type": "tag",
+                "x-attribsNamespace": Object {},
+                "x-attribsPrefix": Object {},
+              },
+              "type": "tag",
+              "x-attribsNamespace": Object {},
+              "x-attribsPrefix": Object {},
+            },
+          ],
+          "name": "html",
+          "namespace": "http://www.w3.org/1999/xhtml",
+          "next": null,
+          "parent": [Circular],
+          "prev": null,
+          "type": "tag",
+          "x-attribsNamespace": Object {},
+          "x-attribsPrefix": Object {},
+        },
+      ],
+      "name": "root",
+      "next": null,
+      "parent": null,
+      "prev": null,
+      "type": "root",
+      "x-mode": "quirks",
+    },
+    "_root": [Circular],
+    "length": 1,
+    "options": Object {
+      "decodeEntities": true,
+      "xml": false,
+    },
+  },
+  "length": 1,
+  "options": Object {
+    "decodeEntities": true,
+    "xml": false,
+  },
+}
+`;
+
+exports[`Tag should work with types 1`] = `
+LoadedCheerio {
+  "0": Node {
+    "attribs": Object {},
+    "children": Array [
+      Node {
+        "attribs": Object {
+          "class": "",
+        },
+        "children": Array [
+          Node {
+            "data": "success",
+            "next": Node {
+              "attribs": Object {},
+              "children": Array [
+                Node {
+                  "data": "
+        span {
+          display: inline-block;
+          border: 1px solid #0070f3;
+          background-color: #fff;
+          color: #0070f3;
+          box-sizing: border-box;
+          line-height: 1em;
+          border-radius: calc(0.3125 * 16px);
+          font-size: calc(0.875 * 16px);
+          width: auto;
+          height: calc(1.75 * 16px);
+          padding: calc(0.375 * 16px) calc(0.375 * 16px) calc(0.375 * 16px)
+            calc(0.375 * 16px);
+          margin: 0 0 0 0;
+        }
+      ",
+                  "next": null,
+                  "parent": [Circular],
+                  "prev": null,
+                  "type": "text",
+                },
+              ],
+              "name": "style",
+              "namespace": "http://www.w3.org/1999/xhtml",
+              "next": null,
+              "parent": [Circular],
+              "prev": [Circular],
+              "type": "style",
+              "x-attribsNamespace": Object {},
+              "x-attribsPrefix": Object {},
+            },
+            "parent": [Circular],
+            "prev": null,
+            "type": "text",
+          },
+          Node {
+            "attribs": Object {},
+            "children": Array [
+              Node {
+                "data": "
+        span {
+          display: inline-block;
+          border: 1px solid #0070f3;
+          background-color: #fff;
+          color: #0070f3;
+          box-sizing: border-box;
+          line-height: 1em;
+          border-radius: calc(0.3125 * 16px);
+          font-size: calc(0.875 * 16px);
+          width: auto;
+          height: calc(1.75 * 16px);
+          padding: calc(0.375 * 16px) calc(0.375 * 16px) calc(0.375 * 16px)
+            calc(0.375 * 16px);
+          margin: 0 0 0 0;
+        }
+      ",
+                "next": null,
+                "parent": [Circular],
+                "prev": null,
+                "type": "text",
+              },
+            ],
+            "name": "style",
+            "namespace": "http://www.w3.org/1999/xhtml",
+            "next": null,
+            "parent": [Circular],
+            "prev": Node {
+              "data": "success",
+              "next": [Circular],
+              "parent": [Circular],
+              "prev": null,
+              "type": "text",
+            },
+            "type": "style",
+            "x-attribsNamespace": Object {},
+            "x-attribsPrefix": Object {},
+          },
+        ],
+        "name": "span",
+        "namespace": "http://www.w3.org/1999/xhtml",
+        "next": Node {
+          "attribs": Object {
+            "class": "",
+          },
+          "children": Array [
+            Node {
+              "data": "secondary",
+              "next": Node {
+                "attribs": Object {},
+                "children": Array [
+                  Node {
+                    "data": "
+        span {
+          display: inline-block;
+          border: 1px solid #666;
+          background-color: #fff;
+          color: #666;
+          box-sizing: border-box;
+          line-height: 1em;
+          border-radius: calc(0.3125 * 16px);
+          font-size: calc(0.875 * 16px);
+          width: auto;
+          height: calc(1.75 * 16px);
+          padding: calc(0.375 * 16px) calc(0.375 * 16px) calc(0.375 * 16px)
+            calc(0.375 * 16px);
+          margin: 0 0 0 0;
+        }
+      ",
+                    "next": null,
+                    "parent": [Circular],
+                    "prev": null,
+                    "type": "text",
+                  },
+                ],
+                "name": "style",
+                "namespace": "http://www.w3.org/1999/xhtml",
+                "next": null,
+                "parent": [Circular],
+                "prev": [Circular],
+                "type": "style",
+                "x-attribsNamespace": Object {},
+                "x-attribsPrefix": Object {},
+              },
+              "parent": [Circular],
+              "prev": null,
+              "type": "text",
+            },
+            Node {
+              "attribs": Object {},
+              "children": Array [
+                Node {
+                  "data": "
+        span {
+          display: inline-block;
+          border: 1px solid #666;
+          background-color: #fff;
+          color: #666;
+          box-sizing: border-box;
+          line-height: 1em;
+          border-radius: calc(0.3125 * 16px);
+          font-size: calc(0.875 * 16px);
+          width: auto;
+          height: calc(1.75 * 16px);
+          padding: calc(0.375 * 16px) calc(0.375 * 16px) calc(0.375 * 16px)
+            calc(0.375 * 16px);
+          margin: 0 0 0 0;
+        }
+      ",
+                  "next": null,
+                  "parent": [Circular],
+                  "prev": null,
+                  "type": "text",
+                },
+              ],
+              "name": "style",
+              "namespace": "http://www.w3.org/1999/xhtml",
+              "next": null,
+              "parent": [Circular],
+              "prev": Node {
+                "data": "secondary",
+                "next": [Circular],
+                "parent": [Circular],
+                "prev": null,
+                "type": "text",
+              },
+              "type": "style",
+              "x-attribsNamespace": Object {},
+              "x-attribsPrefix": Object {},
+            },
+          ],
+          "name": "span",
+          "namespace": "http://www.w3.org/1999/xhtml",
+          "next": Node {
+            "attribs": Object {
+              "class": "",
+            },
+            "children": Array [
+              Node {
+                "data": "error",
+                "next": Node {
+                  "attribs": Object {},
+                  "children": Array [
+                    Node {
+                      "data": "
+        span {
+          display: inline-block;
+          border: 1px solid #e00;
+          background-color: #fff;
+          color: #e00;
+          box-sizing: border-box;
+          line-height: 1em;
+          border-radius: calc(0.3125 * 16px);
+          font-size: calc(0.875 * 16px);
+          width: auto;
+          height: calc(1.75 * 16px);
+          padding: calc(0.375 * 16px) calc(0.375 * 16px) calc(0.375 * 16px)
+            calc(0.375 * 16px);
+          margin: 0 0 0 0;
+        }
+      ",
+                      "next": null,
+                      "parent": [Circular],
+                      "prev": null,
+                      "type": "text",
+                    },
+                  ],
+                  "name": "style",
+                  "namespace": "http://www.w3.org/1999/xhtml",
+                  "next": null,
+                  "parent": [Circular],
+                  "prev": [Circular],
+                  "type": "style",
+                  "x-attribsNamespace": Object {},
+                  "x-attribsPrefix": Object {},
+                },
+                "parent": [Circular],
+                "prev": null,
+                "type": "text",
+              },
+              Node {
+                "attribs": Object {},
+                "children": Array [
+                  Node {
+                    "data": "
+        span {
+          display: inline-block;
+          border: 1px solid #e00;
+          background-color: #fff;
+          color: #e00;
+          box-sizing: border-box;
+          line-height: 1em;
+          border-radius: calc(0.3125 * 16px);
+          font-size: calc(0.875 * 16px);
+          width: auto;
+          height: calc(1.75 * 16px);
+          padding: calc(0.375 * 16px) calc(0.375 * 16px) calc(0.375 * 16px)
+            calc(0.375 * 16px);
+          margin: 0 0 0 0;
+        }
+      ",
+                    "next": null,
+                    "parent": [Circular],
+                    "prev": null,
+                    "type": "text",
+                  },
+                ],
+                "name": "style",
+                "namespace": "http://www.w3.org/1999/xhtml",
+                "next": null,
+                "parent": [Circular],
+                "prev": Node {
+                  "data": "error",
+                  "next": [Circular],
+                  "parent": [Circular],
+                  "prev": null,
+                  "type": "text",
+                },
+                "type": "style",
+                "x-attribsNamespace": Object {},
+                "x-attribsPrefix": Object {},
+              },
+            ],
+            "name": "span",
+            "namespace": "http://www.w3.org/1999/xhtml",
+            "next": Node {
+              "attribs": Object {
+                "class": "",
+              },
+              "children": Array [
+                Node {
+                  "data": "dark",
+                  "next": Node {
+                    "attribs": Object {},
+                    "children": Array [
+                      Node {
+                        "data": "
+        span {
+          display: inline-block;
+          border: 1px solid #000;
+          background-color: #fff;
+          color: #000;
+          box-sizing: border-box;
+          line-height: 1em;
+          border-radius: calc(0.3125 * 16px);
+          font-size: calc(0.875 * 16px);
+          width: auto;
+          height: calc(1.75 * 16px);
+          padding: calc(0.375 * 16px) calc(0.375 * 16px) calc(0.375 * 16px)
+            calc(0.375 * 16px);
+          margin: 0 0 0 0;
+        }
+      ",
+                        "next": null,
+                        "parent": [Circular],
+                        "prev": null,
+                        "type": "text",
+                      },
+                    ],
+                    "name": "style",
+                    "namespace": "http://www.w3.org/1999/xhtml",
+                    "next": null,
+                    "parent": [Circular],
+                    "prev": [Circular],
+                    "type": "style",
+                    "x-attribsNamespace": Object {},
+                    "x-attribsPrefix": Object {},
+                  },
+                  "parent": [Circular],
+                  "prev": null,
+                  "type": "text",
+                },
+                Node {
+                  "attribs": Object {},
+                  "children": Array [
+                    Node {
+                      "data": "
+        span {
+          display: inline-block;
+          border: 1px solid #000;
+          background-color: #fff;
+          color: #000;
+          box-sizing: border-box;
+          line-height: 1em;
+          border-radius: calc(0.3125 * 16px);
+          font-size: calc(0.875 * 16px);
+          width: auto;
+          height: calc(1.75 * 16px);
+          padding: calc(0.375 * 16px) calc(0.375 * 16px) calc(0.375 * 16px)
+            calc(0.375 * 16px);
+          margin: 0 0 0 0;
+        }
+      ",
+                      "next": null,
+                      "parent": [Circular],
+                      "prev": null,
+                      "type": "text",
+                    },
+                  ],
+                  "name": "style",
+                  "namespace": "http://www.w3.org/1999/xhtml",
+                  "next": null,
+                  "parent": [Circular],
+                  "prev": Node {
+                    "data": "dark",
+                    "next": [Circular],
+                    "parent": [Circular],
+                    "prev": null,
+                    "type": "text",
+                  },
+                  "type": "style",
+                  "x-attribsNamespace": Object {},
+                  "x-attribsPrefix": Object {},
+                },
+              ],
+              "name": "span",
+              "namespace": "http://www.w3.org/1999/xhtml",
+              "next": null,
+              "parent": [Circular],
+              "prev": [Circular],
+              "type": "tag",
+              "x-attribsNamespace": Object {
+                "class": undefined,
+              },
+              "x-attribsPrefix": Object {
+                "class": undefined,
+              },
+            },
+            "parent": [Circular],
+            "prev": [Circular],
+            "type": "tag",
+            "x-attribsNamespace": Object {
+              "class": undefined,
+            },
+            "x-attribsPrefix": Object {
+              "class": undefined,
+            },
+          },
+          "parent": [Circular],
+          "prev": [Circular],
+          "type": "tag",
+          "x-attribsNamespace": Object {
+            "class": undefined,
+          },
+          "x-attribsPrefix": Object {
+            "class": undefined,
+          },
+        },
+        "parent": [Circular],
+        "prev": null,
+        "type": "tag",
+        "x-attribsNamespace": Object {
+          "class": undefined,
+        },
+        "x-attribsPrefix": Object {
+          "class": undefined,
+        },
+      },
+      Node {
+        "attribs": Object {
+          "class": "",
+        },
+        "children": Array [
+          Node {
+            "data": "secondary",
+            "next": Node {
+              "attribs": Object {},
+              "children": Array [
+                Node {
+                  "data": "
+        span {
+          display: inline-block;
+          border: 1px solid #666;
+          background-color: #fff;
+          color: #666;
+          box-sizing: border-box;
+          line-height: 1em;
+          border-radius: calc(0.3125 * 16px);
+          font-size: calc(0.875 * 16px);
+          width: auto;
+          height: calc(1.75 * 16px);
+          padding: calc(0.375 * 16px) calc(0.375 * 16px) calc(0.375 * 16px)
+            calc(0.375 * 16px);
+          margin: 0 0 0 0;
+        }
+      ",
+                  "next": null,
+                  "parent": [Circular],
+                  "prev": null,
+                  "type": "text",
+                },
+              ],
+              "name": "style",
+              "namespace": "http://www.w3.org/1999/xhtml",
+              "next": null,
+              "parent": [Circular],
+              "prev": [Circular],
+              "type": "style",
+              "x-attribsNamespace": Object {},
+              "x-attribsPrefix": Object {},
+            },
+            "parent": [Circular],
+            "prev": null,
+            "type": "text",
+          },
+          Node {
+            "attribs": Object {},
+            "children": Array [
+              Node {
+                "data": "
+        span {
+          display: inline-block;
+          border: 1px solid #666;
+          background-color: #fff;
+          color: #666;
+          box-sizing: border-box;
+          line-height: 1em;
+          border-radius: calc(0.3125 * 16px);
+          font-size: calc(0.875 * 16px);
+          width: auto;
+          height: calc(1.75 * 16px);
+          padding: calc(0.375 * 16px) calc(0.375 * 16px) calc(0.375 * 16px)
+            calc(0.375 * 16px);
+          margin: 0 0 0 0;
+        }
+      ",
+                "next": null,
+                "parent": [Circular],
+                "prev": null,
+                "type": "text",
+              },
+            ],
+            "name": "style",
+            "namespace": "http://www.w3.org/1999/xhtml",
+            "next": null,
+            "parent": [Circular],
+            "prev": Node {
+              "data": "secondary",
+              "next": [Circular],
+              "parent": [Circular],
+              "prev": null,
+              "type": "text",
+            },
+            "type": "style",
+            "x-attribsNamespace": Object {},
+            "x-attribsPrefix": Object {},
+          },
+        ],
+        "name": "span",
+        "namespace": "http://www.w3.org/1999/xhtml",
+        "next": Node {
+          "attribs": Object {
+            "class": "",
+          },
+          "children": Array [
+            Node {
+              "data": "error",
+              "next": Node {
+                "attribs": Object {},
+                "children": Array [
+                  Node {
+                    "data": "
+        span {
+          display: inline-block;
+          border: 1px solid #e00;
+          background-color: #fff;
+          color: #e00;
+          box-sizing: border-box;
+          line-height: 1em;
+          border-radius: calc(0.3125 * 16px);
+          font-size: calc(0.875 * 16px);
+          width: auto;
+          height: calc(1.75 * 16px);
+          padding: calc(0.375 * 16px) calc(0.375 * 16px) calc(0.375 * 16px)
+            calc(0.375 * 16px);
+          margin: 0 0 0 0;
+        }
+      ",
+                    "next": null,
+                    "parent": [Circular],
+                    "prev": null,
+                    "type": "text",
+                  },
+                ],
+                "name": "style",
+                "namespace": "http://www.w3.org/1999/xhtml",
+                "next": null,
+                "parent": [Circular],
+                "prev": [Circular],
+                "type": "style",
+                "x-attribsNamespace": Object {},
+                "x-attribsPrefix": Object {},
+              },
+              "parent": [Circular],
+              "prev": null,
+              "type": "text",
+            },
+            Node {
+              "attribs": Object {},
+              "children": Array [
+                Node {
+                  "data": "
+        span {
+          display: inline-block;
+          border: 1px solid #e00;
+          background-color: #fff;
+          color: #e00;
+          box-sizing: border-box;
+          line-height: 1em;
+          border-radius: calc(0.3125 * 16px);
+          font-size: calc(0.875 * 16px);
+          width: auto;
+          height: calc(1.75 * 16px);
+          padding: calc(0.375 * 16px) calc(0.375 * 16px) calc(0.375 * 16px)
+            calc(0.375 * 16px);
+          margin: 0 0 0 0;
+        }
+      ",
+                  "next": null,
+                  "parent": [Circular],
+                  "prev": null,
+                  "type": "text",
+                },
+              ],
+              "name": "style",
+              "namespace": "http://www.w3.org/1999/xhtml",
+              "next": null,
+              "parent": [Circular],
+              "prev": Node {
+                "data": "error",
+                "next": [Circular],
+                "parent": [Circular],
+                "prev": null,
+                "type": "text",
+              },
+              "type": "style",
+              "x-attribsNamespace": Object {},
+              "x-attribsPrefix": Object {},
+            },
+          ],
+          "name": "span",
+          "namespace": "http://www.w3.org/1999/xhtml",
+          "next": Node {
+            "attribs": Object {
+              "class": "",
+            },
+            "children": Array [
+              Node {
+                "data": "dark",
+                "next": Node {
+                  "attribs": Object {},
+                  "children": Array [
+                    Node {
+                      "data": "
+        span {
+          display: inline-block;
+          border: 1px solid #000;
+          background-color: #fff;
+          color: #000;
+          box-sizing: border-box;
+          line-height: 1em;
+          border-radius: calc(0.3125 * 16px);
+          font-size: calc(0.875 * 16px);
+          width: auto;
+          height: calc(1.75 * 16px);
+          padding: calc(0.375 * 16px) calc(0.375 * 16px) calc(0.375 * 16px)
+            calc(0.375 * 16px);
+          margin: 0 0 0 0;
+        }
+      ",
+                      "next": null,
+                      "parent": [Circular],
+                      "prev": null,
+                      "type": "text",
+                    },
+                  ],
+                  "name": "style",
+                  "namespace": "http://www.w3.org/1999/xhtml",
+                  "next": null,
+                  "parent": [Circular],
+                  "prev": [Circular],
+                  "type": "style",
+                  "x-attribsNamespace": Object {},
+                  "x-attribsPrefix": Object {},
+                },
+                "parent": [Circular],
+                "prev": null,
+                "type": "text",
+              },
+              Node {
+                "attribs": Object {},
+                "children": Array [
+                  Node {
+                    "data": "
+        span {
+          display: inline-block;
+          border: 1px solid #000;
+          background-color: #fff;
+          color: #000;
+          box-sizing: border-box;
+          line-height: 1em;
+          border-radius: calc(0.3125 * 16px);
+          font-size: calc(0.875 * 16px);
+          width: auto;
+          height: calc(1.75 * 16px);
+          padding: calc(0.375 * 16px) calc(0.375 * 16px) calc(0.375 * 16px)
+            calc(0.375 * 16px);
+          margin: 0 0 0 0;
+        }
+      ",
+                    "next": null,
+                    "parent": [Circular],
+                    "prev": null,
+                    "type": "text",
+                  },
+                ],
+                "name": "style",
+                "namespace": "http://www.w3.org/1999/xhtml",
+                "next": null,
+                "parent": [Circular],
+                "prev": Node {
+                  "data": "dark",
+                  "next": [Circular],
+                  "parent": [Circular],
+                  "prev": null,
+                  "type": "text",
+                },
+                "type": "style",
+                "x-attribsNamespace": Object {},
+                "x-attribsPrefix": Object {},
+              },
+            ],
+            "name": "span",
+            "namespace": "http://www.w3.org/1999/xhtml",
+            "next": null,
+            "parent": [Circular],
+            "prev": [Circular],
+            "type": "tag",
+            "x-attribsNamespace": Object {
+              "class": undefined,
+            },
+            "x-attribsPrefix": Object {
+              "class": undefined,
+            },
+          },
+          "parent": [Circular],
+          "prev": [Circular],
+          "type": "tag",
+          "x-attribsNamespace": Object {
+            "class": undefined,
+          },
+          "x-attribsPrefix": Object {
+            "class": undefined,
+          },
+        },
+        "parent": [Circular],
+        "prev": Node {
+          "attribs": Object {
+            "class": "",
+          },
+          "children": Array [
+            Node {
+              "data": "success",
+              "next": Node {
+                "attribs": Object {},
+                "children": Array [
+                  Node {
+                    "data": "
+        span {
+          display: inline-block;
+          border: 1px solid #0070f3;
+          background-color: #fff;
+          color: #0070f3;
+          box-sizing: border-box;
+          line-height: 1em;
+          border-radius: calc(0.3125 * 16px);
+          font-size: calc(0.875 * 16px);
+          width: auto;
+          height: calc(1.75 * 16px);
+          padding: calc(0.375 * 16px) calc(0.375 * 16px) calc(0.375 * 16px)
+            calc(0.375 * 16px);
+          margin: 0 0 0 0;
+        }
+      ",
+                    "next": null,
+                    "parent": [Circular],
+                    "prev": null,
+                    "type": "text",
+                  },
+                ],
+                "name": "style",
+                "namespace": "http://www.w3.org/1999/xhtml",
+                "next": null,
+                "parent": [Circular],
+                "prev": [Circular],
+                "type": "style",
+                "x-attribsNamespace": Object {},
+                "x-attribsPrefix": Object {},
+              },
+              "parent": [Circular],
+              "prev": null,
+              "type": "text",
+            },
+            Node {
+              "attribs": Object {},
+              "children": Array [
+                Node {
+                  "data": "
+        span {
+          display: inline-block;
+          border: 1px solid #0070f3;
+          background-color: #fff;
+          color: #0070f3;
+          box-sizing: border-box;
+          line-height: 1em;
+          border-radius: calc(0.3125 * 16px);
+          font-size: calc(0.875 * 16px);
+          width: auto;
+          height: calc(1.75 * 16px);
+          padding: calc(0.375 * 16px) calc(0.375 * 16px) calc(0.375 * 16px)
+            calc(0.375 * 16px);
+          margin: 0 0 0 0;
+        }
+      ",
+                  "next": null,
+                  "parent": [Circular],
+                  "prev": null,
+                  "type": "text",
+                },
+              ],
+              "name": "style",
+              "namespace": "http://www.w3.org/1999/xhtml",
+              "next": null,
+              "parent": [Circular],
+              "prev": Node {
+                "data": "success",
+                "next": [Circular],
+                "parent": [Circular],
+                "prev": null,
+                "type": "text",
+              },
+              "type": "style",
+              "x-attribsNamespace": Object {},
+              "x-attribsPrefix": Object {},
+            },
+          ],
+          "name": "span",
+          "namespace": "http://www.w3.org/1999/xhtml",
+          "next": [Circular],
+          "parent": [Circular],
+          "prev": null,
+          "type": "tag",
+          "x-attribsNamespace": Object {
+            "class": undefined,
+          },
+          "x-attribsPrefix": Object {
+            "class": undefined,
+          },
+        },
+        "type": "tag",
+        "x-attribsNamespace": Object {
+          "class": undefined,
+        },
+        "x-attribsPrefix": Object {
+          "class": undefined,
+        },
+      },
+      Node {
+        "attribs": Object {
+          "class": "",
+        },
+        "children": Array [
+          Node {
+            "data": "error",
+            "next": Node {
+              "attribs": Object {},
+              "children": Array [
+                Node {
+                  "data": "
+        span {
+          display: inline-block;
+          border: 1px solid #e00;
+          background-color: #fff;
+          color: #e00;
+          box-sizing: border-box;
+          line-height: 1em;
+          border-radius: calc(0.3125 * 16px);
+          font-size: calc(0.875 * 16px);
+          width: auto;
+          height: calc(1.75 * 16px);
+          padding: calc(0.375 * 16px) calc(0.375 * 16px) calc(0.375 * 16px)
+            calc(0.375 * 16px);
+          margin: 0 0 0 0;
+        }
+      ",
+                  "next": null,
+                  "parent": [Circular],
+                  "prev": null,
+                  "type": "text",
+                },
+              ],
+              "name": "style",
+              "namespace": "http://www.w3.org/1999/xhtml",
+              "next": null,
+              "parent": [Circular],
+              "prev": [Circular],
+              "type": "style",
+              "x-attribsNamespace": Object {},
+              "x-attribsPrefix": Object {},
+            },
+            "parent": [Circular],
+            "prev": null,
+            "type": "text",
+          },
+          Node {
+            "attribs": Object {},
+            "children": Array [
+              Node {
+                "data": "
+        span {
+          display: inline-block;
+          border: 1px solid #e00;
+          background-color: #fff;
+          color: #e00;
+          box-sizing: border-box;
+          line-height: 1em;
+          border-radius: calc(0.3125 * 16px);
+          font-size: calc(0.875 * 16px);
+          width: auto;
+          height: calc(1.75 * 16px);
+          padding: calc(0.375 * 16px) calc(0.375 * 16px) calc(0.375 * 16px)
+            calc(0.375 * 16px);
+          margin: 0 0 0 0;
+        }
+      ",
+                "next": null,
+                "parent": [Circular],
+                "prev": null,
+                "type": "text",
+              },
+            ],
+            "name": "style",
+            "namespace": "http://www.w3.org/1999/xhtml",
+            "next": null,
+            "parent": [Circular],
+            "prev": Node {
+              "data": "error",
+              "next": [Circular],
+              "parent": [Circular],
+              "prev": null,
+              "type": "text",
+            },
+            "type": "style",
+            "x-attribsNamespace": Object {},
+            "x-attribsPrefix": Object {},
+          },
+        ],
+        "name": "span",
+        "namespace": "http://www.w3.org/1999/xhtml",
+        "next": Node {
+          "attribs": Object {
+            "class": "",
+          },
+          "children": Array [
+            Node {
+              "data": "dark",
+              "next": Node {
+                "attribs": Object {},
+                "children": Array [
+                  Node {
+                    "data": "
+        span {
+          display: inline-block;
+          border: 1px solid #000;
+          background-color: #fff;
+          color: #000;
+          box-sizing: border-box;
+          line-height: 1em;
+          border-radius: calc(0.3125 * 16px);
+          font-size: calc(0.875 * 16px);
+          width: auto;
+          height: calc(1.75 * 16px);
+          padding: calc(0.375 * 16px) calc(0.375 * 16px) calc(0.375 * 16px)
+            calc(0.375 * 16px);
+          margin: 0 0 0 0;
+        }
+      ",
+                    "next": null,
+                    "parent": [Circular],
+                    "prev": null,
+                    "type": "text",
+                  },
+                ],
+                "name": "style",
+                "namespace": "http://www.w3.org/1999/xhtml",
+                "next": null,
+                "parent": [Circular],
+                "prev": [Circular],
+                "type": "style",
+                "x-attribsNamespace": Object {},
+                "x-attribsPrefix": Object {},
+              },
+              "parent": [Circular],
+              "prev": null,
+              "type": "text",
+            },
+            Node {
+              "attribs": Object {},
+              "children": Array [
+                Node {
+                  "data": "
+        span {
+          display: inline-block;
+          border: 1px solid #000;
+          background-color: #fff;
+          color: #000;
+          box-sizing: border-box;
+          line-height: 1em;
+          border-radius: calc(0.3125 * 16px);
+          font-size: calc(0.875 * 16px);
+          width: auto;
+          height: calc(1.75 * 16px);
+          padding: calc(0.375 * 16px) calc(0.375 * 16px) calc(0.375 * 16px)
+            calc(0.375 * 16px);
+          margin: 0 0 0 0;
+        }
+      ",
+                  "next": null,
+                  "parent": [Circular],
+                  "prev": null,
+                  "type": "text",
+                },
+              ],
+              "name": "style",
+              "namespace": "http://www.w3.org/1999/xhtml",
+              "next": null,
+              "parent": [Circular],
+              "prev": Node {
+                "data": "dark",
+                "next": [Circular],
+                "parent": [Circular],
+                "prev": null,
+                "type": "text",
+              },
+              "type": "style",
+              "x-attribsNamespace": Object {},
+              "x-attribsPrefix": Object {},
+            },
+          ],
+          "name": "span",
+          "namespace": "http://www.w3.org/1999/xhtml",
+          "next": null,
+          "parent": [Circular],
+          "prev": [Circular],
+          "type": "tag",
+          "x-attribsNamespace": Object {
+            "class": undefined,
+          },
+          "x-attribsPrefix": Object {
+            "class": undefined,
+          },
+        },
+        "parent": [Circular],
+        "prev": Node {
+          "attribs": Object {
+            "class": "",
+          },
+          "children": Array [
+            Node {
+              "data": "secondary",
+              "next": Node {
+                "attribs": Object {},
+                "children": Array [
+                  Node {
+                    "data": "
+        span {
+          display: inline-block;
+          border: 1px solid #666;
+          background-color: #fff;
+          color: #666;
+          box-sizing: border-box;
+          line-height: 1em;
+          border-radius: calc(0.3125 * 16px);
+          font-size: calc(0.875 * 16px);
+          width: auto;
+          height: calc(1.75 * 16px);
+          padding: calc(0.375 * 16px) calc(0.375 * 16px) calc(0.375 * 16px)
+            calc(0.375 * 16px);
+          margin: 0 0 0 0;
+        }
+      ",
+                    "next": null,
+                    "parent": [Circular],
+                    "prev": null,
+                    "type": "text",
+                  },
+                ],
+                "name": "style",
+                "namespace": "http://www.w3.org/1999/xhtml",
+                "next": null,
+                "parent": [Circular],
+                "prev": [Circular],
+                "type": "style",
+                "x-attribsNamespace": Object {},
+                "x-attribsPrefix": Object {},
+              },
+              "parent": [Circular],
+              "prev": null,
+              "type": "text",
+            },
+            Node {
+              "attribs": Object {},
+              "children": Array [
+                Node {
+                  "data": "
+        span {
+          display: inline-block;
+          border: 1px solid #666;
+          background-color: #fff;
+          color: #666;
+          box-sizing: border-box;
+          line-height: 1em;
+          border-radius: calc(0.3125 * 16px);
+          font-size: calc(0.875 * 16px);
+          width: auto;
+          height: calc(1.75 * 16px);
+          padding: calc(0.375 * 16px) calc(0.375 * 16px) calc(0.375 * 16px)
+            calc(0.375 * 16px);
+          margin: 0 0 0 0;
+        }
+      ",
+                  "next": null,
+                  "parent": [Circular],
+                  "prev": null,
+                  "type": "text",
+                },
+              ],
+              "name": "style",
+              "namespace": "http://www.w3.org/1999/xhtml",
+              "next": null,
+              "parent": [Circular],
+              "prev": Node {
+                "data": "secondary",
+                "next": [Circular],
+                "parent": [Circular],
+                "prev": null,
+                "type": "text",
+              },
+              "type": "style",
+              "x-attribsNamespace": Object {},
+              "x-attribsPrefix": Object {},
+            },
+          ],
+          "name": "span",
+          "namespace": "http://www.w3.org/1999/xhtml",
+          "next": [Circular],
+          "parent": [Circular],
+          "prev": Node {
+            "attribs": Object {
+              "class": "",
+            },
+            "children": Array [
+              Node {
+                "data": "success",
+                "next": Node {
+                  "attribs": Object {},
+                  "children": Array [
+                    Node {
+                      "data": "
+        span {
+          display: inline-block;
+          border: 1px solid #0070f3;
+          background-color: #fff;
+          color: #0070f3;
+          box-sizing: border-box;
+          line-height: 1em;
+          border-radius: calc(0.3125 * 16px);
+          font-size: calc(0.875 * 16px);
+          width: auto;
+          height: calc(1.75 * 16px);
+          padding: calc(0.375 * 16px) calc(0.375 * 16px) calc(0.375 * 16px)
+            calc(0.375 * 16px);
+          margin: 0 0 0 0;
+        }
+      ",
+                      "next": null,
+                      "parent": [Circular],
+                      "prev": null,
+                      "type": "text",
+                    },
+                  ],
+                  "name": "style",
+                  "namespace": "http://www.w3.org/1999/xhtml",
+                  "next": null,
+                  "parent": [Circular],
+                  "prev": [Circular],
+                  "type": "style",
+                  "x-attribsNamespace": Object {},
+                  "x-attribsPrefix": Object {},
+                },
+                "parent": [Circular],
+                "prev": null,
+                "type": "text",
+              },
+              Node {
+                "attribs": Object {},
+                "children": Array [
+                  Node {
+                    "data": "
+        span {
+          display: inline-block;
+          border: 1px solid #0070f3;
+          background-color: #fff;
+          color: #0070f3;
+          box-sizing: border-box;
+          line-height: 1em;
+          border-radius: calc(0.3125 * 16px);
+          font-size: calc(0.875 * 16px);
+          width: auto;
+          height: calc(1.75 * 16px);
+          padding: calc(0.375 * 16px) calc(0.375 * 16px) calc(0.375 * 16px)
+            calc(0.375 * 16px);
+          margin: 0 0 0 0;
+        }
+      ",
+                    "next": null,
+                    "parent": [Circular],
+                    "prev": null,
+                    "type": "text",
+                  },
+                ],
+                "name": "style",
+                "namespace": "http://www.w3.org/1999/xhtml",
+                "next": null,
+                "parent": [Circular],
+                "prev": Node {
+                  "data": "success",
+                  "next": [Circular],
+                  "parent": [Circular],
+                  "prev": null,
+                  "type": "text",
+                },
+                "type": "style",
+                "x-attribsNamespace": Object {},
+                "x-attribsPrefix": Object {},
+              },
+            ],
+            "name": "span",
+            "namespace": "http://www.w3.org/1999/xhtml",
+            "next": [Circular],
+            "parent": [Circular],
+            "prev": null,
+            "type": "tag",
+            "x-attribsNamespace": Object {
+              "class": undefined,
+            },
+            "x-attribsPrefix": Object {
+              "class": undefined,
+            },
+          },
+          "type": "tag",
+          "x-attribsNamespace": Object {
+            "class": undefined,
+          },
+          "x-attribsPrefix": Object {
+            "class": undefined,
+          },
+        },
+        "type": "tag",
+        "x-attribsNamespace": Object {
+          "class": undefined,
+        },
+        "x-attribsPrefix": Object {
+          "class": undefined,
+        },
+      },
+      Node {
+        "attribs": Object {
+          "class": "",
+        },
+        "children": Array [
+          Node {
+            "data": "dark",
+            "next": Node {
+              "attribs": Object {},
+              "children": Array [
+                Node {
+                  "data": "
+        span {
+          display: inline-block;
+          border: 1px solid #000;
+          background-color: #fff;
+          color: #000;
+          box-sizing: border-box;
+          line-height: 1em;
+          border-radius: calc(0.3125 * 16px);
+          font-size: calc(0.875 * 16px);
+          width: auto;
+          height: calc(1.75 * 16px);
+          padding: calc(0.375 * 16px) calc(0.375 * 16px) calc(0.375 * 16px)
+            calc(0.375 * 16px);
+          margin: 0 0 0 0;
+        }
+      ",
+                  "next": null,
+                  "parent": [Circular],
+                  "prev": null,
+                  "type": "text",
+                },
+              ],
+              "name": "style",
+              "namespace": "http://www.w3.org/1999/xhtml",
+              "next": null,
+              "parent": [Circular],
+              "prev": [Circular],
+              "type": "style",
+              "x-attribsNamespace": Object {},
+              "x-attribsPrefix": Object {},
+            },
+            "parent": [Circular],
+            "prev": null,
+            "type": "text",
+          },
+          Node {
+            "attribs": Object {},
+            "children": Array [
+              Node {
+                "data": "
+        span {
+          display: inline-block;
+          border: 1px solid #000;
+          background-color: #fff;
+          color: #000;
+          box-sizing: border-box;
+          line-height: 1em;
+          border-radius: calc(0.3125 * 16px);
+          font-size: calc(0.875 * 16px);
+          width: auto;
+          height: calc(1.75 * 16px);
+          padding: calc(0.375 * 16px) calc(0.375 * 16px) calc(0.375 * 16px)
+            calc(0.375 * 16px);
+          margin: 0 0 0 0;
+        }
+      ",
+                "next": null,
+                "parent": [Circular],
+                "prev": null,
+                "type": "text",
+              },
+            ],
+            "name": "style",
+            "namespace": "http://www.w3.org/1999/xhtml",
+            "next": null,
+            "parent": [Circular],
+            "prev": Node {
+              "data": "dark",
+              "next": [Circular],
+              "parent": [Circular],
+              "prev": null,
+              "type": "text",
+            },
+            "type": "style",
+            "x-attribsNamespace": Object {},
+            "x-attribsPrefix": Object {},
+          },
+        ],
+        "name": "span",
+        "namespace": "http://www.w3.org/1999/xhtml",
+        "next": null,
+        "parent": [Circular],
+        "prev": Node {
+          "attribs": Object {
+            "class": "",
+          },
+          "children": Array [
+            Node {
+              "data": "error",
+              "next": Node {
+                "attribs": Object {},
+                "children": Array [
+                  Node {
+                    "data": "
+        span {
+          display: inline-block;
+          border: 1px solid #e00;
+          background-color: #fff;
+          color: #e00;
+          box-sizing: border-box;
+          line-height: 1em;
+          border-radius: calc(0.3125 * 16px);
+          font-size: calc(0.875 * 16px);
+          width: auto;
+          height: calc(1.75 * 16px);
+          padding: calc(0.375 * 16px) calc(0.375 * 16px) calc(0.375 * 16px)
+            calc(0.375 * 16px);
+          margin: 0 0 0 0;
+        }
+      ",
+                    "next": null,
+                    "parent": [Circular],
+                    "prev": null,
+                    "type": "text",
+                  },
+                ],
+                "name": "style",
+                "namespace": "http://www.w3.org/1999/xhtml",
+                "next": null,
+                "parent": [Circular],
+                "prev": [Circular],
+                "type": "style",
+                "x-attribsNamespace": Object {},
+                "x-attribsPrefix": Object {},
+              },
+              "parent": [Circular],
+              "prev": null,
+              "type": "text",
+            },
+            Node {
+              "attribs": Object {},
+              "children": Array [
+                Node {
+                  "data": "
+        span {
+          display: inline-block;
+          border: 1px solid #e00;
+          background-color: #fff;
+          color: #e00;
+          box-sizing: border-box;
+          line-height: 1em;
+          border-radius: calc(0.3125 * 16px);
+          font-size: calc(0.875 * 16px);
+          width: auto;
+          height: calc(1.75 * 16px);
+          padding: calc(0.375 * 16px) calc(0.375 * 16px) calc(0.375 * 16px)
+            calc(0.375 * 16px);
+          margin: 0 0 0 0;
+        }
+      ",
+                  "next": null,
+                  "parent": [Circular],
+                  "prev": null,
+                  "type": "text",
+                },
+              ],
+              "name": "style",
+              "namespace": "http://www.w3.org/1999/xhtml",
+              "next": null,
+              "parent": [Circular],
+              "prev": Node {
+                "data": "error",
+                "next": [Circular],
+                "parent": [Circular],
+                "prev": null,
+                "type": "text",
+              },
+              "type": "style",
+              "x-attribsNamespace": Object {},
+              "x-attribsPrefix": Object {},
+            },
+          ],
+          "name": "span",
+          "namespace": "http://www.w3.org/1999/xhtml",
+          "next": [Circular],
+          "parent": [Circular],
+          "prev": Node {
+            "attribs": Object {
+              "class": "",
+            },
+            "children": Array [
+              Node {
+                "data": "secondary",
+                "next": Node {
+                  "attribs": Object {},
+                  "children": Array [
+                    Node {
+                      "data": "
+        span {
+          display: inline-block;
+          border: 1px solid #666;
+          background-color: #fff;
+          color: #666;
+          box-sizing: border-box;
+          line-height: 1em;
+          border-radius: calc(0.3125 * 16px);
+          font-size: calc(0.875 * 16px);
+          width: auto;
+          height: calc(1.75 * 16px);
+          padding: calc(0.375 * 16px) calc(0.375 * 16px) calc(0.375 * 16px)
+            calc(0.375 * 16px);
+          margin: 0 0 0 0;
+        }
+      ",
+                      "next": null,
+                      "parent": [Circular],
+                      "prev": null,
+                      "type": "text",
+                    },
+                  ],
+                  "name": "style",
+                  "namespace": "http://www.w3.org/1999/xhtml",
+                  "next": null,
+                  "parent": [Circular],
+                  "prev": [Circular],
+                  "type": "style",
+                  "x-attribsNamespace": Object {},
+                  "x-attribsPrefix": Object {},
+                },
+                "parent": [Circular],
+                "prev": null,
+                "type": "text",
+              },
+              Node {
+                "attribs": Object {},
+                "children": Array [
+                  Node {
+                    "data": "
+        span {
+          display: inline-block;
+          border: 1px solid #666;
+          background-color: #fff;
+          color: #666;
+          box-sizing: border-box;
+          line-height: 1em;
+          border-radius: calc(0.3125 * 16px);
+          font-size: calc(0.875 * 16px);
+          width: auto;
+          height: calc(1.75 * 16px);
+          padding: calc(0.375 * 16px) calc(0.375 * 16px) calc(0.375 * 16px)
+            calc(0.375 * 16px);
+          margin: 0 0 0 0;
+        }
+      ",
+                    "next": null,
+                    "parent": [Circular],
+                    "prev": null,
+                    "type": "text",
+                  },
+                ],
+                "name": "style",
+                "namespace": "http://www.w3.org/1999/xhtml",
+                "next": null,
+                "parent": [Circular],
+                "prev": Node {
+                  "data": "secondary",
+                  "next": [Circular],
+                  "parent": [Circular],
+                  "prev": null,
+                  "type": "text",
+                },
+                "type": "style",
+                "x-attribsNamespace": Object {},
+                "x-attribsPrefix": Object {},
+              },
+            ],
+            "name": "span",
+            "namespace": "http://www.w3.org/1999/xhtml",
+            "next": [Circular],
+            "parent": [Circular],
+            "prev": Node {
+              "attribs": Object {
+                "class": "",
+              },
+              "children": Array [
+                Node {
+                  "data": "success",
+                  "next": Node {
+                    "attribs": Object {},
+                    "children": Array [
+                      Node {
+                        "data": "
+        span {
+          display: inline-block;
+          border: 1px solid #0070f3;
+          background-color: #fff;
+          color: #0070f3;
+          box-sizing: border-box;
+          line-height: 1em;
+          border-radius: calc(0.3125 * 16px);
+          font-size: calc(0.875 * 16px);
+          width: auto;
+          height: calc(1.75 * 16px);
+          padding: calc(0.375 * 16px) calc(0.375 * 16px) calc(0.375 * 16px)
+            calc(0.375 * 16px);
+          margin: 0 0 0 0;
+        }
+      ",
+                        "next": null,
+                        "parent": [Circular],
+                        "prev": null,
+                        "type": "text",
+                      },
+                    ],
+                    "name": "style",
+                    "namespace": "http://www.w3.org/1999/xhtml",
+                    "next": null,
+                    "parent": [Circular],
+                    "prev": [Circular],
+                    "type": "style",
+                    "x-attribsNamespace": Object {},
+                    "x-attribsPrefix": Object {},
+                  },
+                  "parent": [Circular],
+                  "prev": null,
+                  "type": "text",
+                },
+                Node {
+                  "attribs": Object {},
+                  "children": Array [
+                    Node {
+                      "data": "
+        span {
+          display: inline-block;
+          border: 1px solid #0070f3;
+          background-color: #fff;
+          color: #0070f3;
+          box-sizing: border-box;
+          line-height: 1em;
+          border-radius: calc(0.3125 * 16px);
+          font-size: calc(0.875 * 16px);
+          width: auto;
+          height: calc(1.75 * 16px);
+          padding: calc(0.375 * 16px) calc(0.375 * 16px) calc(0.375 * 16px)
+            calc(0.375 * 16px);
+          margin: 0 0 0 0;
+        }
+      ",
+                      "next": null,
+                      "parent": [Circular],
+                      "prev": null,
+                      "type": "text",
+                    },
+                  ],
+                  "name": "style",
+                  "namespace": "http://www.w3.org/1999/xhtml",
+                  "next": null,
+                  "parent": [Circular],
+                  "prev": Node {
+                    "data": "success",
+                    "next": [Circular],
+                    "parent": [Circular],
+                    "prev": null,
+                    "type": "text",
+                  },
+                  "type": "style",
+                  "x-attribsNamespace": Object {},
+                  "x-attribsPrefix": Object {},
+                },
+              ],
+              "name": "span",
+              "namespace": "http://www.w3.org/1999/xhtml",
+              "next": [Circular],
+              "parent": [Circular],
+              "prev": null,
+              "type": "tag",
+              "x-attribsNamespace": Object {
+                "class": undefined,
+              },
+              "x-attribsPrefix": Object {
+                "class": undefined,
+              },
+            },
+            "type": "tag",
+            "x-attribsNamespace": Object {
+              "class": undefined,
+            },
+            "x-attribsPrefix": Object {
+              "class": undefined,
+            },
+          },
+          "type": "tag",
+          "x-attribsNamespace": Object {
+            "class": undefined,
+          },
+          "x-attribsPrefix": Object {
+            "class": undefined,
+          },
+        },
+        "type": "tag",
+        "x-attribsNamespace": Object {
+          "class": undefined,
+        },
+        "x-attribsPrefix": Object {
+          "class": undefined,
+        },
+      },
+    ],
+    "name": "div",
+    "namespace": "http://www.w3.org/1999/xhtml",
+    "next": null,
+    "parent": Node {
+      "children": Array [
+        [Circular],
+      ],
+      "name": "root",
+      "next": null,
+      "parent": null,
+      "prev": null,
+      "type": "root",
+    },
+    "prev": null,
+    "type": "tag",
+    "x-attribsNamespace": Object {},
+    "x-attribsPrefix": Object {},
+  },
+  "_root": LoadedCheerio {
+    "0": Node {
+      "children": Array [
+        Node {
+          "attribs": Object {},
+          "children": Array [
+            Node {
+              "attribs": Object {},
+              "children": Array [],
+              "name": "head",
+              "namespace": "http://www.w3.org/1999/xhtml",
+              "next": Node {
+                "attribs": Object {},
+                "children": Array [],
+                "name": "body",
+                "namespace": "http://www.w3.org/1999/xhtml",
+                "next": null,
+                "parent": [Circular],
+                "prev": [Circular],
+                "type": "tag",
+                "x-attribsNamespace": Object {},
+                "x-attribsPrefix": Object {},
+              },
+              "parent": [Circular],
+              "prev": null,
+              "type": "tag",
+              "x-attribsNamespace": Object {},
+              "x-attribsPrefix": Object {},
+            },
+            Node {
+              "attribs": Object {},
+              "children": Array [],
+              "name": "body",
+              "namespace": "http://www.w3.org/1999/xhtml",
+              "next": null,
+              "parent": [Circular],
+              "prev": Node {
+                "attribs": Object {},
+                "children": Array [],
+                "name": "head",
+                "namespace": "http://www.w3.org/1999/xhtml",
+                "next": [Circular],
+                "parent": [Circular],
+                "prev": null,
+                "type": "tag",
+                "x-attribsNamespace": Object {},
+                "x-attribsPrefix": Object {},
+              },
+              "type": "tag",
+              "x-attribsNamespace": Object {},
+              "x-attribsPrefix": Object {},
+            },
+          ],
+          "name": "html",
+          "namespace": "http://www.w3.org/1999/xhtml",
+          "next": null,
+          "parent": [Circular],
+          "prev": null,
+          "type": "tag",
+          "x-attribsNamespace": Object {},
+          "x-attribsPrefix": Object {},
+        },
+      ],
+      "name": "root",
+      "next": null,
+      "parent": null,
+      "prev": null,
+      "type": "root",
+      "x-mode": "quirks",
+    },
+    "_root": [Circular],
+    "length": 1,
+    "options": Object {
+      "decodeEntities": true,
+      "xml": false,
+    },
+  },
+  "length": 1,
+  "options": Object {
+    "decodeEntities": true,
+    "xml": false,
+  },
+}
+`;

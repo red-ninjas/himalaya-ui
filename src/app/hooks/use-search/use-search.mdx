@@ -1,0 +1,64 @@
+import { Layout, Playground, Attributes } from 'lib/components'
+import { Spacer, Search, Button, useConfigs, ConfigProvider } from 'components'
+import { SearchProvider } from 'components/use-search'
+import useSearch from 'components/use-search'
+import React, { useState } from 'react'
+import { Award, Github } from '@geist-ui/icons'
+import { SearchResult, SearchResults } from 'components/search'
+
+export const meta = {
+  title: 'useSearch',
+  group: 'Utilities',
+}
+
+## Search
+
+useSearch
+
+<SearchProvider>
+  <Playground
+    title="Search modal with provider"
+    desc="A fully example of using the search modal with in a provider"
+    scope={{ Search, Button, useSearch, SearchProvider, React }}
+    code={`
+() => {
+  const doSearch = async (keyword: string) =>
+  {
+    return [
+      {
+        url: '',
+        name: 'Search record',
+        group: 'Search group',
+      }
+    ];
+  }
+  const TestSearchContext = () => {
+    const { setIsEnabled } = useSearch();
+    return (
+      <>
+        <Button onClick={() => setIsEnabled(true)}>Show Search Modal</Button>
+        <Search searchFunction={doSearch} placeholder='Search by context..'/>
+      </>
+    );
+  };
+  return (
+    <SearchProvider>
+      <TestSearchContext></TestSearchContext>
+    </SearchProvider>
+  )
+}
+`}
+  />
+</SearchProvider>
+
+<Attributes edit="/pages/hooks/use-search.mdx">
+<Attributes.Title>useSearch</Attributes.Title>
+
+```ts
+type useSearch = (initialValue: string) => {
+  isEnabled: boolean
+  setIsEnabled: (value: boolean) => void
+}
+```
+
+</Attributes>

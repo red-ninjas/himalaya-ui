@@ -1,0 +1,6 @@
+{
+	"extends": "../../tsconfig.composite.base.json",
+	"include": [
+		"./**/*.ts"
+	]
+}

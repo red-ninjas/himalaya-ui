@@ -1,0 +1,74 @@
+import Title from 'lib/components/playground/title'
+import Github from '@geist-ui/icons/github'
+import { Spacer, Tabs, Snippet } from 'components'
+import { Layout, Playground, Attributes, IconsGallery } from 'lib/components'
+
+export const meta = {
+  title: 'Icons',
+  group: 'General',
+}
+
+## Icons
+
+Display semantic vector graphics in SVG format.
+
+<Title title="Installation" desc="Install the package in your project directory." />
+<Tabs initialValue="yarn">
+  <Tabs.Item label="Yarn" value="yarn">
+    <Spacer h={0.6} />
+    <Snippet width="400px">yarn add @geist-ui/icons</Snippet>
+  </Tabs.Item>
+  <Tabs.Item label="npm" value="npm">
+    <Spacer h={0.6} />
+    <Snippet width="400px">npm i @geist-ui/icons</Snippet>
+  </Tabs.Item>
+</Tabs>
+
+<Playground
+  title="Import"
+  scope={{ Github, Spacer }}
+  code={`
+// import * as Icon from '@geist-ui/icons'
+// or
+// import { Github } from '@geist-ui/icons'
+// or, for tree-shaking:
+// import Github from '@geist-ui/icons/github'
+
+<Github />
+`} />
+
+<Playground
+  title="Color"
+  scope={{ Github }}
+  code={`
+<Github color="red" />
+`}
+/>
+
+<Playground
+  title="Sizes"
+  scope={{ Github, Spacer }}
+  code={`
+<>
+  <Github size={16} /> <Spacer inline w={.35} />
+  <Github size={20} /> <Spacer inline w={.35} />
+  <Github size={24} /> <Spacer inline w={.35} />
+  <Github size={28} /> <Spacer inline w={.35} />
+  <Github size={32} /> <Spacer inline w={.35} />
+  <Github size={36} />
+</>
+`}
+/>
+
+<IconsGallery />
+
+<Attributes edit="/pages/components/icons.mdx">
+<Attributes.Title>Icon.Props</Attributes.Title>
+
+| Attribute | Description  | Type            | Accepted values                  | Default |
+| --------- | ------------ | --------------- | -------------------------------- | ------- |
+| **color** | Icon color   | `string`        | -                                | -       |
+| **size**  | Icon size    | `number`        | -                                | -       |
+| ...       | Native props | `SVGAttributes` | `'id', 'name', 'className', ...` | -       |
+
+</Attributes>

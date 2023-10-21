@@ -1,0 +1,88 @@
+import {
+  QuickBar,
+  QuickAction,
+  QuickBarLayout,
+  QuickBarProvider,
+  Divider,
+} from 'components'
+import { Playground, Attributes } from 'lib/components'
+import { Anchor, Code, Github, Home, Layout } from '@geist-ui/icons'
+
+export const meta = {
+  title: 'Quick Bar',
+  group: 'Navigation',
+}
+
+### Quick Bar
+
+QuickBar is a customizable sidebar component designed for navigation .
+
+<Playground
+  title="Example"
+  scope={{
+    QuickAction,
+    Code,
+    Home,
+    Anchor,
+    Github,
+    Layout,
+    QuickBar,
+    QuickBarLayout,
+    QuickBarProvider,
+    Divider,
+  }}
+  desc={'A fully example of using the QuickBar'}
+  code={`
+<QuickBarProvider>
+    <QuickBarLayout>
+        <QuickBar>
+            <QuickAction type='lite' radius={50} href='#'  tooltip='Home'><Home size={20} /></QuickAction>
+            <Divider width={'100%'}></Divider>
+            <QuickAction type='lite' radius={50} href='#' tooltip='Guide'><Code size={20} /></QuickAction>
+            <Divider width={'100%'}></Divider>
+            <QuickAction type='lite' radius={50} href='#' tooltip='Components'><Layout size={20} /></QuickAction>
+        </QuickBar>
+    </QuickBarLayout>
+</QuickBarProvider>
+  `}
+/>
+
+<Attributes edit="/pages/components/quick-bar.mdx">
+
+<Attributes.Title>QuickBarProvider.Props</Attributes.Title>
+
+| Attribute                 | Description                                                       | Type      | Accepted values | Default |
+| ------------------------- | ----------------------------------------------------------------- | --------- | --------------- | ------- |
+| `hideOnMobile` (optional) | Boolean indicating whether to hide the QuickBar on mobile devices | `boolean` | -               | true    |
+
+<Attributes.Title>QuickBarLayout.Props</Attributes.Title>
+
+| Attribute                  | Description                        | Type     | Accepted values | Default |
+| -------------------------- | ---------------------------------- | -------- | --------------- | ------- |
+| `animationTime` (optional) | Animation duration in milliseconds | `number` | -               | 250     |
+
+<Attributes.Title>QuickBar.Props</Attributes.Title>
+
+| Attribute           | Description                                               | Type        | Accepted values | Default |
+| ------------------- | --------------------------------------------------------- | ----------- | --------------- | ------- |
+| `header` (optional) | React node to be displayed as the header of the QuickBar. | `ReactNode` | -               | -       |
+
+<Attributes.Title>QuickAction.Props</Attributes.Title>
+
+| Attribute                  | Description                                                             | Type                                           | Accepted values | Default |
+| -------------------------- | ----------------------------------------------------------------------- | ---------------------------------------------- | --------------- | ------- |
+| `tooltip` (optional)       | Tooltip text or React node to be displayed on hover.                    | `string , React.ReactNode`                     | -               | -       |
+| `exactMatch` (optional)    | Boolean value indicating whether the link should match the URL exactly. | `boolean`                                      | -               | true    |
+| `radius` (optional)        | Number indicating the border-radius of the QuickActionButton component. | `number`                                       | -               | -       |
+| `target` (optional)        | HTML anchor target attribute value                                      | `HTMLAttributeAnchorTarget , undefined`        | -               | \_self  |
+| `highlightLeft` (optional) | Number indicating the highlight position from the left side.            | `number`                                       | -               | -10     |
+| `href` (optional)          | URL to navigate when the QuickActionButton is clicked.                  | `string`                                       | -               | -       |
+| `type` (optional)          | URL to navigate when the QuickActionButton is clicked.                  | `default, success, warning, error, dark, lite` | -               | default |
+
+</Attributes>
+
+<style jsx>{`
+  .quick-bar {
+    position: relative !important;
+  }
+`}</style>

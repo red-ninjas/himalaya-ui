@@ -1,0 +1,146 @@
+import { Layout, Playground, Attributes } from 'lib/components'
+import { Radio, Spacer, Code } from 'components'
+import { useState } from 'react'
+
+export const meta = {
+  title: 'Radio',
+  group: 'Data Entry',
+}
+
+## Radio
+
+Provides single user input from a selection of options.
+
+<Playground
+  scope={{ Radio }}
+  code={`
+<Radio checked={false}>Option 1</Radio>
+`}
+/>
+
+<Playground
+  title="Group"
+  desc="A group of radio components."
+  scope={{ Radio, useState }}
+  code={`
+() => {
+  const [state, setState] = useState('1')
+  const handler = val => {
+    setState(val)
+    console.log(val)
+  }
+  return (
+    <>
+      <Radio.Group value={state} onChange={handler}>
+        <Radio value="1">Option 1</Radio>
+        <Radio value="2">Option 2</Radio>
+      </Radio.Group>
+    </>
+  )
+}
+`}
+/>
+
+<Playground
+  title="Type"
+  desc="Differentiate states by color."
+  scope={{ Radio, Spacer }}
+  code={`
+    <>
+      <Radio checked={false} type="default">Default</Radio>
+      <Spacer h={.5} />
+      <Radio checked={false} type="success">Success</Radio>
+      <Spacer h={.5} />
+      <Radio checked={false} type="warning">Warning</Radio>
+      <Spacer h={.5} />
+      <Radio checked={false} type="error">Error</Radio>
+    </>
+`}
+/>
+
+<Playground
+  title="Description"
+  desc="`Description` can be combined with other components."
+  scope={{ Radio, Code }}
+  code={`
+<Radio.Group value="1" onChange={val => console.log(val)}>
+  <Radio value="1">
+    Option 1
+    <Radio.Description>Description for Option1</Radio.Description>
+  </Radio>
+  <Radio value="2">
+    Option 2
+    <Radio.Desc><Code>Description</Code> for Option2</Radio.Desc>
+  </Radio>
+</Radio.Group>
+`}
+/>
+
+<Playground
+  title="Disabled"
+  desc="Disable all radios."
+  scope={{ Radio, useState, Code }}
+  code={`
+<Radio.Group value="1" disabled>
+  <Radio value="1">Option 1</Radio>
+  <Radio value="2">Option 2</Radio>
+</Radio.Group>
+`}
+/>
+
+<Playground
+  title="Row"
+  desc="Horizontal arrangement."
+  scope={{ Radio, Code }}
+  code={`
+<Radio.Group value="1" useRow>
+  <Radio value="1">
+    Option 1
+    <Radio.Desc>Description for Option1</Radio.Desc>
+  </Radio>
+  <Radio value="2">
+    Option 2
+    <Radio.Desc>Description for Option2</Radio.Desc>
+  </Radio>
+</Radio.Group>
+`}
+/>
+
+<Attributes edit="/pages/components/radio.mdx">
+<Attributes.Title>Radio.Props</Attributes.Title>
+
+| Attribute    | Description                   | Type                           | Accepted values           | Default   |
+| ------------ | ----------------------------- | ------------------------------ | ------------------------- | --------- |
+| **checked**  | selected or not (in single)   | `boolean`                      | -                         | `false`   |
+| **value**    | unique ident value (in group) | `string`                       | -                         | -         |
+| **id**       | native attr                   | `string`                       | -                         | -         |
+| **disabled** | disable current radio         | `boolean`                      | -                         | `false`   |
+| **type**     | current type                  | `RadioTypes`                   | [RadioTypes](#radiotypes) | `default` |
+| **onChange** | change event                  | `(e: RadioEvent) => void`      | -                         | -         |
+| **ref**      | forwardRef                    | `Ref<HTMLInputElement or null` | -                         | -         |
+| ...          | native props                  | `InputHTMLAttributes`          | `'id', 'className', ...`  | -         |
+
+<Attributes.Title>Radio.Group.Props</Attributes.Title>
+
+| Attribute        | Description          | Type                      | Accepted values          | Default |
+| ---------------- | -------------------- | ------------------------- | ------------------------ | ------- |
+| **initialValue** | initial value        | `string`                  | -                        | -       |
+| **value**        | selected child radio | `string`                  | -                        | -       |
+| **useRow**       | horizontal layout    | `boolean`                 | -                        | `false` |
+| **disabled**     | disable all radios   | `boolean`                 | -                        | `false` |
+| **onChange**     | change event         | `(value: string) => void` | -                        | -       |
+| ...              | native props         | `HTMLAttributes`          | `'id', 'className', ...` | -       |
+
+<Attributes.Title alias="Radio.Desc">Radio.Description.Props</Attributes.Title>
+
+| Attribute | Description  | Type             | Accepted values          | Default |
+| --------- | ------------ | ---------------- | ------------------------ | ------- |
+| ...       | native props | `HTMLAttributes` | `'id', 'className', ...` | -       |
+
+<Attributes.Title>RadioTypes</Attributes.Title>
+
+```ts
+type RadioTypes = 'default' | 'secondary' | 'success' | 'warning' | 'error'
+```
+
+</Attributes>

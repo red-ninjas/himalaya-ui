@@ -1,0 +1,62 @@
+import { Layout, Playground, Attributes } from 'lib/components'
+import { FadeInEffect, Text } from 'components'
+
+export const meta = {
+  title: 'FadeInEffect',
+  group: 'Others',
+}
+
+## Fade-in Component
+
+<Playground
+  scope={{ FadeInEffect, Text }}
+  title={'Fadein Component Effect example'}
+  desc={'Example of a fadein component'}
+  code={`
+  <FadeInEffect transition={5000} delay={2000} scaleY={'2'} translateX="4rem">
+    <Text>Fade In Text</Text>
+  </FadeInEffect>
+  `}
+  />
+
+<Playground
+  scope={{ FadeInEffect, Text }}
+  title={'Fadein Component Effect example'}
+  desc={'Example of a fadein component with slide from left'}
+  code={`
+  <FadeInEffect delay={2000}  transition={5000}  blur={10} translateY="4rem">
+    <Text>Fade In Text</Text>
+  </FadeInEffect>
+  `}
+  />
+
+  <Playground
+    scope={{ FadeInEffect, Text }}
+    title={'Fadein Component Effect example'}
+    desc={'Example of a fadein component with text rotation'}
+    code={`
+<FadeInEffect delay={2000} rotate='320deg'>
+  <Text>Himalaya UI</Text>
+</FadeInEffect>
+`}
+  />
+
+<Attributes edit="/pages/components/fade-in.mdx">
+<Attributes.Title>FadeInEffect.Props</Attributes.Title>
+
+| Attribute     | Description                                                          | Type             | Accepted values          | Default |
+| ------------- | -------------------------------------------------------------------- | ---------------- | ------------------------ | ------- |
+| transition?   | Animation transition in milliseconds                                 | `number`         | -                        | `750`   |
+| delay?        | Delay before starting the animation                                  | `number`         | -                        | `0`     |
+| blur?         | Blur effect                                                          | `number`         | -                        | `0`     |
+| startOpacity? | Starting opacity of element                                          | `number`         | -                        | `0`     |
+| rotate?       | Rotate css property                                                  | `string`         | -                        | `0`     |
+| translateX?   | Translate the component horizontally (CSS translateX transformation) | `string`         | -                        | `0`     |
+| translateY?   | Translate the component vertically (CSS translateY transformation)   | `string`         | -                        | `0`     |
+| skewX?        | Skew component horizontally (CSS skewX transformation)               | `string`         | -                        | `0`     |
+| skewY?        | Skew component horizontally (CSS skewY transformation)               | `string`         | -                        | `0`     |
+| scaleX?       | Scale component horizontally (CSS scaleX transformation)             | `string`         | -                        | `1`     |
+| scaleY?       | Scale component vertically (CSS scaleY transformation)               | `string`         | -                        | `1`     |
+| ...           | native props                                                         | `HTMLAttributes` | `'id', 'className', ...` | -       |
+
+</Attributes>

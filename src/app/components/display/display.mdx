@@ -1,0 +1,77 @@
+import { Layout, Playground, Attributes } from 'lib/components'
+import { Display, Code, Snippet, Image } from 'components'
+
+export const meta = {
+  title: 'Display',
+  group: 'Data Display',
+}
+
+## Display
+
+To display important information or images in a central alignment.
+
+<Playground
+  title="Basic"
+  desc="Describe the main part with a paragraph."
+  scope={{ Display, Image }}
+  code={`
+  <Display shadow caption="An open-source design system for building modern websites and applications.">
+    <Image width="435px" height="200px" src="/images/himalaya-banner.png" />
+  </Display>
+`}
+/>
+
+<Playground
+  title="With Code"
+  desc="Show multiline code blocks."
+  scope={{ Display, Code }}
+  code={`
+() => {
+  const codes = \`{
+  "build": {
+    "env": {
+      "VARIABLE_NAME": "@secret-name"
+    }
+  }
+}\`
+  return (
+    <Display width="500px" caption="Application's build with a defined environment variable.">
+      <Code block>{codes}</Code>
+    </Display>
+  )
+}
+`}
+/>
+
+<Playground
+  title="With Snippet"
+  desc="Show shell codes."
+  scope={{ Display, Snippet }}
+  code={`
+<Display width="500px" caption="Run this command to install the library.">
+  <Snippet type="dark">yarn add @himalaya</Snippet>
+</Display>
+`}
+/>
+
+<Playground
+  title="Component Caption"
+  desc="Use component on `caption` prop."
+  scope={{ Display, Code, Image }}
+  code={`
+  <Display shadow caption={<p>Browse <Code>himalaya-ui.com</Code> for more documentation.</p>}>
+    <Image width="650px" height="297px" src="/images/himalaya-banner.png" />
+  </Display>
+`}
+/>
+
+<Attributes edit="/pages/components/display.mdx">
+<Attributes.Title>Display.Props</Attributes.Title>
+
+| Attribute   | Description                   | Type                   | Accepted values | Default |
+| ----------- | ----------------------------- | ---------------------- | --------------- | ------- |
+| **caption** | description for display block | `ReactNode` / `string` | -               | -       |
+| **shadow**  | show shadow                   | `boolean`              | -               | `false` |
+| ...         | native props                  | `HTMLAttributes`       | -               | -       |
+
+</Attributes>

@@ -1,0 +1,29 @@
+import { Layout, Playground, Attributes } from 'lib/components'
+import { Section, Text } from 'components'
+
+export const meta = {
+  title: 'Section',
+  group: 'Layout',
+}
+
+## Section
+
+<Playground
+  scope={{ Section, Text }}
+  title={'Section example'}
+  desc={'Example of a section'}
+  code={`
+  <Section>
+    <Text>Section</Text>
+  </Section>
+  `}
+/>
+
+<Attributes edit="/pages/components/section.mdx">
+<Attributes.Title>Section.Props</Attributes.Title>
+
+| Attribute | Description  | Type             | Accepted values          | Default |
+| --------- | ------------ | ---------------- | ------------------------ | ------- |
+| ...       | native props | `HTMLAttributes` | `'id', 'className', ...` | -       |
+
+</Attributes>

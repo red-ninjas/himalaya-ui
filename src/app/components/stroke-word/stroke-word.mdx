@@ -1,0 +1,30 @@
+import { Layout, Playground, Attributes } from 'lib/components'
+import { StrokeWord } from 'components'
+
+export const meta = {
+  title: 'Stroke Word',
+  group: 'Text',
+}
+
+## Stroke Word
+
+<Playground
+  scope={{ StrokeWord }}
+  title={'Stroke Word example'}
+  desc={'Example of a Stroke Word'}
+  code={`
+  <StrokeWord stroke={2}>
+    Stroke Word
+  </StrokeWord>
+  `}
+/>
+
+<Attributes edit="/pages/components/Stroke-word.mdx">
+<Attributes.Title>StrokeWord.Props</Attributes.Title>
+
+| Attribute | Description      | Type             | Accepted values          | Default |
+| --------- | ---------------- | ---------------- | ------------------------ | ------- |
+| stroke?   | stroke thickness | `number`         | -                        | `1`     |
+| ...       | native props     | `HTMLAttributes` | `'id', 'className', ...` | -       |
+
+</Attributes>

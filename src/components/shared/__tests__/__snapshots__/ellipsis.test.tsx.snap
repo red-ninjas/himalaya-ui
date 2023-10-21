@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Ellipsis should render correctly 1`] = `
+"<div style=\\"width: 1px;\\"><span>text<style>
+        span {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          line-height: 10px;
+          min-width: 0;
+        }
+      </style></span></div>"
+`;

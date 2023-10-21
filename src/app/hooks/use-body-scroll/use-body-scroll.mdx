@@ -1,0 +1,47 @@
+import { Layout, Playground, Attributes } from 'lib/components'
+import { Button, Spacer, Text, useBodyScroll } from 'components'
+
+export const meta = {
+  title: 'useBodyScroll',
+  group: 'Utilities',
+}
+
+## useBodyScroll
+
+Disable scrolling behavior for body or any element, it is useful for displaying popup element or menus.
+
+If the page's scrollbar is set to a user-defined `width` before scrolling is disabled, a `paddingRight` value will be added after disabling to adapt.
+
+<Playground
+  desc="Click button to disable scrolling."
+  scope={{ Button, Spacer, Text, useBodyScroll }}
+  code={`
+() => {
+  const [hidden, setHidden] = useBodyScroll()
+  return (
+    <>
+      <Text small b type={hidden ? 'error' : 'default'}>{hidden ? 'Body disabled.' : 'Body can be scrolled.'}</Text>
+      <Spacer h={.75} />
+      <Button scale={0.5} type="success-light" auto onClick={() => setHidden(true)}>disable scroll</Button>
+      <Button ml="20px" scale={0.5} type="secondary-light" auto onClick={() => setHidden(false)}>reset</Button>
+    </>
+  )
+}
+`}
+/>
+
+<Attributes edit="/pages/hooks/use-body-scroll.mdx">
+<Attributes.Title>useBodyScroll</Attributes.Title>
+
+```ts
+type BodyScrollOptions = {
+  delayReset: number // resume scrolling after a delay, default is 0
+}
+
+const useBodyScroll = (
+  elementRef?: RefObject<HTMLElement> | null,
+  options?: BodyScrollOptions,
+) => [boolean, Dispatch<SetStateAction<boolean>>]
+```
+
+</Attributes>

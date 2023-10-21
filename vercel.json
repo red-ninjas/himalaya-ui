@@ -1,0 +1,8 @@
+{
+  "version": 2,
+  "buildCommand": "yarn docs:build",
+  "installCommand": "yarn install",
+  "devCommand": "yarn dev",
+  "outputDirectory": "dist/documentation",
+  "framework": "nextjs"
+}

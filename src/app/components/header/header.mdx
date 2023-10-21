@@ -1,0 +1,50 @@
+import { Layout, Playground, Attributes } from 'lib/components'
+import { Header, Logo } from 'components'
+
+export const meta = {
+  title: 'Header',
+  group: 'Layout',
+}
+
+## Header
+
+<Playground
+  scope={{ Header, Logo }}
+  title={'Header example'}
+  desc={'Example of a header'}
+  code={`
+  <Header transcluent={false}>
+    <Header.Left>
+      <Logo logoBackground={'#fff'} title='Logo'>
+      </Logo>
+    </Header.Left>
+    <Header.Center>
+      Middle part
+    </Header.Center>
+    <Header.Right><span>Right</span></Header.Right>
+    <Header.Right><span>Part</span></Header.Right>
+  </Header>
+  `}
+/>
+
+<Attributes edit="/pages/components/header.mdx">
+<Attributes.Title>Header.Props</Attributes.Title>
+
+| Attribute   | Description                           | Type             | Accepted values          | Default |
+| ----------- | ------------------------------------- | ---------------- | ------------------------ | ------- |
+| transcluent | is header is using transcluent effect | `boolean`        | -                        | `true`  |
+| ...         | native props                          | `HTMLAttributes` | `'id', 'className', ...` | -       |
+
+<Attributes.Title>Logo.Props</Attributes.Title>
+
+| Attribute      | Description                           | Type              | Accepted values          | Default |
+| -------------- | ------------------------------------- | ----------------- | ------------------------ | ------- |
+| logoBackground | is header is using transcluent effect | `string`          | -                        | -       |
+| title          | is header is using transcluent effect | `string`          | -                        | -       |
+| url            | is header is using transcluent effect | `string`          | -                        | `/`     |
+| size           | is header is using transcluent effect | `number`          | -                        | `30`    |
+| hideOnMobile   | is header is using transcluent effect | `boolean`         | -                        | `true`  |
+| logo           | is header is using transcluent effect | `React.ReactNode` | -                        | -       |
+| ...            | native props                          | `HTMLAttributes`  | `'id', 'className', ...` | -       |
+
+</Attributes>

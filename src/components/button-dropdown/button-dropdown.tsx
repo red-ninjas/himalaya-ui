@@ -1,0 +1,208 @@
+'use client'
+
+import React, { MouseEvent, useCallback, useMemo, useRef, useState } from 'react'
+import useTheme from '../use-theme'
+import useClickAway from '../utils/use-click-away'
+import { getColor } from './styles'
+import ButtonDropdownIcon from './icon'
+import ButtonDropdownItem from './button-dropdown-item'
+import { ButtonDropdownContext } from './button-dropdown-context'
+import { NormalTypes } from '../utils/prop-types'
+import { pickChild, pickChildByProps } from '../utils/collections'
+import useScale, { withScale } from '../use-scale'
+import useClasses from '../use-classes'
+import useLayout from '../use-layout'
+
+export type ButtonDropdownTypes = NormalTypes
+
+interface Props {
+  type?: ButtonDropdownTypes
+  auto?: boolean
+  loading?: boolean
+  disabled?: boolean
+  className?: string
+  icon?: React.ReactNode
+}
+
+type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>
+export type ButtonDropdownProps = Props & NativeAttrs
+
+const stopPropagation = (event: MouseEvent<HTMLElement>) => {
+  event.stopPropagation()
+  event.nativeEvent.stopImmediatePropagation()
+}
+
+const ButtonDropdownComponent: React.FC<React.PropsWithChildren<ButtonDropdownProps>> = ({
+  children,
+  type,
+  auto,
+  className,
+  disabled,
+  loading,
+  icon,
+  ...props
+}) => {
+  const { SCALES } = useScale()
+  const ref = useRef<HTMLDivElement>(null)
+  const theme = useTheme()
+  const layout = useLayout()
+  const colors = getColor(theme.palette, type)
+  const itemChildren = pickChild(children, ButtonDropdownItem)[1]
+  const [itemChildrenWithoutMain, mainItemChildren] = pickChildByProps(
+    itemChildren,
+    'main',
+    true,
+  )
+  const [visible, setVisible] = useState<boolean>(false)
+  const clickHandler = useCallback(
+    (event: MouseEvent<HTMLDetailsElement>) => {
+      event.preventDefault()
+      stopPropagation(event)
+      if (disabled || loading) return
+      setVisible(!visible)
+    },
+    [visible],
+  )
+
+  const initialValue = {
+    type,
+    auto,
+    disabled,
+    loading,
+  }
+  const bgColor = useMemo(() => {
+    if (disabled || loading) return theme.palette.accents_1
+    return visible ? colors.hoverBgColor : colors.bgColor
+  }, [visible, colors, theme.palette])
+  const [paddingLeft, paddingRight] = [
+    auto ? SCALES.pl(1.15) : SCALES.pl(1.375),
+    auto ? SCALES.pr(1.15) : SCALES.pr(1.375),
+  ]
+
+  useClickAway(ref, () => setVisible(false))
+
+  return (
+    <ButtonDropdownContext.Provider value={initialValue}>
+      <div
+        ref={ref}
+        className={useClasses('btn-dropdown', className)}
+        onClick={stopPropagation}
+        {...props}
+      >
+        {mainItemChildren}
+        <details open={visible}>
+          <summary onClick={clickHandler}>
+            <div className="dropdown-box">
+              {icon ? (
+                <span
+                  className="dropdown-icon"
+                  style={{
+                    color: colors.color,
+                    height: SCALES.height(2.5),
+                    width: SCALES.height(2.5),
+                  }}
+                >
+                  {icon}
+                </span>
+              ) : (
+                <ButtonDropdownIcon color={colors.color} height={SCALES.height(2.5)} />
+              )}
+            </div>
+          </summary>
+          <div className="content">{itemChildrenWithoutMain}</div>
+        </details>
+        <style jsx>{`
+          .btn-dropdown {
+            display: inline-flex;
+            position: relative;
+            box-sizing: border-box;
+            border: 1px solid ${theme.palette.border};
+            border-radius: ${theme.style.radius};
+            --ui-dropdown-height: ${SCALES.height(2.5)};
+            --ui-dropdown-min-width: ${auto ? 'min-content' : SCALES.width(10.5)};
+            --ui-dropdown-padding: ${SCALES.pt(0)} ${paddingRight} ${SCALES.pb(0)}
+              ${paddingLeft};
+            --ui-dropdown-font-size: ${SCALES.font(0.875)};
+          }
+
+          .btn-dropdown > :global(button) {
+            border-top-left-radius: ${theme.style.radius};
+            border-bottom-left-radius: ${theme.style.radius};
+          }
+
+          details {
+            border-top-right-radius: ${theme.style.radius};
+            border-bottom-right-radius: ${theme.style.radius};
+            overflow: hidden;
+          }
+
+          .dropdown-box {
+            height: ${SCALES.height(2.5)};
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: auto;
+          }
+
+          summary {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            list-style: none;
+            outline: none;
+            color: ${colors.color};
+            background-color: ${bgColor};
+            height: ${SCALES.height(2.5)};
+            border-left: 1px solid ${colors.borderLeftColor};
+            cursor: ${disabled || loading ? 'not-allowed' : 'pointer'};
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: auto;
+            padding: 0 1px;
+            transition:
+              background 0.2s ease 0s,
+              border-color 0.2s ease 0s;
+          }
+
+          summary:hover {
+            border-color: ${colors.hoverBorder};
+            background-color: ${colors.hoverBgColor};
+          }
+
+          .content {
+            position: absolute;
+            right: 0;
+            left: 0;
+            z-index: 90;
+            width: 100%;
+            border-radius: ${theme.style.radius};
+            box-shadow: ${theme.expressiveness.shadowLarge};
+            transform: translateY(${layout.gapHalf});
+            background-color: ${theme.palette.background};
+          }
+
+          .content > :global(button:first-of-type) {
+            border-top-left-radius: ${theme.style.radius};
+            border-top-right-radius: ${theme.style.radius};
+          }
+
+          .content > :global(button:last-of-type) {
+            border-bottom-left-radius: ${theme.style.radius};
+            border-bottom-right-radius: ${theme.style.radius};
+          }
+
+          .dropdown-icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transform: scale(0.6);
+          }
+        `}</style>
+      </div>
+    </ButtonDropdownContext.Provider>
+  )
+}
+
+ButtonDropdownComponent.displayName = 'HimalayaButtonDropdown'
+const ButtonDropdown = withScale(ButtonDropdownComponent)
+export default ButtonDropdown

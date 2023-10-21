@@ -1,0 +1,132 @@
+import { Layout, Playground, Attributes } from 'lib/components'
+import { Badge, Spacer, Avatar, Button, Link, useTheme } from 'components'
+import NextLink from 'next/link'
+
+export const meta = {
+  title: 'Badge',
+  group: 'Data Display',
+}
+
+## Badge
+
+Display an indicator that requires attention.
+
+<Playground
+  scope={{ Badge, Spacer }}
+  desc="Show number or text."
+  code={`
+  <>
+    <Badge>1</Badge> <Spacer h={.5} />
+    <Badge>50</Badge> <Spacer h={.5} />
+    <Badge>100</Badge> <Spacer h={.5} />
+    <Badge>2020</Badge>
+  </>
+`}
+/>
+
+<Playground
+  title="Type"
+  desc="Express state in different colors."
+  scope={{ Badge, Spacer }}
+  code={`
+  <>
+    <Badge type="success">Success</Badge> <Spacer h={.5} />
+    <Badge type="warning">Warning</Badge> <Spacer h={.5} />
+    <Badge type="error">Error</Badge> <Spacer h={.5} />
+    <Badge type="secondary">Secondary</Badge>
+  </>
+`}
+/>
+
+<Playground
+  title="Custom color"
+  desc={
+    <>
+      For more colors, please refer to the{' '}
+      <NextLink href="/guide/colors" legacyBehavior>
+        <Link color>color section</Link>
+      </NextLink>
+      .
+    </>
+  }
+  scope={{ Badge, Spacer, useTheme }}
+  code={`
+() => {
+  const theme = useTheme()
+  return (
+    <>
+      <Badge style={{ backgroundColor: theme.palette.successLight }}>Success Light</Badge> <Spacer h={.5} />
+      <Badge style={{ backgroundColor: theme.palette.successDark }}>Success Dark</Badge> <Spacer h={.5} />
+      <Badge style={{ backgroundColor: theme.palette.alert }}>Alert</Badge> <Spacer h={.5} />
+      <Badge style={{ backgroundColor: theme.palette.purple }}>Purple</Badge> <Spacer h={.5} />
+      <Badge style={{ backgroundColor: theme.palette.violet }}>Violet</Badge> <Spacer h={.5} />
+      <Badge style={{ backgroundColor: theme.palette.cyanLighter, color: theme.palette.foreground }}>Cyan Lighter</Badge> <Spacer h={.5} />
+    </>
+  )
+}
+`}
+/>
+
+<Playground
+  title="Anchor"
+  desc="Fix the `Badge` in the designated position."
+  scope={{ Badge, Avatar, Spacer, Button, Link }}
+  code={`
+<>
+  <Badge.Anchor>
+    <Badge scale={0.5}>10</Badge>
+    <Avatar src="/images/avatar.png" />
+  </Badge.Anchor>
+  <Spacer inline w={2.5} />
+  <Badge.Anchor placement="bottomRight">
+    <Badge scale={0.5} type="success">10</Badge>
+    <Avatar scale={1.5} isSquare src="/images/avatar.png" />
+  </Badge.Anchor>
+  <Spacer inline w={2.5} />
+  <Badge.Anchor>
+    <Badge scale={0.5} type="warning">99+</Badge>
+    <Button scale={0.5} auto>Action</Button>
+  </Badge.Anchor>
+  <Spacer inline w={2.5} />
+  <Badge.Anchor>
+    <Badge scale={0.5} type="error" dot />
+    <Link target="_blank" href="https://github.com/red-ninjas/himalaya-ui/">Himalaya UI</Link>
+  </Badge.Anchor>
+  <Spacer inline w={2.5} />
+  <Badge.Anchor>
+    <Badge type="error" dot padding="5px" />
+    <Link target="_blank" href="https://github.com/red-ninjas/himalaya-ui/">Share Link</Link>
+  </Badge.Anchor>
+</>
+`}
+/>
+
+<Attributes edit="/pages/components/badge.mdx">
+<Attributes.Title>Badge.Props</Attributes.Title>
+
+| Attribute | Description                 | Type             | Accepted values                 | Default   |
+| --------- | --------------------------- | ---------------- | ------------------------------- | --------- |
+| **type**  | badge type                  | `BadgeTypes`     | [BadgeTypes](#badgetypes)       | `default` |
+| **dot**   | show dot and ignore content | `boolean`        | -                               | `false`   |
+| ...       | native props                | `HTMLAttributes` | `'alt', 'id', 'className', ...` | -         |
+
+<Attributes.Title>Badge.Anchor.Props</Attributes.Title>
+
+| Attribute     | Description            | Type              | Accepted values                     | Default    |
+| ------------- | ---------------------- | ----------------- | ----------------------------------- | ---------- |
+| **placement** | fixe position of Badge | `AnchorPlacement` | [AnchorPlacement](#anchorplacement) | `topRight` |
+| ...           | native props           | `HTMLAttributes`  | `'alt', 'id', 'className', ...`     | -          |
+
+<Attributes.Title>BadgeTypes</Attributes.Title>
+
+```ts
+type BadgeTypes = 'default' | 'secondary' | 'success' | 'warning' | 'error'
+```
+
+<Attributes.Title>AnchorPlacement</Attributes.Title>
+
+```ts
+type AnchorPlacement = 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight'
+```
+
+</Attributes>

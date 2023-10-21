@@ -1,0 +1,63 @@
+stages:
+  - build
+  - test
+  - publish
+
+build:
+  stage: build
+  only:
+    - tags
+  cache:
+    key: build-cache
+    paths:
+      - node_modules/
+      - lib/
+      - .npmrc
+    policy: push
+  script:
+    - echo "//${CI_SERVER_HOST}/api/v4/projects/${CI_PROJECT_ID}/packages/npm/:_authToken=${CI_JOB_TOKEN}">.npmrc
+    - docker run -v $(pwd):/app -v /home:/home -w="/app" -u="$(id -u):$(id -g)" -e HOME node:14 npm install
+    - docker run -v $(pwd):/app -v /home:/home -w="/app" -u="$(id -u):$(id -g)" -e HOME node:14 npm run build
+
+test:
+  stage: test
+  only:
+    - tags
+  cache:
+    key: build-cache
+    paths:
+      - node_modules/
+      - lib/
+      - .npmrc
+    policy: pull
+  script:
+    - docker run -v $(pwd):/app -v /home:/home -w="/app" -u="$(id -u):$(id -g)" -e HOME node:14 npm run test
+
+lint:
+  stage: test
+  only:
+    - tags
+  cache:
+    key: build-cache
+    paths:
+      - node_modules/
+      - lib/
+      - .npmrc
+    policy: pull
+  script:
+    - docker run -v $(pwd):/app -v /home:/home -w="/app" -u="$(id -u):$(id -g)" -e HOME node:14 npm run lint
+
+publish:
+  stage: publish
+  only:
+    - tags
+  cache:
+    key: build-cache
+    paths:
+      - node_modules/
+      - lib/
+      - .npmrc
+    policy: pull
+  script:
+    - docker run -v $(pwd):/app -v /home:/home -w="/app" -u="$(id -u):$(id -g)" -e HOME node:14 npm version --no-git-tag-version ${CI_COMMIT_TAG}
+    - docker run -v $(pwd):/app -v /home:/home -w="/app" -u="$(id -u):$(id -g)" -e HOME node:14 npm publish

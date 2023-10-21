@@ -1,0 +1,715 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Toggle should render correctly 1`] = `
+"<label class=\\"\\"><input type=\\"checkbox\\"><div class=\\"toggle\\"><span class=\\"inner\\"></span></div><style>
+        label {
+          -webkit-tap-highlight-color: transparent;
+          display: inline-block;
+          vertical-align: middle;
+          white-space: nowrap;
+          user-select: none;
+          position: relative;
+          cursor: pointer;
+          --toggle-font-size: calc(1 * 16px);
+          --toggle-height: calc(0.875 * 16px);
+          width: calc(1.75 * 16px);
+          height: var(--toggle-height);
+          padding: calc(0.1875 * 16px) 0 calc(0.1875 * 16px)
+            0;
+          margin: 0 0 0 0;
+        }
+
+        input {
+          overflow: hidden;
+          visibility: hidden;
+          height: 0;
+          opacity: 0;
+          width: 0;
+          position: absolute;
+          background-color: transparent;
+          z-index: -1;
+        }
+
+        .toggle {
+          height: var(--toggle-height);
+          width: 100%;
+          border-radius: var(--toggle-height);
+          transition-delay: 0.12s;
+          transition-duration: 0.2s;
+          transition-property: background, border;
+          transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+          position: relative;
+          border: 1px solid transparent;
+          background-color: #eaeaea;
+          padding: 0;
+        }
+
+        .inner {
+          width: calc(var(--toggle-height) - 2px);
+          height: calc(var(--toggle-height) - 2px);
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          left: 1px;
+          box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0, rgba(0, 0, 0, 0.1) 0 1px 3px 0;
+          transition: left 280ms cubic-bezier(0, 0, 0.2, 1);
+          border-radius: 50%;
+          background-color: #fff;
+        }
+
+        .disabled {
+          border-color: #eaeaea;
+          background-color: #fafafa;
+        }
+
+        .disabled > .inner {
+          background-color: #eaeaea;
+        }
+
+        .disabled.checked {
+          border-color: #888;
+          background-color: #888;
+        }
+
+        .checked {
+          background-color: #0070f3;
+        }
+
+        .checked > .inner {
+          left: calc(100% - (var(--toggle-height) - 2px));
+          box-shadow: none;
+        }
+      </style></label>"
+`;
+
+exports[`Toggle should work with different sizes 1`] = `
+"<div><label class=\\"\\"><input type=\\"checkbox\\"><div class=\\"toggle\\"><span class=\\"inner\\"></span></div><style>
+        label {
+          -webkit-tap-highlight-color: transparent;
+          display: inline-block;
+          vertical-align: middle;
+          white-space: nowrap;
+          user-select: none;
+          position: relative;
+          cursor: pointer;
+          --toggle-font-size: calc(1 * 16px);
+          --toggle-height: calc(0.875 * 16px);
+          width: calc(1.75 * 16px);
+          height: var(--toggle-height);
+          padding: calc(0.1875 * 16px) 0 calc(0.1875 * 16px)
+            0;
+          margin: 0 0 0 0;
+        }
+
+        input {
+          overflow: hidden;
+          visibility: hidden;
+          height: 0;
+          opacity: 0;
+          width: 0;
+          position: absolute;
+          background-color: transparent;
+          z-index: -1;
+        }
+
+        .toggle {
+          height: var(--toggle-height);
+          width: 100%;
+          border-radius: var(--toggle-height);
+          transition-delay: 0.12s;
+          transition-duration: 0.2s;
+          transition-property: background, border;
+          transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+          position: relative;
+          border: 1px solid transparent;
+          background-color: #eaeaea;
+          padding: 0;
+        }
+
+        .inner {
+          width: calc(var(--toggle-height) - 2px);
+          height: calc(var(--toggle-height) - 2px);
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          left: 1px;
+          box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0, rgba(0, 0, 0, 0.1) 0 1px 3px 0;
+          transition: left 280ms cubic-bezier(0, 0, 0.2, 1);
+          border-radius: 50%;
+          background-color: #fff;
+        }
+
+        .disabled {
+          border-color: #eaeaea;
+          background-color: #fafafa;
+        }
+
+        .disabled > .inner {
+          background-color: #eaeaea;
+        }
+
+        .disabled.checked {
+          border-color: #888;
+          background-color: #888;
+        }
+
+        .checked {
+          background-color: #0070f3;
+        }
+
+        .checked > .inner {
+          left: calc(100% - (var(--toggle-height) - 2px));
+          box-shadow: none;
+        }
+      </style></label><label class=\\"\\"><input type=\\"checkbox\\"><div class=\\"toggle\\"><span class=\\"inner\\"></span></div><style>
+        label {
+          -webkit-tap-highlight-color: transparent;
+          display: inline-block;
+          vertical-align: middle;
+          white-space: nowrap;
+          user-select: none;
+          position: relative;
+          cursor: pointer;
+          --toggle-font-size: calc(0.6 * 16px);
+          --toggle-height: calc(0.525 * 16px);
+          width: calc(1.05 * 16px);
+          height: var(--toggle-height);
+          padding: calc(0.11249999999999999 * 16px) 0 calc(0.11249999999999999 * 16px)
+            0;
+          margin: 0 0 0 0;
+        }
+
+        input {
+          overflow: hidden;
+          visibility: hidden;
+          height: 0;
+          opacity: 0;
+          width: 0;
+          position: absolute;
+          background-color: transparent;
+          z-index: -1;
+        }
+
+        .toggle {
+          height: var(--toggle-height);
+          width: 100%;
+          border-radius: var(--toggle-height);
+          transition-delay: 0.12s;
+          transition-duration: 0.2s;
+          transition-property: background, border;
+          transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+          position: relative;
+          border: 1px solid transparent;
+          background-color: #eaeaea;
+          padding: 0;
+        }
+
+        .inner {
+          width: calc(var(--toggle-height) - 2px);
+          height: calc(var(--toggle-height) - 2px);
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          left: 1px;
+          box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0, rgba(0, 0, 0, 0.1) 0 1px 3px 0;
+          transition: left 280ms cubic-bezier(0, 0, 0.2, 1);
+          border-radius: 50%;
+          background-color: #fff;
+        }
+
+        .disabled {
+          border-color: #eaeaea;
+          background-color: #fafafa;
+        }
+
+        .disabled > .inner {
+          background-color: #eaeaea;
+        }
+
+        .disabled.checked {
+          border-color: #888;
+          background-color: #888;
+        }
+
+        .checked {
+          background-color: #0070f3;
+        }
+
+        .checked > .inner {
+          left: calc(100% - (var(--toggle-height) - 2px));
+          box-shadow: none;
+        }
+      </style></label><label class=\\"\\"><input type=\\"checkbox\\"><div class=\\"toggle\\"><span class=\\"inner\\"></span></div><style>
+        label {
+          -webkit-tap-highlight-color: transparent;
+          display: inline-block;
+          vertical-align: middle;
+          white-space: nowrap;
+          user-select: none;
+          position: relative;
+          cursor: pointer;
+          --toggle-font-size: calc(1.5 * 16px);
+          --toggle-height: calc(1.3125 * 16px);
+          width: calc(2.625 * 16px);
+          height: var(--toggle-height);
+          padding: calc(0.28125 * 16px) 0 calc(0.28125 * 16px)
+            0;
+          margin: 0 0 0 0;
+        }
+
+        input {
+          overflow: hidden;
+          visibility: hidden;
+          height: 0;
+          opacity: 0;
+          width: 0;
+          position: absolute;
+          background-color: transparent;
+          z-index: -1;
+        }
+
+        .toggle {
+          height: var(--toggle-height);
+          width: 100%;
+          border-radius: var(--toggle-height);
+          transition-delay: 0.12s;
+          transition-duration: 0.2s;
+          transition-property: background, border;
+          transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+          position: relative;
+          border: 1px solid transparent;
+          background-color: #eaeaea;
+          padding: 0;
+        }
+
+        .inner {
+          width: calc(var(--toggle-height) - 2px);
+          height: calc(var(--toggle-height) - 2px);
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          left: 1px;
+          box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0, rgba(0, 0, 0, 0.1) 0 1px 3px 0;
+          transition: left 280ms cubic-bezier(0, 0, 0.2, 1);
+          border-radius: 50%;
+          background-color: #fff;
+        }
+
+        .disabled {
+          border-color: #eaeaea;
+          background-color: #fafafa;
+        }
+
+        .disabled > .inner {
+          background-color: #eaeaea;
+        }
+
+        .disabled.checked {
+          border-color: #888;
+          background-color: #888;
+        }
+
+        .checked {
+          background-color: #0070f3;
+        }
+
+        .checked > .inner {
+          left: calc(100% - (var(--toggle-height) - 2px));
+          box-shadow: none;
+        }
+      </style></label><label class=\\"\\"><input type=\\"checkbox\\"><div class=\\"toggle\\"><span class=\\"inner\\"></span></div><style>
+        label {
+          -webkit-tap-highlight-color: transparent;
+          display: inline-block;
+          vertical-align: middle;
+          white-space: nowrap;
+          user-select: none;
+          position: relative;
+          cursor: pointer;
+          --toggle-font-size: calc(1 * 10px);
+          --toggle-height: calc(0.875 * 10px);
+          width: calc(1.75 * 10px);
+          height: var(--toggle-height);
+          padding: calc(0.1875 * 10px) 0 calc(0.1875 * 10px)
+            0;
+          margin: 0 0 0 0;
+        }
+
+        input {
+          overflow: hidden;
+          visibility: hidden;
+          height: 0;
+          opacity: 0;
+          width: 0;
+          position: absolute;
+          background-color: transparent;
+          z-index: -1;
+        }
+
+        .toggle {
+          height: var(--toggle-height);
+          width: 100%;
+          border-radius: var(--toggle-height);
+          transition-delay: 0.12s;
+          transition-duration: 0.2s;
+          transition-property: background, border;
+          transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+          position: relative;
+          border: 1px solid transparent;
+          background-color: #eaeaea;
+          padding: 0;
+        }
+
+        .inner {
+          width: calc(var(--toggle-height) - 2px);
+          height: calc(var(--toggle-height) - 2px);
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          left: 1px;
+          box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0, rgba(0, 0, 0, 0.1) 0 1px 3px 0;
+          transition: left 280ms cubic-bezier(0, 0, 0.2, 1);
+          border-radius: 50%;
+          background-color: #fff;
+        }
+
+        .disabled {
+          border-color: #eaeaea;
+          background-color: #fafafa;
+        }
+
+        .disabled > .inner {
+          background-color: #eaeaea;
+        }
+
+        .disabled.checked {
+          border-color: #888;
+          background-color: #888;
+        }
+
+        .checked {
+          background-color: #0070f3;
+        }
+
+        .checked > .inner {
+          left: calc(100% - (var(--toggle-height) - 2px));
+          box-shadow: none;
+        }
+      </style></label></div>"
+`;
+
+exports[`Toggle should work with different status 1`] = `
+"<div><label class=\\"\\"><input type=\\"checkbox\\"><div class=\\"toggle\\"><span class=\\"inner\\"></span></div><style>
+        label {
+          -webkit-tap-highlight-color: transparent;
+          display: inline-block;
+          vertical-align: middle;
+          white-space: nowrap;
+          user-select: none;
+          position: relative;
+          cursor: pointer;
+          --toggle-font-size: calc(1 * 16px);
+          --toggle-height: calc(0.875 * 16px);
+          width: calc(1.75 * 16px);
+          height: var(--toggle-height);
+          padding: calc(0.1875 * 16px) 0 calc(0.1875 * 16px)
+            0;
+          margin: 0 0 0 0;
+        }
+
+        input {
+          overflow: hidden;
+          visibility: hidden;
+          height: 0;
+          opacity: 0;
+          width: 0;
+          position: absolute;
+          background-color: transparent;
+          z-index: -1;
+        }
+
+        .toggle {
+          height: var(--toggle-height);
+          width: 100%;
+          border-radius: var(--toggle-height);
+          transition-delay: 0.12s;
+          transition-duration: 0.2s;
+          transition-property: background, border;
+          transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+          position: relative;
+          border: 1px solid transparent;
+          background-color: #eaeaea;
+          padding: 0;
+        }
+
+        .inner {
+          width: calc(var(--toggle-height) - 2px);
+          height: calc(var(--toggle-height) - 2px);
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          left: 1px;
+          box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0, rgba(0, 0, 0, 0.1) 0 1px 3px 0;
+          transition: left 280ms cubic-bezier(0, 0, 0.2, 1);
+          border-radius: 50%;
+          background-color: #fff;
+        }
+
+        .disabled {
+          border-color: #eaeaea;
+          background-color: #fafafa;
+        }
+
+        .disabled > .inner {
+          background-color: #eaeaea;
+        }
+
+        .disabled.checked {
+          border-color: #888;
+          background-color: #888;
+        }
+
+        .checked {
+          background-color: #666;
+        }
+
+        .checked > .inner {
+          left: calc(100% - (var(--toggle-height) - 2px));
+          box-shadow: none;
+        }
+      </style></label><label class=\\"\\"><input type=\\"checkbox\\"><div class=\\"toggle\\"><span class=\\"inner\\"></span></div><style>
+        label {
+          -webkit-tap-highlight-color: transparent;
+          display: inline-block;
+          vertical-align: middle;
+          white-space: nowrap;
+          user-select: none;
+          position: relative;
+          cursor: pointer;
+          --toggle-font-size: calc(1 * 16px);
+          --toggle-height: calc(0.875 * 16px);
+          width: calc(1.75 * 16px);
+          height: var(--toggle-height);
+          padding: calc(0.1875 * 16px) 0 calc(0.1875 * 16px)
+            0;
+          margin: 0 0 0 0;
+        }
+
+        input {
+          overflow: hidden;
+          visibility: hidden;
+          height: 0;
+          opacity: 0;
+          width: 0;
+          position: absolute;
+          background-color: transparent;
+          z-index: -1;
+        }
+
+        .toggle {
+          height: var(--toggle-height);
+          width: 100%;
+          border-radius: var(--toggle-height);
+          transition-delay: 0.12s;
+          transition-duration: 0.2s;
+          transition-property: background, border;
+          transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+          position: relative;
+          border: 1px solid transparent;
+          background-color: #eaeaea;
+          padding: 0;
+        }
+
+        .inner {
+          width: calc(var(--toggle-height) - 2px);
+          height: calc(var(--toggle-height) - 2px);
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          left: 1px;
+          box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0, rgba(0, 0, 0, 0.1) 0 1px 3px 0;
+          transition: left 280ms cubic-bezier(0, 0, 0.2, 1);
+          border-radius: 50%;
+          background-color: #fff;
+        }
+
+        .disabled {
+          border-color: #eaeaea;
+          background-color: #fafafa;
+        }
+
+        .disabled > .inner {
+          background-color: #eaeaea;
+        }
+
+        .disabled.checked {
+          border-color: #888;
+          background-color: #888;
+        }
+
+        .checked {
+          background-color: #0070f3;
+        }
+
+        .checked > .inner {
+          left: calc(100% - (var(--toggle-height) - 2px));
+          box-shadow: none;
+        }
+      </style></label><label class=\\"\\"><input type=\\"checkbox\\"><div class=\\"toggle\\"><span class=\\"inner\\"></span></div><style>
+        label {
+          -webkit-tap-highlight-color: transparent;
+          display: inline-block;
+          vertical-align: middle;
+          white-space: nowrap;
+          user-select: none;
+          position: relative;
+          cursor: pointer;
+          --toggle-font-size: calc(1 * 16px);
+          --toggle-height: calc(0.875 * 16px);
+          width: calc(1.75 * 16px);
+          height: var(--toggle-height);
+          padding: calc(0.1875 * 16px) 0 calc(0.1875 * 16px)
+            0;
+          margin: 0 0 0 0;
+        }
+
+        input {
+          overflow: hidden;
+          visibility: hidden;
+          height: 0;
+          opacity: 0;
+          width: 0;
+          position: absolute;
+          background-color: transparent;
+          z-index: -1;
+        }
+
+        .toggle {
+          height: var(--toggle-height);
+          width: 100%;
+          border-radius: var(--toggle-height);
+          transition-delay: 0.12s;
+          transition-duration: 0.2s;
+          transition-property: background, border;
+          transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+          position: relative;
+          border: 1px solid transparent;
+          background-color: #eaeaea;
+          padding: 0;
+        }
+
+        .inner {
+          width: calc(var(--toggle-height) - 2px);
+          height: calc(var(--toggle-height) - 2px);
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          left: 1px;
+          box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0, rgba(0, 0, 0, 0.1) 0 1px 3px 0;
+          transition: left 280ms cubic-bezier(0, 0, 0.2, 1);
+          border-radius: 50%;
+          background-color: #fff;
+        }
+
+        .disabled {
+          border-color: #eaeaea;
+          background-color: #fafafa;
+        }
+
+        .disabled > .inner {
+          background-color: #eaeaea;
+        }
+
+        .disabled.checked {
+          border-color: #888;
+          background-color: #888;
+        }
+
+        .checked {
+          background-color: #f5a623;
+        }
+
+        .checked > .inner {
+          left: calc(100% - (var(--toggle-height) - 2px));
+          box-shadow: none;
+        }
+      </style></label><label class=\\"\\"><input type=\\"checkbox\\"><div class=\\"toggle\\"><span class=\\"inner\\"></span></div><style>
+        label {
+          -webkit-tap-highlight-color: transparent;
+          display: inline-block;
+          vertical-align: middle;
+          white-space: nowrap;
+          user-select: none;
+          position: relative;
+          cursor: pointer;
+          --toggle-font-size: calc(1 * 16px);
+          --toggle-height: calc(0.875 * 16px);
+          width: calc(1.75 * 16px);
+          height: var(--toggle-height);
+          padding: calc(0.1875 * 16px) 0 calc(0.1875 * 16px)
+            0;
+          margin: 0 0 0 0;
+        }
+
+        input {
+          overflow: hidden;
+          visibility: hidden;
+          height: 0;
+          opacity: 0;
+          width: 0;
+          position: absolute;
+          background-color: transparent;
+          z-index: -1;
+        }
+
+        .toggle {
+          height: var(--toggle-height);
+          width: 100%;
+          border-radius: var(--toggle-height);
+          transition-delay: 0.12s;
+          transition-duration: 0.2s;
+          transition-property: background, border;
+          transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+          position: relative;
+          border: 1px solid transparent;
+          background-color: #eaeaea;
+          padding: 0;
+        }
+
+        .inner {
+          width: calc(var(--toggle-height) - 2px);
+          height: calc(var(--toggle-height) - 2px);
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          left: 1px;
+          box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0, rgba(0, 0, 0, 0.1) 0 1px 3px 0;
+          transition: left 280ms cubic-bezier(0, 0, 0.2, 1);
+          border-radius: 50%;
+          background-color: #fff;
+        }
+
+        .disabled {
+          border-color: #eaeaea;
+          background-color: #fafafa;
+        }
+
+        .disabled > .inner {
+          background-color: #eaeaea;
+        }
+
+        .disabled.checked {
+          border-color: #888;
+          background-color: #888;
+        }
+
+        .checked {
+          background-color: #e00;
+        }
+
+        .checked > .inner {
+          left: calc(100% - (var(--toggle-height) - 2px));
+          box-shadow: none;
+        }
+      </style></label></div>"
+`;

@@ -1,0 +1,49 @@
+import { Layout, Playground, Attributes } from 'lib/components'
+import { Hero, Link } from 'components'
+
+export const meta = {
+  title: 'Hero',
+  group: 'General',
+}
+
+## Hero
+
+<Playground
+  scope={{ Hero, Link }}
+  title={'Hero example'}
+  desc={'Example of a Hero'}
+  code={`
+  <Hero withDownArrow={false}>
+    <Hero.Title>Hero Title</Hero.Title>
+    <Hero.Desc>Hero Description</Hero.Desc>
+    <Hero.Tag hasGradient>Hero Tags</Hero.Tag>
+    <br />
+    <Hero.Actions>
+      <Link href='#'>
+        Some Link
+      </Link>
+    </Hero.Actions>
+  </Hero>
+  `}
+/>
+
+<Attributes edit="/pages/components/hero.mdx">
+<Attributes.Title>Hero.Props</Attributes.Title>
+
+| Attribute         | Description                  | Type             | Accepted values          | Default                                 |
+| ----------------- | ---------------------------- | ---------------- | ------------------------ | --------------------------------------- |
+| extraPaddingDown? | Need some extra padding down | `number`         | -                        | `oklch(59.59% 0.24 255.09156059071347)` |
+| withDownArrow?    | ending color of text         | `boolean`        | -                        | `true`                                  |
+| ...               | native props                 | `HTMLAttributes` | `'id', 'className', ...` | -                                       |
+
+<Attributes.Title>Hero.Tag.Props</Attributes.Title>
+
+| Attribute     | Description           | Type             | Accepted values          | Default     |
+| ------------- | --------------------- | ---------------- | ------------------------ | ----------- |
+| hasGradient?  | show gradient color   | `boolean`        | `true, false`            | `false`     |
+| gradientFrom? | starting color of tag | `string`         | -                        | `'#007cf0'` |
+| gradientTo?   | ending color of tag   | `string`         | -                        | `'#01dfd8'` |
+| textColor?    | color of text         | `string`         | -                        | `'#ffffff'` |
+| ...           | native props          | `HTMLAttributes` | `'id', 'className', ...` | -           |
+
+</Attributes>

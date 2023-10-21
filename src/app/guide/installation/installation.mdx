@@ -1,0 +1,109 @@
+import { Code, Spacer, Tabs, Dot, Snippet, Text } from 'components'
+
+export const meta = {
+  title: 'Installation',
+  group: 'Getting Started',
+  index: 10,
+}
+
+## Installation
+
+### Setup
+
+Ensure your have the latest [NodeJS](https://nodejs.org/en/download/),
+and a package manager: [NPM](https://www.npmjs.com/) or [Yarn](https://yarnpkg.com/).
+
+Also, Himalaya is based on the component library of framework React, which means you must also understand the basics of how to [create projects](https://reactjs.org/docs/hello-world.html) with the framework
+
+<h4>
+  <Dot type="success">Install</Dot>
+</h4>
+
+<Tabs initialValue="yarn" hideDivider hideBorder align="flex-end" mt="-46px">
+  <Tabs.Item label="Yarn" value="yarn">
+    <Snippet>yarn add himalaya</Snippet>
+  </Tabs.Item>
+  <Tabs.Item label="Npm" value="npm">
+    <Snippet>npm i himalaya</Snippet>
+  </Tabs.Item>
+</Tabs>
+<Spacer h={0.5} />
+<h4>
+  <Dot type="success">Import</Dot>
+</h4>
+
+```jsx
+// NAME: /src/app.js
+import { ConfigProvider, CssBaseline } from 'himalaya'
+
+export default () => (
+  <ConfigProvider>
+    <CssBaseline /> // --> base styles
+    <AppComponent /> // --> your application
+  </ConfigProvider>
+)
+```
+
+<Spacer h={0} mb="8px" />
+<h4>
+  <Dot type="success">Usage</Dot>
+</h4>
+
+```jsx
+import { Button, Page, Text } from 'himalaya'
+
+const Home = () => (
+  <Page>
+    <Text h1>Home Page</Text>
+    <Button>Submit</Button>
+  </Page>
+)
+```
+
+### Next.js project
+
+[Next.js](https://nextjs.org/) is a React server-side rendering framework. Using Geist on framework Next.js requires custom `_app.jsx` files,
+Once the project has been initialized, add the `/pages/_app.jsx` file to the `/pages` folder and add the following content:
+
+```jsx
+// NAME:pages/_app.jsx
+import { ConfigProvider, CssBaseline } from 'himalaya'
+
+const App = ({ Component, pageProps }) => {
+  return (
+    <ConfigProvider>
+      <CssBaseline />
+      <Component {...pageProps} />
+    </ConfigProvider>
+  )
+}
+
+export default App
+```
+
+If you need server-side rendering in Next.js project,
+please refer to the [Server-side rendering](/guide/server-render) subsection to complete the configuration.
+
+In addition, we have provided a complete [Next.js application](https://github.com/red-ninjas/landing-page) example for reference.
+
+<Text h3>
+  Font rendering on Windows{' '}
+  <Text span type="secondary" font=".75em" style={{ textTransform: 'uppercase' }}>
+    [Optional]
+  </Text>
+</Text>
+
+Some fonts in Web applications do not render best on the _Windows_ platform, or you may think font rendering is not good enough for some character sets (Chinese, Japanese etc.). In this case, you can introduce additional font packages to optimize the rendering:
+
+> You don't need to modify any CSS files or declare fonts.
+
+#### Install `@fontsource-variable/inter`:
+
+<Snippet>yarn add @fontsource-variable/inter</Snippet>
+
+#### Add `Rubik Variable` to your project:
+
+<Code block my={0} width="100%">
+  <span className="token keyword module">import</span>{' '}
+  <span className="token string">'@fontsource-variable/inter'</span>
+</Code>

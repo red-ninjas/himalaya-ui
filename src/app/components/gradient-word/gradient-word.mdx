@@ -1,0 +1,31 @@
+import { Layout, Playground, Attributes } from 'lib/components'
+import { GradientWord } from 'components'
+
+export const meta = {
+  title: 'Gradient Word',
+  group: 'Text',
+}
+
+## Gradient Word
+
+<Playground
+  scope={{ GradientWord }}
+  title={'Gradient Word example'}
+  desc={'Example of a gradient Word'}
+  code={`
+  <GradientWord gradient={{degrees: '217deg', from: 'oklch(59.59% 0.24 255.09156059071347)', to: 'oklch(81.58% 0.189 190.74037768509325)'}} animationTime={'8000'}>
+    Test
+  </GradientWord>
+  `}
+/>
+
+<Attributes edit="/pages/components/gradient-word.mdx">
+<Attributes.Title>GradientWord.Props</Attributes.Title>
+
+| Attribute      | Description                        | Type             | Accepted values                    | Default                                                 |
+| -------------- | ---------------------------------- | ---------------- | ---------------------------------- | ------------------------------------------------------- |
+| gradient?      | degrees, starting and ending color | `object`         | `{ from: '', to: '', degrees: ''}` | `{ from: 'red', to: 'blue', degrees: 'to left bottom'}` |
+| animationTime? | time to complete the animation     | `string`         | -                                  | `8000` (in milliseconds)                                |
+| ...            | native props                       | `HTMLAttributes` | `'id', 'className', ...`           | -                                                       |
+
+</Attributes>

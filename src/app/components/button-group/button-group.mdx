@@ -1,0 +1,126 @@
+import { Layout, Playground, Attributes } from 'lib/components'
+import { Button, Spacer, ButtonGroup } from 'components'
+
+export const meta = {
+  title: 'Button Group',
+  group: 'Data Entry',
+}
+
+## Button Group
+
+A set of related buttons.
+
+<Playground
+  title="Basic"
+  scope={{ Button, ButtonGroup }}
+  code={`
+<ButtonGroup>
+  <Button>One</Button>
+  <Button>Two</Button>
+  <Button>Three</Button>
+</ButtonGroup>
+`}
+/>
+
+<Playground
+  title="Variant"
+  desc="set the type or styles of all buttons in the group."
+  scope={{ Button, ButtonGroup }}
+  code={`
+<>
+  <ButtonGroup type="success">
+    <Button>One</Button>
+    <Button>Two</Button>
+    <Button>Three</Button>
+  </ButtonGroup>
+  <ButtonGroup type="abort">
+    <Button>Action1</Button>
+    <Button>Action2</Button>
+  </ButtonGroup>
+  <ButtonGroup type="warning" ghost>
+    <Button>Action1</Button>
+    <Button>Action2</Button>
+  </ButtonGroup>
+  <ButtonGroup type="success-light">
+    <Button>One</Button>
+    <Button>Two</Button>
+    <Button>Three</Button>
+  </ButtonGroup>
+</>
+`}
+/>
+
+<Playground
+  title="Sizes"
+  scope={{ Button, ButtonGroup }}
+  code={`
+<>
+  <ButtonGroup scale={2/3}>
+    <Button scale={2/3}>One</Button>
+    <Button scale={2/3}>Two</Button>
+    <Button scale={2/3}>Three</Button>
+  </ButtonGroup>
+  <ButtonGroup scale={1/3}>
+    <Button scale={1/3}>Action1</Button>
+    <Button scale={1/3}>Action2</Button>
+  </ButtonGroup>
+</>
+`}
+/>
+
+<Playground
+  title="Vertical"
+  scope={{ Button, ButtonGroup }}
+  code={`
+<>
+  <ButtonGroup vertical>
+    <Button>One</Button>
+    <Button>Two</Button>
+    <Button>Three</Button>
+    <Button>Four</Button>
+  </ButtonGroup>
+</>
+`}
+/>
+
+<Playground
+  title="Disabled"
+  desc="disable all buttons in the group."
+  scope={{ Button, ButtonGroup }}
+  code={`
+<>
+  <ButtonGroup scale={0.5} disabled>
+    <Button scale={0.5}>One</Button>
+    <Button scale={0.5}>Two</Button>
+    <Button scale={0.5}>Three</Button>
+  </ButtonGroup>
+</>
+`} />
+<Attributes edit="/pages/components/button-group.mdx">
+<Attributes.Title>ButtonGroup.Props</Attributes.Title>
+
+| Attribute    | Description                 | Type                   | Accepted values             | Default   |
+| ------------ | --------------------------- | ---------------------- | --------------------------- | --------- |
+| **type**     | button type                 | `ButtonTypes`          | [ButtonTypes](#buttontypes) | `default` |
+| **ghost**    | the opposite color          | `boolean`              | -                           | `false`   |
+| **vertical** | show all buttons vertically | `boolean`              | -                           | `false`   |
+| **disabled** | disable all buttons         | `boolean`              | -                           | `false`   |
+| ...          | native props                | `ButtonHTMLAttributes` | `'id', 'className', ...`    | -         |
+
+<Attributes.Title>ButtonTypes</Attributes.Title>
+
+```ts
+type ButtonTypes =
+  | 'default'
+  | 'secondary'
+  | 'success'
+  | 'warning'
+  | 'error'
+  | 'abort'
+  | 'secondary-light'
+  | 'success-light'
+  | 'warning-light'
+  | 'error-light'
+```
+
+</Attributes>

@@ -1,0 +1,186 @@
+export const meta = {
+  title: 'Themes',
+  group: 'Customization',
+  index: 25,
+}
+
+## Themes
+
+**Himalaya** now supports a variety of themes, and it is very easy to create or inherit modifications, no third-party styles or configs.
+As a basic option, there are three themes available, `light`, `grey` and `dark`.
+
+### Switch themes
+
+To switch in the default themes you only need to set the value of `themeType`, you can follow the steps below:
+
+1. Make sure `ConfigProvider` and `CssBaseline` are already on the root component.
+
+2. Update the value of `themeType`, and the theme of all components will follow automatically.
+
+```jsx
+// NAME:src/app.js
+import { CssBaseline, ConfigProvider } from 'himalaya'
+
+const App = () => {
+  const [themeType, setThemeType] = useState('light')
+  const switchThemes = () => {
+    setThemeType(last => (last === 'dark' ? 'light' : last === 'light' : 'grey' : 'dark'))
+  }
+  return (
+    <ConfigProvider themeType={themeType}>
+      <CssBaseline />
+      <YourComponent onClick={switchThemes} />
+    </ConfigProvider>
+  )
+}
+```
+
+### Detect theme
+
+To detect a default theme you only need to set the value of `detectTheme` to `true`, you can follow the steps below:
+
+1. Make sure `ConfigProvider` and `CssBaseline` are already on the root component.
+
+2. Set the `detectTheme` to `true`
+
+3. Its automatically stores the theme into a page cookie and read it from the cookie storage
+
+4. To get detetcTheme running under SSR u need to use `cookies` from `next/headers` to read the cookie server sided and forward it to `currenTheme`
+
+```jsx
+// NAME:src/app.js
+import { CssBaseline, ConfigProvider } from 'himalaya'
+
+const App = () => {
+  const [themeType, setThemeType] = useState('light')
+  const switchThemes = () => {
+    setThemeType(last => (last === 'dark' ? 'light' : last === 'light' : 'grey' : 'dark'))
+  }
+  return (
+    <ConfigProvider detectTheme={true}>
+      <CssBaseline />
+      <YourComponent onClick={switchThemes} />
+    </ConfigProvider>
+  )
+}
+```
+
+### Customizing theme
+
+Customizing a theme is very simple in Himalaya, you just need to provide a new theme `Object`,
+and all the components will change automatically.
+
+```jsx
+import { CssBaseline, ConfigProvider, Themes } from 'himalaya'
+
+const myTheme1 = Themes.createFromLight({
+  type: 'coolTheme',
+  palette: {
+    success: '#000',
+  },
+})
+
+const App = () => (
+  <ConfigProvider themes={[myTheme1]} themeType="coolTheme">
+    <CssBaseline />
+    <YourAppComponent onClick={switchThemes} />
+  </ConfigProvider>
+)
+```
+
+Function `Themes.createFromLight` allows you to fork a new theme based on Light Theme,
+Of course, you can also create a new theme based on the dark style: `Themes.createFromDark`,
+Or grey style: `Themes.createFromGrey` or even create a theme based on your own theme:
+
+```jsx
+const myBaseTheme = { ... }
+const myTheme2 = Themes.create(myBaseTheme, {
+  type: 'myTheme2',
+  palette: {
+    success: '#000',
+  },
+})
+```
+
+### Get types
+
+When you need to know the detailed type definition when modifying the theme,
+you can refer to the existing [type file](https://github.com/red-ninjas/himalaya-ui/blob/master/components/themes/presets/index.ts),
+which corresponds to project that support TypeScript, you can refer to the type directly in the package：
+
+```ts
+import { UIThemes, UIThemesFont, UIThemesPalette, UIThemesExpressiveness } from 'himalaya'
+
+// usage:
+const myStyles: UIThemes = {
+  /* ... */
+}
+const myPalette: Partial<UIThemesPalette> = {
+  /* ... */
+}
+```
+
+### Customizer
+
+#### ClassName
+
+You can override the style by defining a `className` on the component.
+
+```jsx
+import { Button, Row } from 'himalaya'
+
+const MyPage = () => (
+  <Row>
+    <Button className="page-button">Click me!</Button>
+  </Row>
+)
+
+// in css file:
+.page-button {
+  padding: 0;
+}
+```
+
+#### Inline styles
+
+Defining an inline style will also correctly override the component.
+
+```jsx
+const MyPage = () => (
+  <Row>
+    <Button style={{ margin: '20px' }}>Click me!</Button>
+  </Row>
+)
+```
+
+### Build components
+
+You can use the Geist preset Hooks to get the theme states to create your own components.
+For more information, please refer to [useTheme](/hooks/use-theme) documentation.
+
+```jsx
+import { useTheme } from 'himalaya'
+
+const MyComponent = () => {
+  const theme = useTheme()
+  return (
+    <div style={{ color: theme.palette.success }}>
+      <span>hello world!</span>
+    </div>
+  )
+}
+```
+
+### Themes APIs
+
+`Themes` contains some static methods that are useful when working with custom themes:
+
+- `Themes.create` - create a new theme object.
+- `Themes.createFromDark` - create a new theme object based on Dark Theme.
+- `Themes.createFromLight` - create a new theme object based on Light Theme.
+- `Themes.createFromGrey` - create a new theme object based on Grey Theme.
+- `Themes.isPresetTheme` - Check if a theme is the base of Himalaya.
+- `Themes.isAvailableThemeType` - Check if the name of the theme is available.
+- `Themes.hasUserCustomTheme` - Check if a list of themes has a custom.
+- `Themes.getPresets` - Get a default list of themes.
+- `Themes.getPresetStaticTheme` - Get the theme loaded by Himalaya default.

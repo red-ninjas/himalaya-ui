@@ -1,0 +1,63 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "outDir": "../dist/documentation",
+    "strictNullChecks": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "jsx": "preserve",
+    "noUnusedParameters": true,
+    "noUnusedLocals": true,
+    "target": "es6",
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "es2017"
+    ],
+    "skipLibCheck": true,
+    "allowJs": true,
+    "strict": false,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "module": "esnext",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "typeRoots": [
+      "node_modules/@types",
+      "./typings"
+    ],
+    "types": [
+      "_global-types",
+      "dom-not-standarted"
+    ],
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
+  },
+  "exclude": [
+    "node_modules",
+    "dist",
+    "server",
+    "__tests__",
+    "**/*.spec.ts",
+    "**/*.test.ts",
+    "**/*.spec.tsx",
+    "**/*.test.tsx"
+  ],
+  "include": [
+    "next-env.d.ts",
+    ".eslintrc.js",
+    "**/*.js",
+    "**/*.ts",
+    "**/*.mjs",
+    "**/*.tsx",
+    "**/*.mdx",
+    "lib/**/*.tsx",
+    "components/**/*.tsx",
+    "../dist/documentation/types/**/*.ts"
+  ],
+}

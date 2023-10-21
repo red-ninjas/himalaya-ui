@@ -1,0 +1,43 @@
+import { Layout, Playground, Attributes } from 'lib/components'
+import { BottomNavigation } from 'components'
+import { Home, BarChart, Bell, Bookmark } from '@geist-ui/icons'
+
+export const meta = {
+  title: 'Bottom Navigation',
+  group: 'Navigation',
+}
+
+## Bottom Navigation
+
+<Playground
+  scope={{ BottomNavigation, Home, BarChart, Bell, Bookmark }}
+  title={'Bottom Navigation '}
+  desc={'A fixed footer navigation component for mobile devices'}
+  code={`
+  <BottomNavigation transcluent={false}>
+    <BottomNavigation.Item icon={ <Home />} url="#" />
+    <BottomNavigation.Item icon={ <BarChart />} url="#"/>
+    <BottomNavigation.Item icon={ <Bell />} url="#"/>
+    <BottomNavigation.Item icon={ <Bookmark />} url="#"/>
+</BottomNavigation>
+`}
+/>
+
+<Attributes edit="/pages/components/bottom-navigation.mdx">
+<Attributes.Title>BottomNavigation.Props</Attributes.Title>
+
+| Attribute   | Description                                         | Type      | Accepted values | Default |
+| ----------- | --------------------------------------------------- | --------- | --------------- | ------- |
+| transcluent | is header is using transcluent effect (transparent) | `boolean` | -               | `true`  |
+| mobileOnly  | show only for mobile devices                        | `boolean` | -               | `true`  |
+
+<Attributes.Title>BottomNavigation.Item.Props</Attributes.Title>
+
+| Attribute  | Description                                 | Type             | Accepted values          | Default |
+| ---------- | ------------------------------------------- | ---------------- | ------------------------ | ------- |
+| icon       | icon to display                             | `icon`           | -                        | -       |
+| url        | url for onclick                             | `string`         | -                        | `#`     |
+| exactMatch | URL must exactly match the current pathname | `boolean`        | -                        | `true`  |
+| ...        | native props                                | `HTMLAttributes` | `'id', 'className', ...` | -       |
+
+</Attributes>

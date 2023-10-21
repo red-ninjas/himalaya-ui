@@ -1,0 +1,98 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Card Footer should render correctly 1`] = `
+"<div class=\\"card\\"><div class=\\"content\\"><p>card</p><style>
+        .content {
+          width: 100%;
+          height: auto;
+          padding: calc(1 * 16px) calc(1 * 16px) calc(1 * 16px) calc(1 * 16px);
+          margin: 0 0 0 0;
+        }
+
+        .content > :global(p:first-child) {
+          margin-top: 0;
+        }
+
+        .content > :global(p:last-child) {
+          margin-bottom: 0;
+        }
+      </style></div><footer class=\\"auto-margin\\">footer<style>
+        footer {
+          padding: calc(0.66 * 16px) calc(1.31 * 16px);
+          display: flex;
+          align-items: center;
+          overflow: hidden;
+          color: inherit;
+          background-color: inherit;
+          font-size: calc(0.875 * 16px);
+          border-top: 1px solid #eaeaea;
+          border-bottom-left-radius: 6px;
+          border-bottom-right-radius: 6px;
+          min-height: calc(3.3 * 16px);
+          width: auto;
+          height: auto;
+          margin: 0 0 0 0;
+        }
+
+        .auto-margin :global(*) {
+          margin-top: 0;
+          margin-bottom: 0;
+          margin-right: 4pt;
+        }
+      </style></footer><style>
+        .card {
+          background: #fff;
+          transition: all 0.2s ease;
+          border-radius: 6px;
+          box-shadow: none;
+          box-sizing: border-box;
+          color: #000;
+          background-color: #fff;
+          border: 1px solid #eaeaea;
+          width: auto;
+          height: auto;
+          padding: 0 0 0 0;
+          margin: 0 0 0 0;
+        }
+
+        .card:hover {
+          box-shadow: none;
+        }
+
+        .card :global(img) {
+          width: 100%;
+        }
+
+        .card :global(.image) {
+          border-bottom-left-radius: 0;
+          border-bottom-right-radius: 0;
+        }
+      </style></div>"
+`;
+
+exports[`Card Footer should work with disable-auto-margin 1`] = `
+"<footer class=\\"\\">footer<style>
+        footer {
+          padding: calc(0.66 * 16px) calc(1.31 * 16px);
+          display: flex;
+          align-items: center;
+          overflow: hidden;
+          color: inherit;
+          background-color: inherit;
+          font-size: calc(0.875 * 16px);
+          border-top: 1px solid #eaeaea;
+          border-bottom-left-radius: 6px;
+          border-bottom-right-radius: 6px;
+          min-height: calc(3.3 * 16px);
+          width: auto;
+          height: auto;
+          margin: 0 0 0 0;
+        }
+
+        .auto-margin :global(*) {
+          margin-top: 0;
+          margin-bottom: 0;
+          margin-right: 4pt;
+        }
+      </style></footer>"
+`;

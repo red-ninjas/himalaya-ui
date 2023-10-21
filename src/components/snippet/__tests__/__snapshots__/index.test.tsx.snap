@@ -1,0 +1,557 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snippet should render correctly 1`] = `
+"<div class=\\"snippet\\"><pre>yarn add @shuriken/core</pre><div class=\\"copy\\"><svg viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" stroke-width=\\"1.5\\" stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" fill=\\"none\\" shape-rendering=\\"geometricPrecision\\" style=\\"color: currentcolor;\\"><path d=\\"M8 17.929H6c-1.105 0-2-.912-2-2.036V5.036C4 3.91 4.895 3 6 3h8c1.105 0 2 .911 2 2.036v1.866m-6 .17h8c1.105 0 2 .91 2 2.035v10.857C20 21.09 19.105 22 18 22h-8c-1.105 0-2-.911-2-2.036V9.107c0-1.124.895-2.036 2-2.036z\\"></path><style>
+        svg {
+          width: calc(var(--snippet-font-size) * 1.69);
+          height: calc(var(--snippet-font-size) * 1.69);
+        }
+      </style></svg></div><style>
+        .snippet {
+          position: relative;
+          max-width: 100%;
+          color: #000;
+          background-color: #fff;
+          border: 1px solid #eaeaea;
+          border-radius: 6px;
+          --snippet-font-size: calc(0.8125 * 16px);
+          --snippet-padding-top: calc(0.667 * 16px);
+          font-size: var(--snippet-font-size);
+          width: initial;
+          height: auto;
+          padding: calc(0.667 * 16px) calc(2.667 * 16px) calc(0.667 * 16px)
+            calc(0.667 * 16px);
+          margin: 0 0 0 0;
+        }
+
+        pre {
+          margin: 0;
+          padding: 0;
+          border: none;
+          background-color: transparent;
+          color: #000;
+          font-size: inherit;
+        }
+
+        pre::before {
+          content: '$ ';
+          user-select: none;
+        }
+
+        pre :global(*) {
+          margin: 0;
+          padding: 0;
+          font-size: inherit;
+          color: inherit;
+        }
+
+        .copy {
+          position: absolute;
+          right: 0;
+          top: 0;
+          bottom: 0;
+          height: calc(100% - 2px);
+          background-color: #fff;
+          display: inline-flex;
+          justify-content: center;
+          align-items: center;
+          width: calc(3.281 * var(--snippet-font-size));
+          color: inherit;
+          transition: opacity 150ms ease 0s;
+          border-radius: 6px;
+          cursor: pointer;
+          user-select: none;
+          padding-top: 0;
+          opacity: 0.65;
+        }
+
+        .copy:hover {
+          opacity: 1;
+        }
+      </style></div>"
+`;
+
+exports[`Snippet should work with custom symbol 1`] = `
+"<div class=\\"snippet\\"><pre>yarn add @shuriken/core</pre><div class=\\"copy\\"><svg viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" stroke-width=\\"1.5\\" stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" fill=\\"none\\" shape-rendering=\\"geometricPrecision\\" style=\\"color: currentcolor;\\"><path d=\\"M8 17.929H6c-1.105 0-2-.912-2-2.036V5.036C4 3.91 4.895 3 6 3h8c1.105 0 2 .911 2 2.036v1.866m-6 .17h8c1.105 0 2 .91 2 2.035v10.857C20 21.09 19.105 22 18 22h-8c-1.105 0-2-.911-2-2.036V9.107c0-1.124.895-2.036 2-2.036z\\"></path><style>
+        svg {
+          width: calc(var(--snippet-font-size) * 1.69);
+          height: calc(var(--snippet-font-size) * 1.69);
+        }
+      </style></svg></div><style>
+        .snippet {
+          position: relative;
+          max-width: 100%;
+          color: #000;
+          background-color: #fff;
+          border: 1px solid #eaeaea;
+          border-radius: 6px;
+          --snippet-font-size: calc(0.8125 * 16px);
+          --snippet-padding-top: calc(0.667 * 16px);
+          font-size: var(--snippet-font-size);
+          width: initial;
+          height: auto;
+          padding: calc(0.667 * 16px) calc(2.667 * 16px) calc(0.667 * 16px)
+            calc(0.667 * 16px);
+          margin: 0 0 0 0;
+        }
+
+        pre {
+          margin: 0;
+          padding: 0;
+          border: none;
+          background-color: transparent;
+          color: #000;
+          font-size: inherit;
+        }
+
+        pre::before {
+          content: '> ';
+          user-select: none;
+        }
+
+        pre :global(*) {
+          margin: 0;
+          padding: 0;
+          font-size: inherit;
+          color: inherit;
+        }
+
+        .copy {
+          position: absolute;
+          right: 0;
+          top: 0;
+          bottom: 0;
+          height: calc(100% - 2px);
+          background-color: #fff;
+          display: inline-flex;
+          justify-content: center;
+          align-items: center;
+          width: calc(3.281 * var(--snippet-font-size));
+          color: inherit;
+          transition: opacity 150ms ease 0s;
+          border-radius: 6px;
+          cursor: pointer;
+          user-select: none;
+          padding-top: 0;
+          opacity: 0.65;
+        }
+
+        .copy:hover {
+          opacity: 1;
+        }
+      </style></div>"
+`;
+
+exports[`Snippet should work with custom symbol 2`] = `
+"<div class=\\"snippet\\"><pre>yarn add @shuriken/core</pre><div class=\\"copy\\"><svg viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" stroke-width=\\"1.5\\" stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" fill=\\"none\\" shape-rendering=\\"geometricPrecision\\" style=\\"color: currentcolor;\\"><path d=\\"M8 17.929H6c-1.105 0-2-.912-2-2.036V5.036C4 3.91 4.895 3 6 3h8c1.105 0 2 .911 2 2.036v1.866m-6 .17h8c1.105 0 2 .91 2 2.035v10.857C20 21.09 19.105 22 18 22h-8c-1.105 0-2-.911-2-2.036V9.107c0-1.124.895-2.036 2-2.036z\\"></path><style>
+        svg {
+          width: calc(var(--snippet-font-size) * 1.69);
+          height: calc(var(--snippet-font-size) * 1.69);
+        }
+      </style></svg></div><style>
+        .snippet {
+          position: relative;
+          max-width: 100%;
+          color: #000;
+          background-color: #fff;
+          border: 1px solid #eaeaea;
+          border-radius: 6px;
+          --snippet-font-size: calc(0.8125 * 16px);
+          --snippet-padding-top: calc(0.667 * 16px);
+          font-size: var(--snippet-font-size);
+          width: initial;
+          height: auto;
+          padding: calc(0.667 * 16px) calc(2.667 * 16px) calc(0.667 * 16px)
+            calc(0.667 * 16px);
+          margin: 0 0 0 0;
+        }
+
+        pre {
+          margin: 0;
+          padding: 0;
+          border: none;
+          background-color: transparent;
+          color: #000;
+          font-size: inherit;
+        }
+
+        pre::before {
+          content: '';
+          user-select: none;
+        }
+
+        pre :global(*) {
+          margin: 0;
+          padding: 0;
+          font-size: inherit;
+          color: inherit;
+        }
+
+        .copy {
+          position: absolute;
+          right: 0;
+          top: 0;
+          bottom: 0;
+          height: calc(100% - 2px);
+          background-color: #fff;
+          display: inline-flex;
+          justify-content: center;
+          align-items: center;
+          width: calc(3.281 * var(--snippet-font-size));
+          color: inherit;
+          transition: opacity 150ms ease 0s;
+          border-radius: 6px;
+          cursor: pointer;
+          user-select: none;
+          padding-top: 0;
+          opacity: 0.65;
+        }
+
+        .copy:hover {
+          opacity: 1;
+        }
+      </style></div>"
+`;
+
+exports[`Snippet should work with different styles 1`] = `
+"<div><div class=\\"snippet\\"><pre>yarn add @shuriken/core</pre><div class=\\"copy\\"><svg viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" stroke-width=\\"1.5\\" stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" fill=\\"none\\" shape-rendering=\\"geometricPrecision\\" style=\\"color: currentcolor;\\"><path d=\\"M8 17.929H6c-1.105 0-2-.912-2-2.036V5.036C4 3.91 4.895 3 6 3h8c1.105 0 2 .911 2 2.036v1.866m-6 .17h8c1.105 0 2 .91 2 2.035v10.857C20 21.09 19.105 22 18 22h-8c-1.105 0-2-.911-2-2.036V9.107c0-1.124.895-2.036 2-2.036z\\"></path><style>
+        svg {
+          width: calc(var(--snippet-font-size) * 1.69);
+          height: calc(var(--snippet-font-size) * 1.69);
+        }
+      </style></svg></div><style>
+        .snippet {
+          position: relative;
+          max-width: 100%;
+          color: #000;
+          background-color: #fff;
+          border: 1px solid #eaeaea;
+          border-radius: 6px;
+          --snippet-font-size: calc(0.8125 * 16px);
+          --snippet-padding-top: calc(0.667 * 16px);
+          font-size: var(--snippet-font-size);
+          width: initial;
+          height: auto;
+          padding: calc(0.667 * 16px) calc(2.667 * 16px) calc(0.667 * 16px)
+            calc(0.667 * 16px);
+          margin: 0 0 0 0;
+        }
+
+        pre {
+          margin: 0;
+          padding: 0;
+          border: none;
+          background-color: transparent;
+          color: #000;
+          font-size: inherit;
+        }
+
+        pre::before {
+          content: '$ ';
+          user-select: none;
+        }
+
+        pre :global(*) {
+          margin: 0;
+          padding: 0;
+          font-size: inherit;
+          color: inherit;
+        }
+
+        .copy {
+          position: absolute;
+          right: 0;
+          top: 0;
+          bottom: 0;
+          height: calc(100% - 2px);
+          background-color: #fff;
+          display: inline-flex;
+          justify-content: center;
+          align-items: center;
+          width: calc(3.281 * var(--snippet-font-size));
+          color: inherit;
+          transition: opacity 150ms ease 0s;
+          border-radius: 6px;
+          cursor: pointer;
+          user-select: none;
+          padding-top: 0;
+          opacity: 0.65;
+        }
+
+        .copy:hover {
+          opacity: 1;
+        }
+      </style></div><div class=\\"snippet\\"><pre>yarn add @shuriken/core</pre><div class=\\"copy\\"><svg viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" stroke-width=\\"1.5\\" stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" fill=\\"none\\" shape-rendering=\\"geometricPrecision\\" style=\\"color: currentcolor;\\"><path d=\\"M8 17.929H6c-1.105 0-2-.912-2-2.036V5.036C4 3.91 4.895 3 6 3h8c1.105 0 2 .911 2 2.036v1.866m-6 .17h8c1.105 0 2 .91 2 2.035v10.857C20 21.09 19.105 22 18 22h-8c-1.105 0-2-.911-2-2.036V9.107c0-1.124.895-2.036 2-2.036z\\"></path><style>
+        svg {
+          width: calc(var(--snippet-font-size) * 1.69);
+          height: calc(var(--snippet-font-size) * 1.69);
+        }
+      </style></svg></div><style>
+        .snippet {
+          position: relative;
+          max-width: 100%;
+          color: #000;
+          background-color: #fff;
+          border: 1px solid #eaeaea;
+          border-radius: 6px;
+          --snippet-font-size: calc(0.8125 * 16px);
+          --snippet-padding-top: calc(0.667 * 16px);
+          font-size: var(--snippet-font-size);
+          width: 20%;
+          height: auto;
+          padding: calc(0.667 * 16px) calc(2.667 * 16px) calc(0.667 * 16px)
+            calc(0.667 * 16px);
+          margin: 0 0 0 0;
+        }
+
+        pre {
+          margin: 0;
+          padding: 0;
+          border: none;
+          background-color: transparent;
+          color: #000;
+          font-size: inherit;
+        }
+
+        pre::before {
+          content: '$ ';
+          user-select: none;
+        }
+
+        pre :global(*) {
+          margin: 0;
+          padding: 0;
+          font-size: inherit;
+          color: inherit;
+        }
+
+        .copy {
+          position: absolute;
+          right: 0;
+          top: 0;
+          bottom: 0;
+          height: calc(100% - 2px);
+          background-color: #fff;
+          display: inline-flex;
+          justify-content: center;
+          align-items: center;
+          width: calc(3.281 * var(--snippet-font-size));
+          color: inherit;
+          transition: opacity 150ms ease 0s;
+          border-radius: 6px;
+          cursor: pointer;
+          user-select: none;
+          padding-top: 0;
+          opacity: 0.65;
+        }
+
+        .copy:hover {
+          opacity: 1;
+        }
+      </style></div><div class=\\"snippet\\"><pre>yarn add @shuriken/core</pre><div class=\\"copy\\"><svg viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" stroke-width=\\"1.5\\" stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" fill=\\"none\\" shape-rendering=\\"geometricPrecision\\" style=\\"color: currentcolor;\\"><path d=\\"M8 17.929H6c-1.105 0-2-.912-2-2.036V5.036C4 3.91 4.895 3 6 3h8c1.105 0 2 .911 2 2.036v1.866m-6 .17h8c1.105 0 2 .91 2 2.035v10.857C20 21.09 19.105 22 18 22h-8c-1.105 0-2-.911-2-2.036V9.107c0-1.124.895-2.036 2-2.036z\\"></path><style>
+        svg {
+          width: calc(var(--snippet-font-size) * 1.69);
+          height: calc(var(--snippet-font-size) * 1.69);
+        }
+      </style></svg></div><style>
+        .snippet {
+          position: relative;
+          max-width: 100%;
+          color: #666;
+          background-color: #fff;
+          border: 1px solid #666;
+          border-radius: 6px;
+          --snippet-font-size: calc(0.8125 * 16px);
+          --snippet-padding-top: calc(0.667 * 16px);
+          font-size: var(--snippet-font-size);
+          width: initial;
+          height: auto;
+          padding: calc(0.667 * 16px) calc(2.667 * 16px) calc(0.667 * 16px)
+            calc(0.667 * 16px);
+          margin: 0 0 0 0;
+        }
+
+        pre {
+          margin: 0;
+          padding: 0;
+          border: none;
+          background-color: transparent;
+          color: #666;
+          font-size: inherit;
+        }
+
+        pre::before {
+          content: '$ ';
+          user-select: none;
+        }
+
+        pre :global(*) {
+          margin: 0;
+          padding: 0;
+          font-size: inherit;
+          color: inherit;
+        }
+
+        .copy {
+          position: absolute;
+          right: 0;
+          top: 0;
+          bottom: 0;
+          height: calc(100% - 2px);
+          background-color: #fff;
+          display: inline-flex;
+          justify-content: center;
+          align-items: center;
+          width: calc(3.281 * var(--snippet-font-size));
+          color: inherit;
+          transition: opacity 150ms ease 0s;
+          border-radius: 6px;
+          cursor: pointer;
+          user-select: none;
+          padding-top: 0;
+          opacity: 0.65;
+        }
+
+        .copy:hover {
+          opacity: 1;
+        }
+      </style></div><div class=\\"snippet\\"><pre>yarn add @shuriken/core</pre><div class=\\"copy\\"><svg viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" stroke-width=\\"1.5\\" stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" fill=\\"none\\" shape-rendering=\\"geometricPrecision\\" style=\\"color: currentcolor;\\"><path d=\\"M8 17.929H6c-1.105 0-2-.912-2-2.036V5.036C4 3.91 4.895 3 6 3h8c1.105 0 2 .911 2 2.036v1.866m-6 .17h8c1.105 0 2 .91 2 2.035v10.857C20 21.09 19.105 22 18 22h-8c-1.105 0-2-.911-2-2.036V9.107c0-1.124.895-2.036 2-2.036z\\"></path><style>
+        svg {
+          width: calc(var(--snippet-font-size) * 1.69);
+          height: calc(var(--snippet-font-size) * 1.69);
+        }
+      </style></svg></div><style>
+        .snippet {
+          position: relative;
+          max-width: 100%;
+          color: #fff;
+          background-color: #0070f3;
+          border: 1px solid #0070f3;
+          border-radius: 6px;
+          --snippet-font-size: calc(0.8125 * 16px);
+          --snippet-padding-top: calc(0.667 * 16px);
+          font-size: var(--snippet-font-size);
+          width: initial;
+          height: auto;
+          padding: calc(0.667 * 16px) calc(2.667 * 16px) calc(0.667 * 16px)
+            calc(0.667 * 16px);
+          margin: 0 0 0 0;
+        }
+
+        pre {
+          margin: 0;
+          padding: 0;
+          border: none;
+          background-color: transparent;
+          color: #fff;
+          font-size: inherit;
+        }
+
+        pre::before {
+          content: '$ ';
+          user-select: none;
+        }
+
+        pre :global(*) {
+          margin: 0;
+          padding: 0;
+          font-size: inherit;
+          color: inherit;
+        }
+
+        .copy {
+          position: absolute;
+          right: 0;
+          top: 0;
+          bottom: 0;
+          height: calc(100% - 2px);
+          background-color: #0070f3;
+          display: inline-flex;
+          justify-content: center;
+          align-items: center;
+          width: calc(3.281 * var(--snippet-font-size));
+          color: inherit;
+          transition: opacity 150ms ease 0s;
+          border-radius: 6px;
+          cursor: pointer;
+          user-select: none;
+          padding-top: 0;
+          opacity: 0.65;
+        }
+
+        .copy:hover {
+          opacity: 1;
+        }
+      </style></div></div>"
+`;
+
+exports[`Snippet should work with multi-line 1`] = `
+"<div class=\\"snippet\\"><pre>cd project</pre><pre>now</pre><div class=\\"copy\\"><svg viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" stroke-width=\\"1.5\\" stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" fill=\\"none\\" shape-rendering=\\"geometricPrecision\\" style=\\"color: currentcolor;\\"><path d=\\"M8 17.929H6c-1.105 0-2-.912-2-2.036V5.036C4 3.91 4.895 3 6 3h8c1.105 0 2 .911 2 2.036v1.866m-6 .17h8c1.105 0 2 .91 2 2.035v10.857C20 21.09 19.105 22 18 22h-8c-1.105 0-2-.911-2-2.036V9.107c0-1.124.895-2.036 2-2.036z\\"></path><style>
+        svg {
+          width: calc(var(--snippet-font-size) * 1.69);
+          height: calc(var(--snippet-font-size) * 1.69);
+        }
+      </style></svg></div><style>
+        .snippet {
+          position: relative;
+          max-width: 100%;
+          color: #000;
+          background-color: #fff;
+          border: 1px solid #eaeaea;
+          border-radius: 6px;
+          --snippet-font-size: calc(0.8125 * 16px);
+          --snippet-padding-top: calc(0.667 * 16px);
+          font-size: var(--snippet-font-size);
+          width: initial;
+          height: auto;
+          padding: calc(0.667 * 16px) calc(2.667 * 16px) calc(0.667 * 16px)
+            calc(0.667 * 16px);
+          margin: 0 0 0 0;
+        }
+
+        pre {
+          margin: 0;
+          padding: 0;
+          border: none;
+          background-color: transparent;
+          color: #000;
+          font-size: inherit;
+        }
+
+        pre::before {
+          content: '$ ';
+          user-select: none;
+        }
+
+        pre :global(*) {
+          margin: 0;
+          padding: 0;
+          font-size: inherit;
+          color: inherit;
+        }
+
+        .copy {
+          position: absolute;
+          right: 0;
+          top: 0;
+          bottom: 0;
+          height: calc(100% - 2px);
+          background-color: #fff;
+          display: inline-flex;
+          justify-content: center;
+          align-items: flex-start;
+          width: calc(3.281 * var(--snippet-font-size));
+          color: inherit;
+          transition: opacity 150ms ease 0s;
+          border-radius: 6px;
+          cursor: pointer;
+          user-select: none;
+          padding-top: var(--snippet-padding-top);
+          opacity: 0.65;
+        }
+
+        .copy:hover {
+          opacity: 1;
+        }
+      </style></div>"
+`;

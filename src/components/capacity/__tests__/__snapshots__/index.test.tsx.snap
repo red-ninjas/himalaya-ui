@@ -1,0 +1,1420 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Capacity should override background color 1`] = `
+LoadedCheerio {
+  "0": Node {
+    "attribs": Object {
+      "class": "capacity",
+      "title": "50%",
+    },
+    "children": Array [
+      Node {
+        "attribs": Object {},
+        "children": Array [],
+        "name": "span",
+        "namespace": "http://www.w3.org/1999/xhtml",
+        "next": Node {
+          "attribs": Object {},
+          "children": Array [
+            Node {
+              "data": "
+        .capacity {
+          width: calc(3.125 * 16px);
+          height: calc(0.625 * 16px);
+          border-radius: 6px;
+          overflow: hidden;
+          background-color: #eaeaea;
+          padding: 0 0 0 0;
+          margin: 0 0 0 0;
+        }
+
+        span {
+          width: 50%;
+          background-color: white;
+          height: 100%;
+          margin: 0;
+          padding: 0;
+          display: block;
+        }
+      ",
+              "next": null,
+              "parent": [Circular],
+              "prev": null,
+              "type": "text",
+            },
+          ],
+          "name": "style",
+          "namespace": "http://www.w3.org/1999/xhtml",
+          "next": null,
+          "parent": [Circular],
+          "prev": [Circular],
+          "type": "style",
+          "x-attribsNamespace": Object {},
+          "x-attribsPrefix": Object {},
+        },
+        "parent": [Circular],
+        "prev": null,
+        "type": "tag",
+        "x-attribsNamespace": Object {},
+        "x-attribsPrefix": Object {},
+      },
+      Node {
+        "attribs": Object {},
+        "children": Array [
+          Node {
+            "data": "
+        .capacity {
+          width: calc(3.125 * 16px);
+          height: calc(0.625 * 16px);
+          border-radius: 6px;
+          overflow: hidden;
+          background-color: #eaeaea;
+          padding: 0 0 0 0;
+          margin: 0 0 0 0;
+        }
+
+        span {
+          width: 50%;
+          background-color: white;
+          height: 100%;
+          margin: 0;
+          padding: 0;
+          display: block;
+        }
+      ",
+            "next": null,
+            "parent": [Circular],
+            "prev": null,
+            "type": "text",
+          },
+        ],
+        "name": "style",
+        "namespace": "http://www.w3.org/1999/xhtml",
+        "next": null,
+        "parent": [Circular],
+        "prev": Node {
+          "attribs": Object {},
+          "children": Array [],
+          "name": "span",
+          "namespace": "http://www.w3.org/1999/xhtml",
+          "next": [Circular],
+          "parent": [Circular],
+          "prev": null,
+          "type": "tag",
+          "x-attribsNamespace": Object {},
+          "x-attribsPrefix": Object {},
+        },
+        "type": "style",
+        "x-attribsNamespace": Object {},
+        "x-attribsPrefix": Object {},
+      },
+    ],
+    "name": "div",
+    "namespace": "http://www.w3.org/1999/xhtml",
+    "next": null,
+    "parent": Node {
+      "children": Array [
+        [Circular],
+      ],
+      "name": "root",
+      "next": null,
+      "parent": null,
+      "prev": null,
+      "type": "root",
+    },
+    "prev": null,
+    "type": "tag",
+    "x-attribsNamespace": Object {
+      "class": undefined,
+      "title": undefined,
+    },
+    "x-attribsPrefix": Object {
+      "class": undefined,
+      "title": undefined,
+    },
+  },
+  "_root": LoadedCheerio {
+    "0": Node {
+      "children": Array [
+        Node {
+          "attribs": Object {},
+          "children": Array [
+            Node {
+              "attribs": Object {},
+              "children": Array [],
+              "name": "head",
+              "namespace": "http://www.w3.org/1999/xhtml",
+              "next": Node {
+                "attribs": Object {},
+                "children": Array [],
+                "name": "body",
+                "namespace": "http://www.w3.org/1999/xhtml",
+                "next": null,
+                "parent": [Circular],
+                "prev": [Circular],
+                "type": "tag",
+                "x-attribsNamespace": Object {},
+                "x-attribsPrefix": Object {},
+              },
+              "parent": [Circular],
+              "prev": null,
+              "type": "tag",
+              "x-attribsNamespace": Object {},
+              "x-attribsPrefix": Object {},
+            },
+            Node {
+              "attribs": Object {},
+              "children": Array [],
+              "name": "body",
+              "namespace": "http://www.w3.org/1999/xhtml",
+              "next": null,
+              "parent": [Circular],
+              "prev": Node {
+                "attribs": Object {},
+                "children": Array [],
+                "name": "head",
+                "namespace": "http://www.w3.org/1999/xhtml",
+                "next": [Circular],
+                "parent": [Circular],
+                "prev": null,
+                "type": "tag",
+                "x-attribsNamespace": Object {},
+                "x-attribsPrefix": Object {},
+              },
+              "type": "tag",
+              "x-attribsNamespace": Object {},
+              "x-attribsPrefix": Object {},
+            },
+          ],
+          "name": "html",
+          "namespace": "http://www.w3.org/1999/xhtml",
+          "next": null,
+          "parent": [Circular],
+          "prev": null,
+          "type": "tag",
+          "x-attribsNamespace": Object {},
+          "x-attribsPrefix": Object {},
+        },
+      ],
+      "name": "root",
+      "next": null,
+      "parent": null,
+      "prev": null,
+      "type": "root",
+      "x-mode": "quirks",
+    },
+    "_root": [Circular],
+    "length": 1,
+    "options": Object {
+      "decodeEntities": true,
+      "xml": false,
+    },
+  },
+  "length": 1,
+  "options": Object {
+    "decodeEntities": true,
+    "xml": false,
+  },
+}
+`;
+
+exports[`Capacity should render different widths based on limit-value 1`] = `
+LoadedCheerio {
+  "0": Node {
+    "attribs": Object {},
+    "children": Array [
+      Node {
+        "attribs": Object {
+          "class": "capacity",
+          "title": "20%",
+        },
+        "children": Array [
+          Node {
+            "attribs": Object {},
+            "children": Array [],
+            "name": "span",
+            "namespace": "http://www.w3.org/1999/xhtml",
+            "next": Node {
+              "attribs": Object {},
+              "children": Array [
+                Node {
+                  "data": "
+        .capacity {
+          width: calc(3.125 * 16px);
+          height: calc(0.625 * 16px);
+          border-radius: 6px;
+          overflow: hidden;
+          background-color: #eaeaea;
+          padding: 0 0 0 0;
+          margin: 0 0 0 0;
+        }
+
+        span {
+          width: 20%;
+          background-color: #50e3c2;
+          height: 100%;
+          margin: 0;
+          padding: 0;
+          display: block;
+        }
+      ",
+                  "next": null,
+                  "parent": [Circular],
+                  "prev": null,
+                  "type": "text",
+                },
+              ],
+              "name": "style",
+              "namespace": "http://www.w3.org/1999/xhtml",
+              "next": null,
+              "parent": [Circular],
+              "prev": [Circular],
+              "type": "style",
+              "x-attribsNamespace": Object {},
+              "x-attribsPrefix": Object {},
+            },
+            "parent": [Circular],
+            "prev": null,
+            "type": "tag",
+            "x-attribsNamespace": Object {},
+            "x-attribsPrefix": Object {},
+          },
+          Node {
+            "attribs": Object {},
+            "children": Array [
+              Node {
+                "data": "
+        .capacity {
+          width: calc(3.125 * 16px);
+          height: calc(0.625 * 16px);
+          border-radius: 6px;
+          overflow: hidden;
+          background-color: #eaeaea;
+          padding: 0 0 0 0;
+          margin: 0 0 0 0;
+        }
+
+        span {
+          width: 20%;
+          background-color: #50e3c2;
+          height: 100%;
+          margin: 0;
+          padding: 0;
+          display: block;
+        }
+      ",
+                "next": null,
+                "parent": [Circular],
+                "prev": null,
+                "type": "text",
+              },
+            ],
+            "name": "style",
+            "namespace": "http://www.w3.org/1999/xhtml",
+            "next": null,
+            "parent": [Circular],
+            "prev": Node {
+              "attribs": Object {},
+              "children": Array [],
+              "name": "span",
+              "namespace": "http://www.w3.org/1999/xhtml",
+              "next": [Circular],
+              "parent": [Circular],
+              "prev": null,
+              "type": "tag",
+              "x-attribsNamespace": Object {},
+              "x-attribsPrefix": Object {},
+            },
+            "type": "style",
+            "x-attribsNamespace": Object {},
+            "x-attribsPrefix": Object {},
+          },
+        ],
+        "name": "div",
+        "namespace": "http://www.w3.org/1999/xhtml",
+        "next": Node {
+          "attribs": Object {
+            "class": "capacity",
+            "title": "40%",
+          },
+          "children": Array [
+            Node {
+              "attribs": Object {},
+              "children": Array [],
+              "name": "span",
+              "namespace": "http://www.w3.org/1999/xhtml",
+              "next": Node {
+                "attribs": Object {},
+                "children": Array [
+                  Node {
+                    "data": "
+        .capacity {
+          width: calc(3.125 * 16px);
+          height: calc(0.625 * 16px);
+          border-radius: 6px;
+          overflow: hidden;
+          background-color: #eaeaea;
+          padding: 0 0 0 0;
+          margin: 0 0 0 0;
+        }
+
+        span {
+          width: 40%;
+          background-color: #f5a623;
+          height: 100%;
+          margin: 0;
+          padding: 0;
+          display: block;
+        }
+      ",
+                    "next": null,
+                    "parent": [Circular],
+                    "prev": null,
+                    "type": "text",
+                  },
+                ],
+                "name": "style",
+                "namespace": "http://www.w3.org/1999/xhtml",
+                "next": null,
+                "parent": [Circular],
+                "prev": [Circular],
+                "type": "style",
+                "x-attribsNamespace": Object {},
+                "x-attribsPrefix": Object {},
+              },
+              "parent": [Circular],
+              "prev": null,
+              "type": "tag",
+              "x-attribsNamespace": Object {},
+              "x-attribsPrefix": Object {},
+            },
+            Node {
+              "attribs": Object {},
+              "children": Array [
+                Node {
+                  "data": "
+        .capacity {
+          width: calc(3.125 * 16px);
+          height: calc(0.625 * 16px);
+          border-radius: 6px;
+          overflow: hidden;
+          background-color: #eaeaea;
+          padding: 0 0 0 0;
+          margin: 0 0 0 0;
+        }
+
+        span {
+          width: 40%;
+          background-color: #f5a623;
+          height: 100%;
+          margin: 0;
+          padding: 0;
+          display: block;
+        }
+      ",
+                  "next": null,
+                  "parent": [Circular],
+                  "prev": null,
+                  "type": "text",
+                },
+              ],
+              "name": "style",
+              "namespace": "http://www.w3.org/1999/xhtml",
+              "next": null,
+              "parent": [Circular],
+              "prev": Node {
+                "attribs": Object {},
+                "children": Array [],
+                "name": "span",
+                "namespace": "http://www.w3.org/1999/xhtml",
+                "next": [Circular],
+                "parent": [Circular],
+                "prev": null,
+                "type": "tag",
+                "x-attribsNamespace": Object {},
+                "x-attribsPrefix": Object {},
+              },
+              "type": "style",
+              "x-attribsNamespace": Object {},
+              "x-attribsPrefix": Object {},
+            },
+          ],
+          "name": "div",
+          "namespace": "http://www.w3.org/1999/xhtml",
+          "next": Node {
+            "attribs": Object {
+              "class": "capacity",
+              "title": "66.67%",
+            },
+            "children": Array [
+              Node {
+                "attribs": Object {},
+                "children": Array [],
+                "name": "span",
+                "namespace": "http://www.w3.org/1999/xhtml",
+                "next": Node {
+                  "attribs": Object {},
+                  "children": Array [
+                    Node {
+                      "data": "
+        .capacity {
+          width: calc(3.125 * 16px);
+          height: calc(0.625 * 16px);
+          border-radius: 6px;
+          overflow: hidden;
+          background-color: #eaeaea;
+          padding: 0 0 0 0;
+          margin: 0 0 0 0;
+        }
+
+        span {
+          width: 66.67%;
+          background-color: #c50000;
+          height: 100%;
+          margin: 0;
+          padding: 0;
+          display: block;
+        }
+      ",
+                      "next": null,
+                      "parent": [Circular],
+                      "prev": null,
+                      "type": "text",
+                    },
+                  ],
+                  "name": "style",
+                  "namespace": "http://www.w3.org/1999/xhtml",
+                  "next": null,
+                  "parent": [Circular],
+                  "prev": [Circular],
+                  "type": "style",
+                  "x-attribsNamespace": Object {},
+                  "x-attribsPrefix": Object {},
+                },
+                "parent": [Circular],
+                "prev": null,
+                "type": "tag",
+                "x-attribsNamespace": Object {},
+                "x-attribsPrefix": Object {},
+              },
+              Node {
+                "attribs": Object {},
+                "children": Array [
+                  Node {
+                    "data": "
+        .capacity {
+          width: calc(3.125 * 16px);
+          height: calc(0.625 * 16px);
+          border-radius: 6px;
+          overflow: hidden;
+          background-color: #eaeaea;
+          padding: 0 0 0 0;
+          margin: 0 0 0 0;
+        }
+
+        span {
+          width: 66.67%;
+          background-color: #c50000;
+          height: 100%;
+          margin: 0;
+          padding: 0;
+          display: block;
+        }
+      ",
+                    "next": null,
+                    "parent": [Circular],
+                    "prev": null,
+                    "type": "text",
+                  },
+                ],
+                "name": "style",
+                "namespace": "http://www.w3.org/1999/xhtml",
+                "next": null,
+                "parent": [Circular],
+                "prev": Node {
+                  "attribs": Object {},
+                  "children": Array [],
+                  "name": "span",
+                  "namespace": "http://www.w3.org/1999/xhtml",
+                  "next": [Circular],
+                  "parent": [Circular],
+                  "prev": null,
+                  "type": "tag",
+                  "x-attribsNamespace": Object {},
+                  "x-attribsPrefix": Object {},
+                },
+                "type": "style",
+                "x-attribsNamespace": Object {},
+                "x-attribsPrefix": Object {},
+              },
+            ],
+            "name": "div",
+            "namespace": "http://www.w3.org/1999/xhtml",
+            "next": null,
+            "parent": [Circular],
+            "prev": [Circular],
+            "type": "tag",
+            "x-attribsNamespace": Object {
+              "class": undefined,
+              "title": undefined,
+            },
+            "x-attribsPrefix": Object {
+              "class": undefined,
+              "title": undefined,
+            },
+          },
+          "parent": [Circular],
+          "prev": [Circular],
+          "type": "tag",
+          "x-attribsNamespace": Object {
+            "class": undefined,
+            "title": undefined,
+          },
+          "x-attribsPrefix": Object {
+            "class": undefined,
+            "title": undefined,
+          },
+        },
+        "parent": [Circular],
+        "prev": null,
+        "type": "tag",
+        "x-attribsNamespace": Object {
+          "class": undefined,
+          "title": undefined,
+        },
+        "x-attribsPrefix": Object {
+          "class": undefined,
+          "title": undefined,
+        },
+      },
+      Node {
+        "attribs": Object {
+          "class": "capacity",
+          "title": "40%",
+        },
+        "children": Array [
+          Node {
+            "attribs": Object {},
+            "children": Array [],
+            "name": "span",
+            "namespace": "http://www.w3.org/1999/xhtml",
+            "next": Node {
+              "attribs": Object {},
+              "children": Array [
+                Node {
+                  "data": "
+        .capacity {
+          width: calc(3.125 * 16px);
+          height: calc(0.625 * 16px);
+          border-radius: 6px;
+          overflow: hidden;
+          background-color: #eaeaea;
+          padding: 0 0 0 0;
+          margin: 0 0 0 0;
+        }
+
+        span {
+          width: 40%;
+          background-color: #f5a623;
+          height: 100%;
+          margin: 0;
+          padding: 0;
+          display: block;
+        }
+      ",
+                  "next": null,
+                  "parent": [Circular],
+                  "prev": null,
+                  "type": "text",
+                },
+              ],
+              "name": "style",
+              "namespace": "http://www.w3.org/1999/xhtml",
+              "next": null,
+              "parent": [Circular],
+              "prev": [Circular],
+              "type": "style",
+              "x-attribsNamespace": Object {},
+              "x-attribsPrefix": Object {},
+            },
+            "parent": [Circular],
+            "prev": null,
+            "type": "tag",
+            "x-attribsNamespace": Object {},
+            "x-attribsPrefix": Object {},
+          },
+          Node {
+            "attribs": Object {},
+            "children": Array [
+              Node {
+                "data": "
+        .capacity {
+          width: calc(3.125 * 16px);
+          height: calc(0.625 * 16px);
+          border-radius: 6px;
+          overflow: hidden;
+          background-color: #eaeaea;
+          padding: 0 0 0 0;
+          margin: 0 0 0 0;
+        }
+
+        span {
+          width: 40%;
+          background-color: #f5a623;
+          height: 100%;
+          margin: 0;
+          padding: 0;
+          display: block;
+        }
+      ",
+                "next": null,
+                "parent": [Circular],
+                "prev": null,
+                "type": "text",
+              },
+            ],
+            "name": "style",
+            "namespace": "http://www.w3.org/1999/xhtml",
+            "next": null,
+            "parent": [Circular],
+            "prev": Node {
+              "attribs": Object {},
+              "children": Array [],
+              "name": "span",
+              "namespace": "http://www.w3.org/1999/xhtml",
+              "next": [Circular],
+              "parent": [Circular],
+              "prev": null,
+              "type": "tag",
+              "x-attribsNamespace": Object {},
+              "x-attribsPrefix": Object {},
+            },
+            "type": "style",
+            "x-attribsNamespace": Object {},
+            "x-attribsPrefix": Object {},
+          },
+        ],
+        "name": "div",
+        "namespace": "http://www.w3.org/1999/xhtml",
+        "next": Node {
+          "attribs": Object {
+            "class": "capacity",
+            "title": "66.67%",
+          },
+          "children": Array [
+            Node {
+              "attribs": Object {},
+              "children": Array [],
+              "name": "span",
+              "namespace": "http://www.w3.org/1999/xhtml",
+              "next": Node {
+                "attribs": Object {},
+                "children": Array [
+                  Node {
+                    "data": "
+        .capacity {
+          width: calc(3.125 * 16px);
+          height: calc(0.625 * 16px);
+          border-radius: 6px;
+          overflow: hidden;
+          background-color: #eaeaea;
+          padding: 0 0 0 0;
+          margin: 0 0 0 0;
+        }
+
+        span {
+          width: 66.67%;
+          background-color: #c50000;
+          height: 100%;
+          margin: 0;
+          padding: 0;
+          display: block;
+        }
+      ",
+                    "next": null,
+                    "parent": [Circular],
+                    "prev": null,
+                    "type": "text",
+                  },
+                ],
+                "name": "style",
+                "namespace": "http://www.w3.org/1999/xhtml",
+                "next": null,
+                "parent": [Circular],
+                "prev": [Circular],
+                "type": "style",
+                "x-attribsNamespace": Object {},
+                "x-attribsPrefix": Object {},
+              },
+              "parent": [Circular],
+              "prev": null,
+              "type": "tag",
+              "x-attribsNamespace": Object {},
+              "x-attribsPrefix": Object {},
+            },
+            Node {
+              "attribs": Object {},
+              "children": Array [
+                Node {
+                  "data": "
+        .capacity {
+          width: calc(3.125 * 16px);
+          height: calc(0.625 * 16px);
+          border-radius: 6px;
+          overflow: hidden;
+          background-color: #eaeaea;
+          padding: 0 0 0 0;
+          margin: 0 0 0 0;
+        }
+
+        span {
+          width: 66.67%;
+          background-color: #c50000;
+          height: 100%;
+          margin: 0;
+          padding: 0;
+          display: block;
+        }
+      ",
+                  "next": null,
+                  "parent": [Circular],
+                  "prev": null,
+                  "type": "text",
+                },
+              ],
+              "name": "style",
+              "namespace": "http://www.w3.org/1999/xhtml",
+              "next": null,
+              "parent": [Circular],
+              "prev": Node {
+                "attribs": Object {},
+                "children": Array [],
+                "name": "span",
+                "namespace": "http://www.w3.org/1999/xhtml",
+                "next": [Circular],
+                "parent": [Circular],
+                "prev": null,
+                "type": "tag",
+                "x-attribsNamespace": Object {},
+                "x-attribsPrefix": Object {},
+              },
+              "type": "style",
+              "x-attribsNamespace": Object {},
+              "x-attribsPrefix": Object {},
+            },
+          ],
+          "name": "div",
+          "namespace": "http://www.w3.org/1999/xhtml",
+          "next": null,
+          "parent": [Circular],
+          "prev": [Circular],
+          "type": "tag",
+          "x-attribsNamespace": Object {
+            "class": undefined,
+            "title": undefined,
+          },
+          "x-attribsPrefix": Object {
+            "class": undefined,
+            "title": undefined,
+          },
+        },
+        "parent": [Circular],
+        "prev": Node {
+          "attribs": Object {
+            "class": "capacity",
+            "title": "20%",
+          },
+          "children": Array [
+            Node {
+              "attribs": Object {},
+              "children": Array [],
+              "name": "span",
+              "namespace": "http://www.w3.org/1999/xhtml",
+              "next": Node {
+                "attribs": Object {},
+                "children": Array [
+                  Node {
+                    "data": "
+        .capacity {
+          width: calc(3.125 * 16px);
+          height: calc(0.625 * 16px);
+          border-radius: 6px;
+          overflow: hidden;
+          background-color: #eaeaea;
+          padding: 0 0 0 0;
+          margin: 0 0 0 0;
+        }
+
+        span {
+          width: 20%;
+          background-color: #50e3c2;
+          height: 100%;
+          margin: 0;
+          padding: 0;
+          display: block;
+        }
+      ",
+                    "next": null,
+                    "parent": [Circular],
+                    "prev": null,
+                    "type": "text",
+                  },
+                ],
+                "name": "style",
+                "namespace": "http://www.w3.org/1999/xhtml",
+                "next": null,
+                "parent": [Circular],
+                "prev": [Circular],
+                "type": "style",
+                "x-attribsNamespace": Object {},
+                "x-attribsPrefix": Object {},
+              },
+              "parent": [Circular],
+              "prev": null,
+              "type": "tag",
+              "x-attribsNamespace": Object {},
+              "x-attribsPrefix": Object {},
+            },
+            Node {
+              "attribs": Object {},
+              "children": Array [
+                Node {
+                  "data": "
+        .capacity {
+          width: calc(3.125 * 16px);
+          height: calc(0.625 * 16px);
+          border-radius: 6px;
+          overflow: hidden;
+          background-color: #eaeaea;
+          padding: 0 0 0 0;
+          margin: 0 0 0 0;
+        }
+
+        span {
+          width: 20%;
+          background-color: #50e3c2;
+          height: 100%;
+          margin: 0;
+          padding: 0;
+          display: block;
+        }
+      ",
+                  "next": null,
+                  "parent": [Circular],
+                  "prev": null,
+                  "type": "text",
+                },
+              ],
+              "name": "style",
+              "namespace": "http://www.w3.org/1999/xhtml",
+              "next": null,
+              "parent": [Circular],
+              "prev": Node {
+                "attribs": Object {},
+                "children": Array [],
+                "name": "span",
+                "namespace": "http://www.w3.org/1999/xhtml",
+                "next": [Circular],
+                "parent": [Circular],
+                "prev": null,
+                "type": "tag",
+                "x-attribsNamespace": Object {},
+                "x-attribsPrefix": Object {},
+              },
+              "type": "style",
+              "x-attribsNamespace": Object {},
+              "x-attribsPrefix": Object {},
+            },
+          ],
+          "name": "div",
+          "namespace": "http://www.w3.org/1999/xhtml",
+          "next": [Circular],
+          "parent": [Circular],
+          "prev": null,
+          "type": "tag",
+          "x-attribsNamespace": Object {
+            "class": undefined,
+            "title": undefined,
+          },
+          "x-attribsPrefix": Object {
+            "class": undefined,
+            "title": undefined,
+          },
+        },
+        "type": "tag",
+        "x-attribsNamespace": Object {
+          "class": undefined,
+          "title": undefined,
+        },
+        "x-attribsPrefix": Object {
+          "class": undefined,
+          "title": undefined,
+        },
+      },
+      Node {
+        "attribs": Object {
+          "class": "capacity",
+          "title": "66.67%",
+        },
+        "children": Array [
+          Node {
+            "attribs": Object {},
+            "children": Array [],
+            "name": "span",
+            "namespace": "http://www.w3.org/1999/xhtml",
+            "next": Node {
+              "attribs": Object {},
+              "children": Array [
+                Node {
+                  "data": "
+        .capacity {
+          width: calc(3.125 * 16px);
+          height: calc(0.625 * 16px);
+          border-radius: 6px;
+          overflow: hidden;
+          background-color: #eaeaea;
+          padding: 0 0 0 0;
+          margin: 0 0 0 0;
+        }
+
+        span {
+          width: 66.67%;
+          background-color: #c50000;
+          height: 100%;
+          margin: 0;
+          padding: 0;
+          display: block;
+        }
+      ",
+                  "next": null,
+                  "parent": [Circular],
+                  "prev": null,
+                  "type": "text",
+                },
+              ],
+              "name": "style",
+              "namespace": "http://www.w3.org/1999/xhtml",
+              "next": null,
+              "parent": [Circular],
+              "prev": [Circular],
+              "type": "style",
+              "x-attribsNamespace": Object {},
+              "x-attribsPrefix": Object {},
+            },
+            "parent": [Circular],
+            "prev": null,
+            "type": "tag",
+            "x-attribsNamespace": Object {},
+            "x-attribsPrefix": Object {},
+          },
+          Node {
+            "attribs": Object {},
+            "children": Array [
+              Node {
+                "data": "
+        .capacity {
+          width: calc(3.125 * 16px);
+          height: calc(0.625 * 16px);
+          border-radius: 6px;
+          overflow: hidden;
+          background-color: #eaeaea;
+          padding: 0 0 0 0;
+          margin: 0 0 0 0;
+        }
+
+        span {
+          width: 66.67%;
+          background-color: #c50000;
+          height: 100%;
+          margin: 0;
+          padding: 0;
+          display: block;
+        }
+      ",
+                "next": null,
+                "parent": [Circular],
+                "prev": null,
+                "type": "text",
+              },
+            ],
+            "name": "style",
+            "namespace": "http://www.w3.org/1999/xhtml",
+            "next": null,
+            "parent": [Circular],
+            "prev": Node {
+              "attribs": Object {},
+              "children": Array [],
+              "name": "span",
+              "namespace": "http://www.w3.org/1999/xhtml",
+              "next": [Circular],
+              "parent": [Circular],
+              "prev": null,
+              "type": "tag",
+              "x-attribsNamespace": Object {},
+              "x-attribsPrefix": Object {},
+            },
+            "type": "style",
+            "x-attribsNamespace": Object {},
+            "x-attribsPrefix": Object {},
+          },
+        ],
+        "name": "div",
+        "namespace": "http://www.w3.org/1999/xhtml",
+        "next": null,
+        "parent": [Circular],
+        "prev": Node {
+          "attribs": Object {
+            "class": "capacity",
+            "title": "40%",
+          },
+          "children": Array [
+            Node {
+              "attribs": Object {},
+              "children": Array [],
+              "name": "span",
+              "namespace": "http://www.w3.org/1999/xhtml",
+              "next": Node {
+                "attribs": Object {},
+                "children": Array [
+                  Node {
+                    "data": "
+        .capacity {
+          width: calc(3.125 * 16px);
+          height: calc(0.625 * 16px);
+          border-radius: 6px;
+          overflow: hidden;
+          background-color: #eaeaea;
+          padding: 0 0 0 0;
+          margin: 0 0 0 0;
+        }
+
+        span {
+          width: 40%;
+          background-color: #f5a623;
+          height: 100%;
+          margin: 0;
+          padding: 0;
+          display: block;
+        }
+      ",
+                    "next": null,
+                    "parent": [Circular],
+                    "prev": null,
+                    "type": "text",
+                  },
+                ],
+                "name": "style",
+                "namespace": "http://www.w3.org/1999/xhtml",
+                "next": null,
+                "parent": [Circular],
+                "prev": [Circular],
+                "type": "style",
+                "x-attribsNamespace": Object {},
+                "x-attribsPrefix": Object {},
+              },
+              "parent": [Circular],
+              "prev": null,
+              "type": "tag",
+              "x-attribsNamespace": Object {},
+              "x-attribsPrefix": Object {},
+            },
+            Node {
+              "attribs": Object {},
+              "children": Array [
+                Node {
+                  "data": "
+        .capacity {
+          width: calc(3.125 * 16px);
+          height: calc(0.625 * 16px);
+          border-radius: 6px;
+          overflow: hidden;
+          background-color: #eaeaea;
+          padding: 0 0 0 0;
+          margin: 0 0 0 0;
+        }
+
+        span {
+          width: 40%;
+          background-color: #f5a623;
+          height: 100%;
+          margin: 0;
+          padding: 0;
+          display: block;
+        }
+      ",
+                  "next": null,
+                  "parent": [Circular],
+                  "prev": null,
+                  "type": "text",
+                },
+              ],
+              "name": "style",
+              "namespace": "http://www.w3.org/1999/xhtml",
+              "next": null,
+              "parent": [Circular],
+              "prev": Node {
+                "attribs": Object {},
+                "children": Array [],
+                "name": "span",
+                "namespace": "http://www.w3.org/1999/xhtml",
+                "next": [Circular],
+                "parent": [Circular],
+                "prev": null,
+                "type": "tag",
+                "x-attribsNamespace": Object {},
+                "x-attribsPrefix": Object {},
+              },
+              "type": "style",
+              "x-attribsNamespace": Object {},
+              "x-attribsPrefix": Object {},
+            },
+          ],
+          "name": "div",
+          "namespace": "http://www.w3.org/1999/xhtml",
+          "next": [Circular],
+          "parent": [Circular],
+          "prev": Node {
+            "attribs": Object {
+              "class": "capacity",
+              "title": "20%",
+            },
+            "children": Array [
+              Node {
+                "attribs": Object {},
+                "children": Array [],
+                "name": "span",
+                "namespace": "http://www.w3.org/1999/xhtml",
+                "next": Node {
+                  "attribs": Object {},
+                  "children": Array [
+                    Node {
+                      "data": "
+        .capacity {
+          width: calc(3.125 * 16px);
+          height: calc(0.625 * 16px);
+          border-radius: 6px;
+          overflow: hidden;
+          background-color: #eaeaea;
+          padding: 0 0 0 0;
+          margin: 0 0 0 0;
+        }
+
+        span {
+          width: 20%;
+          background-color: #50e3c2;
+          height: 100%;
+          margin: 0;
+          padding: 0;
+          display: block;
+        }
+      ",
+                      "next": null,
+                      "parent": [Circular],
+                      "prev": null,
+                      "type": "text",
+                    },
+                  ],
+                  "name": "style",
+                  "namespace": "http://www.w3.org/1999/xhtml",
+                  "next": null,
+                  "parent": [Circular],
+                  "prev": [Circular],
+                  "type": "style",
+                  "x-attribsNamespace": Object {},
+                  "x-attribsPrefix": Object {},
+                },
+                "parent": [Circular],
+                "prev": null,
+                "type": "tag",
+                "x-attribsNamespace": Object {},
+                "x-attribsPrefix": Object {},
+              },
+              Node {
+                "attribs": Object {},
+                "children": Array [
+                  Node {
+                    "data": "
+        .capacity {
+          width: calc(3.125 * 16px);
+          height: calc(0.625 * 16px);
+          border-radius: 6px;
+          overflow: hidden;
+          background-color: #eaeaea;
+          padding: 0 0 0 0;
+          margin: 0 0 0 0;
+        }
+
+        span {
+          width: 20%;
+          background-color: #50e3c2;
+          height: 100%;
+          margin: 0;
+          padding: 0;
+          display: block;
+        }
+      ",
+                    "next": null,
+                    "parent": [Circular],
+                    "prev": null,
+                    "type": "text",
+                  },
+                ],
+                "name": "style",
+                "namespace": "http://www.w3.org/1999/xhtml",
+                "next": null,
+                "parent": [Circular],
+                "prev": Node {
+                  "attribs": Object {},
+                  "children": Array [],
+                  "name": "span",
+                  "namespace": "http://www.w3.org/1999/xhtml",
+                  "next": [Circular],
+                  "parent": [Circular],
+                  "prev": null,
+                  "type": "tag",
+                  "x-attribsNamespace": Object {},
+                  "x-attribsPrefix": Object {},
+                },
+                "type": "style",
+                "x-attribsNamespace": Object {},
+                "x-attribsPrefix": Object {},
+              },
+            ],
+            "name": "div",
+            "namespace": "http://www.w3.org/1999/xhtml",
+            "next": [Circular],
+            "parent": [Circular],
+            "prev": null,
+            "type": "tag",
+            "x-attribsNamespace": Object {
+              "class": undefined,
+              "title": undefined,
+            },
+            "x-attribsPrefix": Object {
+              "class": undefined,
+              "title": undefined,
+            },
+          },
+          "type": "tag",
+          "x-attribsNamespace": Object {
+            "class": undefined,
+            "title": undefined,
+          },
+          "x-attribsPrefix": Object {
+            "class": undefined,
+            "title": undefined,
+          },
+        },
+        "type": "tag",
+        "x-attribsNamespace": Object {
+          "class": undefined,
+          "title": undefined,
+        },
+        "x-attribsPrefix": Object {
+          "class": undefined,
+          "title": undefined,
+        },
+      },
+    ],
+    "name": "div",
+    "namespace": "http://www.w3.org/1999/xhtml",
+    "next": null,
+    "parent": Node {
+      "children": Array [
+        [Circular],
+      ],
+      "name": "root",
+      "next": null,
+      "parent": null,
+      "prev": null,
+      "type": "root",
+    },
+    "prev": null,
+    "type": "tag",
+    "x-attribsNamespace": Object {},
+    "x-attribsPrefix": Object {},
+  },
+  "_root": LoadedCheerio {
+    "0": Node {
+      "children": Array [
+        Node {
+          "attribs": Object {},
+          "children": Array [
+            Node {
+              "attribs": Object {},
+              "children": Array [],
+              "name": "head",
+              "namespace": "http://www.w3.org/1999/xhtml",
+              "next": Node {
+                "attribs": Object {},
+                "children": Array [],
+                "name": "body",
+                "namespace": "http://www.w3.org/1999/xhtml",
+                "next": null,
+                "parent": [Circular],
+                "prev": [Circular],
+                "type": "tag",
+                "x-attribsNamespace": Object {},
+                "x-attribsPrefix": Object {},
+              },
+              "parent": [Circular],
+              "prev": null,
+              "type": "tag",
+              "x-attribsNamespace": Object {},
+              "x-attribsPrefix": Object {},
+            },
+            Node {
+              "attribs": Object {},
+              "children": Array [],
+              "name": "body",
+              "namespace": "http://www.w3.org/1999/xhtml",
+              "next": null,
+              "parent": [Circular],
+              "prev": Node {
+                "attribs": Object {},
+                "children": Array [],
+                "name": "head",
+                "namespace": "http://www.w3.org/1999/xhtml",
+                "next": [Circular],
+                "parent": [Circular],
+                "prev": null,
+                "type": "tag",
+                "x-attribsNamespace": Object {},
+                "x-attribsPrefix": Object {},
+              },
+              "type": "tag",
+              "x-attribsNamespace": Object {},
+              "x-attribsPrefix": Object {},
+            },
+          ],
+          "name": "html",
+          "namespace": "http://www.w3.org/1999/xhtml",
+          "next": null,
+          "parent": [Circular],
+          "prev": null,
+          "type": "tag",
+          "x-attribsNamespace": Object {},
+          "x-attribsPrefix": Object {},
+        },
+      ],
+      "name": "root",
+      "next": null,
+      "parent": null,
+      "prev": null,
+      "type": "root",
+      "x-mode": "quirks",
+    },
+    "_root": [Circular],
+    "length": 1,
+    "options": Object {
+      "decodeEntities": true,
+      "xml": false,
+    },
+  },
+  "length": 1,
+  "options": Object {
+    "decodeEntities": true,
+    "xml": false,
+  },
+}
+`;

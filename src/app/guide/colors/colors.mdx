@@ -1,0 +1,64 @@
+import { Code, Display } from 'components'
+import { Layout, Colors } from 'lib/components'
+
+export const meta = {
+  title: 'Colors',
+  group: 'Customization',
+  index: 20,
+}
+
+## Colors
+
+Default colors for themes.
+
+### PRIMARY
+
+You can use any color anywhere, all colors change with the theme.
+If you want to customize your colors, please read [use-theme](/hooks/use-theme) to learn more.
+
+<Display width="90%" caption={<span>Get palette from <Code>useTheme</Code>.</span>}>
+
+```jsx
+import { useTheme } from '@shurike/core'
+
+const myComponent = () => {
+  const { palette } = useTheme()
+
+  return <p style={{ color: palette.accents_1 }}>myComponent</p>
+}
+```
+
+</Display>
+<Colors type="normal" />
+
+### STATUS
+
+Use different colors to express more emotional changes.
+
+### Gradient colors
+
+<Colors type="gradient" />
+
+### Success
+
+<Colors type="success" />
+
+### Error
+
+<Colors type="error" />
+
+### Warning
+
+<Colors type="warning" />
+
+### Cyan
+
+<Colors type="cyan" />
+
+### Violet
+
+<Colors type="violet" />
+
+### Highlight
+
+<Colors type="highlight" />

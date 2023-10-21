@@ -1,0 +1,83 @@
+import { Layout, Playground, Attributes } from 'lib/components'
+import { LoadingSpinner, Spacer, Grid } from 'components'
+
+export const meta = {
+  title: 'Loading spinner',
+  group: 'Feedback',
+}
+
+## Loading spinner
+
+Indicate an action running in the background.
+
+<Playground
+  scope={{ LoadingSpinner, Spacer }}
+  code={`
+<LoadingSpinner />
+`}
+/>
+
+<Playground
+  title="with text"
+  desc="Customize text next to icon."
+  scope={{ LoadingSpinner }}
+  code={`
+<LoadingSpinner>Loading</LoadingSpinner>
+`}
+/>
+
+<Playground
+  title="types"
+  desc="Loading indicators in different states."
+  scope={{ LoadingSpinner, Grid }}
+  code={`
+<Grid.Container gap={2.5}>
+  <Grid xs={24}>
+    <LoadingSpinner type="success" />
+  </Grid>
+  <Grid xs={24}>
+    <LoadingSpinner type="secondary" />
+  </Grid>
+  <Grid xs={24}>
+    <LoadingSpinner type="warning" />
+  </Grid>
+   <Grid xs={24}>
+    <LoadingSpinner type="error" />
+  </Grid>
+</Grid.Container>
+`}
+/>
+
+<Playground
+  title="spaces"
+  desc="Customize the space between points. (the ratio is relative to the current `size`)"
+  scope={{ LoadingSpinner, Grid }}
+  code={`
+<Grid.Container gap={2.5}>
+  <Grid xs={24}>
+    <LoadingSpinner spaceRatio={2.5} />
+  </Grid>
+  <Grid xs={24}>
+    <LoadingSpinner spaceRatio={0.5} />
+  </Grid>
+</Grid.Container>
+`}
+/>
+
+<Attributes edit="/pages/components/loading-spinner.mdx">
+<Attributes.Title>LoadingSpinner.Props</Attributes.Title>
+
+| Attribute      | Description                        | Type                  | Accepted values                             | Default   |
+| -------------- | ---------------------------------- | --------------------- | ------------------------------------------- | --------- |
+| **type**       | bg-color type                      | `LoadingSpinnerTypes` | [LoadingSpinnerTypes](#loadingSpinnerTypes) | `default` |
+| **color**      | custom bg color                    | `string`              | -                                           | -         |
+| **spaceRatio** | percentage of space between points | `number`              | -                                           | 1         |
+| ...            | native props                       | `HTMLAttributes`      | `'id', 'title', 'className', ...`           | -         |
+
+<Attributes.Title>LoadingSpinnerTypes</Attributes.Title>
+
+```ts
+type loadingSpinnerTypes = 'default' | 'secondary' | 'success' | 'warning' | 'error'
+```
+
+</Attributes>

@@ -1,0 +1,397 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Modal customization should be supported 1`] = `
+"<div class=\\"wrapper test-class  wrapper-enter\\" role=\\"dialog\\" tabindex=\\"-1\\"><div tabindex=\\"0\\" class=\\"hide-tab\\" aria-hidden=\\"true\\"></div><h2 class=\\"\\">Modal</h2><style>
+        h2 {
+          line-height: 1.6;
+          font-weight: normal;
+          text-align: center;
+          display: inline-flex;
+          flex-shrink: 0;
+          justify-content: center;
+          align-items: center;
+          word-break: break-word;
+          text-transform: capitalize;
+          font-size: calc(1.5 * 16px);
+          color: #000;
+          width: auto;
+          height: auto;
+          padding: 0 0 0 0;
+          margin: 0 0 0 0;
+        }
+      </style><div tabindex=\\"0\\" class=\\"hide-tab\\" aria-hidden=\\"true\\"></div><style>
+          .wrapper {
+            max-width: 100%;
+            vertical-align: middle;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            box-sizing: border-box;
+            background-color: #fff;
+            color: #000;
+            border-radius: 6px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
+            opacity: 0;
+            outline: none;
+            transform: translate3d(0px, -30px, 0px);
+            transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1) 0s,
+              transform 0.35s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+            width: 100%;
+            font-size: calc(1 * 16px);
+            height: auto;
+            --modal-wrapper-padding-left: calc(1.3125 * 16px);
+            --modal-wrapper-padding-right: calc(1.3125 * 16px);
+            padding: calc(1.3125 * 16px) var(--modal-wrapper-padding-right)
+              calc(1.3125 * 16px) var(--modal-wrapper-padding-left);
+            margin: 0 0 0 0;
+          }
+
+          .wrapper-enter {
+            opacity: 0;
+            transform: translate3d(0px, -30px, 0px);
+          }
+
+          .wrapper-enter-active {
+            opacity: 1;
+            transform: translate3d(0px, 0px, 0px);
+          }
+
+          .wrapper-leave {
+            opacity: 1;
+            transform: translate3d(0px, 0px, 0px);
+          }
+
+          .wrapper-leave-active {
+            opacity: 0;
+            transform: translate3d(0px, -30px, 0px);
+          }
+
+          .hide-tab {
+            outline: none;
+            overflow: hidden;
+            width: 0;
+            height: 0;
+            opacity: 0;
+          }
+        </style></div>"
+`;
+
+exports[`Modal should render correctly 1`] = `
+"<div class=\\"backdrop  backdrop-wrapper-enter\\"><div class=\\"layer\\"></div><div class=\\"position\\"><div class=\\"wrapper  wrapper-enter\\" role=\\"dialog\\" tabindex=\\"-1\\"><div tabindex=\\"0\\" class=\\"hide-tab\\" aria-hidden=\\"true\\"></div><h2 class=\\"\\">Modal</h2><style>
+        h2 {
+          line-height: 1.6;
+          font-weight: normal;
+          text-align: center;
+          display: inline-flex;
+          flex-shrink: 0;
+          justify-content: center;
+          align-items: center;
+          word-break: break-word;
+          text-transform: capitalize;
+          font-size: calc(1.5 * 16px);
+          color: #000;
+          width: auto;
+          height: auto;
+          padding: 0 0 0 0;
+          margin: 0 0 0 0;
+        }
+      </style><p class=\\"\\">This is a modal</p><style>
+        p {
+          font-weight: normal;
+          display: inline-block;
+          text-align: center;
+          word-break: break-word;
+          text-transform: uppercase;
+          color: #666;
+          font-size: calc(0.875 * 16px);
+          line-height: 1.5em;
+          width: auto;
+          height: 1.5em;
+          padding: 0 0 0 0;
+          margin: 0 0 0 0;
+        }
+      </style><div class=\\"content\\"><p>Some content contained within the modal.</p></div><style>
+        .content {
+          position: relative;
+          text-align: left;
+          font-size: calc(1 * 16px);
+          width: auto;
+          height: auto;
+          padding: calc(1.3125 * 16px) calc(1.3125 * 16px) calc(0.6625 * 16px)
+            calc(1.3125 * 16px);
+          margin: 0
+            calc(var(--modal-wrapper-padding-right) * -1)
+            0
+            calc(var(--modal-wrapper-padding-left) * -1);
+        }
+
+        .content > :global(*:first-child) {
+          margin-top: 0;
+        }
+
+        .content > :global(*:last-child) {
+          margin-bottom: 0;
+        }
+      </style><div></div><footer><button type=\\"button\\" class=\\"btn mock\\"><div class=\\"text\\">Cancel</div><style>
+          .btn {
+            box-sizing: border-box;
+            display: inline-block;
+            line-height: calc(2.5 * 16px);
+            border-radius: 6px;
+            font-weight: 400;
+            font-size: calc(0.875 * 16px);
+            user-select: none;
+            outline: none;
+            text-transform: capitalize;
+            justify-content: center;
+            text-align: center;
+            white-space: nowrap;
+            transition: background-color 200ms ease 0ms, box-shadow 200ms ease 0ms,
+              border 200ms ease 0ms, color 200ms ease 0ms;
+            position: relative;
+            overflow: hidden;
+            color: #666;
+            background-color: #fff;
+            border: 1px solid #eaeaea;
+            cursor: pointer;
+            pointer-events: auto;
+            box-shadow: none;
+            --ui-button-icon-padding: calc(0.727 * 16px);
+            --ui-button-height: calc(2.5 * 16px);
+            --ui-button-color: #666;
+            --ui-button-bg: #fff;
+            min-width: calc(10.5 * 16px);
+            width: initial;
+            height: calc(2.5 * 16px);
+            padding: 0 calc(1.375 * 16px) 0 calc(1.375 * 16px);
+            margin: 0 0 0 0;
+          }
+
+          .btn:hover,
+          .btn:focus {
+            color: #000;
+            --ui-button-color: #000;
+            background-color: #fff;
+            border-color: #000;
+            cursor: pointer;
+            pointer-events: auto;
+            box-shadow: none;
+            transform: translate3d(0px, 0px, 0px);
+          }
+
+          .btn :global(.text) {
+            position: relative;
+            z-index: 1;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            line-height: inherit;
+            top: -1px;
+          }
+
+          .btn :global(.text p),
+          .btn :global(.text pre),
+          .btn :global(.text div) {
+            margin: 0;
+          }
+        </style></button><button type=\\"button\\" class=\\"btn mock\\"><div class=\\"text\\">Submit</div><style>
+          .btn {
+            box-sizing: border-box;
+            display: inline-block;
+            line-height: calc(2.5 * 16px);
+            border-radius: 6px;
+            font-weight: 400;
+            font-size: calc(0.875 * 16px);
+            user-select: none;
+            outline: none;
+            text-transform: capitalize;
+            justify-content: center;
+            text-align: center;
+            white-space: nowrap;
+            transition: background-color 200ms ease 0ms, box-shadow 200ms ease 0ms,
+              border 200ms ease 0ms, color 200ms ease 0ms;
+            position: relative;
+            overflow: hidden;
+            color: #666;
+            background-color: #fff;
+            border: 1px solid #eaeaea;
+            cursor: pointer;
+            pointer-events: auto;
+            box-shadow: none;
+            --ui-button-icon-padding: calc(0.727 * 16px);
+            --ui-button-height: calc(2.5 * 16px);
+            --ui-button-color: #666;
+            --ui-button-bg: #fff;
+            min-width: calc(10.5 * 16px);
+            width: initial;
+            height: calc(2.5 * 16px);
+            padding: 0 calc(1.375 * 16px) 0 calc(1.375 * 16px);
+            margin: 0 0 0 0;
+          }
+
+          .btn:hover,
+          .btn:focus {
+            color: #000;
+            --ui-button-color: #000;
+            background-color: #fff;
+            border-color: #000;
+            cursor: pointer;
+            pointer-events: auto;
+            box-shadow: none;
+            transform: translate3d(0px, 0px, 0px);
+          }
+
+          .btn :global(.text) {
+            position: relative;
+            z-index: 1;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            line-height: inherit;
+            top: -1px;
+          }
+
+          .btn :global(.text p),
+          .btn :global(.text pre),
+          .btn :global(.text div) {
+            margin: 0;
+          }
+        </style></button></footer><style>
+        footer {
+          display: flex;
+          overflow: hidden;
+          width: 100%;
+          height: auto;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          border-top: 1px solid #eaeaea;
+          border-bottom-left-radius: 6px;
+          border-bottom-right-radius: 6px;
+        }
+
+        footer > :global(button.btn + button.btn) {
+          border-left: 1px solid #eaeaea;
+        }
+
+        div {
+          height: 0px;
+          flex-shrink: 0;
+        }
+      </style><div tabindex=\\"0\\" class=\\"hide-tab\\" aria-hidden=\\"true\\"></div><style>
+          .wrapper {
+            max-width: 100%;
+            vertical-align: middle;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            box-sizing: border-box;
+            background-color: #fff;
+            color: #000;
+            border-radius: 6px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
+            opacity: 0;
+            outline: none;
+            transform: translate3d(0px, -30px, 0px);
+            transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1) 0s,
+              transform 0.35s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+            width: 100%;
+            font-size: calc(1 * 16px);
+            height: auto;
+            --modal-wrapper-padding-left: calc(1.3125 * 16px);
+            --modal-wrapper-padding-right: calc(1.3125 * 16px);
+            padding: calc(1.3125 * 16px) var(--modal-wrapper-padding-right)
+              calc(1.3125 * 16px) var(--modal-wrapper-padding-left);
+            margin: 0 0 0 0;
+          }
+
+          .wrapper-enter {
+            opacity: 0;
+            transform: translate3d(0px, -30px, 0px);
+          }
+
+          .wrapper-enter-active {
+            opacity: 1;
+            transform: translate3d(0px, 0px, 0px);
+          }
+
+          .wrapper-leave {
+            opacity: 1;
+            transform: translate3d(0px, 0px, 0px);
+          }
+
+          .wrapper-leave-active {
+            opacity: 0;
+            transform: translate3d(0px, -30px, 0px);
+          }
+
+          .hide-tab {
+            outline: none;
+            overflow: hidden;
+            width: 0;
+            height: 0;
+            opacity: 0;
+          }
+        </style></div></div><style>
+            .backdrop {
+              position: fixed;
+              top: 0;
+              left: 0;
+              right: 0;
+              bottom: 0;
+              overflow: auto;
+              z-index: 1000;
+              -webkit-overflow-scrolling: touch;
+              box-sizing: border-box;
+              text-align: center;
+            }
+            .position {
+              position: relative;
+              z-index: 1001;
+              outline: none;
+              max-width: 90%;
+              width: calc(26 * 16px);
+              margin: 20px auto;
+              vertical-align: middle;
+              display: inline-block;
+            }
+            .backdrop:before {
+              display: inline-block;
+              width: 0;
+              height: 100%;
+              vertical-align: middle;
+              content: '';
+            }
+            .layer {
+              position: fixed;
+              top: 0;
+              left: 0;
+              right: 0;
+              bottom: 0;
+              width: 100%;
+              height: 100%;
+              opacity: 0.25;
+              background-color: black;
+              transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+              pointer-events: none;
+              z-index: 1000;
+            }
+            .backdrop-wrapper-enter .layer {
+              opacity: 0;
+            }
+            .backdrop-wrapper-enter-active .layer {
+              opacity: 0.25;
+            }
+            .backdrop-wrapper-leave .layer {
+              opacity: 0.25;
+            }
+            .backdrop-wrapper-leave-active .layer {
+              opacity: 0;
+            }
+          </style></div>"
+`;

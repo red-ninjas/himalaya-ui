@@ -1,0 +1,288 @@
+import { Layout, Playground, Attributes } from 'lib/components'
+import { Modal, Button, Code, useModal } from 'components'
+import { useState } from 'react'
+
+export const meta = {
+  title: 'Modal',
+  group: 'Feedback',
+}
+
+## Modal
+
+Display popup content that requires attention or provides additional information.
+If you just need to prompt for a text message, try component [Toast](/components/toast).
+
+The Modal contain an additional Hooks, see subsection [useModal](/hooks/use-modal) for details.
+
+<Playground
+  title="Basic"
+  desc="Use `visible` control whether `Modal` is displayed."
+  scope={{ Modal, Button, useState }}
+  code={`
+() => {
+  const [state, setState] = useState(false)
+  const handler = () => setState(true)
+  const closeHandler = (event) => {
+    setState(false)
+    console.log('closed')
+  }
+  return (
+    <div>
+      <Button auto onClick={handler}>Show Modal</Button>
+      <Modal visible={state} onClose={closeHandler}>
+        <Modal.Title>Modal</Modal.Title>
+        <Modal.Subtitle>This is a modal</Modal.Subtitle>
+        <Modal.Content>
+          <p>Some content contained within the modal.</p>
+        </Modal.Content>
+        <Modal.Action passive onClick={() => setState(false)}>Cancel</Modal.Action>
+        <Modal.Action>Submit</Modal.Action>
+      </Modal>
+    </div>
+  )
+}
+`}
+/>
+
+<Playground
+  title={
+    <>
+      With <Code>useModal</Code>
+    </>
+  }
+  desc="Use `hooks` for easier control `Modal`."
+  scope={{ Modal, Button, useModal }}
+  code={`
+() => {
+  const { visible, setVisible, bindings } = useModal()
+  return (
+    <>
+      <Button auto onClick={() => setVisible(true)}>Show Modal</Button>
+      <Modal {...bindings}>
+        <Modal.Title>Modal</Modal.Title>
+        <Modal.Subtitle>This is a modal</Modal.Subtitle>
+        <Modal.Content>
+          <p>Some content contained within the modal.</p>
+        </Modal.Content>
+        <Modal.Action passive onClick={() => setVisible(false)}>Cancel</Modal.Action>
+        <Modal.Action>Submit</Modal.Action>
+      </Modal>
+    </>
+  )
+}
+`}
+/>
+
+<Playground
+  title="Without Actions"
+  desc="Hide all action buttons."
+  scope={{ Modal, Button, useState }}
+  code={`
+() => {
+  const [state, setState] = useState(false)
+  const handler = () => setState(true)
+  const closeHandler = (event) => {
+    setState(false)
+    console.log('closed')
+  }
+  return (
+    <div>
+      <Button auto onClick={handler}>Show Modal</Button>
+      <Modal visible={state} onClose={closeHandler}>
+        <Modal.Title>Modal</Modal.Title>
+        <Modal.Subtitle>This is a modal</Modal.Subtitle>
+        <Modal.Content>
+          <p>Some content contained within the modal.</p>
+        </Modal.Content>
+      </Modal>
+    </div>
+  )
+}
+`}
+/>
+
+<Playground
+  title="Disable Action"
+  desc="Disable one of the buttons."
+  scope={{ Modal, Button, useState }}
+  code={`
+() => {
+  const [state, setState] = useState(false)
+  const handler = () => setState(true)
+  const closeHandler = (event) => {
+    setState(false)
+    console.log('closed')
+  }
+  return (
+    <>
+      <Button auto onClick={handler}>Show Modal</Button>
+      <Modal visible={state} onClose={closeHandler}>
+        <Modal.Title>Modal</Modal.Title>
+        <Modal.Subtitle>This is a modal</Modal.Subtitle>
+        <Modal.Content>
+          <p>Some content contained within the modal.</p>
+        </Modal.Content>
+        <Modal.Action passive onClick={() => setState(false)}>Cancel</Modal.Action>
+        <Modal.Action disabled>Submit</Modal.Action>
+      </Modal>
+    </>
+  )
+}
+`}
+/>
+
+<Playground
+  title="Customizable"
+  desc="Custom `width` or `className`."
+  scope={{ Modal, Button, useModal }}
+  code={`
+() => {
+  const { setVisible, bindings } = useModal()
+  return (
+    <div>
+      <Button auto onClick={() => setVisible(true)}>Show Modal</Button>
+      <Modal width="35rem" {...bindings}>
+        <Modal.Title>My Favorites</Modal.Title>
+        <Modal.Content>
+          <p>This is the width I want.</p>
+        </Modal.Content>
+      </Modal>
+    </div>
+  )
+}
+`}
+/>
+
+<Playground
+  title="Loading"
+  scope={{ Modal, Button, useModal }}
+  code={`
+() => {
+  const { visible, setVisible, bindings } = useModal()
+  return (
+    <>
+      <Button auto onClick={() => setVisible(true)}>Show Modal</Button>
+      <Modal {...bindings}>
+        <Modal.Title>Modal</Modal.Title>
+        <Modal.Subtitle>This is a modal</Modal.Subtitle>
+        <Modal.Content>
+          <p>Some content contained within the modal.</p>
+        </Modal.Content>
+        <Modal.Action passive onClick={() => setVisible(false)}>Cancel</Modal.Action>
+        <Modal.Action loading>Submit</Modal.Action>
+      </Modal>
+    </>
+  )
+}
+`}
+/>
+
+<Playground
+  title="Overlong"
+  desc="Whether it is desktop or mobile, the content beyond the scope has been well handled."
+  scope={{ Modal, Button, useModal }}
+  code={`
+() => {
+  const { visible, setVisible, bindings } = useModal()
+  return (
+    <>
+      <Button auto onClick={() => setVisible(true)}>Show Modal</Button>
+      <Modal {...bindings}>
+        <Modal.Title>Modal</Modal.Title>
+        <Modal.Subtitle>Modal with a lot of content</Modal.Subtitle>
+        <Modal.Content>
+          <p>An open-source design system for building modern websites and applications.
+          An open-source design system for building modern websites and applications.
+          An open-source design system for building modern websites and applications. </p>
+          <p>An open-source design system for building modern websites and applications.
+          An open-source design system for building modern websites and applications.
+          An open-source design system for building modern websites and applications. </p>
+          <p>An open-source design system for building modern websites and applications.
+          An open-source design system for building modern websites and applications.
+          An open-source design system for building modern websites and applications. </p>
+          <p>An open-source design system for building modern websites and applications.
+          An open-source design system for building modern websites and applications.
+          An open-source design system for building modern websites and applications. </p>
+          <p>An open-source design system for building modern websites and applications.
+          An open-source design system for building modern websites and applications.
+          An open-source design system for building modern websites and applications. </p>
+          <p>An open-source design system for building modern websites and applications.
+          An open-source design system for building modern websites and applications.
+          An open-source design system for building modern websites and applications. </p>
+          <p>An open-source design system for building modern websites and applications.
+          An open-source design system for building modern websites and applications.
+          An open-source design system for building modern websites and applications. </p>
+        </Modal.Content>
+        <Modal.Action passive onClick={() => setVisible(false)}>Cancel</Modal.Action>
+        <Modal.Action>Submit</Modal.Action>
+      </Modal>
+    </>
+  )
+}
+`}
+/>
+
+<Attributes edit="/pages/components/modal.mdx">
+<Attributes.Title>Modal.Props</Attributes.Title>
+
+| Attribute                | Description                      | Type                      | Accepted values                         | Default |
+| ------------------------ | -------------------------------- | ------------------------- | --------------------------------------- | ------- |
+| **visible**              | open or close                    | `boolean`                 | -                                       | `false` |
+| **onClose**              | open event                       | `() => void`              | -                                       | -       |
+| **onContentClick**       | event from modal content         | `(e: MouseEvent) => void` | -                                       | -       |
+| **wrapClassName**        | className of the modal dialog    | `string`                  | -                                       | -       |
+| **keyboard**             | press Esc to close modal         | `boolean`                 | -                                       | `true`  |
+| **disableBackdropClick** | click background and don't close | `boolean`                 | -                                       | `false` |
+| ...                      | native props                     | `HTMLAttributes`          | `'autoFocus', 'name', 'className', ...` | -       |
+
+<Attributes.Title>Modal.Title.Props</Attributes.Title>
+
+| Attribute | Description  | Type             | Accepted values          | Default |
+| --------- | ------------ | ---------------- | ------------------------ | ------- |
+| ...       | native props | `HTMLAttributes` | `'id', 'className', ...` | -       |
+
+<Attributes.Title>Modal.Subtitle.Props</Attributes.Title>
+
+| Attribute | Description  | Type             | Accepted values          | Default |
+| --------- | ------------ | ---------------- | ------------------------ | ------- |
+| ...       | native props | `HTMLAttributes` | `'id', 'className', ...` | -       |
+
+<Attributes.Title>Modal.Content.Props</Attributes.Title>
+
+| Attribute | Description  | Type             | Accepted values          | Default |
+| --------- | ------------ | ---------------- | ------------------------ | ------- |
+| ...       | native props | `HTMLAttributes` | `'id', 'className', ...` | -       |
+
+<Attributes.Title>Modal.Action.Props</Attributes.Title>
+
+| Attribute    | Description            | Type                                               | Accepted values          | Default |
+| ------------ | ---------------------- | -------------------------------------------------- | ------------------------ | ------- |
+| **passive**  | display passive mode   | `boolean`                                          | -                        | `false` |
+| **disabled** | disable current action | `boolean`                                          | -                        | `false` |
+| **onClick**  | click handler          | [(e: ModalActionEvent) => void](#modalactionevent) | -                        | -       |
+| **loading**  | show loading           | `boolean`                                          | -                        | `false` |
+| ...          | native props           | `ButtonHTMLAttributes`                             | `'id', 'className', ...` | -       |
+
+<Attributes.Title>useModal</Attributes.Title>
+
+```ts
+type useModal = (initialVisible: boolean) => {
+  visible: boolean
+  setVisible: Dispatch<SetStateAction<boolean>>
+  currentRef: MutableRefObject<boolean>
+  bindings: {
+    visible: boolean
+    onClose: () => void
+  }
+}
+```
+
+<Attributes.Title>ModalActionEvent</Attributes.Title>
+
+```ts
+type ModalActionEvent = MouseEvent<HTMLButtonElement> & {
+  close: () => void
+}
+```
+
+</Attributes>

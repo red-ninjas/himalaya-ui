@@ -1,0 +1,95 @@
+import { Layout, Playground, Attributes } from 'lib/components'
+import { Note } from 'components'
+
+export const meta = {
+  title: 'Note',
+  group: 'Feedback',
+}
+
+## Note
+
+Display text that requires attention or provides additional information.
+
+<Playground
+  desc="Show a piece of text or components."
+  scope={{ Note }}
+  code={`
+<Note>This note details something important.</Note>
+`}
+/>
+
+<Playground
+  title="secondary"
+  scope={{ Note }}
+  code={`
+<Note type="secondary">This note details something important.</Note>
+`}
+/>
+
+<Playground
+  title="status"
+  scope={{ Note }}
+  code={`
+<>
+  <Note type="success">This note details something important.</Note>
+  <br/>
+  <Note type="warning">This note details something important.</Note>
+  <br/>
+  <Note type="error">This note details something important.</Note>
+</>
+`}
+/>
+
+<Playground
+  title="hidden label"
+  scope={{ Note }}
+  code={`
+<Note icon={false}>Just a quick note!</Note>
+`}
+/>
+
+<Playground
+  title="custom label"
+  scope={{ Note }}
+  code={`
+<Note icon="custom">This note uses a custom label.</Note>
+`}
+/>
+
+<Playground
+  title="Filled Variant"
+  scope={{ Note }}
+  code={`
+<>
+  <Note  filled>This note uses a custom label.</Note>
+  <br/>
+  <Note label={false} filled>Just a quick note!</Note>
+  <br/>
+  <Note type="success"   filled>This note details a success.</Note>
+  <br/>
+  <Note type="warning"   filled>This note details a warning.</Note>
+  <br/>
+  <Note type="error"  filled>This note details an error.</Note>
+  <br/>
+  <Note type="secondary" filled>This note details something important.</Note>
+</>
+`}
+/>
+
+<Attributes edit="/pages/components/note.mdx">
+<Attributes.Title>Note.Props</Attributes.Title>
+
+| Attribute  | Description  | Type                         | Accepted values          | Default   |
+| ---------- | ------------ | ---------------------------- | ------------------------ | --------- |
+| **type**   | note type    | `NoteTypes`                  | [NoteTypes](#nodetypes)  | `default` |
+| **icon**   | show icon    | `React.ReactNode or boolean` | -                        | `true`    |
+| **filled** | fill color   | `boolean`                    | -                        | `false`   |
+| ...        | native props | `HTMLAttributes`             | `'id', 'className', ...` | -         |
+
+<Attributes.Title>NoteTypes</Attributes.Title>
+
+```ts
+type NoteTypes = 'default' | 'secondary' | 'success' | 'warning' | 'error'
+```
+
+</Attributes>

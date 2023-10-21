@@ -1,0 +1,6 @@
+.vercel
+.husky
+.circleci
+.codecov.yml
+.gitlab-ci.yml
+dist

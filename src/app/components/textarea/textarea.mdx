@@ -1,0 +1,156 @@
+import { Layout, Playground, Attributes } from 'lib/components'
+import { Textarea, Spacer, useInput, Button, Code } from 'components'
+import { useState } from 'react'
+
+export const meta = {
+  title: 'Textarea',
+  group: 'Data Entry',
+}
+
+## Textarea
+
+Retrieve multi-line user input.
+
+<Playground
+  desc="Basic usage."
+  scope={{ Textarea }}
+  code={`
+<Textarea placeholder="Please enter a description." />
+`}
+/>
+
+<Playground
+  title="disabled"
+  desc="Disable interactive textarea."
+  scope={{ Textarea }}
+  code={`
+<Textarea width="100%" disabled placeholder="Now is the optimal workflow for frontend teams. All-in-one: Static and JAMstack deployment, Serverless Functions, and Global CDN." />
+`}
+/>
+
+<Playground
+  title="Type"
+  desc="Differentiate states by color."
+  scope={{ Textarea, Spacer }}
+  code={`
+<>
+  <Textarea type="success" height="65px" value="Success" />
+  <Spacer w={.5} inline />
+  <Textarea type="secondary" height="65px" value="Secondary" />
+  <Spacer h={.5} />
+  <Textarea type="warning" height="65px" value="Warning" />
+  <Spacer w={.5} inline />
+  <Textarea type="error" height="65px" value="Error" />
+</>
+`}
+/>
+
+<Playground
+  title="get change"
+  desc="Capture changes in textarea."
+  scope={{ Textarea, useState }}
+  code={`
+() => {
+  const [value, setValue] = useState()
+  const handler = (e) => {
+    setValue(e.target.value)
+    console.log(e.target.value)
+  }
+  return (
+    <Textarea width="100%"
+     value={value}
+     onChange={handler}
+     placeholder="Now is the optimal workflow for frontend teams. All-in-one: Static and JAMstack deployment, Serverless Functions, and Global CDN." />
+  )
+}
+`}
+/>
+
+<Playground
+  title={
+    <>
+      With <Code>useInput</Code>
+    </>
+  }
+  desc="Use `hooks` to capture changes."
+  scope={{ Textarea, useInput, Button, Spacer }}
+  code={`
+() => {
+  const { setState, reset, bindings } = useInput('Now is the optimal workflow for frontend teams. All-in-one: Static and JAMstack deployment, Serverless Functions, and Global CDN.')
+  return (
+    <>
+      <Textarea width="100%" {...bindings}/>
+      <Spacer h={.5} />
+      <Button auto type="secondary" scale={1/3} onClick={() => setState(Math.random().toString(32))}>set value</Button>
+      <Spacer h={.5} />
+      <Button auto scale={1/3} onClick={() => reset()}>reset value</Button>
+    </>
+  )
+}
+`}
+/>
+
+<Playground
+  title="Imperative API"
+  desc="Update component in an uncontrolled way."
+  scope={{ Textarea, Spacer, Button }}
+  code={`
+() => {
+  const ref = React.useRef(null)
+  const setChange = () => {
+    ref && (ref.current.value = Math.random().toString(32))
+  }
+  return (
+    <>
+      <Textarea initialValue="Hello" onChange={e => console.log(e.target.value)} ref={ref} />
+      <Spacer h={.5} />
+      <Button auto type="secondary" scale={1/3} onClick={setChange}>set value</Button>
+    </>
+  )
+}
+`}
+/>
+
+<Attributes edit="/pages/components/textarea.mdx">
+<Attributes.Title alias="Input.Textarea">Textarea.Props</Attributes.Title>
+
+| Attribute        | Description    | Type                             | Accepted values                  | Default   |
+| ---------------- | -------------- | -------------------------------- | -------------------------------- | --------- |
+| **value**        | textarea value | `string`                         | -                                | -         |
+| **initialValue** | textarea value | `string`                         | -                                | -         |
+| **placeholder**  | placeholder    | `string`                         | -                                | -         |
+| **type**         | current type   | `TextareaTypes`                  | [TextareaTypes](#textareatypes)  | `default` |
+| **readOnly**     | native attr    | `boolean`                        | -                                | `false`   |
+| **disabled**     | disable input  | `boolean`                        | -                                | `false`   |
+| **onChange**     | change event   | `(e: React.ChangeEvent) => void` | -                                | -         |
+| **resize**       | CSS attribute  | `CSSResize`                      | [CSSResize](#cssresize)          | `none`    |
+| ...              | native props   | `TextareaHTMLAttributes`         | `'form', 'id', 'className', ...` | -         |
+
+<Attributes.Title>useInput</Attributes.Title>
+
+```ts
+type useInput = (initialValue: string) => {
+  state: string
+  setState: Dispatch<SetStateAction<string>>
+  currentRef: MutableRefObject<string>
+  reset: () => void
+  bindings: {
+    value: string
+    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
+  }
+}
+```
+
+<Attributes.Title>TextareaTypes</Attributes.Title>
+
+```ts
+type TextareaTypes = 'default' | 'secondary' | 'success' | 'warning' | 'error'
+```
+
+<Attributes.Title>CSSResize</Attributes.Title>
+
+```ts
+type CSSResize = 'none' | 'both' | 'horizontal' | 'vertical' | 'initial' | 'inherit'
+```
+
+</Attributes>

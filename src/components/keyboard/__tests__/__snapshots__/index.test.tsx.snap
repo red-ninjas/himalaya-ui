@@ -1,0 +1,149 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Keyboard should render correctly 1`] = `
+"<kbd class=\\"\\"><span>F</span><style>
+        kbd {
+          line-height: 2em;
+          text-align: center;
+          display: inline-block;
+          color: #666;
+          background-color: #fafafa;
+          font-family: \\"Inter\\", -apple-system, BlinkMacSystemFont, \\"Segoe UI\\", \\"Roboto\\", \\"Oxygen\\", \\"Ubuntu\\", \\"Cantarell\\", \\"Fira Sans\\", \\"Droid Sans\\", \\"Helvetica Neue\\", sans-serif;
+          border-radius: 6px;
+          border: 1px solid #eaeaea;
+          font-size: calc(0.875 * 16px);
+          width: fit-content;
+          height: auto;
+          min-width: 2em;
+          min-height: 2em;
+          padding: 0 calc(0.34 * 16px) 0 calc(0.34 * 16px);
+          margin: 0 0 0 0;
+        }
+
+        span {
+          line-height: 2em;
+          font-size: 1em;
+          text-align: center;
+        }
+
+        span + span {
+          margin-left: 0.3em;
+        }
+      </style></kbd>"
+`;
+
+exports[`Keyboard should work with modifiers 1`] = `
+"<div><kbd class=\\"\\"><span>⌘</span><span>F</span><style>
+        kbd {
+          line-height: 2em;
+          text-align: center;
+          display: inline-block;
+          color: #666;
+          background-color: #fafafa;
+          font-family: \\"Inter\\", -apple-system, BlinkMacSystemFont, \\"Segoe UI\\", \\"Roboto\\", \\"Oxygen\\", \\"Ubuntu\\", \\"Cantarell\\", \\"Fira Sans\\", \\"Droid Sans\\", \\"Helvetica Neue\\", sans-serif;
+          border-radius: 6px;
+          border: 1px solid #eaeaea;
+          font-size: calc(0.875 * 16px);
+          width: fit-content;
+          height: auto;
+          min-width: 2em;
+          min-height: 2em;
+          padding: 0 calc(0.34 * 16px) 0 calc(0.34 * 16px);
+          margin: 0 0 0 0;
+        }
+
+        span {
+          line-height: 2em;
+          font-size: 1em;
+          text-align: center;
+        }
+
+        span + span {
+          margin-left: 0.3em;
+        }
+      </style></kbd><kbd class=\\"\\"><span>⇧</span><span>F</span><style>
+        kbd {
+          line-height: 2em;
+          text-align: center;
+          display: inline-block;
+          color: #666;
+          background-color: #fafafa;
+          font-family: \\"Inter\\", -apple-system, BlinkMacSystemFont, \\"Segoe UI\\", \\"Roboto\\", \\"Oxygen\\", \\"Ubuntu\\", \\"Cantarell\\", \\"Fira Sans\\", \\"Droid Sans\\", \\"Helvetica Neue\\", sans-serif;
+          border-radius: 6px;
+          border: 1px solid #eaeaea;
+          font-size: calc(0.875 * 16px);
+          width: fit-content;
+          height: auto;
+          min-width: 2em;
+          min-height: 2em;
+          padding: 0 calc(0.34 * 16px) 0 calc(0.34 * 16px);
+          margin: 0 0 0 0;
+        }
+
+        span {
+          line-height: 2em;
+          font-size: 1em;
+          text-align: center;
+        }
+
+        span + span {
+          margin-left: 0.3em;
+        }
+      </style></kbd><kbd class=\\"\\"><span>⌥</span><span>F</span><style>
+        kbd {
+          line-height: 2em;
+          text-align: center;
+          display: inline-block;
+          color: #666;
+          background-color: #fafafa;
+          font-family: \\"Inter\\", -apple-system, BlinkMacSystemFont, \\"Segoe UI\\", \\"Roboto\\", \\"Oxygen\\", \\"Ubuntu\\", \\"Cantarell\\", \\"Fira Sans\\", \\"Droid Sans\\", \\"Helvetica Neue\\", sans-serif;
+          border-radius: 6px;
+          border: 1px solid #eaeaea;
+          font-size: calc(0.875 * 16px);
+          width: fit-content;
+          height: auto;
+          min-width: 2em;
+          min-height: 2em;
+          padding: 0 calc(0.34 * 16px) 0 calc(0.34 * 16px);
+          margin: 0 0 0 0;
+        }
+
+        span {
+          line-height: 2em;
+          font-size: 1em;
+          text-align: center;
+        }
+
+        span + span {
+          margin-left: 0.3em;
+        }
+      </style></kbd><kbd class=\\"\\"><span>⌃</span><span>F</span><style>
+        kbd {
+          line-height: 2em;
+          text-align: center;
+          display: inline-block;
+          color: #666;
+          background-color: #fafafa;
+          font-family: \\"Inter\\", -apple-system, BlinkMacSystemFont, \\"Segoe UI\\", \\"Roboto\\", \\"Oxygen\\", \\"Ubuntu\\", \\"Cantarell\\", \\"Fira Sans\\", \\"Droid Sans\\", \\"Helvetica Neue\\", sans-serif;
+          border-radius: 6px;
+          border: 1px solid #eaeaea;
+          font-size: calc(0.875 * 16px);
+          width: fit-content;
+          height: auto;
+          min-width: 2em;
+          min-height: 2em;
+          padding: 0 calc(0.34 * 16px) 0 calc(0.34 * 16px);
+          margin: 0 0 0 0;
+        }
+
+        span {
+          line-height: 2em;
+          font-size: 1em;
+          text-align: center;
+        }
+
+        span + span {
+          margin-left: 0.3em;
+        }
+      </style></kbd></div>"
+`;

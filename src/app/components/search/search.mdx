@@ -1,0 +1,66 @@
+import { Layout, Playground, Attributes } from 'lib/components'
+import { Spacer, Search, Button, useConfigs, ConfigProvider } from 'components'
+import { SearchProvider } from 'components/use-search'
+import useSearch from 'components/use-search'
+
+import React, { useState } from 'react'
+import { Award, Github } from '@geist-ui/icons'
+import { SearchResult, SearchResults } from 'components/search'
+
+export const meta = {
+  title: 'Search',
+  group: 'Others',
+}
+
+## Search
+
+Page search modal
+
+<Playground
+  title="Search modal example"
+  desc="A fully example of using the search modal"
+  scope={{ Search, Button, useState, SearchProvider }}
+  code={`
+() => {
+  const [visible, setVisible] = useState(false);
+  const closeHandler = () => setVisible(false);
+  const doSearch = async (keyword: string) =>
+  {
+    return [
+      {
+        url: '',
+        name: 'Search record',
+        group: 'Search group',
+      }
+    ];
+  }
+  return (
+    <SearchProvider>
+      <Button onClick={() => setVisible(true)}>Show Search Modal</Button>
+      <Search searchFunction={doSearch} visibile={visible} placeholder='Search for button..' onClose={closeHandler} />
+    </SearchProvider>
+  )
+}
+`}
+/>
+
+<Attributes edit="/pages/components/search.mdx">
+<Attributes.Title>Search.Props</Attributes.Title>
+
+| Attribute          | Description            | Type                                           | Accepted values               | Default |
+| ------------------ | ---------------------- | ---------------------------------------------- | ----------------------------- | ------- |
+| **visible**        | is visibile            | `boolean`                                      | `false`                       | -       |
+| **placeholder**    | placeholder for search | `string`                                       | -                             | -       |
+| **searchFunction** | on search              | `(keyword: string) => Promise<SearchResult[]>` | [SearchResult](#SearchResult) | -       |
+| ...                | native props           | `HTMLAttributes`                               | -                             | -       |
+
+<Attributes.Title>SearchResult</Attributes.Title>
+
+| Attribute  | Description              | Type              | Accepted values | Default |
+| ---------- | ------------------------ | ----------------- | --------------- | ------- |
+| **name**   | Search result title      | `string`          | -               | -       |
+| **symbol** | Icon or symbol           | `React.ReactNode` | -               | -       |
+| **group**  | Name of group for search | `string`          | -               | -       |
+| **url**    | Url of the search item   | `string`          | -               | -       |
+
+</Attributes>

@@ -1,0 +1,132 @@
+import { ButtonDropdown, Spacer } from 'components'
+import { Playground, Attributes, Layout } from 'lib/components'
+import Plus from '@geist-ui/icons/plus'
+
+export const meta = {
+  title: 'Button Dropdown',
+  group: 'Navigation',
+  index: 101,
+}
+
+## Button Dropdown
+
+Display related but alternate actions for a button.
+
+<Playground
+  title="Basic"
+  scope={{ ButtonDropdown }}
+  code={`
+<ButtonDropdown>
+  <ButtonDropdown.Item main>Default Action</ButtonDropdown.Item>
+  <ButtonDropdown.Item>Secondary Action</ButtonDropdown.Item>
+  <ButtonDropdown.Item>Tertiary Action</ButtonDropdown.Item>
+</ButtonDropdown>
+`}
+/>
+
+<Playground
+  title="Disabled"
+  desc="Disable all buttons."
+  scope={{ ButtonDropdown }}
+  code={`
+<ButtonDropdown disabled>
+  <ButtonDropdown.Item main>Default Action</ButtonDropdown.Item>
+  <ButtonDropdown.Item>Secondary Action</ButtonDropdown.Item>
+  <ButtonDropdown.Item>Tertiary Action</ButtonDropdown.Item>
+</ButtonDropdown>
+`}
+/>
+
+<Playground
+  title="Loading"
+  desc="Show friendly load indicator."
+  scope={{ ButtonDropdown }}
+  code={`
+<ButtonDropdown loading>
+  <ButtonDropdown.Item main>Default Action</ButtonDropdown.Item>
+  <ButtonDropdown.Item>Secondary Action</ButtonDropdown.Item>
+  <ButtonDropdown.Item>Tertiary Action</ButtonDropdown.Item>
+</ButtonDropdown>
+`}
+/>
+
+<Playground
+  title="Types"
+  scope={{ ButtonDropdown, Spacer }}
+  code={`
+<>
+  <ButtonDropdown type="secondary" scale={0.5}>
+    <ButtonDropdown.Item main>Secondary Action</ButtonDropdown.Item>
+  </ButtonDropdown>
+  <Spacer h={.5} />
+  <ButtonDropdown type="success" scale={0.5}>
+    <ButtonDropdown.Item main>Success Action</ButtonDropdown.Item>
+  </ButtonDropdown>
+  <Spacer h={.5} />
+  <ButtonDropdown type="warning" scale={0.5}>
+    <ButtonDropdown.Item main>Warning Action</ButtonDropdown.Item>
+  </ButtonDropdown>
+  <Spacer h={.5} />
+  <ButtonDropdown type="error" scale={0.5}>
+    <ButtonDropdown.Item main>Error Action</ButtonDropdown.Item>
+  </ButtonDropdown>
+</>
+`}
+/>
+
+<Playground
+  title="Multiple Type"
+  desc="Specify the status of a button individually."
+  scope={{ ButtonDropdown }}
+  code={`
+<ButtonDropdown scale={2/3} auto>
+  <ButtonDropdown.Item main>Check Account</ButtonDropdown.Item>
+  <ButtonDropdown.Item>Block Account</ButtonDropdown.Item>
+  <ButtonDropdown.Item>Lock Account</ButtonDropdown.Item>
+  <ButtonDropdown.Item type="error">Destroy Account</ButtonDropdown.Item>
+</ButtonDropdown>
+`}
+/>
+
+<Playground
+  title="Custom Right Icon"
+  desc="The `color` and `size` of the right icon will be set automatically."
+  scope={{ ButtonDropdown, Plus }}
+  code={`
+<ButtonDropdown scale={2/3} auto icon={<Plus />}>
+  <ButtonDropdown.Item main>Check Account</ButtonDropdown.Item>
+  <ButtonDropdown.Item>Block Account</ButtonDropdown.Item>
+  <ButtonDropdown.Item>Lock Account</ButtonDropdown.Item>
+  <ButtonDropdown.Item type="error">Destroy Account</ButtonDropdown.Item>
+</ButtonDropdown>
+`}
+/>
+
+<Attributes edit="/pages/components/button-dropdown.mdx">
+<Attributes.Title>ButtonDropdown.Props</Attributes.Title>
+
+| Attribute    | Description               | Type                  | Accepted values                             | Default              |
+| ------------ | ------------------------- | --------------------- | ------------------------------------------- | -------------------- |
+| **type**     | button type               | `ButtonDropdownTypes` | [ButtonDropdownTypes](#buttondropdowntypes) | `default`            |
+| **loading**  | display loading indicator | `boolean`             | -                                           | `false`              |
+| **auto**     | autoscale width           | `boolean`             | -                                           | `false`              |
+| **disabled** | disable button            | `boolean`             | -                                           | `false`              |
+| **icon**     | custom right icon         | `ReactNode`           | -                                           | `ButtonDropdownIcon` |
+| ...          | native props              | `HTMLAttributes`      | `'autoFocus', 'name', 'className', ...`     | -                    |
+
+<Attributes.Title>ButtonDropdown.Item.Props</Attributes.Title>
+
+| Attribute   | Description     | Type                   | Accepted values                             | Default   |
+| ----------- | --------------- | ---------------------- | ------------------------------------------- | --------- |
+| **type**    | button type     | `ButtonDropdownTypes`  | [ButtonDropdownTypes](#buttondropdowntypes) | `default` |
+| **main**    | the main action | `boolean`              | -                                           | `false`   |
+| **onClick** | event handler   | `MouseEventHandler`    | -                                           | -         |
+| ...         | native props    | `ButtonHTMLAttributes` | `'id', 'name', 'className', ...`            | -         |
+
+<Attributes.Title>ButtonDropdownTypes</Attributes.Title>
+
+```ts
+type ButtonDropdownTypes = 'default' | 'secondary' | 'success' | 'warning' | 'error'
+```
+
+</Attributes>

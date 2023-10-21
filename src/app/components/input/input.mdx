@@ -1,0 +1,236 @@
+import { Layout, Playground, Attributes } from 'lib/components'
+import GitIcon from '@geist-ui/icons/github'
+import { Input, Spacer, Button, Code, Text, Dot } from 'components'
+
+export const meta = {
+  title: 'Input',
+  group: 'Data Entry',
+}
+
+## Input
+
+Retrieve text input from a user.
+
+The Input contain an additional Hooks, see subsection [useInput](/hooks/use-input) for details.
+
+<Playground
+  desc="Basic input field."
+  scope={{ Input }}
+  code={`
+<Input placeholder="Himalaya" />
+`}
+/>
+
+<Playground
+  title="Sizes"
+  desc="Inputs of different sizes."
+  scope={{ Input, Spacer }}
+  code={`
+<>
+  <Input scale={1/3} placeholder="Scale 1/3" /> <Spacer h={.5} />
+  <Input scale={2/3} placeholder="Scale 2/3" /> <Spacer h={.5} />
+  <Input placeholder="Scale 1" /> <Spacer h={.5} />
+  <Input scale={4/3} placeholder="Scale 4/3" />
+</>
+`}
+/>
+
+<Playground
+  title="Set width"
+  desc="Specify width or other styles."
+  scope={{ Input }}
+  code={`
+<Input placeholder="Himalaya" width="100%" />
+`}
+/>
+
+<Playground
+  title="unwritable"
+  desc="Disable interactive inputs."
+  scope={{ Input, Spacer }}
+  code={`
+<>
+  <Input disabled placeholder="Disabled" />
+  <Spacer h={.5} />
+  <Input readOnly initialValue="readOnly" />
+</>
+`}
+/>
+
+<Playground
+  title="inline label"
+  desc="Show a short label in the line."
+  scope={{ Input, Spacer }}
+  code={`
+<>
+  <Input label="username" placeholder="Geist UI" />
+  <Spacer h={.5} />
+  <Input labelRight=".com" placeholder="https://github" />
+</>
+`}
+/>
+
+<Playground
+  title="block label"
+  desc="Labels for custom styles."
+  scope={{ Input, Spacer, Text, Code, Dot }}
+  code={`
+<>
+  <Input placeholder="Himalaya">
+    Username
+  </Input>
+  <Spacer />
+  <Input placeholder="Post title" width="50%">
+    <Text h3>Title</Text>
+  </Input>
+  <Spacer />
+  <Input placeholder="GitHub Actions" width="50%">
+    <Dot type="warning">
+      <Text small>Problem area for <Code>deployment</Code></Text>
+    </Dot>
+  </Input>
+</>
+`}
+/>
+
+<Playground
+  title="Type"
+  desc="Differentiate states by color."
+  scope={{ Input, Spacer }}
+  code={`
+<>
+  <Input type="secondary" initialValue="Geist UI" />
+  <Spacer h={.5} />
+  <Input type="success" initialValue="Geist UI" />
+  <Spacer h={.5} />
+  <Input type="warning" initialValue="Geist UI" />
+  <Spacer h={.5} />
+  <Input type="error" initialValue="Geist UI" />
+</>
+`}
+/>
+
+<Playground
+  title="Icon"
+  desc="Specify an icon component."
+  scope={{ Input, GitIcon, Spacer }}
+  code={`
+<>
+  <Input icon={<GitIcon />} placeholder="GitHub" />
+  <Spacer h={.5} />
+  <Input iconRight={<GitIcon />} placeholder="GitHub" />
+</>
+`}
+/>
+
+<Playground
+  title="Clearable"
+  desc="Add a clear button in the input box."
+  scope={{ Input }}
+  code={`
+<>
+  <Input clearable initialValue="Himalaya" placeholder="Himalaya" />
+</>
+`}
+/>
+
+<Playground
+  title="Password"
+  scope={{ Input }}
+  code={`
+<Input.Password initialValue="123456abc" />
+`}
+/>
+
+<Playground
+  title="Get Change"
+  desc="Capture changes in input."
+  scope={{ Input }}
+  code={`
+() => {
+  const [value, setValue] = React.useState()
+  const handler = (e) => {
+    setValue(e.target.value)
+    console.log(e.target.value)
+  }
+  return (
+    <Input value={value} onChange={handler} placeholder="Himalaya" />
+  )
+}
+`}
+/>
+
+<Playground
+  title="Imperative API"
+  desc="Update component in an uncontrolled way."
+  scope={{ Input, Spacer, Button }}
+  code={`
+() => {
+  const ref = React.useRef(null)
+  const setChange = () => {
+    ref && (ref.current.value = Math.random().toString(32))
+  }
+  return (
+    <>
+      <Input initialValue="Hello" onChange={e => console.log(e.target.value)} ref={ref} />
+      <Spacer h={.5} />
+      <Button auto type="secondary" scale={1/3} onClick={setChange}>set value</Button>
+    </>
+  )
+}
+`}
+/>
+
+<Attributes edit="/pages/components/input.mdx">
+<Attributes.Title>Input.Props</Attributes.Title>
+
+| Attribute         | Description                   | Type                             | Accepted values                   | Default   |
+| ----------------- | ----------------------------- | -------------------------------- | --------------------------------- | --------- |
+| **value**         | input value                   | `string`                         | -                                 | -         |
+| **initialValue**  | initial value                 | `string`                         | -                                 | -         |
+| **placeholder**   | placeholder                   | `string`                         | -                                 | -         |
+| **type**          | current type                  | `InputTypes`                     | [InputTypes](#inputtypes)         | `default` |
+| **htmlType**      | native type attr              | `string`                         | -                                 | `text`    |
+| **readOnly**      | native attr                   | `boolean`                        | -                                 | `false`   |
+| **disabled**      | disable input                 | `boolean`                        | -                                 | `false`   |
+| **clearable**     | show clear icon               | `boolean`                        | -                                 | `false`   |
+| **label**         | text label for input          | `string`                         | -                                 | -         |
+| **labelRight**    | text label at right for input | `string`                         | -                                 | -         |
+| **icon**          | icon for input                | `React.ReactNode`                | -                                 | -         |
+| **iconRight**     | icon at right for input       | `React.ReactNode`                | -                                 | -         |
+| **iconClickable** | icons are clickable           | `boolean`                        | -                                 | `false`   |
+| **onIconClick**   | click icon event              | `(e: React.ChangeEvent) => void` | -                                 | -         |
+| **onChange**      | change event                  | `(e: React.ChangeEvent) => void` | -                                 | -         |
+| **onClearClick**  | clear icon event              | `(e: React.MouseEvent) => void`  | -                                 | -         |
+| **ref**           | forwardRef                    | `Ref<HTMLInputElement or null>`  | -                                 | -         |
+| ...               | native props                  | `InputHTMLAttributes`            | `'alt', 'type', 'className', ...` | -         |
+
+<Attributes.Title>Input.Password.Props</Attributes.Title>
+
+| Attribute      | Description      | Type          | Accepted values             | Default |
+| -------------- | ---------------- | ------------- | --------------------------- | ------- |
+| **hideToggle** | hide toggle icon | `boolean`     | -                           | `false` |
+| ...            | input props      | `Input.Props` | [Input.Props](#input.props) | -       |
+
+<Attributes.Title>InputTypes</Attributes.Title>
+
+```ts
+type InputTypes = 'default' | 'secondary' | 'success' | 'warning' | 'error'
+```
+
+<Attributes.Title>useInput</Attributes.Title>
+
+```ts
+type useInput = (initialValue: string) => {
+  state: string
+  setState: Dispatch<SetStateAction<string>>
+  currentRef: MutableRefObject<string>
+  reset: () => void
+  bindings: {
+    value: string
+    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
+  }
+}
+```
+
+</Attributes>

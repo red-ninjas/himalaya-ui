@@ -1,0 +1,293 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UseToast should render different actions 1`] = `
+"<div class=\\"toasts\\"><div class=\\"toast  toast-enter\\"><div class=\\"message\\">hello</div><div class=\\"action\\"><button type=\\"button\\" class=\\"btn\\"><div class=\\"text\\">remove</div><style>
+          .btn {
+            box-sizing: border-box;
+            display: inline-block;
+            line-height: calc(1.6666666666666665 * 16px);
+            border-radius: 6px;
+            font-weight: 400;
+            font-size: 13px;
+            user-select: none;
+            outline: none;
+            text-transform: capitalize;
+            justify-content: center;
+            text-align: center;
+            white-space: nowrap;
+            transition: background-color 200ms ease 0ms, box-shadow 200ms ease 0ms,
+              border 200ms ease 0ms, color 200ms ease 0ms;
+            position: relative;
+            overflow: hidden;
+            color: #fff;
+            background-color: #000;
+            border: 1px solid #000;
+            cursor: pointer;
+            pointer-events: auto;
+            box-shadow: none;
+            --ui-button-icon-padding: calc(0.48466666666666663 * 16px);
+            --ui-button-height: calc(1.6666666666666665 * 16px);
+            --ui-button-color: #fff;
+            --ui-button-bg: #000;
+            min-width: min-content;
+            width: auto;
+            height: calc(1.6666666666666665 * 16px);
+            padding: 0 calc(0.7666666666666666 * 16px) 0 calc(0.7666666666666666 * 16px);
+            margin: 0 0 0 0;
+          }
+
+          .btn:hover,
+          .btn:focus {
+            color: #000;
+            --ui-button-color: #000;
+            background-color: #fff;
+            border-color: #000;
+            cursor: pointer;
+            pointer-events: auto;
+            box-shadow: none;
+            transform: translate3d(0px, 0px, 0px);
+          }
+
+          .btn :global(.text) {
+            position: relative;
+            z-index: 1;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            line-height: inherit;
+            top: -1px;
+          }
+
+          .btn :global(.text p),
+          .btn :global(.text pre),
+          .btn :global(.text div) {
+            margin: 0;
+          }
+        </style></button><button type=\\"button\\" class=\\"btn\\"><div class=\\"text\\">remove</div><style>
+          .btn {
+            box-sizing: border-box;
+            display: inline-block;
+            line-height: calc(1.6666666666666665 * 16px);
+            border-radius: 6px;
+            font-weight: 400;
+            font-size: 13px;
+            user-select: none;
+            outline: none;
+            text-transform: capitalize;
+            justify-content: center;
+            text-align: center;
+            white-space: nowrap;
+            transition: background-color 200ms ease 0ms, box-shadow 200ms ease 0ms,
+              border 200ms ease 0ms, color 200ms ease 0ms;
+            position: relative;
+            overflow: hidden;
+            color: #666;
+            background-color: #fff;
+            border: 1px solid #eaeaea;
+            cursor: pointer;
+            pointer-events: auto;
+            box-shadow: none;
+            --ui-button-icon-padding: calc(0.48466666666666663 * 16px);
+            --ui-button-height: calc(1.6666666666666665 * 16px);
+            --ui-button-color: #666;
+            --ui-button-bg: #fff;
+            min-width: min-content;
+            width: auto;
+            height: calc(1.6666666666666665 * 16px);
+            padding: 0 calc(0.7666666666666666 * 16px) 0 calc(0.7666666666666666 * 16px);
+            margin: 0 0 0 0;
+          }
+
+          .btn:hover,
+          .btn:focus {
+            color: #000;
+            --ui-button-color: #000;
+            background-color: #fff;
+            border-color: #000;
+            cursor: pointer;
+            pointer-events: auto;
+            box-shadow: none;
+            transform: translate3d(0px, 0px, 0px);
+          }
+
+          .btn :global(.text) {
+            position: relative;
+            z-index: 1;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            line-height: inherit;
+            top: -1px;
+          }
+
+          .btn :global(.text p),
+          .btn :global(.text pre),
+          .btn :global(.text div) {
+            margin: 0;
+          }
+        </style></button></div><style>
+          .toast {
+            width: 420px;
+            max-width: 90vw;
+            max-height: 75px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #000;
+            background-color: #fff;
+            color: #000;
+            border: 0;
+            border-radius: 6px;
+            opacity: 1;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
+            transition: all 350ms cubic-bezier(0.1, 0.2, 0.1, 1);
+            overflow: hidden;
+          }
+          .message {
+            align-items: center;
+            height: 100%;
+            font-size: 0.875em;
+            display: -webkit-box;
+            word-break: break-all;
+            padding-right: 8pt;
+            overflow: hidden;
+            max-height: 100%;
+            text-overflow: ellipsis;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            line-height: 1.1rem;
+          }
+          .toast-enter {
+            opacity: 0;
+            height: 0;
+            padding: 0;
+            margin: 0;
+            transform: translate(60px, 60px);
+          }
+          .toast-enter-active {
+            opacity: 1;
+            height: auto;
+            margin: 8px 0;
+            padding: 12px 16px;
+            transform: translate(0, 0);
+          }
+          .toast-leave {
+            opacity: 1;
+            transform: translate(0, 0);
+            height: auto;
+            margin: 8px 0;
+            padding: 12px 16px;
+          }
+          .toast-leave-active {
+            opacity: 0;
+            transform: translate(50px, -15px) scale(0.85);
+          }
+        </style></div><style>
+        .toasts {
+          position: fixed;
+          width: auto;
+          max-width: 100%;
+          right: 16pt;
+          bottom: 16pt;
+          z-index: 2000;
+          transition: all 400ms ease;
+          box-sizing: border-box;
+          display: flex;
+          flex-direction: column;
+        }
+        .top {
+          bottom: unset;
+          flex-direction: column-reverse;
+          top: 16pt;
+        }
+        .left {
+          right: unset;
+          left: 16pt;
+        }
+      </style></div>"
+`;
+
+exports[`UseToast should work with different types 1`] = `
+"<div class=\\"toasts\\"><div class=\\"toast  toast-enter toast-enter-active\\"><div class=\\"message\\">hello</div><div class=\\"action\\"></div><style>
+          .toast {
+            width: 420px;
+            max-width: 90vw;
+            max-height: 75px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #000;
+            background-color: #0070f3;
+            color: white;
+            border: 0;
+            border-radius: 6px;
+            opacity: 1;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
+            transition: all 350ms cubic-bezier(0.1, 0.2, 0.1, 1);
+            overflow: hidden;
+          }
+          .message {
+            align-items: center;
+            height: 100%;
+            font-size: 0.875em;
+            display: -webkit-box;
+            word-break: break-all;
+            padding-right: 8pt;
+            overflow: hidden;
+            max-height: 100%;
+            text-overflow: ellipsis;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            line-height: 1.1rem;
+          }
+          .toast-enter {
+            opacity: 0;
+            height: 0;
+            padding: 0;
+            margin: 0;
+            transform: translate(60px, 60px);
+          }
+          .toast-enter-active {
+            opacity: 1;
+            height: auto;
+            margin: 8px 0;
+            padding: 12px 16px;
+            transform: translate(0, 0);
+          }
+          .toast-leave {
+            opacity: 1;
+            transform: translate(0, 0);
+            height: auto;
+            margin: 8px 0;
+            padding: 12px 16px;
+          }
+          .toast-leave-active {
+            opacity: 0;
+            transform: translate(50px, -15px) scale(0.85);
+          }
+        </style></div><style>
+        .toasts {
+          position: fixed;
+          width: auto;
+          max-width: 100%;
+          right: 16pt;
+          bottom: 16pt;
+          z-index: 2000;
+          transition: all 400ms ease;
+          box-sizing: border-box;
+          display: flex;
+          flex-direction: column;
+        }
+        .top {
+          bottom: unset;
+          flex-direction: column-reverse;
+          top: 16pt;
+        }
+        .left {
+          right: unset;
+          left: 16pt;
+        }
+      </style></div>"
+`;

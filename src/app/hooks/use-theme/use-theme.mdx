@@ -1,0 +1,71 @@
+import { Layout, Playground, Attributes } from 'lib/components'
+import { Button, useTheme, useLayout } from 'components'
+
+export const meta = {
+  title: 'useTheme',
+  group: 'Development',
+  index: 100,
+}
+
+## useTheme
+
+This hooks can get the theme states of Geist within any component, and can track changes in states.
+In the default scenario (you haven't changed the `themeType`), hooks gets the same value as `Themes.getPresets`.
+
+Usually the components from Geist are already added with theme states, you don't need to change it,
+this hooks just helps you to build your own components using Geist's themes.
+
+Notice in the example below that after we define the component using Theme,
+the properties of the custom component will change according to the current Geist's theme,
+switching themes in the upper right corner of the website, the color of the components we create will also change with the theme.
+
+<Playground
+  scope={{ useTheme, Button }}
+  desc=""
+  code={`
+() => {
+  const theme = useTheme()
+  const layout = useLayout()
+  return (
+    <div style={{
+        width: '200px',
+        height: '50px',
+        borderRadius: theme.style.radius,
+        background: theme.palette.accents_2
+      }}
+    >
+      <span style={{
+          color: theme.palette.accents_7,
+          paddingLeft: layout.gapQuarter
+        }}
+      >My first component.</span>
+    </div>
+  )
+}
+`}
+/>
+
+<Attributes edit="/pages/hooks/use-theme.mdx">
+<Attributes.Title>useTheme</Attributes.Title>
+
+```ts
+const theme: UIThemes = useTheme()
+
+export type UIThemes = {
+  type: string
+  font: UIThemesFont
+  palette: UIThemesPalette
+  breakpoints: UIThemesBreakpoints
+  expressiveness: UIThemesExpressiveness
+}
+```
+
+<Attributes.Title>Get preset types</Attributes.Title>
+
+```ts
+import { UIThemes, UIThemesFont, UIThemesPalette, UIThemesExpressiveness } from 'himalaya'
+
+const myFontTheme: UIThemesFont = {}
+```
+
+</Attributes>

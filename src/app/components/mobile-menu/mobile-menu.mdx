@@ -1,0 +1,83 @@
+import { Layout, Playground, Attributes } from 'lib/components'
+import { MobileMenu, MobileMenuButton, Link } from 'components'
+
+export const meta = {
+  title: 'Mobile Menu',
+  group: 'Navigation',
+}
+
+## Mobile Menu
+
+<Playground
+  scope={{ MobileMenu, MobileMenuButton, Link }}
+  title={'Mobile Menu example'}
+  desc={'Example of a mobile menu'}
+  code={`
+  <>
+    <MobileMenu showButton>
+      <Link href='/'>Home</Link>
+      <Link href='/'>About Us</Link>
+    </MobileMenu>
+  </>
+  `}
+/>
+
+<Playground
+  scope={{ MobileMenu }}
+  title={'Mobile Menu with Navigation group example'}
+  desc={'Example of mobile menu with navigation groups'}
+  code={`
+    () => {
+     return (
+      <>
+        <MobileMenu showButton>
+          <MobileMenu.Item title="Home" url="/" />
+          <MobileMenu.Group expanded title="Group 1">
+            <MobileMenu.Item title="Item" url="/" />
+            <MobileMenu.Item title="Item 2" url="/" />
+            <MobileMenu.Group expanded title="Inner Group 1">
+              <MobileMenu.Item title="Inner Item 1" url="/" />
+              <MobileMenu.Item title="Inner Item 2" url="/" />
+            </MobileMenu.Group>
+          </MobileMenu.Group>
+      </MobileMenu>
+    </>);
+    };
+  `}
+/>
+
+<Attributes edit="/pages/components/mobile-menu.mdx">
+<Attributes.Title>MobileMenu.Props</Attributes.Title>
+
+| Attribute      | Description                    | Type             | Accepted values          | Default                 |
+| -------------- | ------------------------------ | ---------------- | ------------------------ | ----------------------- |
+| direction?     | Placement of menu              | `string`         | `left, right`            | `left`                  |
+| isSwipeable?:  | Menu is swipeable              | `boolean`        | `true, false`            | `true`                  |
+| animationTime? | time to complete the animation | `number`         | -                        | `300` (in milliseconds) |
+| showButton?    | to show hamburger menu icon    | `boolean`        | `true, false`            | `false`                 |
+| ...            | native props                   | `HTMLAttributes` | `'id', 'className', ...` | -                       |
+
+<Attributes.Title>MobileMenuButton.Props</Attributes.Title>
+
+| Attribute | Description             | Type             | Accepted values          | Default |
+| --------- | ----------------------- | ---------------- | ------------------------ | ------- |
+| notHiding | hide menu button or not | `boolean`        | `true, false`            | `false` |
+| ...       | native props            | `HTMLAttributes` | `'id', 'className', ...` | -       |
+
+<Attributes.Title>MobileMenu.Item.Props</Attributes.Title>
+
+| Attribute | Description             | Type             | Accepted values          | Default |
+| --------- | ----------------------- | ---------------- | ------------------------ | ------- |
+| title     | text to display as link | `string`         | -                        | -       |
+| url       | navigation link url     | `string`         | -                        | -       |
+| ...       | native props            | `HTMLAttributes` | `'id', 'className', ...` | -       |
+
+<Attributes.Title>MobileMenu.Group.Props</Attributes.Title>
+
+| Attribute  | Description                         | Type             | Accepted values          | Default |
+| ---------- | ----------------------------------- | ---------------- | ------------------------ | ------- |
+| title      | text to display as group name       | `string`         | -                        | -       |
+| isExpanded | to keep group expanded or collapsed | `boolean`        | `true, false`            | `false` |
+| ...        | native props                        | `HTMLAttributes` | `'id', 'className', ...` | -       |
+
+</Attributes>

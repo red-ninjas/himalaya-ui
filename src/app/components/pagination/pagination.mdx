@@ -1,0 +1,98 @@
+import { Layout, Playground, Attributes } from 'lib/components'
+import { Pagination, Spacer } from 'components'
+import ChevronRight from '@geist-ui/icons/chevronRight'
+import ChevronLeft from '@geist-ui/icons/chevronLeft'
+import ChevronRightCircle from '@geist-ui/icons/chevronRightCircle'
+import ChevronLeftCircle from '@geist-ui/icons/chevronLeftCircle'
+import ChevronRightCircleFill from '@geist-ui/icons/chevronRightCircleFill'
+import ChevronLeftCircleFill from '@geist-ui/icons/chevronLeftCircleFill'
+
+export const meta = {
+  title: 'Pagination',
+  group: 'Navigation',
+}
+
+## Pagination
+
+Navigation and identification between multiple pages.
+
+<Playground
+  scope={{ Pagination }}
+  code={`
+<Pagination count={20} initialPage={3} />
+`}
+/>
+
+<Playground
+  title="Limit"
+  desc="The maximum number of pages that can be displayed"
+  scope={{ Pagination }}
+  code={`
+<>
+  <Pagination count={10} limit={10} />
+  <Pagination count={5} />
+  <Pagination count={10} initialPage={6} limit={5} />
+  <Pagination count={10} initialPage={6} />
+  <Pagination count={30} initialPage={6} limit={10} />
+</>
+`}
+/>
+
+<Playground
+  title="Icon"
+  desc="Customize buttons as icons."
+  scope={{
+    Spacer,
+    Pagination,
+    ChevronRight,
+    ChevronLeft,
+    ChevronRightCircle,
+    ChevronLeftCircle,
+    ChevronRightCircleFill,
+    ChevronLeftCircleFill,
+  }}
+  code={`
+<>
+  <Pagination count={5}>
+   <Pagination.Next><ChevronRight /></Pagination.Next>
+   <Pagination.Previous><ChevronLeft /></Pagination.Previous>
+  </Pagination>
+  <Spacer h={.5} />
+  <Pagination count={5}>
+   <Pagination.Next><ChevronRightCircle /></Pagination.Next>
+   <Pagination.Previous><ChevronLeftCircle /></Pagination.Previous>
+  </Pagination>
+  <Spacer h={.5} />
+  <Pagination count={5}>
+   <Pagination.Next><ChevronRightCircleFill /></Pagination.Next>
+   <Pagination.Previous><ChevronLeftCircleFill /></Pagination.Previous>
+  </Pagination>
+</>
+`}
+/>
+
+<Attributes edit="/pages/components/pagination.mdx">
+<Attributes.Title>Pagination.Props</Attributes.Title>
+
+| Attribute       | Description                  | Type                     | Accepted values          | Default |
+| --------------- | ---------------------------- | ------------------------ | ------------------------ | ------- |
+| **initialPage** | the page selected by default | `number`                 | -                        | 1       |
+| **page**        | current page                 | `number`                 | -                        | 1       |
+| **count**       | the total number of pages    | `number`                 | -                        | 1       |
+| **limit**       | limit of display page        | `number`                 | -                        | 7       |
+| **onChange**    | change event                 | `(page: number) => void` | -                        | -       |
+| ...             | native props                 | `HTMLAttributes`         | `'id', 'className', ...` | -       |
+
+<Attributes.Title>Pagination.Previous.Props</Attributes.Title>
+
+| Attribute | Description  | Type                   | Accepted values          | Default |
+| --------- | ------------ | ---------------------- | ------------------------ | ------- |
+| ...       | native props | `ButtonHTMLAttributes` | `'id', 'className', ...` | -       |
+
+<Attributes.Title>Pagination.Next.Props</Attributes.Title>
+
+| Attribute | Description  | Type                   | Accepted values          | Default |
+| --------- | ------------ | ---------------------- | ------------------------ | ------- |
+| ...       | native props | `ButtonHTMLAttributes` | `'id', 'className', ...` | -       |
+
+</Attributes>

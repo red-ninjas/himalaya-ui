@@ -1,0 +1,52 @@
+import { Layout, Playground, Attributes } from 'lib/components'
+import { AnimatedCursor } from 'components'
+
+export const meta = {
+  title: 'Animated Cursor',
+  group: 'Others',
+}
+
+# Animated Cursor
+
+<Playground
+  scope={{ AnimatedCursor }}
+  title={'General'}
+  desc={'An animated cursor component'}
+  code={`
+    <AnimatedCursor> </AnimatedCursor>
+  `}
+/>
+
+<Attributes edit="/pages/components/animated-cursor.mdx" >
+<Attributes.Title>AnimatedCursor.Props</Attributes.Title>
+
+| Attribute        | Description                                                     | Type        | Accepted values | Default            |
+| ---------------- | --------------------------------------------------------------- | ----------- | --------------- | ------------------ |
+| clickables       | List of elements to make clickable with the animated cursor     | `string[]`  | -               | Default clickables |
+| children         | Content to display within the animated cursor                   | `ReactNode` | -               | -                  |
+| color            | Color of the cursor                                             | `string`    | -               | Default color      |
+| innerScale       | Scale factor for the inner cursor                               | `number`    | -               | 0.6                |
+| innerSize        | Size of the inner cursor                                        | `number`    | -               | 8                  |
+| outerAlpha       | Alpha (opacity) of the outer cursor                             | `number`    | -               | 0.4                |
+| outerScale       | Scale factor for the outer cursor                               | `number`    | -               | 6                  |
+| outerSize        | Size of the outer cursor                                        | `number`    | -               | 8                  |
+| showSystemCursor | Whether to show the system cursor alongside the animated cursor | `boolean`   | -               | `true`             |
+| trailingSpeed    | Speed of trailing animation                                     | `number`    | -               | 8                  |
+
+{' '}
+
+<Attributes.Title>Example Usage</Attributes.Title>
+
+```jsx
+<AnimatedCursor
+  clickables={['a', 'button']}
+  color="#FF5733"
+  innerSize={10}
+  outerSize={20}
+  showSystemCursor={false}
+>
+  {/* Your content */}
+</AnimatedCursor>
+```
+
+</Attributes>

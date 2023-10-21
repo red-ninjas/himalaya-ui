@@ -1,0 +1,29 @@
+import { Layout, Playground, Attributes } from 'lib/components'
+import { Spinner } from 'components'
+
+export const meta = {
+  title: 'Spinner',
+  group: 'Feedback',
+}
+
+## Spinner
+
+Indicate an action running in the background.
+
+As an indicator of load waiting, see also component [Loading](/components/loading).
+
+<Playground
+  scope={{ Spinner }}
+  code={`
+<Spinner />
+`}
+/>
+
+<Attributes edit="/pages/components/spinner.mdx">
+<Attributes.Title>Spinner.Props</Attributes.Title>
+
+| Attribute | Description  | Type             | Accepted values          | Default |
+| --------- | ------------ | ---------------- | ------------------------ | ------- |
+| ...       | native props | `HTMLAttributes` | `'id', 'className', ...` | -       |
+
+</Attributes>

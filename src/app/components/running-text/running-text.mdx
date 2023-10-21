@@ -1,0 +1,47 @@
+import { Layout, Playground, Attributes } from 'lib/components'
+import { RunningText, Text } from 'components'
+
+export const meta = {
+  title: 'Running Text',
+  group: 'General',
+}
+
+# Running Text
+
+<Playground
+  scope={{ RunningText, Text }}
+  title={'General'}
+  desc={'A running text component with customizable animation'}
+  code={`
+    <RunningText animationTime={4000} gap={3}>
+      <Text margin={0} b font={'3vw'}>Himalaya UI Running Text</Text>
+    </RunningText>
+  `}
+/>
+
+<Attributes edit="/pages/components/running-text.mdx" >
+<Attributes.Title>RunningText.Props</Attributes.Title>
+
+| Attribute     | Description                            | Type        | Accepted values | Default |
+| ------------- | -------------------------------------- | ----------- | --------------- | ------- |
+| animationTime | Animation duration in ms               | `number`    | -               | 80000   |
+| gap           | Gap between running text items (in vw) | `number`    | -               | 3       |
+| children      | Running text content                   | `ReactNode` | -               | -       |
+
+{' '}
+
+<Attributes.Title>Example Usage</Attributes.Title>
+
+```jsx
+<RunningText animationTime={8000} gap={3}>
+  {/* Your running text here */}
+</RunningText>
+```
+
+</Attributes >
+<style jsx>{`
+  .running-outer {
+    max-width: 100%;
+    overflow: hidden;
+  }
+`}</style>
