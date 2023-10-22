@@ -21,7 +21,7 @@ type NativeAttrs = Omit<
 >
 export type ImageProps = Props & NativeAttrs
 
-const ImageComponent: React.FC<ImageProps> = ({
+const ResponsiveImageComponent: React.FC<ImageProps> = ({
   src = '',
   disableSkeleton = false,
   className = '',
@@ -31,8 +31,10 @@ const ImageComponent: React.FC<ImageProps> = ({
   ...props
 }: ImageProps) => {
   const { SCALES, getScaleProps } = useScale()
-  const width = getScaleProps(['width', 'w'])
-  const height = getScaleProps(['height', 'h'])
+  const w = getScaleProps(['width', 'w']) || 0
+  const h = getScaleProps(['height', 'h']) || 0
+  const width = typeof w === 'string' ? parseFloat(w) : w
+  const height = typeof h === 'string' ? parseFloat(h) : h
   const showAnimation = !disableSkeleton && width && height
 
   const theme = useTheme()
@@ -71,11 +73,9 @@ const ImageComponent: React.FC<ImageProps> = ({
         alt={alt}
         onLoad={imageLoaded}
         src={url}
-        fill={true}
-        style={{
-          objectFit: 'contain',
-          display: 'inline-block',
-        }}
+        width={width}
+        height={height}
+        style={{ width: '100%', height: 'auto' }}
         {...props}></NextImage>
       <style jsx>{`
         .image {
@@ -84,8 +84,8 @@ const ImageComponent: React.FC<ImageProps> = ({
           border-radius: ${radius === undefined ? theme.style.radius : radius};
           overflow: hidden;
           max-width: 100%;
-          width: ${SCALES.width(1, 'auto')};
-          height: ${SCALES.height(1, 'auto')};
+          width: 100%;
+          height: auto;
           margin: ${SCALES.mt(0)} ${SCALES.mr(0, 'auto')} ${SCALES.mb(0)}
             ${SCALES.ml(0, 'auto')};
           padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
@@ -95,6 +95,6 @@ const ImageComponent: React.FC<ImageProps> = ({
   )
 }
 
-ImageComponent.displayName = 'HimalayaImage'
-const Image = withScale(ImageComponent)
-export default Image
+ResponsiveImageComponent.displayName = 'HimalayaResponsiveImage'
+const ResponsiveImage = withScale(ResponsiveImageComponent)
+export default ResponsiveImage

@@ -32,10 +32,12 @@ const nextConfig = {
   },
   trailingSlash: false,
   images: {
+    domains: ['deelay.me', 'www.deelay.me', '**'],
     remotePatterns: [
       {
         protocol: 'https',
         hostname: '**',
+        pathname: '**'
       },
     ],
   },

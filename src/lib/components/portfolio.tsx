@@ -1,49 +1,45 @@
 import {
   Button,
   ContentLayout,
-  Image,
+  FadeInEffect,
   Grid,
   Hero,
   Link,
+  ResponsiveImage,
   Text,
   useTheme,
-  Display,
-  FadeInEffect,
 } from 'components'
-import NextLink from 'next/link'
 
 export function PortfolioItem({
   image,
   title = '',
   desc = '',
   url,
+  width,
+  height,
 }: {
   image?: string
   title: string
   desc: string
+  width: number
+  height: number
   url?: string
 }) {
   const theme = useTheme()
   return (
     <FadeInEffect translateY="4rem">
       <div className="portfolio">
-        <NextLink passHref legacyBehavior href={''}>
-          <a className="img-link">
-            <Display margin={0}>
-              {image && (
-                <FadeInEffect startOpacity={1.0} blur={10}>
-                  <Image
-                    className="shine-effect"
-                    alt="Test"
-                    src={image}
-                    width={'100%'}
-                    draggable={false}
-                  />
-                </FadeInEffect>
-              )}
-            </Display>
-          </a>
-        </NextLink>
+        {image && (
+          <div className="portfolio-image">
+            <ResponsiveImage
+              alt={title}
+              src={image}
+              width={width}
+              height={height}
+              draggable={false}
+            />
+          </div>
+        )}
         <FadeInEffect translateY="4rem">
           <Link font={'24px'} style={{ fontWeight: 'bold' }} my={0}>
             {title}
@@ -82,6 +78,7 @@ export function PortfolioItem({
             display: flex;
             flex-direction: column;
             align-items: flex-start;
+            poistion: relative;
             gap: 12px;
           }
         `}</style>
@@ -131,11 +128,15 @@ export default function Portfolio() {
           <div className="portfolio-list">
             <PortfolioItem
               image="https://picsum.photos/id/2/578/578"
+              width={578}
+              height={578}
               title="TurtleTrade"
               desc="TurtleTrade is your free gateway to stock market success, providing cutting-edge forecasting and analysis tools for informed investment decisions."
             />
             <PortfolioItem
               image="https://picsum.photos/id/2/578/750"
+              width={578}
+              height={750}
               title="Striked"
               desc="Striked is the ultimate social network connecting gamers and game developers, where gaming's pulse beats through a vibrant community of shared passion and innovation."
             />
@@ -145,10 +146,14 @@ export default function Portfolio() {
           <div className="portfolio-list">
             <PortfolioItem
               image="https://picsum.photos/id/2/578/750"
+              width={578}
+              height={750}
               title="RedNinjas"
               desc="At RedNinjas, we're the digital agency that thrives on crafting innovative products across diverse industries, fueled by a passion for creativity and excellence."
             />
             <PortfolioItem
+              width={578}
+              height={578}
               image="/images/himalaya-preview.png"
               title="Himalaya"
               url="https://github.com/red-ninjas/himalaya-ui"

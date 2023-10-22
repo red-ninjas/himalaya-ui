@@ -51,6 +51,7 @@ const DisplayComponent: React.FC<React.PropsWithChildren<DisplayProps>> = ({
           width: ${SCALES.width(1, 'max-content')};
           box-shadow: ${showShadow ? theme.expressiveness.shadowLarge : 'none'};
           max-width: 100%;
+          width: 100%;
         }
 
         .content :global(pre) {
