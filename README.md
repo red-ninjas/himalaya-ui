@@ -1,6 +1,6 @@
 <h1 align="center">Welcome to Himalaya UI 👋</h1>
 
-![HimalayaUI Logo](https://github.com/red-ninjas/himalaya-ui/blob/master/src/public/images/himalaya-preview.png?raw=true)
+![HimalayaUI Logo](https://github.com/red-ninjas/himalaya-ui/blob/master/src/public/images/himalaya-banner-dark.png?raw=true)
 
 <p>
   <a href="https://www.npmjs.com/package/himalaya-ui" target="_blank">
