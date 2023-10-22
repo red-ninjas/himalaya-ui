@@ -60,5 +60,6 @@
     "lib/**/*.tsx",
     "components/**/*.tsx",
     ".next/types/**/*.ts",
+    "../scripts/sitemap.js",
   ]
 }

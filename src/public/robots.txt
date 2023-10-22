@@ -1,3 +1,9 @@
-# Allow all crawlers
+# *
 User-agent: *
 Allow: /
+
+# Host
+Host: https://himalaya-ui.com
+
+# Sitemaps
+Sitemap: https://himalaya-ui.com/sitemap.xml

@@ -1,4 +1,4 @@
-/** @type {import('next').NextConfig} */
+/**@type {import('next').NextConfig} */
 
 import remarkGfm from 'remark-gfm'
 import createMDX from '@next/mdx'
@@ -28,6 +28,9 @@ const nextConfig = {
   env: {
     VERSION: '',
     SITE_URL: 'https://himalaya-ui.com',
+  },
+  experimental: {
+    appDir: true,
   },
   trailingSlash: false,
   images: {
