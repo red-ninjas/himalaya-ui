@@ -1,8 +1,8 @@
 const { resolve, join } = require('path')
 const fs = require('fs-extra')
-const documentationPath = resolve(__dirname, '../dist/documentation')
+const documentationPath = resolve(__dirname, '../src')
 const publicPath = resolve(__dirname, '../src/public')
-const serverPath = resolve(__dirname, '../dist/server/.next')
+const serverPath = resolve(__dirname, '../dist/server/src')
 const serverPublicPath = resolve(__dirname, '../dist/server')
 
 const moveFiles = async () => {

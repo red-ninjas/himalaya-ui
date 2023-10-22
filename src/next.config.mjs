@@ -22,7 +22,6 @@ const withBundleAnalyzer = anylizer({
 })
 
 const nextConfig = {
-  distDir: '../dist/documentation',
   generateEtags: false,
   poweredByHeader: false,
   pageExtensions: ['jsx', 'js', 'mdx', 'md', 'ts', 'tsx'],

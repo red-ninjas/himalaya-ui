@@ -59,6 +59,6 @@
     "**/*.mdx",
     "lib/**/*.tsx",
     "components/**/*.tsx",
-    "../dist/documentation/types/**/*.ts"
-  ],
+    ".next/types/**/*.ts",
+  ]
 }

@@ -13,7 +13,7 @@ export class NextService implements OnModuleInit {
     try {
       this.server = createServer({
         dev: process.env.NODE_ENV !== 'production',
-        dir: process.env.NODE_ENV === 'production' ? __dirname : './src',
+        dir: process.env.NODE_ENV === 'production' ? __dirname + '/src' : './src',
       });
       await this.server.prepare();
     } catch (error) {

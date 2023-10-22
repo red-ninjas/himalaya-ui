@@ -35,6 +35,8 @@ examples/**/node_modules
 examples/**/_build
 examples/**/.cache
 
+.next
+
 # Local Netlify folder
 .netlify
 .vercel

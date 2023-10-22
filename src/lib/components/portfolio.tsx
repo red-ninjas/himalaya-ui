@@ -154,7 +154,7 @@ export default function Portfolio() {
             <PortfolioItem
               width={578}
               height={578}
-              image="images/himalaya-preview.png"
+              image="/images/himalaya-preview.png"
               title="Himalaya"
               url="https://github.com/red-ninjas/himalaya-ui"
               desc="Himalaya, our open-source library's documentation page, serves as a comprehensive guide, unveiling the majestic peaks of functionality and customization, with clear paths to explore its towering potential."

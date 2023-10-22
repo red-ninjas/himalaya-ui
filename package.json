@@ -14,7 +14,7 @@
   },
   "scripts": {
     "dev": "yarn docs:collect && yarn docs:seeds && next dev ./src",
-    "docs:start": "next start",
+    "docs:start": "next start src",
     "docs:collect": "node scripts/collect-meta.js",
     "docs:seeds": "node scripts/seeds/update.js",
     "docs:build": "yarn docs:collect & yarn docs:seeds && cross-env NODE_ENV=production next build ./src",
@@ -36,7 +36,7 @@
     "server:after": "node scripts/move-server-in.js",
     "server:buildAll": "yarn docs:build && yarn server:build && yarn server:after",
     "server:compileStart": "cross-env NODE_ENV=production node dist/server/main",
-    "server:start": "nest start",
+    "server:start": "nest start dist/documentation/server",
     "server:dev": "nest start --watch",
     "icons": "node scripts/convert.js && node scripts/generate.js"
   },
@@ -188,6 +188,7 @@
     "rollup-plugin-local-resolve": "^1.0.7",
     "sass": "^1.69.0",
     "screenfull": "^6.0.2",
+    "sharp": "^0.32.6",
     "size-limit": "^8.2.4",
     "styled-jsx": "^5.1.2",
     "ts-jest": "^29.1.1",
