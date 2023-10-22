@@ -1,5 +1,5 @@
 import { Layout, Playground, Attributes } from 'lib/components'
-import { MobileMenu, MobileMenuButton, Link } from 'components'
+import { MobileMenu, MobileMenuButton, Mobile, MobileMenuProvider } from 'components'
 
 export const meta = {
   title: 'Mobile Menu',
@@ -9,39 +9,77 @@ export const meta = {
 ## Mobile Menu
 
 <Playground
-  scope={{ MobileMenu, MobileMenuButton, Link }}
+  scope={{ MobileMenu, MobileMenuButton, MobileMenuProvider }}
   title={'Mobile Menu example'}
   desc={'Example of a mobile menu'}
   code={`
-  <>
-    <MobileMenu showButton>
-      <Link href='/'>Home</Link>
-      <Link href='/'>About Us</Link>
-    </MobileMenu>
-  </>
+  () => {
+     return (
+    <MobileMenuProvider>
+      <MobileMenuButton notHiding={true}></MobileMenuButton>
+      <MobileMenu>
+        <MobileMenuButton></MobileMenuButton>
+        <MobileMenu.Item title="Home" url="/" />
+        <MobileMenu.Item title="About Us" url="/" />
+      </MobileMenu>
+    </MobileMenuProvider>
+    );
+  };
   `}
 />
 
 <Playground
-  scope={{ MobileMenu }}
+  scope={{ MobileMenu, MobileMenuProvider, MobileMenuButton }}
   title={'Mobile Menu with Navigation group example'}
   desc={'Example of mobile menu with navigation groups'}
   code={`
     () => {
      return (
-      <>
-        <MobileMenu showButton>
-          <MobileMenu.Item title="Home" url="/" />
-          <MobileMenu.Group expanded title="Group 1">
-            <MobileMenu.Item title="Item" url="/" />
-            <MobileMenu.Item title="Item 2" url="/" />
-            <MobileMenu.Group expanded title="Inner Group 1">
-              <MobileMenu.Item title="Inner Item 1" url="/" />
-              <MobileMenu.Item title="Inner Item 2" url="/" />
-            </MobileMenu.Group>
+        <MobileMenuProvider>
+          <MobileMenuButton notHiding={true}></MobileMenuButton>
+            <MobileMenu>
+              <MobileMenu.Item title="Home" url="/" />
+              <MobileMenu.Group expanded title="Group 1">
+                <MobileMenu.Item title="Item" url="/" />
+                <MobileMenu.Item title="Item 2" url="/" />
+                <MobileMenu.Group expanded title="Inner Group 1">
+                  <MobileMenu.Item title="Inner Item 1" url="/" />
+                  <MobileMenu.Item title="Inner Item 2" url="/" />
+                </MobileMenu.Group>
+              </MobileMenu.Group>
+          </MobileMenu>
+        </MobileMenuProvider>
+   );
+    };
+  `}
+/>
+
+<Playground
+  scope={{ MobileMenu, MobileMenuProvider, MobileMenuButton }}
+  title={'Mobile Menu with subgroup example'}
+  desc={'Example of mobile menu with navigation subgroup'}
+  code={`
+    () => {
+     return (
+     <MobileMenuProvider>
+        <MobileMenuButton notHiding={true}></MobileMenuButton>
+        <MobileMenu>
+          <MobileMenu.Group title="Home" url="/" />
+          <MobileMenu.Group expanded title="Components">
+            <MobileMenu.SubGroup title="General">
+              <MobileMenu.Item title="Text" url="/" />
+              <MobileMenu.Item title="Button" url="/" />
+              <MobileMenu.Item title="Code" url="/" />
+              <MobileMenu.Item title="Icons" url="/" />
+            </MobileMenu.SubGroup>
+            <MobileMenu.SubGroup title="Layout">
+              <MobileMenu.Item title="Grid" url="/" />
+              <MobileMenu.Item title="Page" url="/" />
+              <MobileMenu.Item title="Spacer" url="/" />
+            </MobileMenu.SubGroup>
           </MobileMenu.Group>
       </MobileMenu>
-    </>);
+     </MobileMenuProvider>);
     };
   `}
 />
@@ -54,7 +92,6 @@ export const meta = {
 | direction?     | Placement of menu              | `string`         | `left, right`            | `left`                  |
 | isSwipeable?:  | Menu is swipeable              | `boolean`        | `true, false`            | `true`                  |
 | animationTime? | time to complete the animation | `number`         | -                        | `300` (in milliseconds) |
-| showButton?    | to show hamburger menu icon    | `boolean`        | `true, false`            | `false`                 |
 | ...            | native props                   | `HTMLAttributes` | `'id', 'className', ...` | -                       |
 
 <Attributes.Title>MobileMenuButton.Props</Attributes.Title>

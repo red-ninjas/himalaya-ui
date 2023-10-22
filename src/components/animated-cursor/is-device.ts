@@ -1,50 +1,29 @@
 type DeviceInfo = {
-  info: string
-  Android: () => RegExpMatchArray | null
-  BlackBerry: () => RegExpMatchArray | null
-  IEMobile: () => RegExpMatchArray | null
-  iOS: () => RegExpMatchArray | null
-  iPad: () => boolean | null
-  OperaMini: () => RegExpMatchArray | null
-  any: () => boolean | null
+  agent: string
+  isMobileDevice: boolean
 }
 
-const IsDevice: DeviceInfo = (() => {
+const IsDevice = (): DeviceInfo => {
   if (typeof navigator === 'undefined') {
     // Provide default implementations that return null or false
     return {
-      info: '',
-      Android: () => null,
-      BlackBerry: () => null,
-      IEMobile: () => null,
-      iOS: () => null,
-      iPad: () => null,
-      OperaMini: () => null,
-      any: () => false,
+      agent: '',
+      isMobileDevice: false,
     }
   }
 
-  const ua = navigator.userAgent
+  const ua = navigator.userAgent;
+  const Android = ua.match(/Android/i);
+  const BlackBerry = ua.match(/BlackBerry/i);
+  const IEMobile = ua.match(/IEMobile/i);
+  const iOS = ua.match(/iPhone|iPad|iPod/i);
+  const iPAD = !!(ua.match(/Mac/) && navigator.maxTouchPoints && navigator.maxTouchPoints > 2);
+  const OperaMini = ua.match(/Opera Mini/i);
 
   return {
-    info: ua,
-    Android: () => ua.match(/Android/i),
-    BlackBerry: () => ua.match(/BlackBerry/i),
-    IEMobile: () => ua.match(/IEMobile/i),
-    iOS: () => ua.match(/iPhone|iPad|iPod/i),
-    iPad: () =>
-      !!(ua.match(/Mac/) && navigator.maxTouchPoints && navigator.maxTouchPoints > 2), // Return boolean
-    OperaMini: () => ua.match(/Opera Mini/i),
-    any: () =>
-      !!(
-        IsDevice.Android()?.length ||
-        IsDevice.BlackBerry()?.length ||
-        IsDevice.iOS()?.length ||
-        IsDevice.iPad() ||
-        IsDevice.OperaMini()?.length ||
-        IsDevice.IEMobile()?.length
-      ), // Return boolean
+    agent: ua,
+    isMobileDevice: (Android?.length || 0) > 0 || (BlackBerry?.length || 0) > 0 || (IEMobile?.length || 0) > 0 || iPAD || (iOS?.length || 0) > 0 || (OperaMini?.length || 0) > 0
   }
-})()
+}
 
 export default IsDevice

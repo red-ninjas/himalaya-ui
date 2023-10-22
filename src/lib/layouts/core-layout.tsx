@@ -30,7 +30,7 @@ import React, { useState } from 'react'
 import metaData from '../data/metadata.json'
 import seeds from '../data/seeds'
 import { MdxComponents } from '../mdx-components'
-
+import NextLink from 'next/link'
 export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
   const theme = useTheme()
   const layout = useLayout()
@@ -77,9 +77,13 @@ export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
                   <Header>
                     <Header.Left>
                       <MobileMenuButton></MobileMenuButton>
-                      <div className="logo">
-                        <BrandLogo size={35}></BrandLogo>
-                      </div>
+
+                      <NextLink href={'/'}>
+                        <div className="logo">
+                          <BrandLogo size={35}></BrandLogo>{' '}
+                        </div>
+                      </NextLink>
+
                       <div className="brand">
                         <BrandTitle size={65}></BrandTitle>
                       </div>
@@ -111,7 +115,26 @@ export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
                     </Header.Right>
                   </Header>
                 </FixedHeader>
-                <MobileMenu>Test</MobileMenu>
+                <MobileMenu>
+                  <MobileMenu.Item url="/" title="Home" />
+                  {metaData.map((df, index) => (
+                    <MobileMenu.Group key={index} title={capitalize(df.name)}>
+                      {df.children.map((child, childIndex) => (
+                        <MobileMenu.SubGroup
+                          key={childIndex}
+                          title={capitalize(child.name)}>
+                          {child.children.map((item, itemIndex) => (
+                            <MobileMenu.Item
+                              key={itemIndex}
+                              url={item.url}
+                              title={item.name}
+                            />
+                          ))}
+                        </MobileMenu.SubGroup>
+                      ))}
+                    </MobileMenu.Group>
+                  ))}
+                </MobileMenu>
                 <MDXProvider components={MdxComponents}>{children}</MDXProvider>
               </ScrollableLayout>
               <QuickBar>
@@ -189,6 +212,7 @@ export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
 
           .logo {
             padding-bottom: 6px;
+            color: ${theme.palette.foreground};
           }
 
           .logo,

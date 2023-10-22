@@ -11,6 +11,8 @@ import type {
 } from './'
 import find from './find'
 import { useEventListener } from './useEventListener'
+import isDevice from './is-device'
+import useClasses from 'components/use-classes'
 
 const CursorCore: React.FC<AnimatedCursorProps> = ({
   clickables = [
@@ -61,6 +63,7 @@ const CursorCore: React.FC<AnimatedCursorProps> = ({
   const [options, setOptions] = useState(defaultOptions)
   const [isActive, setIsActive] = useState<boolean | AnimatedCursorOptions>(false)
   const [isActiveClickable, setIsActiveClickable] = useState(false)
+  const [isInit, setIsInit] = useState(false)
   const endX = useRef(0)
   const endY = useRef(0)
   const theme = useTheme()
@@ -81,16 +84,22 @@ const CursorCore: React.FC<AnimatedCursorProps> = ({
    * @param {number} clientX - MouseEvent.clientX
    * @param {number} clientY - MouseEvent.clientY
    */
-  const onMouseMove = useCallback((event: MouseEvent) => {
-    const { clientX, clientY } = event
-    setCoords({ x: clientX, y: clientY })
-    if (cursorInnerRef.current !== null) {
-      cursorInnerRef.current.style.top = `${clientY}px`
-      cursorInnerRef.current.style.left = `${clientX}px`
-    }
-    endX.current = clientX
-    endY.current = clientY
-  }, [])
+  const onMouseMove = useCallback(
+    (event: MouseEvent) => {
+      if (!isInit) {
+        return
+      }
+      const { clientX, clientY } = event
+      setCoords({ x: clientX, y: clientY })
+      if (cursorInnerRef.current !== null) {
+        cursorInnerRef.current.style.top = `${clientY}px`
+        cursorInnerRef.current.style.left = `${clientX}px`
+      }
+      endX.current = clientX
+      endY.current = clientY
+    },
+    [isInit],
+  )
 
   // Outer Cursor Animation Delay
   const animateOuterCursor = useCallback(
@@ -132,12 +141,12 @@ const CursorCore: React.FC<AnimatedCursorProps> = ({
   // Scales cursor by HxW
   const scaleBySize = useCallback(
     (cursorRef: HTMLDivElement | null, orignalSize: number, scaleAmount: number) => {
-      if (cursorRef) {
+      if (cursorRef && isInit) {
         cursorRef.style.height = getScaleAmount(orignalSize, scaleAmount)
         cursorRef.style.width = getScaleAmount(orignalSize, scaleAmount)
       }
     },
-    [],
+    [isInit],
   )
 
   // Mouse Events State updates
@@ -187,16 +196,18 @@ const CursorCore: React.FC<AnimatedCursorProps> = ({
 
   // Cursor Visibility Statea
   useEffect(() => {
-    if (cursorInnerRef.current == null || cursorOuterRef.current == null) return
+    if (isInit) {
+      if (cursorInnerRef.current == null || cursorOuterRef.current == null) return
 
-    if (isVisible) {
-      cursorInnerRef.current.style.opacity = '1'
-      cursorOuterRef.current.style.opacity = '1'
-    } else {
-      cursorInnerRef.current.style.opacity = '0'
-      cursorOuterRef.current.style.opacity = '0'
+      if (isVisible) {
+        cursorInnerRef.current.style.opacity = '1'
+        cursorOuterRef.current.style.opacity = '1'
+      } else {
+        cursorInnerRef.current.style.opacity = '0'
+        cursorOuterRef.current.style.opacity = '0'
+      }
     }
-  }, [isVisible])
+  }, [isVisible, isInit])
 
   // Click event state updates
   useEffect(() => {
@@ -287,22 +298,34 @@ const CursorCore: React.FC<AnimatedCursorProps> = ({
     }
   }, [isActive, clickables, showSystemCursor, defaultOptions])
 
-  // Hide / Show global cursor
-  if (typeof window === 'object') {
-    if (!showSystemCursor) document.body.style.cursor = 'none'
-  }
+  useEffect(() => {
+    const { isMobileDevice } = isDevice()
+    setIsInit(!isMobileDevice)
+    if (typeof window === 'object' && !isMobileDevice && !showSystemCursor) {
+      document.body.style.cursor = 'none'
+    }
+  }, [])
 
   return (
     <>
-      <div ref={cursorOuterRef} className="extra cursor-outer" />
-      <div ref={cursorInnerRef} className="extra cursor-inner">
+      <div
+        ref={cursorOuterRef}
+        className={useClasses('extra cursor-outer', {
+          show: isInit,
+        })}
+      />
+      <div
+        ref={cursorInnerRef}
+        className={useClasses('extra cursor-inner', {
+          show: isInit,
+        })}>
         <div className="cursor">{options.children}</div>
       </div>
 
       <style global jsx>{`
         .extra {
           z-index: 999999;
-          display: flex;
+          display: none;
           justify-content: center;
           align-items: center;
           position: fixed;
@@ -313,6 +336,10 @@ const CursorCore: React.FC<AnimatedCursorProps> = ({
             opacity 0.15s ease-in-out,
             height 0.2s ease-in-out,
             width 0.2s ease-in-out;
+        }
+
+        .show {
+          display: flex;
         }
 
         .cursor-inner {

@@ -5,20 +5,27 @@ import { INavigationItem } from './index'
 import useClasses from '../use-classes'
 import useScale, { withScale } from '../use-scale'
 import useTheme from '../use-theme'
+import { pickChild } from '../utils/collections'
+import MobileNavigationSubGroup from './subgroup'
+import { useRouter } from 'next/navigation'
 
-export interface NavigationGroupProps extends INavigationItem {
+export interface MobileNavigationGroupProps extends INavigationItem {
   expanded?: boolean
 }
 
-const NavigationGroup: React.FC<PropsWithChildren<NavigationGroupProps>> = ({
+const MobileNavigationGroup: React.FC<PropsWithChildren<MobileNavigationGroupProps>> = ({
   children,
   title,
+  url,
   expanded = false,
 }) => {
   const theme = useTheme()
   const { SCALES } = useScale()
+  const router = useRouter()
   const ref = useRef<HTMLAnchorElement | null>(null)
   const [isExpanded, setIsExpanded] = useState(expanded)
+
+  const [, subGroup] = pickChild(children, MobileNavigationSubGroup)
 
   const btnClass = useClasses({
     'menu-item': true,
@@ -27,9 +34,19 @@ const NavigationGroup: React.FC<PropsWithChildren<NavigationGroupProps>> = ({
 
   const childs = (childElements: ReactNode) => {
     return (
-      <div className={useClasses({ 'sub-child-grid': true, 'grid-hide': !isExpanded })}>
-        {childElements}
+      <div className={useClasses({ 'child-grid': true, 'grid-show': isExpanded })}>
+        <div>{childElements}</div>
         <style jsx>{`
+          .child-grid {
+            background-color: ${theme.palette.accents_0};
+            padding: ${SCALES.pt(0)} ${SCALES.pr(0.55)} ${SCALES.pb(0)}
+              ${SCALES.pl(0.875)};
+
+            transition: height 200ms ease;
+            overflow: hidden;
+            visibility: hidden;
+            height: 0;
+          }
           .sub-child-grid {
             display: grid;
             height: auto;
@@ -37,12 +54,9 @@ const NavigationGroup: React.FC<PropsWithChildren<NavigationGroupProps>> = ({
             grid-template-rows: repeat(1, 1fr);
           }
 
-          .grid-hide {
-            display: none;
-          }
-
           .grid-show {
-            display: grid;
+            height: auto;
+            visibility: visible;
           }
         `}</style>
       </div>
@@ -54,33 +68,42 @@ const NavigationGroup: React.FC<PropsWithChildren<NavigationGroupProps>> = ({
     e.stopPropagation()
 
     setIsExpanded(!isExpanded)
+
+    if (url) {
+      router.push(url)
+    }
   }
 
   return (
-    <div className="navigation-group-outer">
+    <div
+      className={useClasses({
+        'navigation-group-outer': true,
+        'has-subgroup': !!subGroup && !!subGroup.length,
+      })}>
       <div className="navigation-group">
         <a className={btnClass} ref={ref} onClick={e => handleGroupClick(e)}>
-          <span className="chevron-right">
-            <span className={useClasses({ chevron: true })}>
-              {isExpanded ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
+          {!!children && (
+            <span className="chevron-right">
+              <span className={useClasses({ chevron: true })}>
+                {isExpanded ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
+              </span>
             </span>
-          </span>
+          )}
           <span>{title}</span>
         </a>
         {childs(children)}
       </div>
       <style jsx>{`
         .navigation-group-outer {
-          display: inline-flex;
+          display: flex;
           height: auto;
+          width: 100%;
+          position: relative;
           align-items: center;
         }
 
         .navigation-group {
-          display: flex;
-          position: relative;
-          height: auto;
-          flex-direction: column;
+          width: 100%;
         }
 
         .chevron {
@@ -107,11 +130,12 @@ const NavigationGroup: React.FC<PropsWithChildren<NavigationGroupProps>> = ({
           white-space: nowrap;
           background-color: transparent;
           color: ${theme.palette.accents_5};
+          border-bottom: 1px solid ${theme.palette.accents_2};
           user-select: none;
           display: flex;
           align-items: center;
           user-select: none;
-          font-size: ${SCALES.font(0.875)};
+          font-size: ${SCALES.font(1)};
           line-height: normal;
           width: ${SCALES.width(1, 'auto')};
           height: ${SCALES.height(1, 'auto')};
@@ -119,6 +143,21 @@ const NavigationGroup: React.FC<PropsWithChildren<NavigationGroupProps>> = ({
             ${SCALES.pl(0.55)};
           margin: ${SCALES.mt(0)} ${SCALES.mr(0.2)} ${SCALES.mb(0)} ${SCALES.ml(0.2)};
           z-index: 1;
+
+          animation: fadeIn 200ms ease;
+          animation-fill-mode: forwards;
+          opacity: 0;
+        }
+
+        @keyframes fadeIn {
+          from {
+            transform: translate3d(0, 0.375rem, 0);
+            opacity: 0;
+          }
+          to {
+            transform: translate3d(0, 0, 0);
+            opacity: 1;
+          }
         }
 
         .has-chevron {
@@ -169,6 +208,6 @@ const NavigationGroup: React.FC<PropsWithChildren<NavigationGroupProps>> = ({
     </div>
   )
 }
-NavigationGroup.displayName = 'HimalayaNavigationItem'
+MobileNavigationGroup.displayName = 'HimalayaNavigationItem'
 
-export default withScale(NavigationGroup)
+export default withScale(MobileNavigationGroup)

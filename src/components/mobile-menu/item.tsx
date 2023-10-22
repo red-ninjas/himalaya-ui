@@ -1,9 +1,9 @@
 'use client'
-import Popover from '../popover'
 import Link from 'next/link'
 import React, { PropsWithChildren } from 'react'
+import Popover from '../popover'
+import useScale, { withScale } from '../use-scale'
 import useTheme from '../use-theme'
-import { addColorAlpha } from '../utils/color'
 import { INavigationItem } from './index'
 
 export interface NavigationItemProps extends INavigationItem {
@@ -15,6 +15,7 @@ const NavigationItem: React.FC<PropsWithChildren<NavigationItemProps>> = ({
   ...props
 }) => {
   const theme = useTheme()
+  const { SCALES } = useScale()
 
   const handleClick = (e: any) => {
     if (props.onClick) {
@@ -22,7 +23,6 @@ const NavigationItem: React.FC<PropsWithChildren<NavigationItemProps>> = ({
       props.onClick()
     }
   }
-  // const rgba = `rgba(${hexToRgb(theme.palette.accents_2)}, 0.5)`
 
   return (
     <>
@@ -41,7 +41,7 @@ const NavigationItem: React.FC<PropsWithChildren<NavigationItemProps>> = ({
           font-weight: 500;
           min-width: 120px;
           padding: 6px 12px;
-          font-size: 14px;
+          font-size: ${SCALES.pt(1)};
           display: inline-flex;
           flex-direction: column;
           align-items: flex-start;
@@ -58,10 +58,7 @@ const NavigationItem: React.FC<PropsWithChildren<NavigationItemProps>> = ({
         :global(.icon-holder > *) {
           width: 100%;
         }
-        // .sub-item:hover {
-        //   background: ${addColorAlpha(theme.palette.accents_2, 0.5)};
-        //   border-radius: 5px;
-        // }
+
         .icon-with-title {
           color: ${theme.palette.accents_5};
           display: inline-flex;
@@ -73,4 +70,4 @@ const NavigationItem: React.FC<PropsWithChildren<NavigationItemProps>> = ({
   )
 }
 NavigationItem.displayName = 'Item'
-export default NavigationItem
+export default withScale(NavigationItem)
