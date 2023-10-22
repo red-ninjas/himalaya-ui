@@ -14,6 +14,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       <head>
         <meta name="viewport" content="initial-scale = 1.0,maximum-scale = 1.0" />
         <TilteInjector />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
       <body>
         <Providers defaultTheme={defaultTheme}>{children}</Providers>

@@ -65,19 +65,33 @@ const ResponsiveImageComponent: React.FC<ImageProps> = ({
     return () => clearTimeout(timer)
   }, [loading])
 
+  const ratio = (width / height) * 100
+
   return (
     <div className={useClasses('image', className)}>
-      {showSkeleton && showAnimation && <ImageSkeleton opacity={loading ? 0.5 : 0} />}
-      <NextImage
-        ref={imageRef}
-        alt={alt}
-        onLoad={imageLoaded}
-        src={url}
-        width={width}
-        height={height}
-        style={{ width: '100%', height: 'auto' }}
-        {...props}></NextImage>
+      <div className="image-container">
+        {showSkeleton && showAnimation && <ImageSkeleton opacity={loading ? 0.5 : 0} />}
+        <NextImage
+          ref={imageRef}
+          alt={alt}
+          onLoad={imageLoaded}
+          src={url}
+          width={width}
+          height={height}
+          style={{
+            width: '100%',
+            height: 'auto',
+            position: 'absolute',
+            top: 0,
+            left: 0,
+          }}
+          {...props}></NextImage>
+      </div>
       <style jsx>{`
+        .image-container {
+          width: 100%;
+          padding-top: ${ratio}%;
+        }
         .image {
           line-height: 0;
           position: relative;
