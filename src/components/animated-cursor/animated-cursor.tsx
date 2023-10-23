@@ -12,7 +12,7 @@ import type {
 import find from './find'
 import { useEventListener } from './useEventListener'
 import isDevice from './is-device'
-import useClasses from 'components/use-classes'
+import useClasses from '../use-classes'
 
 const CursorCore: React.FC<AnimatedCursorProps> = ({
   clickables = [
