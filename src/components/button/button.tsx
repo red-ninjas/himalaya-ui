@@ -9,6 +9,7 @@ import { ButtonTypes } from '../utils/prop-types'
 import { filterPropsWithGroup, getButtonChildrenWithIcon } from './utils'
 import { useButtonGroupContext } from '../button-group/button-group-context'
 import {
+  getButtonActivatedColors,
   getButtonColors,
   getButtonCursor,
   getButtonDripColor,
@@ -75,14 +76,16 @@ const ButtonComponent = React.forwardRef<
     () => getButtonHoverColors(theme.palette, filteredProps),
     [theme.palette, filteredProps],
   )
+
+  const activated = useMemo(
+    () => getButtonActivatedColors(theme.palette, filteredProps),
+    [theme.palette, filteredProps],
+  )
   const { cursor, events } = useMemo(
     () => getButtonCursor(disabled, loading),
     [disabled, loading],
   )
-  const dripColor = useMemo(
-    () => getButtonDripColor(theme.palette, filteredProps),
-    [theme.palette, filteredProps],
-  )
+  const dripColor = useMemo(() => getButtonDripColor(theme.palette), [theme.palette])
 
   /* istanbul ignore next */
   const dripCompletedHandle = () => {
@@ -125,8 +128,7 @@ const ButtonComponent = React.forwardRef<
       className={useClasses('btn', className)}
       disabled={disabled}
       onClick={clickHandler}
-      {...props}
-    >
+      {...props}>
       {loading && <ButtonLoading color={color} />}
       {childrenWithIcon}
       {dripShow && (
@@ -143,7 +145,7 @@ const ButtonComponent = React.forwardRef<
           display: inline-block;
           line-height: ${SCALES.height(2.5)};
           border-radius: ${theme.style.radius};
-          font-weight: 400;
+          font-weight: 500;
           font-size: ${SCALES.font(0.875)};
           user-select: none;
           outline: none;
@@ -173,14 +175,27 @@ const ButtonComponent = React.forwardRef<
           height: ${SCALES.height(2.5)};
           padding: ${SCALES.pt(0)} ${paddingRight} ${SCALES.pb(0)} ${paddingLeft};
           margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
+          transition-property: border-color, background, color, transform, box-shadow;
+          transition-duration: 0.15s;
+          transition-timing-function: ease;
         }
 
-        .btn:hover,
-        .btn:focus {
+        .btn:hover {
           color: ${hover.color};
           --ui-button-color: ${hover.color};
           background-color: ${hover.bg};
           border-color: ${hover.border};
+          cursor: ${cursor};
+          pointer-events: ${events};
+          box-shadow: ${shadow ? theme.expressiveness.shadowMedium : 'none'};
+          transform: translate3d(0px, ${shadow ? '-1px' : '0px'}, 0px);
+        }
+
+        .btn:focus {
+          color: ${activated.color};
+          --ui-button-color: ${activated.color};
+          background-color: ${activated.bg};
+          border-color: ${activated.border};
           cursor: ${cursor};
           pointer-events: ${events};
           box-shadow: ${shadow ? theme.expressiveness.shadowMedium : 'none'};
@@ -195,7 +210,6 @@ const ButtonComponent = React.forwardRef<
           align-items: center;
           text-align: center;
           line-height: inherit;
-          top: -1px;
         }
 
         .btn :global(.text p),

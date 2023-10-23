@@ -49,7 +49,7 @@ export const getColors = (
     warning: palette.foreground,
     error: palette.foreground,
     dark: palette.foreground,
-    lite: palette.successLighter,
+    lite: '#fff',
   }
 
   return {

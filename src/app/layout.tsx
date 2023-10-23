@@ -1,4 +1,5 @@
-import '@fontsource-variable/inter'
+import '@fontsource-variable/figtree'
+
 import { Analytics } from '@vercel/analytics/react'
 
 import { Providers } from '../lib/providers'

@@ -18,6 +18,8 @@ export interface ReactiveDomReact {
   width: number
   height: number
   elementTop: number
+  rect?: HTMLAnchorElement | null,
+  deactive?: () => void
 }
 const defaultRect: ReactiveDomReact = {
   top: -1000,
@@ -26,6 +28,7 @@ const defaultRect: ReactiveDomReact = {
   width: 0,
   height: 0,
   elementTop: -1000,
+  deactive: () => { }
 }
 
 const getRectFromDOMWithContainer = (

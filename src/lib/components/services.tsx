@@ -108,7 +108,7 @@ export default function Services() {
 
         <div className="action-button">
           <FadeInEffect translateY="4rem" width={'auto'} blur={10}>
-            <Button type="secondary-light" auto scale={1.3}>
+            <Button type="secondary" auto scale={1.3}>
               Read documentation
             </Button>
           </FadeInEffect>

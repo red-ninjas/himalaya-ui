@@ -29,9 +29,6 @@ const nextConfig = {
     VERSION: '',
     SITE_URL: 'https://himalaya-ui.com',
   },
-  experimental: {
-    appDir: true,
-  },
   trailingSlash: false,
   images: {
     domains: ['deelay.me', 'www.deelay.me', '**'],

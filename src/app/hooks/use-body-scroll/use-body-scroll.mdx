@@ -6,7 +6,9 @@ export const meta = {
   group: 'Utilities',
 }
 
-## useBodyScroll
+# useBodyScroll
+
+## Basic usage
 
 Disable scrolling behavior for body or any element, it is useful for displaying popup element or menus.
 
@@ -22,8 +24,8 @@ If the page's scrollbar is set to a user-defined `width` before scrolling is dis
     <>
       <Text small b type={hidden ? 'error' : 'default'}>{hidden ? 'Body disabled.' : 'Body can be scrolled.'}</Text>
       <Spacer h={.75} />
-      <Button scale={0.5} type="success-light" auto onClick={() => setHidden(true)}>disable scroll</Button>
-      <Button ml="20px" scale={0.5} type="secondary-light" auto onClick={() => setHidden(false)}>reset</Button>
+      <Button scale={0.5} type="success" auto onClick={() => setHidden(true)}>disable scroll</Button>
+      <Button ml="20px" scale={0.5} type="secondary" auto onClick={() => setHidden(false)}>reset</Button>
     </>
   )
 }

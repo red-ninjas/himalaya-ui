@@ -35,6 +35,9 @@ const ButtonIcon: React.FC<React.PropsWithChildren<ButtonIconProps>> = ({
           align-items: center;
           color: var(--ui-button-color);
           z-index: 1;
+          transition-property: border-color, background, color, transform, box-shadow;
+          transition-duration: 0.15s;
+          transition-timing-function: ease;
         }
 
         .right {

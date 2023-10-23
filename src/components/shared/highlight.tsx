@@ -12,6 +12,7 @@ type Props = {
   radius?: number
   hoverWidthRatio?: number
   activeOpacity?: number
+  background?: string
 }
 
 type HighlightPosition = {
@@ -33,6 +34,7 @@ const Highlight: React.FC<HighlightProps> = ({
   activeOpacity = 0.8,
   radius = 5,
   className,
+  background,
   ...props
 }) => {
   const theme = useTheme()
@@ -54,7 +56,7 @@ const Highlight: React.FC<HighlightProps> = ({
     <div ref={ref} className={useClasses('highlight', className)} {...props}>
       <style jsx>{`
         .highlight {
-          background: ${theme.palette.accents_2};
+          background: ${background === undefined ? theme.palette.accents_2 : background};
           position: absolute;
           border-radius: ${radius + 'px' || '5px'};
           width: ${position.width};

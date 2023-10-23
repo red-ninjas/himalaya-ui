@@ -4,7 +4,7 @@ export const meta = {
   index: 11,
 }
 
-## Bundle Size
+# Bundle Size
 
 The size of Geist at the completion of full packing is about [111kb](https://bundle.js.org/?q=@himalaya/ui) (Gzipped),
 This is a good score when comparing the size of modern client applications and will not impact the performance of your application.
@@ -12,7 +12,7 @@ As a matter of engineering practice, it is recommended that you always split Gei
 
 For higher first screen load speed, try using [Server Side Rendering](/guide/server-render) or perform volume optimization as described below.
 
-### Auto Tree-shaking
+## Auto Tree-shaking
 
 For projects using `webpack 5.0` or higher, there is no need to add any configuration to get full tree-shaking.
 As long as you use the ES module to import Geist, you can automatically remove unnecessary components during bundle.
@@ -21,11 +21,11 @@ Generally this means that the scaffolding you are using needs to be larger than 
 
 - Next.js: `>= 13.0`
 
-#### Recommended Examples
+### Recommended Examples
 
 - [Next.js Landing Page](https://github.com/red-ninjas/landing-page)
 
-### Import single component manually
+## Import single component manually
 
 For projects with package size requirements, you can choose to import single component manually.
 
@@ -40,7 +40,7 @@ import Button from '@himalaya/ui/button'
 const MyComponent = () => <Button>Submit</Button>
 ```
 
-### With Babel
+## With Babel
 
 If your project does not support ES Module at the moment, you can use the Babel plugin to reduce the build size.
 

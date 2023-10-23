@@ -149,28 +149,31 @@ const CssBaseline: React.FC = () => {
       }
 
       h1 {
-        font-size: 3rem;
-        letter-spacing: -0.02em;
-        line-height: 1.5;
-        font-weight: 700;
+        font-size: 2.5rem;
+        letter-spacing: -0.058125rem;
+        font-weight: 600;
+        line-height: 3.5rem;
       }
 
       h2 {
-        font-size: 2.25rem;
-        letter-spacing: -0.02em;
+        font-size: 2rem;
+        letter-spacing: -0.049375rem;
         font-weight: 600;
+        line-height: 2.5rem;
       }
 
       h3 {
         font-size: 1.5rem;
-        letter-spacing: -0.02em;
+        letter-spacing: -0.029375rem;
         font-weight: 600;
+        line-height: 2rem;
       }
 
       h4 {
-        font-size: 1.25rem;
-        letter-spacing: -0.02em;
+        font-size: 1.5rem;
+        letter-spacing: -0.029375rem;
         font-weight: 600;
+        line-height: 2rem;
       }
 
       h5 {

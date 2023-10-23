@@ -34,6 +34,7 @@ const NavigationItem: React.FC<PropsWithChildren<NavigationItemProps>> = ({
   const { onMouseOver } = useNavigation()
   const pathname = usePathname()
   const [isPopoverVisibile, setIsPopoverVisibile] = useState<boolean>(false)
+  const [isHover, setIsHover] = useState<boolean>(false)
   const [, childElements] = pickChild(children, NavigationSubItem)
   const { SCALES } = useScale()
   const ref = useRef<HTMLAnchorElement | null>(null)
@@ -48,6 +49,7 @@ const NavigationItem: React.FC<PropsWithChildren<NavigationItemProps>> = ({
     'menu-item': true,
     active: isLinkActive,
     'chevron-active': isPopoverVisibile,
+    'is-hover': isHover,
     'has-chevron': childElements && isArray(childElements) && childElements?.length > 0,
   })
 
@@ -76,6 +78,8 @@ const NavigationItem: React.FC<PropsWithChildren<NavigationItemProps>> = ({
     const newValue: ReactiveDomReact = {
       left: coreRect.left,
       right: coreRect.right,
+      rect: ref?.current,
+      deactive: () => setIsHover(false),
       elementTop: coreRect.top,
       height: coreRect.height,
       width: coreRect.width,
@@ -83,11 +87,16 @@ const NavigationItem: React.FC<PropsWithChildren<NavigationItemProps>> = ({
     }
 
     onMouseOver(newValue)
+    setIsHover(true)
   }
 
   return (
     <div className="navigation-item-outer">
-      <div className="navigation-item" onMouseOver={onChildMouseOver}>
+      <div
+        className="navigation-item"
+        onMouseLeave={() => setIsHover(false)}
+        onMouseOut={() => setIsHover(false)}
+        onMouseOver={onChildMouseOver}>
         {childElements && isArray(childElements) && childElements?.length > 0 ? (
           <Popover
             onVisibleChange={visible => setIsPopoverVisibile(visible)}
@@ -177,12 +186,14 @@ const NavigationItem: React.FC<PropsWithChildren<NavigationItemProps>> = ({
           user-select: none;
           font-size: ${SCALES.font(0.875)};
           line-height: normal;
+          font-weight: 500;
           width: ${SCALES.width(1, 'auto')};
           height: ${SCALES.height(1, 'auto')};
           padding: ${SCALES.pt(0.875)} ${SCALES.pr(0.55)} ${SCALES.pb(0.875)}
             ${SCALES.pl(0.55)};
           margin: ${SCALES.mt(0)} ${SCALES.mr(0.2)} ${SCALES.mb(0)} ${SCALES.ml(0.2)};
           z-index: 1;
+          transition: color 0.2s ease;
         }
 
         .has-chevron {
@@ -228,7 +239,10 @@ const NavigationItem: React.FC<PropsWithChildren<NavigationItemProps>> = ({
 
         .menu-item.active {
           color: ${theme.palette.foreground};
-          font-weight: 500;
+          font-weight: 600;
+        }
+        .menu-item.is-hover {
+          color: ${theme.palette.background} !important;
         }
 
         .menu-item.chevron-active {

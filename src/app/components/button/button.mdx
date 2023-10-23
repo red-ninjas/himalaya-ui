@@ -9,7 +9,7 @@ export const meta = {
   group: 'General',
 }
 
-## Button
+# Button
 
 Used to trigger an operation.
 
@@ -61,15 +61,12 @@ Used to trigger an operation.
   scope={{ Button, Spacer, Grid }}
   code={`
 <Grid.Container gap={1.5}>
+  <Grid><Button auto type="default">Default</Button></Grid>
   <Grid><Button auto type="secondary">Secondary</Button></Grid>
   <Grid><Button auto type="success">Success</Button></Grid>
   <Grid><Button auto type="warning">Warning</Button></Grid>
   <Grid><Button auto type="error">Error</Button></Grid>
   <Grid><Button auto type="abort">Abort</Button></Grid>
-  <Grid><Button auto type="secondary-light">Secondary Light</Button></Grid>
-  <Grid><Button auto type="success-light">Success Light</Button></Grid>
-  <Grid><Button auto type="warning-light">Warning Light</Button></Grid>
-  <Grid><Button auto type="error-light">Error Light</Button></Grid>
 </Grid.Container>
 `}
 />
@@ -163,10 +160,6 @@ type ButtonTypes =
   | 'warning'
   | 'error'
   | 'abort'
-  | 'secondary-light'
-  | 'success-light'
-  | 'warning-light'
-  | 'error-light'
 ```
 
 </Attributes>

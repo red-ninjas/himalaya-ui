@@ -150,7 +150,9 @@ const CursorCore: React.FC<AnimatedCursorProps> = ({
   )
 
   // Mouse Events State updates
-  const onMouseDown = useCallback(() => setIsActive(true), [])
+  const onMouseDown = useCallback(() => {
+    setIsActive(true)
+  }, [])
   const onMouseUp = useCallback(() => setIsActive(false), [])
   const onMouseEnterViewport = useCallback(() => setIsVisible(true), [])
   const onMouseLeaveViewport = useCallback(() => setIsVisible(false), [])
@@ -196,16 +198,15 @@ const CursorCore: React.FC<AnimatedCursorProps> = ({
 
   // Cursor Visibility Statea
   useEffect(() => {
-    if (isInit) {
-      if (cursorInnerRef.current == null || cursorOuterRef.current == null) return
+    if (cursorInnerRef.current == null || cursorOuterRef.current == null || !isInit)
+      return
 
-      if (isVisible) {
-        cursorInnerRef.current.style.opacity = '1'
-        cursorOuterRef.current.style.opacity = '1'
-      } else {
-        cursorInnerRef.current.style.opacity = '0'
-        cursorOuterRef.current.style.opacity = '0'
-      }
+    if (isVisible) {
+      cursorInnerRef.current.style.opacity = '1'
+      cursorOuterRef.current.style.opacity = '1'
+    } else {
+      cursorInnerRef.current.style.opacity = '0'
+      cursorOuterRef.current.style.opacity = '0'
     }
   }, [isVisible, isInit])
 

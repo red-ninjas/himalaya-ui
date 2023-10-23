@@ -4,12 +4,12 @@ export const meta = {
   index: 25,
 }
 
-## Themes
+# Themes
 
 **Himalaya** now supports a variety of themes, and it is very easy to create or inherit modifications, no third-party styles or configs.
 As a basic option, there are three themes available, `light`, `grey` and `dark`.
 
-### Switch themes
+## Switch themes
 
 To switch in the default themes you only need to set the value of `themeType`, you can follow the steps below:
 
@@ -35,7 +35,7 @@ const App = () => {
 }
 ```
 
-### Detect theme
+## Detect theme
 
 To detect a default theme you only need to set the value of `detectTheme` to `true`, you can follow the steps below:
 
@@ -65,7 +65,7 @@ const App = () => {
 }
 ```
 
-### Customizing theme
+## Customizing theme
 
 Customizing a theme is very simple in Himalaya, you just need to provide a new theme `Object`,
 and all the components will change automatically.
@@ -102,7 +102,7 @@ const myTheme2 = Themes.create(myBaseTheme, {
 })
 ```
 
-### Get types
+## Get types
 
 When you need to know the detailed type definition when modifying the theme,
 you can refer to the existing [type file](https://github.com/red-ninjas/himalaya-ui/blob/master/components/themes/presets/index.ts),
@@ -120,9 +120,9 @@ const myPalette: Partial<UIThemesPalette> = {
 }
 ```
 
-### Customizer
+## Customizer
 
-#### ClassName
+## ClassName
 
 You can override the style by defining a `className` on the component.
 
@@ -141,7 +141,7 @@ const MyPage = () => (
 }
 ```
 
-#### Inline styles
+## Inline styles
 
 Defining an inline style will also correctly override the component.
 
@@ -153,7 +153,7 @@ const MyPage = () => (
 )
 ```
 
-### Build components
+## Build components
 
 You can use the Geist preset Hooks to get the theme states to create your own components.
 For more information, please refer to [useTheme](/hooks/use-theme) documentation.
@@ -171,7 +171,7 @@ const MyComponent = () => {
 }
 ```
 
-### Themes APIs
+## Themes APIs
 
 `Themes` contains some static methods that are useful when working with custom themes:
 

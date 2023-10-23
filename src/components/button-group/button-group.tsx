@@ -32,8 +32,7 @@ const getGroupBorderColors = (
     error: palette.error,
     warning: palette.warning,
   }
-  const withoutLightType = type.replace('-light', '') as ButtonTypes
-  return colors[withoutLightType] || (colors.default as string)
+  return colors.default as string
 }
 
 const ButtonGroupComponent: React.FC<React.PropsWithChildren<ButtonGroupProps>> = (

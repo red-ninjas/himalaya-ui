@@ -7,7 +7,7 @@ export const meta = {
   group: 'General',
 }
 
-## Carousel
+# Carousel
 
 To add a slider to a page.
 
@@ -16,89 +16,49 @@ To add a slider to a page.
   desc="Example of Carousel"
   scope={{ Carousel, CarouselItem, Striked, RedNinjas }}
   code={`
-		<Carousel
-          options={{
-						perPage: 3,
-            type: 'loop',
-            pagination: true,
-            arrows: false,
-            autoplay: true,
-            pauseOnHover: true,
-            gap: '5rem',
-            breakpoints: {
-              480: {
-                perPage: 2,
-              },
-              640: {
-                perPage: 3,
-              },
-              960: {
-                perPage: 4,
-              },
-              1100: {
-                perPage: 5,
-              },
-              1200: {
-                perPage: 6,
-              },
-            },
-          }}>
-          <CarouselItem>
-            <a className="partner">
-              <Striked></Striked>
-            </a>
-          </CarouselItem>
-          <CarouselItem>
-            <a className="partner">
-              <Striked></Striked>
-            </a>
-          </CarouselItem>
-          <CarouselItem>
-            <a className="partner">
-              <Striked></Striked>
-            </a>
-          </CarouselItem>
-          <CarouselItem>
-            <a className="partner">
-              <Striked></Striked>
-            </a>
-          </CarouselItem>
-          <CarouselItem>
-            <a className="partner">
-              <Striked></Striked>
-            </a>
-          </CarouselItem>
-          <CarouselItem>
-            <a className="partner">
-              <Striked></Striked>
-            </a>
-          </CarouselItem>
-          <CarouselItem>
-            <a className="partner">
-              <Striked></Striked>
-            </a>
-          </CarouselItem>
-          <CarouselItem>
-            <a className="partner">
-              <Striked></Striked>
-            </a>
-          </CarouselItem>
-          <CarouselItem>
-            <a className="partner">
-              <Striked></Striked>
-            </a>
-          </CarouselItem>
-          <CarouselItem>
-            <a className="partner">
-              <RedNinjas></RedNinjas>
-            </a>
-          </CarouselItem>
-          <CarouselItem>
-            <a className="partner">
-              <Striked></Striked>
-            </a>
-          </CarouselItem>
-        </Carousel>
+<Carousel
+  options={{
+    perPage: 3,
+    type: 'loop',
+    pagination: true,
+    arrows: false,
+    autoplay: true,
+    pauseOnHover: true,
+    gap: '5rem',
+    breakpoints: {
+      480: {
+        perPage: 2,
+      },
+      640: {
+        perPage: 3,
+      },
+      960: {
+        perPage: 4,
+      },
+      1100: {
+        perPage: 5,
+      },
+      1200: {
+        perPage: 6,
+      },
+    },
+  }}>
+  <CarouselItem>
+    1
+  </CarouselItem>
+  <CarouselItem>
+    2
+  </CarouselItem>
+  <CarouselItem>
+    3
+  </CarouselItem>
+  <CarouselItem>
+    4
+  </CarouselItem>
+  <CarouselItem>
+    5
+  </CarouselItem>
+</Carousel>
 `}
 />
 

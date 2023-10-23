@@ -7,13 +7,13 @@ export const meta = {
   index: 103,
 }
 
-## useScale
+# useScale
 
 Remember the elastic scaling feature mentioned in the [scale](/guide/scale 'Scale') subsection,
 which gave the Geist components amazing imagination and extensibility,
 and now you can add elastic scaling features to your own components with the help of the `useScale` hooks.
 
-### Scale the width
+## Scale the width
 
 As a first example, let's prepare a simple component with a fixed width:
 
@@ -55,7 +55,7 @@ The components of the above example should be used as follows:
 <MyComponent unit="10rem" />
 ```
 
-### Unconventional defaults
+## Unconventional defaults
 
 In a few components where we want the default width to be `auto` (or others), and allow user-defined `width` to override this value,
 then within the Scale component we want to follow the following rules:
@@ -91,7 +91,7 @@ When we enter specific values to override, it still works well:
 // -> The width is "100px"
 ```
 
-### Get native props
+## Get native props
 
 When a component is combined with `withScale`, multiple props and corresponding types are automatically added,
 we can use the `useScale` function to get the corresponding value.

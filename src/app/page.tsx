@@ -61,12 +61,12 @@ export default function Index() {
             </Grid.Container>
             <Hero.Actions>
               <Link href={'/guide/'}>
-                <Button auto icon={<Code></Code>} type="secondary-light" scale={1.3}>
+                <Button auto icon={<Code></Code>} scale={1.3}>
                   Documentation
                 </Button>
               </Link>
               <Link href={'/guide/'}>
-                <Button type="secondary-light" scale={1.3}>
+                <Button type="secondary" scale={1.3}>
                   Installation
                 </Button>
               </Link>
@@ -162,9 +162,9 @@ export default function Index() {
           bottom: 0;
           opacity: 0.5;
           color: red;
-          --color-face-1: ${theme.palette.accents_2};
-          --color-face-2: ${theme.palette.accents_3};
-          --color-face-3: ${theme.palette.accents_5};
+          --color-face-1: ${theme.palette.accents_0};
+          --color-face-2: ${theme.palette.accents_2};
+          --color-face-3: ${theme.palette.accents_4};
         }
       `}</style>
     </>

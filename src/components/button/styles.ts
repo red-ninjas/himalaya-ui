@@ -1,13 +1,14 @@
 import { UIThemesPalette } from '../themes/presets'
+import { addColorAlpha } from '../utils/color'
 import { ButtonTypes } from '../utils/prop-types'
 import { ButtonProps } from './button'
-import { addColorAlpha } from '../utils/color'
 
 export interface ButtonColorGroup {
   bg: string
   border: string
-  color: string
+  color: string,
 }
+
 
 export const getButtonGhostColors = (
   palette: UIThemesPalette,
@@ -46,14 +47,14 @@ export const getButtonColors = (
   const { type, disabled, ghost } = props
   const colors: { [key in ButtonTypes]?: ButtonColorGroup } = {
     default: {
-      bg: palette.background,
-      border: palette.border,
-      color: palette.accents_5,
-    },
-    secondary: {
       bg: palette.foreground,
       border: palette.foreground,
       color: palette.background,
+    },
+    secondary: {
+      bg: palette.secondary,
+      border: palette.border,
+      color: palette.foreground,
     },
     success: {
       bg: palette.success,
@@ -83,18 +84,11 @@ export const getButtonColors = (
       color: '#ccc',
     }
 
-  /**
-   * The '-light' type is the same color as the common type,
-   * only hover's color is different.
-   * e.g.
-   *   Color['success'] === Color['success-light']
-   *   Color['warning'] === Color['warning-light']
-   */
-  const withoutLightType = type?.replace('-light', '') as ButtonTypes
+
   const defaultColor = colors.default as ButtonColorGroup
 
-  if (ghost) return getButtonGhostColors(palette, withoutLightType) || defaultColor
-  return colors[withoutLightType] || defaultColor
+  if (ghost) return getButtonGhostColors(palette, type || 'default') || defaultColor
+  return colors[type || 'default'] || defaultColor
 }
 
 export const getButtonGhostHoverColors = (
@@ -123,8 +117,7 @@ export const getButtonGhostHoverColors = (
       color: 'white',
     },
   }
-  const withoutLightType = type.replace('-light', '') as ButtonTypes
-  return colors[withoutLightType] || null
+  return colors[type || 'default'] || null
 }
 
 export const getButtonHoverColors = (
@@ -133,52 +126,103 @@ export const getButtonHoverColors = (
 ): ButtonColorGroup => {
   const { type, disabled, loading, shadow, ghost } = props
   const defaultColor = getButtonColors(palette, props)
-  const alphaBackground = addColorAlpha(defaultColor.bg, 0.85)
   const colors: {
     [key in ButtonTypes]: Omit<ButtonColorGroup, 'color'> & {
       color?: string
     }
   } = {
     default: {
-      bg: palette.background,
+      bg: palette.accents_7,
       border: palette.foreground,
+      color: palette.background,
     },
     secondary: {
-      bg: palette.background,
-      border: palette.foreground,
+      bg: palette.accents_1,
+      border: palette.accents_2,
+      color: palette.foreground,
     },
     success: {
-      bg: palette.background,
-      border: palette.success,
+      bg: palette.successLight,
+      border: palette.successLighter,
+      color: '#fff'
     },
     warning: {
-      bg: palette.background,
-      border: palette.warning,
+      bg: palette.warningLight,
+      border: palette.warningLighter,
+      color: '#fff'
     },
     error: {
-      bg: palette.background,
-      border: palette.error,
+      bg: palette.errorLight,
+      border: palette.errorLighter,
+      color: '#fff'
     },
     abort: {
-      bg: 'transparent',
-      border: 'transparent',
+      bg: palette.accents_0,
+      border: palette.accents_0,
       color: palette.accents_5,
     },
-    'secondary-light': {
+  }
+  if (disabled)
+    return {
+      bg: palette.accents_1,
+      border: palette.border,
+      color: '#ccc',
+    }
+  if (loading)
+    return {
       ...defaultColor,
-      bg: alphaBackground,
+      color: 'transparent',
+    }
+  if (shadow) return defaultColor
+
+  const hoverColor =
+    (ghost ? getButtonGhostHoverColors(palette, type!) : colors[type!]) || colors.default
+  return {
+    ...hoverColor,
+    color: hoverColor.color || hoverColor.border,
+  }
+}
+
+export const getButtonActivatedColors = (
+  palette: UIThemesPalette,
+  props: ButtonProps,
+): ButtonColorGroup => {
+  const { type, disabled, loading, shadow, ghost } = props
+  const defaultColor = getButtonColors(palette, props)
+  const colors: {
+    [key in ButtonTypes]: Omit<ButtonColorGroup, 'color'> & {
+      color?: string
+    }
+  } = {
+    default: {
+      bg: palette.accents_7,
+      border: palette.foreground,
+      color: palette.background,
     },
-    'success-light': {
-      ...defaultColor,
-      bg: alphaBackground,
+    secondary: {
+      bg: palette.accents_0,
+      border: palette.accents_0,
+      color: palette.foreground,
     },
-    'warning-light': {
-      ...defaultColor,
-      bg: alphaBackground,
+    success: {
+      bg: palette.successDark,
+      border: palette.success,
+      color: '#fff'
     },
-    'error-light': {
-      ...defaultColor,
-      bg: alphaBackground,
+    warning: {
+      bg: palette.warningDark,
+      border: palette.warning,
+      color: '#fff'
+    },
+    error: {
+      bg: palette.errorDark,
+      border: palette.error,
+      color: '#fff'
+    },
+    abort: {
+      bg: palette.accents_0,
+      border: palette.accents_0,
+      color: palette.accents_5,
     },
   }
   if (disabled)
@@ -228,11 +272,6 @@ export const getButtonCursor = (
   }
 }
 
-export const getButtonDripColor = (palette: UIThemesPalette, props: ButtonProps) => {
-  const { type } = props
-  const isLightHover = type?.endsWith('light')
-  const hoverColors = getButtonHoverColors(palette, props)
-  return isLightHover
-    ? addColorAlpha(hoverColors.bg, 0.65)
-    : addColorAlpha(palette.accents_2, 0.65)
+export const getButtonDripColor = (palette: UIThemesPalette) => {
+  return addColorAlpha(palette.accents_2, 0.65)
 }

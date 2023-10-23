@@ -95,7 +95,7 @@ export default function DocumentationLayout({ children }) {
           margin: 1.6em 0 0.6em;
         }
 
-        .markdown h2 {
+        .markdown h1 {
           margin-top: 0;
         }
       `}</style>

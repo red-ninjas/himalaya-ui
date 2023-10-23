@@ -7,7 +7,7 @@ export const meta = {
   index: 30,
 }
 
-## Scale
+# Scale
 
 <Note type="warning">
   This feature was introduced in v2.2.0 and up. If you’re using older versions of Geist,
@@ -22,7 +22,7 @@ This means that developers: can achieve a high level of customization in most sc
 even multiple components can be synchronized using base unit, compatible with different Web structures with low code,
 and get the best user experience in any layout style.
 
-### Scaling
+## Scaling
 
 Different from common component libraries, Geist no longer uses `size` related props to control component volume.
 Each component of Geist has a suitable layout volume by default, you can dynamically scale components with the `scale` props.
@@ -44,7 +44,7 @@ This ensures that the layout and typography are always the same as expected.
 
 </Display>
 
-### Single Value
+## Single Value
 
 For any component, the scalable props include width, height, outer margin, inner margin, font, etc.
 You can define each scalable property individually, a scale number or CSS string.
@@ -62,7 +62,7 @@ You can define each scalable property individually, a scale number or CSS string
 
 </Display>
 
-### Scaling unit
+## Scaling unit
 
 The volume of the component depends on both the `scale` property entered by the user and the **scaling unit**.
 The default scaling unit is `16px`, but Geist allows you to customize this value at different levels to achieve a high level of customization.
@@ -95,12 +95,12 @@ const App = () => (
 )
 ```
 
-### Development with scale
+## Development with scale
 
 The scale feature in Geist is also exported, so you can use scale to create custom components with dynamic scaling capabilities.
 For more information, please read section [use-scale](/hooks/use-scale 'use-scale').
 
-### Alias
+## Alias
 
 Below is a reference to all available props and aliases，
 `number` means that numbers can be passed for scaling, and `string` type means that CSS strings can be passed for fixed values.

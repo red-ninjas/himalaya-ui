@@ -1,46 +1,16 @@
 import { UIThemes, UIThemesExpressiveness, UIThemesPalette } from './index'
-import { defaultFont, defaultStyles } from './shared'
+import { defaultFont, defaultStyles, generateAccents, generateColors } from './shared'
 
-export const palette: UIThemesPalette = {
-  accents_0: '#1c1c1f',
-  accents_1: '#28282c',
-  accents_2: '#2e2e32',
-  accents_3: '#3e3e44',
-  accents_4: '#504f57',
-  accents_5: '#706f78',
-  accents_6: '#7e7d86',
-  accents_7: '#a09fa6',
-  accents_8: '#ededef',
-  background: '#161618',
+const ascents = generateAccents('#161618', true);
+const colors = generateColors();
+export const palette: UIThemesPalette = Object.assign(ascents, {
   foreground: '#fcfcfc',
   selection: '#f81ce5',
-  secondary: '#888',
-  code: '#79ffe1',
-  border: '#232326',
-  error: '#e00',
-  errorLighter: '#f7d4d6',
-  errorLight: '#ff1a1a',
-  errorDark: '#c50000',
-  success: '#0070f3',
-  successLighter: '#d3e5ff',
-  successLight: '#3291ff',
-  successDark: '#0761d1',
-  warning: '#f5a623',
-  warningLighter: '#ffefcf',
-  warningLight: '#f7b955',
-  warningDark: '#ab570a',
-  cyan: '#50e3c2',
-  cyanLighter: '#aaffec',
-  cyanLight: '#79ffe1',
-  cyanDark: '#29bc9b',
-  violet: '#7928ca',
-  violetLighter: '#e3d7fc',
-  violetLight: '#8a63d2',
-  violetDark: '#4c2889',
+  code: '#47b6b7',
+  link: '#47b6b7',
   purple: '#f81ce5',
   alert: '#ff0080',
   magenta: '#eb367f',
-  link: '#3291ff',
 
   gradient_1: {
     from: '#46e3b7',
@@ -54,7 +24,7 @@ export const palette: UIThemesPalette = {
     from: '#e84e38',
     to: '#ba2cb8',
   },
-}
+}, colors)
 
 export const expressiveness: UIThemesExpressiveness = {
   linkStyle: 'none',

@@ -3,7 +3,7 @@ export interface Gradient {
   to: string
 }
 
-export interface UIThemesPalette {
+export interface UIThemesAccents {
   accents_0: string
   accents_1: string
   accents_2: string
@@ -13,12 +13,11 @@ export interface UIThemesPalette {
   accents_6: string
   accents_7: string
   accents_8: string
-  background: string
-  foreground: string
-  selection: string
-  secondary: string
-  code: string
   border: string
+  background: string
+  secondary: string
+}
+export interface UIThemesColors {
   success: string
   successLighter: string
   successLight: string
@@ -39,6 +38,12 @@ export interface UIThemesPalette {
   violetLighter: string
   violetLight: string
   violetDark: string
+}
+
+export interface UIThemesCore {
+  foreground: string
+  selection: string
+  code: string
   link: string
   purple: string
   magenta: string
@@ -48,6 +53,7 @@ export interface UIThemesPalette {
   gradient_2: Gradient
   gradient_3: Gradient
 }
+export type UIThemesPalette = UIThemesCore & UIThemesColors & UIThemesAccents;
 
 export interface UIThemesExpressiveness {
   linkStyle: string
