@@ -1,6 +1,6 @@
 'use client'
 
-import { Code } from '@geist-ui/icons'
+import { Code } from 'components/icons'
 import {
   Button,
   ContentLayout,

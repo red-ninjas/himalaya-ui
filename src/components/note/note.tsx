@@ -5,7 +5,7 @@ import { NormalTypes } from '../utils/prop-types'
 import { UIThemes } from '../themes/presets'
 import useScale, { withScale } from '../use-scale'
 import useClasses from '../use-classes'
-import { AlertCircleFill, AlertTriangle, Info, XCircleFill } from '@geist-ui/icons'
+import { AlertCircleFill, AlertTriangle, Info, XCircleFill } from '../icons'
 
 export type NoteTypes = NormalTypes
 interface Props {

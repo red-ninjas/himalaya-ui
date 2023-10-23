@@ -1,7 +1,7 @@
-import { Activity } from '@geist-ui/icons'
-import FeatherIcon from '@geist-ui/icons/feather'
-import GitHubIcon from '@geist-ui/icons/github'
-import PackageIcon from '@geist-ui/icons/package'
+import { Activity } from 'components/icons'
+import FeatherIcon from 'components/icons/feather'
+import GitHubIcon from 'components/icons/github'
+import PackageIcon from 'components/icons/package'
 import {
   Button,
   ContentLayout,

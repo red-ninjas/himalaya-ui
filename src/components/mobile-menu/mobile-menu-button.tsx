@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import MenuIcon from '@geist-ui/icons/menu'
+import MenuIcon from '../icons/menu'
 import { MobileMenuButtonProps } from './index'
 import Button, { ButtonProps } from '../button'
 import { useConfigs } from '../use-context'
@@ -26,8 +26,7 @@ const MobileMenuButton: React.FC<MobileMenuButtonProps & ButtonProps & ScaleProp
         iconRight={<MenuIcon></MenuIcon>}
         onClick={() => {
           toggleMenu?.() ?? setIsEnabled(true)
-        }}
-      ></Button>
+        }}></Button>
     )
   )
 }

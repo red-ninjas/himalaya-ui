@@ -1,4 +1,4 @@
-import RotateCcwIcon from '@geist-ui/icons/rotateCcw'
+import RotateCcwIcon from 'components/icons/rotateCcw'
 import { Button, Text, useLayout, useTheme } from 'components'
 import { UIThemesExpressiveness, UIThemesPalette } from 'components/themes'
 import EditorColorItem from './editor-color-item'

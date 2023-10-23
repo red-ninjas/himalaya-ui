@@ -1,6 +1,6 @@
 'use client'
 
-import { ChevronLeft } from '@geist-ui/icons'
+import { ChevronLeft } from '../icons'
 import { useRouter } from 'next/navigation'
 import React from 'react'
 import Button from '../button'

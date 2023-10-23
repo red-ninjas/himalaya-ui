@@ -1,5 +1,5 @@
 'use client'
-import { ChevronUp } from '@geist-ui/icons'
+import { ChevronUp } from '../icons'
 import { isArray } from 'lodash'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'

@@ -1,6 +1,6 @@
 'use client'
 
-import { Anchor, Code, Github, Home, Layout } from '@geist-ui/icons'
+import { Anchor, Code, Github, Home, Layout } from 'components/icons'
 import { MDXProvider } from '@mdx-js/react/lib'
 import {
   AnimatedCursor,

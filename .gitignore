@@ -12,11 +12,14 @@
 /.next/
 /out/
 
+.source
 # production
 /build
 
 # misc
 .DS_Store
+
+.npmrc
 .env*
 .idea
 

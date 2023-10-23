@@ -1,6 +1,6 @@
 'use client'
 
-import { ArrowLeft, ArrowRight } from '@geist-ui/icons'
+import { ArrowLeft, ArrowRight } from '../icons'
 import { Splide as SplideCore } from '@splidejs/splide'
 import React, { useEffect, useLayoutEffect } from 'react'
 import { SliderOptions, SplideProps } from '.'

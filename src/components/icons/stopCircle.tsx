@@ -1,19 +1,7 @@
-import * as React from 'react'
-const SvgStopCircle = props => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="1em"
-    height="1em"
-    fill="none"
-    stroke="currentColor"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    strokeWidth={2}
-    viewBox="0 0 24 24"
-    {...props}>
-    <circle cx={12} cy={12} r={10} />
-    <path d="M9 9h6v6H9z" />
-  </svg>
-)
-export default SvgStopCircle
-
+'use client';
+import React from 'react';
+import {IconPropsNative} from './'
+const StopCircle = ({ size = 24, color, style, ...props } : IconPropsNative ) => {
+  return <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" shapeRendering="geometricPrecision" viewBox="0 0 24 24" {...props} height={size} width={size} style={{...style, color: color }}><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10Z"/><path fill="currentColor" d="M9 9h6v6H9V9Z"/></svg>;
+}
+export default StopCircle;

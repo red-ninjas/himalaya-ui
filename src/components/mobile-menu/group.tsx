@@ -1,5 +1,5 @@
 'use client'
-import { ChevronRight, ChevronDown } from '@geist-ui/icons'
+import { ChevronRight, ChevronDown } from '../icons'
 import React, { PropsWithChildren, ReactNode, useRef, useState } from 'react'
 import { INavigationItem } from './index'
 import useClasses from '../use-classes'

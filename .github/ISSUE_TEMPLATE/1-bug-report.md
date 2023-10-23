@@ -11,7 +11,7 @@ about: "If something isn't working as expected 🤔."
 ## Version & Environment
 
 - Version of browser
-- Version of `himalaya/ui`
+- Version of `@himalaya-ui/core`
 
 ## Expected Behaviour
 

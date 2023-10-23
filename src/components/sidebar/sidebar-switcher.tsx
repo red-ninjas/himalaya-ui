@@ -1,4 +1,4 @@
-import MenuIcon from '@geist-ui/icons/menu'
+import MenuIcon from '../icons/menu'
 import Button from '../button'
 import { useConfigs } from '../use-context/config-context'
 import useSidebar from '../use-sidebar'

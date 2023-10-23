@@ -1,5 +1,5 @@
 import Title from 'lib/components/playground/title'
-import Github from '@geist-ui/icons/github'
+import Github from 'components/icons/github'
 import { Spacer, Tabs, Snippet } from 'components'
 import { Layout, Playground, Attributes, IconsGallery } from 'lib/components'
 
@@ -12,27 +12,20 @@ export const meta = {
 
 Display semantic vector graphics in SVG format.
 
-<Title title="Installation" desc="Install the package in your project directory." />
-<Tabs initialValue="yarn">
-  <Tabs.Item label="Yarn" value="yarn">
-    <Spacer h={0.6} />
-    <Snippet width="400px">yarn add @geist-ui/icons</Snippet>
-  </Tabs.Item>
-  <Tabs.Item label="npm" value="npm">
-    <Spacer h={0.6} />
-    <Snippet width="400px">npm i @geist-ui/icons</Snippet>
-  </Tabs.Item>
-</Tabs>
+<Title title="Usage" desc="How to use icons" />
+<Snippet width="400px">`import { Github } from 'components/icons'`</Snippet>
+<Snippet width="400px">`<Github/>`</Snippet>
+
 
 <Playground
   title="Import"
   scope={{ Github, Spacer }}
   code={`
-// import * as Icon from '@geist-ui/icons'
+// import * as Icon from 'components/icons'
 // or
-// import { Github } from '@geist-ui/icons'
+// import { Github } from 'components/icons'
 // or, for tree-shaking:
-// import Github from '@geist-ui/icons/github'
+// import Github from 'components/icons/github'
 
 <Github />
 `} />

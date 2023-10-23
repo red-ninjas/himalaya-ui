@@ -31,7 +31,8 @@ const CssBaseline: React.FC = () => {
 
       html {
         font-size: 16px;
-        --geist-icons-background: ${theme.palette.background};
+        --ui-icon-background: ${theme.palette.background};
+        --ui-icon-foreground: ${theme.palette.foreground};
       }
 
       body {

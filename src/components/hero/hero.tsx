@@ -1,6 +1,6 @@
 'use client'
 
-import { ArrowDown } from '@geist-ui/icons'
+import { ArrowDown } from '../icons'
 import { useScale, withScale } from '../use-scale'
 import useTheme from '../use-theme'
 import { ContentLayout } from '../layout'

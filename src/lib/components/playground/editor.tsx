@@ -3,8 +3,8 @@
 import React, { useState } from 'react'
 import { LiveEditor } from 'react-live'
 import { useTheme, useToasts, useClipboard, useLayout } from 'components'
-import CopyIcon from '@geist-ui/icons/copy'
-import RightIcon from '@geist-ui/icons/chevronRight'
+import CopyIcon from 'components/icons/copy'
+import RightIcon from 'components/icons/chevronRight'
 
 interface Props {
   code: string

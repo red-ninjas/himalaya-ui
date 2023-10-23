@@ -1,13 +1,12 @@
 import React, { useMemo } from 'react'
 import { SearchResults } from './helper'
-import Type from 'components/icons/type'
-import FileFunctionFill from '@geist-ui/icons/fileFunctionFill'
-import Lambda from '@geist-ui/icons/lambda'
-import Image from '@geist-ui/icons/image'
-import Package from '@geist-ui/icons/package'
-import Codesandbox from '@geist-ui/icons/codesandbox'
-import Layout from '@geist-ui/icons/layout'
-import Link from '@geist-ui/icons/link'
+import Type from '../icons/type'
+import { FileFunctionFill, Image } from '../icons'
+import Lambda from '../icons/lambda'
+import Package from '../icons/package'
+import Codesandbox from '../icons/codesandbox'
+import Layout from '../icons/layout'
+import Link from '../icons/link'
 
 const getIcon = (data: SearchResults[number]): React.ReactElement | null => {
   const name = data.name.toLowerCase()
