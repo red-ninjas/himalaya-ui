@@ -1,7 +1,7 @@
 import { UIThemes, UIThemesExpressiveness, UIThemesPalette } from './index';
 import { defaultFont, defaultStyles, generateAccents, generateColors } from './shared';
 
-const ascents = generateAccents('#0f0e11', true);
+const ascents = generateAccents('#080808', true);
 const colors = generateColors();
 export const palette: UIThemesPalette = Object.assign(ascents, {
   foreground: '#fff',

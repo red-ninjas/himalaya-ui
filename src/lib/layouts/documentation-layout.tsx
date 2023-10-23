@@ -12,6 +12,7 @@ import {
   MobilePage,
   Sidebar,
   Text,
+  useTheme,
 } from 'components'
 import { Title } from 'components/header'
 import BackButton from 'components/header/back-button'
@@ -34,6 +35,7 @@ export default function DocumentationLayout({ children }) {
     .map((value, key) => ({ title: key, children: value }))
     .value()
 
+  const theme = useTheme()
   return (
     <ContentLayout padding={0}>
       <MobilePage>
@@ -97,6 +99,9 @@ export default function DocumentationLayout({ children }) {
 
         .markdown h1 {
           margin-top: 0;
+        }
+        .markdown p {
+          color: ${theme.palette.accents_5};
         }
       `}</style>
     </ContentLayout>

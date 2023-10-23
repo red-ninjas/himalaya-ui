@@ -23,7 +23,7 @@ const HeroTag: React.FC<PropsWithChildren<HeroTagProps>> = ({
           text-transform: uppercase;
           letter-spacing: 1px;
           border-radius: 30px;
-          border: 1px solid ${theme.palette.accents_4};
+          border: 1px solid ${theme.palette.accents_2};
           color: ${theme.palette.accents_8};
           display: inline-block;
           word-break: break-word;

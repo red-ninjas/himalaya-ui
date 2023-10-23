@@ -56,7 +56,7 @@ const CssBaseline: React.FC = () => {
       *:before,
       *:after {
         box-sizing: inherit;
-        text-rendering: geometricPrecision;
+        text-rendering: optimizeLegibility;
         -webkit-tap-highlight-color: transparent;
       }
 
