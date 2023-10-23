@@ -7,7 +7,7 @@ on:
     branches:
       - master
 jobs:
-  Deploy-Production:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -19,3 +19,15 @@ jobs:
         run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
       - name: Deploy Project Artifacts to Vercel
         run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
+  release-npm:
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v4
+        # Setup .npmrc file to publish to npm
+        - uses: actions/setup-node@v3
+          with:
+            node-version: '20.x'
+            registry-url: 'https://registry.npmjs.org'
+        - run: yarn release
+          env:
+            NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
