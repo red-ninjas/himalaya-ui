@@ -7,6 +7,8 @@
     <img alt="Version" src="https://img.shields.io/npm/v/himalaya-ui.svg">
   </a>
   <img src="https://img.shields.io/badge/node-%3E%3D18.0.0-blue.svg" />
+  <img src="https://img.shields.io/badge/next-%3E%3D13.0.0-green.svg" />
+  
   <a href="https://github.com/red-ninjas/himalaya-ui#readme" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
   </a>
