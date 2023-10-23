@@ -28,6 +28,10 @@ jobs:
           with:
             node-version: '20.x'
             registry-url: 'https://registry.npmjs.org'
-        - run: yarn release
+        - run: yarn release 
+        - name: Install Deps
+          run: yarn install
+        - name: Build and release
+          run: yarn release 
           env:
             NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
