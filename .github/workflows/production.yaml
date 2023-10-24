@@ -27,6 +27,9 @@ jobs:
         - uses: actions/setup-node@v3
           with:
             registry-url: 'https://registry.npmjs.org'
-        - run: yarn release
+        - name: Install Deps
+          run: yarn install
+        - name: Build and release
+          run: yarn release 
           env:
             NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
