@@ -36,7 +36,6 @@ const plugins = [
   }),
   localResolve(),
   nodeResolve({
-    browser: true,
     extensions,
   }),
   commonjs(),
@@ -48,7 +47,7 @@ const globals = {
 }
 
 const external = id =>
-  /^react|react-dom|styled-jsx|moment|fancy-canvas|next\/link|next\/navigation/.test(id)
+  /^react|react-dom|styled-jsx|moment|fancy-canvas|@splidejs\/splide|react-i18next|next\/link|next\/navigation/.test(id)
 
 const cjsOutput = {
   format: 'cjs',
@@ -59,6 +58,9 @@ const cjsOutput = {
   manualChunks: id => {
     if (id.includes('node_modules/styled-jsx')) {
       return 'styled-jsx.cjs'
+    }
+    if (id.includes('node_modules/react-i18next')) {
+      return 'react-i18next.cjs'
     }
   },
   chunkFileNames: '[name].js',
