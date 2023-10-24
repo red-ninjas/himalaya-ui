@@ -1,6 +1,6 @@
 {
   "name": "@himalaya-ui/core",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "main": "dist/framework/index.js",
   "module": "dist/framework-esm/index.js",
   "types": "dist/framework-esm/index.d.ts",
@@ -139,8 +139,6 @@
     "fs-extra": "^11.1.1",
     "happy-dom": "^12.9.1",
     "husky": "^8.0.3",
-    "i18next": "^23.5.1",
-    "i18next-browser-languagedetector": "^7.1.0",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
     "lodash": "^4.17.21",
@@ -195,10 +193,7 @@
     "react": ">=18.2.0",
     "react-dom": ">=18.2.0",
     "react-swipeable": ">=7.0.1",
-    "styled-jsx": "^5.1.2",
-    "react-i18next": "^13.2.2",
-    "@splidejs/splide": "^4.1.4",
-    "moment": "^2.29.4"
+    "styled-jsx": "^5.1.2"
   },
   "dependencies": {
     "fancy-canvas": "^2.1.0",
@@ -208,6 +203,8 @@
     "moment": "^2.29.4",
     "use-elapsed-time": "^3.0.4",
     "values.js": "^2.1.1",
-    "nookies": "^2.5.2"
+    "nookies": "^2.5.2",
+    "i18next": "^23.5.1",
+    "i18next-browser-languagedetector": "^7.1.0"
   }
 }
