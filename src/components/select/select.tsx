@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import React, {
   CSSProperties,
   useEffect,
@@ -6,50 +6,50 @@ import React, {
   useMemo,
   useRef,
   useState,
-} from 'react'
-import { NormalTypes } from '../utils/prop-types'
-import useTheme from '../use-theme'
-import useCurrentState from '../utils/use-current-state'
-import { pickChildByProps } from '../utils/collections'
-import SelectIcon from './select-icon'
-import SelectDropdown from './select-dropdown'
-import SelectMultipleValue from './select-multiple-value'
-import Grid from '../grid'
-import { SelectContext, SelectConfig } from './select-context'
-import { getColors } from './styles'
-import Ellipsis from '../shared/ellipsis'
-import SelectInput from './select-input'
-import useScale, { withScale } from '../use-scale'
-import useClasses from '../use-classes'
-import useLayout from '../use-layout'
+} from 'react';
+import { NormalTypes } from '../utils/prop-types';
+import useTheme from '../use-theme';
+import useCurrentState from '../utils/use-current-state';
+import { pickChildByProps } from '../utils/collections';
+import SelectIcon from './select-icon';
+import SelectDropdown from './select-dropdown';
+import SelectMultipleValue from './select-multiple-value';
+import Grid from '../grid';
+import { SelectContext, SelectConfig } from './select-context';
+import { getColors } from './styles';
+import Ellipsis from '../shared/ellipsis';
+import SelectInput from './select-input';
+import useScale, { withScale } from '../use-scale';
+import useClasses from '../use-classes';
+import useLayout from '../use-layout';
 
 export type SelectRef = {
-  focus: () => void
-  blur: () => void
-  scrollTo?: (options?: ScrollToOptions) => void
-}
-export type SelectTypes = NormalTypes
+  focus: () => void;
+  blur: () => void;
+  scrollTo?: (options?: ScrollToOptions) => void;
+};
+export type SelectTypes = NormalTypes;
 interface Props {
-  disabled?: boolean
-  type?: SelectTypes
-  value?: string | string[]
-  initialValue?: string | string[]
-  placeholder?: React.ReactNode | string
-  icon?: React.ComponentType
-  onChange?: (value: string | string[]) => void
-  pure?: boolean
-  multiple?: boolean
-  clearable?: boolean
-  className?: string
-  dropdownClassName?: string
-  dropdownStyle?: CSSProperties
-  disableMatchWidth?: boolean
-  onDropdownVisibleChange?: (visible: boolean) => void
-  getPopupContainer?: () => HTMLElement | null
+  disabled?: boolean;
+  type?: SelectTypes;
+  value?: string | string[];
+  initialValue?: string | string[];
+  placeholder?: React.ReactNode | string;
+  icon?: React.ComponentType;
+  onChange?: (value: string | string[]) => void;
+  pure?: boolean;
+  multiple?: boolean;
+  clearable?: boolean;
+  className?: string;
+  dropdownClassName?: string;
+  dropdownStyle?: CSSProperties;
+  disableMatchWidth?: boolean;
+  onDropdownVisibleChange?: (visible: boolean) => void;
+  getPopupContainer?: () => HTMLElement | null;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>
-export type SelectProps = Props & NativeAttrs
+type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+export type SelectProps = Props & NativeAttrs;
 
 const SelectComponent = React.forwardRef<SelectRef, React.PropsWithChildren<SelectProps>>(
   (
@@ -75,46 +75,46 @@ const SelectComponent = React.forwardRef<SelectRef, React.PropsWithChildren<Sele
     }: React.PropsWithChildren<SelectProps>,
     selectRef,
   ) => {
-    const theme = useTheme()
-    const layout = useLayout()
-    const { SCALES } = useScale()
-    const ref = useRef<HTMLDivElement>(null)
-    const inputRef = useRef<HTMLInputElement>(null)
-    const dropdownRef = useRef<HTMLDivElement>(null)
-    const [visible, setVisible] = useState<boolean>(false)
-    const [selectFocus, setSelectFocus] = useState<boolean>(false)
+    const theme = useTheme();
+    const layout = useLayout();
+    const { SCALES } = useScale();
+    const ref = useRef<HTMLDivElement>(null);
+    const inputRef = useRef<HTMLInputElement>(null);
+    const dropdownRef = useRef<HTMLDivElement>(null);
+    const [visible, setVisible] = useState<boolean>(false);
+    const [selectFocus, setSelectFocus] = useState<boolean>(false);
     const [value, setValue, valueRef] = useCurrentState<string | string[] | undefined>(
       () => {
-        if (!multiple) return init
-        if (Array.isArray(init)) return init
-        return typeof init === 'undefined' ? [] : [init]
+        if (!multiple) return init;
+        if (Array.isArray(init)) return init;
+        return typeof init === 'undefined' ? [] : [init];
       },
-    )
+    );
     const isEmpty = useMemo(() => {
-      if (!Array.isArray(value)) return !value
-      return value.length === 0
-    }, [value])
+      if (!Array.isArray(value)) return !value;
+      return value.length === 0;
+    }, [value]);
 
     const { border, borderActive, iconBorder, placeholderColor } = useMemo(
       () => getColors(theme.palette, type),
       [theme.palette, type],
-    )
+    );
 
     const updateVisible = (next: boolean) => {
-      onDropdownVisibleChange(next)
-      setVisible(next)
-    }
+      onDropdownVisibleChange(next);
+      setVisible(next);
+    };
     const updateValue = (next: string) => {
       setValue(last => {
-        if (!Array.isArray(last)) return next
-        if (!last.includes(next)) return [...last, next]
-        return last.filter(item => item !== next)
-      })
-      onChange && onChange(valueRef.current as string | string[])
+        if (!Array.isArray(last)) return next;
+        if (!last.includes(next)) return [...last, next];
+        return last.filter(item => item !== next);
+      });
+      onChange && onChange(valueRef.current as string | string[]);
       if (!multiple) {
-        updateVisible(false)
+        updateVisible(false);
       }
-    }
+    };
 
     const initialValue: SelectConfig = useMemo(
       () => ({
@@ -126,28 +126,28 @@ const SelectComponent = React.forwardRef<SelectRef, React.PropsWithChildren<Sele
         disableAll: disabled,
       }),
       [visible, disabled, ref, value, multiple],
-    )
+    );
 
     const clickHandler = (event: React.MouseEvent<HTMLDivElement>) => {
-      event.stopPropagation()
-      event.nativeEvent.stopImmediatePropagation()
-      event.preventDefault()
-      if (disabled) return
+      event.stopPropagation();
+      event.nativeEvent.stopImmediatePropagation();
+      event.preventDefault();
+      if (disabled) return;
 
-      updateVisible(!visible)
-      event.preventDefault()
-    }
+      updateVisible(!visible);
+      event.preventDefault();
+    };
     const mouseDownHandler = (event: React.MouseEvent<HTMLDivElement>) => {
       /* istanbul ignore next */
       if (visible) {
-        event.preventDefault()
+        event.preventDefault();
       }
-    }
+    };
 
     useEffect(() => {
-      if (customValue === undefined) return
-      setValue(customValue)
-    }, [customValue])
+      if (customValue === undefined) return;
+      setValue(customValue);
+    }, [customValue]);
     useImperativeHandle(
       selectRef,
       () => ({
@@ -156,16 +156,16 @@ const SelectComponent = React.forwardRef<SelectRef, React.PropsWithChildren<Sele
         scrollTo: options => dropdownRef.current?.scrollTo(options),
       }),
       [inputRef, dropdownRef],
-    )
+    );
 
     const selectedChild = useMemo(() => {
-      const [, optionChildren] = pickChildByProps(children, 'value', value)
+      const [, optionChildren] = pickChildByProps(children, 'value', value);
       return React.Children.map(optionChildren, child => {
         if (!React.isValidElement(child)) {
-          return null
+          return null;
         }
-        const el = React.cloneElement(child as any, { preventAllEvents: true })
-        if (!multiple) return el
+        const el = React.cloneElement(child as any, { preventAllEvents: true });
+        if (!multiple) return el;
         return (
           <SelectMultipleValue
             disabled={disabled}
@@ -173,14 +173,14 @@ const SelectComponent = React.forwardRef<SelectRef, React.PropsWithChildren<Sele
           >
             {el}
           </SelectMultipleValue>
-        )
-      })
-    }, [value, children, multiple])
+        );
+      });
+    }, [value, children, multiple]);
 
     const onInputBlur = () => {
-      updateVisible(false)
-      setSelectFocus(false)
-    }
+      updateVisible(false);
+      setSelectFocus(false);
+    };
     const classes = useClasses(
       'select',
       {
@@ -188,7 +188,7 @@ const SelectComponent = React.forwardRef<SelectRef, React.PropsWithChildren<Sele
         multiple,
       },
       className,
-    )
+    );
 
     return (
       <SelectContext.Provider value={initialValue}>
@@ -318,10 +318,10 @@ const SelectComponent = React.forwardRef<SelectRef, React.PropsWithChildren<Sele
           `}</style>
         </div>
       </SelectContext.Provider>
-    )
+    );
   },
-)
+);
 
-SelectComponent.displayName = 'HimalayaSelect'
-const Select = withScale(SelectComponent)
-export default Select
+SelectComponent.displayName = 'HimalayaSelect';
+const Select = withScale(SelectComponent);
+export default Select;

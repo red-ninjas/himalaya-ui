@@ -1,7 +1,7 @@
-'use client'
-import React from 'react'
-import { LayoutContext, LayoutPropsContext } from './layout-context'
-import { defaultBreakpoints } from './shared'
+'use client';
+import React from 'react';
+import { LayoutContext, LayoutPropsContext } from './layout-context';
+import { defaultBreakpoints } from './shared';
 
 const LayoutProvider: React.FC<React.PropsWithChildren<LayoutPropsContext>> = ({
   children,
@@ -41,8 +41,8 @@ const LayoutProvider: React.FC<React.PropsWithChildren<LayoutPropsContext>> = ({
     >
       {children}
     </LayoutContext.Provider>
-  )
-}
+  );
+};
 
-LayoutProvider.displayName = 'HimalayaLayoutProvider'
-export default LayoutProvider
+LayoutProvider.displayName = 'HimalayaLayoutProvider';
+export default LayoutProvider;

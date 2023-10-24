@@ -1,14 +1,14 @@
-import React from 'react'
+import React from 'react';
 
 interface Props {
-  span?: number
-  offset?: number
-  component?: keyof React.JSX.IntrinsicElements
-  className?: string
+  span?: number;
+  offset?: number;
+  component?: keyof React.JSX.IntrinsicElements;
+  className?: string;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>
-export type ColProps = Props & NativeAttrs
+type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+export type ColProps = Props & NativeAttrs;
 
 const Col: React.FC<React.PropsWithChildren<ColProps>> = ({
   component = 'div' as keyof React.JSX.IntrinsicElements,
@@ -18,7 +18,7 @@ const Col: React.FC<React.PropsWithChildren<ColProps>> = ({
   className = '',
   ...props
 }: React.PropsWithChildren<ColProps>) => {
-  const Component = component
+  const Component = component;
 
   return (
     <Component className={`col ${className}`} {...props}>
@@ -34,8 +34,8 @@ const Col: React.FC<React.PropsWithChildren<ColProps>> = ({
         }
       `}</style>
     </Component>
-  )
-}
+  );
+};
 
-Col.displayName = 'HimalayaCol'
-export default Col
+Col.displayName = 'HimalayaCol';
+export default Col;

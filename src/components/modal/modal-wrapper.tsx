@@ -1,16 +1,16 @@
-import React, { useEffect, useRef } from 'react'
-import useTheme from '../use-theme'
-import CssTransition from '../shared/css-transition'
-import { isChildElement } from '../utils/collections'
-import useScale from '../use-scale'
-import useClasses from '../use-classes'
+import React, { useEffect, useRef } from 'react';
+import useTheme from '../use-theme';
+import CssTransition from '../shared/css-transition';
+import { isChildElement } from '../utils/collections';
+import useScale from '../use-scale';
+import useClasses from '../use-classes';
 
 interface Props {
-  className?: string
-  visible?: boolean
+  className?: string;
+  visible?: boolean;
 }
 
-export type ModalWrapperProps = Props
+export type ModalWrapperProps = Props;
 
 const ModalWrapper: React.FC<React.PropsWithChildren<ModalWrapperProps>> = ({
   className = '',
@@ -18,34 +18,34 @@ const ModalWrapper: React.FC<React.PropsWithChildren<ModalWrapperProps>> = ({
   visible = false,
   ...props
 }: React.PropsWithChildren<ModalWrapperProps>) => {
-  const theme = useTheme()
-  const { SCALES } = useScale()
-  const modalContent = useRef<HTMLDivElement>(null)
-  const tabStart = useRef<HTMLDivElement>(null)
-  const tabEnd = useRef<HTMLDivElement>(null)
+  const theme = useTheme();
+  const { SCALES } = useScale();
+  const modalContent = useRef<HTMLDivElement>(null);
+  const tabStart = useRef<HTMLDivElement>(null);
+  const tabEnd = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!visible) return
-    const activeElement = document.activeElement
-    const isChild = isChildElement(modalContent.current, activeElement)
-    if (isChild) return
-    tabStart.current && tabStart.current.focus()
-  }, [visible])
+    if (!visible) return;
+    const activeElement = document.activeElement;
+    const isChild = isChildElement(modalContent.current, activeElement);
+    if (isChild) return;
+    tabStart.current && tabStart.current.focus();
+  }, [visible]);
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    const isTabDown = event.keyCode === 9
-    if (!visible || !isTabDown) return
-    const activeElement = document.activeElement
+    const isTabDown = event.keyCode === 9;
+    if (!visible || !isTabDown) return;
+    const activeElement = document.activeElement;
     if (event.shiftKey) {
       if (activeElement === tabStart.current) {
-        tabEnd.current && tabEnd.current.focus()
+        tabEnd.current && tabEnd.current.focus();
       }
     } else {
       if (activeElement === tabEnd.current) {
-        tabStart.current && tabStart.current.focus()
+        tabStart.current && tabStart.current.focus();
       }
     }
-  }
+  };
 
   return (
     <CssTransition name="wrapper" visible={visible} clearTime={300}>
@@ -119,8 +119,8 @@ const ModalWrapper: React.FC<React.PropsWithChildren<ModalWrapperProps>> = ({
         `}</style>
       </div>
     </CssTransition>
-  )
-}
+  );
+};
 
-ModalWrapper.displayName = 'HimalayaModalWrapper'
-export default ModalWrapper
+ModalWrapper.displayName = 'HimalayaModalWrapper';
+export default ModalWrapper;

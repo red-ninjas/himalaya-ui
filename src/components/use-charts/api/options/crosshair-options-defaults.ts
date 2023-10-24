@@ -1,5 +1,5 @@
-import { CrosshairMode, CrosshairOptions } from '../../model/crosshair'
-import { LineStyle } from '../../renderers/draw-line'
+import { CrosshairMode, CrosshairOptions } from '../../model/crosshair';
+import { LineStyle } from '../../renderers/draw-line';
 
 export const crosshairOptionsDefaults: CrosshairOptions = {
   vertLine: {
@@ -19,4 +19,4 @@ export const crosshairOptionsDefaults: CrosshairOptions = {
     labelBackgroundColor: '#131722',
   },
   mode: CrosshairMode.Magnet,
-}
+};

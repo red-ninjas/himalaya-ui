@@ -1,4 +1,4 @@
-import Slider from './slider'
+import Slider from './slider';
 
-export type { SliderProps, SliderTypes } from './slider'
-export default Slider
+export type { SliderProps, SliderTypes } from './slider';
+export default Slider;

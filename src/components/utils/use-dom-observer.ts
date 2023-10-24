@@ -1,25 +1,25 @@
-import { MutableRefObject, useEffect } from 'react'
+import { MutableRefObject, useEffect } from 'react';
 
 const useDOMObserver = (
   ref: MutableRefObject<HTMLElement | null> | undefined,
   callback: MutationCallback = () => {},
 ) => {
-  const config = { attributes: false, childList: true, subtree: true }
+  const config = { attributes: false, childList: true, subtree: true };
 
   useEffect(() => {
-    if (!ref || !ref.current) return
-    let unmount = false
+    if (!ref || !ref.current) return;
+    let unmount = false;
     const done: MutationCallback = (...params) => {
-      if (unmount) return
-      callback(...params)
-    }
-    const observer = new MutationObserver(done)
-    observer.observe(ref.current, config)
+      if (unmount) return;
+      callback(...params);
+    };
+    const observer = new MutationObserver(done);
+    observer.observe(ref.current, config);
     return () => {
-      unmount = true
-      observer.disconnect()
-    }
-  }, [ref])
-}
+      unmount = true;
+      observer.disconnect();
+    };
+  }, [ref]);
+};
 
-export default useDOMObserver
+export default useDOMObserver;

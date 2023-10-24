@@ -1,15 +1,15 @@
-import React from 'react'
-import useTheme from '../use-theme'
+import React from 'react';
+import useTheme from '../use-theme';
 
 interface Props {
-  opacity?: number
+  opacity?: number;
 }
 
-export type ImageSkeletonProps = Props
+export type ImageSkeletonProps = Props;
 
 const ImageSkeleton: React.FC<ImageSkeletonProps> = React.memo(
   ({ opacity = 0.5, ...props }: ImageSkeletonProps) => {
-    const theme = useTheme()
+    const theme = useTheme();
     return (
       <div className="skeleton" {...props}>
         <style jsx>{`
@@ -44,9 +44,9 @@ const ImageSkeleton: React.FC<ImageSkeletonProps> = React.memo(
           }
         `}</style>
       </div>
-    )
+    );
   },
-)
+);
 
-ImageSkeleton.displayName = 'HimalayaImageSkeleton'
-export default ImageSkeleton
+ImageSkeleton.displayName = 'HimalayaImageSkeleton';
+export default ImageSkeleton;

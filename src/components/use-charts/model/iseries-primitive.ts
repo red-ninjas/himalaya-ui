@@ -1,7 +1,7 @@
-import { CanvasRenderingTarget2D } from 'fancy-canvas'
+import { CanvasRenderingTarget2D } from 'fancy-canvas';
 
-import { AutoscaleInfo } from './series-options'
-import { Logical } from './time-data'
+import { AutoscaleInfo } from './series-options';
+import { Logical } from './time-data';
 
 /**
  * This interface represents a label on the price or time axis
@@ -14,7 +14,7 @@ export interface ISeriesPrimitiveAxisView {
    *
    * @returns coordinate. distance from top for price axis, or distance from left for time axis.
    */
-  coordinate(): number
+  coordinate(): number;
 
   /**
    * fixed coordinate of the label. A label with a fixed coordinate value will always be drawn at the specified coordinate and will appear above any 'unfixed' labels. If you supply
@@ -23,32 +23,32 @@ export interface ISeriesPrimitiveAxisView {
    *
    * @returns coordinate. distance from top for price axis, or distance from left for time axis.
    */
-  fixedCoordinate?(): number | undefined
+  fixedCoordinate?(): number | undefined;
 
   /**
    * @returns text of the label
    */
-  text(): string
+  text(): string;
 
   /**
    * @returns text color of the label
    */
-  textColor(): string
+  textColor(): string;
 
   /**
    * @returns background color of the label
    */
-  backColor(): string
+  backColor(): string;
 
   /**
    * @returns whether the label should be visible (default: `true`)
    */
-  visible?(): boolean
+  visible?(): boolean;
 
   /**
    * @returns whether the tick mark line should be visible (default: `true`)
    */
-  tickVisible?(): boolean
+  tickVisible?(): boolean;
 }
 
 /**
@@ -61,7 +61,7 @@ export interface ISeriesPrimitivePaneRenderer {
    * @param target - canvas context to draw on, refer to FancyCanvas library for more details about this class
    *
    */
-  draw(target: CanvasRenderingTarget2D): void
+  draw(target: CanvasRenderingTarget2D): void;
 
   /**
    * Optional method to draw the background.
@@ -70,7 +70,7 @@ export interface ISeriesPrimitivePaneRenderer {
    *
    * @param target - canvas context to draw on, refer FancyCanvas library for more details about this class
    */
-  drawBackground?(target: CanvasRenderingTarget2D): void
+  drawBackground?(target: CanvasRenderingTarget2D): void;
 }
 
 /**
@@ -80,7 +80,7 @@ export interface ISeriesPrimitivePaneRenderer {
  * - `normal`: Draw at the same level as the series.
  * - `top`: Draw above everything (including the crosshair).
  */
-export type SeriesPrimitivePaneViewZOrder = 'bottom' | 'normal' | 'top'
+export type SeriesPrimitivePaneViewZOrder = 'bottom' | 'normal' | 'top';
 
 /**
  * This interface represents the primitive for one of the pane of the chart (main chart area, time scale, price scale).
@@ -91,13 +91,13 @@ export interface ISeriesPrimitivePaneView {
    *
    * @returns the desired position in the visual layer stack. @see {@link SeriesPrimitivePaneViewZOrder}
    */
-  zOrder?(): SeriesPrimitivePaneViewZOrder
+  zOrder?(): SeriesPrimitivePaneViewZOrder;
   /**
    * This method returns a renderer - special object to draw data
    *
    * @returns an renderer object to be used for drawing, or `null` if we have nothing to draw.
    */
-  renderer(): ISeriesPrimitivePaneRenderer | null
+  renderer(): ISeriesPrimitivePaneRenderer | null;
 }
 
 /**
@@ -108,19 +108,19 @@ export interface PrimitiveHoveredItem {
    * CSS cursor style as defined here: [MDN: CSS Cursor](https://developer.mozilla.org/en-US/docs/Web/CSS/cursor) or `undefined`
    * if you want the library to use the default cursor style instead.
    */
-  cursorStyle?: string
+  cursorStyle?: string;
   /**
    * Hovered objects external ID. Can be used to identify the source item within a mouse subscriber event.
    */
-  externalId: string
+  externalId: string;
   /**
    * The zOrder of the hovered item.
    */
-  zOrder: SeriesPrimitivePaneViewZOrder
+  zOrder: SeriesPrimitivePaneViewZOrder;
   /**
    * Set to true if the object is rendered using `drawBackground` instead of `draw`.
    */
-  isBackground?: boolean
+  isBackground?: boolean;
 }
 
 /**
@@ -130,7 +130,7 @@ export interface ISeriesPrimitiveBase<TSeriesAttachedParameters = unknown> {
   /**
    * This method is called when viewport has been changed, so primitive have to recalculate / invalidate its data
    */
-  updateAllViews?(): void
+  updateAllViews?(): void;
 
   /**
    * Returns array of labels to be drawn on the price axis used by the series
@@ -140,7 +140,7 @@ export interface ISeriesPrimitiveBase<TSeriesAttachedParameters = unknown> {
    * For performance reasons, the lightweight library uses internal caches based on references to arrays
    * So, this method must return new array if set of views has changed and should try to return the same array if nothing changed
    */
-  priceAxisViews?(): readonly ISeriesPrimitiveAxisView[]
+  priceAxisViews?(): readonly ISeriesPrimitiveAxisView[];
 
   /**
    * Returns array of labels to be drawn on the time axis
@@ -150,7 +150,7 @@ export interface ISeriesPrimitiveBase<TSeriesAttachedParameters = unknown> {
    * For performance reasons, the lightweight library uses internal caches based on references to arrays
    * So, this method must return new array if set of views has changed and should try to return the same array if nothing changed
    */
-  timeAxisViews?(): readonly ISeriesPrimitiveAxisView[]
+  timeAxisViews?(): readonly ISeriesPrimitiveAxisView[];
 
   /**
    * Returns array of objects representing primitive in the main area of the chart
@@ -160,7 +160,7 @@ export interface ISeriesPrimitiveBase<TSeriesAttachedParameters = unknown> {
    * For performance reasons, the lightweight library uses internal caches based on references to arrays
    * So, this method must return new array if set of views has changed and should try to return the same array if nothing changed
    */
-  paneViews?(): readonly ISeriesPrimitivePaneView[]
+  paneViews?(): readonly ISeriesPrimitivePaneView[];
 
   /**
    * Returns array of objects representing primitive in the price axis area of the chart
@@ -170,7 +170,7 @@ export interface ISeriesPrimitiveBase<TSeriesAttachedParameters = unknown> {
    * For performance reasons, the lightweight library uses internal caches based on references to arrays
    * So, this method must return new array if set of views has changed and should try to return the same array if nothing changed
    */
-  priceAxisPaneViews?(): readonly ISeriesPrimitivePaneView[]
+  priceAxisPaneViews?(): readonly ISeriesPrimitivePaneView[];
 
   /**
    * Returns array of objects representing primitive in the time axis area of the chart
@@ -180,7 +180,7 @@ export interface ISeriesPrimitiveBase<TSeriesAttachedParameters = unknown> {
    * For performance reasons, the lightweight library uses internal caches based on references to arrays
    * So, this method must return new array if set of views has changed and should try to return the same array if nothing changed
    */
-  timeAxisPaneViews?(): readonly ISeriesPrimitivePaneView[]
+  timeAxisPaneViews?(): readonly ISeriesPrimitivePaneView[];
 
   /**
    * Return autoscaleInfo which will be merged with the series base autoscaleInfo. You can use this to expand the autoscale range
@@ -194,7 +194,7 @@ export interface ISeriesPrimitiveBase<TSeriesAttachedParameters = unknown> {
    * @param endTimePoint - end time point for the current visible range
    * @returns AutoscaleInfo
    */
-  autoscaleInfo?(startTimePoint: Logical, endTimePoint: Logical): AutoscaleInfo | null
+  autoscaleInfo?(startTimePoint: Logical, endTimePoint: Logical): AutoscaleInfo | null;
 
   /**
    * Attached Lifecycle hook.
@@ -202,13 +202,13 @@ export interface ISeriesPrimitiveBase<TSeriesAttachedParameters = unknown> {
    * @param param - An object containing useful references for the attached primitive to use.
    * @returns void
    */
-  attached?(param: TSeriesAttachedParameters): void
+  attached?(param: TSeriesAttachedParameters): void;
   /**
    * Detached Lifecycle hook.
    *
    * @returns void
    */
-  detached?(): void
+  detached?(): void;
 
   /**
    * Hit test method which will be called by the library when the cursor is moved.
@@ -221,5 +221,5 @@ export interface ISeriesPrimitiveBase<TSeriesAttachedParameters = unknown> {
    * @param x - x Coordinate of mouse event
    * @param y - y Coordinate of mouse event
    */
-  hitTest?(x: number, y: number): PrimitiveHoveredItem | null
+  hitTest?(x: number, y: number): PrimitiveHoveredItem | null;
 }

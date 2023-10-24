@@ -7,4 +7,4 @@
  * See issue #446
  */
 
-export const isRunningOnClientSide = typeof window !== 'undefined'
+export const isRunningOnClientSide = typeof window !== 'undefined';

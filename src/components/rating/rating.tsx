@@ -1,32 +1,32 @@
-'use client'
-import React, { useEffect, useMemo, useState } from 'react'
-import { UIThemesPalette } from '../themes'
-import { NormalTypes, tupleNumber } from '../utils/prop-types'
-import RatingIcon from './rating-icon'
-import useTheme from '../use-theme'
-import useScale, { withScale } from '../use-scale'
-import useClasses from '../use-classes'
+'use client';
+import React, { useEffect, useMemo, useState } from 'react';
+import { UIThemesPalette } from '../themes';
+import { NormalTypes, tupleNumber } from '../utils/prop-types';
+import RatingIcon from './rating-icon';
+import useTheme from '../use-theme';
+import useScale, { withScale } from '../use-scale';
+import useClasses from '../use-classes';
 
-export type RatingTypes = NormalTypes
-const ratingCountTuple = tupleNumber(2, 3, 4, 5, 6, 7, 8, 9, 10)
-const ratingValueTuple = tupleNumber(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
-export type RatingValue = (typeof ratingValueTuple)[number]
-export type RatingCount = (typeof ratingCountTuple)[number]
+export type RatingTypes = NormalTypes;
+const ratingCountTuple = tupleNumber(2, 3, 4, 5, 6, 7, 8, 9, 10);
+const ratingValueTuple = tupleNumber(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+export type RatingValue = (typeof ratingValueTuple)[number];
+export type RatingCount = (typeof ratingCountTuple)[number];
 
 interface Props {
-  type?: RatingTypes
-  className?: string
-  icon?: JSX.Element
-  count?: RatingCount | number
-  value?: RatingValue | number
-  initialValue?: RatingValue
-  onValueChange?: (value: number) => void
-  locked?: boolean
-  onLockedChange?: (locked: boolean) => void
+  type?: RatingTypes;
+  className?: string;
+  icon?: JSX.Element;
+  count?: RatingCount | number;
+  value?: RatingValue | number;
+  initialValue?: RatingValue;
+  onValueChange?: (value: number) => void;
+  locked?: boolean;
+  onLockedChange?: (locked: boolean) => void;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>
-export type RatingProps = Props & NativeAttrs
+type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+export type RatingProps = Props & NativeAttrs;
 
 const getColor = (type: RatingTypes, palette: UIThemesPalette): string => {
   const colors: { [key in RatingTypes]?: string } = {
@@ -34,9 +34,9 @@ const getColor = (type: RatingTypes, palette: UIThemesPalette): string => {
     success: palette.success,
     warning: palette.warning,
     error: palette.error,
-  }
-  return colors[type] || (colors.default as string)
-}
+  };
+  return colors[type] || (colors.default as string);
+};
 
 const RatingComponent: React.FC<RatingProps> = ({
   type = 'default' as RatingTypes,
@@ -50,35 +50,35 @@ const RatingComponent: React.FC<RatingProps> = ({
   onLockedChange,
   ...props
 }: React.PropsWithChildren<RatingProps>) => {
-  const theme = useTheme()
-  const { SCALES } = useScale()
-  const color = useMemo(() => getColor(type, theme.palette), [type, theme.palette])
-  const [value, setValue] = useState<number>(initialValue)
-  const [isLocked, setIsLocked] = useState<boolean>(locked)
+  const theme = useTheme();
+  const { SCALES } = useScale();
+  const color = useMemo(() => getColor(type, theme.palette), [type, theme.palette]);
+  const [value, setValue] = useState<number>(initialValue);
+  const [isLocked, setIsLocked] = useState<boolean>(locked);
 
   const lockedChangeHandler = (next: boolean) => {
-    setIsLocked(next)
-    onLockedChange && onLockedChange(next)
-  }
+    setIsLocked(next);
+    onLockedChange && onLockedChange(next);
+  };
   const valueChangeHandler = (next: number) => {
-    setValue(next)
-    const emitValue = next > count ? count : next
-    onValueChange && onValueChange(emitValue)
-  }
+    setValue(next);
+    const emitValue = next > count ? count : next;
+    onValueChange && onValueChange(emitValue);
+  };
   const clickHandler = (index: number) => {
-    if (isLocked) return lockedChangeHandler(false)
-    valueChangeHandler(index)
-    lockedChangeHandler(true)
-  }
+    if (isLocked) return lockedChangeHandler(false);
+    valueChangeHandler(index);
+    lockedChangeHandler(true);
+  };
   const mouseEnterHandler = (index: number) => {
-    if (isLocked) return
-    valueChangeHandler(index)
-  }
+    if (isLocked) return;
+    valueChangeHandler(index);
+  };
 
   useEffect(() => {
-    if (typeof customValue === 'undefined') return
-    setValue(customValue < 0 ? 0 : customValue)
-  }, [customValue])
+    if (typeof customValue === 'undefined') return;
+    setValue(customValue < 0 ? 0 : customValue);
+  }, [customValue]);
 
   return (
     <div className={useClasses('rating', className)} {...props}>
@@ -130,9 +130,9 @@ const RatingComponent: React.FC<RatingProps> = ({
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-RatingComponent.displayName = 'HimalayaRating'
-const Rating = withScale(RatingComponent)
-export default Rating
+RatingComponent.displayName = 'HimalayaRating';
+const Rating = withScale(RatingComponent);
+export default Rating;

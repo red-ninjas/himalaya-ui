@@ -1,17 +1,17 @@
-'use client'
+'use client';
 
-import React from 'react'
-import useTheme from '../use-theme'
-import { UIThemes } from '../themes/presets'
-import useScale, { withScale } from '../use-scale'
-import useClasses from '../use-classes'
+import React from 'react';
+import useTheme from '../use-theme';
+import { UIThemes } from '../themes/presets';
+import useScale, { withScale } from '../use-scale';
+import useClasses from '../use-classes';
 
 interface Props {
-  className?: string
+  className?: string;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>
-export type SpinnerProps = Props & NativeAttrs
+type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+export type SpinnerProps = Props & NativeAttrs;
 
 const getSpans = (theme: UIThemes) => {
   return [...new Array(12)].map((_, index) => (
@@ -98,16 +98,16 @@ const getSpans = (theme: UIThemes) => {
         }
       `}</style>
     </span>
-  ))
-}
+  ));
+};
 
 const SpinnerComponent: React.FC<SpinnerProps> = ({
   className = '',
   ...props
 }: SpinnerProps) => {
-  const theme = useTheme()
-  const { SCALES } = useScale()
-  const classes = useClasses('spinner', className)
+  const theme = useTheme();
+  const { SCALES } = useScale();
+  const classes = useClasses('spinner', className);
 
   return (
     <div className={classes} {...props}>
@@ -132,9 +132,9 @@ const SpinnerComponent: React.FC<SpinnerProps> = ({
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-SpinnerComponent.displayName = 'HimalayaSpinner'
-const Spinner = withScale(SpinnerComponent)
-export default Spinner
+SpinnerComponent.displayName = 'HimalayaSpinner';
+const Spinner = withScale(SpinnerComponent);
+export default Spinner;

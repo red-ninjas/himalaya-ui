@@ -1,23 +1,23 @@
-import React from 'react'
-import useTheme from '../use-theme'
-import useClasses from '../use-classes'
+import React from 'react';
+import useTheme from '../use-theme';
+import useClasses from '../use-classes';
 
 interface Props {
-  visible: boolean
-  onClick?: (event: React.MouseEvent<HTMLDivElement>) => void
-  disabled?: boolean
+  visible: boolean;
+  onClick?: (event: React.MouseEvent<HTMLDivElement>) => void;
+  disabled?: boolean;
 }
 
 const InputIconClear: React.FC<Props> = ({ onClick, disabled, visible }) => {
-  const theme = useTheme()
-  const classes = useClasses('clear-icon', { visible })
+  const theme = useTheme();
+  const classes = useClasses('clear-icon', { visible });
 
   const clickHandler = (event: React.MouseEvent<HTMLDivElement>) => {
-    event.preventDefault()
-    event.stopPropagation()
-    event.nativeEvent.stopImmediatePropagation()
-    onClick && onClick(event)
-  }
+    event.preventDefault();
+    event.stopPropagation();
+    event.nativeEvent.stopImmediatePropagation();
+    onClick && onClick(event);
+  };
   return (
     <div onClick={clickHandler} className={classes}>
       <svg
@@ -68,9 +68,9 @@ const InputIconClear: React.FC<Props> = ({ onClick, disabled, visible }) => {
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-const MemoInputIconClear = React.memo(InputIconClear)
+const MemoInputIconClear = React.memo(InputIconClear);
 
-export default MemoInputIconClear
+export default MemoInputIconClear;

@@ -1,12 +1,12 @@
-import { NormalTypes } from '../utils/prop-types'
-import { UIThemesPalette } from '../themes/presets'
+import { NormalTypes } from '../utils/prop-types';
+import { UIThemesPalette } from '../themes/presets';
 
 export type SelectColor = {
-  border: string
-  borderActive: string
-  iconBorder: string
-  placeholderColor: string
-}
+  border: string;
+  borderActive: string;
+  iconBorder: string;
+  placeholderColor: string;
+};
 
 export const getColors = (
   palette: UIThemesPalette,
@@ -43,8 +43,8 @@ export const getColors = (
       iconBorder: palette.error,
       placeholderColor: palette.error,
     },
-  }
+  };
 
-  if (!status) return colors.default
-  return colors[status]
-}
+  if (!status) return colors.default;
+  return colors[status];
+};

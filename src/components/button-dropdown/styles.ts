@@ -1,13 +1,13 @@
-import { UIThemesPalette } from '../themes/presets'
-import { NormalTypes } from '../utils/prop-types'
+import { UIThemesPalette } from '../themes/presets';
+import { NormalTypes } from '../utils/prop-types';
 
 type ButtonDropdownColors = {
-  color: string
-  bgColor: string
-  hoverBgColor: string
-  hoverBorder: string
-  borderLeftColor: string
-}
+  color: string;
+  bgColor: string;
+  hoverBgColor: string;
+  hoverBorder: string;
+  borderLeftColor: string;
+};
 
 export const getColor = (
   palette: UIThemesPalette,
@@ -50,13 +50,13 @@ export const getColor = (
       hoverBgColor: palette.errorDark,
       hoverBorder: palette.errorDark,
     },
-  }
+  };
 
   if (disabled)
     return {
       ...colors.default,
       bgColor: palette.accents_1,
       color: palette.accents_4,
-    }
-  return type ? colors[type] : colors.default
-}
+    };
+  return type ? colors[type] : colors.default;
+};

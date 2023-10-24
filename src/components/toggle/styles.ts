@@ -1,9 +1,9 @@
-import { UIThemesPalette } from '../themes/presets'
-import { NormalTypes } from '../utils/prop-types'
+import { UIThemesPalette } from '../themes/presets';
+import { NormalTypes } from '../utils/prop-types';
 
 export type SelectColor = {
-  bg: string
-}
+  bg: string;
+};
 
 export const getColors = (
   palette: UIThemesPalette,
@@ -25,8 +25,8 @@ export const getColors = (
     error: {
       bg: palette.error,
     },
-  }
+  };
 
-  if (!status) return colors.default
-  return colors[status]
-}
+  if (!status) return colors.default;
+  return colors[status];
+};

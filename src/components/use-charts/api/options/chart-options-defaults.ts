@@ -1,13 +1,13 @@
-import { isRunningOnClientSide } from '../../helpers/is-running-on-client-side'
+import { isRunningOnClientSide } from '../../helpers/is-running-on-client-side';
 
-import { ChartOptionsInternal, TrackingModeExitMode } from '../../model/chart-model'
+import { ChartOptionsInternal, TrackingModeExitMode } from '../../model/chart-model';
 
-import { crosshairOptionsDefaults } from './crosshair-options-defaults'
-import { gridOptionsDefaults } from './grid-options-defaults'
-import { layoutOptionsDefaults } from './layout-options-defaults'
-import { priceScaleOptionsDefaults } from './price-scale-options-defaults'
-import { timeScaleOptionsDefaults } from './time-scale-options-defaults'
-import { watermarkOptionsDefaults } from './watermark-options-defaults'
+import { crosshairOptionsDefaults } from './crosshair-options-defaults';
+import { gridOptionsDefaults } from './grid-options-defaults';
+import { layoutOptionsDefaults } from './layout-options-defaults';
+import { priceScaleOptionsDefaults } from './price-scale-options-defaults';
+import { timeScaleOptionsDefaults } from './time-scale-options-defaults';
+import { watermarkOptionsDefaults } from './watermark-options-defaults';
 
 export function chartOptionsDefaults<
   HorzScaleItem,
@@ -61,5 +61,5 @@ export function chartOptionsDefaults<
     trackingMode: {
       exitMode: TrackingModeExitMode.OnNextTap,
     },
-  }
+  };
 }

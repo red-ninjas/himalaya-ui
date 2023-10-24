@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 export const LinkIconComponent: React.FC<unknown> = () => {
   return (
@@ -27,9 +27,9 @@ export const LinkIconComponent: React.FC<unknown> = () => {
         }
       `}</style>
     </svg>
-  )
-}
+  );
+};
 
-LinkIconComponent.displayName = 'HimalayaLinkIcon'
-const LinkIcon = React.memo(LinkIconComponent)
-export default LinkIcon
+LinkIconComponent.displayName = 'HimalayaLinkIcon';
+const LinkIcon = React.memo(LinkIconComponent);
+export default LinkIcon;

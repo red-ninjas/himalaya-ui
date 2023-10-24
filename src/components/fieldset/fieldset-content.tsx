@@ -1,14 +1,14 @@
-'use client'
-import React from 'react'
-import useScale, { withScale } from '../use-scale'
-import useClasses from '../use-classes'
+'use client';
+import React from 'react';
+import useScale, { withScale } from '../use-scale';
+import useClasses from '../use-classes';
 
 interface Props {
-  className?: string
+  className?: string;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>
-export type FieldsetContentProps = Props & NativeAttrs
+type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+export type FieldsetContentProps = Props & NativeAttrs;
 
 const FieldsetContentComponent: React.FC<
   React.PropsWithChildren<FieldsetContentProps>
@@ -17,8 +17,8 @@ const FieldsetContentComponent: React.FC<
   children,
   ...props
 }: React.PropsWithChildren<FieldsetContentProps>) => {
-  const { SCALES } = useScale()
-  const classes = useClasses('content', className)
+  const { SCALES } = useScale();
+  const classes = useClasses('content', className);
 
   return (
     <div className={classes} {...props}>
@@ -38,9 +38,9 @@ const FieldsetContentComponent: React.FC<
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-FieldsetContentComponent.displayName = 'HimalayaFieldsetContent'
-const FieldsetContent = withScale(FieldsetContentComponent)
-export default FieldsetContent
+FieldsetContentComponent.displayName = 'HimalayaFieldsetContent';
+const FieldsetContent = withScale(FieldsetContentComponent);
+export default FieldsetContent;

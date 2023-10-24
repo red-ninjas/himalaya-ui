@@ -1,21 +1,21 @@
-'use client'
+'use client';
 
-import MoonIcon from '../icons/moon'
-import SunIcon from '../icons/sun'
-import Button from '../button'
-import React from 'react'
-import { useConfigs } from '../use-context/config-context'
-import { withScale } from '../use-scale'
-import { Sunset } from '../icons'
+import MoonIcon from '../icons/moon';
+import SunIcon from '../icons/sun';
+import Button from '../button';
+import React from 'react';
+import { useConfigs } from '../use-context/config-context';
+import { withScale } from '../use-scale';
+import { Sunset } from '../icons';
 
 const ThemeSwitcherComponent: React.FC<unknown> = () => {
-  const { themeType, setTheme } = useConfigs()
+  const { themeType, setTheme } = useConfigs();
 
   const icon =
-    themeType === 'dark' ? <SunIcon /> : themeType === 'grey' ? <Sunset /> : <MoonIcon />
+    themeType === 'dark' ? <SunIcon /> : themeType === 'grey' ? <Sunset /> : <MoonIcon />;
   const switchThemeOnClick = () => {
-    setTheme(themeType === 'dark' ? 'grey' : themeType === 'grey' ? 'light' : 'dark')
-  }
+    setTheme(themeType === 'dark' ? 'grey' : themeType === 'grey' ? 'light' : 'dark');
+  };
   return (
     <Button
       w="28px"
@@ -26,7 +26,7 @@ const ThemeSwitcherComponent: React.FC<unknown> = () => {
       onClick={switchThemeOnClick}
       title={'Switch theme'}
     />
-  )
-}
-const ThemeSwitcher = withScale(ThemeSwitcherComponent)
-export default ThemeSwitcher
+  );
+};
+const ThemeSwitcher = withScale(ThemeSwitcherComponent);
+export default ThemeSwitcher;

@@ -1,18 +1,18 @@
-'use client'
-import React from 'react'
-import useTheme from '../use-theme'
-import useScale, { withScale } from '../use-scale'
+'use client';
+import React from 'react';
+import useTheme from '../use-theme';
+import useScale, { withScale } from '../use-scale';
 
 type iProps = {
-  command?: boolean
-  shift?: boolean
-  option?: boolean
-  ctrl?: boolean
-  className?: string
-}
+  command?: boolean;
+  shift?: boolean;
+  option?: boolean;
+  ctrl?: boolean;
+  className?: string;
+};
 
-type NativeAttrs = Omit<React.KeygenHTMLAttributes<any>, keyof iProps>
-export type KeyboardProps = iProps & NativeAttrs
+type NativeAttrs = Omit<React.KeygenHTMLAttributes<any>, keyof iProps>;
+export type KeyboardProps = iProps & NativeAttrs;
 
 const KeyboardComponent: React.FC<React.PropsWithChildren<KeyboardProps>> = ({
   command = false,
@@ -23,8 +23,8 @@ const KeyboardComponent: React.FC<React.PropsWithChildren<KeyboardProps>> = ({
   className = '',
   ...props
 }: React.PropsWithChildren<KeyboardProps>) => {
-  const theme = useTheme()
-  const { SCALES } = useScale()
+  const theme = useTheme();
+  const { SCALES } = useScale();
 
   return (
     <kbd className={className} {...props}>
@@ -64,9 +64,9 @@ const KeyboardComponent: React.FC<React.PropsWithChildren<KeyboardProps>> = ({
         }
       `}</style>
     </kbd>
-  )
-}
+  );
+};
 
-KeyboardComponent.displayName = 'HimalayaKeyboard'
-const Keyboard = withScale(KeyboardComponent)
-export default Keyboard
+KeyboardComponent.displayName = 'HimalayaKeyboard';
+const Keyboard = withScale(KeyboardComponent);
+export default Keyboard;

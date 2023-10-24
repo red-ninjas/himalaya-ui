@@ -1,6 +1,6 @@
-import { defaultFontFamily } from '../../helpers/make-font'
+import { defaultFontFamily } from '../../helpers/make-font';
 
-import { WatermarkOptions } from '../../model/watermark'
+import { WatermarkOptions } from '../../model/watermark';
 
 export const watermarkOptionsDefaults: WatermarkOptions = {
   color: 'rgba(0, 0, 0, 0)',
@@ -11,4 +11,4 @@ export const watermarkOptionsDefaults: WatermarkOptions = {
   text: '',
   horzAlign: 'center',
   vertAlign: 'center',
-}
+};

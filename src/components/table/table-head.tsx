@@ -1,46 +1,46 @@
-import React, { useMemo } from 'react'
-import useTheme from '../use-theme'
-import { TableAbstractColumn, TableDataItemBase } from './table-types'
+import React, { useMemo } from 'react';
+import useTheme from '../use-theme';
+import { TableAbstractColumn, TableDataItemBase } from './table-types';
 
 interface Props<TableDataItem extends TableDataItemBase> {
-  width: number
-  columns: Array<TableAbstractColumn<TableDataItem>>
-  className?: string
+  width: number;
+  columns: Array<TableAbstractColumn<TableDataItem>>;
+  className?: string;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props<any>>
+type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props<any>>;
 export type TableHeadProps<TableDataItem extends TableDataItemBase> =
-  Props<TableDataItem> & NativeAttrs
+  Props<TableDataItem> & NativeAttrs;
 
 const makeColgroup = <TableDataItem extends TableDataItemBase>(
   width: number,
   columns: Array<TableAbstractColumn<TableDataItem>>,
 ) => {
-  const unsetWidthCount = columns.filter(c => !c.width).length
+  const unsetWidthCount = columns.filter(c => !c.width).length;
   const customWidthTotal = columns.reduce((pre, current) => {
-    return current.width ? pre + current.width : pre
-  }, 0)
-  const averageWidth = (width - customWidthTotal) / unsetWidthCount
-  if (averageWidth <= 0) return <colgroup />
+    return current.width ? pre + current.width : pre;
+  }, 0);
+  const averageWidth = (width - customWidthTotal) / unsetWidthCount;
+  if (averageWidth <= 0) return <colgroup />;
   return (
     <colgroup>
       {columns.map((column, index) => (
         <col key={`colgroup-${index}`} width={column.width || averageWidth} />
       ))}
     </colgroup>
-  )
-}
+  );
+};
 
 const TableHead = <TableDataItem extends TableDataItemBase>(
   props: TableHeadProps<TableDataItem>,
 ) => {
-  const theme = useTheme()
-  const { columns, width } = props as TableHeadProps<TableDataItem>
-  const isScalableWidth = useMemo(() => columns.find(item => !!item.width), [columns])
+  const theme = useTheme();
+  const { columns, width } = props as TableHeadProps<TableDataItem>;
+  const isScalableWidth = useMemo(() => columns.find(item => !!item.width), [columns]);
   const colgroup = useMemo(() => {
-    if (!isScalableWidth) return <colgroup />
-    return makeColgroup(width, columns)
-  }, [isScalableWidth, width])
+    if (!isScalableWidth) return <colgroup />;
+    return makeColgroup(width, columns);
+  }, [isScalableWidth, width]);
 
   return (
     <>
@@ -104,8 +104,8 @@ const TableHead = <TableDataItem extends TableDataItemBase>(
         }
       `}</style>
     </>
-  )
-}
+  );
+};
 
-TableHead.displayName = 'HimalayaTableHead'
-export default TableHead
+TableHead.displayName = 'HimalayaTableHead';
+export default TableHead;

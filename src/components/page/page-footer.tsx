@@ -1,20 +1,20 @@
-'use client'
+'use client';
 
-import React from 'react'
-import useScale, { withScale } from '../use-scale'
+import React from 'react';
+import useScale, { withScale } from '../use-scale';
 
 interface Props {
-  className?: string
+  className?: string;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>
-export type PageFooterProps = Props & NativeAttrs
+type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+export type PageFooterProps = Props & NativeAttrs;
 
 const PageFooterComponent: React.FC<React.PropsWithChildren<PageFooterProps>> = ({
   children,
   ...props
 }: React.PropsWithChildren<PageFooterProps>) => {
-  const { SCALES } = useScale()
+  const { SCALES } = useScale();
 
   return (
     <footer {...props}>
@@ -31,9 +31,9 @@ const PageFooterComponent: React.FC<React.PropsWithChildren<PageFooterProps>> = 
         }
       `}</style>
     </footer>
-  )
-}
+  );
+};
 
-PageFooterComponent.displayName = 'HimalayaPageFooter'
-const PageFooter = withScale(PageFooterComponent)
-export default PageFooter
+PageFooterComponent.displayName = 'HimalayaPageFooter';
+const PageFooter = withScale(PageFooterComponent);
+export default PageFooter;

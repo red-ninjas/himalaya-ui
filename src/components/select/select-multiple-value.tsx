@@ -1,11 +1,11 @@
-import React from 'react'
-import useTheme from '../use-theme'
-import Grid from '../grid'
-import SelectClearIcon from './select-icon-clear'
+import React from 'react';
+import useTheme from '../use-theme';
+import Grid from '../grid';
+import SelectClearIcon from './select-icon-clear';
 
 interface Props {
-  disabled: boolean
-  onClear: (() => void) | null
+  disabled: boolean;
+  onClear: (() => void) | null;
 }
 
 const SelectMultipleValue: React.FC<React.PropsWithChildren<Props>> = ({
@@ -13,7 +13,7 @@ const SelectMultipleValue: React.FC<React.PropsWithChildren<Props>> = ({
   onClear,
   children,
 }) => {
-  const theme = useTheme()
+  const theme = useTheme();
 
   return (
     <Grid>
@@ -45,8 +45,8 @@ const SelectMultipleValue: React.FC<React.PropsWithChildren<Props>> = ({
         }
       `}</style>
     </Grid>
-  )
-}
+  );
+};
 
-SelectMultipleValue.displayName = 'HimalayaSelectMultipleValue'
-export default SelectMultipleValue
+SelectMultipleValue.displayName = 'HimalayaSelectMultipleValue';
+export default SelectMultipleValue;

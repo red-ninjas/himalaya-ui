@@ -6,7 +6,7 @@
  */
 export function assert(condition: boolean, message?: string): asserts condition {
   if (!condition) {
-    throw new Error('Assertion failed' + (message ? ': ' + message : ''))
+    throw new Error('Assertion failed' + (message ? ': ' + message : ''));
   }
 }
 
@@ -17,14 +17,14 @@ export function assert(condition: boolean, message?: string): asserts condition 
  * @param value - The value, or undefined.
  * @returns The passed value, if it is not undefined
  */
-export function ensureDefined(value: undefined): never
-export function ensureDefined<T>(value: T | undefined): T
+export function ensureDefined(value: undefined): never;
+export function ensureDefined<T>(value: T | undefined): T;
 export function ensureDefined<T>(value: T | undefined): T {
   if (value === undefined) {
-    throw new Error('Value is undefined')
+    throw new Error('Value is undefined');
   }
 
-  return value
+  return value;
 }
 
 /**
@@ -34,14 +34,14 @@ export function ensureDefined<T>(value: T | undefined): T {
  * @param value - The value, or null.
  * @returns The passed value, if it is not null
  */
-export function ensureNotNull(value: null): never
-export function ensureNotNull<T>(value: T | null): T
+export function ensureNotNull(value: null): never;
+export function ensureNotNull<T>(value: T | null): T;
 export function ensureNotNull<T>(value: T | null): T {
   if (value === null) {
-    throw new Error('Value is null')
+    throw new Error('Value is null');
   }
 
-  return value
+  return value;
 }
 
 /**
@@ -51,13 +51,13 @@ export function ensureNotNull<T>(value: T | null): T {
  * @param value - The value, or undefined, or null.
  * @returns The passed value, if it is not undefined and not null
  */
-export function ensure(value: undefined | null): never
-export function ensure<T>(value: T | undefined | null): T
+export function ensure(value: undefined | null): never;
+export function ensure<T>(value: T | undefined | null): T;
 export function ensure<T>(value: T | undefined | null): T {
-  return ensureNotNull(ensureDefined(value))
+  return ensureNotNull(ensureDefined(value));
 }
 
 /**
  * Compile time check for never
  */
-export function ensureNever(_value: never): void { }
+export function ensureNever(_value: never): void {}

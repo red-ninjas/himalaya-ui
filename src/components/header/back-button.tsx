@@ -1,22 +1,22 @@
-'use client'
+'use client';
 
-import { ChevronLeft } from '../icons'
-import { useRouter } from 'next/navigation'
-import React from 'react'
-import Button from '../button'
+import { ChevronLeft } from '../icons';
+import { useRouter } from 'next/navigation';
+import React from 'react';
+import Button from '../button';
 
 const BackButton: React.FC<{
-  onClick?: () => void
-  url?: string
+  onClick?: () => void;
+  url?: string;
 }> = ({ ...props }) => {
-  const router = useRouter()
+  const router = useRouter();
   const onClick = () => {
     if (props.url) {
-      router.replace(props.url)
+      router.replace(props.url);
     } else if (props.onClick) {
-      props.onClick()
+      props.onClick();
     }
-  }
+  };
   return (
     <div className="back-menu-button-outer">
       <Button className="menu-back-button" auto type="abort" onClick={onClick}>
@@ -37,7 +37,7 @@ const BackButton: React.FC<{
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-export default BackButton
+export default BackButton;

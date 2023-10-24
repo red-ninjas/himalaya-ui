@@ -1,21 +1,21 @@
-'use client'
+'use client';
 
-import React, { useCallback, useMemo, useState } from 'react'
-import useTheme from '../use-theme'
-import useCurrentState from '../utils/use-current-state'
-import { FieldsetContext, FieldItem } from './fieldset-context'
-import useWarning from '../utils/use-warning'
-import useScale, { withScale } from '../use-scale'
-import useClasses from '../use-classes'
+import React, { useCallback, useMemo, useState } from 'react';
+import useTheme from '../use-theme';
+import useCurrentState from '../utils/use-current-state';
+import { FieldsetContext, FieldItem } from './fieldset-context';
+import useWarning from '../utils/use-warning';
+import useScale, { withScale } from '../use-scale';
+import useClasses from '../use-classes';
 
 interface Props {
-  value: string
-  className?: string
-  onChange?: (value: string) => void
+  value: string;
+  className?: string;
+  onChange?: (value: string) => void;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>
-export type FieldsetGroupProps = Props & NativeAttrs
+type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+export type FieldsetGroupProps = Props & NativeAttrs;
 
 const FieldsetGroupComponent: React.FC<React.PropsWithChildren<FieldsetGroupProps>> = ({
   className = '',
@@ -24,19 +24,19 @@ const FieldsetGroupComponent: React.FC<React.PropsWithChildren<FieldsetGroupProp
   onChange,
   ...props
 }: React.PropsWithChildren<FieldsetGroupProps>) => {
-  const theme = useTheme()
-  const { SCALES } = useScale()
-  const [selfVal, setSelfVal] = useState<string>(value)
-  const [items, setItems, ref] = useCurrentState<FieldItem[]>([])
-  const classes = useClasses('group', className)
+  const theme = useTheme();
+  const { SCALES } = useScale();
+  const [selfVal, setSelfVal] = useState<string>(value);
+  const [items, setItems, ref] = useCurrentState<FieldItem[]>([]);
+  const classes = useClasses('group', className);
 
   const register = (newItem: FieldItem) => {
-    const hasItem = ref.current.find(item => item.value === newItem.value)
+    const hasItem = ref.current.find(item => item.value === newItem.value);
     if (hasItem) {
-      useWarning('The "value" of each "Fieldset" must be unique.', 'Fieldset')
+      useWarning('The "value" of each "Fieldset" must be unique.', 'Fieldset');
     }
-    setItems([...ref.current, newItem])
-  }
+    setItems([...ref.current, newItem]);
+  };
 
   const providerValue = useMemo(
     () => ({
@@ -45,15 +45,15 @@ const FieldsetGroupComponent: React.FC<React.PropsWithChildren<FieldsetGroupProp
       register,
     }),
     [selfVal],
-  )
+  );
 
   const clickHandle = useCallback(
     (nextValue: string) => {
-      setSelfVal(nextValue)
-      onChange && onChange(nextValue)
+      setSelfVal(nextValue);
+      onChange && onChange(nextValue);
     },
     [onChange],
-  )
+  );
 
   return (
     <FieldsetContext.Provider value={providerValue}>
@@ -137,9 +137,9 @@ const FieldsetGroupComponent: React.FC<React.PropsWithChildren<FieldsetGroupProp
         `}</style>
       </div>
     </FieldsetContext.Provider>
-  )
-}
+  );
+};
 
-FieldsetGroupComponent.displayName = 'HimalayaFieldsetGroup'
-const FieldsetGroup = withScale(FieldsetGroupComponent)
-export default FieldsetGroup
+FieldsetGroupComponent.displayName = 'HimalayaFieldsetGroup';
+const FieldsetGroup = withScale(FieldsetGroupComponent);
+export default FieldsetGroup;

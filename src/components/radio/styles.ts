@@ -1,11 +1,11 @@
-import { UIThemesPalette } from '../themes/presets'
-import { NormalTypes } from '../utils/prop-types'
+import { UIThemesPalette } from '../themes/presets';
+import { NormalTypes } from '../utils/prop-types';
 
 export type RadioColor = {
-  label: string
-  border: string
-  bg: string
-}
+  label: string;
+  border: string;
+  bg: string;
+};
 
 export const getColors = (palette: UIThemesPalette, status?: NormalTypes): RadioColor => {
   const colors: { [key in NormalTypes]: RadioColor } = {
@@ -34,8 +34,8 @@ export const getColors = (palette: UIThemesPalette, status?: NormalTypes): Radio
       border: palette.error,
       bg: palette.error,
     },
-  }
+  };
 
-  if (!status) return colors.default
-  return colors[status]
-}
+  if (!status) return colors.default;
+  return colors[status];
+};

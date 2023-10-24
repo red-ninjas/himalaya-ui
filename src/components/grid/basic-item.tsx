@@ -1,56 +1,56 @@
-import React, { useMemo } from 'react'
+import React, { useMemo } from 'react';
 import {
   GridJustify,
   GridDirection,
   GridAlignItems,
   GridAlignContent,
-} from './grid-types'
-import useScale from '../use-scale'
-import useClasses from '../use-classes'
-import useLayout from '../use-layout'
+} from './grid-types';
+import useScale from '../use-scale';
+import useClasses from '../use-classes';
+import useLayout from '../use-layout';
 
-export type GridBreakpointsValue = number | boolean
+export type GridBreakpointsValue = number | boolean;
 export interface GridBasicComponentProps {
-  xs?: GridBreakpointsValue
-  sm?: GridBreakpointsValue
-  md?: GridBreakpointsValue
-  lg?: GridBreakpointsValue
-  xl?: GridBreakpointsValue
-  justify?: GridJustify
-  direction?: GridDirection
-  alignItems?: GridAlignItems
-  alignContent?: GridAlignContent
-  className?: string
+  xs?: GridBreakpointsValue;
+  sm?: GridBreakpointsValue;
+  md?: GridBreakpointsValue;
+  lg?: GridBreakpointsValue;
+  xl?: GridBreakpointsValue;
+  justify?: GridJustify;
+  direction?: GridDirection;
+  alignItems?: GridAlignItems;
+  alignContent?: GridAlignContent;
+  className?: string;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof GridBasicComponentProps>
-export type GridBasicItemProps = GridBasicComponentProps & NativeAttrs
+type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof GridBasicComponentProps>;
+export type GridBasicItemProps = GridBasicComponentProps & NativeAttrs;
 
 type ItemLayoutValue = {
-  grow: number
-  width: string
-  basis: string
-  display: string
-}
+  grow: number;
+  width: string;
+  basis: string;
+  display: string;
+};
 const getItemLayout = (val: GridBreakpointsValue): ItemLayoutValue => {
-  const display = val === 0 ? 'display: none;' : 'display: inherit;'
+  const display = val === 0 ? 'display: none;' : 'display: inherit;';
   if (typeof val === 'number') {
-    const width = (100 / 24) * val
-    const ratio = width > 100 ? '100%' : width < 0 ? '0' : `${width}%`
+    const width = (100 / 24) * val;
+    const ratio = width > 100 ? '100%' : width < 0 ? '0' : `${width}%`;
     return {
       grow: 0,
       display,
       width: ratio,
       basis: ratio,
-    }
+    };
   }
   return {
     grow: 1,
     display,
     width: '100%',
     basis: '0',
-  }
-}
+  };
+};
 
 const GridBasicItem: React.FC<React.PropsWithChildren<GridBasicItemProps>> = ({
   xs = false as GridBreakpointsValue,
@@ -66,8 +66,8 @@ const GridBasicItem: React.FC<React.PropsWithChildren<GridBasicItemProps>> = ({
   className = '',
   ...props
 }: React.PropsWithChildren<GridBasicItemProps>) => {
-  const layoutRoot = useLayout()
-  const { SCALES } = useScale()
+  const layoutRoot = useLayout();
+  const { SCALES } = useScale();
   const classes = useMemo(() => {
     const aligns: { [key: string]: any } = {
       justify,
@@ -79,16 +79,16 @@ const GridBasicItem: React.FC<React.PropsWithChildren<GridBasicItemProps>> = ({
       md,
       lg,
       xl,
-    }
+    };
     const classString = Object.keys(aligns).reduce((pre, name) => {
-      if (aligns[name] !== undefined && aligns[name] !== false) return `${pre} ${name}`
-      return pre
-    }, '')
-    return classString.trim()
-  }, [justify, direction, alignItems, alignContent, xs, sm, md, lg, xl])
+      if (aligns[name] !== undefined && aligns[name] !== false) return `${pre} ${name}`;
+      return pre;
+    }, '');
+    return classString.trim();
+  }, [justify, direction, alignItems, alignContent, xs, sm, md, lg, xl]);
 
   const layout = useMemo<{
-    [key in ['xs', 'sm', 'md', 'lg', 'xl'][number]]: ItemLayoutValue
+    [key in ['xs', 'sm', 'md', 'lg', 'xl'][number]]: ItemLayoutValue;
   }>(
     () => ({
       xs: getItemLayout(xs),
@@ -98,7 +98,7 @@ const GridBasicItem: React.FC<React.PropsWithChildren<GridBasicItemProps>> = ({
       xl: getItemLayout(xl),
     }),
     [xs, sm, md, lg, xl],
-  )
+  );
 
   return (
     <div className={useClasses('item', classes, className)} {...props}>
@@ -160,8 +160,8 @@ const GridBasicItem: React.FC<React.PropsWithChildren<GridBasicItemProps>> = ({
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-GridBasicItem.displayName = 'HimalayaGridBasicItem'
-export default GridBasicItem
+GridBasicItem.displayName = 'HimalayaGridBasicItem';
+export default GridBasicItem;

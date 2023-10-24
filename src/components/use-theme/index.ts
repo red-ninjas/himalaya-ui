@@ -1,3 +1,3 @@
-import { useTheme } from './theme-context'
+import { useTheme } from './theme-context';
 
-export default useTheme
+export default useTheme;

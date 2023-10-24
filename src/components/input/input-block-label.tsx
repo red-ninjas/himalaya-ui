@@ -1,12 +1,12 @@
-import React from 'react'
-import useTheme from '../use-theme'
+import React from 'react';
+import useTheme from '../use-theme';
 
 export interface InputBlockLabelLabel {}
 
 const InputBlockLabelComponent: React.FC<
   React.PropsWithChildren<InputBlockLabelLabel>
 > = ({ children }) => {
-  const theme = useTheme()
+  const theme = useTheme();
 
   return (
     <label>
@@ -31,9 +31,9 @@ const InputBlockLabelComponent: React.FC<
         }
       `}</style>
     </label>
-  )
-}
+  );
+};
 
-InputBlockLabelComponent.displayName = 'HimalayaInputBlockLabel'
-const InputBlockLabel = React.memo(InputBlockLabelComponent)
-export default InputBlockLabel
+InputBlockLabelComponent.displayName = 'HimalayaInputBlockLabel';
+const InputBlockLabel = React.memo(InputBlockLabelComponent);
+export default InputBlockLabel;

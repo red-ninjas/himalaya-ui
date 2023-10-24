@@ -1,15 +1,15 @@
-'use client'
-import useTheme from '../use-theme'
-import { ScrollableLayoutProps } from '.'
-import InnerScroll from '../scroll/inner-scroll'
-import React from 'react'
+'use client';
+import useTheme from '../use-theme';
+import { ScrollableLayoutProps } from '.';
+import InnerScroll from '../scroll/inner-scroll';
+import React from 'react';
 
 const ScrollableLayout: React.FC<React.PropsWithChildren<ScrollableLayoutProps>> = ({
   children,
   background,
   onScroll = () => {},
 }) => {
-  const theme = useTheme()
+  const theme = useTheme();
 
   return (
     <div className="scroll-area">
@@ -26,7 +26,7 @@ const ScrollableLayout: React.FC<React.PropsWithChildren<ScrollableLayoutProps>>
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-export default ScrollableLayout
+export default ScrollableLayout;

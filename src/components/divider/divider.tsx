@@ -1,21 +1,21 @@
-'use client'
-import React, { useMemo } from 'react'
-import useTheme from '../use-theme'
-import { DividerAlign, SnippetTypes } from '../utils/prop-types'
-import { UIThemesPalette } from '../themes/presets'
-import useScale, { withScale } from '../use-scale'
-import useClasses from '../use-classes'
+'use client';
+import React, { useMemo } from 'react';
+import useTheme from '../use-theme';
+import { DividerAlign, SnippetTypes } from '../utils/prop-types';
+import { UIThemesPalette } from '../themes/presets';
+import useScale, { withScale } from '../use-scale';
+import useClasses from '../use-classes';
 
-export type DividerTypes = SnippetTypes
+export type DividerTypes = SnippetTypes;
 
 interface Props {
-  type?: DividerTypes
-  align?: DividerAlign
-  className?: string
+  type?: DividerTypes;
+  align?: DividerAlign;
+  className?: string;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>
-export type DividerProps = Props & NativeAttrs
+type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+export type DividerProps = Props & NativeAttrs;
 
 const getColor = (type: DividerTypes, palette: UIThemesPalette) => {
   const colors: { [key in DividerTypes]: string } = {
@@ -26,9 +26,9 @@ const getColor = (type: DividerTypes, palette: UIThemesPalette) => {
     error: palette.errorLight,
     secondary: palette.secondary,
     dark: palette.foreground,
-  }
-  return colors[type]
-}
+  };
+  return colors[type];
+};
 
 const DividerComponent: React.FC<React.PropsWithChildren<DividerProps>> = ({
   type = 'default' as DividerTypes,
@@ -37,17 +37,17 @@ const DividerComponent: React.FC<React.PropsWithChildren<DividerProps>> = ({
   className = '',
   ...props
 }: React.PropsWithChildren<DividerProps>) => {
-  const theme = useTheme()
-  const { SCALES } = useScale()
-  const classes = useClasses('divider', className)
-  const color = useMemo(() => getColor(type, theme.palette), [type, theme.palette])
+  const theme = useTheme();
+  const { SCALES } = useScale();
+  const classes = useClasses('divider', className);
+  const color = useMemo(() => getColor(type, theme.palette), [type, theme.palette]);
   const alignClassName = useMemo(() => {
-    if (!align || align === 'center') return ''
-    if (align === 'left' || align === 'start') return 'start'
-    return 'end'
-  }, [align])
-  const alignClasses = useClasses('text', alignClassName)
-  const textColor = type === 'default' ? theme.palette.foreground : color
+    if (!align || align === 'center') return '';
+    if (align === 'left' || align === 'start') return 'start';
+    return 'end';
+  }, [align]);
+  const alignClasses = useClasses('text', alignClassName);
+  const textColor = type === 'default' ? theme.palette.foreground : color;
 
   return (
     <div role="separator" className={classes} {...props}>
@@ -94,9 +94,9 @@ const DividerComponent: React.FC<React.PropsWithChildren<DividerProps>> = ({
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-DividerComponent.displayName = 'HimalayaDivider'
-const Divider = withScale(DividerComponent)
-export default Divider
+DividerComponent.displayName = 'HimalayaDivider';
+const Divider = withScale(DividerComponent);
+export default Divider;

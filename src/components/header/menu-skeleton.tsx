@@ -1,26 +1,26 @@
-import React, { useEffect, useState } from 'react'
-import useTheme from '../use-theme'
-import { useConfigs } from '../use-context/config-context'
-import useLayout from '../use-layout'
+import React, { useEffect, useState } from 'react';
+import useTheme from '../use-theme';
+import { useConfigs } from '../use-context/config-context';
+import useLayout from '../use-layout';
 
-const DEFAULT_OPACITY = 0.75
-const LOADING_OPACITY = 0.45
+const DEFAULT_OPACITY = 0.75;
+const LOADING_OPACITY = 0.45;
 const MenuSkeleton: React.FC<unknown> = () => {
-  const theme = useTheme()
-  const layout = useLayout()
-  const [opacity, setOpacity] = useState(DEFAULT_OPACITY)
-  const { isMobile } = useConfigs()
+  const theme = useTheme();
+  const layout = useLayout();
+  const [opacity, setOpacity] = useState(DEFAULT_OPACITY);
+  const { isMobile } = useConfigs();
 
   useEffect(() => {
     const timer = setInterval(() => {
       setOpacity(opacity =>
         opacity !== DEFAULT_OPACITY ? DEFAULT_OPACITY : LOADING_OPACITY,
-      )
-    }, 600)
+      );
+    }, 600);
     return () => {
-      window.clearTimeout(timer)
-    }
-  }, [])
+      window.clearTimeout(timer);
+    };
+  }, []);
   return (
     <div className="skeleton-menu-wrapper">
       <div className="skeleton-menu">
@@ -70,7 +70,7 @@ const MenuSkeleton: React.FC<unknown> = () => {
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-export default MenuSkeleton
+export default MenuSkeleton;

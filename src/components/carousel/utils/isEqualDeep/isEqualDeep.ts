@@ -1,4 +1,4 @@
-import { isObject } from '../isObject/isObject'
+import { isObject } from '../isObject/isObject';
 
 /**
  * Checks if provided two arrays are shallowly equal or not.
@@ -13,12 +13,12 @@ export function isEqualDeep(subject1: unknown, subject2: unknown): boolean {
     return (
       subject1.length === subject2.length &&
       !subject1.some((elm, index) => !isEqualDeep(elm, subject2[index]))
-    )
+    );
   }
 
   if (isObject(subject1) && isObject(subject2)) {
-    const keys1 = Object.keys(subject1) as Array<keyof typeof subject1>
-    const keys2 = Object.keys(subject2)
+    const keys1 = Object.keys(subject1) as Array<keyof typeof subject1>;
+    const keys2 = Object.keys(subject2);
 
     return (
       keys1.length === keys2.length &&
@@ -26,10 +26,10 @@ export function isEqualDeep(subject1: unknown, subject2: unknown): boolean {
         return (
           !Object.prototype.hasOwnProperty.call(subject2, key) ||
           !isEqualDeep(subject1[key], subject2[key])
-        )
+        );
       })
-    )
+    );
   }
 
-  return subject1 === subject2
+  return subject1 === subject2;
 }

@@ -1,4 +1,4 @@
-import { PriceScaleMode, PriceScaleOptions } from '../../model/price-scale'
+import { PriceScaleMode, PriceScaleOptions } from '../../model/price-scale';
 
 export const priceScaleOptionsDefaults: PriceScaleOptions = {
   autoScale: true,
@@ -15,4 +15,4 @@ export const priceScaleOptionsDefaults: PriceScaleOptions = {
     top: 0.2,
   },
   minimumWidth: 0,
-}
+};

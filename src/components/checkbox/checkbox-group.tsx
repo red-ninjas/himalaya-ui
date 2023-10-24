@@ -1,20 +1,20 @@
-'use client'
+'use client';
 
-import React, { useEffect, useMemo, useState } from 'react'
-import { CheckboxContext } from './checkbox-context'
-import useWarning from '../utils/use-warning'
-import useScale, { withScale } from '../use-scale'
-import useClasses from '../use-classes'
+import React, { useEffect, useMemo, useState } from 'react';
+import { CheckboxContext } from './checkbox-context';
+import useWarning from '../utils/use-warning';
+import useScale, { withScale } from '../use-scale';
+import useClasses from '../use-classes';
 
 interface Props {
-  value: string[]
-  disabled?: boolean
-  onChange?: (values: string[]) => void
-  className?: string
+  value: string[];
+  disabled?: boolean;
+  onChange?: (values: string[]) => void;
+  className?: string;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>
-export type CheckboxGroupProps = Props & NativeAttrs
+type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+export type CheckboxGroupProps = Props & NativeAttrs;
 
 const CheckboxGroupComponent: React.FC<React.PropsWithChildren<CheckboxGroupProps>> = ({
   disabled = false,
@@ -24,20 +24,20 @@ const CheckboxGroupComponent: React.FC<React.PropsWithChildren<CheckboxGroupProp
   className = '',
   ...props
 }: CheckboxGroupProps) => {
-  const { SCALES } = useScale()
-  const [selfVal, setSelfVal] = useState<string[]>([])
-  const classes = useClasses('group', className)
+  const { SCALES } = useScale();
+  const [selfVal, setSelfVal] = useState<string[]>([]);
+  const classes = useClasses('group', className);
   if (!value) {
-    value = []
-    useWarning('Props "value" is required.', 'Checkbox Group')
+    value = [];
+    useWarning('Props "value" is required.', 'Checkbox Group');
   }
 
   const updateState = (val: string, checked: boolean) => {
-    const removed = selfVal.filter(v => v !== val)
-    const next = checked ? [...removed, val] : removed
-    setSelfVal(next)
-    onChange && onChange(next)
-  }
+    const removed = selfVal.filter(v => v !== val);
+    const next = checked ? [...removed, val] : removed;
+    setSelfVal(next);
+    onChange && onChange(next);
+  };
 
   const providerValue = useMemo(() => {
     return {
@@ -45,12 +45,12 @@ const CheckboxGroupComponent: React.FC<React.PropsWithChildren<CheckboxGroupProp
       disabledAll: disabled,
       inGroup: true,
       values: selfVal,
-    }
-  }, [disabled, selfVal])
+    };
+  }, [disabled, selfVal]);
 
   useEffect(() => {
-    setSelfVal(value)
-  }, [value.join(',')])
+    setSelfVal(value);
+  }, [value.join(',')]);
 
   return (
     <CheckboxContext.Provider value={providerValue}>
@@ -73,10 +73,10 @@ const CheckboxGroupComponent: React.FC<React.PropsWithChildren<CheckboxGroupProp
         `}</style>
       </div>
     </CheckboxContext.Provider>
-  )
-}
+  );
+};
 
-CheckboxGroupComponent.displayName = 'HimalayaCheckboxGroup'
-const CheckboxGroup = withScale(CheckboxGroupComponent)
+CheckboxGroupComponent.displayName = 'HimalayaCheckboxGroup';
+const CheckboxGroup = withScale(CheckboxGroupComponent);
 
-export default CheckboxGroup
+export default CheckboxGroup;

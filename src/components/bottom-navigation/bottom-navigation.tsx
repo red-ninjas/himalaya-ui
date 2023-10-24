@@ -1,16 +1,16 @@
-'use client'
+'use client';
 
-import React from 'react'
-import useTheme from '../use-theme'
-import { addColorAlpha } from '../utils/color'
-import useClasses from '../use-classes'
-import { pickChild } from '../utils/collections'
-import BottomNavigationItem from './item'
-import { useConfigs } from '../use-context/config-context'
+import React from 'react';
+import useTheme from '../use-theme';
+import { addColorAlpha } from '../utils/color';
+import useClasses from '../use-classes';
+import { pickChild } from '../utils/collections';
+import BottomNavigationItem from './item';
+import { useConfigs } from '../use-context/config-context';
 
 export interface BottomNavigationProps {
-  transcluent?: boolean
-  mobileOnly?: boolean
+  transcluent?: boolean;
+  mobileOnly?: boolean;
 }
 
 const BottomNavigation: React.FC<React.PropsWithChildren<BottomNavigationProps>> = ({
@@ -18,12 +18,12 @@ const BottomNavigation: React.FC<React.PropsWithChildren<BottomNavigationProps>>
   mobileOnly = true,
   children,
 }) => {
-  const theme = useTheme()
-  const [, navigationElement] = pickChild(children, BottomNavigationItem)
-  const { isMobile } = useConfigs()
+  const theme = useTheme();
+  const [, navigationElement] = pickChild(children, BottomNavigationItem);
+  const { isMobile } = useConfigs();
 
   if (mobileOnly && isMobile) {
-    return null
+    return null;
   }
 
   return (
@@ -54,8 +54,8 @@ const BottomNavigation: React.FC<React.PropsWithChildren<BottomNavigationProps>>
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-BottomNavigation.displayName = 'BottomNavigation'
-export default BottomNavigation
+BottomNavigation.displayName = 'BottomNavigation';
+export default BottomNavigation;

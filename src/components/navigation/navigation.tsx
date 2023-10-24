@@ -1,18 +1,18 @@
-'use client'
-import Highlight from '../shared/highlight'
-import { pickChild } from '../utils/collections'
-import { ReactiveDomReact } from '../utils/layouts'
-import React, { PropsWithChildren, useRef, useState } from 'react'
-import NavigationItem from './item'
-import { NavigationContext } from './navigation-context'
-import { withScale } from '../use-scale'
-import useLayout from '../use-layout'
-import useTheme from '../use-theme'
+'use client';
+import Highlight from '../shared/highlight';
+import { pickChild } from '../utils/collections';
+import { ReactiveDomReact } from '../utils/layouts';
+import React, { PropsWithChildren, useRef, useState } from 'react';
+import NavigationItem from './item';
+import { NavigationContext } from './navigation-context';
+import { withScale } from '../use-scale';
+import useLayout from '../use-layout';
+import useTheme from '../use-theme';
 
 export interface NavigationProps {
-  hoverHeightRatio?: number
-  hoverWidthRatio?: number
-  hideOnMobile?: boolean
+  hoverHeightRatio?: number;
+  hoverWidthRatio?: number;
+  hideOnMobile?: boolean;
 }
 const defaultRect: ReactiveDomReact = {
   top: -1000,
@@ -21,10 +21,10 @@ const defaultRect: ReactiveDomReact = {
   width: 0,
   height: 0,
   elementTop: -1000,
-}
+};
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof NavigationProps>
-export type NavigationPropsExternal = NavigationProps & NativeAttrs
+type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof NavigationProps>;
+export type NavigationPropsExternal = NavigationProps & NativeAttrs;
 
 const NavigationComponent: React.FC<PropsWithChildren<NavigationPropsExternal>> = ({
   children,
@@ -33,35 +33,36 @@ const NavigationComponent: React.FC<PropsWithChildren<NavigationPropsExternal>> 
   hideOnMobile = true,
   ...props
 }) => {
-  const [, navigationElement] = pickChild(children, NavigationItem)
-  const [rect, setRect] = useState<ReactiveDomReact>(defaultRect)
-  const [displayHighlight, setDisplayHighlight] = useState<boolean>(false)
+  const [, navigationElement] = pickChild(children, NavigationItem);
+  const [rect, setRect] = useState<ReactiveDomReact>(defaultRect);
+  const [displayHighlight, setDisplayHighlight] = useState<boolean>(false);
 
-  const theme = useTheme()
+  const theme = useTheme();
 
-  const ref = useRef<HTMLDivElement | null>(null)
+  const ref = useRef<HTMLDivElement | null>(null);
   const tabItemMouseOverHandler = (event: ReactiveDomReact) => {
     if (rect?.rect != event.rect) {
       if (rect.deactive) {
-        rect.deactive()
+        rect.deactive();
       }
     }
-    const origRect = (ref?.current as HTMLElement)?.getBoundingClientRect()
-    event.left -= origRect.left
-    event.top -= origRect.top
-    event.elementTop = 0
-    setDisplayHighlight(true)
-    setRect(event)
-  }
+    const origRect = (ref?.current as HTMLElement)?.getBoundingClientRect();
+    event.left -= origRect.left;
+    event.top -= origRect.top;
+    event.elementTop = 0;
+    setDisplayHighlight(true);
+    setRect(event);
+  };
 
-  const layout = useLayout()
+  const layout = useLayout();
   return (
     <NavigationContext.Provider value={{ onMouseOver: tabItemMouseOverHandler }}>
       <div
         {...props}
         className="navigation"
         ref={ref}
-        onMouseLeave={() => setDisplayHighlight(false)}>
+        onMouseLeave={() => setDisplayHighlight(false)}
+      >
         <Highlight
           background={theme.palette.foreground}
           activeOpacity={1}
@@ -97,9 +98,9 @@ const NavigationComponent: React.FC<PropsWithChildren<NavigationPropsExternal>> 
         `}</style>
       </div>
     </NavigationContext.Provider>
-  )
-}
+  );
+};
 
-NavigationComponent.displayName = 'HimalayaNavigation'
-const Navigation = withScale(NavigationComponent)
-export default Navigation
+NavigationComponent.displayName = 'HimalayaNavigation';
+const Navigation = withScale(NavigationComponent);
+export default Navigation;

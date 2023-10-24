@@ -1,12 +1,12 @@
-'use client'
-import React, { useEffect, useMemo, useRef, useState } from 'react'
-import useScale, { withScale } from '../use-scale'
-import useRealShape from '../utils/use-real-shape'
-import useResize from '../utils/use-resize'
-import TableBody from './table-body'
-import TableColumn from './table-column'
-import { TableConfig, TableContext } from './table-context'
-import TableHead from './table-head'
+'use client';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import useScale, { withScale } from '../use-scale';
+import useRealShape from '../utils/use-real-shape';
+import useResize from '../utils/use-resize';
+import TableBody from './table-body';
+import TableColumn from './table-column';
+import { TableConfig, TableContext } from './table-context';
+import TableHead from './table-head';
 import {
   TableAbstractColumn,
   TableDataItemBase,
@@ -14,23 +14,23 @@ import {
   TableOnChange,
   TableOnRowClick,
   TableRowClassNameHandler,
-} from './table-types'
+} from './table-types';
 
 interface Props<TableDataItem extends TableDataItemBase> {
-  data?: Array<TableDataItem>
-  initialData?: Array<TableDataItem>
-  emptyText?: string
-  hover?: boolean
-  onRow?: TableOnRowClick<TableDataItem>
-  onCell?: TableOnCellClick<TableDataItem>
-  onChange?: TableOnChange<TableDataItem>
-  className?: string
-  rowClassName?: TableRowClassNameHandler<TableDataItem>
+  data?: Array<TableDataItem>;
+  initialData?: Array<TableDataItem>;
+  emptyText?: string;
+  hover?: boolean;
+  onRow?: TableOnRowClick<TableDataItem>;
+  onCell?: TableOnCellClick<TableDataItem>;
+  onChange?: TableOnChange<TableDataItem>;
+  className?: string;
+  rowClassName?: TableRowClassNameHandler<TableDataItem>;
 }
 
-type NativeAttrs = Omit<React.TableHTMLAttributes<any>, keyof Props<any>>
+type NativeAttrs = Omit<React.TableHTMLAttributes<any>, keyof Props<any>>;
 export type TableProps<TableDataItem extends TableDataItemBase> = Props<TableDataItem> &
-  NativeAttrs
+  NativeAttrs;
 
 function TableComponent<TableDataItem extends TableDataItemBase>(
   tableProps: React.PropsWithChildren<TableProps<TableDataItem>>,
@@ -48,23 +48,23 @@ function TableComponent<TableDataItem extends TableDataItemBase>(
     className = '',
     rowClassName = () => '',
     ...props
-  } = tableProps as React.PropsWithChildren<TableProps<TableDataItem>>
+  } = tableProps as React.PropsWithChildren<TableProps<TableDataItem>>;
   /* eslint-enable @typescript-eslint/no-unused-vars */
-  const { SCALES } = useScale()
-  const ref = useRef<HTMLTableElement>(null)
-  const [{ width }, updateShape] = useRealShape<HTMLTableElement>(ref)
-  const [columns, setColumns] = useState<Array<TableAbstractColumn<TableDataItem>>>([])
-  const [data, setData] = useState<Array<TableDataItem>>(initialData)
+  const { SCALES } = useScale();
+  const ref = useRef<HTMLTableElement>(null);
+  const [{ width }, updateShape] = useRealShape<HTMLTableElement>(ref);
+  const [columns, setColumns] = useState<Array<TableAbstractColumn<TableDataItem>>>([]);
+  const [data, setData] = useState<Array<TableDataItem>>(initialData);
   const updateColumn = (column: TableAbstractColumn<TableDataItem>) => {
     setColumns(last => {
-      const hasColumn = last.find(item => item.prop === column.prop)
-      if (!hasColumn) return [...last, column]
+      const hasColumn = last.find(item => item.prop === column.prop);
+      if (!hasColumn) return [...last, column];
       return last.map(item => {
-        if (item.prop !== column.prop) return item
-        return column
-      })
-    })
-  }
+        if (item.prop !== column.prop) return item;
+        return column;
+      });
+    });
+  };
 
   const contextValue = useMemo<TableConfig<TableDataItem>>(
     () => ({
@@ -72,13 +72,13 @@ function TableComponent<TableDataItem extends TableDataItemBase>(
       updateColumn,
     }),
     [columns],
-  )
+  );
 
   useEffect(() => {
-    if (typeof customData === 'undefined') return
-    setData(customData)
-  }, [customData])
-  useResize(() => updateShape())
+    if (typeof customData === 'undefined') return;
+    setData(customData);
+  }, [customData]);
+  useResize(() => updateShape());
 
   return (
     <TableContext.Provider value={contextValue}>
@@ -108,15 +108,15 @@ function TableComponent<TableDataItem extends TableDataItemBase>(
         `}</style>
       </table>
     </TableContext.Provider>
-  )
+  );
 }
 
-TableComponent.displayName = 'HimalayaTable'
-TableComponent.Column = TableColumn
-const Table = withScale(TableComponent)
+TableComponent.displayName = 'HimalayaTable';
+TableComponent.Column = TableColumn;
+const Table = withScale(TableComponent);
 
 export type TableType = typeof Table & {
-  Column: typeof TableColumn
-}
+  Column: typeof TableColumn;
+};
 
-export default Table as TableType
+export default Table as TableType;

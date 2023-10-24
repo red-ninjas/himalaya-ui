@@ -1,31 +1,31 @@
-'use client'
-import { usePathname } from 'next/navigation'
-import React, { PropsWithChildren, useEffect, useRef } from 'react'
-import { useConfigs } from '../use-context/config-context'
-import useLayout from '../use-layout'
+'use client';
+import { usePathname } from 'next/navigation';
+import React, { PropsWithChildren, useEffect, useRef } from 'react';
+import { useConfigs } from '../use-context/config-context';
+import useLayout from '../use-layout';
 
 export interface SidebarProps {
-  header?: React.ReactNode
+  header?: React.ReactNode;
 }
 
 export const Sidebar: React.FC<PropsWithChildren<SidebarProps>> = ({
   children,
   ...props
 }) => {
-  const layout = useLayout()
-  const pathname = usePathname()
-  const boxRef = useRef<HTMLDivElement>(null)
-  const { sidebarScrollHeight, updateSidebarScrollHeight } = useConfigs()
+  const layout = useLayout();
+  const pathname = usePathname();
+  const boxRef = useRef<HTMLDivElement>(null);
+  const { sidebarScrollHeight, updateSidebarScrollHeight } = useConfigs();
 
   useEffect(() => {
-    if (!boxRef.current) return
-    updateSidebarScrollHeight?.(boxRef.current.scrollTop || 0)
-  }, [pathname])
+    if (!boxRef.current) return;
+    updateSidebarScrollHeight?.(boxRef.current.scrollTop || 0);
+  }, [pathname]);
 
   useEffect(() => {
-    if (!boxRef.current) return
-    boxRef.current.scrollTo({ top: sidebarScrollHeight })
-  }, [boxRef.current])
+    if (!boxRef.current) return;
+    boxRef.current.scrollTo({ top: sidebarScrollHeight });
+  }, [boxRef.current]);
 
   return (
     <div ref={boxRef} className="sides box">
@@ -53,7 +53,7 @@ export const Sidebar: React.FC<PropsWithChildren<SidebarProps>> = ({
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-export default Sidebar
+export default Sidebar;

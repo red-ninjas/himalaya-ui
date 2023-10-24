@@ -1,42 +1,42 @@
-'use client'
+'use client';
 
-import React, { ReactNode, useMemo } from 'react'
-import { NormalTypes } from '../utils/prop-types'
-import TextChild from './child'
-import { withScale } from '../use-scale'
+import React, { ReactNode, useMemo } from 'react';
+import { NormalTypes } from '../utils/prop-types';
+import TextChild from './child';
+import { withScale } from '../use-scale';
 
-export type TextTypes = NormalTypes
+export type TextTypes = NormalTypes;
 interface Props {
-  h1?: boolean
-  h2?: boolean
-  h3?: boolean
-  h4?: boolean
-  h5?: boolean
-  h6?: boolean
-  p?: boolean
-  b?: boolean
-  small?: boolean
-  i?: boolean
-  span?: boolean
-  del?: boolean
-  em?: boolean
-  blockquote?: boolean
-  className?: string
-  type?: TextTypes
+  h1?: boolean;
+  h2?: boolean;
+  h3?: boolean;
+  h4?: boolean;
+  h5?: boolean;
+  h6?: boolean;
+  p?: boolean;
+  b?: boolean;
+  small?: boolean;
+  i?: boolean;
+  span?: boolean;
+  del?: boolean;
+  em?: boolean;
+  blockquote?: boolean;
+  className?: string;
+  type?: TextTypes;
 }
 
-type ElementMap = { [key in keyof React.JSX.IntrinsicElements]?: boolean }
+type ElementMap = { [key in keyof React.JSX.IntrinsicElements]?: boolean };
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>
-export type TextProps = Props & NativeAttrs
+type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+export type TextProps = Props & NativeAttrs;
 
-type TextRenderableElements = Array<keyof React.JSX.IntrinsicElements>
+type TextRenderableElements = Array<keyof React.JSX.IntrinsicElements>;
 
 const getModifierChild = (tags: TextRenderableElements, children: ReactNode) => {
-  if (!tags.length) return children
-  const nextTag = tags.slice(1, tags.length)
-  return <TextChild tag={tags[0]}>{getModifierChild(nextTag, children)}</TextChild>
-}
+  if (!tags.length) return children;
+  const nextTag = tags.slice(1, tags.length);
+  return <TextChild tag={tags[0]}>{getModifierChild(nextTag, children)}</TextChild>;
+};
 
 const TextComponent: React.FC<React.PropsWithChildren<TextProps>> = ({
   h1 = false,
@@ -57,14 +57,14 @@ const TextComponent: React.FC<React.PropsWithChildren<TextProps>> = ({
   className = '',
   ...props
 }: React.PropsWithChildren<TextProps>) => {
-  const elements: ElementMap = { h1, h2, h3, h4, h5, h6, p, blockquote }
-  const inlineElements: ElementMap = { span, small, b, em, i, del }
+  const elements: ElementMap = { h1, h2, h3, h4, h5, h6, p, blockquote };
+  const inlineElements: ElementMap = { span, small, b, em, i, del };
   const names = Object.keys(elements).filter(
     (name: keyof React.JSX.IntrinsicElements) => elements[name],
-  ) as TextRenderableElements
+  ) as TextRenderableElements;
   const inlineNames = Object.keys(inlineElements).filter(
     (name: keyof React.JSX.IntrinsicElements) => inlineElements[name],
-  ) as TextRenderableElements
+  ) as TextRenderableElements;
 
   /**
    *  Render element "p" only if no element is found.
@@ -77,27 +77,27 @@ const TextComponent: React.FC<React.PropsWithChildren<TextProps>> = ({
    */
 
   const tag = useMemo(() => {
-    if (names[0]) return names[0]
-    if (inlineNames[0]) return inlineNames[0]
-    return 'p' as keyof React.JSX.IntrinsicElements
-  }, [names, inlineNames])
+    if (names[0]) return names[0];
+    if (inlineNames[0]) return inlineNames[0];
+    return 'p' as keyof React.JSX.IntrinsicElements;
+  }, [names, inlineNames]);
 
   const renderableChildElements = inlineNames.filter(
     (name: keyof React.JSX.IntrinsicElements) => name !== tag,
-  ) as TextRenderableElements
+  ) as TextRenderableElements;
 
   const modifers = useMemo(() => {
-    if (!renderableChildElements.length) return children
-    return getModifierChild(renderableChildElements, children)
-  }, [renderableChildElements, children])
+    if (!renderableChildElements.length) return children;
+    return getModifierChild(renderableChildElements, children);
+  }, [renderableChildElements, children]);
 
   return (
     <TextChild className={className} tag={tag} {...props}>
       {modifers}
     </TextChild>
-  )
-}
+  );
+};
 
-TextComponent.displayName = 'HimalayaText'
-const Text = withScale(TextComponent)
-export default Text
+TextComponent.displayName = 'HimalayaText';
+const Text = withScale(TextComponent);
+export default Text;

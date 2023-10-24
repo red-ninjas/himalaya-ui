@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import React from 'react'
-import { classNames } from './utils'
+import React from 'react';
+import { classNames } from './utils';
 
 export const CarouselItem: React.FC<React.JSX.IntrinsicElements['li']> = ({
   children,
@@ -12,5 +12,5 @@ export const CarouselItem: React.FC<React.JSX.IntrinsicElements['li']> = ({
     <li className={classNames('splide__slide', className)} {...props}>
       {children}
     </li>
-  )
-}
+  );
+};

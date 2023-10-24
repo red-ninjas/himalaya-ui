@@ -1,26 +1,26 @@
-'use client'
-import React, { CSSProperties, useEffect, useMemo, useState } from 'react'
-import { tuple } from '../utils/prop-types'
-import useTheme from '../use-theme'
-import PageContent from './page-content'
-import { hasChild } from '../utils/collections'
-import useScale, { withScale } from '../use-scale'
+'use client';
+import React, { CSSProperties, useEffect, useMemo, useState } from 'react';
+import { tuple } from '../utils/prop-types';
+import useTheme from '../use-theme';
+import PageContent from './page-content';
+import { hasChild } from '../utils/collections';
+import useScale, { withScale } from '../use-scale';
 
-const renderMode = tuple('default', 'effect', 'effect-seo')
+const renderMode = tuple('default', 'effect', 'effect-seo');
 
-export type PageRenderMode = (typeof renderMode)[number]
+export type PageRenderMode = (typeof renderMode)[number];
 
 interface Props {
-  render?: PageRenderMode
-  dotBackdrop?: boolean
-  dotSize?: CSSProperties['fontSize']
-  dotSpace?: number
+  render?: PageRenderMode;
+  dotBackdrop?: boolean;
+  dotSize?: CSSProperties['fontSize'];
+  dotSpace?: number;
 }
 
 export type DotStylesProps = {
-  dotSize: CSSProperties['fontSize']
-  dotSpace: number
-}
+  dotSize: CSSProperties['fontSize'];
+  dotSpace: number;
+};
 
 const DotStyles: React.FC<DotStylesProps> = ({ dotSpace, dotSize }) => {
   const background = useMemo(
@@ -29,7 +29,7 @@ const DotStyles: React.FC<DotStylesProps> = ({ dotSpace, dotSize }) => {
       size: `calc(${dotSpace} * 50px)`,
     }),
     [dotSpace],
-  )
+  );
   return (
     <span>
       <style jsx>{`
@@ -44,11 +44,11 @@ const DotStyles: React.FC<DotStylesProps> = ({ dotSpace, dotSize }) => {
         }
       `}</style>
     </span>
-  )
-}
+  );
+};
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>
-export type PageProps = Props & NativeAttrs
+type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+export type PageProps = Props & NativeAttrs;
 
 const PageComponent: React.FC<React.PropsWithChildren<PageProps>> = ({
   children,
@@ -59,21 +59,21 @@ const PageComponent: React.FC<React.PropsWithChildren<PageProps>> = ({
   dotSpace = 1,
   ...props
 }: React.PropsWithChildren<PageProps>) => {
-  const theme = useTheme()
-  const { SCALES } = useScale()
+  const theme = useTheme();
+  const { SCALES } = useScale();
   const showDot = useMemo<boolean>(() => {
-    if (theme.type === 'dark') return false
-    return dotBackdrop
-  }, [dotBackdrop, theme.type])
-  const [preventRender, setPreventRender] = useState<boolean>(render !== 'default')
+    if (theme.type === 'dark') return false;
+    return dotBackdrop;
+  }, [dotBackdrop, theme.type]);
+  const [preventRender, setPreventRender] = useState<boolean>(render !== 'default');
 
   useEffect(() => {
-    setPreventRender(false)
-  }, [])
+    setPreventRender(false);
+  }, []);
 
   if (preventRender) {
-    const renderSEO = render === 'effect-seo'
-    if (!renderSEO) return null
+    const renderSEO = render === 'effect-seo';
+    if (!renderSEO) return null;
     return (
       <div className="hidden" aria-hidden="true">
         {children}
@@ -84,10 +84,10 @@ const PageComponent: React.FC<React.PropsWithChildren<PageProps>> = ({
           }
         `}</style>
       </div>
-    )
+    );
   }
 
-  const hasContent = hasChild(children, PageContent)
+  const hasContent = hasChild(children, PageContent);
 
   return (
     <section className={className} {...props}>
@@ -108,9 +108,9 @@ const PageComponent: React.FC<React.PropsWithChildren<PageProps>> = ({
         }
       `}</style>
     </section>
-  )
-}
+  );
+};
 
-PageComponent.displayName = 'HimalayaPage'
-const Page = withScale(PageComponent)
-export default Page
+PageComponent.displayName = 'HimalayaPage';
+const Page = withScale(PageComponent);
+export default Page;

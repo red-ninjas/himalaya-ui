@@ -1,26 +1,26 @@
-'use client'
+'use client';
 
-import useKeyboard, { KeyCode, KeyMod } from '../use-keyboard'
-import Keyboard, { KeyboardProps as keyboardiProps } from '../keyboard'
-import useScale, { withScale } from '../use-scale'
-import React from 'react'
-import useSearch from '../use-search'
+import useKeyboard, { KeyCode, KeyMod } from '../use-keyboard';
+import Keyboard, { KeyboardProps as keyboardiProps } from '../keyboard';
+import useScale, { withScale } from '../use-scale';
+import React from 'react';
+import useSearch from '../use-search';
 export type SearchButtonProps = {
-  title?: string
-  key?: KeyCode
-  mod?: KeyMod
-}
+  title?: string;
+  key?: KeyCode;
+  mod?: KeyMod;
+};
 const SearchButtonComponent: React.FC<SearchButtonProps & keyboardiProps> = React.memo(
   props => {
-    const { SCALES } = useScale()
-    const { setIsEnabled } = useSearch()
+    const { SCALES } = useScale();
+    const { setIsEnabled } = useSearch();
 
-    const keyCmd: KeyCode = props.key || KeyCode.KEY_K
-    const keyMod: KeyMod = props.mod || KeyMod.CtrlCmd
+    const keyCmd: KeyCode = props.key || KeyCode.KEY_K;
+    const keyMod: KeyMod = props.mod || KeyMod.CtrlCmd;
 
     useKeyboard(() => {
-      setIsEnabled(true)
-    }, [keyMod, keyCmd])
+      setIsEnabled(true);
+    }, [keyMod, keyCmd]);
     return (
       <div className="wrapper">
         <Keyboard
@@ -29,7 +29,8 @@ const SearchButtonComponent: React.FC<SearchButtonProps & keyboardiProps> = Reac
           font="12px"
           command={true}
           className="shortcuts"
-          title={props.title}>
+          title={props.title}
+        >
           K
         </Keyboard>
 
@@ -48,9 +49,9 @@ const SearchButtonComponent: React.FC<SearchButtonProps & keyboardiProps> = Reac
           }
         `}</style>
       </div>
-    )
+    );
   },
-)
-SearchButtonComponent.displayName = 'HimalayaSearchButton'
-const SearchButton = withScale(SearchButtonComponent)
-export default SearchButton
+);
+SearchButtonComponent.displayName = 'HimalayaSearchButton';
+const SearchButton = withScale(SearchButtonComponent);
+export default SearchButton;

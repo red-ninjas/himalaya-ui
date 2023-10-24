@@ -1,12 +1,12 @@
-import Image from './image'
-import ImageBrowser from './image-browser'
+import Image from './image';
+import ImageBrowser from './image-browser';
 
 export type ImageComponentType = typeof Image & {
-  Browser: typeof ImageBrowser
-}
-  ; (Image as ImageComponentType).Browser = ImageBrowser
+  Browser: typeof ImageBrowser;
+};
+(Image as ImageComponentType).Browser = ImageBrowser;
 
-export type { ImageProps } from './image'
-export { default as ResponsiveImage } from './responsive-image'
-export type { ImageBrowserProps, ImageAnchorProps } from './image-browser'
-export default Image as ImageComponentType
+export type { ImageProps } from './image';
+export { default as ResponsiveImage } from './responsive-image';
+export type { ImageBrowserProps, ImageAnchorProps } from './image-browser';
+export default Image as ImageComponentType;

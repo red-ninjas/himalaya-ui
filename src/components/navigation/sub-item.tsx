@@ -1,27 +1,27 @@
-'use client'
-import Popover from '../popover'
-import Link from 'next/link'
-import React, { PropsWithChildren } from 'react'
-import { INavigationItem } from '.'
-import useTheme from '../use-theme'
-import { addColorAlpha } from '../utils/color'
+'use client';
+import Popover from '../popover';
+import Link from 'next/link';
+import React, { PropsWithChildren } from 'react';
+import { INavigationItem } from '.';
+import useTheme from '../use-theme';
+import { addColorAlpha } from '../utils/color';
 
 export interface NavigationSubItemProps extends INavigationItem {
-  onClick?: () => void
+  onClick?: () => void;
 }
 
 const NavigationSubItem: React.FC<PropsWithChildren<NavigationSubItemProps>> = ({
   url = '/',
   ...props
 }) => {
-  const theme = useTheme()
+  const theme = useTheme();
 
   const handleClick = (e: any) => {
     if (props.onClick) {
-      e.preventDefault()
-      props.onClick()
+      e.preventDefault();
+      props.onClick();
     }
-  }
+  };
   // const rgba = `rgba(${hexToRgb(theme.palette.accents_2)}, 0.5)`
 
   return (
@@ -77,7 +77,7 @@ const NavigationSubItem: React.FC<PropsWithChildren<NavigationSubItemProps>> = (
         }
       `}</style>
     </>
-  )
-}
-NavigationSubItem.displayName = 'SubItem'
-export default NavigationSubItem
+  );
+};
+NavigationSubItem.displayName = 'SubItem';
+export default NavigationSubItem;

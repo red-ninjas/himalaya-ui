@@ -1,2 +1,2 @@
-import GradientWord from './gradient-word'
-export default GradientWord
+import GradientWord from './gradient-word';
+export default GradientWord;

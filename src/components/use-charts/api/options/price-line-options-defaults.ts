@@ -1,5 +1,5 @@
-import { PriceLineOptions } from '../../model/price-line-options'
-import { LineStyle } from '../../renderers/draw-line'
+import { PriceLineOptions } from '../../model/price-line-options';
+import { LineStyle } from '../../renderers/draw-line';
 
 export const priceLineOptionsDefaults: PriceLineOptions = {
   color: '#FF0000',
@@ -11,4 +11,4 @@ export const priceLineOptionsDefaults: PriceLineOptions = {
   title: '',
   axisLabelColor: '',
   axisLabelTextColor: '',
-}
+};

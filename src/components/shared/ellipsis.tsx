@@ -1,8 +1,8 @@
-import React from 'react'
+import React from 'react';
 
 export type EllipsisProps = {
-  height: string
-}
+  height: string;
+};
 
 const Ellipsis: React.FC<React.PropsWithChildren<EllipsisProps>> = ({
   children,
@@ -21,7 +21,7 @@ const Ellipsis: React.FC<React.PropsWithChildren<EllipsisProps>> = ({
         }
       `}</style>
     </span>
-  )
-}
+  );
+};
 
-export default React.memo(Ellipsis)
+export default React.memo(Ellipsis);

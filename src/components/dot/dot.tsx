@@ -1,19 +1,19 @@
-'use client'
-import React, { useMemo } from 'react'
-import useTheme from '../use-theme'
-import { NormalTypes } from '../utils/prop-types'
-import { UIThemes } from '../themes/presets'
-import useScale, { withScale } from '../use-scale'
-import useClasses from '../use-classes'
+'use client';
+import React, { useMemo } from 'react';
+import useTheme from '../use-theme';
+import { NormalTypes } from '../utils/prop-types';
+import { UIThemes } from '../themes/presets';
+import useScale, { withScale } from '../use-scale';
+import useClasses from '../use-classes';
 
-export type DotTypes = NormalTypes
+export type DotTypes = NormalTypes;
 interface Props {
-  type?: DotTypes
-  className?: string
+  type?: DotTypes;
+  className?: string;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>
-export type DotProps = Props & NativeAttrs
+type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+export type DotProps = Props & NativeAttrs;
 
 const getColor = (type: DotTypes, theme: UIThemes): string => {
   const colors: { [key in DotTypes]?: string } = {
@@ -21,9 +21,9 @@ const getColor = (type: DotTypes, theme: UIThemes): string => {
     success: theme.palette.success,
     warning: theme.palette.warning,
     error: theme.palette.error,
-  }
-  return colors[type] || (colors.default as string)
-}
+  };
+  return colors[type] || (colors.default as string);
+};
 
 const DotComponent: React.FC<React.PropsWithChildren<DotProps>> = ({
   type = 'default' as DotTypes,
@@ -31,9 +31,9 @@ const DotComponent: React.FC<React.PropsWithChildren<DotProps>> = ({
   className = '',
   ...props
 }: React.PropsWithChildren<DotProps>) => {
-  const theme = useTheme()
-  const { SCALES } = useScale()
-  const color = useMemo(() => getColor(type, theme), [type, theme])
+  const theme = useTheme();
+  const { SCALES } = useScale();
+  const color = useMemo(() => getColor(type, theme), [type, theme]);
   return (
     <span className={useClasses('dot', className)} {...props}>
       <span className="icon" />
@@ -66,9 +66,9 @@ const DotComponent: React.FC<React.PropsWithChildren<DotProps>> = ({
         }
       `}</style>
     </span>
-  )
-}
+  );
+};
 
-DotComponent.displayName = 'HimalayaDot'
-const Dot = withScale(DotComponent)
-export default Dot
+DotComponent.displayName = 'HimalayaDot';
+const Dot = withScale(DotComponent);
+export default Dot;

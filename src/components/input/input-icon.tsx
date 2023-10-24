@@ -1,9 +1,9 @@
-import React from 'react'
+import React from 'react';
 
 export interface InputIconProps {
-  icon: React.ReactNode
-  clickable: boolean
-  onClick: (e: React.MouseEvent<HTMLDivElement>) => void
+  icon: React.ReactNode;
+  clickable: boolean;
+  onClick: (e: React.MouseEvent<HTMLDivElement>) => void;
 }
 
 const InputIconComponent: React.FC<InputIconProps> = ({ icon, clickable, onClick }) => {
@@ -33,9 +33,9 @@ const InputIconComponent: React.FC<InputIconProps> = ({ icon, clickable, onClick
         }
       `}</style>
     </span>
-  )
-}
+  );
+};
 
-InputIconComponent.displayName = 'HimalayaInputIcon'
-const InputIcon = React.memo(InputIconComponent)
-export default InputIcon
+InputIconComponent.displayName = 'HimalayaInputIcon';
+const InputIcon = React.memo(InputIconComponent);
+export default InputIcon;

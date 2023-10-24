@@ -9,8 +9,8 @@ import {
   LineStyleOptions,
   PriceLineSource,
   SeriesOptionsCommon,
-} from '../../model/series-options'
-import { LineStyle, LineType } from '../../renderers/draw-line'
+} from '../../model/series-options';
+import { LineStyle, LineType } from '../../renderers/draw-line';
 
 export const candlestickStyleDefaults: CandlestickStyleOptions = {
   upColor: '#26a69a',
@@ -23,14 +23,14 @@ export const candlestickStyleDefaults: CandlestickStyleOptions = {
   wickColor: '#737375',
   wickUpColor: '#26a69a',
   wickDownColor: '#ef5350',
-}
+};
 
 export const barStyleDefaults: BarStyleOptions = {
   upColor: '#26a69a',
   downColor: '#ef5350',
   openVisible: true,
   thinBars: true,
-}
+};
 
 export const lineStyleDefaults: LineStyleOptions = {
   color: '#2196f3',
@@ -45,7 +45,7 @@ export const lineStyleDefaults: LineStyleOptions = {
   crosshairMarkerBackgroundColor: '',
   lastPriceAnimation: LastPriceAnimationMode.Disabled,
   pointMarkersVisible: false,
-}
+};
 
 export const areaStyleDefaults: AreaStyleOptions = {
   topColor: 'rgba( 46, 220, 135, 0.4)',
@@ -63,7 +63,7 @@ export const areaStyleDefaults: AreaStyleOptions = {
   crosshairMarkerBackgroundColor: '',
   lastPriceAnimation: LastPriceAnimationMode.Disabled,
   pointMarkersVisible: false,
-}
+};
 
 export const baselineStyleDefaults: BaselineStyleOptions = {
   baseValue: {
@@ -92,16 +92,16 @@ export const baselineStyleDefaults: BaselineStyleOptions = {
 
   lastPriceAnimation: LastPriceAnimationMode.Disabled,
   pointMarkersVisible: false,
-}
+};
 
 export const histogramStyleDefaults: HistogramStyleOptions = {
   color: '#26a69a',
   base: 0,
-}
+};
 
 export const customStyleDefaults: CustomStyleOptions = {
   color: '#2196f3',
-}
+};
 
 export const seriesOptionsDefaults: SeriesOptionsCommon = {
   title: '',
@@ -121,4 +121,4 @@ export const seriesOptionsDefaults: SeriesOptionsCommon = {
     precision: 2,
     minMove: 0.01,
   },
-}
+};

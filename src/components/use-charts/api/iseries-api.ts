@@ -1,32 +1,32 @@
-import { IPriceFormatter } from '../formatters/iprice-formatter'
+import { IPriceFormatter } from '../formatters/iprice-formatter';
 
-import { BarPrice } from '../model/bar'
-import { Coordinate } from '../model/coordinate'
-import { SeriesDataItemTypeMap } from '../model/data-consumer'
-import { Time } from '../model/horz-scale-behavior-time/types'
-import { MismatchDirection } from '../model/plot-list'
-import { CreatePriceLineOptions } from '../model/price-line-options'
-import { SeriesMarker } from '../model/series-markers'
+import { BarPrice } from '../model/bar';
+import { Coordinate } from '../model/coordinate';
+import { SeriesDataItemTypeMap } from '../model/data-consumer';
+import { Time } from '../model/horz-scale-behavior-time/types';
+import { MismatchDirection } from '../model/plot-list';
+import { CreatePriceLineOptions } from '../model/price-line-options';
+import { SeriesMarker } from '../model/series-markers';
 import {
   SeriesOptionsMap,
   SeriesPartialOptionsMap,
   SeriesType,
-} from '../model/series-options'
-import { Range } from '../model/time-data'
+} from '../model/series-options';
+import { Range } from '../model/time-data';
 
-import { IPriceLine } from './iprice-line'
-import { IPriceScaleApi } from './iprice-scale-api'
-import { ISeriesPrimitive } from './iseries-primitive-api'
+import { IPriceLine } from './iprice-line';
+import { IPriceScaleApi } from './iprice-scale-api';
+import { ISeriesPrimitive } from './iseries-primitive-api';
 
 /**
  * The extent of the data change.
  */
-export type DataChangedScope = 'full' | 'update'
+export type DataChangedScope = 'full' | 'update';
 
 /**
  * A custom function use to handle data changed events.
  */
-export type DataChangedHandler = (scope: DataChangedScope) => void
+export type DataChangedHandler = (scope: DataChangedScope) => void;
 
 /**
  * Represents a range of bars and the number of bars outside the range.
@@ -39,14 +39,14 @@ export interface BarsInfo<HorzScaleItem> extends Partial<Range<HorzScaleItem>> {
    * Positive value means that there are some bars before (out of logical range from the left) the {@link Range.from} logical index in the series.
    * Negative value means that the first series' bar is inside the passed logical range, and between the first series' bar and the {@link Range.from} logical index are some bars.
    */
-  barsBefore: number
+  barsBefore: number;
 
   /**
    * The number of bars after the end of the range.
    * Positive value in the `barsAfter` field means that there are some bars after (out of logical range from the right) the {@link Range.to} logical index in the series.
    * Negative value means that the last series' bar is inside the passed logical range, and between the last series' bar and the {@link Range.to} logical index are some bars.
    */
-  barsAfter: number
+  barsAfter: number;
 }
 
 /**
@@ -64,7 +64,7 @@ export interface ISeriesApi<
    *
    * @returns Interface to the price formatter object that can be used to format prices in the same way as the chart does
    */
-  priceFormatter(): IPriceFormatter
+  priceFormatter(): IPriceFormatter;
 
   /**
    * Converts specified series price to pixel coordinate according to the series price scale
@@ -72,7 +72,7 @@ export interface ISeriesApi<
    * @param price - Input price to be converted
    * @returns Pixel coordinate of the price level on the chart
    */
-  priceToCoordinate(price: number): Coordinate | null
+  priceToCoordinate(price: number): Coordinate | null;
 
   /**
    * Converts specified coordinate to price value according to the series price scale
@@ -80,7 +80,7 @@ export interface ISeriesApi<
    * @param coordinate - Input coordinate to be converted
    * @returns Price value of the coordinate on the chart
    */
-  coordinateToPrice(coordinate: number): BarPrice | null
+  coordinateToPrice(coordinate: number): BarPrice | null;
 
   /**
    * Returns bars information for the series in the provided [logical range](/time-scale.md#logical-range) or `null`, if no series data has been found in the requested range.
@@ -106,7 +106,7 @@ export interface ISeriesApi<
    * chart.timeScale().subscribeVisibleLogicalRangeChange(onVisibleLogicalRangeChanged);
    * ```
    */
-  barsInLogicalRange(range: Range<number>): BarsInfo<HorzScaleItem> | null
+  barsInLogicalRange(range: Range<number>): BarsInfo<HorzScaleItem> | null;
 
   /**
    * Applies new options to the existing series
@@ -115,21 +115,21 @@ export interface ISeriesApi<
    *
    * @param options - Any subset of options.
    */
-  applyOptions(options: TPartialOptions): void
+  applyOptions(options: TPartialOptions): void;
 
   /**
    * Returns currently applied options
    *
    * @returns Full set of currently applied options, including defaults
    */
-  options(): Readonly<TOptions>
+  options(): Readonly<TOptions>;
 
   /**
    * Returns interface of the price scale the series is currently attached
    *
    * @returns IPriceScaleApi object to control the price scale
    */
-  priceScale(): IPriceScaleApi
+  priceScale(): IPriceScaleApi;
 
   /**
    * Sets or replaces series data.
@@ -150,7 +150,7 @@ export interface ISeriesApi<
    * ]);
    * ```
    */
-  setData(data: TData[]): void
+  setData(data: TData[]): void;
 
   /**
    * Adds new data item to the existing set (or updates the latest item if times of the passed/latest items are equal).
@@ -175,7 +175,7 @@ export interface ISeriesApi<
    * });
    * ```
    */
-  update(bar: TData): void
+  update(bar: TData): void;
 
   /**
    * Returns a bar data by provided logical index.
@@ -188,7 +188,7 @@ export interface ISeriesApi<
    * const originalData = series.dataByIndex(10, LightweightCharts.MismatchDirection.NearestLeft);
    * ```
    */
-  dataByIndex(logicalIndex: number, mismatchDirection?: MismatchDirection): TData | null
+  dataByIndex(logicalIndex: number, mismatchDirection?: MismatchDirection): TData | null;
 
   /**
    * Returns all the bar data for the series.
@@ -199,7 +199,7 @@ export interface ISeriesApi<
    * const originalData = series.data();
    * ```
    */
-  data(): readonly TData[]
+  data(): readonly TData[];
 
   /**
    * Subscribe to the data changed event. This event is fired whenever the `update` or `setData` method is evoked
@@ -216,7 +216,7 @@ export interface ISeriesApi<
    * series.subscribeDataChanged(myHandler);
    * ```
    */
-  subscribeDataChanged(handler: DataChangedHandler): void
+  subscribeDataChanged(handler: DataChangedHandler): void;
 
   /**
    * Unsubscribe a handler that was previously subscribed using {@link subscribeDataChanged}.
@@ -227,7 +227,7 @@ export interface ISeriesApi<
    * chart.unsubscribeDataChanged(myHandler);
    * ```
    */
-  unsubscribeDataChanged(handler: DataChangedHandler): void
+  unsubscribeDataChanged(handler: DataChangedHandler): void;
 
   /**
    * Allows to set/replace all existing series markers with new ones.
@@ -269,12 +269,12 @@ export interface ISeriesApi<
    * });
    * ```
    */
-  setMarkers(data: SeriesMarker<HorzScaleItem>[]): void
+  setMarkers(data: SeriesMarker<HorzScaleItem>[]): void;
 
   /**
    * Returns an array of series markers.
    */
-  markers(): SeriesMarker<HorzScaleItem>[]
+  markers(): SeriesMarker<HorzScaleItem>[];
 
   /**
    * Creates a new price line
@@ -292,7 +292,7 @@ export interface ISeriesApi<
    * });
    * ```
    */
-  createPriceLine(options: CreatePriceLineOptions): IPriceLine
+  createPriceLine(options: CreatePriceLineOptions): IPriceLine;
 
   /**
    * Removes the price line that was created before.
@@ -304,7 +304,7 @@ export interface ISeriesApi<
    * series.removePriceLine(priceLine);
    * ```
    */
-  removePriceLine(line: IPriceLine): void
+  removePriceLine(line: IPriceLine): void;
 
   /**
    * Return current series type.
@@ -319,14 +319,14 @@ export interface ISeriesApi<
    * console.log(candlestickSeries.seriesType()); // "Candlestick"
    * ```
    */
-  seriesType(): TSeriesType
+  seriesType(): TSeriesType;
 
   /**
    * Attaches additional drawing primitive to the series
    *
    * @param primitive - any implementation of ISeriesPrimitive interface
    */
-  attachPrimitive(primitive: ISeriesPrimitive<HorzScaleItem>): void
+  attachPrimitive(primitive: ISeriesPrimitive<HorzScaleItem>): void;
 
   /**
    * Detaches additional drawing primitive from the series
@@ -334,5 +334,5 @@ export interface ISeriesApi<
    * @param primitive - implementation of ISeriesPrimitive interface attached before
    * Does nothing if specified primitive was not attached
    */
-  detachPrimitive(primitive: ISeriesPrimitive<HorzScaleItem>): void
+  detachPrimitive(primitive: ISeriesPrimitive<HorzScaleItem>): void;
 }

@@ -1,3 +1,3 @@
-import useBodyScroll from '../use-body-scroll'
+import useBodyScroll from '../use-body-scroll';
 
-export default useBodyScroll
+export default useBodyScroll;

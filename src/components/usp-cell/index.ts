@@ -1,1 +1,1 @@
-export { default as UspCell, type HomeCellProps } from './usp-cell'
+export { default as UspCell, type HomeCellProps } from './usp-cell';

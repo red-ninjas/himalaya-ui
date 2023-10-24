@@ -1,21 +1,21 @@
-import { useEffect, useState } from 'react'
-import { isBrowser } from './collections'
+import { useEffect, useState } from 'react';
+import { isBrowser } from './collections';
 
 export type SSRState = {
-  isBrowser: boolean
-  isServer: boolean
-}
+  isBrowser: boolean;
+  isServer: boolean;
+};
 
 const useSSR = (): SSRState => {
-  const [browser, setBrowser] = useState<boolean>(false)
+  const [browser, setBrowser] = useState<boolean>(false);
   useEffect(() => {
-    setBrowser(isBrowser())
-  }, [])
+    setBrowser(isBrowser());
+  }, []);
 
   return {
     isBrowser: browser,
     isServer: !browser,
-  }
-}
+  };
+};
 
-export default useSSR
+export default useSSR;

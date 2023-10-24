@@ -1,37 +1,37 @@
-'use client'
-import React, { useCallback, useEffect, useMemo, useState } from 'react'
-import { useCheckbox } from './checkbox-context'
-import CheckboxIcon from './checkbox.icon'
-import useWarning from '../utils/use-warning'
-import { NormalTypes } from '../utils/prop-types'
-import { getColors } from './styles'
-import useTheme from '../use-theme'
-import useScale, { withScale } from '../use-scale'
-import useClasses from '../use-classes'
+'use client';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCheckbox } from './checkbox-context';
+import CheckboxIcon from './checkbox.icon';
+import useWarning from '../utils/use-warning';
+import { NormalTypes } from '../utils/prop-types';
+import { getColors } from './styles';
+import useTheme from '../use-theme';
+import useScale, { withScale } from '../use-scale';
+import useClasses from '../use-classes';
 
-export type CheckboxTypes = NormalTypes
+export type CheckboxTypes = NormalTypes;
 export interface CheckboxEventTarget {
-  checked: boolean
+  checked: boolean;
 }
 export interface CheckboxEvent {
-  target: CheckboxEventTarget
-  stopPropagation: () => void
-  preventDefault: () => void
-  nativeEvent: React.ChangeEvent
+  target: CheckboxEventTarget;
+  stopPropagation: () => void;
+  preventDefault: () => void;
+  nativeEvent: React.ChangeEvent;
 }
 
 interface Props {
-  checked?: boolean
-  disabled?: boolean
-  type?: CheckboxTypes
-  initialChecked?: boolean
-  onChange?: (e: CheckboxEvent) => void
-  className?: string
-  value?: string
+  checked?: boolean;
+  disabled?: boolean;
+  type?: CheckboxTypes;
+  initialChecked?: boolean;
+  onChange?: (e: CheckboxEvent) => void;
+  className?: string;
+  value?: string;
 }
 
-type NativeAttrs = Omit<React.InputHTMLAttributes<any>, keyof Props>
-export type CheckboxProps = Props & NativeAttrs
+type NativeAttrs = Omit<React.InputHTMLAttributes<any>, keyof Props>;
+export type CheckboxProps = Props & NativeAttrs;
 
 const CheckboxComponent: React.FC<CheckboxProps> = ({
   checked,
@@ -44,35 +44,35 @@ const CheckboxComponent: React.FC<CheckboxProps> = ({
   value = '',
   ...props
 }: CheckboxProps) => {
-  const theme = useTheme()
-  const { SCALES } = useScale()
-  const [selfChecked, setSelfChecked] = useState<boolean>(initialChecked)
-  const { updateState, inGroup, disabledAll, values } = useCheckbox()
-  const isDisabled = inGroup ? disabledAll || disabled : disabled
-  const classes = useClasses('checkbox', className)
+  const theme = useTheme();
+  const { SCALES } = useScale();
+  const [selfChecked, setSelfChecked] = useState<boolean>(initialChecked);
+  const { updateState, inGroup, disabledAll, values } = useCheckbox();
+  const isDisabled = inGroup ? disabledAll || disabled : disabled;
+  const classes = useClasses('checkbox', className);
 
   if (inGroup && checked) {
     useWarning(
       'Remove props "checked" when [Checkbox] component is in the group.',
       'Checkbox',
-    )
+    );
   }
   if (inGroup) {
     useEffect(() => {
-      const next = values.includes(value)
-      if (next === selfChecked) return
-      setSelfChecked(next)
-    }, [values.join(',')])
+      const next = values.includes(value);
+      if (next === selfChecked) return;
+      setSelfChecked(next);
+    }, [values.join(',')]);
   }
 
   const { fill, bg } = useMemo(
     () => getColors(theme.palette, type),
     [theme.palette, type],
-  )
+  );
 
   const changeHandle = useCallback(
     (ev: React.ChangeEvent) => {
-      if (isDisabled) return
+      if (isDisabled) return;
       const selfEvent: CheckboxEvent = {
         target: {
           checked: !selfChecked,
@@ -80,21 +80,21 @@ const CheckboxComponent: React.FC<CheckboxProps> = ({
         stopPropagation: ev.stopPropagation,
         preventDefault: ev.preventDefault,
         nativeEvent: ev,
-      }
+      };
       if (inGroup && updateState) {
-        updateState && updateState(value, !selfChecked)
+        updateState && updateState(value, !selfChecked);
       }
 
-      setSelfChecked(!selfChecked)
-      onChange && onChange(selfEvent)
+      setSelfChecked(!selfChecked);
+      onChange && onChange(selfEvent);
     },
     [updateState, onChange, isDisabled, selfChecked],
-  )
+  );
 
   useEffect(() => {
-    if (checked === undefined) return
-    setSelfChecked(checked)
-  }, [checked])
+    if (checked === undefined) return;
+    setSelfChecked(checked);
+  }, [checked]);
 
   return (
     <label className={classes}>
@@ -144,9 +144,9 @@ const CheckboxComponent: React.FC<CheckboxProps> = ({
         }
       `}</style>
     </label>
-  )
-}
+  );
+};
 
-CheckboxComponent.displayName = 'HimalayaCheckbox'
-const Checkbox = withScale(CheckboxComponent)
-export default Checkbox
+CheckboxComponent.displayName = 'HimalayaCheckbox';
+const Checkbox = withScale(CheckboxComponent);
+export default Checkbox;

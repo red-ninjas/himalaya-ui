@@ -1,9 +1,9 @@
-import { DeepPartial } from '../helpers/strict-type-checks'
+import { DeepPartial } from '../helpers/strict-type-checks';
 
-import { LineStyle, LineType, LineWidth } from '../renderers/draw-line'
+import { LineStyle, LineType, LineWidth } from '../renderers/draw-line';
 
-import { AutoScaleMargins } from './autoscale-info-impl'
-import { PriceFormatterFn } from './price-formatter-fn'
+import { AutoScaleMargins } from './autoscale-info-impl';
+import { PriceFormatterFn } from './price-formatter-fn';
 
 /**
  * Represents style options for a candlestick series.
@@ -14,82 +14,82 @@ export interface CandlestickStyleOptions {
    *
    * @defaultValue `'#26a69a'`
    */
-  upColor: string
+  upColor: string;
 
   /**
    * Color of falling candles.
    *
    * @defaultValue `'#ef5350'`
    */
-  downColor: string
+  downColor: string;
 
   /**
    * Enable high and low prices candle wicks.
    *
    * @defaultValue `true`
    */
-  wickVisible: boolean
+  wickVisible: boolean;
 
   /**
    * Enable candle borders.
    *
    * @defaultValue `true`
    */
-  borderVisible: boolean
+  borderVisible: boolean;
 
   /**
    * Border color.
    *
    * @defaultValue `'#378658'`
    */
-  borderColor: string
+  borderColor: string;
 
   /**
    * Border color of rising candles.
    *
    * @defaultValue `'#26a69a'`
    */
-  borderUpColor: string
+  borderUpColor: string;
 
   /**
    * Border color of falling candles.
    *
    * @defaultValue `'#ef5350'`
    */
-  borderDownColor: string
+  borderDownColor: string;
 
   /**
    * Wick color.
    *
    * @defaultValue `'#737375'`
    */
-  wickColor: string
+  wickColor: string;
 
   /**
    * Wick color of rising candles.
    *
    * @defaultValue `'#26a69a'`
    */
-  wickUpColor: string
+  wickUpColor: string;
 
   /**
    * Wick color of falling candles.
    *
    * @defaultValue `'#ef5350'`
    */
-  wickDownColor: string
+  wickDownColor: string;
 }
 
 export function fillUpDownCandlesticksColors(
   options: Partial<CandlestickStyleOptions>,
 ): void {
   if (options.borderColor !== undefined) {
-    options.borderUpColor = options.borderColor
-    options.borderDownColor = options.borderColor
+    options.borderUpColor = options.borderColor;
+    options.borderDownColor = options.borderColor;
   }
   if (options.wickColor !== undefined) {
-    options.wickUpColor = options.wickColor
-    options.wickDownColor = options.wickColor
+    options.wickUpColor = options.wickColor;
+    options.wickDownColor = options.wickColor;
   }
 }
 
@@ -120,28 +120,28 @@ export interface BarStyleOptions {
    *
    * @defaultValue `'#26a69a'`
    */
-  upColor: string
+  upColor: string;
 
   /**
    * Color of falling bars.
    *
    * @defaultValue `'#ef5350'`
    */
-  downColor: string
+  downColor: string;
 
   /**
    * Show open lines on bars.
    *
    * @defaultValue `true`
    */
-  openVisible: boolean
+  openVisible: boolean;
 
   /**
    * Show bars as sticks.
    *
    * @defaultValue `true`
    */
-  thinBars: boolean
+  thinBars: boolean;
 }
 
 /**
@@ -153,86 +153,86 @@ export interface LineStyleOptions {
    *
    * @defaultValue `'#2196f3'`
    */
-  color: string
+  color: string;
 
   /**
    * Line style.
    *
    * @defaultValue {@link LineStyle.Solid}
    */
-  lineStyle: LineStyle
+  lineStyle: LineStyle;
 
   /**
    * Line width in pixels.
    *
    * @defaultValue `3`
    */
-  lineWidth: LineWidth
+  lineWidth: LineWidth;
 
   /**
    * Line type.
    *
    * @defaultValue {@link LineType.Simple}
    */
-  lineType: LineType
+  lineType: LineType;
 
   /**
    * Show series line.
    *
    * @defaultValue `true`
    */
-  lineVisible: boolean
+  lineVisible: boolean;
 
   /**
    * Show circle markers on each point.
    *
    * @defaultValue `false`
    */
-  pointMarkersVisible: boolean
+  pointMarkersVisible: boolean;
   /**
    * Circle markers radius in pixels.
    *
    * @defaultValue `undefined`
    */
-  pointMarkersRadius?: number
+  pointMarkersRadius?: number;
 
   /**
    * Show the crosshair marker.
    *
    * @defaultValue `true`
    */
-  crosshairMarkerVisible: boolean
+  crosshairMarkerVisible: boolean;
   /**
    * Crosshair marker radius in pixels.
    *
    * @defaultValue `4`
    */
-  crosshairMarkerRadius: number
+  crosshairMarkerRadius: number;
   /**
    * Crosshair marker border color. An empty string falls back to the color of the series under the crosshair.
    *
    * @defaultValue `''`
    */
-  crosshairMarkerBorderColor: string
+  crosshairMarkerBorderColor: string;
   /**
    * The crosshair marker background color. An empty string falls back to the color of the series under the crosshair.
    *
    * @defaultValue `''`
    */
-  crosshairMarkerBackgroundColor: string
+  crosshairMarkerBackgroundColor: string;
   /**
    * Crosshair marker border width in pixels.
    *
    * @defaultValue `2`
    */
-  crosshairMarkerBorderWidth: number
+  crosshairMarkerBorderWidth: number;
 
   /**
    * Last price animation mode.
    *
    * @defaultValue {@link LastPriceAnimationMode.Disabled}
    */
-  lastPriceAnimation: LastPriceAnimationMode
+  lastPriceAnimation: LastPriceAnimationMode;
 }
 
 /**
@@ -244,107 +244,107 @@ export interface AreaStyleOptions {
    *
    * @defaultValue `'rgba( 46, 220, 135, 0.4)'`
    */
-  topColor: string
+  topColor: string;
 
   /**
    * Color of the bottom part of the area.
    *
    * @defaultValue `'rgba( 40, 221, 100, 0)'`
    */
-  bottomColor: string
+  bottomColor: string;
 
   /**
    * Invert the filled area. Fills the area above the line if set to true.
    *
    * @defaultValue `false`
    */
-  invertFilledArea: boolean
+  invertFilledArea: boolean;
 
   /**
    * Line color.
    *
    * @defaultValue `'#33D778'`
    */
-  lineColor: string
+  lineColor: string;
 
   /**
    * Line style.
    *
    * @defaultValue {@link LineStyle.Solid}
    */
-  lineStyle: LineStyle
+  lineStyle: LineStyle;
 
   /**
    * Line width in pixels.
    *
    * @defaultValue `3`
    */
-  lineWidth: LineWidth
+  lineWidth: LineWidth;
 
   /**
    * Line type.
    *
    * @defaultValue {@link LineType.Simple}
    */
-  lineType: LineType
+  lineType: LineType;
 
   /**
    * Show series line.
    *
    * @defaultValue `true`
    */
-  lineVisible: boolean
+  lineVisible: boolean;
 
   /**
    * Show circle markers on each point.
    *
    * @defaultValue `false`
    */
-  pointMarkersVisible: boolean
+  pointMarkersVisible: boolean;
   /**
    * Circle markers radius in pixels.
    *
    * @defaultValue `undefined`
    */
-  pointMarkersRadius?: number
+  pointMarkersRadius?: number;
 
   /**
    * Show the crosshair marker.
    *
    * @defaultValue `true`
    */
-  crosshairMarkerVisible: boolean
+  crosshairMarkerVisible: boolean;
   /**
    * Crosshair marker radius in pixels.
    *
    * @defaultValue `4`
    */
-  crosshairMarkerRadius: number
+  crosshairMarkerRadius: number;
   /**
    * Crosshair marker border color. An empty string falls back to the color of the series under the crosshair.
    *
    * @defaultValue `''`
    */
-  crosshairMarkerBorderColor: string
+  crosshairMarkerBorderColor: string;
   /**
    * The crosshair marker background color. An empty string falls back to the color of the series under the crosshair.
    *
    * @defaultValue `''`
    */
-  crosshairMarkerBackgroundColor: string
+  crosshairMarkerBackgroundColor: string;
   /**
    * Crosshair marker border width in pixels.
    *
    * @defaultValue `2`
    */
-  crosshairMarkerBorderWidth: number
+  crosshairMarkerBorderWidth: number;
 
   /**
    * Last price animation mode.
    *
    * @defaultValue {@link LastPriceAnimationMode.Disabled}
    */
-  lastPriceAnimation: LastPriceAnimationMode
+  lastPriceAnimation: LastPriceAnimationMode;
 }
 
 /**
@@ -354,18 +354,18 @@ export interface BaseValuePrice {
   /**
    * Distinguished type value.
    */
-  type: 'price'
+  type: 'price';
 
   /**
    * Price value.
    */
-  price: number
+  price: number;
 }
 
 /**
  * Represents a type of a base value of baseline series type.
  */
-export type BaseValueType = BaseValuePrice
+export type BaseValueType = BaseValuePrice;
 
 /**
  * Represents style options for a baseline series.
@@ -376,122 +376,122 @@ export interface BaselineStyleOptions {
    *
    * @defaultValue `{ type: 'price', price: 0 }`
    */
-  baseValue: BaseValueType
+  baseValue: BaseValueType;
 
   /**
    * The first color of the top area.
    *
    * @defaultValue `'rgba(38, 166, 154, 0.28)'`
    */
-  topFillColor1: string
+  topFillColor1: string;
   /**
    * The second color of the top area.
    *
    * @defaultValue `'rgba(38, 166, 154, 0.05)'`
    */
-  topFillColor2: string
+  topFillColor2: string;
   /**
    * The line color of the top area.
    *
    * @defaultValue `'rgba(38, 166, 154, 1)'`
    */
-  topLineColor: string
+  topLineColor: string;
 
   /**
    * The first color of the bottom area.
    *
    * @defaultValue `'rgba(239, 83, 80, 0.05)'`
    */
-  bottomFillColor1: string
+  bottomFillColor1: string;
   /**
    * The second color of the bottom area.
    *
    * @defaultValue `'rgba(239, 83, 80, 0.28)'`
    */
-  bottomFillColor2: string
+  bottomFillColor2: string;
   /**
    * The line color of the bottom area.
    *
    * @defaultValue `'rgba(239, 83, 80, 1)'`
    */
-  bottomLineColor: string
+  bottomLineColor: string;
 
   /**
    * Line width.
    *
    * @defaultValue `3`
    */
-  lineWidth: LineWidth
+  lineWidth: LineWidth;
   /**
    * Line style.
    *
    * @defaultValue {@link LineStyle.Solid}
    */
-  lineStyle: LineStyle
+  lineStyle: LineStyle;
   /**
    * Line type.
    *
    * @defaultValue {@link LineType.Simple}
    */
-  lineType: LineType
+  lineType: LineType;
 
   /**
    * Show series line.
    *
    * @defaultValue `true`
    */
-  lineVisible: boolean
+  lineVisible: boolean;
 
   /**
    * Show circle markers on each point.
    *
    * @defaultValue `false`
    */
-  pointMarkersVisible: boolean
+  pointMarkersVisible: boolean;
   /**
    * Circle markers radius in pixels.
    *
    * @defaultValue `undefined`
    */
-  pointMarkersRadius?: number
+  pointMarkersRadius?: number;
 
   /**
    * Show the crosshair marker.
    *
    * @defaultValue `true`
    */
-  crosshairMarkerVisible: boolean
+  crosshairMarkerVisible: boolean;
   /**
    * Crosshair marker radius in pixels.
    *
    * @defaultValue `4`
    */
-  crosshairMarkerRadius: number
+  crosshairMarkerRadius: number;
   /**
    * Crosshair marker border color. An empty string falls back to the color of the series under the crosshair.
    *
    * @defaultValue `''`
    */
-  crosshairMarkerBorderColor: string
+  crosshairMarkerBorderColor: string;
   /**
    * The crosshair marker background color. An empty string falls back to the color of the series under the crosshair.
    *
    * @defaultValue `''`
    */
-  crosshairMarkerBackgroundColor: string
+  crosshairMarkerBackgroundColor: string;
   /**
    * Crosshair marker border width in pixels.
    *
    * @defaultValue `2`
    */
-  crosshairMarkerBorderWidth: number
+  crosshairMarkerBorderWidth: number;
 
   /**
    * Last price animation mode.
    *
    * @defaultValue {@link LastPriceAnimationMode.Disabled}
    */
-  lastPriceAnimation: LastPriceAnimationMode
+  lastPriceAnimation: LastPriceAnimationMode;
 }
 
 /**
@@ -503,14 +503,14 @@ export interface HistogramStyleOptions {
    *
    * @defaultValue `'#26a69a'`
    */
-  color: string
+  color: string;
 
   /**
    * Initial level of histogram columns.
    *
    * @defaultValue `0`
    */
-  base: number
+  base: number;
 }
 
 /**
@@ -520,7 +520,7 @@ export interface CustomStyleOptions {
   /**
    * Color used for the price line and price scale label.
    */
-  color: string
+  color: string;
 }
 
 /**
@@ -541,7 +541,7 @@ export interface PriceFormatBuiltIn {
    * - `'volume'` uses abbreviation for formatting prices like `1.2K` or `12.67M`.
    * - `'percent'` uses `%` sign at the end of prices.
    */
-  type: 'price' | 'volume' | 'percent'
+  type: 'price' | 'volume' | 'percent';
 
   /**
    * Number of digits after the decimal point.
@@ -549,14 +549,14 @@ export interface PriceFormatBuiltIn {
    *
    * @defaultValue `2` if both {@link minMove} and {@link precision} are not provided, calculated automatically based on {@link minMove} otherwise.
    */
-  precision: number
+  precision: number;
 
   /**
    * The minimum possible step size for price value movement. This value shouldn't have more decimal digits than the precision.
    *
    * @defaultValue `0.01`
    */
-  minMove: number
+  minMove: number;
 }
 
 /**
@@ -566,40 +566,40 @@ export interface PriceFormatCustom {
   /**
    * The custom price format.
    */
-  type: 'custom'
+  type: 'custom';
 
   /**
    * Override price formatting behaviour. Can be used for cases that can't be covered with built-in price formats.
    */
-  formatter: PriceFormatterFn
+  formatter: PriceFormatterFn;
 
   /**
    * The minimum possible step size for price value movement.
    *
    * @defaultValue `0.01`
    */
-  minMove: number
+  minMove: number;
 }
 
 /**
  * Represents information used to format prices.
  */
-export type PriceFormat = PriceFormatBuiltIn | PriceFormatCustom
+export type PriceFormat = PriceFormatBuiltIn | PriceFormatCustom;
 
 export function precisionByMinMove(minMove: number): number {
   if (minMove >= 1) {
-    return 0
+    return 0;
   }
-  let i = 0
+  let i = 0;
   for (; i < 8; i++) {
-    const intPart = Math.round(minMove)
-    const fractPart = Math.abs(intPart - minMove)
+    const intPart = Math.round(minMove);
+    const fractPart = Math.abs(intPart - minMove);
     if (fractPart < 1e-8) {
-      return i
+      return i;
     }
-    minMove = minMove * 10
+    minMove = minMove * 10;
   }
-  return i
+  return i;
 }
 
 export const enum PriceAxisLastValueMode {
@@ -628,12 +628,12 @@ export interface PriceRange {
   /**
    * Maximum value in the range.
    */
-  minValue: number
+  minValue: number;
 
   /**
    * Minimum value in the range.
    */
-  maxValue: number
+  maxValue: number;
 }
 
 /**
@@ -643,12 +643,12 @@ export interface AutoscaleInfo {
   /**
    * Price range.
    */
-  priceRange: PriceRange
+  priceRange: PriceRange;
 
   /**
    * Scale margins.
    */
-  margins?: AutoScaleMargins
+  margins?: AutoScaleMargins;
 }
 
 /**
@@ -658,7 +658,7 @@ export interface AutoscaleInfo {
  */
 type AutoscaleInfoProvider = (
   baseImplementation: () => AutoscaleInfo | null,
-) => AutoscaleInfo | null
+) => AutoscaleInfo | null;
 
 /**
  * Represents options common for all types of series
@@ -669,26 +669,26 @@ export interface SeriesOptionsCommon {
    *
    * @defaultValue `true`
    */
-  lastValueVisible: boolean
+  lastValueVisible: boolean;
 
   /**
    * You can name series when adding it to a chart. This name will be displayed on the label next to the last value label.
    *
    * @defaultValue `''`
    */
-  title: string
+  title: string;
 
   /**
    * Target price scale to bind new series to.
    *
    * @defaultValue `'right'` if right scale is visible and `'left'` otherwise
    */
-  priceScaleId?: string
+  priceScaleId?: string;
 
   /**
    * @internal
    */
-  seriesLastValueMode?: PriceAxisLastValueMode
+  seriesLastValueMode?: PriceAxisLastValueMode;
 
   /**
    * Visibility of the series.
@@ -697,28 +697,28 @@ export interface SeriesOptionsCommon {
    *
    * @defaultValue `true`
    */
-  visible: boolean
+  visible: boolean;
 
   /**
    * Show the price line. Price line is a horizontal line indicating the last price of the series.
    *
    * @defaultValue `true`
    */
-  priceLineVisible: boolean
+  priceLineVisible: boolean;
 
   /**
    * The source to use for the value of the price line.
    *
    * @defaultValue {@link PriceLineSource.LastBar}
    */
-  priceLineSource: PriceLineSource
+  priceLineSource: PriceLineSource;
 
   /**
    * Width of the price line.
    *
    * @defaultValue `1`
    */
-  priceLineWidth: LineWidth
+  priceLineWidth: LineWidth;
 
   /**
    * Color of the price line.
@@ -726,49 +726,49 @@ export interface SeriesOptionsCommon {
    *
    * @defaultValue `''`
    */
-  priceLineColor: string
+  priceLineColor: string;
 
   /**
    * Price line style.
    *
    * @defaultValue {@link LineStyle.Dashed}
    */
-  priceLineStyle: LineStyle
+  priceLineStyle: LineStyle;
 
   /**
    * Price format.
    *
    * @defaultValue `{ type: 'price', precision: 2, minMove: 0.01 }`
    */
-  priceFormat: PriceFormat
+  priceFormat: PriceFormat;
 
   /**
    * Visibility of base line. Suitable for percentage and `IndexedTo100` scales.
    *
    * @defaultValue `true`
    */
-  baseLineVisible: boolean
+  baseLineVisible: boolean;
 
   /**
    * Color of the base line in `IndexedTo100` mode.
    *
    * @defaultValue `'#B2B5BE'`
    */
-  baseLineColor: string
+  baseLineColor: string;
 
   /**
    * Base line width. Suitable for percentage and `IndexedTo10` scales.
    *
    * @defaultValue `1`
    */
-  baseLineWidth: LineWidth
+  baseLineWidth: LineWidth;
 
   /**
    * Base line style. Suitable for percentage and indexedTo100 scales.
    *
    * @defaultValue {@link LineStyle.Solid}
    */
-  baseLineStyle: LineStyle
+  baseLineStyle: LineStyle;
 
   /**
    * Override the default {@link AutoscaleInfo} provider.
@@ -816,7 +816,7 @@ export interface SeriesOptionsCommon {
    * });
    * ```
    */
-  autoscaleInfoProvider?: AutoscaleInfoProvider
+  autoscaleInfoProvider?: AutoscaleInfoProvider;
 }
 
 /**
@@ -824,75 +824,75 @@ export interface SeriesOptionsCommon {
  *
  * @see {@link SeriesOptionsCommon} for common options.
  */
-export type SeriesOptions<T> = T & SeriesOptionsCommon
+export type SeriesOptions<T> = T & SeriesOptionsCommon;
 /**
  * Represents a {@link SeriesOptions} where every property is optional.
  */
-export type SeriesPartialOptions<T> = DeepPartial<T & SeriesOptionsCommon>
+export type SeriesPartialOptions<T> = DeepPartial<T & SeriesOptionsCommon>;
 
 /**
  * Represents area series options.
  */
-export type AreaSeriesOptions = SeriesOptions<AreaStyleOptions>
+export type AreaSeriesOptions = SeriesOptions<AreaStyleOptions>;
 /**
  * Represents area series options where all properties are optional.
  */
-export type AreaSeriesPartialOptions = SeriesPartialOptions<AreaStyleOptions>
+export type AreaSeriesPartialOptions = SeriesPartialOptions<AreaStyleOptions>;
 
 /**
  * Structure describing baseline series options.
  */
-export type BaselineSeriesOptions = SeriesOptions<BaselineStyleOptions>
+export type BaselineSeriesOptions = SeriesOptions<BaselineStyleOptions>;
 /**
  * Represents baseline series options where all properties are options.
  */
-export type BaselineSeriesPartialOptions = SeriesPartialOptions<BaselineStyleOptions>
+export type BaselineSeriesPartialOptions = SeriesPartialOptions<BaselineStyleOptions>;
 
 /**
  * Represents bar series options.
  */
-export type BarSeriesOptions = SeriesOptions<BarStyleOptions>
+export type BarSeriesOptions = SeriesOptions<BarStyleOptions>;
 /**
  * Represents bar series options where all properties are options.
  */
-export type BarSeriesPartialOptions = SeriesPartialOptions<BarStyleOptions>
+export type BarSeriesPartialOptions = SeriesPartialOptions<BarStyleOptions>;
 
 /**
  * Represents candlestick series options.
  */
-export type CandlestickSeriesOptions = SeriesOptions<CandlestickStyleOptions>
+export type CandlestickSeriesOptions = SeriesOptions<CandlestickStyleOptions>;
 /**
  * Represents candlestick series options where all properties are optional.
  */
 export type CandlestickSeriesPartialOptions =
-  SeriesPartialOptions<CandlestickStyleOptions>
+  SeriesPartialOptions<CandlestickStyleOptions>;
 
 /**
  * Represents histogram series options.
  */
-export type HistogramSeriesOptions = SeriesOptions<HistogramStyleOptions>
+export type HistogramSeriesOptions = SeriesOptions<HistogramStyleOptions>;
 /**
  * Represents histogram series options where all properties are optional.
  */
-export type HistogramSeriesPartialOptions = SeriesPartialOptions<HistogramStyleOptions>
+export type HistogramSeriesPartialOptions = SeriesPartialOptions<HistogramStyleOptions>;
 
 /**
  * Represents a custom series options.
  */
-export type CustomSeriesOptions = SeriesOptions<CustomStyleOptions>
+export type CustomSeriesOptions = SeriesOptions<CustomStyleOptions>;
 /**
  * Represents a custom series options where all properties are optional.
  */
-export type CustomSeriesPartialOptions = SeriesPartialOptions<CustomStyleOptions>
+export type CustomSeriesPartialOptions = SeriesPartialOptions<CustomStyleOptions>;
 
 /**
  * Represents line series options.
  */
-export type LineSeriesOptions = SeriesOptions<LineStyleOptions>
+export type LineSeriesOptions = SeriesOptions<LineStyleOptions>;
 /**
  * Represents line series options where all properties are optional.
  */
-export type LineSeriesPartialOptions = SeriesPartialOptions<LineStyleOptions>
+export type LineSeriesPartialOptions = SeriesPartialOptions<LineStyleOptions>;
 
 /**
  * Represents the type of style options for each series type.
@@ -903,31 +903,31 @@ export interface SeriesStyleOptionsMap {
   /**
    * The type of bar style options.
    */
-  Bar: BarStyleOptions
+  Bar: BarStyleOptions;
   /**
    * The type of candlestick style options.
    */
-  Candlestick: CandlestickStyleOptions
+  Candlestick: CandlestickStyleOptions;
   /**
    * The type of area style options.
    */
-  Area: AreaStyleOptions
+  Area: AreaStyleOptions;
   /**
    * The type of baseline style options.
    */
-  Baseline: BaselineStyleOptions
+  Baseline: BaselineStyleOptions;
   /**
    * The type of line style options.
    */
-  Line: LineStyleOptions
+  Line: LineStyleOptions;
   /**
    * The type of histogram style options.
    */
-  Histogram: HistogramStyleOptions
+  Histogram: HistogramStyleOptions;
   /**
    * The type of a custom series' style options.
    */
-  Custom: CustomStyleOptions
+  Custom: CustomStyleOptions;
 }
 
 /**
@@ -939,31 +939,31 @@ export interface SeriesOptionsMap {
   /**
    * The type of bar series options.
    */
-  Bar: BarSeriesOptions
+  Bar: BarSeriesOptions;
   /**
    * The type of candlestick series options.
    */
-  Candlestick: CandlestickSeriesOptions
+  Candlestick: CandlestickSeriesOptions;
   /**
    * The type of area series options.
    */
-  Area: AreaSeriesOptions
+  Area: AreaSeriesOptions;
   /**
    * The type of baseline series options.
    */
-  Baseline: BaselineSeriesOptions
+  Baseline: BaselineSeriesOptions;
   /**
    * The type of line series options.
    */
-  Line: LineSeriesOptions
+  Line: LineSeriesOptions;
   /**
    * The type of histogram series options.
    */
-  Histogram: HistogramSeriesOptions
+  Histogram: HistogramSeriesOptions;
   /**
    * The type of a custom series options.
    */
-  Custom: CustomSeriesOptions
+  Custom: CustomSeriesOptions;
 }
 
 /**
@@ -975,31 +975,31 @@ export interface SeriesPartialOptionsMap {
   /**
    * The type of bar series partial options.
    */
-  Bar: BarSeriesPartialOptions
+  Bar: BarSeriesPartialOptions;
   /**
    * The type of candlestick series partial options.
    */
-  Candlestick: CandlestickSeriesPartialOptions
+  Candlestick: CandlestickSeriesPartialOptions;
   /**
    * The type of area series partial options.
    */
-  Area: AreaSeriesPartialOptions
+  Area: AreaSeriesPartialOptions;
   /**
    * The type of baseline series partial options.
    */
-  Baseline: BaselineSeriesPartialOptions
+  Baseline: BaselineSeriesPartialOptions;
   /**
    * The type of line series partial options.
    */
-  Line: LineSeriesPartialOptions
+  Line: LineSeriesPartialOptions;
   /**
    * The type of histogram series partial options.
    */
-  Histogram: HistogramSeriesPartialOptions
+  Histogram: HistogramSeriesPartialOptions;
   /**
    * The type of a custom series partial options.
    */
-  Custom: CustomSeriesPartialOptions
+  Custom: CustomSeriesPartialOptions;
 }
 
 /**
@@ -1007,4 +1007,4 @@ export interface SeriesPartialOptionsMap {
  *
  * @see {@link SeriesOptionsMap}
  */
-export type SeriesType = keyof SeriesOptionsMap
+export type SeriesType = keyof SeriesOptionsMap;

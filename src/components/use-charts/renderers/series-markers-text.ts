@@ -1,4 +1,4 @@
-import { Coordinate } from '../model/coordinate'
+import { Coordinate } from '../model/coordinate';
 
 export function drawText(
   ctx: CanvasRenderingContext2D,
@@ -6,7 +6,7 @@ export function drawText(
   x: number,
   y: number,
 ): void {
-  ctx.fillText(text, x, y)
+  ctx.fillText(text, x, y);
 }
 
 export function hitTestText(
@@ -17,12 +17,12 @@ export function hitTestText(
   x: Coordinate,
   y: Coordinate,
 ): boolean {
-  const halfHeight = textHeight / 2
+  const halfHeight = textHeight / 2;
 
   return (
     x >= textX &&
     x <= textX + textWidth &&
     y >= textY - halfHeight &&
     y <= textY + halfHeight
-  )
+  );
 }

@@ -1,11 +1,11 @@
-'use client'
+'use client';
 
-import React from 'react'
-import Text from '../text'
-import useLayout from '../use-layout'
+import React from 'react';
+import Text from '../text';
+import useLayout from '../use-layout';
 
 const ErrorPage404: React.FC<React.PropsWithChildren<{}>> = () => {
-  const layout = useLayout()
+  const layout = useLayout();
 
   return (
     <div className="error-404">
@@ -38,7 +38,7 @@ const ErrorPage404: React.FC<React.PropsWithChildren<{}>> = () => {
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-export default ErrorPage404
+export default ErrorPage404;

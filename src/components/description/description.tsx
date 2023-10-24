@@ -1,18 +1,18 @@
-'use client'
+'use client';
 
-import React, { ReactNode } from 'react'
-import useTheme from '../use-theme'
-import useScale, { withScale } from '../use-scale'
-import useClasses from '../use-classes'
+import React, { ReactNode } from 'react';
+import useTheme from '../use-theme';
+import useScale, { withScale } from '../use-scale';
+import useClasses from '../use-classes';
 
 interface Props {
-  title?: ReactNode | string
-  content?: ReactNode | string
-  className?: string
+  title?: ReactNode | string;
+  content?: ReactNode | string;
+  className?: string;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>
-export type DescriptionProps = Props & NativeAttrs
+type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+export type DescriptionProps = Props & NativeAttrs;
 
 const DescriptionComponent: React.FC<DescriptionProps> = ({
   title = 'Title' as ReactNode | string,
@@ -20,9 +20,9 @@ const DescriptionComponent: React.FC<DescriptionProps> = ({
   className = '',
   ...props
 }: DescriptionProps) => {
-  const theme = useTheme()
-  const { SCALES } = useScale()
-  const classes = useClasses('description', className)
+  const theme = useTheme();
+  const { SCALES } = useScale();
+  const classes = useClasses('description', className);
 
   return (
     <dl className={classes} {...props}>
@@ -63,9 +63,9 @@ const DescriptionComponent: React.FC<DescriptionProps> = ({
         }
       `}</style>
     </dl>
-  )
-}
+  );
+};
 
-DescriptionComponent.displayName = 'HimalayaDescription'
-const Description = withScale(DescriptionComponent)
-export default Description
+DescriptionComponent.displayName = 'HimalayaDescription';
+const Description = withScale(DescriptionComponent);
+export default Description;

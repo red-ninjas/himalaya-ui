@@ -1,24 +1,24 @@
-'use client'
+'use client';
 
-import React from 'react'
-import useTheme from '../use-theme'
-import { useScale, withScale } from '../use-scale'
-import useClasses from '../use-classes'
+import React from 'react';
+import useTheme from '../use-theme';
+import { useScale, withScale } from '../use-scale';
+import useClasses from '../use-classes';
 
 interface Props {
-  width?: number
-  squared?: boolean
-  rounded?: boolean
-  component?: keyof React.JSX.IntrinsicElements
-  className?: string
-  show?: boolean
-  minHeight?: number
-  animated?: boolean
-  height?: number
+  width?: number;
+  squared?: boolean;
+  rounded?: boolean;
+  component?: keyof React.JSX.IntrinsicElements;
+  className?: string;
+  show?: boolean;
+  minHeight?: number;
+  animated?: boolean;
+  height?: number;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>
-export type SkeletonProps = Props & NativeAttrs
+type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+export type SkeletonProps = Props & NativeAttrs;
 
 const SkeletonComponent: React.FC<React.PropsWithChildren<SkeletonProps>> = ({
   component = 'span' as keyof React.JSX.IntrinsicElements,
@@ -33,14 +33,14 @@ const SkeletonComponent: React.FC<React.PropsWithChildren<SkeletonProps>> = ({
   height,
   ...props
 }: React.PropsWithChildren<SkeletonProps>) => {
-  const Component = component
-  const theme = useTheme()
-  const { SCALES } = useScale()
+  const Component = component;
+  const theme = useTheme();
+  const { SCALES } = useScale();
   const classes = useClasses(
     'skeleton',
     { rounded, squared, show, stop: !animated, hasChildren: !!children },
     className,
-  )
+  );
 
   return (
     <Component className={classes} {...props}>
@@ -123,9 +123,9 @@ const SkeletonComponent: React.FC<React.PropsWithChildren<SkeletonProps>> = ({
         }
       `}</style>
     </Component>
-  )
-}
+  );
+};
 
-SkeletonComponent.displayName = 'HimalayaSkeleton'
-const Skeleton = withScale(SkeletonComponent)
-export default Skeleton
+SkeletonComponent.displayName = 'HimalayaSkeleton';
+const Skeleton = withScale(SkeletonComponent);
+export default Skeleton;

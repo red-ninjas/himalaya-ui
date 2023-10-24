@@ -1,18 +1,18 @@
-'use client'
-import { usePathname } from 'next/navigation'
-import React, { createRef, useEffect } from 'react'
-import useScale, { withScale } from '../use-scale'
-import useTheme from '../use-theme'
-import useClasses from '../use-classes'
-import { InnerScrollEvent } from '.'
+'use client';
+import { usePathname } from 'next/navigation';
+import React, { createRef, useEffect } from 'react';
+import useScale, { withScale } from '../use-scale';
+import useTheme from '../use-theme';
+import useClasses from '../use-classes';
+import { InnerScrollEvent } from '.';
 
 export interface InnerScrollProps {
-  maxHeight?: number | string
-  maxWidth?: number | string
-  type?: 'horizontal' | 'vertical' | 'both'
-  scrollUpOnRouteChange?: boolean
-  transparentBg?: boolean
-  onScroll?: (event: InnerScrollEvent) => void
+  maxHeight?: number | string;
+  maxWidth?: number | string;
+  type?: 'horizontal' | 'vertical' | 'both';
+  scrollUpOnRouteChange?: boolean;
+  transparentBg?: boolean;
+  onScroll?: (event: InnerScrollEvent) => void;
 }
 const InnerScrollComponent: React.FC<React.PropsWithChildren<InnerScrollProps>> = ({
   children,
@@ -23,26 +23,26 @@ const InnerScrollComponent: React.FC<React.PropsWithChildren<InnerScrollProps>> 
   scrollUpOnRouteChange = true,
   onScroll = () => {},
 }) => {
-  const theme = useTheme()
-  const { SCALES } = useScale()
-  const ref = createRef<HTMLDivElement>()
-  const pathName = usePathname()
+  const theme = useTheme();
+  const { SCALES } = useScale();
+  const ref = createRef<HTMLDivElement>();
+  const pathName = usePathname();
 
   const onScrollHandler = () => {
     if (ref.current) {
-      const { scrollTop, scrollHeight, clientHeight } = ref.current
-      onScroll({ scrollTop, scrollHeight, clientHeight })
+      const { scrollTop, scrollHeight, clientHeight } = ref.current;
+      onScroll({ scrollTop, scrollHeight, clientHeight });
     }
-  }
+  };
 
   useEffect(() => {
     if (scrollUpOnRouteChange) {
       ref?.current?.scrollTo({
         top: 0,
         behavior: 'instant',
-      })
+      });
     }
-  }, [pathName])
+  }, [pathName]);
 
   return (
     <div
@@ -140,8 +140,8 @@ const InnerScrollComponent: React.FC<React.PropsWithChildren<InnerScrollProps>> 
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-const InnerScroll = withScale(InnerScrollComponent)
-export default InnerScroll
+const InnerScroll = withScale(InnerScrollComponent);
+export default InnerScroll;

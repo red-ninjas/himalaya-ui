@@ -1,6 +1,6 @@
-import { BitmapCoordinatesRenderingScope, CanvasRenderingTarget2D } from 'fancy-canvas'
+import { BitmapCoordinatesRenderingScope, CanvasRenderingTarget2D } from 'fancy-canvas';
 
-import { IPaneRenderer } from './ipane-renderer'
+import { IPaneRenderer } from './ipane-renderer';
 
 export abstract class BitmapCoordinatesPaneRenderer implements IPaneRenderer {
   public draw(
@@ -10,7 +10,7 @@ export abstract class BitmapCoordinatesPaneRenderer implements IPaneRenderer {
   ): void {
     target.useBitmapCoordinateSpace((scope: BitmapCoordinatesRenderingScope) =>
       this._drawImpl(scope, isHovered, hitTestData),
-    )
+    );
   }
 
   // public drawBackground(target: CanvasRenderingTarget2D, isHovered: boolean, hitTestData?: unknown): void {
@@ -23,7 +23,7 @@ export abstract class BitmapCoordinatesPaneRenderer implements IPaneRenderer {
     renderingScope: BitmapCoordinatesRenderingScope,
     isHovered: boolean,
     hitTestData?: unknown,
-  ): void
+  ): void;
 
   // protected _drawBackgroundImpl(renderingScope: BitmapCoordsRenderingScope, isHovered: boolean, hitTestData?: unknown): void {}
 }

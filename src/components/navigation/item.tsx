@@ -1,24 +1,24 @@
-'use client'
-import { ChevronUp } from '../icons'
-import { isArray } from 'lodash'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import React, { PropsWithChildren, useRef, useState } from 'react'
-import { INavigationItem } from '.'
-import Popover from '../popover'
-import useClasses from '../use-classes'
-import useScale, { withScale } from '../use-scale'
-import useTheme from '../use-theme'
-import { pickChild } from '../utils/collections'
-import { ReactiveDomReact } from '../utils/layouts'
-import { useNavigation } from './navigation-context'
-import NavigationSubItem from './sub-item'
+'use client';
+import { ChevronUp } from '../icons';
+import { isArray } from 'lodash';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import React, { PropsWithChildren, useRef, useState } from 'react';
+import { INavigationItem } from '.';
+import Popover from '../popover';
+import useClasses from '../use-classes';
+import useScale, { withScale } from '../use-scale';
+import useTheme from '../use-theme';
+import { pickChild } from '../utils/collections';
+import { ReactiveDomReact } from '../utils/layouts';
+import { useNavigation } from './navigation-context';
+import NavigationSubItem from './sub-item';
 
 export interface NavigationItemProps extends INavigationItem {
-  exactMatch?: boolean
-  columns?: number
-  transcluent?: boolean
-  onClick?: () => void
+  exactMatch?: boolean;
+  columns?: number;
+  transcluent?: boolean;
+  onClick?: () => void;
 }
 
 const NavigationItem: React.FC<PropsWithChildren<NavigationItemProps>> = ({
@@ -30,20 +30,20 @@ const NavigationItem: React.FC<PropsWithChildren<NavigationItemProps>> = ({
   onClick,
   title,
 }) => {
-  const theme = useTheme()
-  const { onMouseOver } = useNavigation()
-  const pathname = usePathname()
-  const [isPopoverVisibile, setIsPopoverVisibile] = useState<boolean>(false)
-  const [isHover, setIsHover] = useState<boolean>(false)
-  const [, childElements] = pickChild(children, NavigationSubItem)
-  const { SCALES } = useScale()
-  const ref = useRef<HTMLAnchorElement | null>(null)
+  const theme = useTheme();
+  const { onMouseOver } = useNavigation();
+  const pathname = usePathname();
+  const [isPopoverVisibile, setIsPopoverVisibile] = useState<boolean>(false);
+  const [isHover, setIsHover] = useState<boolean>(false);
+  const [, childElements] = pickChild(children, NavigationSubItem);
+  const { SCALES } = useScale();
+  const ref = useRef<HTMLAnchorElement | null>(null);
 
   const isLinkActive = url
     ? exactMatch
       ? pathname == url
       : pathname.startsWith(url)
-    : false
+    : false;
 
   const btnClass = useClasses({
     'menu-item': true,
@@ -51,7 +51,7 @@ const NavigationItem: React.FC<PropsWithChildren<NavigationItemProps>> = ({
     'chevron-active': isPopoverVisibile,
     'is-hover': isHover,
     'has-chevron': childElements && isArray(childElements) && childElements?.length > 0,
-  })
+  });
 
   const childs = () => (
     <div className="sub-child-grid">
@@ -64,17 +64,17 @@ const NavigationItem: React.FC<PropsWithChildren<NavigationItemProps>> = ({
         }
       `}</style>
     </div>
-  )
+  );
 
   const handleClick = (e: any) => {
     if (onClick) {
-      e.preventDefault()
-      onClick()
+      e.preventDefault();
+      onClick();
     }
-  }
+  };
 
   const onChildMouseOver = () => {
-    const coreRect = (ref?.current as HTMLElement)?.getBoundingClientRect()
+    const coreRect = (ref?.current as HTMLElement)?.getBoundingClientRect();
     const newValue: ReactiveDomReact = {
       left: coreRect.left,
       right: coreRect.right,
@@ -84,11 +84,11 @@ const NavigationItem: React.FC<PropsWithChildren<NavigationItemProps>> = ({
       height: coreRect.height,
       width: coreRect.width,
       top: coreRect.bottom,
-    }
+    };
 
-    onMouseOver(newValue)
-    setIsHover(true)
-  }
+    onMouseOver(newValue);
+    setIsHover(true);
+  };
 
   return (
     <div className="navigation-item-outer">
@@ -96,7 +96,8 @@ const NavigationItem: React.FC<PropsWithChildren<NavigationItemProps>> = ({
         className="navigation-item"
         onMouseLeave={() => setIsHover(false)}
         onMouseOut={() => setIsHover(false)}
-        onMouseOver={onChildMouseOver}>
+        onMouseOver={onChildMouseOver}
+      >
         {childElements && isArray(childElements) && childElements?.length > 0 ? (
           <Popover
             onVisibleChange={visible => setIsPopoverVisibile(visible)}
@@ -110,13 +111,15 @@ const NavigationItem: React.FC<PropsWithChildren<NavigationItemProps>> = ({
             })}
             enterDelay={0}
             leaveDelay={0}
-            content={childs}>
+            content={childs}
+          >
             <Link passHref legacyBehavior href={url || ''}>
               <a className={btnClass} ref={ref} onClick={e => handleClick(e)}>
                 <span>{title}</span>
                 <span className="chevron-outer">
                   <span
-                    className={useClasses({ chevron: true, rotated: isPopoverVisibile })}>
+                    className={useClasses({ chevron: true, rotated: isPopoverVisibile })}
+                  >
                     <ChevronUp size={14} />
                   </span>
                 </span>
@@ -258,8 +261,8 @@ const NavigationItem: React.FC<PropsWithChildren<NavigationItemProps>> = ({
         }
       `}</style>
     </div>
-  )
-}
-NavigationItem.displayName = 'HimalayaNavigationItem'
+  );
+};
+NavigationItem.displayName = 'HimalayaNavigationItem';
 
-export default withScale(NavigationItem)
+export default withScale(NavigationItem);

@@ -1,13 +1,13 @@
-import React from 'react'
-import { mount } from 'enzyme'
-import { Spacer } from 'components'
+import React from 'react';
+import { mount } from 'enzyme';
+import { Spacer } from 'components';
 
 describe('Spacer', () => {
   it('should render correctly', () => {
-    const wrapper = mount(<Spacer />)
-    expect(wrapper.html()).toMatchSnapshot()
-    expect(() => wrapper.unmount()).not.toThrow()
-  })
+    const wrapper = mount(<Spacer />);
+    expect(wrapper.html()).toMatchSnapshot();
+    expect(() => wrapper.unmount()).not.toThrow();
+  });
 
   it('should support x and y', () => {
     const wrapper = mount(
@@ -17,10 +17,10 @@ describe('Spacer', () => {
         <Spacer h={15} />
         <Spacer h={2} />
       </div>,
-    )
-    expect(wrapper.html()).toMatchSnapshot()
-    expect(() => wrapper.unmount()).not.toThrow()
-  })
+    );
+    expect(wrapper.html()).toMatchSnapshot();
+    expect(() => wrapper.unmount()).not.toThrow();
+  });
 
   it('should work with float', () => {
     const wrapper = mount(
@@ -30,14 +30,14 @@ describe('Spacer', () => {
         <Spacer h={0.1} />
         <Spacer h={1.8} />
       </div>,
-    )
-    expect(wrapper.html()).toMatchSnapshot()
-    expect(() => wrapper.unmount()).not.toThrow()
-  })
+    );
+    expect(wrapper.html()).toMatchSnapshot();
+    expect(() => wrapper.unmount()).not.toThrow();
+  });
 
   it('should work with inline mode', () => {
-    const wrapper = mount(<Spacer inline />)
-    expect(wrapper.html()).toMatchSnapshot()
-    expect(() => wrapper.unmount()).not.toThrow()
-  })
-})
+    const wrapper = mount(<Spacer inline />);
+    expect(wrapper.html()).toMatchSnapshot();
+    expect(() => wrapper.unmount()).not.toThrow();
+  });
+});

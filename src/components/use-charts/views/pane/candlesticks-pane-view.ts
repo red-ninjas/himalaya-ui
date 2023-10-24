@@ -1,19 +1,19 @@
-import { SeriesBarColorer } from '../../model/series-bar-colorer'
-import { SeriesPlotRow } from '../../model/series-data'
-import { TimePointIndex } from '../../model/time-data'
+import { SeriesBarColorer } from '../../model/series-bar-colorer';
+import { SeriesPlotRow } from '../../model/series-data';
+import { TimePointIndex } from '../../model/time-data';
 import {
   CandlestickItem,
   PaneRendererCandlesticks,
-} from '../../renderers/candlesticks-renderer'
+} from '../../renderers/candlesticks-renderer';
 
-import { BarsPaneViewBase } from './bars-pane-view-base'
+import { BarsPaneViewBase } from './bars-pane-view-base';
 
 export class SeriesCandlesticksPaneView extends BarsPaneViewBase<
   'Candlestick',
   CandlestickItem,
   PaneRendererCandlesticks
 > {
-  protected readonly _renderer: PaneRendererCandlesticks = new PaneRendererCandlesticks()
+  protected readonly _renderer: PaneRendererCandlesticks = new PaneRendererCandlesticks();
 
   protected _createRawItem(
     time: TimePointIndex,
@@ -23,11 +23,11 @@ export class SeriesCandlesticksPaneView extends BarsPaneViewBase<
     return {
       ...this._createDefaultItem(time, bar, colorer),
       ...colorer.barStyle(time),
-    }
+    };
   }
 
   protected _prepareRendererData(): void {
-    const candlestickStyleProps = this._series.options()
+    const candlestickStyleProps = this._series.options();
 
     this._renderer.setData({
       bars: this._items,
@@ -35,6 +35,6 @@ export class SeriesCandlesticksPaneView extends BarsPaneViewBase<
       wickVisible: candlestickStyleProps.wickVisible,
       borderVisible: candlestickStyleProps.borderVisible,
       visibleRange: this._itemsVisibleRange,
-    })
+    });
   }
 }

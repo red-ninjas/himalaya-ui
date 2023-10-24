@@ -1,13 +1,13 @@
 export interface BreakpointsItem {
-  min: string
-  max: string
+  min: string;
+  max: string;
 }
 export interface UIThemesBreakpoints {
-  xs: BreakpointsItem
-  sm: BreakpointsItem
-  md: BreakpointsItem
-  lg: BreakpointsItem
-  xl: BreakpointsItem
+  xs: BreakpointsItem;
+  sm: BreakpointsItem;
+  md: BreakpointsItem;
+  lg: BreakpointsItem;
+  xl: BreakpointsItem;
 }
 
 export const defaultBreakpoints: UIThemesBreakpoints = {
@@ -31,21 +31,21 @@ export const defaultBreakpoints: UIThemesBreakpoints = {
     min: '1920px',
     max: '10000px',
   },
-}
+};
 
 export interface LayoutProps {
-  pageWidth: string
-  pageMargin: string
-  pageWidthWithMargin: string
-  gap: string
-  gapNegative: string
-  gapHalf: string
-  gapHalfNegative: string
-  gapQuarter: string
-  gapQuarterNegative: string
-  breakpointMobile: string
-  breakpointTablet: string
-  breakpoints: UIThemesBreakpoints
-  radius: string
-  unit: string
+  pageWidth: string;
+  pageMargin: string;
+  pageWidthWithMargin: string;
+  gap: string;
+  gapNegative: string;
+  gapHalf: string;
+  gapHalfNegative: string;
+  gapQuarter: string;
+  gapQuarterNegative: string;
+  breakpointMobile: string;
+  breakpointTablet: string;
+  breakpoints: UIThemesBreakpoints;
+  radius: string;
+  unit: string;
 }

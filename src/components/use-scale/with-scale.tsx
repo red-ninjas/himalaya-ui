@@ -1,13 +1,13 @@
-'use client'
+'use client';
 
-import React, { forwardRef } from 'react'
-import { ScaleConfig, ScaleContext, ScaleProps } from './scale-context'
+import React, { forwardRef } from 'react';
+import { ScaleConfig, ScaleContext, ScaleProps } from './scale-context';
 import {
   generateGetAllScaleProps,
   generateGetScaleProps,
   makeScaleHandler,
-} from './utils'
-import useLayout from '../use-layout'
+} from './utils';
+import useLayout from '../use-layout';
 
 export type ContentScaleProps = {
   children?:
@@ -16,14 +16,14 @@ export type ContentScaleProps = {
     | string
     | undefined
     | null
-    | number
-} & ScaleProps
+    | number;
+} & ScaleProps;
 
 const withScale = <T, P = {}>(
   Render: React.ComponentType<P & { ref?: React.Ref<T> }>,
 ) => {
   const ScaleFC = forwardRef<T, P & ContentScaleProps>(({ children, ...props }, ref) => {
-    const layout = useLayout()
+    const layout = useLayout();
     const {
       paddingLeft,
       pl,
@@ -55,7 +55,7 @@ const withScale = <T, P = {}>(
       unit = layout.unit,
       scale = 1,
       ...innerProps
-    } = props
+    } = props;
 
     const value: ScaleConfig = {
       unit: unit,
@@ -94,7 +94,7 @@ const withScale = <T, P = {}>(
       },
       getScaleProps: generateGetScaleProps(props),
       getAllScaleProps: generateGetAllScaleProps(props),
-    }
+    };
 
     return (
       <ScaleContext.Provider value={value}>
@@ -102,10 +102,10 @@ const withScale = <T, P = {}>(
           {children}
         </Render>
       </ScaleContext.Provider>
-    )
-  })
-  ScaleFC.displayName = `Scale${Render.displayName || 'Wrapper'}`
-  return ScaleFC
-}
+    );
+  });
+  ScaleFC.displayName = `Scale${Render.displayName || 'Wrapper'}`;
+  return ScaleFC;
+};
 
-export default withScale
+export default withScale;

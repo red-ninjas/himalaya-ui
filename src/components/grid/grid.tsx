@@ -1,22 +1,22 @@
-'use client'
-import React from 'react'
-import css from 'styled-jsx/css'
-import GridBasicItem, { GridBasicItemProps } from './basic-item'
-import useScale, { withScale } from '../use-scale'
-import useClasses from '../use-classes'
+'use client';
+import React from 'react';
+import css from 'styled-jsx/css';
+import GridBasicItem, { GridBasicItemProps } from './basic-item';
+import useScale, { withScale } from '../use-scale';
+import useClasses from '../use-classes';
 
 interface Props {
-  className?: string
+  className?: string;
 }
 
-export type GridProps = Props & GridBasicItemProps
+export type GridProps = Props & GridBasicItemProps;
 
 const GridComponent: React.FC<React.PropsWithChildren<GridProps>> = ({
   children,
   className = '',
   ...props
 }: React.PropsWithChildren<GridProps>) => {
-  const { SCALES } = useScale()
+  const { SCALES } = useScale();
   const { className: resolveClassName, styles } = css.resolve`
     div {
       margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
@@ -25,17 +25,17 @@ const GridComponent: React.FC<React.PropsWithChildren<GridProps>> = ({
         ${SCALES.pr(0, 'var(--grid-gap-unit)')} ${SCALES.pb(0, 'var(--grid-gap-unit)')}
         ${SCALES.pl(0, 'var(--grid-gap-unit)')};
     }
-  `
-  const classes = useClasses(resolveClassName, className)
+  `;
+  const classes = useClasses(resolveClassName, className);
 
   return (
     <GridBasicItem className={classes} {...props}>
       {children}
       {styles}
     </GridBasicItem>
-  )
-}
+  );
+};
 
-GridComponent.displayName = 'HimalayaGrid'
-const Grid = withScale(GridComponent)
-export default Grid
+GridComponent.displayName = 'HimalayaGrid';
+const Grid = withScale(GridComponent);
+export default Grid;

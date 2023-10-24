@@ -1,38 +1,38 @@
-'use client'
-import React, { useCallback, useEffect, useMemo, useState } from 'react'
-import useTheme from '../use-theme'
-import { NormalTypes } from '../utils/prop-types'
-import { getColors } from './styles'
-import useScale, { withScale } from '../use-scale'
-import useClasses from '../use-classes'
+'use client';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import useTheme from '../use-theme';
+import { NormalTypes } from '../utils/prop-types';
+import { getColors } from './styles';
+import useScale, { withScale } from '../use-scale';
+import useClasses from '../use-classes';
 
-export type ToggleTypes = NormalTypes
+export type ToggleTypes = NormalTypes;
 export interface ToggleEventTarget {
-  checked: boolean
+  checked: boolean;
 }
 export interface ToggleEvent {
-  target: ToggleEventTarget
-  stopPropagation: () => void
-  preventDefault: () => void
-  nativeEvent: React.ChangeEvent
+  target: ToggleEventTarget;
+  stopPropagation: () => void;
+  preventDefault: () => void;
+  nativeEvent: React.ChangeEvent;
 }
 
 interface Props {
-  checked?: boolean
-  initialChecked?: boolean
-  onChange?: (ev: ToggleEvent) => void
-  disabled?: boolean
-  type?: ToggleTypes
-  className?: string
+  checked?: boolean;
+  initialChecked?: boolean;
+  onChange?: (ev: ToggleEvent) => void;
+  disabled?: boolean;
+  type?: ToggleTypes;
+  className?: string;
 }
 
-type NativeAttrs = Omit<React.LabelHTMLAttributes<any>, keyof Props>
-export type ToggleProps = Props & NativeAttrs
+type NativeAttrs = Omit<React.LabelHTMLAttributes<any>, keyof Props>;
+export type ToggleProps = Props & NativeAttrs;
 
 export type ToggleSize = {
-  width: string
-  height: string
-}
+  width: string;
+  height: string;
+};
 
 const ToggleComponent: React.FC<ToggleProps> = ({
   initialChecked = false,
@@ -43,14 +43,14 @@ const ToggleComponent: React.FC<ToggleProps> = ({
   className = '',
   ...props
 }: ToggleProps) => {
-  const theme = useTheme()
-  const { SCALES } = useScale()
-  const [selfChecked, setSelfChecked] = useState<boolean>(initialChecked)
-  const classes = useClasses('toggle', { checked: selfChecked, disabled })
+  const theme = useTheme();
+  const { SCALES } = useScale();
+  const [selfChecked, setSelfChecked] = useState<boolean>(initialChecked);
+  const classes = useClasses('toggle', { checked: selfChecked, disabled });
 
   const changeHandle = useCallback(
     (ev: React.ChangeEvent) => {
-      if (disabled) return
+      if (disabled) return;
       const selfEvent: ToggleEvent = {
         target: {
           checked: !selfChecked,
@@ -58,20 +58,20 @@ const ToggleComponent: React.FC<ToggleProps> = ({
         stopPropagation: ev.stopPropagation,
         preventDefault: ev.preventDefault,
         nativeEvent: ev,
-      }
+      };
 
-      setSelfChecked(!selfChecked)
-      onChange && onChange(selfEvent)
+      setSelfChecked(!selfChecked);
+      onChange && onChange(selfEvent);
     },
     [disabled, selfChecked, onChange],
-  )
+  );
 
-  const { bg } = useMemo(() => getColors(theme.palette, type), [theme.palette, type])
+  const { bg } = useMemo(() => getColors(theme.palette, type), [theme.palette, type]);
 
   useEffect(() => {
-    if (checked === undefined) return
-    setSelfChecked(checked)
-  }, [checked])
+    if (checked === undefined) return;
+    setSelfChecked(checked);
+  }, [checked]);
 
   return (
     <label className={className} {...props}>
@@ -166,9 +166,9 @@ const ToggleComponent: React.FC<ToggleProps> = ({
         }
       `}</style>
     </label>
-  )
-}
+  );
+};
 
-ToggleComponent.displayName = 'HimalayaToggle'
-const Toggle = withScale(ToggleComponent)
-export default Toggle
+ToggleComponent.displayName = 'HimalayaToggle';
+const Toggle = withScale(ToggleComponent);
+export default Toggle;

@@ -1,15 +1,15 @@
-import React from 'react'
-import useTheme from '../use-theme'
-import useClasses from '../use-classes'
+import React from 'react';
+import useTheme from '../use-theme';
+import useClasses from '../use-classes';
 
 interface Props {
-  left: number
-  disabled?: boolean
-  isClick?: boolean
+  left: number;
+  disabled?: boolean;
+  isClick?: boolean;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>
-export type SliderDotProps = Props & NativeAttrs
+type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+export type SliderDotProps = Props & NativeAttrs;
 
 const SliderDot = React.forwardRef<
   HTMLDivElement,
@@ -24,8 +24,8 @@ const SliderDot = React.forwardRef<
     }: React.PropsWithChildren<SliderDotProps>,
     ref: React.Ref<HTMLDivElement>,
   ) => {
-    const theme = useTheme()
-    const classes = useClasses('dot', { disabled, click: isClick })
+    const theme = useTheme();
+    const classes = useClasses('dot', { disabled, click: isClick });
 
     return (
       <div className={classes} ref={ref}>
@@ -69,9 +69,9 @@ const SliderDot = React.forwardRef<
           }
         `}</style>
       </div>
-    )
+    );
   },
-)
+);
 
-SliderDot.displayName = 'HimalayaSliderDot'
-export default SliderDot
+SliderDot.displayName = 'HimalayaSliderDot';
+export default SliderDot;

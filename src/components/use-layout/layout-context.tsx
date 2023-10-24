@@ -1,21 +1,21 @@
-import React from 'react'
-import { UIThemesBreakpoints, LayoutProps, defaultBreakpoints } from './shared'
+import React from 'react';
+import { UIThemesBreakpoints, LayoutProps, defaultBreakpoints } from './shared';
 
 export interface LayoutPropsContext {
-  pageWidth?: string
-  pageMargin?: string
-  pageWidthWithMargin?: string
-  gap?: string
-  gapNegative?: string
-  gapHalf?: string
-  gapHalfNegative?: string
-  gapQuarter?: string
-  gapQuarterNegative?: string
-  breakpointMobile?: string
-  breakpointTablet?: string
-  breakpoints?: UIThemesBreakpoints
-  radius?: string
-  unit?: string
+  pageWidth?: string;
+  pageMargin?: string;
+  pageWidthWithMargin?: string;
+  gap?: string;
+  gapNegative?: string;
+  gapHalf?: string;
+  gapHalfNegative?: string;
+  gapQuarter?: string;
+  gapQuarterNegative?: string;
+  breakpointMobile?: string;
+  breakpointTablet?: string;
+  breakpoints?: UIThemesBreakpoints;
+  radius?: string;
+  unit?: string;
 }
 
 export const defaultConfigs: LayoutProps = {
@@ -33,7 +33,7 @@ export const defaultConfigs: LayoutProps = {
   breakpoints: defaultBreakpoints,
   radius: '6px',
   unit: '16px',
-}
+};
 
-export const LayoutContext = React.createContext<LayoutProps>(defaultConfigs)
-export const useLayout = (): LayoutProps => React.useContext(LayoutContext)
+export const LayoutContext = React.createContext<LayoutProps>(defaultConfigs);
+export const useLayout = (): LayoutProps => React.useContext(LayoutContext);

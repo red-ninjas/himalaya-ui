@@ -1,21 +1,21 @@
-'use client'
+'use client';
 
-import { PropsWithChildren, useEffect, useState } from 'react'
-import Progress from '../progress'
-import { usePathname, useSearchParams } from 'next/navigation'
-import useClasses from '../use-classes'
+import { PropsWithChildren, useEffect, useState } from 'react';
+import Progress from '../progress';
+import { usePathname, useSearchParams } from 'next/navigation';
+import useClasses from '../use-classes';
 
 const RoutingIndicator: React.FC<PropsWithChildren<{}>> = ({ children }) => {
-  const pathname = usePathname()
-  const searchParams = useSearchParams()
-  const [isActive, setIsActive] = useState<boolean>(false)
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const [isActive, setIsActive] = useState<boolean>(false);
 
   useEffect(() => {
-    setIsActive(false)
+    setIsActive(false);
     return () => {
-      setIsActive(true)
-    }
-  }, [pathname, searchParams])
+      setIsActive(true);
+    };
+  }, [pathname, searchParams]);
 
   return (
     <>
@@ -47,7 +47,7 @@ const RoutingIndicator: React.FC<PropsWithChildren<{}>> = ({ children }) => {
         }
       `}</style>
     </>
-  )
-}
+  );
+};
 
-export default RoutingIndicator
+export default RoutingIndicator;

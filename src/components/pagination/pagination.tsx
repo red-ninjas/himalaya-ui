@@ -1,28 +1,28 @@
-'use client'
-import React, { useEffect, useMemo } from 'react'
-import PaginationPrevious from './pagination-previous'
-import PaginationNext from './pagination-next'
-import PaginationPages from './pagination-pages'
+'use client';
+import React, { useEffect, useMemo } from 'react';
+import PaginationPrevious from './pagination-previous';
+import PaginationNext from './pagination-next';
+import PaginationPages from './pagination-pages';
 import {
   PaginationContext,
   PaginationConfig,
   PaginationUpdateType,
-} from './pagination-context'
-import useCurrentState from '../utils/use-current-state'
-import { pickChild } from '../utils/collections'
-import useScale, { withScale } from '../use-scale'
+} from './pagination-context';
+import useCurrentState from '../utils/use-current-state';
+import { pickChild } from '../utils/collections';
+import useScale, { withScale } from '../use-scale';
 
 interface Props {
-  page?: number
-  initialPage?: number
-  count?: number
-  limit?: number
-  onChange?: (val: number) => void
-  className?: string
+  page?: number;
+  initialPage?: number;
+  count?: number;
+  limit?: number;
+  onChange?: (val: number) => void;
+  className?: string;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>
-export type PaginationProps = Props & NativeAttrs
+type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+export type PaginationProps = Props & NativeAttrs;
 
 const PaginationComponent: React.FC<React.PropsWithChildren<PaginationProps>> = ({
   page: customPage,
@@ -34,29 +34,29 @@ const PaginationComponent: React.FC<React.PropsWithChildren<PaginationProps>> = 
   className = '',
   ...props
 }: React.PropsWithChildren<PaginationProps>) => {
-  const { SCALES } = useScale()
-  const [page, setPage, pageRef] = useCurrentState(initialPage)
-  const [, prevChildren] = pickChild(children, PaginationPrevious)
-  const [, nextChildren] = pickChild(children, PaginationNext)
+  const { SCALES } = useScale();
+  const [page, setPage, pageRef] = useCurrentState(initialPage);
+  const [, prevChildren] = pickChild(children, PaginationPrevious);
+  const [, nextChildren] = pickChild(children, PaginationNext);
 
   const [prevItem, nextItem] = useMemo(() => {
-    const hasChildren = (c: any) => React.Children.count(c) > 0
-    const prevDefault = <PaginationPrevious>prev</PaginationPrevious>
-    const nextDefault = <PaginationNext>next</PaginationNext>
+    const hasChildren = (c: any) => React.Children.count(c) > 0;
+    const prevDefault = <PaginationPrevious>prev</PaginationPrevious>;
+    const nextDefault = <PaginationNext>next</PaginationNext>;
     return [
       hasChildren(prevChildren) ? prevChildren : prevDefault,
       hasChildren(nextChildren) ? nextChildren : nextDefault,
-    ]
-  }, [prevChildren, nextChildren])
+    ];
+  }, [prevChildren, nextChildren]);
 
   const update = (type: PaginationUpdateType) => {
     if (type === 'prev' && pageRef.current > 1) {
-      setPage(last => last - 1)
+      setPage(last => last - 1);
     }
     if (type === 'next' && pageRef.current < count) {
-      setPage(last => last + 1)
+      setPage(last => last + 1);
     }
-  }
+  };
   const values = useMemo<PaginationConfig>(
     () => ({
       isFirst: page <= 1,
@@ -64,16 +64,16 @@ const PaginationComponent: React.FC<React.PropsWithChildren<PaginationProps>> = 
       update,
     }),
     [page, count],
-  )
+  );
 
   useEffect(() => {
-    onChange && onChange(page)
-  }, [page])
+    onChange && onChange(page);
+  }, [page]);
   useEffect(() => {
     if (customPage !== undefined) {
-      setPage(customPage)
+      setPage(customPage);
     }
-  }, [customPage])
+  }, [customPage]);
 
   return (
     <PaginationContext.Provider value={values}>
@@ -99,9 +99,9 @@ const PaginationComponent: React.FC<React.PropsWithChildren<PaginationProps>> = 
         }
       `}</style>
     </PaginationContext.Provider>
-  )
-}
+  );
+};
 
-PaginationComponent.displayName = 'HimalayaPagination'
-const Pagination = withScale(PaginationComponent)
-export default Pagination
+PaginationComponent.displayName = 'HimalayaPagination';
+const Pagination = withScale(PaginationComponent);
+export default Pagination;

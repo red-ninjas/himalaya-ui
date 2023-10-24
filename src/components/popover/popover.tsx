@@ -1,33 +1,33 @@
-'use client'
-import React, { useEffect, useMemo, useState } from 'react'
+'use client';
+import React, { useEffect, useMemo, useState } from 'react';
 import Tooltip, {
   TooltipOnVisibleChange,
   TooltipProps,
   TooltipTypes,
-} from '../tooltip/tooltip'
-import { Placement, TriggerTypes } from '../utils/prop-types'
-import { getReactNode } from '../utils/collections'
-import useScale, { withScale } from '../use-scale'
-import { PopoverContext, PopoverConfig } from './popover-context'
-import useClasses from '../use-classes'
+} from '../tooltip/tooltip';
+import { Placement, TriggerTypes } from '../utils/prop-types';
+import { getReactNode } from '../utils/collections';
+import useScale, { withScale } from '../use-scale';
+import { PopoverContext, PopoverConfig } from './popover-context';
+import useClasses from '../use-classes';
 
-export type PopoverTriggerTypes = TriggerTypes
-export type PopoverPlacement = Placement
+export type PopoverTriggerTypes = TriggerTypes;
+export type PopoverPlacement = Placement;
 interface Props {
-  content?: React.ReactNode | (() => React.ReactNode)
-  trigger?: PopoverTriggerTypes
-  placement?: Placement
-  disableItemsAutoClose?: boolean
+  content?: React.ReactNode | (() => React.ReactNode);
+  trigger?: PopoverTriggerTypes;
+  placement?: Placement;
+  disableItemsAutoClose?: boolean;
 }
 
 type ExcludeTooltipProps = {
-  content: any
-  text: any
-  trigger: any
-  placement: any
-}
+  content: any;
+  text: any;
+  trigger: any;
+  placement: any;
+};
 
-export type PopoverProps = Props & Omit<TooltipProps, keyof ExcludeTooltipProps>
+export type PopoverProps = Props & Omit<TooltipProps, keyof ExcludeTooltipProps>;
 
 const PopoverComponent: React.FC<React.PropsWithChildren<PopoverProps>> = ({
   content,
@@ -46,30 +46,30 @@ const PopoverComponent: React.FC<React.PropsWithChildren<PopoverProps>> = ({
   leaveDelay = 150,
   ...props
 }: React.PropsWithChildren<PopoverProps>) => {
-  const { SCALES } = useScale()
-  const [visible, setVisible] = useState<boolean>(initialVisible)
-  const textNode = useMemo(() => getReactNode(content), [content])
+  const { SCALES } = useScale();
+  const [visible, setVisible] = useState<boolean>(initialVisible);
+  const textNode = useMemo(() => getReactNode(content), [content]);
   const onChildClick = () => {
-    onPopoverVisibleChange(false)
-  }
+    onPopoverVisibleChange(false);
+  };
   const value = useMemo<PopoverConfig>(
     () => ({
       onItemClick: onChildClick,
       disableItemsAutoClose,
     }),
     [disableItemsAutoClose],
-  )
-  const classes = useClasses('popover', portalClassName)
+  );
+  const classes = useClasses('popover', portalClassName);
 
   const onPopoverVisibleChange = (next: boolean) => {
-    setVisible(next)
-    onVisibleChange(next)
-  }
+    setVisible(next);
+    onVisibleChange(next);
+  };
 
   useEffect(() => {
-    if (customVisible === undefined) return
-    onPopoverVisibleChange(customVisible)
-  }, [customVisible])
+    if (customVisible === undefined) return;
+    onPopoverVisibleChange(customVisible);
+  }, [customVisible]);
   return (
     <PopoverContext.Provider value={value}>
       <Tooltip
@@ -92,9 +92,9 @@ const PopoverComponent: React.FC<React.PropsWithChildren<PopoverProps>> = ({
         `}</style>
       </Tooltip>
     </PopoverContext.Provider>
-  )
-}
+  );
+};
 
-PopoverComponent.displayName = 'HimalayaPopover'
-const Popover = withScale(PopoverComponent)
-export default Popover
+PopoverComponent.displayName = 'HimalayaPopover';
+const Popover = withScale(PopoverComponent);
+export default Popover;

@@ -1,14 +1,14 @@
-import React from 'react'
-import { mount } from 'enzyme'
-import { Radio } from 'components'
-import { nativeEvent } from 'tests/utils'
+import React from 'react';
+import { mount } from 'enzyme';
+import { Radio } from 'components';
+import { nativeEvent } from 'tests/utils';
 
 describe('Radio', () => {
   it('should render correctly', () => {
-    const wrapper = mount(<Radio checked={false}>Option</Radio>)
-    expect(wrapper.html()).toMatchSnapshot()
-    expect(() => wrapper.unmount()).not.toThrow()
-  })
+    const wrapper = mount(<Radio checked={false}>Option</Radio>);
+    expect(wrapper.html()).toMatchSnapshot();
+    expect(() => wrapper.unmount()).not.toThrow();
+  });
 
   it('should work with different status', () => {
     const wrapper = mount(
@@ -18,52 +18,52 @@ describe('Radio', () => {
         <Radio type="warning" />
         <Radio type="error" />
       </div>,
-    )
-    expect(wrapper.html()).toMatchSnapshot()
-  })
+    );
+    expect(wrapper.html()).toMatchSnapshot();
+  });
 
   it('should render correctly with checked prop', () => {
-    const wrapper = mount(<Radio>Option</Radio>)
-    wrapper.setProps({ checked: false })
-    let input = wrapper.find('input').at(0).getDOMNode() as HTMLInputElement
-    expect(input.checked).toEqual(false)
+    const wrapper = mount(<Radio>Option</Radio>);
+    wrapper.setProps({ checked: false });
+    let input = wrapper.find('input').at(0).getDOMNode() as HTMLInputElement;
+    expect(input.checked).toEqual(false);
 
-    wrapper.setProps({ checked: true })
-    input = wrapper.find('input').at(0).getDOMNode() as HTMLInputElement
-    expect(input.checked).toEqual(true)
-  })
+    wrapper.setProps({ checked: true });
+    input = wrapper.find('input').at(0).getDOMNode() as HTMLInputElement;
+    expect(input.checked).toEqual(true);
+  });
 
   it('should trigger events when use alone', () => {
-    const changeHandler = jest.fn()
-    const wrapper = mount(<Radio onChange={changeHandler}>Option</Radio>)
+    const changeHandler = jest.fn();
+    const wrapper = mount(<Radio onChange={changeHandler}>Option</Radio>);
     wrapper
       .find('input')
       .at(0)
       .simulate('change', {
         ...nativeEvent,
         target: { checked: true },
-      })
-    expect(changeHandler).toHaveBeenCalled()
-    changeHandler.mockRestore()
-  })
+      });
+    expect(changeHandler).toHaveBeenCalled();
+    changeHandler.mockRestore();
+  });
 
   it('should ignore events when disabled', () => {
-    const changeHandler = jest.fn()
+    const changeHandler = jest.fn();
     const wrapper = mount(
       <Radio onChange={changeHandler} disabled>
         Option
       </Radio>,
-    )
+    );
     wrapper
       .find('input')
       .at(0)
       .simulate('change', {
         ...nativeEvent,
         target: { checked: true },
-      })
-    expect(changeHandler).not.toHaveBeenCalled()
-    changeHandler.mockRestore()
-  })
+      });
+    expect(changeHandler).not.toHaveBeenCalled();
+    changeHandler.mockRestore();
+  });
 
   it('should support react-node in description', () => {
     const wrapper = mount(
@@ -79,8 +79,8 @@ describe('Radio', () => {
           </Radio.Desc>
         </Radio>
       </div>,
-    )
-    expect(wrapper.html()).toMatchSnapshot()
-    expect(() => wrapper.unmount()).not.toThrow()
-  })
-})
+    );
+    expect(wrapper.html()).toMatchSnapshot();
+    expect(() => wrapper.unmount()).not.toThrow();
+  });
+});

@@ -1,28 +1,28 @@
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import React from 'react'
-import useLayout from '../use-layout'
-import useTheme from '../use-theme'
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import React from 'react';
+import useLayout from '../use-layout';
+import useTheme from '../use-theme';
 
 export interface Props {
-  url: string
-  title: string
-  onClick?: () => void
+  url: string;
+  title: string;
+  onClick?: () => void;
 }
 
 const SidebarLink: React.FC<Props> = ({ url, title, onClick }) => {
-  const theme = useTheme()
-  const layout = useLayout()
-  const pathname = usePathname()
+  const theme = useTheme();
+  const layout = useLayout();
+  const pathname = usePathname();
 
-  const isActive = pathname === url
+  const isActive = pathname === url;
 
   const handleClick = (e: any) => {
     if (onClick) {
-      e.preventDefault()
-      onClick()
+      e.preventDefault();
+      onClick();
     }
-  }
+  };
 
   return (
     <>
@@ -59,7 +59,7 @@ const SidebarLink: React.FC<Props> = ({ url, title, onClick }) => {
         }
       `}</style>
     </>
-  )
-}
+  );
+};
 
-export default SidebarLink
+export default SidebarLink;

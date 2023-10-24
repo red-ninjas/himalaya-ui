@@ -1,14 +1,14 @@
-'use client'
+'use client';
 
-import React, { PropsWithChildren } from 'react'
-import useTheme from '../use-theme'
+import React, { PropsWithChildren } from 'react';
+import useTheme from '../use-theme';
 
 const CarouseStyles: React.FC<
   PropsWithChildren<{
-    arrowSize?: number
+    arrowSize?: number;
   }>
 > = ({ children, arrowSize = 36 }) => {
-  const theme = useTheme()
+  const theme = useTheme();
 
   return (
     <div className="carousel-wrapper">
@@ -199,8 +199,8 @@ const CarouseStyles: React.FC<
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-CarouseStyles.displayName = 'HimalayaCarouseStyles'
-export default CarouseStyles
+CarouseStyles.displayName = 'HimalayaCarouseStyles';
+export default CarouseStyles;

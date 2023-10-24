@@ -1,14 +1,14 @@
-'use client'
-import React from 'react'
-import useTheme from '../use-theme'
-import useScale, { withScale } from '../use-scale'
+'use client';
+import React from 'react';
+import useTheme from '../use-theme';
+import useScale, { withScale } from '../use-scale';
 
 interface Props {
-  className?: string
+  className?: string;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>
-export type RadioDescriptionProps = Props & NativeAttrs
+type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+export type RadioDescriptionProps = Props & NativeAttrs;
 
 const RadioDescriptionComponent: React.FC<
   React.PropsWithChildren<RadioDescriptionProps>
@@ -17,8 +17,8 @@ const RadioDescriptionComponent: React.FC<
   children,
   ...props
 }: React.PropsWithChildren<RadioDescriptionProps>) => {
-  const theme = useTheme()
-  const { SCALES } = useScale()
+  const theme = useTheme();
+  const { SCALES } = useScale();
 
   return (
     <span className={className} {...props}>
@@ -35,9 +35,9 @@ const RadioDescriptionComponent: React.FC<
         }
       `}</style>
     </span>
-  )
-}
+  );
+};
 
-RadioDescriptionComponent.displayName = 'HimalayaRadioDescription'
-const RadioDescription = withScale(RadioDescriptionComponent)
-export default RadioDescription
+RadioDescriptionComponent.displayName = 'HimalayaRadioDescription';
+const RadioDescription = withScale(RadioDescriptionComponent);
+export default RadioDescription;

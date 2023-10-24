@@ -1,22 +1,22 @@
-'use client'
-import React, { useMemo } from 'react'
-import useTheme from '../use-theme'
-import { NormalTypes } from '../utils/prop-types'
-import { UIThemes } from '../themes/presets'
-import useScale, { withScale } from '../use-scale'
-import useClasses from '../use-classes'
-import { AlertCircleFill, AlertTriangle, Info, XCircleFill } from '../icons'
+'use client';
+import React, { useMemo } from 'react';
+import useTheme from '../use-theme';
+import { NormalTypes } from '../utils/prop-types';
+import { UIThemes } from '../themes/presets';
+import useScale, { withScale } from '../use-scale';
+import useClasses from '../use-classes';
+import { AlertCircleFill, AlertTriangle, Info, XCircleFill } from '../icons';
 
-export type NoteTypes = NormalTypes
+export type NoteTypes = NormalTypes;
 interface Props {
-  type?: NoteTypes
-  icon?: React.ReactNode | boolean
-  filled?: boolean
-  className?: string
+  type?: NoteTypes;
+  icon?: React.ReactNode | boolean;
+  filled?: boolean;
+  className?: string;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>
-export type NoteProps = Props & NativeAttrs
+type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+export type NoteProps = Props & NativeAttrs;
 
 const getStatusColor = (type: NoteTypes, filled: boolean, theme: UIThemes) => {
   const colors: { [key in NoteTypes]?: string } = {
@@ -24,30 +24,30 @@ const getStatusColor = (type: NoteTypes, filled: boolean, theme: UIThemes) => {
     success: theme.palette.success,
     warning: theme.palette.warning,
     error: theme.palette.error,
-  }
-  const statusColor = colors[type]
+  };
+  const statusColor = colors[type];
 
   const borderColors: { [key in NoteTypes]?: string } = {
     secondary: theme.palette.border,
     success: theme.palette.successDark,
     warning: theme.palette.warningDark,
     error: theme.palette.errorDark,
-  }
-  const borderColorsType = borderColors[type]
+  };
+  const borderColorsType = borderColors[type];
 
   if (!filled)
     return {
       color: statusColor || theme.palette.foreground,
       borderColor: borderColorsType || theme.palette.border,
       bgColor: theme.palette.background,
-    }
-  const filledColor = statusColor ? 'white' : theme.palette.background
+    };
+  const filledColor = statusColor ? 'white' : theme.palette.background;
   return {
     color: filledColor,
     borderColor: borderColorsType || theme.palette.foreground,
     bgColor: statusColor || theme.palette.foreground,
-  }
-}
+  };
+};
 
 export const NoteComponent: React.FC<React.PropsWithChildren<NoteProps>> = ({
   children,
@@ -57,22 +57,22 @@ export const NoteComponent: React.FC<React.PropsWithChildren<NoteProps>> = ({
   className = '',
   ...props
 }: React.PropsWithChildren<NoteProps>) => {
-  const theme = useTheme()
-  const { SCALES } = useScale()
+  const theme = useTheme();
+  const { SCALES } = useScale();
   const { color, borderColor, bgColor } = useMemo(
     () => getStatusColor(type, filled, theme),
     [type, filled, theme],
-  )
+  );
 
   const icons: { [key in NoteTypes]?: React.ReactNode } = {
     secondary: <Info size={SCALES.font(1)}></Info>,
     success: <AlertCircleFill size={SCALES.font(1)}></AlertCircleFill>,
     warning: <AlertTriangle size={SCALES.font(1)}></AlertTriangle>,
     error: <XCircleFill size={SCALES.font(1)}></XCircleFill>,
-  }
-  const statusIcon = icons[type]
+  };
+  const statusIcon = icons[type];
 
-  const foundIcon = icon == true ? statusIcon : icon
+  const foundIcon = icon == true ? statusIcon : icon;
 
   return (
     <div className={useClasses('note', className)} {...props}>
@@ -112,9 +112,9 @@ export const NoteComponent: React.FC<React.PropsWithChildren<NoteProps>> = ({
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-NoteComponent.displayName = 'HimalayaNote'
-const Note = withScale(NoteComponent)
-export default Note
+NoteComponent.displayName = 'HimalayaNote';
+const Note = withScale(NoteComponent);
+export default Note;

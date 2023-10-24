@@ -1,20 +1,20 @@
-'use client'
+'use client';
 
-import React from 'react'
-import { QuickBarLayoutProps } from '.'
-import { useScale, withScale } from '../use-scale'
-import { pickChild } from '../utils/collections'
-import { default as QuickBar } from './quick-bar'
-import useQuickBar from '../use-quickbar'
-import useClasses from '../use-classes'
+import React from 'react';
+import { QuickBarLayoutProps } from '.';
+import { useScale, withScale } from '../use-scale';
+import { pickChild } from '../utils/collections';
+import { default as QuickBar } from './quick-bar';
+import useQuickBar from '../use-quickbar';
+import useClasses from '../use-classes';
 
 const QuickBarLayout: React.FC<React.PropsWithChildren<QuickBarLayoutProps>> = ({
   children,
   animationTime = 250,
 }) => {
-  const [otherElements, quickBar] = pickChild(children, QuickBar)
-  const { SCALES } = useScale()
-  const { isEnabled } = useQuickBar()
+  const [otherElements, quickBar] = pickChild(children, QuickBar);
+  const { SCALES } = useScale();
+  const { isEnabled } = useQuickBar();
 
   return (
     <>
@@ -66,8 +66,8 @@ const QuickBarLayout: React.FC<React.PropsWithChildren<QuickBarLayoutProps>> = (
         }
       `}</style>
     </>
-  )
-}
+  );
+};
 
-QuickBarLayout.displayName = 'HimalayaQuickBarLayout'
-export default withScale(QuickBarLayout)
+QuickBarLayout.displayName = 'HimalayaQuickBarLayout';
+export default withScale(QuickBarLayout);

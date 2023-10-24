@@ -1,13 +1,13 @@
-import React, { useState } from 'react'
-import PaginationItem from './pagination-item'
+import React, { useState } from 'react';
+import PaginationItem from './pagination-item';
 
 interface Props {
-  isBefore?: boolean
-  onClick?: (e: React.MouseEvent) => void
+  isBefore?: boolean;
+  onClick?: (e: React.MouseEvent) => void;
 }
 
 const PaginationEllipsis: React.FC<Props> = ({ isBefore, onClick }) => {
-  const [showMore, setShowMore] = useState(false)
+  const [showMore, setShowMore] = useState(false);
 
   return (
     <PaginationItem
@@ -57,8 +57,8 @@ const PaginationEllipsis: React.FC<Props> = ({ isBefore, onClick }) => {
         }
       `}</style>
     </PaginationItem>
-  )
-}
+  );
+};
 
-PaginationEllipsis.displayName = 'HimalayaPaginationEllipsis'
-export default PaginationEllipsis
+PaginationEllipsis.displayName = 'HimalayaPaginationEllipsis';
+export default PaginationEllipsis;

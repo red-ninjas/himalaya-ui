@@ -1,19 +1,19 @@
-import React, { CSSProperties, useImperativeHandle, useRef } from 'react'
-import useTheme from '../use-theme'
-import { useSelectContext } from './select-context'
-import Dropdown from '../shared/dropdown'
-import useClasses from '../use-classes'
+import React, { CSSProperties, useImperativeHandle, useRef } from 'react';
+import useTheme from '../use-theme';
+import { useSelectContext } from './select-context';
+import Dropdown from '../shared/dropdown';
+import useClasses from '../use-classes';
 
 interface Props {
-  visible: boolean
-  className?: string
-  dropdownStyle?: CSSProperties
-  disableMatchWidth?: boolean
-  getPopupContainer?: () => HTMLElement | null
+  visible: boolean;
+  className?: string;
+  dropdownStyle?: CSSProperties;
+  disableMatchWidth?: boolean;
+  getPopupContainer?: () => HTMLElement | null;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>
-export type SelectDropdownProps = Props & NativeAttrs
+type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+export type SelectDropdownProps = Props & NativeAttrs;
 
 const SelectDropdown = React.forwardRef<
   HTMLDivElement | null,
@@ -30,15 +30,15 @@ const SelectDropdown = React.forwardRef<
     }: React.PropsWithChildren<SelectDropdownProps>,
     dropdownRef,
   ) => {
-    const theme = useTheme()
-    const internalDropdownRef = useRef<HTMLDivElement | null>(null)
-    const { ref } = useSelectContext()
-    const classes = useClasses('select-dropdown', className)
+    const theme = useTheme();
+    const internalDropdownRef = useRef<HTMLDivElement | null>(null);
+    const { ref } = useSelectContext();
+    const classes = useClasses('select-dropdown', className);
 
     useImperativeHandle<HTMLDivElement | null, HTMLDivElement | null>(
       dropdownRef,
       () => internalDropdownRef.current,
-    )
+    );
 
     return (
       <Dropdown
@@ -63,9 +63,9 @@ const SelectDropdown = React.forwardRef<
           `}</style>
         </div>
       </Dropdown>
-    )
+    );
   },
-)
+);
 
-SelectDropdown.displayName = 'HimalayaSelectDropdown'
-export default SelectDropdown
+SelectDropdown.displayName = 'HimalayaSelectDropdown';
+export default SelectDropdown;

@@ -1,13 +1,13 @@
-import React from 'react'
-import { mount, render } from 'enzyme'
-import { Divider } from 'components'
+import React from 'react';
+import { mount, render } from 'enzyme';
+import { Divider } from 'components';
 
 describe('Divider', () => {
   it('should render correctly', () => {
-    const wrapper = mount(<Divider />)
-    expect(wrapper).toMatchSnapshot()
-    expect(() => wrapper.unmount()).not.toThrow()
-  })
+    const wrapper = mount(<Divider />);
+    expect(wrapper).toMatchSnapshot();
+    expect(() => wrapper.unmount()).not.toThrow();
+  });
 
   it('should work with w and h', () => {
     const wrapper = render(
@@ -15,9 +15,9 @@ describe('Divider', () => {
         <Divider w={3} />
         <Divider h={3} />
       </div>,
-    )
-    expect(wrapper).toMatchSnapshot()
-  })
+    );
+    expect(wrapper).toMatchSnapshot();
+  });
 
   it('should work with type', () => {
     const wrapper = render(
@@ -26,9 +26,9 @@ describe('Divider', () => {
         <Divider type="warning" />
         <Divider type="dark" />
       </div>,
-    )
-    expect(wrapper).toMatchSnapshot()
-  })
+    );
+    expect(wrapper).toMatchSnapshot();
+  });
 
   it('should work with align and volume', () => {
     const wrapper = render(
@@ -40,9 +40,9 @@ describe('Divider', () => {
           start
         </Divider>
       </div>,
-    )
-    expect(wrapper).toMatchSnapshot()
-  })
+    );
+    expect(wrapper).toMatchSnapshot();
+  });
 
   it('should support float', () => {
     const wrapper = mount(
@@ -50,8 +50,8 @@ describe('Divider', () => {
         <Divider w={1.1} h={2.5} />
         <Divider h={2.5} />
       </div>,
-    )
-    expect(wrapper).toMatchSnapshot()
-    expect(() => wrapper.unmount()).not.toThrow()
-  })
-})
+    );
+    expect(wrapper).toMatchSnapshot();
+    expect(() => wrapper.unmount()).not.toThrow();
+  });
+});

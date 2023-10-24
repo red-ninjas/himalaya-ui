@@ -1,38 +1,38 @@
-import { usePathname } from 'next/navigation'
-import { useEffect } from 'react'
-import useCurrentState from '../utils/use-current-state'
+import { usePathname } from 'next/navigation';
+import { useEffect } from 'react';
+import useCurrentState from '../utils/use-current-state';
 
-const DEFAULT_LOCALE = 'en-us'
-const DEFAULT_TAB = ''
+const DEFAULT_LOCALE = 'en-us';
+const DEFAULT_TAB = '';
 
 export type LocaleTypes = {
-  locale: string
-  tabbar: string
-}
+  locale: string;
+  tabbar: string;
+};
 
 const useLocale = (): LocaleTypes => {
-  const pathname = usePathname()
-  const [locale, setLocale, localeRef] = useCurrentState<string>(DEFAULT_LOCALE)
-  const [tabbar, setTab, tabRef] = useCurrentState<string>(DEFAULT_TAB)
+  const pathname = usePathname();
+  const [locale, setLocale, localeRef] = useCurrentState<string>(DEFAULT_LOCALE);
+  const [tabbar, setTab, tabRef] = useCurrentState<string>(DEFAULT_TAB);
 
   useEffect(() => {
-    const names = pathname.split('/').filter(r => !!r)
-    const currentLocale = names[0] || DEFAULT_LOCALE
-    const currentTabbar = names[1] || DEFAULT_TAB
+    const names = pathname.split('/').filter(r => !!r);
+    const currentLocale = names[0] || DEFAULT_LOCALE;
+    const currentTabbar = names[1] || DEFAULT_TAB;
 
     if (currentLocale !== localeRef.current) {
-      setLocale(currentLocale)
+      setLocale(currentLocale);
     }
 
     if (currentTabbar !== tabRef.current) {
-      setTab(currentTabbar)
+      setTab(currentTabbar);
     }
-  }, [pathname])
+  }, [pathname]);
 
   return {
     locale,
     tabbar,
-  }
-}
+  };
+};
 
-export default useLocale
+export default useLocale;

@@ -1,5 +1,5 @@
-import { TimeAxisViewRenderer } from '../../renderers/time-axis-view-renderer'
+import { TimeAxisViewRenderer } from '../../renderers/time-axis-view-renderer';
 
 export interface ITimeAxisView {
-  renderer(): TimeAxisViewRenderer
+  renderer(): TimeAxisViewRenderer;
 }

@@ -1,10 +1,10 @@
-import React from 'react'
-import useTheme from '../use-theme'
+import React from 'react';
+import useTheme from '../use-theme';
 
 export interface TreeFileIconProps {
-  color?: string
-  width?: number
-  height?: number
+  color?: string;
+  width?: number;
+  height?: number;
 }
 
 const TreeFileIcon: React.FC<TreeFileIconProps> = ({
@@ -12,7 +12,7 @@ const TreeFileIcon: React.FC<TreeFileIconProps> = ({
   width = 22,
   height = 22,
 }: TreeFileIconProps) => {
-  const theme = useTheme()
+  const theme = useTheme();
   return (
     <svg
       viewBox="0 0 24 24"
@@ -33,8 +33,8 @@ const TreeFileIcon: React.FC<TreeFileIconProps> = ({
         }
       `}</style>
     </svg>
-  )
-}
+  );
+};
 
-TreeFileIcon.displayName = 'HimalayaTreeFileIcon'
-export default TreeFileIcon
+TreeFileIcon.displayName = 'HimalayaTreeFileIcon';
+export default TreeFileIcon;

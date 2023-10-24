@@ -1,20 +1,20 @@
-'use client'
+'use client';
 
-import React from 'react'
-import MenuIcon from '../icons/menu'
-import { MobileMenuButtonProps } from './index'
-import Button, { ButtonProps } from '../button'
-import { useConfigs } from '../use-context'
-import { useMobileMenu } from '../use-mobile-menu/mobile-menu-context'
-import { ScaleProps, withScale } from '../use-scale'
+import React from 'react';
+import MenuIcon from '../icons/menu';
+import { MobileMenuButtonProps } from './index';
+import Button, { ButtonProps } from '../button';
+import { useConfigs } from '../use-context';
+import { useMobileMenu } from '../use-mobile-menu/mobile-menu-context';
+import { ScaleProps, withScale } from '../use-scale';
 
 const MobileMenuButton: React.FC<MobileMenuButtonProps & ButtonProps & ScaleProps> = ({
   notHiding,
   toggleMenu,
   ...props
 }) => {
-  const { isMobile } = useConfigs()
-  const { setIsEnabled } = useMobileMenu()
+  const { isMobile } = useConfigs();
+  const { setIsEnabled } = useMobileMenu();
 
   return (
     (isMobile || (!isMobile && notHiding)) && (
@@ -25,10 +25,11 @@ const MobileMenuButton: React.FC<MobileMenuButtonProps & ButtonProps & ScaleProp
         auto
         iconRight={<MenuIcon></MenuIcon>}
         onClick={() => {
-          toggleMenu?.() ?? setIsEnabled(true)
-        }}></Button>
+          toggleMenu?.() ?? setIsEnabled(true);
+        }}
+      ></Button>
     )
-  )
-}
+  );
+};
 
-export default withScale(MobileMenuButton)
+export default withScale(MobileMenuButton);

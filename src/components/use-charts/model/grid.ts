@@ -1,8 +1,8 @@
-import { LineStyle } from '../renderers/draw-line'
-import { GridPaneView } from '../views/pane/grid-pane-view'
-import { IUpdatablePaneView } from '../views/pane/iupdatable-pane-view'
+import { LineStyle } from '../renderers/draw-line';
+import { GridPaneView } from '../views/pane/grid-pane-view';
+import { IUpdatablePaneView } from '../views/pane/iupdatable-pane-view';
 
-import { Pane } from './pane'
+import { Pane } from './pane';
 
 /** Grid line options. */
 export interface GridLineOptions {
@@ -11,21 +11,21 @@ export interface GridLineOptions {
    *
    * @defaultValue `'#D6DCDE'`
    */
-  color: string
+  color: string;
 
   /**
    * Line style.
    *
    * @defaultValue {@link LineStyle.Solid}
    */
-  style: LineStyle
+  style: LineStyle;
 
   /**
    * Display the lines.
    *
    * @defaultValue `true`
    */
-  visible: boolean
+  visible: boolean;
 }
 
 /** Structure describing grid options. */
@@ -33,22 +33,22 @@ export interface GridOptions {
   /**
    * Vertical grid line options.
    */
-  vertLines: GridLineOptions
+  vertLines: GridLineOptions;
 
   /**
    * Horizontal grid line options.
    */
-  horzLines: GridLineOptions
+  horzLines: GridLineOptions;
 }
 
 export class Grid {
-  private _paneView: GridPaneView
+  private _paneView: GridPaneView;
 
   public constructor(pane: Pane) {
-    this._paneView = new GridPaneView(pane)
+    this._paneView = new GridPaneView(pane);
   }
 
   public paneView(): IUpdatablePaneView {
-    return this._paneView
+    return this._paneView;
   }
 }

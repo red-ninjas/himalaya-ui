@@ -1,12 +1,12 @@
 import { SVGAttributes } from 'react';
 
 export interface IconProps {
-  size?: string | number,
-  color?: string,
+  size?: string | number;
+  color?: string;
 }
 
-type NativeAttrs = Omit<SVGAttributes<SVGElement>, keyof IconProps>
-export type IconPropsNative = IconProps & NativeAttrs
+type NativeAttrs = Omit<SVGAttributes<SVGElement>, keyof IconProps>;
+export type IconPropsNative = IconProps & NativeAttrs;
 export { default as Activity } from './activity';
 export { default as Airplay } from './airplay';
 export { default as AlertCircle } from './alertCircle';

@@ -1,6 +1,6 @@
-'use client'
+'use client';
 
-import { PropsWithChildren } from 'react'
+import { PropsWithChildren } from 'react';
 
 const HeroActions: React.FC<PropsWithChildren> = ({ ...props }) => {
   return (
@@ -17,8 +17,8 @@ const HeroActions: React.FC<PropsWithChildren> = ({ ...props }) => {
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-HeroActions.displayName = 'HimalayaHeroActions'
-export default HeroActions
+HeroActions.displayName = 'HimalayaHeroActions';
+export default HeroActions;

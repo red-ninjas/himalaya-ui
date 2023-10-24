@@ -1,11 +1,11 @@
-'use client'
-import React, { useState } from 'react'
-import { SidebarContext } from './sidebar-context'
+'use client';
+import React, { useState } from 'react';
+import { SidebarContext } from './sidebar-context';
 
 const SidebarProvider: React.FC<React.PropsWithChildren> = ({
   children,
 }: React.PropsWithChildren<{}>) => {
-  const [isEnabled, setIsEnabled] = useState<boolean>(false)
+  const [isEnabled, setIsEnabled] = useState<boolean>(false);
   return (
     <SidebarContext.Provider
       value={{
@@ -15,8 +15,8 @@ const SidebarProvider: React.FC<React.PropsWithChildren> = ({
     >
       {children}
     </SidebarContext.Provider>
-  )
-}
+  );
+};
 
-SidebarProvider.displayName = 'HimalayaSidebarProvider'
-export default SidebarProvider
+SidebarProvider.displayName = 'HimalayaSidebarProvider';
+export default SidebarProvider;

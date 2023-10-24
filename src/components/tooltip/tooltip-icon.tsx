@@ -1,14 +1,14 @@
-import useTheme from '../use-theme'
-import React, { useMemo } from 'react'
-import { Placement } from '../utils/prop-types'
-import { getIconPosition } from './placement'
+import useTheme from '../use-theme';
+import React, { useMemo } from 'react';
+import { Placement } from '../utils/prop-types';
+import { getIconPosition } from './placement';
 
 interface Props {
-  placement: Placement
+  placement: Placement;
 }
 
 const TooltipIcon: React.FC<Props> = ({ placement }) => {
-  const theme = useTheme()
+  const theme = useTheme();
   const { transform, top, left, right, bottom } = useMemo(
     () =>
       getIconPosition(
@@ -17,7 +17,7 @@ const TooltipIcon: React.FC<Props> = ({ placement }) => {
         'var(--tooltip-icon-offset-y)',
       ),
     [placement],
-  )
+  );
 
   return (
     <span>
@@ -37,7 +37,7 @@ const TooltipIcon: React.FC<Props> = ({ placement }) => {
         }
       `}</style>
     </span>
-  )
-}
+  );
+};
 
-export default TooltipIcon
+export default TooltipIcon;

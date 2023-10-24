@@ -1,12 +1,12 @@
-'use client'
-import React from 'react'
+'use client';
+import React from 'react';
 
 interface Props {
-  className?: string
+  className?: string;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
-export type FieldsetSubtitleProps = Props & NativeAttrs
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
+export type FieldsetSubtitleProps = Props & NativeAttrs;
 
 const FieldsetSubtitle: React.FC<React.PropsWithChildren<FieldsetSubtitleProps>> = ({
   className = '',
@@ -27,8 +27,8 @@ const FieldsetSubtitle: React.FC<React.PropsWithChildren<FieldsetSubtitleProps>>
         }
       `}</style>
     </>
-  )
-}
+  );
+};
 
-FieldsetSubtitle.displayName = 'HimalayaFieldsetSubtitle'
-export default FieldsetSubtitle
+FieldsetSubtitle.displayName = 'HimalayaFieldsetSubtitle';
+export default FieldsetSubtitle;

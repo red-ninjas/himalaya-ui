@@ -1,22 +1,22 @@
-import React, { useMemo } from 'react'
-import useTheme from '../use-theme'
+import React, { useMemo } from 'react';
+import useTheme from '../use-theme';
 
 interface Props {
-  disabled?: boolean
-  checked?: boolean
-  fill?: string
-  bg?: string
+  disabled?: boolean;
+  checked?: boolean;
+  fill?: string;
+  bg?: string;
 }
 
 const CheckboxIconComponent: React.FC<Props> = ({ fill, bg, disabled, checked }) => {
-  const theme = useTheme()
+  const theme = useTheme();
 
   const { propsFill, propsBg } = useMemo(() => {
     return {
       propsFill: fill,
       propsBg: bg,
-    }
-  }, [theme.palette])
+    };
+  }, [theme.palette]);
 
   return (
     <>
@@ -47,10 +47,10 @@ const CheckboxIconComponent: React.FC<Props> = ({ fill, bg, disabled, checked })
         }
       `}</style>
     </>
-  )
-}
+  );
+};
 
-CheckboxIconComponent.displayName = 'HimalayaCheckboxIcon'
-const CheckboxIcon = React.memo(CheckboxIconComponent)
+CheckboxIconComponent.displayName = 'HimalayaCheckboxIcon';
+const CheckboxIcon = React.memo(CheckboxIconComponent);
 
-export default CheckboxIcon
+export default CheckboxIcon;

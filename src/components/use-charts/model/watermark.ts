@@ -1,9 +1,9 @@
-import { HorzAlign, VertAlign } from '../renderers/watermark-renderer'
-import { IPaneView } from '../views/pane/ipane-view'
-import { WatermarkPaneView } from '../views/pane/watermark-pane-view'
-import { IPriceAxisView } from '../views/price-axis/iprice-axis-view'
+import { HorzAlign, VertAlign } from '../renderers/watermark-renderer';
+import { IPaneView } from '../views/pane/ipane-view';
+import { WatermarkPaneView } from '../views/pane/watermark-pane-view';
+import { IPriceAxisView } from '../views/price-axis/iprice-axis-view';
 
-import { DataSource } from './data-source'
+import { DataSource } from './data-source';
 
 /** Watermark options. */
 export interface WatermarkOptions {
@@ -12,81 +12,81 @@ export interface WatermarkOptions {
    *
    * @defaultValue `'rgba(0, 0, 0, 0)'`
    */
-  color: string
+  color: string;
 
   /**
    * Display the watermark.
    *
    * @defaultValue `false`
    */
-  visible: boolean
+  visible: boolean;
 
   /**
    * Text of the watermark. Word wrapping is not supported.
    *
    * @defaultValue `''`
    */
-  text: string
+  text: string;
 
   /**
    * Font size in pixels.
    *
    * @defaultValue `48`
    */
-  fontSize: number
+  fontSize: number;
 
   /**
    * Font family.
    *
    * @defaultValue `-apple-system, BlinkMacSystemFont, 'Trebuchet MS', Roboto, Ubuntu, sans-serif`
    */
-  fontFamily: string
+  fontFamily: string;
 
   /**
    * Font style.
    *
    * @defaultValue `''`
    */
-  fontStyle: string
+  fontStyle: string;
 
   /**
    * Horizontal alignment inside the chart area.
    *
    * @defaultValue `'center'`
    */
-  horzAlign: HorzAlign
+  horzAlign: HorzAlign;
 
   /**
    * Vertical alignment inside the chart area.
    *
    * @defaultValue `'center'`
    */
-  vertAlign: VertAlign
+  vertAlign: VertAlign;
 }
 
 export class Watermark extends DataSource {
-  private readonly _paneView: WatermarkPaneView
-  private readonly _options: WatermarkOptions
+  private readonly _paneView: WatermarkPaneView;
+  private readonly _options: WatermarkOptions;
 
   public constructor(options: WatermarkOptions) {
-    super()
-    this._options = options
-    this._paneView = new WatermarkPaneView(this)
+    super();
+    this._options = options;
+    this._paneView = new WatermarkPaneView(this);
   }
 
   public override priceAxisViews(): readonly IPriceAxisView[] {
-    return []
+    return [];
   }
 
   public paneViews(): readonly IPaneView[] {
-    return [this._paneView]
+    return [this._paneView];
   }
 
   public options(): Readonly<WatermarkOptions> {
-    return this._options
+    return this._options;
   }
 
   public updateAllViews(): void {
-    this._paneView.update()
+    this._paneView.update();
   }
 }

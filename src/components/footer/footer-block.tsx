@@ -1,8 +1,8 @@
-'use client'
+'use client';
 
-import React, { PropsWithChildren } from 'react'
-import { withScale } from '../use-scale'
-import { FooterBlockProps } from './index'
+import React, { PropsWithChildren } from 'react';
+import { withScale } from '../use-scale';
+import { FooterBlockProps } from './index';
 
 const FooterBlock: React.FC<PropsWithChildren<FooterBlockProps>> = ({
   children,
@@ -20,7 +20,7 @@ const FooterBlock: React.FC<PropsWithChildren<FooterBlockProps>> = ({
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-export default withScale(FooterBlock)
+export default withScale(FooterBlock);

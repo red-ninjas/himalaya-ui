@@ -1,14 +1,13 @@
-import { UIThemesPalette } from '../themes/presets'
-import { addColorAlpha } from '../utils/color'
-import { ButtonTypes } from '../utils/prop-types'
-import { ButtonProps } from './button'
+import { UIThemesPalette } from '../themes/presets';
+import { addColorAlpha } from '../utils/color';
+import { ButtonTypes } from '../utils/prop-types';
+import { ButtonProps } from './button';
 
 export interface ButtonColorGroup {
-  bg: string
-  border: string
-  color: string,
+  bg: string;
+  border: string;
+  color: string;
 }
-
 
 export const getButtonGhostColors = (
   palette: UIThemesPalette,
@@ -35,16 +34,16 @@ export const getButtonGhostColors = (
       border: palette.error,
       color: palette.error,
     },
-  }
+  };
 
-  return colors[type] || null
-}
+  return colors[type] || null;
+};
 
 export const getButtonColors = (
   palette: UIThemesPalette,
   props: ButtonProps,
 ): ButtonColorGroup => {
-  const { type, disabled, ghost } = props
+  const { type, disabled, ghost } = props;
   const colors: { [key in ButtonTypes]?: ButtonColorGroup } = {
     default: {
       bg: palette.foreground,
@@ -76,20 +75,19 @@ export const getButtonColors = (
       border: 'transparent',
       color: palette.accents_5,
     },
-  }
+  };
   if (disabled)
     return {
       bg: palette.accents_1,
       border: palette.border,
       color: '#ccc',
-    }
+    };
 
+  const defaultColor = colors.default as ButtonColorGroup;
 
-  const defaultColor = colors.default as ButtonColorGroup
-
-  if (ghost) return getButtonGhostColors(palette, type || 'default') || defaultColor
-  return colors[type || 'default'] || defaultColor
-}
+  if (ghost) return getButtonGhostColors(palette, type || 'default') || defaultColor;
+  return colors[type || 'default'] || defaultColor;
+};
 
 export const getButtonGhostHoverColors = (
   palette: UIThemesPalette,
@@ -116,20 +114,20 @@ export const getButtonGhostHoverColors = (
       border: palette.background,
       color: 'white',
     },
-  }
-  return colors[type || 'default'] || null
-}
+  };
+  return colors[type || 'default'] || null;
+};
 
 export const getButtonHoverColors = (
   palette: UIThemesPalette,
   props: ButtonProps,
 ): ButtonColorGroup => {
-  const { type, disabled, loading, shadow, ghost } = props
-  const defaultColor = getButtonColors(palette, props)
+  const { type, disabled, loading, shadow, ghost } = props;
+  const defaultColor = getButtonColors(palette, props);
   const colors: {
     [key in ButtonTypes]: Omit<ButtonColorGroup, 'color'> & {
-      color?: string
-    }
+      color?: string;
+    };
   } = {
     default: {
       bg: palette.accents_7,
@@ -144,55 +142,55 @@ export const getButtonHoverColors = (
     success: {
       bg: palette.successLight,
       border: palette.successLighter,
-      color: '#fff'
+      color: '#fff',
     },
     warning: {
       bg: palette.warningLight,
       border: palette.warningLighter,
-      color: '#fff'
+      color: '#fff',
     },
     error: {
       bg: palette.errorLight,
       border: palette.errorLighter,
-      color: '#fff'
+      color: '#fff',
     },
     abort: {
       bg: palette.accents_0,
       border: palette.accents_0,
       color: palette.accents_5,
     },
-  }
+  };
   if (disabled)
     return {
       bg: palette.accents_1,
       border: palette.border,
       color: '#ccc',
-    }
+    };
   if (loading)
     return {
       ...defaultColor,
       color: 'transparent',
-    }
-  if (shadow) return defaultColor
+    };
+  if (shadow) return defaultColor;
 
   const hoverColor =
-    (ghost ? getButtonGhostHoverColors(palette, type!) : colors[type!]) || colors.default
+    (ghost ? getButtonGhostHoverColors(palette, type!) : colors[type!]) || colors.default;
   return {
     ...hoverColor,
     color: hoverColor.color || hoverColor.border,
-  }
-}
+  };
+};
 
 export const getButtonActivatedColors = (
   palette: UIThemesPalette,
   props: ButtonProps,
 ): ButtonColorGroup => {
-  const { type, disabled, loading, shadow, ghost } = props
-  const defaultColor = getButtonColors(palette, props)
+  const { type, disabled, loading, shadow, ghost } = props;
+  const defaultColor = getButtonColors(palette, props);
   const colors: {
     [key in ButtonTypes]: Omit<ButtonColorGroup, 'color'> & {
-      color?: string
-    }
+      color?: string;
+    };
   } = {
     default: {
       bg: palette.accents_7,
@@ -207,48 +205,48 @@ export const getButtonActivatedColors = (
     success: {
       bg: palette.successDark,
       border: palette.success,
-      color: '#fff'
+      color: '#fff',
     },
     warning: {
       bg: palette.warningDark,
       border: palette.warning,
-      color: '#fff'
+      color: '#fff',
     },
     error: {
       bg: palette.errorDark,
       border: palette.error,
-      color: '#fff'
+      color: '#fff',
     },
     abort: {
       bg: palette.accents_0,
       border: palette.accents_0,
       color: palette.accents_5,
     },
-  }
+  };
   if (disabled)
     return {
       bg: palette.accents_1,
       border: palette.border,
       color: '#ccc',
-    }
+    };
   if (loading)
     return {
       ...defaultColor,
       color: 'transparent',
-    }
-  if (shadow) return defaultColor
+    };
+  if (shadow) return defaultColor;
 
   const hoverColor =
-    (ghost ? getButtonGhostHoverColors(palette, type!) : colors[type!]) || colors.default
+    (ghost ? getButtonGhostHoverColors(palette, type!) : colors[type!]) || colors.default;
   return {
     ...hoverColor,
     color: hoverColor.color || hoverColor.border,
-  }
-}
+  };
+};
 
 export interface ButtonCursorGroup {
-  cursor: string
-  events: string
+  cursor: string;
+  events: string;
 }
 
 export const getButtonCursor = (
@@ -259,19 +257,19 @@ export const getButtonCursor = (
     return {
       cursor: 'not-allowed',
       events: 'auto',
-    }
+    };
   if (loading)
     return {
       cursor: 'default',
       events: 'none',
-    }
+    };
 
   return {
     cursor: 'pointer',
     events: 'auto',
-  }
-}
+  };
+};
 
 export const getButtonDripColor = (palette: UIThemesPalette) => {
-  return addColorAlpha(palette.accents_2, 0.65)
-}
+  return addColorAlpha(palette.accents_2, 0.65);
+};

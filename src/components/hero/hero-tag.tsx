@@ -1,10 +1,10 @@
-'use client'
+'use client';
 
-import { PropsWithChildren } from 'react'
-import useTheme from '../use-theme'
-import useScale, { withScale } from '../use-scale'
-import useClasses from '../use-classes'
-import { HeroTagProps } from './share'
+import { PropsWithChildren } from 'react';
+import useTheme from '../use-theme';
+import useScale, { withScale } from '../use-scale';
+import useClasses from '../use-classes';
+import { HeroTagProps } from './share';
 
 const HeroTag: React.FC<PropsWithChildren<HeroTagProps>> = ({
   children,
@@ -12,8 +12,8 @@ const HeroTag: React.FC<PropsWithChildren<HeroTagProps>> = ({
   gradient,
   textColor,
 }) => {
-  const theme = useTheme()
-  const { SCALES } = useScale()
+  const theme = useTheme();
+  const { SCALES } = useScale();
   return (
     <h6 className={useClasses('tag', { gradient: hasGradient })}>
       {children}
@@ -44,8 +44,8 @@ const HeroTag: React.FC<PropsWithChildren<HeroTagProps>> = ({
         }
       `}</style>
     </h6>
-  )
-}
+  );
+};
 
-HeroTag.displayName = 'HimalayaHeroTag'
-export default withScale(HeroTag)
+HeroTag.displayName = 'HimalayaHeroTag';
+export default withScale(HeroTag);

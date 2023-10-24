@@ -1,24 +1,24 @@
-'use client'
-import React, { MouseEvent, useImperativeHandle, useMemo, useRef } from 'react'
-import css from 'styled-jsx/css'
-import useTheme from '../use-theme'
-import { useModalContext } from './modal-context'
-import Button, { ButtonProps } from '../button/button'
-import useScale, { withScale } from '../use-scale'
-import useClasses from '../use-classes'
+'use client';
+import React, { MouseEvent, useImperativeHandle, useMemo, useRef } from 'react';
+import css from 'styled-jsx/css';
+import useTheme from '../use-theme';
+import { useModalContext } from './modal-context';
+import Button, { ButtonProps } from '../button/button';
+import useScale, { withScale } from '../use-scale';
+import useClasses from '../use-classes';
 
 type ModalActionEvent = MouseEvent<HTMLButtonElement> & {
-  close: () => void
-}
+  close: () => void;
+};
 
 interface Props {
-  className?: string
-  passive?: boolean
-  disabled?: boolean
-  onClick?: (event: ModalActionEvent) => void
+  className?: string;
+  passive?: boolean;
+  disabled?: boolean;
+  onClick?: (event: ModalActionEvent) => void;
 }
 
-export type ModalActionProps = Props & Omit<ButtonProps, keyof Props>
+export type ModalActionProps = Props & Omit<ButtonProps, keyof Props>;
 
 const ModalActionComponent = React.forwardRef<
   HTMLButtonElement,
@@ -35,27 +35,27 @@ const ModalActionComponent = React.forwardRef<
     }: React.PropsWithChildren<ModalActionProps>,
     ref: React.Ref<HTMLButtonElement | null>,
   ) => {
-    const theme = useTheme()
-    const { SCALES } = useScale()
-    const btnRef = useRef<HTMLButtonElement>(null)
-    const { close } = useModalContext()
-    useImperativeHandle(ref, () => btnRef.current)
+    const theme = useTheme();
+    const { SCALES } = useScale();
+    const btnRef = useRef<HTMLButtonElement>(null);
+    const { close } = useModalContext();
+    useImperativeHandle(ref, () => btnRef.current);
 
     const clickHandler = (event: MouseEvent<HTMLButtonElement>) => {
-      if (disabled) return
+      if (disabled) return;
       const actionEvent = Object.assign({}, event, {
         close: () => close && close(),
-      })
-      onClick && onClick(actionEvent)
-    }
+      });
+      onClick && onClick(actionEvent);
+    };
 
     const color = useMemo(() => {
-      return passive ? theme.palette.accents_5 : theme.palette.foreground
-    }, [theme.palette, passive, disabled])
+      return passive ? theme.palette.accents_5 : theme.palette.foreground;
+    }, [theme.palette, passive, disabled]);
 
     const bgColor = useMemo(() => {
-      return disabled ? theme.palette.accents_1 : theme.palette.background
-    }, [theme.palette, disabled])
+      return disabled ? theme.palette.accents_1 : theme.palette.background;
+    }, [theme.palette, disabled]);
 
     const { className: resolveClassName, styles } = css.resolve`
       button.btn {
@@ -78,14 +78,14 @@ const ModalActionComponent = React.forwardRef<
         color: ${disabled ? color : theme.palette.foreground};
         background-color: ${disabled ? bgColor : theme.palette.accents_1};
       }
-    `
-    const classes = useClasses(resolveClassName, className)
+    `;
+    const classes = useClasses(resolveClassName, className);
 
     const overrideProps = {
       ...props,
       effect: false,
       ref: btnRef,
-    }
+    };
 
     return (
       <Button
@@ -97,10 +97,10 @@ const ModalActionComponent = React.forwardRef<
         {children}
         {styles}
       </Button>
-    )
+    );
   },
-)
+);
 
-ModalActionComponent.displayName = 'HimalayaModalAction'
-const ModalAction = withScale(ModalActionComponent)
-export default ModalAction
+ModalActionComponent.displayName = 'HimalayaModalAction';
+const ModalAction = withScale(ModalActionComponent);
+export default ModalAction;

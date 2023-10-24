@@ -1,17 +1,17 @@
-'use client'
+'use client';
 
-import Avatar from '../avatar'
-import Popover from '../popover'
-import useScale, { withScale } from '../use-scale'
+import Avatar from '../avatar';
+import Popover from '../popover';
+import useScale, { withScale } from '../use-scale';
 
-import React, { PropsWithChildren } from 'react'
+import React, { PropsWithChildren } from 'react';
 
 export interface UserProfileMenuProps {
-  name?: string
+  name?: string;
 }
 const UserProfileComponent: React.FC<PropsWithChildren<UserProfileMenuProps>> =
   React.memo(({ children, name }) => {
-    const { SCALES } = useScale()
+    const { SCALES } = useScale();
     return (
       <div className="user-profile-menu">
         <Popover
@@ -22,7 +22,8 @@ const UserProfileComponent: React.FC<PropsWithChildren<UserProfileMenuProps>> =
           trigger="click"
           enterDelay={0}
           leaveDelay={0}
-          content={children}>
+          content={children}
+        >
           <Avatar text={name} scale={1.2}></Avatar>
         </Popover>
         <style jsx>{`
@@ -36,9 +37,9 @@ const UserProfileComponent: React.FC<PropsWithChildren<UserProfileMenuProps>> =
           }
         `}</style>
       </div>
-    )
-  })
+    );
+  });
 
-UserProfileComponent.displayName = 'HimalayaUserProfile'
-const UserProfileMenu = withScale(UserProfileComponent)
-export default UserProfileMenu
+UserProfileComponent.displayName = 'HimalayaUserProfile';
+const UserProfileMenu = withScale(UserProfileComponent);
+export default UserProfileMenu;

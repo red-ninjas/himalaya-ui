@@ -1,18 +1,18 @@
-'use client'
+'use client';
 
-import { ArrowDown } from '../icons'
-import { useScale, withScale } from '../use-scale'
-import useTheme from '../use-theme'
-import { ContentLayout } from '../layout'
-import { PropsWithChildren } from 'react'
-import { HeroProps } from './share'
+import { ArrowDown } from '../icons';
+import { useScale, withScale } from '../use-scale';
+import useTheme from '../use-theme';
+import { ContentLayout } from '../layout';
+import { PropsWithChildren } from 'react';
+import { HeroProps } from './share';
 
 const Hero: React.FC<PropsWithChildren<HeroProps>> = ({
   children,
   withDownArrow = true,
 }) => {
-  const theme = useTheme()
-  const { SCALES } = useScale()
+  const theme = useTheme();
+  const { SCALES } = useScale();
 
   return (
     <>
@@ -111,7 +111,7 @@ const Hero: React.FC<PropsWithChildren<HeroProps>> = ({
         }
       `}</style>
     </>
-  )
-}
+  );
+};
 
-export default withScale(Hero)
+export default withScale(Hero);

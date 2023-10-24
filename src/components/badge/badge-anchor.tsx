@@ -1,30 +1,30 @@
-'use client'
+'use client';
 
-import React, { useMemo } from 'react'
-import { pickChild } from '../utils/collections'
-import { tuple } from '../utils/prop-types'
-import Badge from './badge'
+import React, { useMemo } from 'react';
+import { pickChild } from '../utils/collections';
+import { tuple } from '../utils/prop-types';
+import Badge from './badge';
 
-const placement = tuple('topLeft', 'topRight', 'bottomLeft', 'bottomRight')
+const placement = tuple('topLeft', 'topRight', 'bottomLeft', 'bottomRight');
 
-export type BadgeAnchorPlacement = (typeof placement)[number]
+export type BadgeAnchorPlacement = (typeof placement)[number];
 
 interface Props {
-  placement?: BadgeAnchorPlacement
-  className?: string
+  placement?: BadgeAnchorPlacement;
+  className?: string;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>
-export type BadgeAnchorProps = Props & NativeAttrs
+type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+export type BadgeAnchorProps = Props & NativeAttrs;
 
 type TransformStyles = {
-  top?: string
-  bottom?: string
-  left?: string
-  right?: string
-  value: string
-  origin: string
-}
+  top?: string;
+  bottom?: string;
+  left?: string;
+  right?: string;
+  value: string;
+  origin: string;
+};
 
 const getTransform = (placement: BadgeAnchorPlacement): TransformStyles => {
   const styles: { [key in BadgeAnchorPlacement]: TransformStyles } = {
@@ -52,19 +52,19 @@ const getTransform = (placement: BadgeAnchorPlacement): TransformStyles => {
       value: 'translate(50%, 50%)',
       origin: '100% 100%',
     },
-  }
-  return styles[placement]
-}
+  };
+  return styles[placement];
+};
 
 const BadgeAnchor: React.FC<React.PropsWithChildren<BadgeAnchorProps>> = ({
   children,
   placement = 'topRight' as BadgeAnchorPlacement,
 }: BadgeAnchorProps) => {
-  const [withoutBadgeChildren, badgeChldren] = pickChild(children, Badge)
+  const [withoutBadgeChildren, badgeChldren] = pickChild(children, Badge);
   const { top, bottom, left, right, value, origin } = useMemo(
     () => getTransform(placement),
     [placement],
-  )
+  );
 
   return (
     <div className="anchor">
@@ -92,8 +92,8 @@ const BadgeAnchor: React.FC<React.PropsWithChildren<BadgeAnchorProps>> = ({
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-BadgeAnchor.displayName = 'HimalayaBadgeAnchor'
-export default BadgeAnchor
+BadgeAnchor.displayName = 'HimalayaBadgeAnchor';
+export default BadgeAnchor;

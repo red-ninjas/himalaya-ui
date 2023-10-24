@@ -1,20 +1,20 @@
-'use client'
-import React from 'react'
-import useClasses from '../use-classes'
+'use client';
+import React from 'react';
+import useClasses from '../use-classes';
 
 interface Props {
-  className?: string
+  className?: string;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
-export type FieldsetTitleProps = Props & NativeAttrs
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
+export type FieldsetTitleProps = Props & NativeAttrs;
 
 const FieldsetTitle: React.FC<React.PropsWithChildren<FieldsetTitleProps>> = ({
   className = '',
   children,
   ...props
 }: React.PropsWithChildren<FieldsetTitleProps>) => {
-  const classes = useClasses('title', className)
+  const classes = useClasses('title', className);
 
   return (
     <>
@@ -33,8 +33,8 @@ const FieldsetTitle: React.FC<React.PropsWithChildren<FieldsetTitleProps>> = ({
         }
       `}</style>
     </>
-  )
-}
+  );
+};
 
-FieldsetTitle.displayName = 'HimalayaFieldsetTitle'
-export default FieldsetTitle
+FieldsetTitle.displayName = 'HimalayaFieldsetTitle';
+export default FieldsetTitle;

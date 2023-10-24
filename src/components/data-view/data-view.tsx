@@ -1,11 +1,11 @@
-'use client'
+'use client';
 
-import Note from '../note'
-import Table from '../table'
-import React from 'react'
-import { ChartPriceFormatter, DefaulTimeFormatter } from '../chart'
-import { DataViewProps, DataViewState } from './index'
-import { InnerScroll } from '../scroll'
+import Note from '../note';
+import Table from '../table';
+import React from 'react';
+import { ChartPriceFormatter, DefaulTimeFormatter } from '../chart';
+import { DataViewProps, DataViewState } from './index';
+import { InnerScroll } from '../scroll';
 
 const generateKey = (text: string) => {
   return text
@@ -16,23 +16,23 @@ const generateKey = (text: string) => {
     .trim()
     .replace(/\s+/g, '-')
     .replace(/[^\w-]+/g, '')
-    .replace(/--+/g, '-')
-}
+    .replace(/--+/g, '-');
+};
 
 export default class DataView extends React.Component<DataViewProps> {
-  state: DataViewState = { data: [], fields: [], isEmpty: false }
+  state: DataViewState = { data: [], fields: [], isEmpty: false };
 
   constructor(props: DataViewProps) {
-    super(props)
+    super(props);
   }
 
   componentDidMount(): void {
-    this.generateData()
+    this.generateData();
   }
 
   componentDidUpdate(prevProps: Readonly<DataViewProps>): void {
     if (Object.keys(prevProps.series) === Object.keys(this.props.series)) {
-      this.generateData()
+      this.generateData();
     }
   }
 
@@ -43,35 +43,35 @@ export default class DataView extends React.Component<DataViewProps> {
         property: 'time',
         label: 'Date',
       },
-    })
+    });
 
-    const tempData: { [date: number]: any } = {}
+    const tempData: { [date: number]: any } = {};
     for (const key in this.props.series) {
-      const slugKey = generateKey(key)
-      const values = this.props.series[key]
-      this.state.fields.push({ property: slugKey, label: key })
+      const slugKey = generateKey(key);
+      const values = this.props.series[key];
+      this.state.fields.push({ property: slugKey, label: key });
       values.data.forEach(df => {
         if (tempData[df.time] == undefined) {
-          tempData[df.time] = {}
+          tempData[df.time] = {};
         }
         tempData[df.time][slugKey] = values.priceFormatter
           ? values.priceFormatter(df.value)
-          : ChartPriceFormatter(df.value)
-      })
+          : ChartPriceFormatter(df.value);
+      });
     }
 
     const generatedData = Object.keys(tempData).map(key => {
-      const values = tempData[key as unknown as number]
+      const values = tempData[key as unknown as number];
       values.time = this.props.timeFormatter
         ? this.props.timeFormatter(key)
-        : DefaulTimeFormatter(key)
-      return values
-    })
+        : DefaulTimeFormatter(key);
+      return values;
+    });
 
     this.setState({
       ...this.state,
       data: generatedData.reverse(),
-    })
+    });
   }
 
   componentWillUnmount(): void {}
@@ -89,7 +89,7 @@ export default class DataView extends React.Component<DataViewProps> {
               {this.state.fields.map((field, index) => {
                 return (
                   <Table.Column key={index} prop={field.property} label={field.label} />
-                )
+                );
               })}
             </Table>
           </InnerScroll>
@@ -98,6 +98,6 @@ export default class DataView extends React.Component<DataViewProps> {
           <Note>No datas found. </Note>
         )}
       </>
-    )
+    );
   }
 }

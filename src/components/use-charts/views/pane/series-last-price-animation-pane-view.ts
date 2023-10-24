@@ -1,13 +1,13 @@
-import { assert } from '../../helpers/assertions'
-import { applyAlpha } from '../../helpers/color'
+import { assert } from '../../helpers/assertions';
+import { applyAlpha } from '../../helpers/color';
 
-import { Point } from '../../model/point'
-import { ISeries } from '../../model/series'
-import { LastPriceAnimationMode } from '../../model/series-options'
-import { IPaneRenderer } from '../../renderers/ipane-renderer'
-import { SeriesLastPriceAnimationRenderer } from '../../renderers/series-last-price-animation-renderer'
+import { Point } from '../../model/point';
+import { ISeries } from '../../model/series';
+import { LastPriceAnimationMode } from '../../model/series-options';
+import { IPaneRenderer } from '../../renderers/ipane-renderer';
+import { SeriesLastPriceAnimationRenderer } from '../../renderers/series-last-price-animation-renderer';
 
-import { IUpdatablePaneView } from './iupdatable-pane-view'
+import { IUpdatablePaneView } from './iupdatable-pane-view';
 
 const enum Constants {
   AnimationPeriod = 2600,
@@ -39,14 +39,14 @@ const enum Constants {
 }
 
 interface AnimationStageData {
-  start: number
-  end: number
-  startRadius: number
-  endRadius: number
-  startFillAlpha: number
-  endFillAlpha: number
-  startStrokeAlpha: number
-  endStrokeAlpha: number
+  start: number;
+  end: number;
+  startRadius: number;
+  endRadius: number;
+  startFillAlpha: number;
+  endFillAlpha: number;
+  startStrokeAlpha: number;
+  endStrokeAlpha: number;
 }
 
 const animationStagesData: AnimationStageData[] = [
@@ -80,12 +80,12 @@ const animationStagesData: AnimationStageData[] = [
     startStrokeAlpha: Constants.Stage3StartStrokeAlpha,
     endStrokeAlpha: Constants.Stage3EndStrokeAlpha,
   },
-]
+];
 
 interface AnimationData {
-  radius: number
-  fillColor: string
-  strokeColor: string
+  radius: number;
+  fillColor: string;
+  strokeColor: string;
 }
 
 function color(
@@ -94,32 +94,32 @@ function color(
   startAlpha: number,
   endAlpha: number,
 ): string {
-  const alpha = startAlpha + (endAlpha - startAlpha) * stage
-  return applyAlpha(seriesLineColor, alpha)
+  const alpha = startAlpha + (endAlpha - startAlpha) * stage;
+  return applyAlpha(seriesLineColor, alpha);
 }
 
 function radius(stage: number, startRadius: number, endRadius: number): number {
-  return startRadius + (endRadius - startRadius) * stage
+  return startRadius + (endRadius - startRadius) * stage;
 }
 
 function animationData(durationSinceStart: number, lineColor: string): AnimationData {
   const globalStage =
-    (durationSinceStart % Constants.AnimationPeriod) / Constants.AnimationPeriod
+    (durationSinceStart % Constants.AnimationPeriod) / Constants.AnimationPeriod;
 
-  let currentStageData: AnimationStageData | undefined
+  let currentStageData: AnimationStageData | undefined;
 
   for (const stageData of animationStagesData) {
     if (globalStage >= stageData.start && globalStage <= stageData.end) {
-      currentStageData = stageData
-      break
+      currentStageData = stageData;
+      break;
     }
   }
 
-  assert(currentStageData !== undefined, 'Last price animation internal logic error')
+  assert(currentStageData !== undefined, 'Last price animation internal logic error');
 
   const subStage =
     (globalStage - currentStageData.start) /
-    (currentStageData.end - currentStageData.start)
+    (currentStageData.end - currentStageData.start);
   return {
     fillColor: color(
       lineColor,
@@ -134,107 +134,107 @@ function animationData(durationSinceStart: number, lineColor: string): Animation
       currentStageData.endStrokeAlpha,
     ),
     radius: radius(subStage, currentStageData.startRadius, currentStageData.endRadius),
-  }
+  };
 }
 
 export class SeriesLastPriceAnimationPaneView implements IUpdatablePaneView {
-  private readonly _series: ISeries<'Area'> | ISeries<'Line'> | ISeries<'Baseline'>
+  private readonly _series: ISeries<'Area'> | ISeries<'Line'> | ISeries<'Baseline'>;
   private readonly _renderer: SeriesLastPriceAnimationRenderer =
-    new SeriesLastPriceAnimationRenderer()
-  private _invalidated: boolean = true
-  private _stageInvalidated: boolean = true
+    new SeriesLastPriceAnimationRenderer();
+  private _invalidated: boolean = true;
+  private _stageInvalidated: boolean = true;
 
-  private _startTime: number = performance.now()
-  private _endTime: number = this._startTime - 1
+  private _startTime: number = performance.now();
+  private _endTime: number = this._startTime - 1;
 
   public constructor(series: ISeries<'Area'> | ISeries<'Line'> | ISeries<'Baseline'>) {
-    this._series = series
+    this._series = series;
   }
 
   public onDataCleared(): void {
-    this._endTime = this._startTime - 1
-    this.update()
+    this._endTime = this._startTime - 1;
+    this.update();
   }
 
   public onNewRealtimeDataReceived(): void {
-    this.update()
+    this.update();
     if (
       this._series.options().lastPriceAnimation === LastPriceAnimationMode.OnDataUpdate
     ) {
-      const now = performance.now()
-      const timeToAnimationEnd = this._endTime - now
+      const now = performance.now();
+      const timeToAnimationEnd = this._endTime - now;
       if (timeToAnimationEnd > 0) {
         if (timeToAnimationEnd < Constants.AnimationPeriod / 4) {
-          this._endTime += Constants.AnimationPeriod
+          this._endTime += Constants.AnimationPeriod;
         }
-        return
+        return;
       }
-      this._startTime = now
-      this._endTime = now + Constants.AnimationPeriod
+      this._startTime = now;
+      this._endTime = now + Constants.AnimationPeriod;
     }
   }
 
   public update(): void {
-    this._invalidated = true
+    this._invalidated = true;
   }
 
   public invalidateStage(): void {
-    this._stageInvalidated = true
+    this._stageInvalidated = true;
   }
 
   public visible(): boolean {
     // center point is always visible if lastPriceAnimation is not LastPriceAnimationMode.Disabled
-    return this._series.options().lastPriceAnimation !== LastPriceAnimationMode.Disabled
+    return this._series.options().lastPriceAnimation !== LastPriceAnimationMode.Disabled;
   }
 
   public animationActive(): boolean {
     switch (this._series.options().lastPriceAnimation) {
       case LastPriceAnimationMode.Disabled:
-        return false
+        return false;
       case LastPriceAnimationMode.Continuous:
-        return true
+        return true;
       case LastPriceAnimationMode.OnDataUpdate:
-        return performance.now() <= this._endTime
+        return performance.now() <= this._endTime;
     }
   }
 
   public renderer(): IPaneRenderer | null {
     if (this._invalidated) {
-      this._updateImpl()
-      this._invalidated = false
-      this._stageInvalidated = false
+      this._updateImpl();
+      this._invalidated = false;
+      this._stageInvalidated = false;
     } else if (this._stageInvalidated) {
-      this._updateRendererDataStage()
-      this._stageInvalidated = false
+      this._updateRendererDataStage();
+      this._stageInvalidated = false;
     }
 
-    return this._renderer
+    return this._renderer;
   }
 
   private _updateImpl(): void {
-    this._renderer.setData(null)
+    this._renderer.setData(null);
 
-    const timeScale = this._series.model().timeScale()
-    const visibleRange = timeScale.visibleStrictRange()
-    const firstValue = this._series.firstValue()
+    const timeScale = this._series.model().timeScale();
+    const visibleRange = timeScale.visibleStrictRange();
+    const firstValue = this._series.firstValue();
     if (visibleRange === null || firstValue === null) {
-      return
+      return;
     }
 
-    const lastValue = this._series.lastValueData(true)
+    const lastValue = this._series.lastValueData(true);
     if (lastValue.noData || !visibleRange.contains(lastValue.index)) {
-      return
+      return;
     }
 
     const lastValuePoint: Point = {
       x: timeScale.indexToCoordinate(lastValue.index),
       y: this._series.priceScale().priceToCoordinate(lastValue.price, firstValue.value),
-    }
+    };
 
-    const seriesLineColor = lastValue.color
-    const seriesLineWidth = this._series.options().lineWidth
+    const seriesLineColor = lastValue.color;
+    const seriesLineWidth = this._series.options().lineWidth;
 
-    const data = animationData(this._duration(), seriesLineColor)
+    const data = animationData(this._duration(), seriesLineColor);
 
     this._renderer.setData({
       seriesLineColor,
@@ -243,22 +243,22 @@ export class SeriesLastPriceAnimationPaneView implements IUpdatablePaneView {
       strokeColor: data.strokeColor,
       radius: data.radius,
       center: lastValuePoint,
-    })
+    });
   }
 
   private _updateRendererDataStage(): void {
-    const rendererData = this._renderer.data()
+    const rendererData = this._renderer.data();
     if (rendererData !== null) {
-      const data = animationData(this._duration(), rendererData.seriesLineColor)
-      rendererData.fillColor = data.fillColor
-      rendererData.strokeColor = data.strokeColor
-      rendererData.radius = data.radius
+      const data = animationData(this._duration(), rendererData.seriesLineColor);
+      rendererData.fillColor = data.fillColor;
+      rendererData.strokeColor = data.strokeColor;
+      rendererData.radius = data.radius;
     }
   }
 
   private _duration(): number {
     return this.animationActive()
       ? performance.now() - this._startTime
-      : Constants.AnimationPeriod - 1
+      : Constants.AnimationPeriod - 1;
   }
 }

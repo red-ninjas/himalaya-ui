@@ -1,30 +1,30 @@
-import { DeepPartial } from '../helpers/strict-type-checks'
+import { DeepPartial } from '../helpers/strict-type-checks';
 
-import { Coordinate } from '../model/coordinate'
-import { Logical, LogicalRange, Range } from '../model/time-data'
-import { HorzScaleOptions } from '../model/time-scale'
+import { Coordinate } from '../model/coordinate';
+import { Logical, LogicalRange, Range } from '../model/time-data';
+import { HorzScaleOptions } from '../model/time-scale';
 
 /**
  * A custom function used to handle changes to the time scale's time range.
  */
 export type TimeRangeChangeEventHandler<HorzScaleItem> = (
   timeRange: Range<HorzScaleItem> | null,
-) => void
+) => void;
 /**
  * A custom function used to handle changes to the time scale's logical range.
  */
-export type LogicalRangeChangeEventHandler = (logicalRange: LogicalRange | null) => void
+export type LogicalRangeChangeEventHandler = (logicalRange: LogicalRange | null) => void;
 /**
  * A custom function used to handle changes to the time scale's size.
  */
-export type SizeChangeEventHandler = (width: number, height: number) => void
+export type SizeChangeEventHandler = (width: number, height: number) => void;
 
 /** Interface to chart time scale */
 export interface ITimeScaleApi<HorzScaleItem> {
   /**
    * Return the distance from the right edge of the time scale to the lastest bar of the series measured in bars.
    */
-  scrollPosition(): number
+  scrollPosition(): number;
 
   /**
    * Scrolls the chart to the specified position.
@@ -32,12 +32,12 @@ export interface ITimeScaleApi<HorzScaleItem> {
    * @param position - Target data position
    * @param animated - Setting this to true makes the chart scrolling smooth and adds animation
    */
-  scrollToPosition(position: number, animated: boolean): void
+  scrollToPosition(position: number, animated: boolean): void;
 
   /**
    * Restores default scroll position of the chart. This process is always animated.
    */
-  scrollToRealTime(): void
+  scrollToRealTime(): void;
 
   /**
    * Returns current visible time range of the chart.
@@ -47,7 +47,7 @@ export interface ITimeScaleApi<HorzScaleItem> {
    *
    * @returns Visible range or null if the chart has no data at all.
    */
-  getVisibleRange(): Range<HorzScaleItem> | null
+  getVisibleRange(): Range<HorzScaleItem> | null;
 
   /**
    * Sets visible range of data.
@@ -66,14 +66,14 @@ export interface ITimeScaleApi<HorzScaleItem> {
    * });
    * ```
    */
-  setVisibleRange(range: Range<HorzScaleItem>): void
+  setVisibleRange(range: Range<HorzScaleItem>): void;
 
   /**
    * Returns the current visible [logical range](/time-scale.md#logical-range) of the chart as an object with the first and last time points of the logical range, or returns `null` if the chart has no data.
    *
    * @returns Visible range or null if the chart has no data at all.
    */
-  getVisibleLogicalRange(): LogicalRange | null
+  getVisibleLogicalRange(): LogicalRange | null;
 
   /**
    * Sets visible [logical range](/time-scale.md#logical-range) of data.
@@ -84,17 +84,17 @@ export interface ITimeScaleApi<HorzScaleItem> {
    * chart.timeScale().setVisibleLogicalRange({ from: 0, to: Date.now() / 1000 });
    * ```
    */
-  setVisibleLogicalRange(range: Range<number>): void
+  setVisibleLogicalRange(range: Range<number>): void;
 
   /**
    * Restores default zoom level and scroll position of the time scale.
    */
-  resetTimeScale(): void
+  resetTimeScale(): void;
 
   /**
    * Automatically calculates the visible range to fit all data from all series.
    */
-  fitContent(): void
+  fitContent(): void;
 
   /**
    * Converts a logical index to local x coordinate.
@@ -102,7 +102,7 @@ export interface ITimeScaleApi<HorzScaleItem> {
    * @param logical - Logical index needs to be converted
    * @returns x coordinate of that time or `null` if the chart doesn't have data
    */
-  logicalToCoordinate(logical: Logical): Coordinate | null
+  logicalToCoordinate(logical: Logical): Coordinate | null;
 
   /**
    * Converts a coordinate to logical index.
@@ -110,7 +110,7 @@ export interface ITimeScaleApi<HorzScaleItem> {
    * @param x - Coordinate needs to be converted
    * @returns Logical index that is located on that coordinate or `null` if the chart doesn't have data
    */
-  coordinateToLogical(x: number): Logical | null
+  coordinateToLogical(x: number): Logical | null;
 
   /**
    * Converts a time to local x coordinate.
@@ -118,7 +118,7 @@ export interface ITimeScaleApi<HorzScaleItem> {
    * @param time - Time needs to be converted
    * @returns X coordinate of that time or `null` if no time found on time scale
    */
-  timeToCoordinate(time: HorzScaleItem): Coordinate | null
+  timeToCoordinate(time: HorzScaleItem): Coordinate | null;
 
   /**
    * Converts a coordinate to time.
@@ -126,17 +126,17 @@ export interface ITimeScaleApi<HorzScaleItem> {
    * @param x - Coordinate needs to be converted.
    * @returns Time of a bar that is located on that coordinate or `null` if there are no bars found on that coordinate.
    */
-  coordinateToTime(x: number): HorzScaleItem | null
+  coordinateToTime(x: number): HorzScaleItem | null;
 
   /**
    * Returns a width of the time scale.
    */
-  width(): number
+  width(): number;
 
   /**
    * Returns a height of the time scale.
    */
-  height(): number
+  height(): number;
 
   /**
    * Subscribe to the visible time range change events.
@@ -159,7 +159,7 @@ export interface ITimeScaleApi<HorzScaleItem> {
    */
   subscribeVisibleTimeRangeChange(
     handler: TimeRangeChangeEventHandler<HorzScaleItem>,
-  ): void
+  ): void;
 
   /**
    * Unsubscribe a handler that was previously subscribed using {@link subscribeVisibleTimeRangeChange}.
@@ -172,7 +172,7 @@ export interface ITimeScaleApi<HorzScaleItem> {
    */
   unsubscribeVisibleTimeRangeChange(
     handler: TimeRangeChangeEventHandler<HorzScaleItem>,
-  ): void
+  ): void;
 
   /**
    * Subscribe to the visible logical range change events.
@@ -193,7 +193,7 @@ export interface ITimeScaleApi<HorzScaleItem> {
    * chart.timeScale().subscribeVisibleLogicalRangeChange(myVisibleLogicalRangeChangeHandler);
    * ```
    */
-  subscribeVisibleLogicalRangeChange(handler: LogicalRangeChangeEventHandler): void
+  subscribeVisibleLogicalRangeChange(handler: LogicalRangeChangeEventHandler): void;
 
   /**
    * Unsubscribe a handler that was previously subscribed using {@link subscribeVisibleLogicalRangeChange}.
@@ -204,33 +204,33 @@ export interface ITimeScaleApi<HorzScaleItem> {
    * chart.timeScale().unsubscribeVisibleLogicalRangeChange(myVisibleLogicalRangeChangeHandler);
    * ```
    */
-  unsubscribeVisibleLogicalRangeChange(handler: LogicalRangeChangeEventHandler): void
+  unsubscribeVisibleLogicalRangeChange(handler: LogicalRangeChangeEventHandler): void;
 
   /**
    * Adds a subscription to time scale size changes
    *
    * @param handler - Handler (function) to be called when the time scale size changes
    */
-  subscribeSizeChange(handler: SizeChangeEventHandler): void
+  subscribeSizeChange(handler: SizeChangeEventHandler): void;
 
   /**
    * Removes a subscription to time scale size changes
    *
    * @param handler - Previously subscribed handler
    */
-  unsubscribeSizeChange(handler: SizeChangeEventHandler): void
+  unsubscribeSizeChange(handler: SizeChangeEventHandler): void;
 
   /**
    * Applies new options to the time scale.
    *
    * @param options - Any subset of options.
    */
-  applyOptions(options: DeepPartial<HorzScaleOptions>): void
+  applyOptions(options: DeepPartial<HorzScaleOptions>): void;
 
   /**
    * Returns current options
    *
    * @returns Currently applied options
    */
-  options(): Readonly<HorzScaleOptions>
+  options(): Readonly<HorzScaleOptions>;
 }

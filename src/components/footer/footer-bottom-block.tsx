@@ -1,8 +1,8 @@
-'use client'
+'use client';
 
-import React, { PropsWithChildren } from 'react'
-import { withScale } from '../use-scale'
-import { FooterBottomItemProps } from './index'
+import React, { PropsWithChildren } from 'react';
+import { withScale } from '../use-scale';
+import { FooterBottomItemProps } from './index';
 
 const FooterBottomBlock: React.FC<PropsWithChildren<FooterBottomItemProps>> = ({
   children,
@@ -20,7 +20,7 @@ const FooterBottomBlock: React.FC<PropsWithChildren<FooterBottomItemProps>> = ({
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-export default withScale(FooterBottomBlock)
+export default withScale(FooterBottomBlock);

@@ -1,13 +1,13 @@
-import { assert } from '../helpers/assertions'
-import { DeepPartial, isString } from '../helpers/strict-type-checks'
+import { assert } from '../helpers/assertions';
+import { DeepPartial, isString } from '../helpers/strict-type-checks';
 
-import { HorzScaleBehaviorTime } from '../model/horz-scale-behavior-time/horz-scale-behavior-time'
-import { TimeChartOptions } from '../model/horz-scale-behavior-time/time-based-chart-options'
-import { Time } from '../model/horz-scale-behavior-time/types'
-import { IHorzScaleBehavior } from '../model/ihorz-scale-behavior'
+import { HorzScaleBehaviorTime } from '../model/horz-scale-behavior-time/horz-scale-behavior-time';
+import { TimeChartOptions } from '../model/horz-scale-behavior-time/time-based-chart-options';
+import { Time } from '../model/horz-scale-behavior-time/types';
+import { IHorzScaleBehavior } from '../model/ihorz-scale-behavior';
 
-import { ChartApi } from './chart-api'
-import { IChartApiBase } from './ichart-api'
+import { ChartApi } from './chart-api';
+import { IChartApiBase } from './ichart-api';
 
 /**
  * This function is the main entry point of the Lightweight Charting Library. If you are using time values
@@ -29,24 +29,24 @@ export function createChartEx<
   horzScaleBehavior: THorzScaleBehavior,
   options?: DeepPartial<ReturnType<THorzScaleBehavior['options']>>,
 ): IChartApiBase<HorzScaleItem> {
-  let htmlElement: HTMLElement
+  let htmlElement: HTMLElement;
   if (isString(container)) {
-    const element = document.getElementById(container)
-    assert(element !== null, `Cannot find element in DOM with id=${container}`)
-    htmlElement = element
+    const element = document.getElementById(container);
+    assert(element !== null, `Cannot find element in DOM with id=${container}`);
+    htmlElement = element;
   } else {
-    htmlElement = container
+    htmlElement = container;
   }
 
-  const res = new ChartApi<HorzScaleItem>(htmlElement, horzScaleBehavior, options)
-  horzScaleBehavior.setOptions(res.options())
-  return res
+  const res = new ChartApi<HorzScaleItem>(htmlElement, horzScaleBehavior, options);
+  horzScaleBehavior.setOptions(res.options());
+  return res;
 }
 
 /**
  * Structure describing options of the chart with time points at the horizontal scale. Series options are to be set separately
  */
-export type ChartOptions = TimeChartOptions
+export type ChartOptions = TimeChartOptions;
 
 /**
  * The main interface of a single chart using time for horizontal scale.
@@ -57,7 +57,7 @@ export interface IChartApi extends IChartApiBase<Time> {
    *
    * @param options - Any subset of options.
    */
-  applyOptions(options: DeepPartial<ChartOptions>): void
+  applyOptions(options: DeepPartial<ChartOptions>): void;
 }
 
 /**
@@ -75,5 +75,5 @@ export function createChart(
     container,
     new HorzScaleBehaviorTime(),
     HorzScaleBehaviorTime.applyDefaults(options),
-  )
+  );
 }

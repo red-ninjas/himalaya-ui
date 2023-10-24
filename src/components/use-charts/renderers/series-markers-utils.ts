@@ -1,6 +1,6 @@
-import { ceiledEven, ceiledOdd } from '../helpers/mathex'
+import { ceiledEven, ceiledOdd } from '../helpers/mathex';
 
-import { SeriesMarkerShape } from '../model/series-markers'
+import { SeriesMarkerShape } from '../model/series-markers';
 
 const enum Constants {
   MinShapeSize = 12,
@@ -10,26 +10,27 @@ const enum Constants {
 
 function size(barSpacing: number, coeff: number): number {
   const result =
-    Math.min(Math.max(barSpacing, Constants.MinShapeSize), Constants.MaxShapeSize) * coeff
-  return ceiledOdd(result)
+    Math.min(Math.max(barSpacing, Constants.MinShapeSize), Constants.MaxShapeSize) *
+    coeff;
+  return ceiledOdd(result);
 }
 
 export function shapeSize(shape: SeriesMarkerShape, originalSize: number): number {
   switch (shape) {
     case 'arrowDown':
     case 'arrowUp':
-      return size(originalSize, 1)
+      return size(originalSize, 1);
     case 'circle':
-      return size(originalSize, 0.8)
+      return size(originalSize, 0.8);
     case 'square':
-      return size(originalSize, 0.7)
+      return size(originalSize, 0.7);
   }
 }
 
 export function calculateShapeHeight(barSpacing: number): number {
-  return ceiledEven(size(barSpacing, 1))
+  return ceiledEven(size(barSpacing, 1));
 }
 
 export function shapeMargin(barSpacing: number): number {
-  return Math.max(size(barSpacing, 0.1), Constants.MinShapeMargin)
+  return Math.max(size(barSpacing, 0.1), Constants.MinShapeMargin);
 }

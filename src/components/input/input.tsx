@@ -1,17 +1,17 @@
-'use client'
-import React, { useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react'
-import useTheme from '../use-theme'
-import InputLabel from './input-label'
-import InputBlockLabel from './input-block-label'
-import InputIcon from './input-icon'
-import InputClearIcon from './input-icon-clear'
-import { getColors } from './styles'
-import { Props, InputTypes } from './input-props'
-import useScale, { withScale } from '../use-scale'
-import useClasses from '../use-classes'
+'use client';
+import React, { useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react';
+import useTheme from '../use-theme';
+import InputLabel from './input-label';
+import InputBlockLabel from './input-block-label';
+import InputIcon from './input-icon';
+import InputClearIcon from './input-icon-clear';
+import { getColors } from './styles';
+import { Props, InputTypes } from './input-props';
+import useScale, { withScale } from '../use-scale';
+import useClasses from '../use-classes';
 
-type NativeAttrs = Omit<React.InputHTMLAttributes<any>, keyof Props>
-export type InputProps = Props & NativeAttrs
+type NativeAttrs = Omit<React.InputHTMLAttributes<any>, keyof Props>;
+export type InputProps = Props & NativeAttrs;
 
 const simulateChangeEvent = (
   el: HTMLInputElement,
@@ -21,8 +21,8 @@ const simulateChangeEvent = (
     ...event,
     target: el,
     currentTarget: el,
-  }
-}
+  };
+};
 
 const InputComponent = React.forwardRef<
   HTMLInputElement,
@@ -55,78 +55,78 @@ const InputComponent = React.forwardRef<
     }: React.PropsWithChildren<InputProps>,
     ref: React.Ref<HTMLInputElement | null>,
   ) => {
-    const theme = useTheme()
-    const { SCALES } = useScale()
-    const inputRef = useRef<HTMLInputElement>(null)
-    useImperativeHandle(ref, () => inputRef.current)
+    const theme = useTheme();
+    const { SCALES } = useScale();
+    const inputRef = useRef<HTMLInputElement>(null);
+    useImperativeHandle(ref, () => inputRef.current);
 
-    const [selfValue, setSelfValue] = useState<string>(initialValue)
-    const [hover, setHover] = useState<boolean>(false)
-    const isControlledComponent = useMemo(() => value !== undefined, [value])
+    const [selfValue, setSelfValue] = useState<string>(initialValue);
+    const [hover, setHover] = useState<boolean>(false);
+    const isControlledComponent = useMemo(() => value !== undefined, [value]);
     const labelClasses = useMemo(
       () => (labelRight ? 'right-label' : label ? 'left-label' : ''),
       [label, labelRight],
-    )
+    );
     const iconClasses = useMemo(
       () => (iconRight ? 'right-icon' : icon ? 'left-icon' : ''),
       [icon, iconRight],
-    )
+    );
     const { color, borderColor, hoverBorder } = useMemo(
       () => getColors(theme.palette, type),
       [theme.palette, type],
-    )
+    );
 
     const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-      if (disabled || readOnly) return
-      setSelfValue(event.target.value)
-      onChange && onChange(event)
-    }
+      if (disabled || readOnly) return;
+      setSelfValue(event.target.value);
+      onChange && onChange(event);
+    };
     const clearHandler = (event: React.MouseEvent<HTMLDivElement>) => {
-      setSelfValue('')
-      onClearClick && onClearClick(event)
+      setSelfValue('');
+      onClearClick && onClearClick(event);
       /* istanbul ignore next */
-      if (!inputRef.current) return
+      if (!inputRef.current) return;
 
-      const changeEvent = simulateChangeEvent(inputRef.current, event)
-      changeEvent.target.value = ''
-      onChange && onChange(changeEvent)
-      inputRef.current.focus()
-    }
+      const changeEvent = simulateChangeEvent(inputRef.current, event);
+      changeEvent.target.value = '';
+      onChange && onChange(changeEvent);
+      inputRef.current.focus();
+    };
 
     const focusHandler = (e: React.FocusEvent<HTMLInputElement>) => {
-      setHover(true)
-      onFocus && onFocus(e)
-    }
+      setHover(true);
+      onFocus && onFocus(e);
+    };
     const blurHandler = (e: React.FocusEvent<HTMLInputElement>) => {
-      setHover(false)
-      onBlur && onBlur(e)
-    }
+      setHover(false);
+      onBlur && onBlur(e);
+    };
 
     const iconClickHandler = (e: React.MouseEvent<HTMLDivElement>) => {
-      if (disabled) return
-      onIconClick && onIconClick(e)
-    }
+      if (disabled) return;
+      onIconClick && onIconClick(e);
+    };
     const iconProps = useMemo(
       () => ({
         clickable: iconClickable,
         onClick: iconClickHandler,
       }),
       [iconClickable, iconClickHandler],
-    )
+    );
 
     useEffect(() => {
       if (isControlledComponent) {
-        setSelfValue(value as string)
+        setSelfValue(value as string);
       }
-    })
+    });
 
     const controlledValue = isControlledComponent
       ? { value: selfValue }
-      : { defaultValue: initialValue }
+      : { defaultValue: initialValue };
     const inputProps = {
       ...props,
       ...controlledValue,
-    }
+    };
 
     return (
       <div className="with-label">
@@ -259,10 +259,10 @@ const InputComponent = React.forwardRef<
           }
         `}</style>
       </div>
-    )
+    );
   },
-)
+);
 
-InputComponent.displayName = 'HimalayaInput'
-const Input = withScale(InputComponent)
-export default Input
+InputComponent.displayName = 'HimalayaInput';
+const Input = withScale(InputComponent);
+export default Input;

@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 const ImageBrowserHttpsIcon = () => {
   return (
@@ -16,9 +16,9 @@ const ImageBrowserHttpsIcon = () => {
         }
       `}</style>
     </svg>
-  )
-}
+  );
+};
 
-const MemoImageBrowserHttpsIcon = React.memo(ImageBrowserHttpsIcon)
+const MemoImageBrowserHttpsIcon = React.memo(ImageBrowserHttpsIcon);
 
-export default MemoImageBrowserHttpsIcon
+export default MemoImageBrowserHttpsIcon;

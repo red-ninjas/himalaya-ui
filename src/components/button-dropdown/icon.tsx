@@ -1,8 +1,8 @@
-import React from 'react'
+import React from 'react';
 
 interface Props {
-  color?: string
-  height?: string
+  color?: string;
+  height?: string;
 }
 
 const ButtonDropdownIcon: React.FC<Props> = ({ color, height }) => {
@@ -27,8 +27,8 @@ const ButtonDropdownIcon: React.FC<Props> = ({ color, height }) => {
         }
       `}</style>
     </svg>
-  )
-}
+  );
+};
 
-ButtonDropdownIcon.displayName = 'HimalayaButtonDropdownIcon'
-export default ButtonDropdownIcon
+ButtonDropdownIcon.displayName = 'HimalayaButtonDropdownIcon';
+export default ButtonDropdownIcon;

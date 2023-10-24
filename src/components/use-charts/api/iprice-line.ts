@@ -1,4 +1,4 @@
-import { PriceLineOptions } from '../model/price-line-options'
+import { PriceLineOptions } from '../model/price-line-options';
 
 /**
  * Represents the interface for interacting with price lines.
@@ -20,9 +20,9 @@ export interface IPriceLine {
    * });
    * ```
    */
-  applyOptions(options: Partial<PriceLineOptions>): void
+  applyOptions(options: Partial<PriceLineOptions>): void;
   /**
    * Get the currently applied options.
    */
-  options(): Readonly<PriceLineOptions>
+  options(): Readonly<PriceLineOptions>;
 }

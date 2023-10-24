@@ -1,10 +1,10 @@
-import { UIThemesPalette } from '../themes/presets'
-import { NormalTypes } from '../utils/prop-types'
+import { UIThemesPalette } from '../themes/presets';
+import { NormalTypes } from '../utils/prop-types';
 
 export type CheckboxColor = {
-  fill: string
-  bg: string
-}
+  fill: string;
+  bg: string;
+};
 
 export const getColors = (
   palette: UIThemesPalette,
@@ -31,8 +31,8 @@ export const getColors = (
       fill: palette.error,
       bg: palette.background,
     },
-  }
+  };
 
-  if (!status) return colors.default
-  return colors[status]
-}
+  if (!status) return colors.default;
+  return colors[status];
+};

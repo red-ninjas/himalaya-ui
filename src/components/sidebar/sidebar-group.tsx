@@ -1,16 +1,16 @@
-import useTheme from 'components/use-theme'
-import React from 'react'
+import useTheme from 'components/use-theme';
+import React from 'react';
 
 export interface SideItemProps {
-  title: string
-  isActive?: boolean
+  title: string;
+  isActive?: boolean;
 }
 
 const SidebarGroup: React.FC<React.PropsWithChildren<SideItemProps>> = ({
   children,
   ...props
 }) => {
-  const theme = useTheme()
+  const theme = useTheme();
 
   return (
     <div className="item">
@@ -46,7 +46,7 @@ const SidebarGroup: React.FC<React.PropsWithChildren<SideItemProps>> = ({
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-export default SidebarGroup
+export default SidebarGroup;

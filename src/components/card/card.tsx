@@ -1,24 +1,24 @@
-'use client'
-import React, { useMemo } from 'react'
-import useTheme from '../use-theme'
-import { CardTypes } from '../utils/prop-types'
-import { getStyles } from './styles'
-import CardFooter from './card-footer'
-import CardContent from './card-content'
-import Image from '../image'
-import { hasChild, pickChild } from '../utils/collections'
-import useScale, { withScale } from '../use-scale'
-import useClasses from '../use-classes'
+'use client';
+import React, { useMemo } from 'react';
+import useTheme from '../use-theme';
+import { CardTypes } from '../utils/prop-types';
+import { getStyles } from './styles';
+import CardFooter from './card-footer';
+import CardContent from './card-content';
+import Image from '../image';
+import { hasChild, pickChild } from '../utils/collections';
+import useScale, { withScale } from '../use-scale';
+import useClasses from '../use-classes';
 
 interface Props {
-  hoverable?: boolean
-  shadow?: boolean
-  className?: string
-  type?: CardTypes
+  hoverable?: boolean;
+  shadow?: boolean;
+  className?: string;
+  type?: CardTypes;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>
-export type CardProps = Props & NativeAttrs
+type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+export type CardProps = Props & NativeAttrs;
 
 const CardComponent: React.FC<React.PropsWithChildren<CardProps>> = ({
   children,
@@ -28,20 +28,20 @@ const CardComponent: React.FC<React.PropsWithChildren<CardProps>> = ({
   type = 'default' as CardTypes,
   ...props
 }: CardProps) => {
-  const theme = useTheme()
-  const { SCALES } = useScale()
+  const theme = useTheme();
+  const { SCALES } = useScale();
   const hoverShadow = useMemo(() => {
-    if (shadow) return theme.expressiveness.shadowMedium
-    return hoverable ? theme.expressiveness.shadowSmall : 'none'
-  }, [hoverable, shadow, theme.expressiveness])
+    if (shadow) return theme.expressiveness.shadowMedium;
+    return hoverable ? theme.expressiveness.shadowSmall : 'none';
+  }, [hoverable, shadow, theme.expressiveness]);
   const { color, bgColor, borderColor } = useMemo(
     () => getStyles(type, theme.palette, shadow),
     [type, theme.palette, shadow],
-  )
+  );
 
-  const [withoutFooterChildren, footerChildren] = pickChild(children, CardFooter)
-  const [withoutImageChildren, imageChildren] = pickChild(withoutFooterChildren, Image)
-  const hasContent = hasChild(withoutImageChildren, CardContent)
+  const [withoutFooterChildren, footerChildren] = pickChild(children, CardFooter);
+  const [withoutImageChildren, imageChildren] = pickChild(withoutFooterChildren, Image);
+  const hasContent = hasChild(withoutImageChildren, CardContent);
 
   return (
     <div className={useClasses('card', className)} {...props}>
@@ -82,9 +82,9 @@ const CardComponent: React.FC<React.PropsWithChildren<CardProps>> = ({
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-CardComponent.displayName = 'HimalayaCard'
-const Card = withScale(CardComponent)
-export default Card
+CardComponent.displayName = 'HimalayaCard';
+const Card = withScale(CardComponent);
+export default Card;

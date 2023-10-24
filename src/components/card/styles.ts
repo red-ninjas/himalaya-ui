@@ -1,11 +1,11 @@
-import { CardTypes } from '../utils/prop-types'
-import { UIThemesPalette } from '../themes/presets'
+import { CardTypes } from '../utils/prop-types';
+import { UIThemesPalette } from '../themes/presets';
 
 export type CardStyles = {
-  color: string
-  bgColor: string
-  borderColor: string
-}
+  color: string;
+  bgColor: string;
+  borderColor: string;
+};
 
 export const getStyles = (
   type: CardTypes,
@@ -57,10 +57,10 @@ export const getStyles = (
       color: 'black',
       bgColor: palette.cyan,
     },
-  }
-  const showBorder = type === 'default' && !isShadow
+  };
+  const showBorder = type === 'default' && !isShadow;
   return {
     ...colors[type],
     borderColor: showBorder ? palette.border : 'transparent',
-  }
-}
+  };
+};

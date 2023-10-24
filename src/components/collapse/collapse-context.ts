@@ -1,15 +1,15 @@
-import React from 'react'
+import React from 'react';
 
 export interface CollapseConfig {
-  values: Array<number>
-  updateValues?: (currentIndex: number | undefined, nextState: boolean) => unknown
+  values: Array<number>;
+  updateValues?: (currentIndex: number | undefined, nextState: boolean) => unknown;
 }
 
 const defaultContext = {
   values: [],
-}
+};
 
-export const CollapseContext = React.createContext<CollapseConfig>(defaultContext)
+export const CollapseContext = React.createContext<CollapseConfig>(defaultContext);
 
 export const useCollapseContext = (): CollapseConfig =>
-  React.useContext<CollapseConfig>(CollapseContext)
+  React.useContext<CollapseConfig>(CollapseContext);

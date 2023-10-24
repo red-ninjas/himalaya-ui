@@ -1,23 +1,23 @@
-'use client'
-import React, { useEffect, useState } from 'react'
-import { QuickBarContext } from './quickbar-context'
-import { QuickBarProviderProps } from '.'
-import { useConfigs } from '../use-context'
+'use client';
+import React, { useEffect, useState } from 'react';
+import { QuickBarContext } from './quickbar-context';
+import { QuickBarProviderProps } from '.';
+import { useConfigs } from '../use-context';
 
 const QuickBarProvider: React.FC<React.PropsWithChildren<QuickBarProviderProps>> = ({
   children,
   hideOnMobile = true,
 }) => {
-  const { isMobile } = useConfigs()
+  const { isMobile } = useConfigs();
   const [isEnabled, setIsEnabled] = useState<boolean>(
     hideOnMobile && isMobile ? false : true,
-  )
+  );
 
   useEffect(() => {
     if (hideOnMobile) {
-      setIsEnabled(!isMobile)
+      setIsEnabled(!isMobile);
     }
-  }, [isMobile])
+  }, [isMobile]);
   return (
     <QuickBarContext.Provider
       value={{
@@ -27,8 +27,8 @@ const QuickBarProvider: React.FC<React.PropsWithChildren<QuickBarProviderProps>>
     >
       {children}
     </QuickBarContext.Provider>
-  )
-}
+  );
+};
 
-QuickBarProvider.displayName = 'HimalayaQuickBarProvider'
-export default QuickBarProvider
+QuickBarProvider.displayName = 'HimalayaQuickBarProvider';
+export default QuickBarProvider;

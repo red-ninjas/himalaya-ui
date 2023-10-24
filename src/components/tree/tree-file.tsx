@@ -1,22 +1,22 @@
-'use client'
-import React, { useMemo } from 'react'
-import useTheme from '../use-theme'
-import TreeFileIcon from './tree-file-icon'
-import { useTreeContext } from './tree-context'
-import TreeIndents from './tree-indents'
-import { makeChildPath, stopPropagation } from './tree-help'
-import useClasses from '../use-classes'
+'use client';
+import React, { useMemo } from 'react';
+import useTheme from '../use-theme';
+import TreeFileIcon from './tree-file-icon';
+import { useTreeContext } from './tree-context';
+import TreeIndents from './tree-indents';
+import { makeChildPath, stopPropagation } from './tree-help';
+import useClasses from '../use-classes';
 
 interface Props {
-  name: string
-  extra?: string
-  parentPath?: string
-  level?: number
-  className?: string
+  name: string;
+  extra?: string;
+  parentPath?: string;
+  level?: number;
+  className?: string;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>
-export type TreeFileProps = Props & NativeAttrs
+type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+export type TreeFileProps = Props & NativeAttrs;
 
 const TreeFile: React.FC<React.PropsWithChildren<TreeFileProps>> = ({
   name,
@@ -26,13 +26,13 @@ const TreeFile: React.FC<React.PropsWithChildren<TreeFileProps>> = ({
   className = '',
   ...props
 }: React.PropsWithChildren<TreeFileProps>) => {
-  const theme = useTheme()
-  const { onFileClick } = useTreeContext()
-  const currentPath = useMemo(() => makeChildPath(name, parentPath), [])
+  const theme = useTheme();
+  const { onFileClick } = useTreeContext();
+  const currentPath = useMemo(() => makeChildPath(name, parentPath), []);
   const clickHandler = (event: React.MouseEvent) => {
-    stopPropagation(event)
-    onFileClick && onFileClick(currentPath)
-  }
+    stopPropagation(event);
+    onFileClick && onFileClick(currentPath);
+  };
 
   return (
     <div className={useClasses('file', className)} onClick={clickHandler} {...props}>
@@ -98,8 +98,8 @@ const TreeFile: React.FC<React.PropsWithChildren<TreeFileProps>> = ({
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-TreeFile.displayName = 'HimalayaTreeFile'
-export default TreeFile
+TreeFile.displayName = 'HimalayaTreeFile';
+export default TreeFile;

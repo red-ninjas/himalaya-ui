@@ -1,28 +1,28 @@
-'use client'
-import React, { useMemo } from 'react'
-import Link from '../link'
-import { Props as LinkProps } from '../link/link'
-import useTheme from '../use-theme'
-import ImageBrowserHttpsIcon from './image-browser-https-icon'
-import { getBrowserColors, BrowserColors } from './styles'
-import { getHostFromUrl } from './helpers'
-import useScale, { withScale } from '../use-scale'
-import useClasses from '../use-classes'
-import useLayout from '../use-layout'
+'use client';
+import React, { useMemo } from 'react';
+import Link from '../link';
+import { Props as LinkProps } from '../link/link';
+import useTheme from '../use-theme';
+import ImageBrowserHttpsIcon from './image-browser-https-icon';
+import { getBrowserColors, BrowserColors } from './styles';
+import { getHostFromUrl } from './helpers';
+import useScale, { withScale } from '../use-scale';
+import useClasses from '../use-classes';
+import useLayout from '../use-layout';
 
-export type ImageAnchorProps = Omit<React.AnchorHTMLAttributes<any>, keyof LinkProps>
+export type ImageAnchorProps = Omit<React.AnchorHTMLAttributes<any>, keyof LinkProps>;
 
 interface Props {
-  title?: string
-  url?: string
-  showFullLink?: boolean
-  invert?: boolean
-  anchorProps?: ImageAnchorProps
-  className?: string
+  title?: string;
+  url?: string;
+  showFullLink?: boolean;
+  invert?: boolean;
+  anchorProps?: ImageAnchorProps;
+  className?: string;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>
-export type ImageBrowserProps = Props & NativeAttrs
+type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+export type ImageBrowserProps = Props & NativeAttrs;
 
 const getTitle = (title: string, colors: BrowserColors) => (
   <div className="title">
@@ -34,7 +34,7 @@ const getTitle = (title: string, colors: BrowserColors) => (
       }
     `}</style>
   </div>
-)
+);
 
 const getAddressInput = (
   url: string,
@@ -89,7 +89,7 @@ const getAddressInput = (
       }
     `}</style>
   </div>
-)
+);
 
 const ImageBrowserComponent = React.forwardRef<
   HTMLDivElement,
@@ -108,18 +108,18 @@ const ImageBrowserComponent = React.forwardRef<
     }: React.PropsWithChildren<ImageBrowserProps>,
     ref: React.Ref<HTMLDivElement>,
   ) => {
-    const theme = useTheme()
-    const layout = useLayout()
-    const { SCALES } = useScale()
+    const theme = useTheme();
+    const layout = useLayout();
+    const { SCALES } = useScale();
     const colors = useMemo(
       () => getBrowserColors(invert, theme.palette),
       [invert, theme.palette],
-    )
+    );
     const input = useMemo(() => {
-      if (url) return getAddressInput(url, showFullLink, colors, anchorProps)
-      if (title) return getTitle(title, colors)
-      return null
-    }, [url, showFullLink, title, colors, anchorProps])
+      if (url) return getAddressInput(url, showFullLink, colors, anchorProps);
+      if (title) return getTitle(title, colors);
+      return null;
+    }, [url, showFullLink, title, colors, anchorProps]);
 
     return (
       <div className={useClasses('browser', className)} ref={ref} {...props}>
@@ -194,10 +194,10 @@ const ImageBrowserComponent = React.forwardRef<
           }
         `}</style>
       </div>
-    )
+    );
   },
-)
+);
 
-ImageBrowserComponent.displayName = 'HimalayaImageBrowser'
-const ImageBrowser = withScale(ImageBrowserComponent)
-export default ImageBrowser
+ImageBrowserComponent.displayName = 'HimalayaImageBrowser';
+const ImageBrowser = withScale(ImageBrowserComponent);
+export default ImageBrowser;

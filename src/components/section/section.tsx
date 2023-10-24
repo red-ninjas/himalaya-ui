@@ -1,9 +1,9 @@
-'use client'
-import React from 'react'
-import useScale, { withScale } from '../use-scale'
+'use client';
+import React from 'react';
+import useScale, { withScale } from '../use-scale';
 
 const SectionComponent: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
-  const { SCALES } = useScale()
+  const { SCALES } = useScale();
 
   return (
     <section className="inner-section">
@@ -16,9 +16,9 @@ const SectionComponent: React.FC<React.PropsWithChildren<{}>> = ({ children }) =
         }
       `}</style>
     </section>
-  )
-}
+  );
+};
 
-SectionComponent.displayName = 'HimalayaSection'
-const Section = withScale(SectionComponent)
-export default Section
+SectionComponent.displayName = 'HimalayaSection';
+const Section = withScale(SectionComponent);
+export default Section;

@@ -1,4 +1,4 @@
-import useClipboard from './use-clipboard'
+import useClipboard from './use-clipboard';
 
-export type { UseClipboardOptions, UseClipboardResult } from './use-clipboard'
-export default useClipboard
+export type { UseClipboardOptions, UseClipboardResult } from './use-clipboard';
+export default useClipboard;

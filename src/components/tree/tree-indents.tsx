@@ -1,11 +1,11 @@
-import React from 'react'
+import React from 'react';
 
 interface Props {
-  count: number
+  count: number;
 }
 
 const TreeIndents: React.FC<Props> = ({ count }) => {
-  if (count === 0) return null
+  if (count === 0) return null;
   return (
     /* eslint-disable react/jsx-no-useless-fragment */
     <>
@@ -20,7 +20,7 @@ const TreeIndents: React.FC<Props> = ({ count }) => {
       ))}
     </>
     /* eslint-enable */
-  )
-}
+  );
+};
 
-export default TreeIndents
+export default TreeIndents;

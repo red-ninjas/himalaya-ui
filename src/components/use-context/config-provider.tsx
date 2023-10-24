@@ -1,13 +1,13 @@
-'use client'
+'use client';
 
-import { parseCookies, setCookie } from 'nookies'
-import React, { useEffect, useMemo, useState } from 'react'
-import { SwipeEventData, useSwipeable } from 'react-swipeable'
-import CssBaseline from '../css-baseline'
-import Themes, { UIThemes } from '../themes'
-import { TranslationProvider } from '../use-language'
-import { LayoutProvider } from '../use-layout'
-import useMediaQuery from '../use-media-query'
+import { parseCookies, setCookie } from 'nookies';
+import React, { useEffect, useMemo, useState } from 'react';
+import { SwipeEventData, useSwipeable } from 'react-swipeable';
+import CssBaseline from '../css-baseline';
+import Themes, { UIThemes } from '../themes';
+import { TranslationProvider } from '../use-language';
+import { LayoutProvider } from '../use-layout';
+import useMediaQuery from '../use-media-query';
 import {
   ConfigContext,
   ConfigProviderContextParams,
@@ -15,25 +15,25 @@ import {
   UpdateToastsIDFunction,
   UpdateToastsLayoutFunction,
   defaultToastLayout,
-} from './config-context'
-import StyledJsxRegistry from './registry'
+} from './config-context';
+import StyledJsxRegistry from './registry';
 
-import useCurrentState from '../use-current-state'
-import ThemeProvider from './theme-provider'
-import { THEME_COOKIE_NAME } from './share'
-import { DeepPartial } from '../utils/types'
-import useTheme from '../use-theme'
-import { CUSTOM_THEME_TYPE } from './share'
+import useCurrentState from '../use-current-state';
+import ThemeProvider from './theme-provider';
+import { THEME_COOKIE_NAME } from './share';
+import { DeepPartial } from '../utils/types';
+import useTheme from '../use-theme';
+import { CUSTOM_THEME_TYPE } from './share';
 export interface ConfigProps {
-  themeType?: string | 'dark' | 'light' | 'grey'
-  detectTheme?: boolean
-  themes?: Array<UIThemes>
+  themeType?: string | 'dark' | 'light' | 'grey';
+  detectTheme?: boolean;
+  themes?: Array<UIThemes>;
 }
 
 export function detectTheme(fallBackTheme: string = 'dark') {
   return typeof window !== 'undefined'
     ? window.localStorage.getItem(THEME_COOKIE_NAME) || fallBackTheme
-    : fallBackTheme
+    : fallBackTheme;
 }
 
 const ConfigProvider: React.FC<React.PropsWithChildren<ConfigProps>> = ({
@@ -42,76 +42,76 @@ const ConfigProvider: React.FC<React.PropsWithChildren<ConfigProps>> = ({
   detectTheme = false,
   themes = [],
 }: React.PropsWithChildren<ConfigProps>) => {
-  const [scrollHeight, setScrollHeight] = useState<number>(0)
-  const mediaQuery = useMediaQuery('xs', { match: 'down' })
-  const [isMobile, setIsMobile] = useState<boolean>()
-  const theme = useTheme()
-  const [onSwiping, setOnSwiping] = useState<SwipeEventData | undefined>(undefined)
-  const [swipedToLeft, setSwipedLeft] = useState<SwipeEventData | undefined>(undefined)
-  const [swipeToRight, setSwipeToRight] = useState<SwipeEventData | undefined>(undefined)
-  const [_themeType, setThemeType] = useState<string>(themeType)
-  const [customTheme, setCustomTheme] = useState<UIThemes>(theme)
+  const [scrollHeight, setScrollHeight] = useState<number>(0);
+  const mediaQuery = useMediaQuery('xs', { match: 'down' });
+  const [isMobile, setIsMobile] = useState<boolean>();
+  const theme = useTheme();
+  const [onSwiping, setOnSwiping] = useState<SwipeEventData | undefined>(undefined);
+  const [swipedToLeft, setSwipedLeft] = useState<SwipeEventData | undefined>(undefined);
+  const [swipeToRight, setSwipeToRight] = useState<SwipeEventData | undefined>(undefined);
+  const [_themeType, setThemeType] = useState<string>(themeType);
+  const [customTheme, setCustomTheme] = useState<UIThemes>(theme);
 
   useEffect(() => {
-    setIsMobile(mediaQuery)
-  }, [mediaQuery])
+    setIsMobile(mediaQuery);
+  }, [mediaQuery]);
 
   useEffect(() => {
     if (detectTheme) {
-      const cookies = parseCookies()
+      const cookies = parseCookies();
       if (
         cookies &&
         cookies[THEME_COOKIE_NAME] &&
         cookies[THEME_COOKIE_NAME] != _themeType
       ) {
-        setThemeType(cookies[THEME_COOKIE_NAME])
+        setThemeType(cookies[THEME_COOKIE_NAME]);
       }
     }
-  }, [])
+  }, []);
 
   const [lastUpdateToastId, setLastUpdateToastId] =
-    useState<ConfigProviderContextParams['lastUpdateToastId']>(null)
+    useState<ConfigProviderContextParams['lastUpdateToastId']>(null);
   const [toasts, setToasts, toastsRef] = useCurrentState<
     ConfigProviderContextParams['toasts']
-  >([])
+  >([]);
   const [toastLayout, setToastLayout, toastLayoutRef] =
-    useCurrentState<ConfigProviderContextParams['toastLayout']>(defaultToastLayout)
+    useCurrentState<ConfigProviderContextParams['toastLayout']>(defaultToastLayout);
   const updateToasts: UpdateToastsFunction = fn => {
-    const nextToasts = fn(toastsRef.current)
-    setToasts(nextToasts)
-  }
+    const nextToasts = fn(toastsRef.current);
+    setToasts(nextToasts);
+  };
   const updateToastLayout: UpdateToastsLayoutFunction = fn => {
-    const nextLayout = fn(toastLayoutRef.current)
-    setToastLayout(nextLayout)
-  }
+    const nextLayout = fn(toastLayoutRef.current);
+    setToastLayout(nextLayout);
+  };
   const updateLastToastId: UpdateToastsIDFunction = fn => {
-    setLastUpdateToastId(fn())
-  }
+    setLastUpdateToastId(fn());
+  };
 
   const updateSidebarScrollHeight = (height: number) => {
-    setScrollHeight(height)
-  }
+    setScrollHeight(height);
+  };
 
   const setTheme = (type: string) => {
-    setThemeType(type)
+    setThemeType(type);
     if (detectTheme) {
       setCookie(null, THEME_COOKIE_NAME, type, {
         maxAge: 30 * 24 * 60 * 60,
         path: '/',
-      })
+      });
     }
-  }
+  };
   const updateCustomTheme = (nextTheme: DeepPartial<UIThemes>) => {
-    const mergedTheme = Themes.create(theme, { ...nextTheme, type: CUSTOM_THEME_TYPE })
-    setCustomTheme(mergedTheme)
-    setCustomTheme && setCustomTheme(mergedTheme)
-  }
+    const mergedTheme = Themes.create(theme, { ...nextTheme, type: CUSTOM_THEME_TYPE });
+    setCustomTheme(mergedTheme);
+    setCustomTheme && setCustomTheme(mergedTheme);
+  };
   const handlers = useSwipeable({
     trackMouse: true,
     onSwipedRight: setSwipeToRight,
     onSwipedLeft: setSwipedLeft,
     onSwiping: setOnSwiping,
-  })
+  });
 
   const config: ConfigProviderContextParams = useMemo(
     () => ({
@@ -134,7 +134,7 @@ const ConfigProvider: React.FC<React.PropsWithChildren<ConfigProps>> = ({
       updateLastToastId,
     }),
     [isMobile, scrollHeight, _themeType, toasts, toastLayout, lastUpdateToastId],
-  )
+  );
 
   return (
     <StyledJsxRegistry>
@@ -159,7 +159,7 @@ const ConfigProvider: React.FC<React.PropsWithChildren<ConfigProps>> = ({
         }
       `}</style>
     </StyledJsxRegistry>
-  )
-}
-ConfigProvider.displayName = 'HimalayaConfigProvider'
-export default ConfigProvider
+  );
+};
+ConfigProvider.displayName = 'HimalayaConfigProvider';
+export default ConfigProvider;

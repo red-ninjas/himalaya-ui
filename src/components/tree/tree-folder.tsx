@@ -1,26 +1,26 @@
-'use client'
-import React, { useEffect, useMemo, useState } from 'react'
-import useTheme from '../use-theme'
-import { setChildrenProps } from '../utils/collections'
-import TreeFile from './tree-file'
-import Expand from '../shared/expand'
-import TreeIndents from './tree-indents'
-import { useTreeContext } from './tree-context'
-import TreeFolderIcon from './tree-folder-icon'
-import TreeStatusIcon from './tree-status-icon'
-import { sortChildren, makeChildPath, stopPropagation } from './tree-help'
-import useClasses from '../use-classes'
+'use client';
+import React, { useEffect, useMemo, useState } from 'react';
+import useTheme from '../use-theme';
+import { setChildrenProps } from '../utils/collections';
+import TreeFile from './tree-file';
+import Expand from '../shared/expand';
+import TreeIndents from './tree-indents';
+import { useTreeContext } from './tree-context';
+import TreeFolderIcon from './tree-folder-icon';
+import TreeStatusIcon from './tree-status-icon';
+import { sortChildren, makeChildPath, stopPropagation } from './tree-help';
+import useClasses from '../use-classes';
 
 interface Props {
-  name: string
-  extra?: string
-  parentPath?: string
-  level?: number
-  className?: string
+  name: string;
+  extra?: string;
+  parentPath?: string;
+  level?: number;
+  className?: string;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>
-export type TreeFolderProps = Props & NativeAttrs
+type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+export type TreeFolderProps = Props & NativeAttrs;
 
 const TreeFolder: React.FC<React.PropsWithChildren<TreeFolderProps>> = ({
   name,
@@ -31,13 +31,13 @@ const TreeFolder: React.FC<React.PropsWithChildren<TreeFolderProps>> = ({
   className = '',
   ...props
 }: React.PropsWithChildren<TreeFolderProps>) => {
-  const theme = useTheme()
-  const { initialExpand, isImperative } = useTreeContext()
-  const [expanded, setExpanded] = useState<boolean>(initialExpand)
-  useEffect(() => setExpanded(initialExpand), [])
+  const theme = useTheme();
+  const { initialExpand, isImperative } = useTreeContext();
+  const [expanded, setExpanded] = useState<boolean>(initialExpand);
+  useEffect(() => setExpanded(initialExpand), []);
 
-  const currentPath = useMemo(() => makeChildPath(name, parentPath), [])
-  const clickHandler = () => setExpanded(!expanded)
+  const currentPath = useMemo(() => makeChildPath(name, parentPath), []);
+  const clickHandler = () => setExpanded(!expanded);
 
   const nextChildren = setChildrenProps(
     children,
@@ -46,11 +46,11 @@ const TreeFolder: React.FC<React.PropsWithChildren<TreeFolderProps>> = ({
       level: parentLevel + 1,
     },
     [TreeFolder, TreeFile],
-  )
+  );
 
   const sortedChildren = isImperative
     ? nextChildren
-    : sortChildren(nextChildren, TreeFolder)
+    : sortChildren(nextChildren, TreeFolder);
 
   return (
     <div className={useClasses('folder', className)} onClick={clickHandler} {...props}>
@@ -147,8 +147,8 @@ const TreeFolder: React.FC<React.PropsWithChildren<TreeFolderProps>> = ({
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-TreeFolder.displayName = 'HimalayaTreeFolder'
-export default TreeFolder
+TreeFolder.displayName = 'HimalayaTreeFolder';
+export default TreeFolder;

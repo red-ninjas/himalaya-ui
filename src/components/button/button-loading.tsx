@@ -1,10 +1,10 @@
-'use client'
+'use client';
 
-import React from 'react'
-import LoadingSpinner from '../loading-spinner'
+import React from 'react';
+import LoadingSpinner from '../loading-spinner';
 
 interface Props {
-  color: string
+  color: string;
 }
 
 const ButtonLoading: React.FC<React.PropsWithChildren<Props>> = ({ color }) => {
@@ -23,8 +23,8 @@ const ButtonLoading: React.FC<React.PropsWithChildren<Props>> = ({ color }) => {
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-ButtonLoading.displayName = 'HimalayaButtonLoading'
-export default ButtonLoading
+ButtonLoading.displayName = 'HimalayaButtonLoading';
+export default ButtonLoading;

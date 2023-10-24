@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 const SnippetIconComponent: React.FC<unknown> = () => {
   return (
@@ -20,9 +20,9 @@ const SnippetIconComponent: React.FC<unknown> = () => {
         }
       `}</style>
     </svg>
-  )
-}
+  );
+};
 
-SnippetIconComponent.displayName = 'HimalayaSnippetIcon'
-const SnippetIcon = React.memo(SnippetIconComponent)
-export default SnippetIcon
+SnippetIconComponent.displayName = 'HimalayaSnippetIcon';
+const SnippetIcon = React.memo(SnippetIconComponent);
+export default SnippetIcon;

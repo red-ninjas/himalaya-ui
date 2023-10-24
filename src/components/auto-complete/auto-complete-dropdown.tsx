@@ -1,19 +1,19 @@
-import React, { CSSProperties, useMemo } from 'react'
-import useTheme from '../use-theme'
-import { useAutoCompleteContext } from './auto-complete-context'
-import Dropdown from '../shared/dropdown'
-import useClasses from '../use-classes'
+import React, { CSSProperties, useMemo } from 'react';
+import useTheme from '../use-theme';
+import { useAutoCompleteContext } from './auto-complete-context';
+import Dropdown from '../shared/dropdown';
+import useClasses from '../use-classes';
 
 interface Props {
-  visible: boolean
-  className?: string
-  disableMatchWidth?: boolean
-  dropdownStyle?: CSSProperties
-  getPopupContainer?: () => HTMLElement | null
+  visible: boolean;
+  className?: string;
+  disableMatchWidth?: boolean;
+  dropdownStyle?: CSSProperties;
+  getPopupContainer?: () => HTMLElement | null;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>
-export type AutoCompleteDropdownProps = Props & NativeAttrs
+type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+export type AutoCompleteDropdownProps = Props & NativeAttrs;
 
 const AutoCompleteDropdown: React.FC<
   React.PropsWithChildren<AutoCompleteDropdownProps>
@@ -25,18 +25,18 @@ const AutoCompleteDropdown: React.FC<
   disableMatchWidth,
   getPopupContainer,
 }: React.PropsWithChildren<AutoCompleteDropdownProps>) => {
-  const theme = useTheme()
-  const { ref } = useAutoCompleteContext()
+  const theme = useTheme();
+  const { ref } = useAutoCompleteContext();
   const isEmpty = useMemo(() => {
-    return !visible || React.Children.count(children) === 0
-  }, [children, visible])
-  const classes = useClasses('auto-complete-dropdown', className)
+    return !visible || React.Children.count(children) === 0;
+  }, [children, visible]);
+  const classes = useClasses('auto-complete-dropdown', className);
 
   const clickHandler = (event: React.MouseEvent<HTMLDivElement>) => {
-    event.preventDefault()
-    event.stopPropagation()
-    event.nativeEvent.stopImmediatePropagation()
-  }
+    event.preventDefault();
+    event.stopPropagation();
+    event.nativeEvent.stopImmediatePropagation();
+  };
 
   return (
     <Dropdown
@@ -59,8 +59,8 @@ const AutoCompleteDropdown: React.FC<
         `}</style>
       </div>
     </Dropdown>
-  )
-}
+  );
+};
 
-AutoCompleteDropdown.displayName = 'HimalayaAutoCompleteDropdown'
-export default AutoCompleteDropdown
+AutoCompleteDropdown.displayName = 'HimalayaAutoCompleteDropdown';
+export default AutoCompleteDropdown;

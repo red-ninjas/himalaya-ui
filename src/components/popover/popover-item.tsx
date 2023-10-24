@@ -1,19 +1,19 @@
-'use client'
-import React from 'react'
-import useTheme from '../use-theme'
-import useScale, { withScale } from '../use-scale'
-import { usePopoverContext } from './popover-context'
-import useClasses from '../use-classes'
+'use client';
+import React from 'react';
+import useTheme from '../use-theme';
+import useScale, { withScale } from '../use-scale';
+import { usePopoverContext } from './popover-context';
+import useClasses from '../use-classes';
 
 interface Props {
-  line?: boolean
-  title?: boolean
-  disableAutoClose?: boolean
-  onClick?: (e: React.MouseEvent<HTMLDivElement>) => void
+  line?: boolean;
+  title?: boolean;
+  disableAutoClose?: boolean;
+  onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>
-export type PopoverItemProps = Props & NativeAttrs
+type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+export type PopoverItemProps = Props & NativeAttrs;
 
 const PopoverItemComponent: React.FC<React.PropsWithChildren<PopoverItemProps>> = ({
   children,
@@ -24,20 +24,20 @@ const PopoverItemComponent: React.FC<React.PropsWithChildren<PopoverItemProps>> 
   disableAutoClose = false,
   ...props
 }: React.PropsWithChildren<PopoverItemProps>) => {
-  const theme = useTheme()
-  const { SCALES } = useScale()
-  const { disableItemsAutoClose, onItemClick } = usePopoverContext()
-  const hasHandler = Boolean(onClick)
-  const dontCloseByClick = disableAutoClose || disableItemsAutoClose || title || line
-  const classes = useClasses('item', { line, title }, className)
+  const theme = useTheme();
+  const { SCALES } = useScale();
+  const { disableItemsAutoClose, onItemClick } = usePopoverContext();
+  const hasHandler = Boolean(onClick);
+  const dontCloseByClick = disableAutoClose || disableItemsAutoClose || title || line;
+  const classes = useClasses('item', { line, title }, className);
 
   const clickHandler = (event: React.MouseEvent<HTMLDivElement>) => {
-    onClick && onClick(event)
+    onClick && onClick(event);
     if (dontCloseByClick) {
-      return event.stopPropagation()
+      return event.stopPropagation();
     }
-    onItemClick(event)
-  }
+    onItemClick(event);
+  };
 
   return (
     <>
@@ -85,9 +85,9 @@ const PopoverItemComponent: React.FC<React.PropsWithChildren<PopoverItemProps>> 
       </div>
       {title && <PopoverItem line title={false} />}
     </>
-  )
-}
+  );
+};
 
-PopoverItemComponent.displayName = 'HimalayaPopoverItem'
-const PopoverItem = withScale(PopoverItemComponent)
-export default PopoverItem
+PopoverItemComponent.displayName = 'HimalayaPopoverItem';
+const PopoverItem = withScale(PopoverItemComponent);
+export default PopoverItem;

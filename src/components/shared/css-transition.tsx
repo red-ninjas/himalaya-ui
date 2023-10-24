@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 
 interface Props {
-  visible?: boolean
-  enterTime?: number
-  leaveTime?: number
-  clearTime?: number
-  className?: string
-  name?: string
+  visible?: boolean;
+  enterTime?: number;
+  leaveTime?: number;
+  clearTime?: number;
+  className?: string;
+  name?: string;
 }
 
-export type CssTransitionProps = Props
+export type CssTransitionProps = Props;
 const CssTransition: React.FC<React.PropsWithChildren<CssTransitionProps>> = ({
   children,
   className = '',
@@ -20,48 +20,48 @@ const CssTransition: React.FC<React.PropsWithChildren<CssTransitionProps>> = ({
   name = 'transition',
   ...props
 }: React.PropsWithChildren<CssTransitionProps>) => {
-  const [classes, setClasses] = useState<string>('')
-  const [renderable, setRenderable] = useState<boolean>(visible)
+  const [classes, setClasses] = useState<string>('');
+  const [renderable, setRenderable] = useState<boolean>(visible);
 
   useEffect(() => {
-    const statusClassName = visible ? 'enter' : 'leave'
-    const time = visible ? enterTime : leaveTime
+    const statusClassName = visible ? 'enter' : 'leave';
+    const time = visible ? enterTime : leaveTime;
     if (visible && !renderable) {
-      setRenderable(true)
+      setRenderable(true);
     }
 
-    setClasses(`${name}-${statusClassName}`)
+    setClasses(`${name}-${statusClassName}`);
 
     // set class to active
     const timer = setTimeout(() => {
-      setClasses(`${name}-${statusClassName} ${name}-${statusClassName}-active`)
-      clearTimeout(timer)
-    }, time)
+      setClasses(`${name}-${statusClassName} ${name}-${statusClassName}-active`);
+      clearTimeout(timer);
+    }, time);
 
     // remove classess when animation over
     const clearClassesTimer = setTimeout(() => {
       if (!visible) {
-        setClasses('')
-        setRenderable(false)
+        setClasses('');
+        setRenderable(false);
       }
-      clearTimeout(clearClassesTimer)
-    }, time + clearTime)
+      clearTimeout(clearClassesTimer);
+    }, time + clearTime);
 
     return () => {
-      clearTimeout(timer)
-      clearTimeout(clearClassesTimer)
-    }
-  }, [visible, renderable])
+      clearTimeout(timer);
+      clearTimeout(clearClassesTimer);
+    };
+  }, [visible, renderable]);
   if (!React.isValidElement(children) || !renderable) {
-    return null
+    return null;
   }
 
   const newProps = Object.assign(props, {
     className: `${children.props.className} ${className} ${classes}`,
-  })
+  });
 
-  return React.cloneElement(children, newProps)
-}
+  return React.cloneElement(children, newProps);
+};
 
-CssTransition.displayName = 'HimalayaCssTransition'
-export default CssTransition
+CssTransition.displayName = 'HimalayaCssTransition';
+export default CssTransition;

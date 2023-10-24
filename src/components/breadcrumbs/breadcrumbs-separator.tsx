@@ -1,21 +1,21 @@
-'use client'
-import React from 'react'
-import useScale, { withScale } from '../use-scale'
-import useClasses from '../use-classes'
+'use client';
+import React from 'react';
+import useScale, { withScale } from '../use-scale';
+import useClasses from '../use-classes';
 
 interface Props {
-  className?: string
+  className?: string;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>
-export type BreadcrumbsSeparatorProps = Props & NativeAttrs
+type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+export type BreadcrumbsSeparatorProps = Props & NativeAttrs;
 
 const Separator: React.FC<React.PropsWithChildren<BreadcrumbsSeparatorProps>> = ({
   children,
   className = '',
 }: BreadcrumbsSeparatorProps) => {
-  const { SCALES } = useScale()
-  const classes = useClasses('separator', className)
+  const { SCALES } = useScale();
+  const classes = useClasses('separator', className);
 
   return (
     <div className={classes}>
@@ -33,9 +33,9 @@ const Separator: React.FC<React.PropsWithChildren<BreadcrumbsSeparatorProps>> = 
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-Separator.displayName = 'HimalayaBreadcrumbsSeparator'
-const BreadcrumbsSeparator = withScale(Separator)
-export default BreadcrumbsSeparator
+Separator.displayName = 'HimalayaBreadcrumbsSeparator';
+const BreadcrumbsSeparator = withScale(Separator);
+export default BreadcrumbsSeparator;

@@ -1,24 +1,24 @@
-'use client'
-import React from 'react'
-import useTheme from '../use-theme'
-import useScale, { withScale } from '../use-scale'
-import useLayout from '../use-layout'
+'use client';
+import React from 'react';
+import useTheme from '../use-theme';
+import useScale, { withScale } from '../use-scale';
+import useLayout from '../use-layout';
 
 interface Props {
-  className?: string
+  className?: string;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>
-export type FieldsetFooterProps = Props & NativeAttrs
+type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+export type FieldsetFooterProps = Props & NativeAttrs;
 
 const FieldsetFooterComponent: React.FC<React.PropsWithChildren<FieldsetFooterProps>> = ({
   className = '',
   children,
   ...props
 }: React.PropsWithChildren<FieldsetFooterProps>) => {
-  const theme = useTheme()
-  const layout = useLayout()
-  const { SCALES } = useScale()
+  const theme = useTheme();
+  const layout = useLayout();
+  const { SCALES } = useScale();
 
   return (
     <footer className={className} {...props}>
@@ -45,9 +45,9 @@ const FieldsetFooterComponent: React.FC<React.PropsWithChildren<FieldsetFooterPr
         }
       `}</style>
     </footer>
-  )
-}
+  );
+};
 
-FieldsetFooterComponent.displayName = 'HimalayaFieldsetFooter'
-const FieldsetFooter = withScale(FieldsetFooterComponent)
-export default FieldsetFooter
+FieldsetFooterComponent.displayName = 'HimalayaFieldsetFooter';
+const FieldsetFooter = withScale(FieldsetFooterComponent);
+export default FieldsetFooter;

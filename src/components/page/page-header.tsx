@@ -1,15 +1,15 @@
-'use client'
-import React from 'react'
-import useScale, { withScale } from '../use-scale'
-import useClasses from '../use-classes'
+'use client';
+import React from 'react';
+import useScale, { withScale } from '../use-scale';
+import useClasses from '../use-classes';
 
 interface Props {
-  center?: boolean
-  className?: string
+  center?: boolean;
+  className?: string;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>
-export type PageHeaderProps = Props & NativeAttrs
+type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+export type PageHeaderProps = Props & NativeAttrs;
 
 const PageHeaderComponent: React.FC<React.PropsWithChildren<PageHeaderProps>> = ({
   children,
@@ -17,8 +17,8 @@ const PageHeaderComponent: React.FC<React.PropsWithChildren<PageHeaderProps>> = 
   className = '',
   ...props
 }: React.PropsWithChildren<PageHeaderProps>) => {
-  const { SCALES } = useScale()
-  const classes = useClasses({ center }, className)
+  const { SCALES } = useScale();
+  const classes = useClasses({ center }, className);
 
   return (
     <header className={classes} {...props}>
@@ -39,9 +39,9 @@ const PageHeaderComponent: React.FC<React.PropsWithChildren<PageHeaderProps>> = 
         }
       `}</style>
     </header>
-  )
-}
+  );
+};
 
-PageHeaderComponent.displayName = 'HimalayaPageHeader'
-const PageHeader = withScale(PageHeaderComponent)
-export default PageHeader
+PageHeaderComponent.displayName = 'HimalayaPageHeader';
+const PageHeader = withScale(PageHeaderComponent);
+export default PageHeader;

@@ -1,10 +1,10 @@
-'use client'
+'use client';
 
-import useTheme from '../use-theme'
-import React from 'react'
+import useTheme from '../use-theme';
+import React from 'react';
 
 const DataViewSkeleton: React.FC<unknown> = () => {
-  const theme = useTheme()
+  const theme = useTheme();
   return (
     <div className="skeleton">
       <style jsx>{`
@@ -17,7 +17,7 @@ const DataViewSkeleton: React.FC<unknown> = () => {
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-export default DataViewSkeleton
+export default DataViewSkeleton;

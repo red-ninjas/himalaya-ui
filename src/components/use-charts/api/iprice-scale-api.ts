@@ -1,6 +1,6 @@
-import { DeepPartial } from '../helpers/strict-type-checks'
+import { DeepPartial } from '../helpers/strict-type-checks';
 
-import { PriceScaleOptions } from '../model/price-scale'
+import { PriceScaleOptions } from '../model/price-scale';
 
 /** Interface to control chart's price scale */
 export interface IPriceScaleApi {
@@ -9,17 +9,17 @@ export interface IPriceScaleApi {
    *
    * @param options - Any subset of options.
    */
-  applyOptions(options: DeepPartial<PriceScaleOptions>): void
+  applyOptions(options: DeepPartial<PriceScaleOptions>): void;
 
   /**
    * Returns currently applied options of the price scale
    *
    * @returns Full set of currently applied options, including defaults
    */
-  options(): Readonly<PriceScaleOptions>
+  options(): Readonly<PriceScaleOptions>;
 
   /**
    * Returns a width of the price scale if it's visible or 0 if invisible.
    */
-  width(): number
+  width(): number;
 }

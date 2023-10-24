@@ -1,31 +1,31 @@
-'use client'
-import React from 'react'
-import useTheme from '../use-theme'
-import { useProportions } from '../utils/calculations'
-import { UIThemesPalette } from '../themes/presets'
-import { NormalTypes } from '../utils/prop-types'
-import useScale, { withScale } from '../use-scale'
-import useClasses from '../use-classes'
+'use client';
+import React from 'react';
+import useTheme from '../use-theme';
+import { useProportions } from '../utils/calculations';
+import { UIThemesPalette } from '../themes/presets';
+import { NormalTypes } from '../utils/prop-types';
+import useScale, { withScale } from '../use-scale';
+import useClasses from '../use-classes';
 
 export type ProgressColors = {
-  [key: number]: string
-}
-export type ProgressTypes = NormalTypes
+  [key: number]: string;
+};
+export type ProgressTypes = NormalTypes;
 
 interface Props {
-  value?: number
-  max?: number
-  fixedTop?: boolean
-  fixedBottom?: boolean
-  colors?: ProgressColors
-  type?: ProgressTypes
-  className?: string
-  indeterminate?: boolean
-  radius?: number
+  value?: number;
+  max?: number;
+  fixedTop?: boolean;
+  fixedBottom?: boolean;
+  colors?: ProgressColors;
+  type?: ProgressTypes;
+  className?: string;
+  indeterminate?: boolean;
+  radius?: number;
 }
 
-type NativeAttrs = Omit<React.ProgressHTMLAttributes<any>, keyof Props>
-export type ProgressProps = Props & NativeAttrs
+type NativeAttrs = Omit<React.ProgressHTMLAttributes<any>, keyof Props>;
+export type ProgressProps = Props & NativeAttrs;
 
 const getCurrentColor = (
   ratio: number,
@@ -39,14 +39,14 @@ const getCurrentColor = (
     secondary: palette.secondary,
     warning: palette.warning,
     error: palette.error,
-  }
-  const colorKeys = Object.keys(colors)
-  if (colorKeys.length === 0) return defaultColors[type]
+  };
+  const colorKeys = Object.keys(colors);
+  if (colorKeys.length === 0) return defaultColors[type];
 
-  const customColorKey = colorKeys.find(key => ratio <= +key)
-  if (!customColorKey || Number.isNaN(+customColorKey)) return defaultColors[type]
-  return colors[+customColorKey]
-}
+  const customColorKey = colorKeys.find(key => ratio <= +key);
+  if (!customColorKey || Number.isNaN(+customColorKey)) return defaultColors[type];
+  return colors[+customColorKey];
+};
 
 const ProgressComponent: React.FC<ProgressProps> = ({
   value = 0,
@@ -60,12 +60,12 @@ const ProgressComponent: React.FC<ProgressProps> = ({
   radius,
   ...props
 }: ProgressProps) => {
-  const theme = useTheme()
-  const { SCALES } = useScale()
-  const percentValue = useProportions(value, max)
-  const currentColor = getCurrentColor(percentValue, theme.palette, type, colors)
-  const fixed = fixedTop || fixedBottom
-  const classes = useClasses('progress', { fixed }, className)
+  const theme = useTheme();
+  const { SCALES } = useScale();
+  const percentValue = useProportions(value, max);
+  const currentColor = getCurrentColor(percentValue, theme.palette, type, colors);
+  const fixed = fixedTop || fixedBottom;
+  const classes = useClasses('progress', { fixed }, className);
 
   return (
     <div className={classes}>
@@ -139,9 +139,9 @@ const ProgressComponent: React.FC<ProgressProps> = ({
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-ProgressComponent.displayName = 'HimalayaProgress'
-const Progress = withScale(ProgressComponent)
-export default Progress
+ProgressComponent.displayName = 'HimalayaProgress';
+const Progress = withScale(ProgressComponent);
+export default Progress;

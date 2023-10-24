@@ -1,25 +1,25 @@
-'use client'
-import React, { useEffect, useMemo, useRef, useState } from 'react'
-import useTheme from '../use-theme'
-import ImageSkeleton from './image.skeleton'
-import { transformDataSource } from './helpers'
-import useScale, { withScale } from '../use-scale'
-import NextImage from 'next/image'
-import useClasses from '../use-classes'
+'use client';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import useTheme from '../use-theme';
+import ImageSkeleton from './image.skeleton';
+import { transformDataSource } from './helpers';
+import useScale, { withScale } from '../use-scale';
+import NextImage from 'next/image';
+import useClasses from '../use-classes';
 
 interface Props {
-  src?: string
-  disableSkeleton?: boolean
-  className?: string
-  maxDelay?: number
-  radius?: number
+  src?: string;
+  disableSkeleton?: boolean;
+  className?: string;
+  maxDelay?: number;
+  radius?: number;
 }
 
 type NativeAttrs = Omit<
   React.DetailedHTMLProps<React.ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>,
   'height' | 'width' | 'loading' | 'ref' | 'src' | 'srcSet' | 'placeholder'
->
-export type ImageProps = Props & NativeAttrs
+>;
+export type ImageProps = Props & NativeAttrs;
 
 const ResponsiveImageComponent: React.FC<ImageProps> = ({
   src = '',
@@ -30,42 +30,42 @@ const ResponsiveImageComponent: React.FC<ImageProps> = ({
   radius,
   ...props
 }: ImageProps) => {
-  const { SCALES, getScaleProps } = useScale()
-  const w = getScaleProps(['width', 'w']) || 0
-  const h = getScaleProps(['height', 'h']) || 0
-  const width = typeof w === 'string' ? parseFloat(w) : w
-  const height = typeof h === 'string' ? parseFloat(h) : h
-  const showAnimation = !disableSkeleton && width && height
+  const { SCALES, getScaleProps } = useScale();
+  const w = getScaleProps(['width', 'w']) || 0;
+  const h = getScaleProps(['height', 'h']) || 0;
+  const width = typeof w === 'string' ? parseFloat(w) : w;
+  const height = typeof h === 'string' ? parseFloat(h) : h;
+  const showAnimation = !disableSkeleton && width && height;
 
-  const theme = useTheme()
-  const [loading, setLoading] = useState<boolean>(true)
-  const [showSkeleton, setShowSkeleton] = useState<boolean>(true)
-  const imageRef = useRef<HTMLImageElement>(null)
-  const url = useMemo(() => transformDataSource(src), [src])
+  const theme = useTheme();
+  const [loading, setLoading] = useState<boolean>(true);
+  const [showSkeleton, setShowSkeleton] = useState<boolean>(true);
+  const imageRef = useRef<HTMLImageElement>(null);
+  const url = useMemo(() => transformDataSource(src), [src]);
 
   const imageLoaded = () => {
-    if (!showAnimation) return
-    setLoading(false)
-  }
+    if (!showAnimation) return;
+    setLoading(false);
+  };
 
   useEffect(() => {
     if (showAnimation && imageRef.current && imageRef.current.complete) {
-      setLoading(false)
-      setShowSkeleton(false)
+      setLoading(false);
+      setShowSkeleton(false);
     }
-  })
+  });
 
   useEffect(() => {
     const timer = setTimeout(() => {
       if (showAnimation) {
-        setShowSkeleton(false)
+        setShowSkeleton(false);
       }
-      clearTimeout(timer)
-    }, maxDelay)
-    return () => clearTimeout(timer)
-  }, [loading])
+      clearTimeout(timer);
+    }, maxDelay);
+    return () => clearTimeout(timer);
+  }, [loading]);
 
-  const ratio = (width / height) * 100
+  const ratio = (width / height) * 100;
 
   return (
     <div className={useClasses('image', className)}>
@@ -85,7 +85,8 @@ const ResponsiveImageComponent: React.FC<ImageProps> = ({
             top: 0,
             left: 0,
           }}
-          {...props}></NextImage>
+          {...props}
+        ></NextImage>
       </div>
       <style jsx>{`
         .image-container {
@@ -106,9 +107,9 @@ const ResponsiveImageComponent: React.FC<ImageProps> = ({
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-ResponsiveImageComponent.displayName = 'HimalayaResponsiveImage'
-const ResponsiveImage = withScale(ResponsiveImageComponent)
-export default ResponsiveImage
+ResponsiveImageComponent.displayName = 'HimalayaResponsiveImage';
+const ResponsiveImage = withScale(ResponsiveImageComponent);
+export default ResponsiveImage;

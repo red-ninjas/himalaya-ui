@@ -1,17 +1,17 @@
-'use client'
+'use client';
 
-import { pickChild } from '../utils/collections'
-import React from 'react'
-import Header from './header'
-import { useConfigs } from '../use-context/config-context'
-import useClasses from '../use-classes'
-import useLayout from '../use-layout'
+import { pickChild } from '../utils/collections';
+import React from 'react';
+import Header from './header';
+import { useConfigs } from '../use-context/config-context';
+import useClasses from '../use-classes';
+import useLayout from '../use-layout';
 
 export interface FixedHeaderProps {
-  onDesktop?: boolean
-  onMobile?: boolean
-  hide?: boolean
-  mode?: 'fixed' | 'sticky'
+  onDesktop?: boolean;
+  onMobile?: boolean;
+  hide?: boolean;
+  mode?: 'fixed' | 'sticky';
 }
 const FixedHeader: React.FC<React.PropsWithChildren<FixedHeaderProps>> = ({
   children,
@@ -20,12 +20,12 @@ const FixedHeader: React.FC<React.PropsWithChildren<FixedHeaderProps>> = ({
   hide = false,
   mode = 'sticky',
 }) => {
-  const { isMobile } = useConfigs()
-  const layout = useLayout()
+  const { isMobile } = useConfigs();
+  const layout = useLayout();
 
-  const [, header] = pickChild(children, Header)
+  const [, header] = pickChild(children, Header);
 
-  const isActive = (onDesktop && !isMobile) || (isMobile && onMobile)
+  const isActive = (onDesktop && !isMobile) || (isMobile && onMobile);
   return (
     <>
       {isActive && (
@@ -59,8 +59,8 @@ const FixedHeader: React.FC<React.PropsWithChildren<FixedHeaderProps>> = ({
         }
       `}</style>
     </>
-  )
-}
+  );
+};
 
-FixedHeader.displayName = 'HimalayaFixedHeader'
-export default FixedHeader
+FixedHeader.displayName = 'HimalayaFixedHeader';
+export default FixedHeader;

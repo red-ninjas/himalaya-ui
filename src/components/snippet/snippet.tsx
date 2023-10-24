@@ -1,35 +1,35 @@
-'use client'
-import React, { useMemo, useRef } from 'react'
-import useTheme from '../use-theme'
-import { SnippetTypes, CopyTypes, NormalTypes } from '../utils/prop-types'
-import { getStyles } from './styles'
-import SnippetIcon from './snippet-icon'
-import useClipboard from '../utils/use-clipboard'
-import useToasts from '../use-toasts'
-import useScale, { withScale } from '../use-scale'
-import useClasses from '../use-classes'
+'use client';
+import React, { useMemo, useRef } from 'react';
+import useTheme from '../use-theme';
+import { SnippetTypes, CopyTypes, NormalTypes } from '../utils/prop-types';
+import { getStyles } from './styles';
+import SnippetIcon from './snippet-icon';
+import useClipboard from '../utils/use-clipboard';
+import useToasts from '../use-toasts';
+import useScale, { withScale } from '../use-scale';
+import useClasses from '../use-classes';
 
-export type ToastTypes = NormalTypes
+export type ToastTypes = NormalTypes;
 interface Props {
-  text?: string | string[]
-  symbol?: string
-  toastText?: string
-  toastType?: ToastTypes
-  filled?: boolean
-  copy?: CopyTypes
-  type?: SnippetTypes
-  className?: string
+  text?: string | string[];
+  symbol?: string;
+  toastText?: string;
+  toastType?: ToastTypes;
+  filled?: boolean;
+  copy?: CopyTypes;
+  type?: SnippetTypes;
+  className?: string;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>
-export type SnippetProps = Props & NativeAttrs
+type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+export type SnippetProps = Props & NativeAttrs;
 
 const textArrayToString = (text: string[]): string => {
   return text.reduce((pre, current) => {
-    if (!current) return pre
-    return pre ? `${pre}\n${current}` : current
-  }, '')
-}
+    if (!current) return pre;
+    return pre ? `${pre}\n${current}` : current;
+  }, '');
+};
 
 const SnippetComponent: React.FC<React.PropsWithChildren<SnippetProps>> = ({
   type = 'default' as SnippetTypes,
@@ -43,35 +43,35 @@ const SnippetComponent: React.FC<React.PropsWithChildren<SnippetProps>> = ({
   className = '',
   ...props
 }: React.PropsWithChildren<SnippetProps>) => {
-  const theme = useTheme()
-  const { SCALES } = useScale()
-  const { copy } = useClipboard()
-  const { setToast } = useToasts()
-  const ref = useRef<HTMLPreElement>(null)
-  const isMultiLine = text && Array.isArray(text)
+  const theme = useTheme();
+  const { SCALES } = useScale();
+  const { copy } = useClipboard();
+  const { setToast } = useToasts();
+  const ref = useRef<HTMLPreElement>(null);
+  const isMultiLine = text && Array.isArray(text);
 
   const style = useMemo(
     () => getStyles(type, theme.palette, filled),
     [type, theme.palette, filled],
-  )
-  const showCopyIcon = useMemo(() => copyType !== 'prevent', [copyType])
+  );
+  const showCopyIcon = useMemo(() => copyType !== 'prevent', [copyType]);
   const childText = useMemo<string | undefined | null>(() => {
-    if (isMultiLine) return textArrayToString(text as string[])
-    if (!children) return text as string
-    if (!ref.current) return ''
-    return ref.current.textContent
-  }, [ref.current, children, text])
+    if (isMultiLine) return textArrayToString(text as string[]);
+    if (!children) return text as string;
+    if (!ref.current) return '';
+    return ref.current.textContent;
+  }, [ref.current, children, text]);
   const symbolBefore = useMemo(() => {
-    const str = symbol.trim()
-    return str ? `${str} ` : ''
-  }, [symbol])
+    const str = symbol.trim();
+    return str ? `${str} ` : '';
+  }, [symbol]);
 
   const clickHandler = () => {
-    if (!childText || !showCopyIcon) return
-    copy(childText)
-    if (copyType === 'silent') return
-    setToast({ text: toastText, type: toastType })
-  }
+    if (!childText || !showCopyIcon) return;
+    copy(childText);
+    if (copyType === 'silent') return;
+    setToast({ text: toastText, type: toastType });
+  };
 
   return (
     <div className={useClasses('snippet', className)} {...props}>
@@ -149,9 +149,9 @@ const SnippetComponent: React.FC<React.PropsWithChildren<SnippetProps>> = ({
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-SnippetComponent.displayName = 'HimalayaSnippet'
-const Snippet = withScale(SnippetComponent)
-export default Snippet
+SnippetComponent.displayName = 'HimalayaSnippet';
+const Snippet = withScale(SnippetComponent);
+export default Snippet;

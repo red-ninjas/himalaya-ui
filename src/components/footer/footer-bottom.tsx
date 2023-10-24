@@ -1,18 +1,18 @@
-'use client'
+'use client';
 
-import React, { PropsWithChildren } from 'react'
-import useScale, { withScale } from '../use-scale'
-import { FooterProps } from '.'
-import FooterBottomBlock from './footer-bottom-block'
-import { pickChild } from '../utils/collections'
-import useTheme from '../use-theme'
-import { ContentLayout } from '../layout'
+import React, { PropsWithChildren } from 'react';
+import useScale, { withScale } from '../use-scale';
+import { FooterProps } from '.';
+import FooterBottomBlock from './footer-bottom-block';
+import { pickChild } from '../utils/collections';
+import useTheme from '../use-theme';
+import { ContentLayout } from '../layout';
 
 const FooterBottom: React.FC<PropsWithChildren<FooterProps>> = ({ children }) => {
-  const [, footerBottomBlock] = pickChild(children, FooterBottomBlock)
+  const [, footerBottomBlock] = pickChild(children, FooterBottomBlock);
 
-  const { SCALES } = useScale()
-  const theme = useTheme()
+  const { SCALES } = useScale();
+  const theme = useTheme();
 
   return (
     <>
@@ -34,7 +34,7 @@ const FooterBottom: React.FC<PropsWithChildren<FooterProps>> = ({ children }) =>
         }
       `}</style>
     </>
-  )
-}
+  );
+};
 
-export default withScale(FooterBottom)
+export default withScale(FooterBottom);

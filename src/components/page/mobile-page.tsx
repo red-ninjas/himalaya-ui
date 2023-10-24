@@ -1,12 +1,12 @@
-'use client'
+'use client';
 
-import useTheme from '../use-theme'
-import React from 'react'
-import useLayout from '../use-layout'
+import useTheme from '../use-theme';
+import React from 'react';
+import useLayout from '../use-layout';
 
 const MobilePage: React.FC<React.PropsWithChildren<{}>> = React.memo(({ children }) => {
-  const theme = useTheme()
-  const layout = useLayout()
+  const theme = useTheme();
+  const layout = useLayout();
   return (
     <>
       <div className="sub-page">{children}</div>
@@ -24,8 +24,8 @@ const MobilePage: React.FC<React.PropsWithChildren<{}>> = React.memo(({ children
         }
       `}</style>
     </>
-  )
-})
+  );
+});
 
-MobilePage.displayName = 'HimalayaMobilePage'
-export default MobilePage
+MobilePage.displayName = 'HimalayaMobilePage';
+export default MobilePage;

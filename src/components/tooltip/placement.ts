@@ -1,32 +1,32 @@
-import { Placement } from '../utils/prop-types'
+import { Placement } from '../utils/prop-types';
 
 interface ParentDomRect {
-  top: number
-  left: number
-  right: number
-  bottom: number
-  width: number
-  height: number
+  top: number;
+  left: number;
+  right: number;
+  bottom: number;
+  width: number;
+  height: number;
 }
 
 export interface TooltipPosition {
-  top: string
-  left: string
-  transform: string
+  top: string;
+  left: string;
+  transform: string;
 }
 
 export const defaultTooltipPosition = {
   top: '-1000px',
   left: '-1000px',
   transform: 'none',
-}
+};
 
 export interface TooltipIconPosition {
-  top: string
-  left: string
-  right: string
-  bottom: string
-  transform: string
+  top: string;
+  left: string;
+  right: string;
+  bottom: string;
+  transform: string;
 }
 
 export const getPosition = (
@@ -95,9 +95,9 @@ export const getPosition = (
       left: `${rect.right + offset}px`,
       transform: 'translate(0, -100%)',
     },
-  }
-  return positions[placement] || (positions.top as TooltipPosition)
-}
+  };
+  return positions[placement] || (positions.top as TooltipPosition);
+};
 
 export const getIconPosition = (
   placement: Placement,
@@ -190,7 +190,7 @@ export const getIconPosition = (
       bottom: `${offsetY}`,
       transform: 'translate(-100%, 50%) rotate(0deg)',
     },
-  }
+  };
 
-  return positions[placement] || (positions.top as TooltipIconPosition)
-}
+  return positions[placement] || (positions.top as TooltipIconPosition);
+};

@@ -1,10 +1,10 @@
-import { DeepPartial } from '../helpers/strict-type-checks'
+import { DeepPartial } from '../helpers/strict-type-checks';
 
-import { ChartOptionsImpl } from '../model/chart-model'
-import { BarData, HistogramData, LineData, WhitespaceData } from '../model/data-consumer'
-import { Time } from '../model/horz-scale-behavior-time/types'
-import { CustomData, ICustomSeriesPaneView } from '../model/icustom-series'
-import { Point } from '../model/point'
+import { ChartOptionsImpl } from '../model/chart-model';
+import { BarData, HistogramData, LineData, WhitespaceData } from '../model/data-consumer';
+import { Time } from '../model/horz-scale-behavior-time/types';
+import { CustomData, ICustomSeriesPaneView } from '../model/icustom-series';
+import { Point } from '../model/point';
 import {
   AreaSeriesPartialOptions,
   BarSeriesPartialOptions,
@@ -15,13 +15,13 @@ import {
   LineSeriesPartialOptions,
   SeriesPartialOptions,
   SeriesType,
-} from '../model/series-options'
-import { Logical } from '../model/time-data'
-import { TouchMouseEventData } from '../model/touch-mouse-event-data'
+} from '../model/series-options';
+import { Logical } from '../model/time-data';
+import { TouchMouseEventData } from '../model/touch-mouse-event-data';
 
-import { IPriceScaleApi } from './iprice-scale-api'
-import { ISeriesApi } from './iseries-api'
-import { ITimeScaleApi } from './itime-scale-api'
+import { IPriceScaleApi } from './iprice-scale-api';
+import { ISeriesApi } from './iseries-api';
+import { ITimeScaleApi } from './itime-scale-api';
 
 /**
  * Dimensions of the Chart Pane
@@ -29,9 +29,9 @@ import { ITimeScaleApi } from './itime-scale-api'
  */
 export interface PaneSize {
   /** Height of the Chart Pane (pixels) */
-  height: number
+  height: number;
   /** Width of the Chart Pane (pixels) */
-  width: number
+  width: number;
 }
 
 /**
@@ -43,17 +43,17 @@ export interface MouseEventParams<HorzScaleItem = Time> {
    *
    * The value will be `undefined` if the location of the event in the chart is outside the range of available data.
    */
-  time?: HorzScaleItem
+  time?: HorzScaleItem;
   /**
    * Logical index
    */
-  logical?: Logical
+  logical?: Logical;
   /**
    * Location of the event in the chart.
    *
    * The value will be `undefined` if the event is fired outside the chart, for example a mouse leave event.
    */
-  point?: Point
+  point?: Point;
   /**
    * Data of all series at the location of the event in the chart.
    *
@@ -66,19 +66,19 @@ export interface MouseEventParams<HorzScaleItem = Time> {
     | LineData<HorzScaleItem>
     | HistogramData<HorzScaleItem>
     | CustomData<HorzScaleItem>
-  >
+  >;
   /**
    * The {@link ISeriesApi} for the series at the point of the mouse event.
    */
-  hoveredSeries?: ISeriesApi<SeriesType, HorzScaleItem>
+  hoveredSeries?: ISeriesApi<SeriesType, HorzScaleItem>;
   /**
    * The ID of the object at the point of the mouse event.
    */
-  hoveredObjectId?: unknown
+  hoveredObjectId?: unknown;
   /**
    * The underlying source mouse or touch event data, if available
    */
-  sourceEvent?: TouchMouseEventData
+  sourceEvent?: TouchMouseEventData;
 }
 
 /**
@@ -86,7 +86,7 @@ export interface MouseEventParams<HorzScaleItem = Time> {
  */
 export type MouseEventHandler<HorzScaleItem> = (
   param: MouseEventParams<HorzScaleItem>,
-) => void
+) => void;
 
 /**
  * The main interface of a single chart.
@@ -95,7 +95,7 @@ export interface IChartApiBase<HorzScaleItem = Time> {
   /**
    * Removes the chart object including all DOM elements. This is an irreversible operation, you cannot do anything with the chart after removing it.
    */
-  remove(): void
+  remove(): void;
 
   /**
    * Sets fixed size of the chart. By default chart takes up 100% of its container.
@@ -107,7 +107,7 @@ export interface IChartApiBase<HorzScaleItem = Time> {
    * @param height - Target height of the chart.
    * @param forceRepaint - True to initiate resize immediately. One could need this to get screenshot immediately after resize.
    */
-  resize(width: number, height: number, forceRepaint?: boolean): void
+  resize(width: number, height: number, forceRepaint?: boolean): void;
 
   /**
    * Creates a custom series with specified parameters.
@@ -135,7 +135,7 @@ export interface IChartApiBase<HorzScaleItem = Time> {
     TData | WhitespaceData<HorzScaleItem>,
     TOptions,
     TPartialOptions
-  >
+  >;
 
   /**
    * Creates an area series with specified parameters.
@@ -147,7 +147,9 @@ export interface IChartApiBase<HorzScaleItem = Time> {
    * const series = chart.addAreaSeries();
    * ```
    */
-  addAreaSeries(areaOptions?: AreaSeriesPartialOptions): ISeriesApi<'Area', HorzScaleItem>
+  addAreaSeries(
+    areaOptions?: AreaSeriesPartialOptions,
+  ): ISeriesApi<'Area', HorzScaleItem>;
 
   /**
    * Creates a baseline series with specified parameters.
@@ -161,7 +163,7 @@ export interface IChartApiBase<HorzScaleItem = Time> {
    */
   addBaselineSeries(
     baselineOptions?: BaselineSeriesPartialOptions,
-  ): ISeriesApi<'Baseline', HorzScaleItem>
+  ): ISeriesApi<'Baseline', HorzScaleItem>;
 
   /**
    * Creates a bar series with specified parameters.
@@ -173,7 +175,7 @@ export interface IChartApiBase<HorzScaleItem = Time> {
    * const series = chart.addBarSeries();
    * ```
    */
-  addBarSeries(barOptions?: BarSeriesPartialOptions): ISeriesApi<'Bar', HorzScaleItem>
+  addBarSeries(barOptions?: BarSeriesPartialOptions): ISeriesApi<'Bar', HorzScaleItem>;
 
   /**
    * Creates a candlestick series with specified parameters.
@@ -187,7 +189,7 @@ export interface IChartApiBase<HorzScaleItem = Time> {
    */
   addCandlestickSeries(
     candlestickOptions?: CandlestickSeriesPartialOptions,
-  ): ISeriesApi<'Candlestick', HorzScaleItem>
+  ): ISeriesApi<'Candlestick', HorzScaleItem>;
 
   /**
    * Creates a histogram series with specified parameters.
@@ -201,7 +203,7 @@ export interface IChartApiBase<HorzScaleItem = Time> {
    */
   addHistogramSeries(
     histogramOptions?: HistogramSeriesPartialOptions,
-  ): ISeriesApi<'Histogram', HorzScaleItem>
+  ): ISeriesApi<'Histogram', HorzScaleItem>;
 
   /**
    * Creates a line series with specified parameters.
@@ -213,7 +215,9 @@ export interface IChartApiBase<HorzScaleItem = Time> {
    * const series = chart.addLineSeries();
    * ```
    */
-  addLineSeries(lineOptions?: LineSeriesPartialOptions): ISeriesApi<'Line', HorzScaleItem>
+  addLineSeries(
+    lineOptions?: LineSeriesPartialOptions,
+  ): ISeriesApi<'Line', HorzScaleItem>;
 
   /**
    * Removes a series of any type. This is an irreversible operation, you cannot do anything with the series after removing it.
@@ -223,7 +227,7 @@ export interface IChartApiBase<HorzScaleItem = Time> {
    * chart.removeSeries(series);
    * ```
    */
-  removeSeries(seriesApi: ISeriesApi<SeriesType, HorzScaleItem>): void
+  removeSeries(seriesApi: ISeriesApi<SeriesType, HorzScaleItem>): void;
 
   /**
    * Subscribe to the chart click event.
@@ -242,7 +246,7 @@ export interface IChartApiBase<HorzScaleItem = Time> {
    * chart.subscribeClick(myClickHandler);
    * ```
    */
-  subscribeClick(handler: MouseEventHandler<HorzScaleItem>): void
+  subscribeClick(handler: MouseEventHandler<HorzScaleItem>): void;
 
   /**
    * Unsubscribe a handler that was previously subscribed using {@link subscribeClick}.
@@ -253,7 +257,7 @@ export interface IChartApiBase<HorzScaleItem = Time> {
    * chart.unsubscribeClick(myClickHandler);
    * ```
    */
-  unsubscribeClick(handler: MouseEventHandler<HorzScaleItem>): void
+  unsubscribeClick(handler: MouseEventHandler<HorzScaleItem>): void;
 
   /**
    * Subscribe to the chart double-click event.
@@ -272,7 +276,7 @@ export interface IChartApiBase<HorzScaleItem = Time> {
    * chart.subscribeDblClick(myDblClickHandler);
    * ```
    */
-  subscribeDblClick(handler: MouseEventHandler<HorzScaleItem>): void
+  subscribeDblClick(handler: MouseEventHandler<HorzScaleItem>): void;
 
   /**
    * Unsubscribe a handler that was previously subscribed using {@link subscribeDblClick}.
@@ -283,7 +287,7 @@ export interface IChartApiBase<HorzScaleItem = Time> {
    * chart.unsubscribeDblClick(myDblClickHandler);
    * ```
    */
-  unsubscribeDblClick(handler: MouseEventHandler<HorzScaleItem>): void
+  unsubscribeDblClick(handler: MouseEventHandler<HorzScaleItem>): void;
 
   /**
    * Subscribe to the crosshair move event.
@@ -302,7 +306,7 @@ export interface IChartApiBase<HorzScaleItem = Time> {
    * chart.subscribeCrosshairMove(myCrosshairMoveHandler);
    * ```
    */
-  subscribeCrosshairMove(handler: MouseEventHandler<HorzScaleItem>): void
+  subscribeCrosshairMove(handler: MouseEventHandler<HorzScaleItem>): void;
 
   /**
    * Unsubscribe a handler that was previously subscribed using {@link subscribeCrosshairMove}.
@@ -313,7 +317,7 @@ export interface IChartApiBase<HorzScaleItem = Time> {
    * chart.unsubscribeCrosshairMove(myCrosshairMoveHandler);
    * ```
    */
-  unsubscribeCrosshairMove(handler: MouseEventHandler<HorzScaleItem>): void
+  unsubscribeCrosshairMove(handler: MouseEventHandler<HorzScaleItem>): void;
 
   /**
    * Returns API to manipulate a price scale.
@@ -321,35 +325,35 @@ export interface IChartApiBase<HorzScaleItem = Time> {
    * @param priceScaleId - ID of the price scale.
    * @returns Price scale API.
    */
-  priceScale(priceScaleId: string): IPriceScaleApi
+  priceScale(priceScaleId: string): IPriceScaleApi;
 
   /**
    * Returns API to manipulate the time scale
    *
    * @returns Target API
    */
-  timeScale(): ITimeScaleApi<HorzScaleItem>
+  timeScale(): ITimeScaleApi<HorzScaleItem>;
 
   /**
    * Applies new options to the chart
    *
    * @param options - Any subset of options.
    */
-  applyOptions(options: DeepPartial<ChartOptionsImpl<HorzScaleItem>>): void
+  applyOptions(options: DeepPartial<ChartOptionsImpl<HorzScaleItem>>): void;
 
   /**
    * Returns currently applied options
    *
    * @returns Full set of currently applied options, including defaults
    */
-  options(): Readonly<ChartOptionsImpl<HorzScaleItem>>
+  options(): Readonly<ChartOptionsImpl<HorzScaleItem>>;
 
   /**
    * Make a screenshot of the chart with all the elements excluding crosshair.
    *
    * @returns A canvas with the chart drawn on. Any `Canvas` methods like `toDataURL()` or `toBlob()` can be used to serialize the result.
    */
-  takeScreenshot(): HTMLCanvasElement
+  takeScreenshot(): HTMLCanvasElement;
 
   /**
    * Returns the active state of the `autoSize` option. This can be used to check
@@ -357,7 +361,7 @@ export interface IChartApiBase<HorzScaleItem = Time> {
    *
    * @returns Whether the `autoSize` option is enabled and the active.
    */
-  autoSizeActive(): boolean
+  autoSizeActive(): boolean;
 
   /**
    * Returns the generated div element containing the chart. This can be used for adding your own additional event listeners, or for measuring the
@@ -365,7 +369,7 @@ export interface IChartApiBase<HorzScaleItem = Time> {
    *
    * @returns generated div element containing the chart.
    */
-  chartElement(): HTMLDivElement
+  chartElement(): HTMLDivElement;
 
   /**
    * Returns the dimensions of the chart pane (the plot surface which excludes time and price scales).
@@ -373,5 +377,5 @@ export interface IChartApiBase<HorzScaleItem = Time> {
    *
    * @returns Dimensions of the chart pane
    */
-  paneSize(): PaneSize
+  paneSize(): PaneSize;
 }

@@ -1,5 +1,5 @@
-import { Nominal } from '../../helpers/nominal'
-import { isNumber, isString } from '../../helpers/strict-type-checks'
+import { Nominal } from '../../helpers/nominal';
+import { isNumber, isString } from '../../helpers/strict-type-checks';
 
 /**
  * Represents a time as a UNIX timestamp.
@@ -16,7 +16,7 @@ import { isNumber, isString } from '../../helpers/strict-type-checks'
  * const timestamp2 = (Date.now() / 1000) as UTCTimestamp;
  * ```
  */
-export type UTCTimestamp = Nominal<number, 'UTCTimestamp'>
+export type UTCTimestamp = Nominal<number, 'UTCTimestamp'>;
 
 /**
  * Represents a time as a day/month/year.
@@ -30,15 +30,15 @@ export interface BusinessDay {
   /**
    * The year.
    */
-  year: number
+  year: number;
   /**
    * The month.
    */
-  month: number
+  month: number;
   /**
    * The day.
    */
-  day: number
+  day: number;
 }
 
 /**
@@ -53,11 +53,11 @@ export interface BusinessDay {
  * const businessDayString = '2021-02-03'; // Business day string literal
  * ```
  */
-export type Time = UTCTimestamp | BusinessDay | string
+export type Time = UTCTimestamp | BusinessDay | string;
 
 export interface TimePoint {
-  timestamp: UTCTimestamp
-  businessDay?: BusinessDay
+  timestamp: UTCTimestamp;
+  businessDay?: BusinessDay;
 }
 
 /**
@@ -67,7 +67,7 @@ export interface TimePoint {
  * @returns `true` if `time` is a {@link BusinessDay} object, false otherwise.
  */
 export function isBusinessDay(time: Time): time is BusinessDay {
-  return !isNumber(time) && !isString(time)
+  return !isNumber(time) && !isString(time);
 }
 
 /**
@@ -77,7 +77,7 @@ export function isBusinessDay(time: Time): time is BusinessDay {
  * @returns `true` if `time` is a {@link UTCTimestamp} number, false otherwise.
  */
 export function isUTCTimestamp(time: Time): time is UTCTimestamp {
-  return isNumber(time)
+  return isNumber(time);
 }
 
 /**

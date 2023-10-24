@@ -1,6 +1,6 @@
-import { Coordinate } from '../model/coordinate'
+import { Coordinate } from '../model/coordinate';
 
-import { shapeSize } from './series-markers-utils'
+import { shapeSize } from './series-markers-utils';
 
 export function drawCircle(
   ctx: CanvasRenderingContext2D,
@@ -8,13 +8,13 @@ export function drawCircle(
   centerY: Coordinate,
   size: number,
 ): void {
-  const circleSize = shapeSize('circle', size)
-  const halfSize = (circleSize - 1) / 2
+  const circleSize = shapeSize('circle', size);
+  const halfSize = (circleSize - 1) / 2;
 
-  ctx.beginPath()
-  ctx.arc(centerX, centerY, halfSize, 0, 2 * Math.PI, false)
+  ctx.beginPath();
+  ctx.arc(centerX, centerY, halfSize, 0, 2 * Math.PI, false);
 
-  ctx.fill()
+  ctx.fill();
 }
 
 export function hitTestCircle(
@@ -24,13 +24,13 @@ export function hitTestCircle(
   x: Coordinate,
   y: Coordinate,
 ): boolean {
-  const circleSize = shapeSize('circle', size)
-  const tolerance = 2 + circleSize / 2
+  const circleSize = shapeSize('circle', size);
+  const tolerance = 2 + circleSize / 2;
 
-  const xOffset = centerX - x
-  const yOffset = centerY - y
+  const xOffset = centerX - x;
+  const yOffset = centerY - y;
 
-  const dist = Math.sqrt(xOffset * xOffset + yOffset * yOffset)
+  const dist = Math.sqrt(xOffset * xOffset + yOffset * yOffset);
 
-  return dist <= tolerance
+  return dist <= tolerance;
 }

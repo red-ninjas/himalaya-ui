@@ -1,4 +1,4 @@
-import { HorzScaleOptions } from '../../model/time-scale'
+import { HorzScaleOptions } from '../../model/time-scale';
 
 export const timeScaleOptionsDefaults: HorzScaleOptions = {
   rightOffset: 0,
@@ -17,4 +17,4 @@ export const timeScaleOptionsDefaults: HorzScaleOptions = {
   ticksVisible: false,
   uniformDistribution: false,
   minimumHeight: 0,
-}
+};

@@ -1,17 +1,17 @@
-import MenuIcon from '../icons/menu'
-import Button from '../button'
-import { useConfigs } from '../use-context/config-context'
-import useSidebar from '../use-sidebar'
-import useLayout from '../use-layout'
+import MenuIcon from '../icons/menu';
+import Button from '../button';
+import { useConfigs } from '../use-context/config-context';
+import useSidebar from '../use-sidebar';
+import useLayout from '../use-layout';
 
 export const SidebarSwitcher: React.FC = () => {
-  const { isMobile } = useConfigs()
-  const { setIsEnabled } = useSidebar()
-  const layout = useLayout()
+  const { isMobile } = useConfigs();
+  const { setIsEnabled } = useSidebar();
+  const layout = useLayout();
 
   const activateSidebar = () => {
-    setIsEnabled(true)
-  }
+    setIsEnabled(true);
+  };
   return (
     <div className="sidebar-button-outer">
       {isMobile && (
@@ -19,7 +19,8 @@ export const SidebarSwitcher: React.FC = () => {
           className="sidebar-button"
           auto
           type="abort"
-          onClick={() => activateSidebar()}>
+          onClick={() => activateSidebar()}
+        >
           <MenuIcon size="1.125rem" />
         </Button>
       )}
@@ -42,7 +43,7 @@ export const SidebarSwitcher: React.FC = () => {
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-export default SidebarSwitcher
+export default SidebarSwitcher;

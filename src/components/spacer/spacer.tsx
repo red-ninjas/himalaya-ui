@@ -1,22 +1,22 @@
-'use client'
+'use client';
 
-import React from 'react'
-import useScale, { withScale } from '../use-scale'
+import React from 'react';
+import useScale, { withScale } from '../use-scale';
 
 interface Props {
-  inline?: boolean
-  className?: string
+  inline?: boolean;
+  className?: string;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>
-export type SpacerProps = Props & NativeAttrs
+type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+export type SpacerProps = Props & NativeAttrs;
 
 const SpacerComponent: React.FC<SpacerProps> = ({
   inline = false,
   className = '',
   ...props
 }: SpacerProps) => {
-  const { SCALES } = useScale()
+  const { SCALES } = useScale();
 
   return (
     <span className={className} {...props}>
@@ -30,9 +30,9 @@ const SpacerComponent: React.FC<SpacerProps> = ({
         }
       `}</style>
     </span>
-  )
-}
+  );
+};
 
-SpacerComponent.displayName = 'HimalayaSpacer'
-const Spacer = withScale(SpacerComponent)
-export default Spacer
+SpacerComponent.displayName = 'HimalayaSpacer';
+const Spacer = withScale(SpacerComponent);
+export default Spacer;

@@ -1,15 +1,15 @@
-'use client'
-import React from 'react'
-import useClasses from '../use-classes'
+'use client';
+import React from 'react';
+import useClasses from '../use-classes';
 
 interface Props {
-  isRight?: boolean
-  isSingle?: boolean
-  className?: string
+  isRight?: boolean;
+  isSingle?: boolean;
+  className?: string;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>
-export type ButtonIconProps = Props & NativeAttrs
+type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+export type ButtonIconProps = Props & NativeAttrs;
 
 const ButtonIcon: React.FC<React.PropsWithChildren<ButtonIconProps>> = ({
   isRight = false,
@@ -18,7 +18,7 @@ const ButtonIcon: React.FC<React.PropsWithChildren<ButtonIconProps>> = ({
   className = '',
   ...props
 }: ButtonIconProps) => {
-  const classes = useClasses('icon', { right: isRight, single: isSingle }, className)
+  const classes = useClasses('icon', { right: isRight, single: isSingle }, className);
 
   return (
     <span className={classes} {...props}>
@@ -57,8 +57,8 @@ const ButtonIcon: React.FC<React.PropsWithChildren<ButtonIconProps>> = ({
         }
       `}</style>
     </span>
-  )
-}
+  );
+};
 
-ButtonIcon.displayName = 'HimalayaButtonIcon'
-export default ButtonIcon
+ButtonIcon.displayName = 'HimalayaButtonIcon';
+export default ButtonIcon;

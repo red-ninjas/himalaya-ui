@@ -1,4 +1,4 @@
-import Dot from './dot'
+import Dot from './dot';
 
-export type { DotProps, DotTypes } from './dot'
-export default Dot
+export type { DotProps, DotTypes } from './dot';
+export default Dot;

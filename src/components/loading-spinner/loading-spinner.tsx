@@ -1,22 +1,22 @@
-'use client'
+'use client';
 
-import React, { useMemo } from 'react'
-import useTheme from '../use-theme'
-import { NormalTypes } from '../utils/prop-types'
-import { UIThemesPalette } from '../themes/presets'
-import useScale, { withScale } from '../use-scale'
-import useClasses from '../use-classes'
+import React, { useMemo } from 'react';
+import useTheme from '../use-theme';
+import { NormalTypes } from '../utils/prop-types';
+import { UIThemesPalette } from '../themes/presets';
+import useScale, { withScale } from '../use-scale';
+import useClasses from '../use-classes';
 
-export type LoadingSpinnerTypes = NormalTypes
+export type LoadingSpinnerTypes = NormalTypes;
 interface Props {
-  type?: LoadingSpinnerTypes
-  color?: string
-  className?: string
-  spaceRatio?: number
+  type?: LoadingSpinnerTypes;
+  color?: string;
+  className?: string;
+  spaceRatio?: number;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>
-export type LoadingSpinnerProps = Props & NativeAttrs
+type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+export type LoadingSpinnerProps = Props & NativeAttrs;
 
 const getIconBgColor = (
   type: LoadingSpinnerTypes,
@@ -29,10 +29,10 @@ const getIconBgColor = (
     success: palette.success,
     warning: palette.warning,
     error: palette.error,
-  }
+  };
 
-  return color ? color : colors[type]
-}
+  return color ? color : colors[type];
+};
 
 const LoadingSpinnerComponent: React.FC<React.PropsWithChildren<LoadingSpinnerProps>> = ({
   children,
@@ -42,13 +42,13 @@ const LoadingSpinnerComponent: React.FC<React.PropsWithChildren<LoadingSpinnerPr
   spaceRatio = 1,
   ...props
 }: React.PropsWithChildren<LoadingSpinnerProps>) => {
-  const theme = useTheme()
-  const { SCALES } = useScale()
-  const classes = useClasses('loading-container', className)
+  const theme = useTheme();
+  const { SCALES } = useScale();
+  const classes = useClasses('loading-container', className);
   const bgColor = useMemo(
     () => getIconBgColor(type, theme.palette, color),
     [type, theme.palette, color],
-  )
+  );
 
   return (
     <div className={classes} {...props}>
@@ -128,9 +128,9 @@ const LoadingSpinnerComponent: React.FC<React.PropsWithChildren<LoadingSpinnerPr
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-LoadingSpinnerComponent.displayName = 'HimalayaLoadingSpinner'
-const LoadingSpinner = withScale(LoadingSpinnerComponent)
-export default LoadingSpinner
+LoadingSpinnerComponent.displayName = 'HimalayaLoadingSpinner';
+const LoadingSpinner = withScale(LoadingSpinnerComponent);
+export default LoadingSpinner;

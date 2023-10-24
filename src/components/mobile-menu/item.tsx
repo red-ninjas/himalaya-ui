@@ -1,28 +1,28 @@
-'use client'
-import Link from 'next/link'
-import React, { PropsWithChildren } from 'react'
-import Popover from '../popover'
-import useScale, { withScale } from '../use-scale'
-import useTheme from '../use-theme'
-import { INavigationItem } from './index'
+'use client';
+import Link from 'next/link';
+import React, { PropsWithChildren } from 'react';
+import Popover from '../popover';
+import useScale, { withScale } from '../use-scale';
+import useTheme from '../use-theme';
+import { INavigationItem } from './index';
 
 export interface NavigationItemProps extends INavigationItem {
-  onClick?: () => void
+  onClick?: () => void;
 }
 
 const NavigationItem: React.FC<PropsWithChildren<NavigationItemProps>> = ({
   url = '/',
   ...props
 }) => {
-  const theme = useTheme()
-  const { SCALES } = useScale()
+  const theme = useTheme();
+  const { SCALES } = useScale();
 
   const handleClick = (e: any) => {
     if (props.onClick) {
-      e.preventDefault()
-      props.onClick()
+      e.preventDefault();
+      props.onClick();
     }
-  }
+  };
 
   return (
     <>
@@ -67,7 +67,7 @@ const NavigationItem: React.FC<PropsWithChildren<NavigationItemProps>> = ({
         }
       `}</style>
     </>
-  )
-}
-NavigationItem.displayName = 'Item'
-export default withScale(NavigationItem)
+  );
+};
+NavigationItem.displayName = 'Item';
+export default withScale(NavigationItem);

@@ -7,9 +7,9 @@ import {
   OhlcData,
   SeriesDataItemTypeMap,
   SingleValueData,
-} from '../model/data-consumer'
-import { CustomData } from '../model/icustom-series'
-import { PlotRow, PlotRowValueIndex } from '../model/plot-data'
+} from '../model/data-consumer';
+import { CustomData } from '../model/icustom-series';
+import { PlotRow, PlotRowValueIndex } from '../model/plot-data';
 import {
   AreaPlotRow,
   BarPlotRow,
@@ -18,14 +18,14 @@ import {
   CustomPlotRow,
   LinePlotRow,
   SeriesPlotRow,
-} from '../model/series-data'
-import { SeriesType } from '../model/series-options'
+} from '../model/series-data';
+import { SeriesType } from '../model/series-options';
 
 type SeriesPlotRowToDataMap<HorzScaleItem> = {
   [T in keyof SeriesDataItemTypeMap]: (
     plotRow: SeriesPlotRow<T>,
-  ) => SeriesDataItemTypeMap<HorzScaleItem>[T]
-}
+  ) => SeriesDataItemTypeMap<HorzScaleItem>[T];
+};
 
 function singleValueData<HorzScaleItem>(
   plotRow: PlotRow,
@@ -33,71 +33,71 @@ function singleValueData<HorzScaleItem>(
   const data: SingleValueData<HorzScaleItem> = {
     value: plotRow.value[PlotRowValueIndex.Close],
     time: plotRow.originalTime as HorzScaleItem,
-  }
+  };
   if (plotRow.customValues !== undefined) {
-    data.customValues = plotRow.customValues
+    data.customValues = plotRow.customValues;
   }
-  return data
+  return data;
 }
 
 function lineData<HorzScaleItem>(plotRow: LinePlotRow): LineData<HorzScaleItem> {
-  const result: LineData<HorzScaleItem> = singleValueData(plotRow)
+  const result: LineData<HorzScaleItem> = singleValueData(plotRow);
 
   if (plotRow.color !== undefined) {
-    result.color = plotRow.color
+    result.color = plotRow.color;
   }
 
-  return result
+  return result;
 }
 
 function areaData<HorzScaleItem>(plotRow: AreaPlotRow): AreaData<HorzScaleItem> {
-  const result: AreaData<HorzScaleItem> = singleValueData(plotRow)
+  const result: AreaData<HorzScaleItem> = singleValueData(plotRow);
 
   if (plotRow.lineColor !== undefined) {
-    result.lineColor = plotRow.lineColor
+    result.lineColor = plotRow.lineColor;
   }
 
   if (plotRow.topColor !== undefined) {
-    result.topColor = plotRow.topColor
+    result.topColor = plotRow.topColor;
   }
 
   if (plotRow.bottomColor !== undefined) {
-    result.bottomColor = plotRow.bottomColor
+    result.bottomColor = plotRow.bottomColor;
   }
 
-  return result
+  return result;
 }
 
 function baselineData<HorzScaleItem>(
   plotRow: BaselinePlotRow,
 ): BaselineData<HorzScaleItem> {
-  const result: BaselineData<HorzScaleItem> = singleValueData(plotRow)
+  const result: BaselineData<HorzScaleItem> = singleValueData(plotRow);
 
   if (plotRow.topLineColor !== undefined) {
-    result.topLineColor = plotRow.topLineColor
+    result.topLineColor = plotRow.topLineColor;
   }
 
   if (plotRow.bottomLineColor !== undefined) {
-    result.bottomLineColor = plotRow.bottomLineColor
+    result.bottomLineColor = plotRow.bottomLineColor;
   }
 
   if (plotRow.topFillColor1 !== undefined) {
-    result.topFillColor1 = plotRow.topFillColor1
+    result.topFillColor1 = plotRow.topFillColor1;
   }
 
   if (plotRow.topFillColor2 !== undefined) {
-    result.topFillColor2 = plotRow.topFillColor2
+    result.topFillColor2 = plotRow.topFillColor2;
   }
 
   if (plotRow.bottomFillColor1 !== undefined) {
-    result.bottomFillColor1 = plotRow.bottomFillColor1
+    result.bottomFillColor1 = plotRow.bottomFillColor1;
   }
 
   if (plotRow.bottomFillColor2 !== undefined) {
-    result.bottomFillColor2 = plotRow.bottomFillColor2
+    result.bottomFillColor2 = plotRow.bottomFillColor2;
   }
 
-  return result
+  return result;
 }
 
 function ohlcData<HorzScaleItem>(plotRow: PlotRow): OhlcData<HorzScaleItem> {
@@ -107,42 +107,42 @@ function ohlcData<HorzScaleItem>(plotRow: PlotRow): OhlcData<HorzScaleItem> {
     low: plotRow.value[PlotRowValueIndex.Low],
     close: plotRow.value[PlotRowValueIndex.Close],
     time: plotRow.originalTime as HorzScaleItem,
-  }
+  };
   if (plotRow.customValues !== undefined) {
-    data.customValues = plotRow.customValues
+    data.customValues = plotRow.customValues;
   }
-  return data
+  return data;
 }
 
 function barData<HorzScaleItem>(plotRow: BarPlotRow): BarData<HorzScaleItem> {
-  const result: BarData<HorzScaleItem> = ohlcData<HorzScaleItem>(plotRow)
+  const result: BarData<HorzScaleItem> = ohlcData<HorzScaleItem>(plotRow);
 
   if (plotRow.color !== undefined) {
-    result.color = plotRow.color
+    result.color = plotRow.color;
   }
 
-  return result
+  return result;
 }
 
 function candlestickData<HorzScaleItem>(
   plotRow: CandlestickPlotRow,
 ): CandlestickData<HorzScaleItem> {
-  const result: CandlestickData<HorzScaleItem> = ohlcData(plotRow)
-  const { color, borderColor, wickColor } = plotRow
+  const result: CandlestickData<HorzScaleItem> = ohlcData(plotRow);
+  const { color, borderColor, wickColor } = plotRow;
 
   if (color !== undefined) {
-    result.color = color
+    result.color = color;
   }
 
   if (borderColor !== undefined) {
-    result.borderColor = borderColor
+    result.borderColor = borderColor;
   }
 
   if (wickColor !== undefined) {
-    result.wickColor = wickColor
+    result.wickColor = wickColor;
   }
 
-  return result
+  return result;
 }
 
 export function getSeriesDataCreator<TSeriesType extends SeriesType, HorzScaleItem>(
@@ -158,14 +158,14 @@ export function getSeriesDataCreator<TSeriesType extends SeriesType, HorzScaleIt
     Bar: barData<HorzScaleItem>,
     Candlestick: candlestickData<HorzScaleItem>,
     Custom: customData<HorzScaleItem>,
-  }
-  return seriesPlotRowToDataMap[seriesType]
+  };
+  return seriesPlotRowToDataMap[seriesType];
 }
 
 function customData<HorzScaleItem>(plotRow: CustomPlotRow): CustomData<HorzScaleItem> {
-  const time = plotRow.originalTime as HorzScaleItem
+  const time = plotRow.originalTime as HorzScaleItem;
   return {
     ...plotRow.data,
     time,
-  }
+  };
 }

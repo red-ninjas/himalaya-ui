@@ -1,19 +1,19 @@
-'use client'
-import React, { PropsWithChildren, ReactNode } from 'react'
-import { INavigationItem } from './index'
-import useScale, { withScale } from '../use-scale'
-import useTheme from '../use-theme'
+'use client';
+import React, { PropsWithChildren, ReactNode } from 'react';
+import { INavigationItem } from './index';
+import useScale, { withScale } from '../use-scale';
+import useTheme from '../use-theme';
 
 export interface MobileNavigationSubGroupProps extends INavigationItem {
-  expanded?: boolean
-  subgroupTitle?: string
+  expanded?: boolean;
+  subgroupTitle?: string;
 }
 
 const MobileNavigationSubGroup: React.FC<
   PropsWithChildren<MobileNavigationSubGroupProps>
 > = ({ children, title }) => {
-  const theme = useTheme()
-  const { SCALES } = useScale()
+  const theme = useTheme();
+  const { SCALES } = useScale();
 
   const childs = (childElements: ReactNode) => {
     return (
@@ -35,11 +35,11 @@ const MobileNavigationSubGroup: React.FC<
           }
         `}</style>
       </>
-    )
-  }
+    );
+  };
 
-  return <>{childs(children)}</>
-}
-MobileNavigationSubGroup.displayName = 'HimalayaNavigationItem'
+  return <>{childs(children)}</>;
+};
+MobileNavigationSubGroup.displayName = 'HimalayaNavigationItem';
 
-export default withScale(MobileNavigationSubGroup)
+export default withScale(MobileNavigationSubGroup);

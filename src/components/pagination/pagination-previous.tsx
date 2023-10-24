@@ -1,14 +1,14 @@
-import React from 'react'
-import PaginationItem from './pagination-item'
-import { usePaginationContext } from './pagination-context'
+import React from 'react';
+import PaginationItem from './pagination-item';
+import { usePaginationContext } from './pagination-context';
 
-export type PaginationPreviousProps = React.ButtonHTMLAttributes<any>
+export type PaginationPreviousProps = React.ButtonHTMLAttributes<any>;
 
 const PaginationPrevious: React.FC<React.PropsWithChildren<PaginationPreviousProps>> = ({
   children,
   ...props
 }) => {
-  const { update, isFirst } = usePaginationContext()
+  const { update, isFirst } = usePaginationContext();
   return (
     <PaginationItem
       onClick={() => update && update('prev')}
@@ -17,8 +17,8 @@ const PaginationPrevious: React.FC<React.PropsWithChildren<PaginationPreviousPro
     >
       {children}
     </PaginationItem>
-  )
-}
+  );
+};
 
-PaginationPrevious.displayName = 'HimalayaPaginationPrevious'
-export default PaginationPrevious
+PaginationPrevious.displayName = 'HimalayaPaginationPrevious';
+export default PaginationPrevious;

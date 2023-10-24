@@ -1,3 +1,3 @@
-import useClipboard from '../use-clipboard'
+import useClipboard from '../use-clipboard';
 
-export default useClipboard
+export default useClipboard;

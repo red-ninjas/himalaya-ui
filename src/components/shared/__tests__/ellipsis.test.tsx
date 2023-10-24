@@ -1,6 +1,6 @@
-import React from 'react'
-import { mount } from 'enzyme'
-import Ellipsis from '../ellipsis'
+import React from 'react';
+import { mount } from 'enzyme';
+import Ellipsis from '../ellipsis';
 
 describe('Ellipsis', () => {
   it('should render correctly', () => {
@@ -8,8 +8,8 @@ describe('Ellipsis', () => {
       <div style={{ width: '1px' }}>
         <Ellipsis height="10px">text</Ellipsis>
       </div>,
-    )
-    expect(wrapper.html()).toMatchSnapshot()
-    expect(() => wrapper.unmount()).not.toThrow()
-  })
-})
+    );
+    expect(wrapper.html()).toMatchSnapshot();
+    expect(() => wrapper.unmount()).not.toThrow();
+  });
+});

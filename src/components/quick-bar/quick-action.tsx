@@ -1,15 +1,15 @@
-'use client'
-import Tooltip from '../tooltip'
-import Link from 'next/link'
-import React, { PropsWithChildren, useMemo } from 'react'
-import { QuickActionProps } from './share'
-import useScale from '../use-scale'
-import withScale from '../use-scale/with-scale'
-import useTheme from '../use-theme'
-import { getColors } from './get-color'
-import { QuickActionTypes } from '../utils/prop-types'
-import { usePathname } from 'next/navigation'
-import useClasses from '../use-classes'
+'use client';
+import Tooltip from '../tooltip';
+import Link from 'next/link';
+import React, { PropsWithChildren, useMemo } from 'react';
+import { QuickActionProps } from './share';
+import useScale from '../use-scale';
+import withScale from '../use-scale/with-scale';
+import useTheme from '../use-theme';
+import { getColors } from './get-color';
+import { QuickActionTypes } from '../utils/prop-types';
+import { usePathname } from 'next/navigation';
+import useClasses from '../use-classes';
 
 export const QuickBar: React.FC<PropsWithChildren<QuickActionProps>> = ({
   children,
@@ -21,18 +21,18 @@ export const QuickBar: React.FC<PropsWithChildren<QuickActionProps>> = ({
   type = 'default' as QuickActionTypes,
   exactMatch = true,
 }) => {
-  const theme = useTheme()
-  const { SCALES } = useScale()
-  const pathname = usePathname()
+  const theme = useTheme();
+  const { SCALES } = useScale();
+  const pathname = usePathname();
 
-  const colors = useMemo(() => getColors(type, theme.palette), [type, theme.palette])
+  const colors = useMemo(() => getColors(type, theme.palette), [type, theme.palette]);
   const isLinkActive = href
     ? href
       ? exactMatch
         ? pathname == href
         : pathname.startsWith(href)
       : false
-    : false
+    : false;
 
   return (
     <Tooltip
@@ -102,8 +102,8 @@ export const QuickBar: React.FC<PropsWithChildren<QuickActionProps>> = ({
         </a>
       </Link>
     </Tooltip>
-  )
-}
+  );
+};
 
-QuickBar.displayName = 'HimalayaQuickBar'
-export default withScale(QuickBar)
+QuickBar.displayName = 'HimalayaQuickBar';
+export default withScale(QuickBar);

@@ -1,28 +1,28 @@
-import React from 'react'
-import useTheme from '../use-theme'
-import TableCell from './table-cell'
-import { useTableContext } from './table-context'
+import React from 'react';
+import useTheme from '../use-theme';
+import TableCell from './table-cell';
+import { useTableContext } from './table-context';
 import {
   TableDataItemBase,
   TableOnCellClick,
   TableOnRowClick,
   TableRowClassNameHandler,
-} from './table-types'
-import useClasses from '../use-classes'
+} from './table-types';
+import useClasses from '../use-classes';
 
 interface Props<TableDataItem extends TableDataItemBase> {
-  hover: boolean
-  emptyText: string
-  onRow?: TableOnRowClick<TableDataItem>
-  onCell?: TableOnCellClick<TableDataItem>
-  data: Array<TableDataItem>
-  className?: string
-  rowClassName: TableRowClassNameHandler<TableDataItem>
+  hover: boolean;
+  emptyText: string;
+  onRow?: TableOnRowClick<TableDataItem>;
+  onCell?: TableOnCellClick<TableDataItem>;
+  data: Array<TableDataItem>;
+  className?: string;
+  rowClassName: TableRowClassNameHandler<TableDataItem>;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props<any>>
+type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props<any>>;
 export type TableBodyProps<TableDataItem extends TableDataItemBase> =
-  Props<TableDataItem> & NativeAttrs
+  Props<TableDataItem> & NativeAttrs;
 
 const TableBody = <TableDataItem extends TableDataItemBase>({
   data,
@@ -32,16 +32,16 @@ const TableBody = <TableDataItem extends TableDataItemBase>({
   onCell,
   rowClassName,
 }: TableBodyProps<TableDataItem>) => {
-  const theme = useTheme()
-  const { columns } = useTableContext<TableDataItem>()
+  const theme = useTheme();
+  const { columns } = useTableContext<TableDataItem>();
   const rowClickHandler = (row: TableDataItem, index: number) => {
-    onRow && onRow(row, index)
-  }
+    onRow && onRow(row, index);
+  };
 
   return (
     <tbody>
       {data.map((row, index) => {
-        const className = rowClassName(row, index)
+        const className = rowClassName(row, index);
         return (
           <tr
             key={`tbody-row-${index}`}
@@ -56,7 +56,7 @@ const TableBody = <TableDataItem extends TableDataItemBase>({
               onCellClick={onCell}
             />
           </tr>
-        )
+        );
       })}
       <style jsx>{`
         tr {
@@ -82,8 +82,8 @@ const TableBody = <TableDataItem extends TableDataItemBase>({
         }
       `}</style>
     </tbody>
-  )
-}
+  );
+};
 
-TableBody.displayName = 'HimalayaTableBody'
-export default TableBody
+TableBody.displayName = 'HimalayaTableBody';
+export default TableBody;

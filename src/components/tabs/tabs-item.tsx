@@ -1,18 +1,18 @@
-'use client'
-import React, { useEffect, useMemo, useRef } from 'react'
-import { TabsInternalCellProps, useTabsContext } from './tabs-context'
-import useTheme from '../use-theme'
-import useScale, { withScale } from '../use-scale'
-import useClasses from '../use-classes'
+'use client';
+import React, { useEffect, useMemo, useRef } from 'react';
+import { TabsInternalCellProps, useTabsContext } from './tabs-context';
+import useTheme from '../use-theme';
+import useScale, { withScale } from '../use-scale';
+import useClasses from '../use-classes';
 
 interface Props {
-  label: string | React.ReactNode
-  value: string
-  disabled?: boolean
+  label: string | React.ReactNode;
+  value: string;
+  disabled?: boolean;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>
-export type TabsItemProps = Props & NativeAttrs
+type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+export type TabsItemProps = Props & NativeAttrs;
 
 const TabsItemComponent: React.FC<React.PropsWithChildren<TabsItemProps>> = ({
   children,
@@ -20,9 +20,9 @@ const TabsItemComponent: React.FC<React.PropsWithChildren<TabsItemProps>> = ({
   label,
   disabled = false,
 }: React.PropsWithChildren<TabsItemProps>) => {
-  const { SCALES } = useScale()
-  const { register, currentValue } = useTabsContext()
-  const isActive = useMemo(() => currentValue === value, [currentValue, value])
+  const { SCALES } = useScale();
+  const { register, currentValue } = useTabsContext();
+  const isActive = useMemo(() => currentValue === value, [currentValue, value]);
 
   const TabsInternalCell: React.FC<TabsInternalCellProps> = ({
     onClick,
@@ -31,20 +31,20 @@ const TabsItemComponent: React.FC<React.PropsWithChildren<TabsItemProps>> = ({
     activeStyle,
     hideBorder,
   }) => {
-    const theme = useTheme()
-    const ref = useRef<HTMLDivElement | null>(null)
-    const { currentValue } = useTabsContext()
-    const active = currentValue === value
+    const theme = useTheme();
+    const ref = useRef<HTMLDivElement | null>(null);
+    const { currentValue } = useTabsContext();
+    const active = currentValue === value;
     const classes = useClasses('tab', {
       active,
       disabled,
       [activeClassName!]: active,
       'hide-border': hideBorder,
-    })
+    });
     const clickHandler = () => {
-      if (disabled) return
-      onClick && onClick(value)
-    }
+      if (disabled) return;
+      onClick && onClick(value);
+    };
 
     return (
       <div
@@ -135,19 +135,19 @@ const TabsItemComponent: React.FC<React.PropsWithChildren<TabsItemProps>> = ({
           }
         `}</style>
       </div>
-    )
-  }
-  TabsInternalCell.displayName = 'HimalayaTabsInternalCell'
+    );
+  };
+  TabsInternalCell.displayName = 'HimalayaTabsInternalCell';
 
   useEffect(() => {
-    register && register({ value, cell: TabsInternalCell })
-  }, [value, label, disabled])
+    register && register({ value, cell: TabsInternalCell });
+  }, [value, label, disabled]);
 
   /* eslint-disable react/jsx-no-useless-fragment */
-  return isActive ? <>{children}</> : null
-}
+  return isActive ? <>{children}</> : null;
+};
 
-TabsItemComponent.displayName = 'HimalayaTabsItem'
-const TabsItem = withScale(TabsItemComponent)
-export default TabsItem
+TabsItemComponent.displayName = 'HimalayaTabsItem';
+const TabsItem = withScale(TabsItemComponent);
+export default TabsItem;
 /* eslint-enable */

@@ -1,6 +1,6 @@
-import React from 'react'
-import { render } from 'enzyme'
-import { CssBaseline, ConfigProvider } from 'components'
+import React from 'react';
+import { render } from 'enzyme';
+import { CssBaseline, ConfigProvider } from 'components';
 
 describe('CSSBaseline', () => {
   it('should render correctly', () => {
@@ -8,16 +8,16 @@ describe('CSSBaseline', () => {
       <ConfigProvider>
         <CssBaseline />
       </ConfigProvider>,
-    )
-    expect(wrapper).toMatchSnapshot()
-  })
+    );
+    expect(wrapper).toMatchSnapshot();
+  });
 
   it('should render dark mode correctly', () => {
     const wrapper = render(
       <ConfigProvider themeType="dark">
         <CssBaseline />
       </ConfigProvider>,
-    )
-    expect(wrapper).toMatchSnapshot()
-  })
-})
+    );
+    expect(wrapper).toMatchSnapshot();
+  });
+});

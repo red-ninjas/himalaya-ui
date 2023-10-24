@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 export const ScalePropKeys = [
   'width',
@@ -30,44 +30,44 @@ export const ScalePropKeys = [
   'font',
   'unit',
   'scale',
-]
+];
 
 export type ScaleProps = {
-  width?: string | number
-  height?: string | number
-  padding?: string | number
-  margin?: string | number
-  w?: string | number
-  h?: string | number
-  paddingLeft?: string | number
-  paddingRight?: string | number
-  paddingTop?: string | number
-  paddingBottom?: string | number
-  pl?: string | number
-  pr?: string | number
-  pt?: string | number
-  pb?: string | number
-  marginLeft?: string | number
-  marginRight?: string | number
-  marginTop?: string | number
-  marginBottom?: string | number
-  ml?: string | number
-  mr?: string | number
-  mt?: string | number
-  mb?: string | number
-  px?: string | number
-  py?: string | number
-  mx?: string | number
-  my?: string | number
-  font?: string | number
-  unit?: string
-  scale?: number
-}
+  width?: string | number;
+  height?: string | number;
+  padding?: string | number;
+  margin?: string | number;
+  w?: string | number;
+  h?: string | number;
+  paddingLeft?: string | number;
+  paddingRight?: string | number;
+  paddingTop?: string | number;
+  paddingBottom?: string | number;
+  pl?: string | number;
+  pr?: string | number;
+  pt?: string | number;
+  pb?: string | number;
+  marginLeft?: string | number;
+  marginRight?: string | number;
+  marginTop?: string | number;
+  marginBottom?: string | number;
+  ml?: string | number;
+  mr?: string | number;
+  mt?: string | number;
+  mb?: string | number;
+  px?: string | number;
+  py?: string | number;
+  mx?: string | number;
+  my?: string | number;
+  font?: string | number;
+  unit?: string;
+  scale?: number;
+};
 
 export type DynamicLayoutPipe = (
   scale1x: number,
   defaultValue?: string | number,
-) => string
+) => string;
 
 export type ScaleInputKeys =
   | 'pl'
@@ -84,28 +84,28 @@ export type ScaleInputKeys =
   | 'my'
   | 'width'
   | 'height'
-  | 'font'
+  | 'font';
 
 export type DynamicScales = {
-  [key in ScaleInputKeys]: DynamicLayoutPipe
-}
+  [key in ScaleInputKeys]: DynamicLayoutPipe;
+};
 
 export type GetScalePropsFunction = (
   key: keyof ScaleProps | Array<keyof ScaleProps>,
-) => ScaleProps[keyof ScaleProps]
+) => ScaleProps[keyof ScaleProps];
 
-export type GetAllScalePropsFunction = () => ScaleProps
+export type GetAllScalePropsFunction = () => ScaleProps;
 
 export interface ScaleConfig {
-  SCALES: DynamicScales
-  getScaleProps: GetScalePropsFunction
-  getAllScaleProps: GetAllScalePropsFunction
-  unit: string
+  SCALES: DynamicScales;
+  getScaleProps: GetScalePropsFunction;
+  getAllScaleProps: GetAllScalePropsFunction;
+  unit: string;
 }
 
 const defaultDynamicLayoutPipe: DynamicLayoutPipe = scale1x => {
-  return `${scale1x}`
-}
+  return `${scale1x}`;
+};
 
 const defaultContext: ScaleConfig = {
   getScaleProps: () => undefined,
@@ -128,7 +128,7 @@ const defaultContext: ScaleConfig = {
     font: defaultDynamicLayoutPipe,
   },
   unit: '16px',
-}
+};
 
-export const ScaleContext = React.createContext<ScaleConfig>(defaultContext)
-export const useScale = (): ScaleConfig => React.useContext<ScaleConfig>(ScaleContext)
+export const ScaleContext = React.createContext<ScaleConfig>(defaultContext);
+export const useScale = (): ScaleConfig => React.useContext<ScaleConfig>(ScaleContext);

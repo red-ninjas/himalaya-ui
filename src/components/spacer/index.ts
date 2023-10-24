@@ -1,4 +1,4 @@
-import Spacer from './spacer'
+import Spacer from './spacer';
 
-export type { SpacerProps } from './spacer'
-export default Spacer
+export type { SpacerProps } from './spacer';
+export default Spacer;

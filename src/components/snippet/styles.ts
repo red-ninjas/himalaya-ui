@@ -1,11 +1,11 @@
-import { SnippetTypes } from '../utils/prop-types'
-import { UIThemesPalette } from '../themes/presets'
+import { SnippetTypes } from '../utils/prop-types';
+import { UIThemesPalette } from '../themes/presets';
 
 export type SnippetStyles = {
-  color: string
-  border: string
-  bgColor: string
-}
+  color: string;
+  border: string;
+  bgColor: string;
+};
 
 export const getStyles = (
   type: SnippetTypes,
@@ -48,16 +48,16 @@ export const getStyles = (
       border: palette.foreground,
       bgColor: palette.foreground,
     },
-  }
+  };
 
-  const filledTypes: Array<SnippetTypes> = ['success', 'warning', 'error', 'secondary']
-  const style = styles[type]
-  const shouldFilled = filledTypes.includes(type)
-  if (!fill || !shouldFilled) return style
+  const filledTypes: Array<SnippetTypes> = ['success', 'warning', 'error', 'secondary'];
+  const style = styles[type];
+  const shouldFilled = filledTypes.includes(type);
+  if (!fill || !shouldFilled) return style;
 
   return {
     ...style,
     color: style.bgColor,
     bgColor: style.color,
-  }
-}
+  };
+};

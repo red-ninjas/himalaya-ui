@@ -1,4 +1,4 @@
-import Box from './box'
+import Box from './box';
 
-export type { BoxProps } from './box'
-export default Box
+export type { BoxProps } from './box';
+export default Box;

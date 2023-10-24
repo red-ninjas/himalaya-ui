@@ -1,15 +1,15 @@
-import useTheme from '../use-theme'
-import Text from '../text'
-import React, { FocusEvent, MouseEvent } from 'react'
-import { SearchResult } from '.'
+import useTheme from '../use-theme';
+import Text from '../text';
+import React, { FocusEvent, MouseEvent } from 'react';
+import { SearchResult } from '.';
 
 export type SearchItemProps = {
-  data: SearchResult
-  onMouseOver: (e: MouseEvent<HTMLButtonElement>) => void
-  onSelect: (url: string) => void
-  onFocus: (e: FocusEvent<HTMLButtonElement>) => void
-  onBlur?: (e: FocusEvent<HTMLButtonElement>) => void
-}
+  data: SearchResult;
+  onMouseOver: (e: MouseEvent<HTMLButtonElement>) => void;
+  onSelect: (url: string) => void;
+  onFocus: (e: FocusEvent<HTMLButtonElement>) => void;
+  onBlur?: (e: FocusEvent<HTMLButtonElement>) => void;
+};
 
 const SearchItem: React.FC<SearchItemProps> = ({
   data,
@@ -18,10 +18,10 @@ const SearchItem: React.FC<SearchItemProps> = ({
   onFocus,
   onBlur = () => {},
 }) => {
-  const theme = useTheme()
+  const theme = useTheme();
   const selectHandler = () => {
-    onSelect(data.url)
-  }
+    onSelect(data.url);
+  };
 
   return (
     <li role="option">
@@ -63,7 +63,7 @@ const SearchItem: React.FC<SearchItemProps> = ({
         `}</style>
       </button>
     </li>
-  )
-}
+  );
+};
 
-export default SearchItem
+export default SearchItem;

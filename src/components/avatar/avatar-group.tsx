@@ -1,25 +1,25 @@
-'use client'
+'use client';
 
-import React from 'react'
-import useTheme from '../use-theme'
-import useScale, { withScale } from '../use-scale'
-import useClasses from '../use-classes'
+import React from 'react';
+import useTheme from '../use-theme';
+import useScale, { withScale } from '../use-scale';
+import useClasses from '../use-classes';
 
 interface Props {
-  count?: number
-  className?: string
+  count?: number;
+  className?: string;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>
-export type AvatarGroupProps = Props & NativeAttrs
+type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+export type AvatarGroupProps = Props & NativeAttrs;
 
 const AvatarGroupComponent: React.FC<React.PropsWithChildren<AvatarGroupProps>> = ({
   count,
   className = '',
   children,
 }: AvatarGroupProps) => {
-  const theme = useTheme()
-  const { SCALES } = useScale()
+  const theme = useTheme();
+  const { SCALES } = useScale();
 
   return (
     <div className={useClasses('avatar-group', className)}>
@@ -48,9 +48,9 @@ const AvatarGroupComponent: React.FC<React.PropsWithChildren<AvatarGroupProps>> 
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-AvatarGroupComponent.displayName = 'HimalayaAvatarGroup'
-const AvatarGroup = withScale(AvatarGroupComponent)
-export default AvatarGroup
+AvatarGroupComponent.displayName = 'HimalayaAvatarGroup';
+const AvatarGroup = withScale(AvatarGroupComponent);
+export default AvatarGroup;

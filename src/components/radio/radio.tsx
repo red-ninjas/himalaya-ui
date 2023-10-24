@@ -1,37 +1,37 @@
-'use client'
-import React, { useEffect, useMemo, useState } from 'react'
-import useTheme from '../use-theme'
-import { useRadioContext } from './radio-context'
-import RadioDescription from './radio-description'
-import { pickChild } from '../utils/collections'
-import useWarning from '../utils/use-warning'
-import { NormalTypes } from '../utils/prop-types'
-import { getColors } from './styles'
-import useScale, { withScale } from '../use-scale'
-import useClasses from '../use-classes'
+'use client';
+import React, { useEffect, useMemo, useState } from 'react';
+import useTheme from '../use-theme';
+import { useRadioContext } from './radio-context';
+import RadioDescription from './radio-description';
+import { pickChild } from '../utils/collections';
+import useWarning from '../utils/use-warning';
+import { NormalTypes } from '../utils/prop-types';
+import { getColors } from './styles';
+import useScale, { withScale } from '../use-scale';
+import useClasses from '../use-classes';
 
-export type RadioTypes = NormalTypes
+export type RadioTypes = NormalTypes;
 export interface RadioEventTarget {
-  checked: boolean
+  checked: boolean;
 }
 export interface RadioEvent {
-  target: RadioEventTarget
-  stopPropagation: () => void
-  preventDefault: () => void
-  nativeEvent: React.ChangeEvent
+  target: RadioEventTarget;
+  stopPropagation: () => void;
+  preventDefault: () => void;
+  nativeEvent: React.ChangeEvent;
 }
 
 interface Props {
-  checked?: boolean
-  value?: string | number
-  type?: RadioTypes
-  className?: string
-  disabled?: boolean
-  onChange?: (e: RadioEvent) => void
+  checked?: boolean;
+  value?: string | number;
+  type?: RadioTypes;
+  className?: string;
+  disabled?: boolean;
+  onChange?: (e: RadioEvent) => void;
 }
 
-type NativeAttrs = Omit<React.InputHTMLAttributes<any>, keyof Props>
-export type RadioProps = Props & NativeAttrs
+type NativeAttrs = Omit<React.InputHTMLAttributes<any>, keyof Props>;
+export type RadioProps = Props & NativeAttrs;
 
 const RadioComponent: React.FC<React.PropsWithChildren<RadioProps>> = ({
   className = '',
@@ -43,32 +43,32 @@ const RadioComponent: React.FC<React.PropsWithChildren<RadioProps>> = ({
   children,
   ...props
 }: React.PropsWithChildren<RadioProps>) => {
-  const theme = useTheme()
-  const { SCALES } = useScale()
-  const [selfChecked, setSelfChecked] = useState<boolean>(!!checked)
-  const { value: groupValue, disabledAll, inGroup, updateState } = useRadioContext()
-  const [withoutDescChildren, DescChildren] = pickChild(children, RadioDescription)
+  const theme = useTheme();
+  const { SCALES } = useScale();
+  const [selfChecked, setSelfChecked] = useState<boolean>(!!checked);
+  const { value: groupValue, disabledAll, inGroup, updateState } = useRadioContext();
+  const [withoutDescChildren, DescChildren] = pickChild(children, RadioDescription);
 
   if (inGroup) {
     if (checked !== undefined) {
-      useWarning('Remove props "checked" if in the Radio.Group.', 'Radio')
+      useWarning('Remove props "checked" if in the Radio.Group.', 'Radio');
     }
     if (radioValue === undefined) {
-      useWarning('Props "value" must be deinfed if in the Radio.Group.', 'Radio')
+      useWarning('Props "value" must be deinfed if in the Radio.Group.', 'Radio');
     }
     useEffect(() => {
-      setSelfChecked(groupValue === radioValue)
-    }, [groupValue, radioValue])
+      setSelfChecked(groupValue === radioValue);
+    }, [groupValue, radioValue]);
   }
 
   const { label, border, bg } = useMemo(
     () => getColors(theme.palette, type),
     [theme.palette, type],
-  )
+  );
 
-  const isDisabled = useMemo(() => disabled || disabledAll, [disabled, disabledAll])
+  const isDisabled = useMemo(() => disabled || disabledAll, [disabled, disabledAll]);
   const changeHandler = (event: React.ChangeEvent) => {
-    if (isDisabled) return
+    if (isDisabled) return;
     const selfEvent: RadioEvent = {
       target: {
         checked: !selfChecked,
@@ -76,18 +76,18 @@ const RadioComponent: React.FC<React.PropsWithChildren<RadioProps>> = ({
       stopPropagation: event.stopPropagation,
       preventDefault: event.preventDefault,
       nativeEvent: event,
-    }
-    setSelfChecked(!selfChecked)
+    };
+    setSelfChecked(!selfChecked);
     if (inGroup) {
-      updateState && updateState(radioValue as string | number)
+      updateState && updateState(radioValue as string | number);
     }
-    onChange && onChange(selfEvent)
-  }
+    onChange && onChange(selfEvent);
+  };
 
   useEffect(() => {
-    if (checked === undefined) return
-    setSelfChecked(Boolean(checked))
-  }, [checked])
+    if (checked === undefined) return;
+    setSelfChecked(Boolean(checked));
+  }, [checked]);
 
   return (
     <div className={useClasses('radio', className)}>
@@ -169,9 +169,9 @@ const RadioComponent: React.FC<React.PropsWithChildren<RadioProps>> = ({
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-RadioComponent.displayName = 'HimalayaRadio'
-const Radio = withScale(RadioComponent)
-export default Radio
+RadioComponent.displayName = 'HimalayaRadio';
+const Radio = withScale(RadioComponent);
+export default Radio;

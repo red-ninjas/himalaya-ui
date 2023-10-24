@@ -1,24 +1,24 @@
-import React, { useEffect, useImperativeHandle, useRef } from 'react'
+import React, { useEffect, useImperativeHandle, useRef } from 'react';
 
 export type SelectInputProps = {
-  visible: boolean
-  onBlur: () => void
-  onFocus: () => void
-}
+  visible: boolean;
+  onBlur: () => void;
+  onFocus: () => void;
+};
 
 const SelectInput = React.forwardRef<HTMLInputElement | null, SelectInputProps>(
   ({ visible, onBlur, onFocus }, inputRef) => {
-    const ref = useRef<HTMLInputElement | null>(null)
+    const ref = useRef<HTMLInputElement | null>(null);
     useImperativeHandle<HTMLInputElement | null, HTMLInputElement | null>(
       inputRef,
       () => ref.current,
-    )
+    );
 
     useEffect(() => {
       if (visible) {
-        ref.current?.focus()
+        ref.current?.focus();
       }
-    }, [visible])
+    }, [visible]);
 
     return (
       <>
@@ -47,9 +47,9 @@ const SelectInput = React.forwardRef<HTMLInputElement | null, SelectInputProps>(
           }
         `}</style>
       </>
-    )
+    );
   },
-)
+);
 
-SelectInput.displayName = 'HimalayaSelectInput'
-export default SelectInput
+SelectInput.displayName = 'HimalayaSelectInput';
+export default SelectInput;

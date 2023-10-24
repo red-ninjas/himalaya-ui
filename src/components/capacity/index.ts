@@ -1,4 +1,4 @@
-import Capacity from './capacity'
+import Capacity from './capacity';
 
-export type { CapacityProps } from './capacity'
-export default Capacity
+export type { CapacityProps } from './capacity';
+export default Capacity;

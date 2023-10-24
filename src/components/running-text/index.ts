@@ -1,7 +1,7 @@
-import RunningText from './running-text'
+import RunningText from './running-text';
 export interface RunningTextProps {
-  animationTime?: number
-  gap?: number
+  animationTime?: number;
+  gap?: number;
 }
 
-export default RunningText
+export default RunningText;

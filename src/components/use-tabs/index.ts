@@ -1,3 +1,3 @@
-import useTabs from './use-tabs'
+import useTabs from './use-tabs';
 
-export default useTabs
+export default useTabs;

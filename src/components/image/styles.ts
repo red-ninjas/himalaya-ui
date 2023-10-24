@@ -1,12 +1,12 @@
-import { UIThemesPalette } from '../themes/presets'
+import { UIThemesPalette } from '../themes/presets';
 
 export type BrowserColors = {
-  color: string
-  barBgColor: string
-  inputBgColor: string
-  borderColor: string
-  titleColor: string
-}
+  color: string;
+  barBgColor: string;
+  inputBgColor: string;
+  borderColor: string;
+  titleColor: string;
+};
 
 export const getBrowserColors = (
   invert: boolean,
@@ -26,5 +26,5 @@ export const getBrowserColors = (
         inputBgColor: palette.accents_1,
         borderColor: palette.border,
         titleColor: palette.accents_5,
-      }
-}
+      };
+};

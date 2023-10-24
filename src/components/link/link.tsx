@@ -1,22 +1,22 @@
-'use client'
-import React from 'react'
-import useTheme from '../use-theme'
-import LinkIcon from './icon'
-import { addColorAlpha } from '../utils/color'
-import useScale, { withScale } from '../use-scale'
-import useClasses from '../use-classes'
+'use client';
+import React from 'react';
+import useTheme from '../use-theme';
+import LinkIcon from './icon';
+import { addColorAlpha } from '../utils/color';
+import useScale, { withScale } from '../use-scale';
+import useClasses from '../use-classes';
 
 export interface Props {
-  href?: string
-  color?: boolean
-  icon?: boolean
-  underline?: boolean
-  block?: boolean
-  className?: string
+  href?: string;
+  color?: boolean;
+  icon?: boolean;
+  underline?: boolean;
+  block?: boolean;
+  className?: string;
 }
 
-type NativeAttrs = Omit<React.AnchorHTMLAttributes<any>, keyof Props>
-export type LinkProps = Props & NativeAttrs
+type NativeAttrs = Omit<React.AnchorHTMLAttributes<any>, keyof Props>;
+export type LinkProps = Props & NativeAttrs;
 
 const LinkComponent = React.forwardRef<
   HTMLAnchorElement,
@@ -35,12 +35,12 @@ const LinkComponent = React.forwardRef<
     }: React.PropsWithChildren<LinkProps>,
     ref: React.Ref<HTMLAnchorElement>,
   ) => {
-    const theme = useTheme()
-    const { SCALES } = useScale()
-    const linkColor = color || block ? theme.palette.link : 'inherit'
-    const hoverColor = color || block ? theme.palette.successLight : 'inherit'
-    const decoration = underline ? 'underline' : 'none'
-    const classes = useClasses('link', { block }, className)
+    const theme = useTheme();
+    const { SCALES } = useScale();
+    const linkColor = color || block ? theme.palette.link : 'inherit';
+    const hoverColor = color || block ? theme.palette.successLight : 'inherit';
+    const decoration = underline ? 'underline' : 'none';
+    const classes = useClasses('link', { block }, className);
 
     return (
       <a className={classes} href={href} {...props} ref={ref}>
@@ -80,10 +80,10 @@ const LinkComponent = React.forwardRef<
           }
         `}</style>
       </a>
-    )
+    );
   },
-)
+);
 
-LinkComponent.displayName = 'HimalayaLink'
-const Link = withScale(LinkComponent)
-export default Link
+LinkComponent.displayName = 'HimalayaLink';
+const Link = withScale(LinkComponent);
+export default Link;

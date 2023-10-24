@@ -1,14 +1,14 @@
-import { useEffect } from 'react'
+import { useEffect } from 'react';
 
 const useResize = (callback: () => unknown, immediatelyInvoke: boolean = true): void => {
   useEffect(() => {
-    const fn = () => callback()
+    const fn = () => callback();
     if (immediatelyInvoke) {
-      fn()
+      fn();
     }
-    window.addEventListener('resize', fn)
-    return () => window.removeEventListener('resize', fn)
-  }, [])
-}
+    window.addEventListener('resize', fn);
+    return () => window.removeEventListener('resize', fn);
+  }, []);
+};
 
-export default useResize
+export default useResize;

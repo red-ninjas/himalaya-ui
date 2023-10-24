@@ -1,26 +1,26 @@
-'use client'
-import React, { useEffect } from 'react'
-import CollapseIcon from './collapse-icon'
-import useTheme from '../use-theme'
-import Expand from '../shared/expand'
-import { useCollapseContext } from './collapse-context'
-import useCurrentState from '../utils/use-current-state'
-import useWarning from '../utils/use-warning'
-import useScale, { withScale } from '../use-scale'
-import useClasses from '../use-classes'
-import useLayout from '../use-layout'
+'use client';
+import React, { useEffect } from 'react';
+import CollapseIcon from './collapse-icon';
+import useTheme from '../use-theme';
+import Expand from '../shared/expand';
+import { useCollapseContext } from './collapse-context';
+import useCurrentState from '../utils/use-current-state';
+import useWarning from '../utils/use-warning';
+import useScale, { withScale } from '../use-scale';
+import useClasses from '../use-classes';
+import useLayout from '../use-layout';
 
 interface Props {
-  title: string
-  subtitle?: React.ReactNode | string
-  initialVisible?: boolean
-  shadow?: boolean
-  className?: string
-  index?: number
+  title: string;
+  subtitle?: React.ReactNode | string;
+  initialVisible?: boolean;
+  shadow?: boolean;
+  className?: string;
+  index?: number;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>
-export type CollapseProps = Props & NativeAttrs
+type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+export type CollapseProps = Props & NativeAttrs;
 
 const CollapseComponent: React.FC<React.PropsWithChildren<CollapseProps>> = ({
   children,
@@ -32,34 +32,34 @@ const CollapseComponent: React.FC<React.PropsWithChildren<CollapseProps>> = ({
   index,
   ...props
 }: React.PropsWithChildren<CollapseProps>) => {
-  const theme = useTheme()
-  const layout = useLayout()
-  const { SCALES } = useScale()
-  const { values, updateValues } = useCollapseContext()
-  const [visible, setVisible, visibleRef] = useCurrentState<boolean>(initialVisible)
+  const theme = useTheme();
+  const layout = useLayout();
+  const { SCALES } = useScale();
+  const { values, updateValues } = useCollapseContext();
+  const [visible, setVisible, visibleRef] = useCurrentState<boolean>(initialVisible);
   const classes = useClasses(
     'collapse',
     {
       shadow,
     },
     className,
-  )
+  );
 
   if (!title) {
-    useWarning('"title" is required.', 'Collapse')
+    useWarning('"title" is required.', 'Collapse');
   }
 
   useEffect(() => {
-    if (!values.length) return
-    const isActive = !!values.find(item => item === index)
-    setVisible(isActive)
-  }, [values.join(',')])
+    if (!values.length) return;
+    const isActive = !!values.find(item => item === index);
+    setVisible(isActive);
+  }, [values.join(',')]);
 
   const clickHandler = () => {
-    const next = !visibleRef.current
-    setVisible(next)
-    updateValues && updateValues(index, next)
-  }
+    const next = !visibleRef.current;
+    setVisible(next);
+    updateValues && updateValues(index, next);
+  };
 
   return (
     <div className={classes} {...props}>
@@ -131,9 +131,9 @@ const CollapseComponent: React.FC<React.PropsWithChildren<CollapseProps>> = ({
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-CollapseComponent.displayName = 'HimalayaCollapse'
-const Collapse = withScale(CollapseComponent)
-export default Collapse
+CollapseComponent.displayName = 'HimalayaCollapse';
+const Collapse = withScale(CollapseComponent);
+export default Collapse;

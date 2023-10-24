@@ -1,30 +1,30 @@
-'use client'
-import React, { useMemo, useRef } from 'react'
-import { isUnplacedRect, ReactiveDomReact } from '../utils/layouts'
-import usePrevious from '../utils/use-previous'
-import useTheme from '../use-theme'
-import useClasses from '../use-classes'
+'use client';
+import React, { useMemo, useRef } from 'react';
+import { isUnplacedRect, ReactiveDomReact } from '../utils/layouts';
+import usePrevious from '../utils/use-previous';
+import useTheme from '../use-theme';
+import useClasses from '../use-classes';
 
 type Props = {
-  rect: ReactiveDomReact
-  visible?: boolean
-  hoverHeightRatio?: number
-  radius?: number
-  hoverWidthRatio?: number
-  activeOpacity?: number
-  background?: string
-}
+  rect: ReactiveDomReact;
+  visible?: boolean;
+  hoverHeightRatio?: number;
+  radius?: number;
+  hoverWidthRatio?: number;
+  activeOpacity?: number;
+  background?: string;
+};
 
 type HighlightPosition = {
-  width: string
-  left: string
-  height: string
-  top: string
-  transition: string
-}
+  width: string;
+  left: string;
+  height: string;
+  top: string;
+  transition: string;
+};
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>
-export type HighlightProps = Props & NativeAttrs
+type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+export type HighlightProps = Props & NativeAttrs;
 
 const Highlight: React.FC<HighlightProps> = ({
   rect,
@@ -37,20 +37,20 @@ const Highlight: React.FC<HighlightProps> = ({
   background,
   ...props
 }) => {
-  const theme = useTheme()
-  const ref = useRef<HTMLDivElement | null>(null)
-  const isFirstVisible = usePrevious<boolean>(isUnplacedRect(rect))
+  const theme = useTheme();
+  const ref = useRef<HTMLDivElement | null>(null);
+  const isFirstVisible = usePrevious<boolean>(isUnplacedRect(rect));
   const position = useMemo<HighlightPosition>(() => {
-    const width = rect.width * hoverWidthRatio
-    const height = rect.height * hoverHeightRatio
+    const width = rect.width * hoverWidthRatio;
+    const height = rect.height * hoverHeightRatio;
     return {
       width: `${width}px`,
       left: `${rect.left + (rect.width - width) / 2}px`,
       height: `${height}px`,
       top: `${rect.elementTop + (rect.height - height) / 2}px`,
       transition: isFirstVisible ? 'opacity' : 'opacity, width, left, top',
-    }
-  }, [rect, hoverWidthRatio, hoverHeightRatio])
+    };
+  }, [rect, hoverWidthRatio, hoverHeightRatio]);
 
   return (
     <div ref={ref} className={useClasses('highlight', className)} {...props}>
@@ -69,7 +69,7 @@ const Highlight: React.FC<HighlightProps> = ({
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-export default Highlight
+export default Highlight;

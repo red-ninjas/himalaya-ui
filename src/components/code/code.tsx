@@ -1,18 +1,18 @@
-'use client'
-import React, { useMemo } from 'react'
-import useScale, { withScale } from '../use-scale'
-import useTheme from '../use-theme'
-import { addColorAlpha } from '../utils/color'
+'use client';
+import React, { useMemo } from 'react';
+import useScale, { withScale } from '../use-scale';
+import useTheme from '../use-theme';
+import { addColorAlpha } from '../utils/color';
 
 interface Props {
-  block?: boolean
-  className?: string
-  name?: string
-  classic?: boolean
+  block?: boolean;
+  className?: string;
+  name?: string;
+  classic?: boolean;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>
-export type CodeProps = Props & NativeAttrs
+type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+export type CodeProps = Props & NativeAttrs;
 
 const CodeComponent: React.FC<React.PropsWithChildren<CodeProps>> = ({
   children,
@@ -22,21 +22,21 @@ const CodeComponent: React.FC<React.PropsWithChildren<CodeProps>> = ({
   classic = false,
   ...props
 }: React.PropsWithChildren<CodeProps>) => {
-  const { SCALES } = useScale()
-  const theme = useTheme()
+  const { SCALES } = useScale();
+  const theme = useTheme();
   const { background, border } = useMemo(() => {
     if (!classic)
       return {
         border: theme.palette.accents_1,
         background: addColorAlpha(theme.palette.accents_1, 0.75),
-      }
+      };
     return {
       border: theme.palette.border,
       background: theme.palette.background,
-    }
-  }, [classic, theme.palette])
+    };
+  }, [classic, theme.palette]);
 
-  if (!block) return <code {...props}>{children}</code>
+  if (!block) return <code {...props}>{children}</code>;
 
   return (
     <div className="pre">
@@ -99,9 +99,9 @@ const CodeComponent: React.FC<React.PropsWithChildren<CodeProps>> = ({
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-CodeComponent.displayName = 'HimalayaCode'
-const Code = withScale(CodeComponent)
-export default Code
+CodeComponent.displayName = 'HimalayaCode';
+const Code = withScale(CodeComponent);
+export default Code;

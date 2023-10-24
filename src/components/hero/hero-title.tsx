@@ -1,11 +1,11 @@
-'use client'
+'use client';
 
-import useScale, { withScale } from '../use-scale'
-import { PropsWithChildren } from 'react'
-import Text from '../text'
+import useScale, { withScale } from '../use-scale';
+import { PropsWithChildren } from 'react';
+import Text from '../text';
 
 const HeroTitle: React.FC<PropsWithChildren> = ({ ...props }) => {
-  const { SCALES } = useScale()
+  const { SCALES } = useScale();
   return (
     <Text
       h1
@@ -16,8 +16,8 @@ const HeroTitle: React.FC<PropsWithChildren> = ({ ...props }) => {
     >
       {props.children}
     </Text>
-  )
-}
+  );
+};
 
-HeroTitle.displayName = 'HimalayaHeroTitle'
-export default withScale(HeroTitle)
+HeroTitle.displayName = 'HimalayaHeroTitle';
+export default withScale(HeroTitle);

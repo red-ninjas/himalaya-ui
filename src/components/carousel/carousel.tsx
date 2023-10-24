@@ -1,17 +1,17 @@
-'use client'
+'use client';
 
-import { ArrowLeft, ArrowRight } from '../icons'
-import { Splide as SplideCore } from '@splidejs/splide'
-import React, { useEffect, useLayoutEffect } from 'react'
-import { SliderOptions, SplideProps } from '.'
-import useScale, { withScale } from '../use-scale'
-import { pickChild } from '../utils/collections'
-import { CarouselItem } from './carousel-item'
-import CarouseStyles from './carousel-styles'
-import { CarouselTrack } from './carousel-track'
-import { EVENTS } from './constants/events'
-import { classNames, merge } from './utils'
-import { omit } from 'lodash'
+import { ArrowLeft, ArrowRight } from '../icons';
+import { Splide as SplideCore } from '@splidejs/splide';
+import React, { useEffect, useLayoutEffect } from 'react';
+import { SliderOptions, SplideProps } from '.';
+import useScale, { withScale } from '../use-scale';
+import { pickChild } from '../utils/collections';
+import { CarouselItem } from './carousel-item';
+import CarouseStyles from './carousel-styles';
+import { CarouselTrack } from './carousel-track';
+import { EVENTS } from './constants/events';
+import { classNames, merge } from './utils';
+import { omit } from 'lodash';
 
 const classOverride = {
   arrows: 'carousel_arrows',
@@ -21,7 +21,7 @@ const classOverride = {
 
   pagination: 'splide__pagination',
   page: 'splide__pagination_item',
-}
+};
 
 const CarouselComponent: React.FC<React.PropsWithChildren<SplideProps>> = ({
   children,
@@ -32,72 +32,72 @@ const CarouselComponent: React.FC<React.PropsWithChildren<SplideProps>> = ({
   arrowSize = 38,
   ...props
 }) => {
-  const { SCALES } = useScale()
-  const splideRef = React.createRef<HTMLDivElement>()
-  const [, slides] = pickChild(children, CarouselItem)
-  let splide: SplideCore | undefined = undefined
+  const { SCALES } = useScale();
+  const splideRef = React.createRef<HTMLDivElement>();
+  const [, slides] = pickChild(children, CarouselItem);
+  let splide: SplideCore | undefined = undefined;
 
   const cleanUp = () => {
     if (splide) {
-      splide.destroy()
-      splide = undefined
+      splide.destroy();
+      splide = undefined;
     }
-  }
+  };
 
   const init = () => {
     if (splideRef && splideRef.current) {
-      cleanUp()
+      cleanUp();
 
       const overrideOptions: SliderOptions = merge(
         { classes: classOverride },
         options || {},
-      )
-      splide = new SplideCore(splideRef.current, overrideOptions)
-      bind()
-      splide.mount(extensions, transition)
+      );
+      splide = new SplideCore(splideRef.current, overrideOptions);
+      bind();
+      splide.mount(extensions, transition);
     }
-  }
+  };
 
   const bind = () => {
     EVENTS.forEach(([event, name]) => {
       if (typeof name === 'string') {
-        const handler = props[name]
+        const handler = props[name];
 
         if (typeof handler === 'function' && splide) {
           splide.on(event, (...args: any[]) => {
             if (splide) {
-              handler(splide, ...args)
+              handler(splide, ...args);
             }
-          })
+          });
         }
       }
-    })
-  }
+    });
+  };
 
   useEffect(() => {
-    init()
+    init();
     return () => {
-      cleanUp()
-    }
-  }, [])
+      cleanUp();
+    };
+  }, []);
 
   useEffect(() => {
     if (splide) {
       const overrideOptions: SliderOptions = merge(
         { classes: classOverride },
         options || {},
-      )
-      splide.options = overrideOptions
+      );
+      splide.options = overrideOptions;
     }
-  }, [options])
+  }, [options]);
 
   useLayoutEffect(() => {
     if (splide) {
-      splide.refresh()
+      splide.refresh();
     }
-  }, [slides])
+  }, [slides]);
 
-  const htmlOps = omit(props, [...EVENTS.map(event => event[1])])
+  const htmlOps = omit(props, [...EVENTS.map(event => event[1])]);
 
   return (
     <CarouseStyles arrowSize={arrowSize}>
@@ -129,9 +129,9 @@ const CarouselComponent: React.FC<React.PropsWithChildren<SplideProps>> = ({
         }
       `}</style>
     </CarouseStyles>
-  )
-}
+  );
+};
 
-CarouselComponent.displayName = 'HimalayaCarousel'
-const Carousel = withScale(CarouselComponent)
-export default Carousel
+CarouselComponent.displayName = 'HimalayaCarousel';
+const Carousel = withScale(CarouselComponent);
+export default Carousel;

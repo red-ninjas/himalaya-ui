@@ -1,17 +1,17 @@
-'use client'
-import { useRouter } from 'next/navigation'
-import React, { useEffect, useRef, useState } from 'react'
-import Divider from '../divider'
-import Input from '../input'
-import Modal from '../modal'
-import useCurrentState from '../use-current-state'
-import useInput from '../use-input'
-import useKeyboard, { KeyCode } from '../use-keyboard'
-import useModal from '../use-modal'
-import useTheme from '../use-theme'
-import { SearchProps, SearchResults } from './utils'
-import SearchItems, { SearchItemsRef } from './search-items'
-import useSearch from '../use-search'
+'use client';
+import { useRouter } from 'next/navigation';
+import React, { useEffect, useRef, useState } from 'react';
+import Divider from '../divider';
+import Input from '../input';
+import Modal from '../modal';
+import useCurrentState from '../use-current-state';
+import useInput from '../use-input';
+import useKeyboard, { KeyCode } from '../use-keyboard';
+import useModal from '../use-modal';
+import useTheme from '../use-theme';
+import { SearchProps, SearchResults } from './utils';
+import SearchItems, { SearchItemsRef } from './search-items';
+import useSearch from '../use-search';
 
 const focusNextElement = (
   containerElement: HTMLElement | null,
@@ -19,30 +19,30 @@ const focusNextElement = (
   isBack?: boolean,
 ) => {
   const focusTo = (child?: HTMLElement) => {
-    if (child?.tagName !== 'BUTTON') return
-    done()
-    ;(child as HTMLButtonElement)?.focus()
-  }
+    if (child?.tagName !== 'BUTTON') return;
+    done();
+    (child as HTMLButtonElement)?.focus();
+  };
 
-  if (!containerElement) return
-  const children = Array.from(containerElement.querySelectorAll('button'))
-  if (children.length === 0) return
+  if (!containerElement) return;
+  const children = Array.from(containerElement.querySelectorAll('button'));
+  if (children.length === 0) return;
 
-  const index = children.findIndex(child => child === document.activeElement)
+  const index = children.findIndex(child => child === document.activeElement);
 
   if (index === -1) {
-    if (isBack) return
-    return focusTo(children[0])
+    if (isBack) return;
+    return focusTo(children[0]);
   }
 
   if (isBack) {
-    if (index - 1 < 0) return focusTo(children[children.length - 1])
-    return focusTo(children[index - 1])
+    if (index - 1 < 0) return focusTo(children[children.length - 1]);
+    return focusTo(children[index - 1]);
   }
 
-  if (index + 2 > children.length) return focusTo(children[0])
-  focusTo(children[index + 1])
-}
+  if (index + 2 > children.length) return focusTo(children[0]);
+  focusTo(children[index + 1]);
+};
 
 const Search: React.FC<SearchProps> = ({
   searchFunction,
@@ -50,114 +50,115 @@ const Search: React.FC<SearchProps> = ({
   placeholder,
   onClose,
 }) => {
-  const theme = useTheme()
-  const router = useRouter()
-  const { isEnabled, setIsEnabled } = useSearch()
-  const [preventHover, setPreventHover, preventHoverRef] = useCurrentState<boolean>(false)
-  const ref = useRef<HTMLInputElement | null>(null)
-  const itemsRef = useRef<SearchItemsRef | null>(null)
-  const [results, setResults] = useState<SearchResults>([])
-  const { bindings, setVisible, visible } = useModal(visibile)
-  const { bindings: inputBindings, setState: setInput, state: input } = useInput('')
+  const theme = useTheme();
+  const router = useRouter();
+  const { isEnabled, setIsEnabled } = useSearch();
+  const [preventHover, setPreventHover, preventHoverRef] =
+    useCurrentState<boolean>(false);
+  const ref = useRef<HTMLInputElement | null>(null);
+  const itemsRef = useRef<SearchItemsRef | null>(null);
+  const [results, setResults] = useState<SearchResults>([]);
+  const { bindings, setVisible, visible } = useModal(visibile);
+  const { bindings: inputBindings, setState: setInput, state: input } = useInput('');
 
   const activateSearch = (enabled: boolean) => {
-    setVisible(enabled)
+    setVisible(enabled);
     if (enabled) {
       const timer = setTimeout(() => {
-        ref.current?.focus()
-        window.clearTimeout(timer)
-      }, 100)
+        ref.current?.focus();
+        window.clearTimeout(timer);
+      }, 100);
     }
-  }
+  };
 
   const cleanAfterModalClose = () => {
-    activateSearch(false)
-    setIsEnabled(false)
+    activateSearch(false);
+    setIsEnabled(false);
 
     if (onClose) {
-      onClose()
+      onClose();
     }
     const timer = window.setTimeout(() => {
-      setResults([])
-      setInput('')
-      itemsRef.current?.scrollTo(0, 0)
-      setPreventHover(true)
-      window.clearTimeout(timer)
-    }, 400)
-  }
+      setResults([]);
+      setInput('');
+      itemsRef.current?.scrollTo(0, 0);
+      setPreventHover(true);
+      window.clearTimeout(timer);
+    }, 400);
+  };
 
   useEffect(() => {
-    activateSearch(isEnabled)
-  }, [isEnabled])
+    activateSearch(isEnabled);
+  }, [isEnabled]);
 
   useEffect(() => {
-    activateSearch(visibile)
-    setIsEnabled(visibile)
-  }, [visibile])
+    activateSearch(visibile);
+    setIsEnabled(visibile);
+  }, [visibile]);
 
   useEffect(() => {
-    if (!input) return setResults([])
+    if (!input) return setResults([]);
     // declare the data fetching function
     const fetchData = async () => {
       if (searchFunction == undefined) {
-        return []
+        return [];
       }
-      const data = await searchFunction(input)
-      setResults(data)
-      setPreventHover(true)
+      const data = await searchFunction(input);
+      setResults(data);
+      setPreventHover(true);
 
-      itemsRef.current?.scrollTo(0, 0)
-      return data
-    }
+      itemsRef.current?.scrollTo(0, 0);
+      return data;
+    };
 
-    fetchData().catch(console.error)
-  }, [input])
+    fetchData().catch(console.error);
+  }, [input]);
 
   useEffect(() => {
-    if (visible) return
-    cleanAfterModalClose()
-  }, [visible])
+    if (visible) return;
+    cleanAfterModalClose();
+  }, [visible]);
 
   useEffect(() => {
     const eventHandler = () => {
-      if (!preventHoverRef.current) return
-      setPreventHover(false)
-    }
-    document.addEventListener('mousemove', eventHandler)
+      if (!preventHoverRef.current) return;
+      setPreventHover(false);
+    };
+    document.addEventListener('mousemove', eventHandler);
     return () => {
-      document.removeEventListener('mousemove', eventHandler)
-    }
-  }, [])
+      document.removeEventListener('mousemove', eventHandler);
+    };
+  }, []);
 
   const selectHandler = (url: string) => {
-    activateSearch(false)
-    setIsEnabled(false)
+    activateSearch(false);
+    setIsEnabled(false);
 
     if (onClose) {
-      onClose()
+      onClose();
     }
     if (url.startsWith('http')) {
-      return window.open(url)
+      return window.open(url);
     }
-    router.push(url)
-  }
+    router.push(url);
+  };
 
   const { bindings: KeyBindings } = useKeyboard(
     event => {
-      const isBack = event.keyCode === KeyCode.UpArrow
+      const isBack = event.keyCode === KeyCode.UpArrow;
       focusNextElement(
         itemsRef.current,
         () => {
-          setPreventHover(true)
+          setPreventHover(true);
         },
         isBack,
-      )
+      );
     },
     [KeyCode.DownArrow, KeyCode.UpArrow],
     {
       disableGlobalEvent: true,
     },
-  )
+  );
 
   return (
     <div className="container" {...KeyBindings}>
@@ -167,7 +168,8 @@ const Search: React.FC<SearchProps> = ({
         px={0.75}
         wrapClassName="search-menu"
         backdropClassName="bg-drop"
-        positionClassName="search-position">
+        positionClassName="search-position"
+      >
         <Input
           ref={ref}
           w="100%"
@@ -242,7 +244,7 @@ const Search: React.FC<SearchProps> = ({
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-export default Search
+export default Search;

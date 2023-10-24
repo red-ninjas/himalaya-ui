@@ -1,12 +1,12 @@
-import { UIThemesPalette } from '../themes/presets'
-import { QuickActionTypes, SnippetTypes } from '../utils/prop-types'
+import { UIThemesPalette } from '../themes/presets';
+import { QuickActionTypes, SnippetTypes } from '../utils/prop-types';
 
 export type QuickBarColors = {
-  bgColor: string
-  color: string
-  colorHover: string
-  bgColorHover: string
-}
+  bgColor: string;
+  color: string;
+  colorHover: string;
+  bgColorHover: string;
+};
 
 export const getColors = (
   type: SnippetTypes,
@@ -20,7 +20,7 @@ export const getColors = (
     error: palette.error,
     dark: palette.foreground,
     lite: 'transparent',
-  }
+  };
 
   const hoverColors: Record<QuickActionTypes, string> = {
     default: palette.accents_3,
@@ -30,7 +30,7 @@ export const getColors = (
     error: palette.errorLight,
     dark: palette.accents_7,
     lite: palette.accents_3,
-  }
+  };
 
   const textColors: Record<QuickActionTypes, string> = {
     default: palette.accents_6,
@@ -40,7 +40,7 @@ export const getColors = (
     error: palette.errorLighter,
     dark: palette.background,
     lite: palette.accents_6,
-  }
+  };
 
   const textColorsHover: Record<QuickActionTypes, string> = {
     default: palette.accents_7,
@@ -50,12 +50,12 @@ export const getColors = (
     error: palette.foreground,
     dark: palette.foreground,
     lite: '#fff',
-  }
+  };
 
   return {
     color: textColors[type],
     colorHover: textColorsHover[type],
     bgColor: colors[type],
     bgColorHover: hoverColors[type],
-  }
-}
+  };
+};

@@ -1,11 +1,11 @@
-import React from 'react'
-import useTheme from '../use-theme'
+import React from 'react';
+import useTheme from '../use-theme';
 
 export interface TreeStatusIconProps {
-  color?: string
-  width?: number
-  height?: number
-  active?: boolean
+  color?: string;
+  width?: number;
+  height?: number;
+  active?: boolean;
 }
 
 const TreeStatusIcon: React.FC<TreeStatusIconProps> = ({
@@ -14,7 +14,7 @@ const TreeStatusIcon: React.FC<TreeStatusIconProps> = ({
   height = 12,
   active = false,
 }: TreeStatusIconProps) => {
-  const theme = useTheme()
+  const theme = useTheme();
   return (
     <svg
       viewBox="0 0 24 24"
@@ -37,8 +37,8 @@ const TreeStatusIcon: React.FC<TreeStatusIconProps> = ({
         }
       `}</style>
     </svg>
-  )
-}
+  );
+};
 
-TreeStatusIcon.displayName = 'HimalayaTreeStatusIcon'
-export default TreeStatusIcon
+TreeStatusIcon.displayName = 'HimalayaTreeStatusIcon';
+export default TreeStatusIcon;

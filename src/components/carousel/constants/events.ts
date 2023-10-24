@@ -28,8 +28,8 @@ import {
   EVENT_UPDATED,
   EVENT_VISIBLE,
   EventMap,
-} from '@splidejs/splide'
-import { SplideEventHandlerMap } from '../../utils/types'
+} from '@splidejs/splide';
+import { SplideEventHandlerMap } from '../../utils/types';
 
 export const EVENTS: Array<[keyof EventMap, keyof SplideEventHandlerMap]> = [
   [EVENT_MOUNTED, 'onMounted'],
@@ -60,4 +60,4 @@ export const EVENTS: Array<[keyof EventMap, keyof SplideEventHandlerMap]> = [
   [EVENT_AUTOPLAY_PLAYING, 'onAutoplayPlaying'],
   [EVENT_AUTOPLAY_PAUSE, 'onAutoplayPause'],
   [EVENT_LAZYLOAD_LOADED, 'onLazyLoadLoaded'],
-]
+];

@@ -1,45 +1,45 @@
-'use client'
+'use client';
 
-import React, { useMemo } from 'react'
-import useTheme from '../use-theme'
-import { ButtonTypes } from '../utils/prop-types'
-import { ButtonGroupContext, ButtonGroupConfig } from './button-group-context'
-import { UIThemesPalette } from '../themes/presets'
-import useScale, { withScale } from '../use-scale'
-import useClasses from '../use-classes'
+import React, { useMemo } from 'react';
+import useTheme from '../use-theme';
+import { ButtonTypes } from '../utils/prop-types';
+import { ButtonGroupContext, ButtonGroupConfig } from './button-group-context';
+import { UIThemesPalette } from '../themes/presets';
+import useScale, { withScale } from '../use-scale';
+import useClasses from '../use-classes';
 
 interface Props {
-  disabled?: boolean
-  vertical?: boolean
-  ghost?: boolean
-  type?: ButtonTypes
-  className?: string
+  disabled?: boolean;
+  vertical?: boolean;
+  ghost?: boolean;
+  type?: ButtonTypes;
+  className?: string;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>
-export type ButtonGroupProps = Props & NativeAttrs
+type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+export type ButtonGroupProps = Props & NativeAttrs;
 
 const getGroupBorderColors = (
   palette: UIThemesPalette,
   props: ButtonGroupProps,
 ): string => {
-  const { ghost = false, type = 'default' as ButtonTypes } = props
-  if (!ghost && type !== 'default') return palette.background
+  const { ghost = false, type = 'default' as ButtonTypes } = props;
+  if (!ghost && type !== 'default') return palette.background;
   const colors: { [key in ButtonTypes]?: string } = {
     default: palette.border,
     success: palette.success,
     secondary: palette.secondary,
     error: palette.error,
     warning: palette.warning,
-  }
-  return colors.default as string
-}
+  };
+  return colors.default as string;
+};
 
 const ButtonGroupComponent: React.FC<React.PropsWithChildren<ButtonGroupProps>> = (
   groupProps: ButtonGroupProps,
 ) => {
-  const theme = useTheme()
-  const { SCALES } = useScale()
+  const theme = useTheme();
+  const { SCALES } = useScale();
   const {
     disabled = false,
     type = 'default' as ButtonTypes,
@@ -48,7 +48,7 @@ const ButtonGroupComponent: React.FC<React.PropsWithChildren<ButtonGroupProps>> 
     children,
     className = '',
     ...props
-  } = groupProps
+  } = groupProps;
   const initialValue = useMemo<ButtonGroupConfig>(
     () => ({
       disabled,
@@ -57,10 +57,10 @@ const ButtonGroupComponent: React.FC<React.PropsWithChildren<ButtonGroupProps>> 
       isButtonGroup: true,
     }),
     [disabled, type],
-  )
+  );
   const border = useMemo(() => {
-    return getGroupBorderColors(theme.palette, groupProps)
-  }, [theme, type, disabled, ghost])
+    return getGroupBorderColors(theme.palette, groupProps);
+  }, [theme, type, disabled, ghost]);
   const classes = useClasses(
     'btn-group',
     {
@@ -68,7 +68,7 @@ const ButtonGroupComponent: React.FC<React.PropsWithChildren<ButtonGroupProps>> 
       horizontal: !vertical,
     },
     className,
-  )
+  );
 
   return (
     <ButtonGroupContext.Provider value={initialValue}>
@@ -117,9 +117,9 @@ const ButtonGroupComponent: React.FC<React.PropsWithChildren<ButtonGroupProps>> 
         `}</style>
       </div>
     </ButtonGroupContext.Provider>
-  )
-}
+  );
+};
 
-ButtonGroupComponent.displayName = 'HimalayaButtonGroup'
-const ButtonGroup = withScale(ButtonGroupComponent)
-export default ButtonGroup
+ButtonGroupComponent.displayName = 'HimalayaButtonGroup';
+const ButtonGroup = withScale(ButtonGroupComponent);
+export default ButtonGroup;

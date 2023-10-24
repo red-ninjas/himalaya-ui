@@ -1,22 +1,22 @@
-'use client'
+'use client';
 
-import React from 'react'
-import useTheme from '../use-theme'
-import useScale, { withScale } from '../use-scale'
-import useLayout from '../use-layout'
+import React from 'react';
+import useTheme from '../use-theme';
+import useScale, { withScale } from '../use-scale';
+import useLayout from '../use-layout';
 
 interface Props {
-  className?: string
+  className?: string;
 }
 
-export type AutoCompleteSearchProps = Props & React.HTMLAttributes<any>
+export type AutoCompleteSearchProps = Props & React.HTMLAttributes<any>;
 
 const AutoCompleteSearchComponent: React.FC<
   React.PropsWithChildren<AutoCompleteSearchProps>
 > = ({ children, className = '' }: React.PropsWithChildren<AutoCompleteSearchProps>) => {
-  const theme = useTheme()
-  const layout = useLayout()
-  const { SCALES } = useScale()
+  const theme = useTheme();
+  const layout = useLayout();
+  const { SCALES } = useScale();
 
   return (
     <div className={className}>
@@ -45,10 +45,10 @@ const AutoCompleteSearchComponent: React.FC<
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-AutoCompleteSearchComponent.displayName = 'HimalayaAutoCompleteSearch'
-const AutoCompleteSearch = withScale(AutoCompleteSearchComponent)
+AutoCompleteSearchComponent.displayName = 'HimalayaAutoCompleteSearch';
+const AutoCompleteSearch = withScale(AutoCompleteSearchComponent);
 
-export default AutoCompleteSearch
+export default AutoCompleteSearch;

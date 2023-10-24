@@ -1,22 +1,22 @@
-import { ensureNotNull } from '../../helpers/assertions'
+import { ensureNotNull } from '../../helpers/assertions';
 
-import { BarPrice } from '../../model/bar'
-import { ISeriesBarColorer } from '../../model/series-bar-colorer'
-import { TimePointIndex } from '../../model/time-data'
+import { BarPrice } from '../../model/bar';
+import { ISeriesBarColorer } from '../../model/series-bar-colorer';
+import { TimePointIndex } from '../../model/time-data';
 import {
   HistogramItem,
   PaneRendererHistogram,
   PaneRendererHistogramData,
-} from '../../renderers/histogram-renderer'
+} from '../../renderers/histogram-renderer';
 
-import { LinePaneViewBase } from './line-pane-view-base'
+import { LinePaneViewBase } from './line-pane-view-base';
 
 export class SeriesHistogramPaneView extends LinePaneViewBase<
   'Histogram',
   HistogramItem,
   PaneRendererHistogram
 > {
-  protected readonly _renderer: PaneRendererHistogram = new PaneRendererHistogram()
+  protected readonly _renderer: PaneRendererHistogram = new PaneRendererHistogram();
 
   protected _createRawItem(
     time: TimePointIndex,
@@ -26,7 +26,7 @@ export class SeriesHistogramPaneView extends LinePaneViewBase<
     return {
       ...this._createRawItemBase(time, price),
       ...colorer.barStyle(time),
-    }
+    };
   }
 
   protected _prepareRendererData(): void {
@@ -40,8 +40,8 @@ export class SeriesHistogramPaneView extends LinePaneViewBase<
           this._series.options().base,
           ensureNotNull(this._series.firstValue()).value,
         ),
-    }
+    };
 
-    this._renderer.setData(data)
+    this._renderer.setData(data);
   }
 }

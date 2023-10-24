@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 const SelectIconComponent: React.FC<unknown> = () => {
   return (
@@ -21,9 +21,9 @@ const SelectIconComponent: React.FC<unknown> = () => {
         }
       `}</style>
     </svg>
-  )
-}
+  );
+};
 
-SelectIconComponent.displayName = 'HimalayaSelectIcon'
-const SelectIcon = React.memo(SelectIconComponent)
-export default SelectIcon
+SelectIconComponent.displayName = 'HimalayaSelectIcon';
+const SelectIcon = React.memo(SelectIconComponent);
+export default SelectIcon;

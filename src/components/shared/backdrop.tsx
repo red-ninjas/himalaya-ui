@@ -1,23 +1,23 @@
-import React, { MouseEvent } from 'react'
-import useTheme from '../use-theme'
-import CssTransition from './css-transition'
-import useCurrentState from '../utils/use-current-state'
-import useClasses from '../use-classes'
+import React, { MouseEvent } from 'react';
+import useTheme from '../use-theme';
+import CssTransition from './css-transition';
+import useCurrentState from '../utils/use-current-state';
+import useClasses from '../use-classes';
 
 interface Props {
-  onClick?: (event: MouseEvent<HTMLElement>) => void
-  visible?: boolean
-  width?: string
-  onContentClick?: (event: MouseEvent<HTMLElement>) => void
-  backdropClassName?: string
-  positionClassName?: string
-  layerClassName?: string
-  background?: string
-  transitionTime?: number
+  onClick?: (event: MouseEvent<HTMLElement>) => void;
+  visible?: boolean;
+  width?: string;
+  onContentClick?: (event: MouseEvent<HTMLElement>) => void;
+  backdropClassName?: string;
+  positionClassName?: string;
+  layerClassName?: string;
+  background?: string;
+  transitionTime?: number;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>
-export type BackdropProps = Props & NativeAttrs
+type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+export type BackdropProps = Props & NativeAttrs;
 
 const Backdrop: React.FC<React.PropsWithChildren<BackdropProps>> = React.memo(
   ({
@@ -33,19 +33,19 @@ const Backdrop: React.FC<React.PropsWithChildren<BackdropProps>> = React.memo(
     transitionTime = 150,
     ...props
   }: React.PropsWithChildren<BackdropProps>) => {
-    const theme = useTheme()
-    const [, setIsContentMouseDown, IsContentMouseDownRef] = useCurrentState(false)
+    const theme = useTheme();
+    const [, setIsContentMouseDown, IsContentMouseDownRef] = useCurrentState(false);
     const clickHandler = (event: MouseEvent<HTMLElement>) => {
-      if (IsContentMouseDownRef.current) return
-      onClick && onClick(event)
-    }
+      if (IsContentMouseDownRef.current) return;
+      onClick && onClick(event);
+    };
     const mouseUpHandler = () => {
-      if (!IsContentMouseDownRef.current) return
+      if (!IsContentMouseDownRef.current) return;
       const timer = setTimeout(() => {
-        setIsContentMouseDown(false)
-        clearTimeout(timer)
-      }, 0)
-    }
+        setIsContentMouseDown(false);
+        clearTimeout(timer);
+      }, 0);
+    };
 
     return (
       <CssTransition name="backdrop-wrapper" visible={visible} clearTime={300}>
@@ -122,9 +122,9 @@ const Backdrop: React.FC<React.PropsWithChildren<BackdropProps>> = React.memo(
           `}</style>
         </div>
       </CssTransition>
-    )
+    );
   },
-)
+);
 
-Backdrop.displayName = 'HimalayaBackdrop'
-export default Backdrop
+Backdrop.displayName = 'HimalayaBackdrop';
+export default Backdrop;

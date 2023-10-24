@@ -1,12 +1,12 @@
-'use client'
+'use client';
 
-import React from 'react'
-import useTheme from '../use-theme'
-import useLayout from '../use-layout'
+import React from 'react';
+import useTheme from '../use-theme';
+import useLayout from '../use-layout';
 
 const CssBaseline: React.FC = () => {
-  const theme = useTheme()
-  const layout = useLayout()
+  const theme = useTheme();
+  const layout = useLayout();
 
   return (
     <style jsx global>{`
@@ -365,7 +365,7 @@ const CssBaseline: React.FC = () => {
         }
       }
     `}</style>
-  )
-}
+  );
+};
 
-export default CssBaseline
+export default CssBaseline;

@@ -1,26 +1,26 @@
-'use client'
-import React, { useMemo } from 'react'
-import useTheme from '../use-theme'
-import { useProportions } from '../utils/calculations'
-import { UIThemesPalette } from '../themes/presets'
-import useScale, { withScale } from '../use-scale'
-import useClasses from '../use-classes'
+'use client';
+import React, { useMemo } from 'react';
+import useTheme from '../use-theme';
+import { useProportions } from '../utils/calculations';
+import { UIThemesPalette } from '../themes/presets';
+import useScale, { withScale } from '../use-scale';
+import useClasses from '../use-classes';
 
 interface Props {
-  value?: number
-  limit?: number
-  color?: string
-  className?: string
+  value?: number;
+  limit?: number;
+  color?: string;
+  className?: string;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>
-export type CapacityProps = Props & NativeAttrs
+type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+export type CapacityProps = Props & NativeAttrs;
 
 const getColor = (val: number, palette: UIThemesPalette): string => {
-  if (val < 33) return palette.cyan
-  if (val < 66) return palette.warning
-  return palette.errorDark
-}
+  if (val < 33) return palette.cyan;
+  if (val < 66) return palette.warning;
+  return palette.errorDark;
+};
 
 const CapacityComponent: React.FC<CapacityProps> = ({
   value = 0,
@@ -29,14 +29,14 @@ const CapacityComponent: React.FC<CapacityProps> = ({
   className = '',
   ...props
 }: CapacityProps) => {
-  const theme = useTheme()
-  const { SCALES } = useScale()
-  const percentValue = useProportions(value, limit)
-  const classes = useClasses('capacity', className)
+  const theme = useTheme();
+  const { SCALES } = useScale();
+  const percentValue = useProportions(value, limit);
+  const classes = useClasses('capacity', className);
   const color = useMemo(() => {
-    if (userColor && userColor !== '') return userColor
-    return getColor(percentValue, theme.palette)
-  }, [userColor, percentValue, theme.palette])
+    if (userColor && userColor !== '') return userColor;
+    return getColor(percentValue, theme.palette);
+  }, [userColor, percentValue, theme.palette]);
 
   return (
     <div className={classes} title={`${percentValue}%`} {...props}>
@@ -62,9 +62,9 @@ const CapacityComponent: React.FC<CapacityProps> = ({
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-CapacityComponent.displayName = 'HimalayaCapacity'
-const Capacity = withScale(CapacityComponent)
-export default Capacity
+CapacityComponent.displayName = 'HimalayaCapacity';
+const Capacity = withScale(CapacityComponent);
+export default Capacity;

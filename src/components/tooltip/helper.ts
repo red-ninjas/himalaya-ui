@@ -1,12 +1,12 @@
-import { MutableRefObject } from 'react'
+import { MutableRefObject } from 'react';
 
 export interface ReactiveDomReact {
-  top: number
-  bottom: number
-  left: number
-  right: number
-  width: number
-  height: number
+  top: number;
+  bottom: number;
+  left: number;
+  right: number;
+  width: number;
+  height: number;
 }
 
 const defaultRect: ReactiveDomReact = {
@@ -16,11 +16,11 @@ const defaultRect: ReactiveDomReact = {
   bottom: -1000,
   width: 0,
   height: 0,
-}
+};
 
 export const getRect = (ref: MutableRefObject<HTMLElement | null>): ReactiveDomReact => {
-  if (!ref || !ref.current) return defaultRect
-  const rect = ref.current.getBoundingClientRect()
+  if (!ref || !ref.current) return defaultRect;
+  const rect = ref.current.getBoundingClientRect();
   return {
     ...rect,
     width: rect.width || rect.right - rect.left,
@@ -29,5 +29,5 @@ export const getRect = (ref: MutableRefObject<HTMLElement | null>): ReactiveDomR
     bottom: rect.bottom + document.documentElement.scrollTop,
     left: rect.left + document.documentElement.scrollLeft,
     right: rect.right + document.documentElement.scrollLeft,
-  }
-}
+  };
+};

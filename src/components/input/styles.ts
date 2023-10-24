@@ -1,11 +1,11 @@
-import { NormalTypes } from '../utils/prop-types'
-import { UIThemesPalette } from '../themes/presets'
+import { NormalTypes } from '../utils/prop-types';
+import { UIThemesPalette } from '../themes/presets';
 
 export type InputColor = {
-  color: string
-  borderColor: string
-  hoverBorder: string
-}
+  color: string;
+  borderColor: string;
+  hoverBorder: string;
+};
 
 export const getColors = (palette: UIThemesPalette, status?: NormalTypes): InputColor => {
   const colors: { [key in NormalTypes]: InputColor } = {
@@ -34,8 +34,8 @@ export const getColors = (palette: UIThemesPalette, status?: NormalTypes): Input
       borderColor: palette.error,
       hoverBorder: palette.errorDark,
     },
-  }
+  };
 
-  if (!status) return colors.default
-  return colors[status]
-}
+  if (!status) return colors.default;
+  return colors[status];
+};

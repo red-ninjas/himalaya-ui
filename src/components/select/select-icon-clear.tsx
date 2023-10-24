@@ -1,18 +1,18 @@
-import React from 'react'
-import useTheme from '../use-theme'
+import React from 'react';
+import useTheme from '../use-theme';
 
 interface Props {
-  onClick?: (event: React.MouseEvent<HTMLDivElement>) => void
+  onClick?: (event: React.MouseEvent<HTMLDivElement>) => void;
 }
 
 const SelectIconClear: React.FC<Props> = ({ onClick }) => {
-  const theme = useTheme()
+  const theme = useTheme();
   const clickHandler = (event: React.MouseEvent<HTMLDivElement>) => {
-    event.preventDefault()
-    event.stopPropagation()
-    event.nativeEvent.stopImmediatePropagation()
-    onClick && onClick(event)
-  }
+    event.preventDefault();
+    event.stopPropagation();
+    event.nativeEvent.stopImmediatePropagation();
+    onClick && onClick(event);
+  };
   return (
     <div onClick={clickHandler} className="clear-icon">
       <svg
@@ -54,9 +54,9 @@ const SelectIconClear: React.FC<Props> = ({ onClick }) => {
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-const MemoSelectIconClear = React.memo(SelectIconClear)
+const MemoSelectIconClear = React.memo(SelectIconClear);
 
-export default MemoSelectIconClear
+export default MemoSelectIconClear;

@@ -1,6 +1,6 @@
-import { getValidChildren } from 'components/utils/collections'
-import React, { createRef, useEffect, useState } from 'react'
-import Sidebar from '.'
+import { getValidChildren } from 'components/utils/collections';
+import React, { createRef, useEffect, useState } from 'react';
+import Sidebar from '.';
 import {
   Drawer,
   InnerScroll,
@@ -9,41 +9,41 @@ import {
   useSidebar,
   useTheme,
   withScale,
-} from '../'
-import useLayout from '../use-layout'
+} from '../';
+import useLayout from '../use-layout';
 
 export interface SidebarLayoutProps {
-  width?: number
-  hasBorder?: boolean
-  hideOnMobile?: boolean
+  width?: number;
+  hasBorder?: boolean;
+  hideOnMobile?: boolean;
 }
 
 const useRefDimensions = (ref: React.RefObject<HTMLDivElement>) => {
-  const [height, setHeight] = useState<number | undefined>(undefined)
+  const [height, setHeight] = useState<number | undefined>(undefined);
 
   useEffect(() => {
     if (!ref.current) {
-      return
+      return;
     }
     const resizeObserver = new ResizeObserver(() => {
-      const offsetHeight = ref?.current?.getBoundingClientRect() || undefined
+      const offsetHeight = ref?.current?.getBoundingClientRect() || undefined;
       if (offsetHeight) {
-        const space = offsetHeight?.bottom - offsetHeight?.height
+        const space = offsetHeight?.bottom - offsetHeight?.height;
         if (space !== height) {
-          setHeight(space)
+          setHeight(space);
         }
       }
-    })
+    });
 
-    resizeObserver.observe(ref.current)
+    resizeObserver.observe(ref.current);
 
     return function cleanup() {
-      resizeObserver.disconnect()
-    }
-  }, [ref.current])
+      resizeObserver.disconnect();
+    };
+  }, [ref.current]);
 
-  return height
-}
+  return height;
+};
 
 const SidebarLayout: React.FC<React.PropsWithChildren<SidebarLayoutProps>> = ({
   children,
@@ -53,25 +53,25 @@ const SidebarLayout: React.FC<React.PropsWithChildren<SidebarLayoutProps>> = ({
 }) => {
   const sidebar = getValidChildren(children).map(item => {
     if (item.type === Sidebar) {
-      return item
+      return item;
     }
-  })
+  });
   const content = getValidChildren(children).map(item => {
     if (item.type !== Sidebar) {
-      return item
+      return item;
     }
-  })
+  });
 
-  const { isEnabled, setIsEnabled } = useSidebar()
+  const { isEnabled, setIsEnabled } = useSidebar();
 
-  const ref = createRef<HTMLDivElement>()
-  const theme = useTheme()
-  const layout = useLayout()
-  const { isMobile } = useConfigs()
-  const height = useRefDimensions(ref)
-  const { SCALES } = useScale()
-  const isActive = (isMobile && !hideOnMobile) || !isMobile
-  const sideBarWidth = width ? width : `230px`
+  const ref = createRef<HTMLDivElement>();
+  const theme = useTheme();
+  const layout = useLayout();
+  const { isMobile } = useConfigs();
+  const height = useRefDimensions(ref);
+  const { SCALES } = useScale();
+  const isActive = (isMobile && !hideOnMobile) || !isMobile;
+  const sideBarWidth = width ? width : `230px`;
   return (
     <>
       {isMobile && (
@@ -80,7 +80,8 @@ const SidebarLayout: React.FC<React.PropsWithChildren<SidebarLayoutProps>> = ({
           visible={isEnabled}
           wrapClassName={'sidebar-drawer'}
           onClose={() => setIsEnabled(false)}
-          placement="right">
+          placement="right"
+        >
           <div className="sidebar-content">
             <InnerScroll width={'100%'} height={'100%'} type="vertical">
               {sidebar}
@@ -96,12 +97,14 @@ const SidebarLayout: React.FC<React.PropsWithChildren<SidebarLayoutProps>> = ({
               className="sidebar"
               style={{
                 height: height === undefined ? '100%' : `calc(100% - ${height}px)`,
-              }}>
+              }}
+            >
               <InnerScroll
                 transparentBg={true}
                 width={'100%'}
                 height={'100%'}
-                type="vertical">
+                type="vertical"
+              >
                 {' '}
                 {sidebar}
               </InnerScroll>
@@ -110,7 +113,8 @@ const SidebarLayout: React.FC<React.PropsWithChildren<SidebarLayoutProps>> = ({
         )}
         <main
           className="main"
-          style={{ width: !isActive ? '100%' : `calc(100% - ${sideBarWidth})` }}>
+          style={{ width: !isActive ? '100%' : `calc(100% - ${sideBarWidth})` }}
+        >
           {content}
         </main>
         <div className="border-right-holder">
@@ -118,7 +122,8 @@ const SidebarLayout: React.FC<React.PropsWithChildren<SidebarLayoutProps>> = ({
             className="border-right"
             style={{
               height: height === undefined ? '100%' : `calc(100% - ${height}px)`,
-            }}></div>
+            }}
+          ></div>
         </div>
         <style jsx>{`
           .main {
@@ -196,8 +201,8 @@ const SidebarLayout: React.FC<React.PropsWithChildren<SidebarLayoutProps>> = ({
         `}</style>
       </div>
     </>
-  )
-}
+  );
+};
 
-SidebarLayout.displayName = 'HimalayaSidebarLayout'
-export default withScale(SidebarLayout)
+SidebarLayout.displayName = 'HimalayaSidebarLayout';
+export default withScale(SidebarLayout);

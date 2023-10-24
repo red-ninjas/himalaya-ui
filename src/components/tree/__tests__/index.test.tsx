@@ -1,8 +1,8 @@
-import React from 'react'
-import { mount } from 'enzyme'
-import { Tree } from 'components'
-import { nativeEvent } from 'tests/utils'
-import { TreeFile } from '../tree'
+import React from 'react';
+import { mount } from 'enzyme';
+import { Tree } from 'components';
+import { nativeEvent } from 'tests/utils';
+import { TreeFile } from '../tree';
 
 const mockFiles: Array<TreeFile> = [
   {
@@ -45,7 +45,7 @@ const mockFiles: Array<TreeFile> = [
     type: 'file',
     name: 'views.md',
   },
-]
+];
 
 describe('Tree', () => {
   it('should mount correctly', () => {
@@ -58,30 +58,30 @@ describe('Tree', () => {
         </Tree.Folder>
         <Tree.File name="readme.md" />
       </Tree>,
-    )
-    expect(<Tree.File name="package.json" />).toMatchSnapshot()
-    expect(<Tree.Folder name="components" />).toMatchSnapshot()
-    expect(wrapper).toMatchSnapshot()
-    expect(() => wrapper.unmount()).not.toThrow()
-  })
+    );
+    expect(<Tree.File name="package.json" />).toMatchSnapshot();
+    expect(<Tree.Folder name="components" />).toMatchSnapshot();
+    expect(wrapper).toMatchSnapshot();
+    expect(() => wrapper.unmount()).not.toThrow();
+  });
 
   it('should show extra messages', () => {
-    const files = mockFiles.map(item => ({ ...item, extra: 'extra' }))
-    const wrapper = mount(<Tree value={files} />)
-    const firstName = wrapper.find('.name').at(0)
-    expect(firstName.text()).toContain('extra')
-    expect(() => wrapper.unmount()).not.toThrow()
-  })
+    const files = mockFiles.map(item => ({ ...item, extra: 'extra' }));
+    const wrapper = mount(<Tree value={files} />);
+    const firstName = wrapper.find('.name').at(0);
+    expect(firstName.text()).toContain('extra');
+    expect(() => wrapper.unmount()).not.toThrow();
+  });
 
   it('should trigger event when file clicked', () => {
-    const callback = jest.fn()
-    const wrapper = mount(<Tree value={mockFiles} onClick={callback} />)
-    wrapper.find('.file').at(0).simulate('click', nativeEvent)
-    expect(callback).toHaveBeenCalled()
-  })
+    const callback = jest.fn();
+    const wrapper = mount(<Tree value={mockFiles} onClick={callback} />);
+    wrapper.find('.file').at(0).simulate('click', nativeEvent);
+    expect(callback).toHaveBeenCalled();
+  });
 
   it('should be work when value is empty', () => {
-    const wrapper = mount(<Tree value={[]} />)
-    expect(() => wrapper.unmount()).not.toThrow()
-  })
-})
+    const wrapper = mount(<Tree value={[]} />);
+    expect(() => wrapper.unmount()).not.toThrow();
+  });
+});

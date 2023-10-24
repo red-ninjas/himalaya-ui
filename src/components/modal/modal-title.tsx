@@ -1,22 +1,22 @@
-'use client'
-import React from 'react'
-import useTheme from '../use-theme'
-import useScale, { withScale } from '../use-scale'
+'use client';
+import React from 'react';
+import useTheme from '../use-theme';
+import useScale, { withScale } from '../use-scale';
 
 interface Props {
-  className?: string
+  className?: string;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>
-export type ModalTitleProps = Props & NativeAttrs
+type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+export type ModalTitleProps = Props & NativeAttrs;
 
 const ModalTitleComponent: React.FC<React.PropsWithChildren<ModalTitleProps>> = ({
   className = '',
   children,
   ...props
 }: React.PropsWithChildren<ModalTitleProps>) => {
-  const theme = useTheme()
-  const { SCALES } = useScale()
+  const theme = useTheme();
+  const { SCALES } = useScale();
 
   return (
     <>
@@ -43,9 +43,9 @@ const ModalTitleComponent: React.FC<React.PropsWithChildren<ModalTitleProps>> = 
         }
       `}</style>
     </>
-  )
-}
+  );
+};
 
-ModalTitleComponent.displayName = 'HimalayaModalTitle'
-const ModalTitle = withScale(ModalTitleComponent)
-export default ModalTitle
+ModalTitleComponent.displayName = 'HimalayaModalTitle';
+const ModalTitle = withScale(ModalTitleComponent);
+export default ModalTitle;

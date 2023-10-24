@@ -1,12 +1,12 @@
 /**
  * Represents the position of a series marker relative to a bar.
  */
-export type SeriesMarkerPosition = 'aboveBar' | 'belowBar' | 'inBar'
+export type SeriesMarkerPosition = 'aboveBar' | 'belowBar' | 'inBar';
 
 /**
  * Represents the shape of a series marker.
  */
-export type SeriesMarkerShape = 'circle' | 'square' | 'arrowUp' | 'arrowDown'
+export type SeriesMarkerShape = 'circle' | 'square' | 'arrowUp' | 'arrowDown';
 
 /**
  * Represents a series marker.
@@ -15,42 +15,42 @@ export interface SeriesMarker<TimeType> {
   /**
    * The time of the marker.
    */
-  time: TimeType
+  time: TimeType;
   /**
    * The position of the marker.
    */
-  position: SeriesMarkerPosition
+  position: SeriesMarkerPosition;
   /**
    * The shape of the marker.
    */
-  shape: SeriesMarkerShape
+  shape: SeriesMarkerShape;
   /**
    * The color of the marker.
    */
-  color: string
+  color: string;
   /**
    * The ID of the marker.
    */
-  id?: string
+  id?: string;
   /**
    * The optional text of the marker.
    */
-  text?: string
+  text?: string;
   /**
    * The optional size of the marker.
    *
    * @defaultValue `1`
    */
-  size?: number
+  size?: number;
 
   /**
    * @internal
    */
-  originalTime: unknown
+  originalTime: unknown;
 }
 
 export interface InternalSeriesMarker<TimeType> extends SeriesMarker<TimeType> {
-  internalId: number
+  internalId: number;
 }
 
 export function convertSeriesMarker<InTimeType, OutTimeType>(
@@ -58,15 +58,15 @@ export function convertSeriesMarker<InTimeType, OutTimeType>(
   newTime: OutTimeType,
   originalTime?: unknown,
 ): SeriesMarker<OutTimeType> {
-  const { time: inTime, originalTime: inOriginalTime, ...values } = sm
+  const { time: inTime, originalTime: inOriginalTime, ...values } = sm;
   /* eslint-disable @typescript-eslint/consistent-type-assertions */
   const res = {
     time: newTime,
     ...values,
-  } as SeriesMarker<OutTimeType>
+  } as SeriesMarker<OutTimeType>;
   /* eslint-enable @typescript-eslint/consistent-type-assertions */
   if (originalTime !== undefined) {
-    res.originalTime = originalTime
+    res.originalTime = originalTime;
   }
-  return res
+  return res;
 }

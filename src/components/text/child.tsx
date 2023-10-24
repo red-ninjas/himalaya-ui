@@ -1,15 +1,15 @@
-'use client'
+'use client';
 
-import React, { useMemo } from 'react'
-import useTheme from '../use-theme'
-import { NormalTypes } from '../utils/prop-types'
-import { UIThemesPalette } from '../themes/presets'
-import useScale from '../use-scale'
+import React, { useMemo } from 'react';
+import useTheme from '../use-theme';
+import { NormalTypes } from '../utils/prop-types';
+import { UIThemesPalette } from '../themes/presets';
+import useScale from '../use-scale';
 
 export interface Props {
-  tag: keyof React.JSX.IntrinsicElements
-  type?: NormalTypes
-  className?: string
+  tag: keyof React.JSX.IntrinsicElements;
+  type?: NormalTypes;
+  className?: string;
 }
 
 const getTypeColor = (type: NormalTypes, palette: UIThemesPalette) => {
@@ -19,13 +19,13 @@ const getTypeColor = (type: NormalTypes, palette: UIThemesPalette) => {
     success: palette.success,
     warning: palette.warning,
     error: palette.error,
-  }
+  };
 
-  return colors[type] || colors.default
-}
+  return colors[type] || colors.default;
+};
 
-type NativeAttrs = Omit<React.DetailsHTMLAttributes<any>, keyof Props>
-export type TextChildProps = Props & NativeAttrs
+type NativeAttrs = Omit<React.DetailsHTMLAttributes<any>, keyof Props>;
+export type TextChildProps = Props & NativeAttrs;
 
 const TextChild: React.FC<React.PropsWithChildren<TextChildProps>> = ({
   children,
@@ -34,15 +34,15 @@ const TextChild: React.FC<React.PropsWithChildren<TextChildProps>> = ({
   type = 'default' as NormalTypes,
   ...props
 }: React.PropsWithChildren<TextChildProps>) => {
-  const Component = tag
-  const theme = useTheme()
-  const { SCALES, getScaleProps } = useScale()
-  const font = getScaleProps('font')
-  const mx = getScaleProps(['margin', 'marginLeft', 'marginRight', 'mx', 'ml', 'mr'])
-  const my = getScaleProps(['margin', 'marginTop', 'marginBottom', 'my', 'mt', 'mb'])
-  const px = getScaleProps(['padding', 'paddingLeft', 'paddingRight', 'pl', 'pr', 'px'])
-  const py = getScaleProps(['padding', 'paddingTop', 'paddingBottom', 'pt', 'pb', 'py'])
-  const color = useMemo(() => getTypeColor(type, theme.palette), [type, theme.palette])
+  const Component = tag;
+  const theme = useTheme();
+  const { SCALES, getScaleProps } = useScale();
+  const font = getScaleProps('font');
+  const mx = getScaleProps(['margin', 'marginLeft', 'marginRight', 'mx', 'ml', 'mr']);
+  const my = getScaleProps(['margin', 'marginTop', 'marginBottom', 'my', 'mt', 'mb']);
+  const px = getScaleProps(['padding', 'paddingLeft', 'paddingRight', 'pl', 'pr', 'px']);
+  const py = getScaleProps(['padding', 'paddingTop', 'paddingBottom', 'pt', 'pb', 'py']);
+  const color = useMemo(() => getTypeColor(type, theme.palette), [type, theme.palette]);
   const classNames = useMemo<string>(() => {
     const keys = [
       { value: mx, className: 'mx' },
@@ -50,13 +50,13 @@ const TextChild: React.FC<React.PropsWithChildren<TextChildProps>> = ({
       { value: px, className: 'px' },
       { value: py, className: 'py' },
       { value: font, className: 'font' },
-    ]
+    ];
     const scaleClassNames = keys.reduce((pre, next) => {
-      if (typeof next.value === 'undefined') return pre
-      return `${pre} ${next.className}`
-    }, '')
-    return `${scaleClassNames} ${className}`.trim()
-  }, [mx, my, px, py, font, className])
+      if (typeof next.value === 'undefined') return pre;
+      return `${pre} ${next.className}`;
+    }, '');
+    return `${scaleClassNames} ${className}`.trim();
+  }, [mx, my, px, py, font, className]);
 
   return (
     <Component className={classNames} {...props}>
@@ -88,8 +88,8 @@ const TextChild: React.FC<React.PropsWithChildren<TextChildProps>> = ({
         }
       `}</style>
     </Component>
-  )
-}
+  );
+};
 
-TextChild.displayName = 'HimalayaTextChild'
-export default TextChild
+TextChild.displayName = 'HimalayaTextChild';
+export default TextChild;

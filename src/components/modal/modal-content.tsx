@@ -1,21 +1,21 @@
-'use client'
-import React from 'react'
-import useScale, { withScale } from '../use-scale'
-import useClasses from '../use-classes'
+'use client';
+import React from 'react';
+import useScale, { withScale } from '../use-scale';
+import useClasses from '../use-classes';
 
 interface Props {
-  className?: string
+  className?: string;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<HTMLElement>, keyof Props>
-export type ModalContentProps = Props & NativeAttrs
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLElement>, keyof Props>;
+export type ModalContentProps = Props & NativeAttrs;
 
 const ModalContentComponent: React.FC<React.PropsWithChildren<ModalContentProps>> = ({
   className = '',
   children,
   ...props
 }: React.PropsWithChildren<ModalContentProps>) => {
-  const { SCALES } = useScale()
+  const { SCALES } = useScale();
 
   return (
     <>
@@ -46,9 +46,9 @@ const ModalContentComponent: React.FC<React.PropsWithChildren<ModalContentProps>
         }
       `}</style>
     </>
-  )
-}
+  );
+};
 
-ModalContentComponent.displayName = 'HimalayaModalContent'
-const ModalContent = withScale(ModalContentComponent)
-export default ModalContent
+ModalContentComponent.displayName = 'HimalayaModalContent';
+const ModalContent = withScale(ModalContentComponent);
+export default ModalContent;

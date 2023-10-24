@@ -1,23 +1,23 @@
-'use client'
+'use client';
 
-import Text from '../text'
+import Text from '../text';
 
-import React, { useState } from 'react'
-import { ChartProps } from '../chart'
-import useTheme from '../use-theme'
-import Toggle from '../toggle'
-import ThemedChart from '../chart'
+import React, { useState } from 'react';
+import { ChartProps } from '../chart';
+import useTheme from '../use-theme';
+import Toggle from '../toggle';
+import ThemedChart from '../chart';
 // import ChartSkeleton from '../chart'
-import DataView from './data-view'
+import DataView from './data-view';
 // import DataViewSkeleton from './skeleton'
 
 const GraphDataView: React.FC<ChartProps> = props => {
-  const theme = useTheme()
+  const theme = useTheme();
 
-  const [isDataView, setIsDataView] = useState<boolean>(false)
+  const [isDataView, setIsDataView] = useState<boolean>(false);
   const dataViewHandler = (event: any) => {
-    setIsDataView(event.target.checked)
-  }
+    setIsDataView(event.target.checked);
+  };
 
   return (
     <div>
@@ -50,7 +50,7 @@ const GraphDataView: React.FC<ChartProps> = props => {
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-export default GraphDataView
+export default GraphDataView;

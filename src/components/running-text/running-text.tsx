@@ -1,15 +1,15 @@
-'use client'
+'use client';
 
-import { PropsWithChildren } from 'react'
-import { RunningTextProps } from '.'
-import useScale, { withScale } from '../use-scale'
+import { PropsWithChildren } from 'react';
+import { RunningTextProps } from '.';
+import useScale, { withScale } from '../use-scale';
 
 const RunningText: React.FC<PropsWithChildren<RunningTextProps>> = ({
   children,
   animationTime = 80000,
   gap = 3,
 }) => {
-  const { SCALES } = useScale()
+  const { SCALES } = useScale();
   return (
     <>
       <div className="running-outer">
@@ -65,7 +65,7 @@ const RunningText: React.FC<PropsWithChildren<RunningTextProps>> = ({
         }
       `}</style>
     </>
-  )
-}
+  );
+};
 
-export default withScale(RunningText)
+export default withScale(RunningText);

@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import React, {
   CSSProperties,
   MouseEvent,
@@ -6,33 +6,33 @@ import React, {
   useMemo,
   useRef,
   useState,
-} from 'react'
-import useTheme from '../use-theme'
-import { TabsHeaderItem, TabsConfig, TabsContext } from './tabs-context'
-import useScale, { withScale } from '../use-scale'
-import Highlight from '../shared/highlight'
-import { useRect } from '../utils/layouts'
-import { isUIElement } from '../utils/collections'
-import useClasses from '../use-classes'
+} from 'react';
+import useTheme from '../use-theme';
+import { TabsHeaderItem, TabsConfig, TabsContext } from './tabs-context';
+import useScale, { withScale } from '../use-scale';
+import Highlight from '../shared/highlight';
+import { useRect } from '../utils/layouts';
+import { isUIElement } from '../utils/collections';
+import useClasses from '../use-classes';
 
 interface Props {
-  initialValue?: string
-  value?: string
-  hideDivider?: boolean
-  hideBorder?: boolean
-  highlight?: boolean
-  onChange?: (val: string) => void
-  className?: string
-  leftSpace?: CSSProperties['marginLeft']
-  hoverHeightRatio?: number
-  hoverWidthRatio?: number
-  align?: CSSProperties['justifyContent']
-  activeClassName?: string
-  activeStyle?: CSSProperties
+  initialValue?: string;
+  value?: string;
+  hideDivider?: boolean;
+  hideBorder?: boolean;
+  highlight?: boolean;
+  onChange?: (val: string) => void;
+  className?: string;
+  leftSpace?: CSSProperties['marginLeft'];
+  hoverHeightRatio?: number;
+  hoverWidthRatio?: number;
+  align?: CSSProperties['justifyContent'];
+  activeClassName?: string;
+  activeStyle?: CSSProperties;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>
-export type TabsProps = Props & NativeAttrs
+type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+export type TabsProps = Props & NativeAttrs;
 
 const TabsComponent: React.FC<React.PropsWithChildren<TabsProps>> = ({
   initialValue: userCustomInitialValue,
@@ -51,27 +51,27 @@ const TabsComponent: React.FC<React.PropsWithChildren<TabsProps>> = ({
   align = 'left',
   ...props
 }: React.PropsWithChildren<TabsProps>) => {
-  const theme = useTheme()
-  const { SCALES } = useScale()
-  const [tabs, setTabs] = useState<Array<TabsHeaderItem>>([])
-  const [selfValue, setSelfValue] = useState<string | undefined>(userCustomInitialValue)
-  const ref = useRef<HTMLDivElement | null>(null)
-  const [displayHighlight, setDisplayHighlight] = useState<boolean>(false)
-  const { rect, setRect } = useRect()
+  const theme = useTheme();
+  const { SCALES } = useScale();
+  const [tabs, setTabs] = useState<Array<TabsHeaderItem>>([]);
+  const [selfValue, setSelfValue] = useState<string | undefined>(userCustomInitialValue);
+  const ref = useRef<HTMLDivElement | null>(null);
+  const [displayHighlight, setDisplayHighlight] = useState<boolean>(false);
+  const { rect, setRect } = useRect();
 
   const register = (next: TabsHeaderItem) => {
     setTabs(last => {
-      const hasItem = last.find(item => item.value === next.value)
-      if (!hasItem) return [...last, next]
+      const hasItem = last.find(item => item.value === next.value);
+      if (!hasItem) return [...last, next];
       return last.map(item => {
-        if (item.value !== next.value) return item
+        if (item.value !== next.value) return item;
         return {
           ...item,
           ...next,
-        }
-      })
-    })
-  }
+        };
+      });
+    });
+  };
 
   const initialValue = useMemo<TabsConfig>(
     () => ({
@@ -81,24 +81,24 @@ const TabsComponent: React.FC<React.PropsWithChildren<TabsProps>> = ({
       leftSpace,
     }),
     [selfValue, leftSpace],
-  )
+  );
 
   useEffect(() => {
-    if (typeof value === 'undefined') return
-    setSelfValue(value)
-  }, [value])
+    if (typeof value === 'undefined') return;
+    setSelfValue(value);
+  }, [value]);
 
   const clickHandler = (value: string) => {
-    setSelfValue(value)
-    onChange && onChange(value)
-  }
+    setSelfValue(value);
+    onChange && onChange(value);
+  };
   const tabItemMouseOverHandler = (event: MouseEvent<HTMLDivElement>) => {
-    if (!isUIElement(event.target as HTMLDivElement)) return
-    setRect(event, () => ref.current)
+    if (!isUIElement(event.target as HTMLDivElement)) return;
+    setRect(event, () => ref.current);
     if (highlight) {
-      setDisplayHighlight(true)
+      setDisplayHighlight(true);
     }
-  }
+  };
 
   return (
     <TabsContext.Provider value={initialValue}>
@@ -166,9 +166,9 @@ const TabsComponent: React.FC<React.PropsWithChildren<TabsProps>> = ({
         `}</style>
       </div>
     </TabsContext.Provider>
-  )
-}
+  );
+};
 
-TabsComponent.displayName = 'HimalayaTabs'
-const Tabs = withScale(TabsComponent)
-export default Tabs
+TabsComponent.displayName = 'HimalayaTabs';
+const Tabs = withScale(TabsComponent);
+export default Tabs;

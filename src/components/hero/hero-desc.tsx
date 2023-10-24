@@ -1,13 +1,13 @@
-'use client'
+'use client';
 
-import useTheme from '../use-theme'
-import Text from '../text'
-import { PropsWithChildren } from 'react'
-import { useScale, withScale } from '../use-scale'
+import useTheme from '../use-theme';
+import Text from '../text';
+import { PropsWithChildren } from 'react';
+import { useScale, withScale } from '../use-scale';
 
 const HeroDesc: React.FC<PropsWithChildren> = ({ ...props }) => {
-  const theme = useTheme()
-  const { SCALES } = useScale()
+  const theme = useTheme();
+  const { SCALES } = useScale();
 
   return (
     <Text
@@ -23,8 +23,8 @@ const HeroDesc: React.FC<PropsWithChildren> = ({ ...props }) => {
     >
       {props.children}
     </Text>
-  )
-}
+  );
+};
 
-HeroDesc.displayName = 'HimalayaHeroDesc'
-export default withScale(HeroDesc)
+HeroDesc.displayName = 'HimalayaHeroDesc';
+export default withScale(HeroDesc);

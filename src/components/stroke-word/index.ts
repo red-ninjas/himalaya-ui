@@ -1,5 +1,5 @@
-import StrokeWord from './stroke-word'
+import StrokeWord from './stroke-word';
 export interface StrokeWordsProp {
-  stroke?: number
+  stroke?: number;
 }
-export default StrokeWord
+export default StrokeWord;

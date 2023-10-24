@@ -1,8 +1,8 @@
-'use client'
+'use client';
 
-import React, { PropsWithChildren } from 'react'
-import { withScale } from '../use-scale'
-import { FooterNavigationProps } from '.'
+import React, { PropsWithChildren } from 'react';
+import { withScale } from '../use-scale';
+import { FooterNavigationProps } from '.';
 
 const FooterNavigation: React.FC<PropsWithChildren<FooterNavigationProps>> = ({
   children,
@@ -28,7 +28,7 @@ const FooterNavigation: React.FC<PropsWithChildren<FooterNavigationProps>> = ({
         }
       `}</style>
     </nav>
-  )
-}
+  );
+};
 
-export default withScale(FooterNavigation)
+export default withScale(FooterNavigation);

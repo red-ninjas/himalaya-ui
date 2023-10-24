@@ -1,23 +1,23 @@
-'use client'
-import useScale, { withScale } from '../use-scale'
-import { hexToRgb } from '../utils/color'
-import React from 'react'
-import useTheme from '../use-theme'
-import ContentLayout from './content-layout'
-import { GradientContentProps } from '.'
+'use client';
+import useScale, { withScale } from '../use-scale';
+import { hexToRgb } from '../utils/color';
+import React from 'react';
+import useTheme from '../use-theme';
+import ContentLayout from './content-layout';
+import { GradientContentProps } from '.';
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof GradientContentProps>
-export type CardContentProps = GradientContentProps & NativeAttrs
+type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof GradientContentProps>;
+export type CardContentProps = GradientContentProps & NativeAttrs;
 
 const GradientContentComponent: React.FC<React.PropsWithChildren<CardContentProps>> = ({
   children,
   gradientheight = '50vh',
   ...props
 }) => {
-  const theme = useTheme()
-  const { SCALES } = useScale()
-  const rgba = `rgba(${hexToRgb(theme.palette.accents_1)}, 0.5)`
-  const defaultGradient = `linear-gradient(to bottom, ${rgba}, ${theme.palette.background})`
+  const theme = useTheme();
+  const { SCALES } = useScale();
+  const rgba = `rgba(${hexToRgb(theme.palette.accents_1)}, 0.5)`;
+  const defaultGradient = `linear-gradient(to bottom, ${rgba}, ${theme.palette.background})`;
   return (
     <div className="gradient-layout" {...props}>
       <div className="gradient-content">
@@ -54,9 +54,9 @@ const GradientContentComponent: React.FC<React.PropsWithChildren<CardContentProp
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-GradientContentComponent.displayName = 'GradientContent'
-const GradientContent = withScale(GradientContentComponent)
-export default GradientContent
+GradientContentComponent.displayName = 'GradientContent';
+const GradientContent = withScale(GradientContentComponent);
+export default GradientContent;

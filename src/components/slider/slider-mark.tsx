@@ -1,28 +1,28 @@
-import React, { useMemo } from 'react'
-import useTheme from '../use-theme'
+import React, { useMemo } from 'react';
+import useTheme from '../use-theme';
 
 interface Props {
-  max: number
-  min: number
-  step: number
+  max: number;
+  min: number;
+  step: number;
 }
 
-export type MarkLeftValue = number
+export type MarkLeftValue = number;
 
-export type Marks = Array<MarkLeftValue>
+export type Marks = Array<MarkLeftValue>;
 
 const getMarks = (min: number, max: number, step: number): Marks => {
-  const value = max - min
-  const roundFunc = !(value % step) ? Math.floor : Math.ceil
-  const count = roundFunc(value / step) - 1
-  if (count >= 99) return []
+  const value = max - min;
+  const roundFunc = !(value % step) ? Math.floor : Math.ceil;
+  const count = roundFunc(value / step) - 1;
+  if (count >= 99) return [];
 
-  return [...new Array(count)].map((_, index) => (step * (index + 1) * 100) / value)
-}
+  return [...new Array(count)].map((_, index) => (step * (index + 1) * 100) / value);
+};
 
 const SliderMark: React.FC<React.PropsWithChildren<Props>> = ({ step, max, min }) => {
-  const theme = useTheme()
-  const marks = useMemo(() => getMarks(min, max, step), [min, max, step])
+  const theme = useTheme();
+  const marks = useMemo(() => getMarks(min, max, step), [min, max, step]);
 
   return (
     <>
@@ -40,7 +40,7 @@ const SliderMark: React.FC<React.PropsWithChildren<Props>> = ({ step, max, min }
         }
       `}</style>
     </>
-  )
-}
+  );
+};
 
-export default SliderMark
+export default SliderMark;

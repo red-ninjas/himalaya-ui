@@ -1,14 +1,14 @@
-'use client'
+'use client';
 
-import { StrokeWordsProp } from '.'
-import useTheme from '../use-theme'
-import { PropsWithChildren } from 'react'
+import { StrokeWordsProp } from '.';
+import useTheme from '../use-theme';
+import { PropsWithChildren } from 'react';
 
 const StrokeWord: React.FC<PropsWithChildren<StrokeWordsProp>> = ({
   children,
   stroke = 1,
 }) => {
-  const theme = useTheme()
+  const theme = useTheme();
   return (
     <span className="stroke">
       {children}
@@ -22,6 +22,6 @@ const StrokeWord: React.FC<PropsWithChildren<StrokeWordsProp>> = ({
         `}
       </style>
     </span>
-  )
-}
-export default StrokeWord
+  );
+};
+export default StrokeWord;

@@ -6,5 +6,5 @@ export interface IPriceFormatter {
    * @param price - Original price to be formatted
    * @returns Formatted price
    */
-  format(price: number): string
+  format(price: number): string;
 }

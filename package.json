@@ -22,7 +22,7 @@
     "docs:seeds": "node scripts/seeds/update.js",
     "docs:build": "yarn docs:collect & yarn docs:seeds && cross-env NODE_ENV=production next build ./src && yarn docs:sitemap",
     "docs:sitemap": "node scripts/sitemap.js",
-    "prettier": "prettier --write .",
+    "prettier": "prettier --write src/components",
     "lint": "next lint ./src",
     "test": "jest --config .jest.config.js --no-cache --passWithNoTests",
     "test:update": "jest --config .jest.config.js --no-cache --update-snapshot",

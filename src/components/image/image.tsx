@@ -1,25 +1,25 @@
-'use client'
-import React, { useEffect, useMemo, useRef, useState } from 'react'
-import useTheme from '../use-theme'
-import ImageSkeleton from './image.skeleton'
-import { transformDataSource } from './helpers'
-import useScale, { withScale } from '../use-scale'
-import NextImage from 'next/image'
-import useClasses from '../use-classes'
+'use client';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import useTheme from '../use-theme';
+import ImageSkeleton from './image.skeleton';
+import { transformDataSource } from './helpers';
+import useScale, { withScale } from '../use-scale';
+import NextImage from 'next/image';
+import useClasses from '../use-classes';
 
 interface Props {
-  src?: string
-  disableSkeleton?: boolean
-  className?: string
-  maxDelay?: number
-  radius?: number
+  src?: string;
+  disableSkeleton?: boolean;
+  className?: string;
+  maxDelay?: number;
+  radius?: number;
 }
 
 type NativeAttrs = Omit<
   React.DetailedHTMLProps<React.ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>,
   'height' | 'width' | 'loading' | 'ref' | 'src' | 'srcSet' | 'placeholder'
->
-export type ImageProps = Props & NativeAttrs
+>;
+export type ImageProps = Props & NativeAttrs;
 
 const ImageComponent: React.FC<ImageProps> = ({
   src = '',
@@ -30,38 +30,38 @@ const ImageComponent: React.FC<ImageProps> = ({
   radius,
   ...props
 }: ImageProps) => {
-  const { SCALES, getScaleProps } = useScale()
-  const width = getScaleProps(['width', 'w'])
-  const height = getScaleProps(['height', 'h'])
-  const showAnimation = !disableSkeleton && width && height
+  const { SCALES, getScaleProps } = useScale();
+  const width = getScaleProps(['width', 'w']);
+  const height = getScaleProps(['height', 'h']);
+  const showAnimation = !disableSkeleton && width && height;
 
-  const theme = useTheme()
-  const [loading, setLoading] = useState<boolean>(true)
-  const [showSkeleton, setShowSkeleton] = useState<boolean>(true)
-  const imageRef = useRef<HTMLImageElement>(null)
-  const url = useMemo(() => transformDataSource(src), [src])
+  const theme = useTheme();
+  const [loading, setLoading] = useState<boolean>(true);
+  const [showSkeleton, setShowSkeleton] = useState<boolean>(true);
+  const imageRef = useRef<HTMLImageElement>(null);
+  const url = useMemo(() => transformDataSource(src), [src]);
 
   const imageLoaded = () => {
-    if (!showAnimation) return
-    setLoading(false)
-  }
+    if (!showAnimation) return;
+    setLoading(false);
+  };
 
   useEffect(() => {
     if (showAnimation && imageRef.current && imageRef.current.complete) {
-      setLoading(false)
-      setShowSkeleton(false)
+      setLoading(false);
+      setShowSkeleton(false);
     }
-  })
+  });
 
   useEffect(() => {
     const timer = setTimeout(() => {
       if (showAnimation) {
-        setShowSkeleton(false)
+        setShowSkeleton(false);
       }
-      clearTimeout(timer)
-    }, maxDelay)
-    return () => clearTimeout(timer)
-  }, [loading])
+      clearTimeout(timer);
+    }, maxDelay);
+    return () => clearTimeout(timer);
+  }, [loading]);
 
   return (
     <div className={useClasses('image', className)}>
@@ -76,7 +76,8 @@ const ImageComponent: React.FC<ImageProps> = ({
           objectFit: 'contain',
           display: 'inline-block',
         }}
-        {...props}></NextImage>
+        {...props}
+      ></NextImage>
       <style jsx>{`
         .image {
           line-height: 0;
@@ -92,9 +93,9 @@ const ImageComponent: React.FC<ImageProps> = ({
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-ImageComponent.displayName = 'HimalayaImage'
-const Image = withScale(ImageComponent)
-export default Image
+ImageComponent.displayName = 'HimalayaImage';
+const Image = withScale(ImageComponent);
+export default Image;

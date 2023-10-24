@@ -1,22 +1,22 @@
-'use client'
-import React, { MouseEvent, useMemo } from 'react'
-import useTheme from '../use-theme'
-import { getColor } from './styles'
-import { useButtonDropdown } from './button-dropdown-context'
-import LoadingSpinner from '../loading-spinner'
-import { NormalTypes } from '../utils/prop-types'
+'use client';
+import React, { MouseEvent, useMemo } from 'react';
+import useTheme from '../use-theme';
+import { getColor } from './styles';
+import { useButtonDropdown } from './button-dropdown-context';
+import LoadingSpinner from '../loading-spinner';
+import { NormalTypes } from '../utils/prop-types';
 
-export type ButtonDropdownItemTypes = NormalTypes
+export type ButtonDropdownItemTypes = NormalTypes;
 
 interface Props {
-  main?: boolean
-  type?: ButtonDropdownItemTypes
-  onClick?: React.MouseEventHandler<HTMLElement>
-  className?: string
+  main?: boolean;
+  type?: ButtonDropdownItemTypes;
+  onClick?: React.MouseEventHandler<HTMLElement>;
+  className?: string;
 }
 
-type NativeAttrs = Omit<React.ButtonHTMLAttributes<any>, keyof Props>
-export type ButtonDropdownItemProps = Props & NativeAttrs
+type NativeAttrs = Omit<React.ButtonHTMLAttributes<any>, keyof Props>;
+export type ButtonDropdownItemProps = Props & NativeAttrs;
 
 const ButtonDropdownItem: React.FC<React.PropsWithChildren<ButtonDropdownItemProps>> = ({
   children,
@@ -26,19 +26,19 @@ const ButtonDropdownItem: React.FC<React.PropsWithChildren<ButtonDropdownItemPro
   type: selfType = 'default' as ButtonDropdownItemTypes,
   ...props
 }: ButtonDropdownItemProps) => {
-  const theme = useTheme()
-  const { type: parentType, disabled, loading } = useButtonDropdown()
-  const type = main ? parentType : selfType
-  const colors = getColor(theme.palette, type, disabled)
+  const theme = useTheme();
+  const { type: parentType, disabled, loading } = useButtonDropdown();
+  const type = main ? parentType : selfType;
+  const colors = getColor(theme.palette, type, disabled);
   const clickHandler = (event: MouseEvent<HTMLButtonElement>) => {
-    if (disabled || loading) return
-    onClick && onClick(event)
-  }
+    if (disabled || loading) return;
+    onClick && onClick(event);
+  };
 
   const cursor = useMemo(() => {
-    if (loading) return 'default'
-    return disabled ? 'not-allowed' : 'pointer'
-  }, [loading, disabled])
+    if (loading) return 'default';
+    return disabled ? 'not-allowed' : 'pointer';
+  }, [loading, disabled]);
 
   return (
     <button className={className} onClick={clickHandler} {...props}>
@@ -73,8 +73,8 @@ const ButtonDropdownItem: React.FC<React.PropsWithChildren<ButtonDropdownItemPro
         }
       `}</style>
     </button>
-  )
-}
+  );
+};
 
-ButtonDropdownItem.displayName = 'HimalayaButtonDropdownItem'
-export default ButtonDropdownItem
+ButtonDropdownItem.displayName = 'HimalayaButtonDropdownItem';
+export default ButtonDropdownItem;

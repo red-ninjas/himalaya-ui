@@ -1,11 +1,11 @@
-import { useTranslationSetup } from '../use-language/language-config'
-import React from 'react'
-import Select from '../select'
-import useScale, { withScale } from '../use-scale'
+import { useTranslationSetup } from '../use-language/language-config';
+import React from 'react';
+import Select from '../select';
+import useScale, { withScale } from '../use-scale';
 
 const LanguageSwitcherComponent: React.FC<unknown> = () => {
-  const { currentLanguage, avaiableLanguages, changeLanguage } = useTranslationSetup()
-  const { SCALES } = useScale()
+  const { currentLanguage, avaiableLanguages, changeLanguage } = useTranslationSetup();
+  const { SCALES } = useScale();
 
   return (
     <div className="theme-switcher">
@@ -14,7 +14,7 @@ const LanguageSwitcherComponent: React.FC<unknown> = () => {
         pure
         width={'auto'}
         onChange={(lang: string) => {
-          changeLanguage(lang)
+          changeLanguage(lang);
         }}
         value={currentLanguage}
         title={'Switch Languages'}
@@ -40,7 +40,7 @@ const LanguageSwitcherComponent: React.FC<unknown> = () => {
         }
       `}</style>
     </div>
-  )
-}
-const LanguageSwitcher = withScale(LanguageSwitcherComponent)
-export default LanguageSwitcher
+  );
+};
+const LanguageSwitcher = withScale(LanguageSwitcherComponent);
+export default LanguageSwitcher;

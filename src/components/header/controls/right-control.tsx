@@ -1,8 +1,8 @@
-import { PropsWithChildren } from 'react'
+import { PropsWithChildren } from 'react';
 
 const RightHeaderControl: React.FC<PropsWithChildren> = ({ ...props }) => {
-  return props.children
-}
+  return props.children;
+};
 
-RightHeaderControl.displayName = 'HimalyaRightHeader'
-export default RightHeaderControl
+RightHeaderControl.displayName = 'HimalyaRightHeader';
+export default RightHeaderControl;

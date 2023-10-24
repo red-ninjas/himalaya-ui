@@ -1,20 +1,20 @@
-import BottomNavigationItem from './item'
-import BottomNavigation from './bottom-navigation'
-import React from 'react'
+import BottomNavigationItem from './item';
+import BottomNavigation from './bottom-navigation';
+import React from 'react';
 
 export interface IBottomNavigationItem {
-  url?: string
-  icon?: React.ReactNode
-  exactMatch?: boolean
+  url?: string;
+  icon?: React.ReactNode;
+  exactMatch?: boolean;
 }
 
-export type NavigationItemComponentType = typeof BottomNavigationItem
+export type NavigationItemComponentType = typeof BottomNavigationItem;
 
 export type NavigationComponentType = typeof BottomNavigation & {
-  Item: NavigationItemComponentType
-}
-;(BottomNavigation as NavigationComponentType).Item =
-  BottomNavigationItem as NavigationItemComponentType
+  Item: NavigationItemComponentType;
+};
+(BottomNavigation as NavigationComponentType).Item =
+  BottomNavigationItem as NavigationItemComponentType;
 
-export type { BottomNavigationItemProps } from './item'
-export default BottomNavigation as NavigationComponentType
+export type { BottomNavigationItemProps } from './item';
+export default BottomNavigation as NavigationComponentType;

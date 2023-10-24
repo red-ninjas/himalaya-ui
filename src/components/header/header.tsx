@@ -1,52 +1,52 @@
-'use client'
+'use client';
 
-import useClasses from '../use-classes'
-import React, { ReactNode, useEffect, useState } from 'react'
-import ContentLayout from '../layout/content-layout'
-import useScale, { withScale } from '../use-scale'
-import useTheme from '../use-theme'
-import { pickChild } from '../utils/collections'
-import { addColorAlpha } from '../utils/color'
-import CenterHeaderControl from './controls/center-control'
-import { default as LeftHeaderControl } from './controls/left-control'
-import RightHeaderControl from './controls/right-control'
-import useLayout from '../use-layout'
+import useClasses from '../use-classes';
+import React, { ReactNode, useEffect, useState } from 'react';
+import ContentLayout from '../layout/content-layout';
+import useScale, { withScale } from '../use-scale';
+import useTheme from '../use-theme';
+import { pickChild } from '../utils/collections';
+import { addColorAlpha } from '../utils/color';
+import CenterHeaderControl from './controls/center-control';
+import { default as LeftHeaderControl } from './controls/left-control';
+import RightHeaderControl from './controls/right-control';
+import useLayout from '../use-layout';
 
 export interface HeaderProps {
-  children?: ReactNode | undefined
-  transcluent?: boolean
+  children?: ReactNode | undefined;
+  transcluent?: boolean;
 }
 
 const HeaderComponent: React.FC<HeaderProps> = ({ children, transcluent = true }) => {
-  const theme = useTheme()
-  const layout = useLayout()
-  const { SCALES } = useScale()
+  const theme = useTheme();
+  const layout = useLayout();
+  const { SCALES } = useScale();
 
-  const [, leftHeaderControl] = pickChild(children, LeftHeaderControl)
-  const [, rightHeaderControl] = pickChild(children, RightHeaderControl)
-  const [, centerHeaderControl] = pickChild(children, CenterHeaderControl)
+  const [, leftHeaderControl] = pickChild(children, LeftHeaderControl);
+  const [, rightHeaderControl] = pickChild(children, RightHeaderControl);
+  const [, centerHeaderControl] = pickChild(children, CenterHeaderControl);
 
-  const [, setIsLocked] = useState<boolean>(false)
+  const [, setIsLocked] = useState<boolean>(false);
 
   useEffect(() => {
     const handler = () => {
-      const isLocked = document.body.style.overflow === 'hidden'
-      setIsLocked(last => (last !== isLocked ? isLocked : last))
-    }
+      const isLocked = document.body.style.overflow === 'hidden';
+      setIsLocked(last => (last !== isLocked ? isLocked : last));
+    };
     const observer = new MutationObserver(mutations => {
       mutations.forEach(function (mutation) {
-        if (mutation.type !== 'attributes') return
-        handler()
-      })
-    })
+        if (mutation.type !== 'attributes') return;
+        handler();
+      });
+    });
 
     observer.observe(document.body, {
       attributes: true,
-    })
+    });
     return () => {
-      observer.disconnect()
-    }
-  }, [])
+      observer.disconnect();
+    };
+  }, []);
 
   return (
     <>
@@ -139,10 +139,10 @@ const HeaderComponent: React.FC<HeaderProps> = ({ children, transcluent = true }
         }
       `}</style>
     </>
-  )
-}
+  );
+};
 
-const Header = withScale(HeaderComponent)
+const Header = withScale(HeaderComponent);
 
-Header.displayName = 'HimalayaHeader'
-export default Header
+Header.displayName = 'HimalayaHeader';
+export default Header;

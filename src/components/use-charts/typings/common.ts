@@ -2,7 +2,7 @@
  * This type should be used when you need to save result of the setTimeout/setInterval functions.
  * It makes the compilation with non-composite project happy.
  */
-export type TimerId = ReturnType<typeof setTimeout>
+export type TimerId = ReturnType<typeof setTimeout>;
 
 /**
  * The type declares compile-time constants for mouse buttons.
@@ -18,12 +18,12 @@ export const enum MouseEventButton {
 }
 
 interface InputDeviceCapabilities {
-  firesTouchEvents?: boolean
+  firesTouchEvents?: boolean;
 }
 
 export interface UIEvent {
   /** https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/sourceCapabilities */
-  sourceCapabilities?: InputDeviceCapabilities
+  sourceCapabilities?: InputDeviceCapabilities;
 }
 
 /**
@@ -33,17 +33,17 @@ export interface UIEvent {
  * Note: This is a partial type definition for the low entropy properties.
  */
 export interface UADataBrand {
-  brand: string
-  version: string
+  brand: string;
+  version: string;
 }
 export interface Navigator {
   userAgentData?: {
-    brands: UADataBrand[]
-    platform: string
-    mobile: boolean
-  }
+    brands: UADataBrand[];
+    platform: string;
+    mobile: boolean;
+  };
 }
 
 export interface Window {
-  chrome: unknown
+  chrome: unknown;
 }

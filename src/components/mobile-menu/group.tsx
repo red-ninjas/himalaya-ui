@@ -1,16 +1,16 @@
-'use client'
-import { ChevronRight, ChevronDown } from '../icons'
-import React, { PropsWithChildren, ReactNode, useRef, useState } from 'react'
-import { INavigationItem } from './index'
-import useClasses from '../use-classes'
-import useScale, { withScale } from '../use-scale'
-import useTheme from '../use-theme'
-import { pickChild } from '../utils/collections'
-import MobileNavigationSubGroup from './subgroup'
-import { useRouter } from 'next/navigation'
+'use client';
+import { ChevronRight, ChevronDown } from '../icons';
+import React, { PropsWithChildren, ReactNode, useRef, useState } from 'react';
+import { INavigationItem } from './index';
+import useClasses from '../use-classes';
+import useScale, { withScale } from '../use-scale';
+import useTheme from '../use-theme';
+import { pickChild } from '../utils/collections';
+import MobileNavigationSubGroup from './subgroup';
+import { useRouter } from 'next/navigation';
 
 export interface MobileNavigationGroupProps extends INavigationItem {
-  expanded?: boolean
+  expanded?: boolean;
 }
 
 const MobileNavigationGroup: React.FC<PropsWithChildren<MobileNavigationGroupProps>> = ({
@@ -19,18 +19,18 @@ const MobileNavigationGroup: React.FC<PropsWithChildren<MobileNavigationGroupPro
   url,
   expanded = false,
 }) => {
-  const theme = useTheme()
-  const { SCALES } = useScale()
-  const router = useRouter()
-  const ref = useRef<HTMLAnchorElement | null>(null)
-  const [isExpanded, setIsExpanded] = useState(expanded)
+  const theme = useTheme();
+  const { SCALES } = useScale();
+  const router = useRouter();
+  const ref = useRef<HTMLAnchorElement | null>(null);
+  const [isExpanded, setIsExpanded] = useState(expanded);
 
-  const [, subGroup] = pickChild(children, MobileNavigationSubGroup)
+  const [, subGroup] = pickChild(children, MobileNavigationSubGroup);
 
   const btnClass = useClasses({
     'menu-item': true,
     'has-chevron': !!children,
-  })
+  });
 
   const childs = (childElements: ReactNode) => {
     return (
@@ -60,26 +60,27 @@ const MobileNavigationGroup: React.FC<PropsWithChildren<MobileNavigationGroupPro
           }
         `}</style>
       </div>
-    )
-  }
+    );
+  };
 
   const handleGroupClick = (e: any) => {
-    e.preventDefault()
-    e.stopPropagation()
+    e.preventDefault();
+    e.stopPropagation();
 
-    setIsExpanded(!isExpanded)
+    setIsExpanded(!isExpanded);
 
     if (url) {
-      router.push(url)
+      router.push(url);
     }
-  }
+  };
 
   return (
     <div
       className={useClasses({
         'navigation-group-outer': true,
         'has-subgroup': !!subGroup && !!subGroup.length,
-      })}>
+      })}
+    >
       <div className="navigation-group">
         <a className={btnClass} ref={ref} onClick={e => handleGroupClick(e)}>
           {!!children && (
@@ -206,8 +207,8 @@ const MobileNavigationGroup: React.FC<PropsWithChildren<MobileNavigationGroupPro
         }
       `}</style>
     </div>
-  )
-}
-MobileNavigationGroup.displayName = 'HimalayaNavigationItem'
+  );
+};
+MobileNavigationGroup.displayName = 'HimalayaNavigationItem';
 
-export default withScale(MobileNavigationGroup)
+export default withScale(MobileNavigationGroup);

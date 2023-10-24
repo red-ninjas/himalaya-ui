@@ -1,4 +1,4 @@
-import ThemedChart from './chart'
+import ThemedChart from './chart';
 
 export {
   ChartNumberFormatter,
@@ -15,7 +15,7 @@ export {
   WeekdayFormatter,
   YearAndMonthConverter,
   DefaulDayFormatter,
-} from './chart'
+} from './chart';
 
-export { default as ChartSkeleton } from './skeleton'
-export default ThemedChart
+export { default as ChartSkeleton } from './skeleton';
+export default ThemedChart;

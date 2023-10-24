@@ -1,7 +1,7 @@
 export interface QuickBarProviderProps {
-  hideOnMobile?: boolean
+  hideOnMobile?: boolean;
 }
 
-import { useQuickBar } from './quickbar-context'
-export { default as QuickBarProvider } from './quickbar-provider'
-export default useQuickBar
+import { useQuickBar } from './quickbar-context';
+export { default as QuickBarProvider } from './quickbar-provider';
+export default useQuickBar;

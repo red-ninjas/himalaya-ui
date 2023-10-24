@@ -1,7 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 interface Props {
-  visible: boolean
+  visible: boolean;
 }
 
 const PasswordIcon: React.FC<Props> = ({ visible }) => {
@@ -28,9 +28,9 @@ const PasswordIcon: React.FC<Props> = ({ visible }) => {
         </>
       )}
     </svg>
-  )
-}
+  );
+};
 
-const MemoPasswordIcon = React.memo(PasswordIcon)
+const MemoPasswordIcon = React.memo(PasswordIcon);
 
-export default MemoPasswordIcon
+export default MemoPasswordIcon;

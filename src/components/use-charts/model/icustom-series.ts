@@ -1,9 +1,9 @@
-import { CanvasRenderingTarget2D } from 'fancy-canvas'
+import { CanvasRenderingTarget2D } from 'fancy-canvas';
 
-import { Coordinate } from './coordinate'
-import { Time } from './horz-scale-behavior-time/types'
-import { CustomSeriesOptions } from './series-options'
-import { Range } from './time-data'
+import { Coordinate } from './coordinate';
+import { Time } from './horz-scale-behavior-time/types';
+import { CustomSeriesOptions } from './series-options';
+import { Range } from './time-data';
 
 /**
  * Represents a whitespace data item, which is a data point without a value.
@@ -12,13 +12,13 @@ export interface CustomSeriesWhitespaceData<HorzScaleItem> {
   /**
    * The time of the data.
    */
-  time: HorzScaleItem
+  time: HorzScaleItem;
 
   /**
    * Additional custom values which will be ignored by the library, but
    * could be used by plugins.
    */
-  customValues?: Record<string, unknown>
+  customValues?: Record<string, unknown>;
 }
 
 /**
@@ -34,7 +34,7 @@ export interface CustomData<HorzScaleItem = Time>
    * If defined then this color will be used for the price line and price scale line
    * for this specific data item of the custom series.
    */
-  color?: string
+  color?: string;
 }
 
 export type WhitespaceCheck<
@@ -42,7 +42,7 @@ export type WhitespaceCheck<
   TData extends CustomData<HorzScaleItem> = CustomData<HorzScaleItem>,
 > = (
   bar: TData | CustomSeriesWhitespaceData<HorzScaleItem>,
-) => bar is CustomSeriesWhitespaceData<HorzScaleItem>
+) => bar is CustomSeriesWhitespaceData<HorzScaleItem>;
 
 /**
  * Renderer data for an item within the custom series.
@@ -54,19 +54,19 @@ export interface CustomBarItemData<
   /**
    * Horizontal coordinate for the item. Measured from the left edge of the pane in pixels.
    */
-  x: number
+  x: number;
   /**
    * Time scale index for the item. This isn't the timestamp but rather the logical index.
    */
-  time: number
+  time: number;
   /**
    * Original data for the item.
    */
-  originalData: TData
+  originalData: TData;
   /**
    * Color assigned for the item, typically used for price line and price scale label.
    */
-  barColor: string
+  barColor: string;
 }
 
 /**
@@ -80,15 +80,15 @@ export interface PaneRendererCustomData<
   /**
    * List of all the series' items and their x coordinates.
    */
-  bars: readonly CustomBarItemData<HorzScaleItem, TData>[]
+  bars: readonly CustomBarItemData<HorzScaleItem, TData>[];
   /**
    * Spacing between consecutive bars.
    */
-  barSpacing: number
+  barSpacing: number;
   /**
    * The current visible range of items on the chart.
    */
-  visibleRange: Range<number> | null
+  visibleRange: Range<number> | null;
 }
 
 /**
@@ -98,7 +98,7 @@ export interface PaneRendererCustomData<
  * in price values, and the renderer needs to draw with coordinates. This returns the same values as
  * directly using the series' priceToCoordinate method.
  */
-export type PriceToCoordinateConverter = (price: number) => Coordinate | null
+export type PriceToCoordinateConverter = (price: number) => Coordinate | null;
 
 /**
  * Renderer for the custom series. This paints on the main chart pane.
@@ -117,7 +117,7 @@ export interface ICustomSeriesPaneRenderer {
     priceConverter: PriceToCoordinateConverter,
     isHovered: boolean,
     hitTestData?: unknown,
-  ): void
+  ): void;
 }
 
 /**
@@ -129,7 +129,7 @@ export interface ICustomSeriesPaneRenderer {
  * - For a line series, this would contain a single number representing the current value.
  * - For a candle series, this would contain the high, low, and close values. Where the last value would be the close value.
  */
-export type CustomSeriesPricePlotValues = number[]
+export type CustomSeriesPricePlotValues = number[];
 
 /**
  * This interface represents the view for the custom series
@@ -145,7 +145,7 @@ export interface ICustomSeriesPaneView<
    *
    * @returns an renderer object to be used for drawing.
    */
-  renderer(): ICustomSeriesPaneRenderer
+  renderer(): ICustomSeriesPaneRenderer;
 
   /**
    * This method will be called with the latest data for the renderer to use
@@ -154,7 +154,7 @@ export interface ICustomSeriesPaneView<
   update(
     data: PaneRendererCustomData<HorzScaleItem, TData>,
     seriesOptions: TSeriesOptions,
-  ): void
+  ): void;
 
   /**
    * A function for interpreting the custom series data and returning an array of numbers
@@ -163,7 +163,7 @@ export interface ICustomSeriesPaneView<
    * and price line positions. The last value in the array will be used as the current value. You shouldn't need to
    * have more than 3 values in this array since the library only needs a largest, smallest, and current value.
    */
-  priceValueBuilder(plotRow: TData): CustomSeriesPricePlotValues
+  priceValueBuilder(plotRow: TData): CustomSeriesPricePlotValues;
 
   /**
    * A function for testing whether a data point should be considered fully specified, or if it should
@@ -173,12 +173,12 @@ export interface ICustomSeriesPaneView<
    */
   isWhitespace(
     data: TData | CustomSeriesWhitespaceData<HorzScaleItem>,
-  ): data is CustomSeriesWhitespaceData<HorzScaleItem>
+  ): data is CustomSeriesWhitespaceData<HorzScaleItem>;
 
   /**
    * Default options
    */
-  defaultOptions(): TSeriesOptions
+  defaultOptions(): TSeriesOptions;
 
   /**
    * This method will be evoked when the series has been removed from the chart. This method should be used to
@@ -188,5 +188,5 @@ export interface ICustomSeriesPaneView<
    * This includes removing any event listeners or timers that are attached to the object, removing any references
    * to other objects, and resetting any values or properties that were modified during the lifetime of the object.
    */
-  destroy?(): void
+  destroy?(): void;
 }

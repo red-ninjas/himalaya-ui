@@ -1,16 +1,16 @@
-import { Avatar, Popover, useScale, withScale } from '../'
+import { Avatar, Popover, useScale, withScale } from '../';
 
-import React, { PropsWithChildren } from 'react'
+import React, { PropsWithChildren } from 'react';
 
 export interface UserProfileMenuProps {
-  name?: string
+  name?: string;
 }
 const UserProfileComponent: React.FC<PropsWithChildren<UserProfileMenuProps>> = ({
   children,
   name,
 }) => {
-  const userProfileMenu = () => children
-  const { SCALES } = useScale()
+  const userProfileMenu = () => children;
+  const { SCALES } = useScale();
 
   return (
     <div className="user-profile-menu">
@@ -22,7 +22,8 @@ const UserProfileComponent: React.FC<PropsWithChildren<UserProfileMenuProps>> = 
         trigger="click"
         enterDelay={0}
         leaveDelay={0}
-        content={userProfileMenu}>
+        content={userProfileMenu}
+      >
         <Avatar text={name} scale={1.2}></Avatar>
       </Popover>
       <style jsx>{`
@@ -36,8 +37,8 @@ const UserProfileComponent: React.FC<PropsWithChildren<UserProfileMenuProps>> = 
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-const UserProfileMenu = withScale(UserProfileComponent)
-export default UserProfileMenu
+const UserProfileMenu = withScale(UserProfileComponent);
+export default UserProfileMenu;

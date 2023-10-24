@@ -1,28 +1,28 @@
-'use client'
+'use client';
 
-import React from 'react'
-import useTheme from '../use-theme'
-import useScale, { withScale } from '../use-scale'
-import useClasses from '../use-classes'
+import React from 'react';
+import useTheme from '../use-theme';
+import useScale, { withScale } from '../use-scale';
+import useClasses from '../use-classes';
 
 interface Props {
-  src?: string
-  stacked?: boolean
-  text?: string
-  isSquare?: boolean
-  className?: string
+  src?: string;
+  stacked?: boolean;
+  text?: string;
+  isSquare?: boolean;
+  className?: string;
 }
 
 type NativeAttrs = Omit<
   Partial<React.ImgHTMLAttributes<any> & React.HTMLAttributes<any>>,
   keyof Props
->
-export type AvatarProps = Props & NativeAttrs
+>;
+export type AvatarProps = Props & NativeAttrs;
 
 const safeText = (text: string): string => {
-  if (text.length <= 4) return text
-  return text.slice(0, 3)
-}
+  if (text.length <= 4) return text;
+  return text.slice(0, 3);
+};
 
 const AvatarComponent: React.FC<AvatarProps> = ({
   src,
@@ -32,12 +32,12 @@ const AvatarComponent: React.FC<AvatarProps> = ({
   className = '',
   ...props
 }: AvatarProps) => {
-  const theme = useTheme()
-  const { SCALES } = useScale()
-  const showText = !src
-  const radius = isSquare ? theme.style.radius : '50%'
-  const marginLeft = stacked ? SCALES.ml(-0.625) : SCALES.ml(0)
-  const classes = useClasses('avatar', className)
+  const theme = useTheme();
+  const { SCALES } = useScale();
+  const showText = !src;
+  const radius = isSquare ? theme.style.radius : '50%';
+  const marginLeft = stacked ? SCALES.ml(-0.625) : SCALES.ml(0);
+  const classes = useClasses('avatar', className);
 
   return (
     <span className={classes}>
@@ -87,9 +87,9 @@ const AvatarComponent: React.FC<AvatarProps> = ({
         }
       `}</style>
     </span>
-  )
-}
+  );
+};
 
-AvatarComponent.displayName = 'HimalayaAvatar'
-const Avatar = withScale(AvatarComponent)
-export default Avatar
+AvatarComponent.displayName = 'HimalayaAvatar';
+const Avatar = withScale(AvatarComponent);
+export default Avatar;

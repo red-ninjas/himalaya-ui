@@ -1,37 +1,37 @@
-'use client'
+'use client';
 
-import React from 'react'
-import { DynamicScales, makeScaleHandler, ScaleProps } from '../use-scale'
-import useClasses from '../use-classes'
-import useLayout from '../use-layout'
+import React from 'react';
+import { DynamicScales, makeScaleHandler, ScaleProps } from '../use-scale';
+import useClasses from '../use-classes';
+import useLayout from '../use-layout';
 
 type PropsOf<E extends keyof JSX.IntrinsicElements | React.JSXElementConstructor<any>> =
-  JSX.LibraryManagedAttributes<E, React.ComponentPropsWithRef<E>>
+  JSX.LibraryManagedAttributes<E, React.ComponentPropsWithRef<E>>;
 
 export interface BoxOwnProps<E extends React.ElementType = React.ElementType> {
-  as?: E
+  as?: E;
 }
 
 export type BoxProps<E extends React.ElementType> = BoxOwnProps<E> &
   Omit<PropsOf<E>, keyof (BoxOwnProps & ScaleProps)> &
-  ScaleProps
+  ScaleProps;
 
-const defaultElement = 'div'
+const defaultElement = 'div';
 
 export type BoxComponent = {
   <E extends React.ElementType = typeof defaultElement>(
     props: BoxProps<E>,
-  ): React.ReactNode | null
-  displayName?: string
-}
+  ): React.ReactNode | null;
+  displayName?: string;
+};
 
 export const Box: BoxComponent = React.forwardRef(
   <E extends React.ElementType = typeof defaultElement>(
     { as, children, className, ...restProps }: BoxProps<E>,
     ref: typeof restProps.ref | null,
   ) => {
-    const Element = as || defaultElement
-    const layout = useLayout()
+    const Element = as || defaultElement;
+    const layout = useLayout();
     const {
       paddingLeft,
       pl,
@@ -63,7 +63,7 @@ export const Box: BoxComponent = React.forwardRef(
       unit = layout.unit,
       scale = 1,
       ...innerProps
-    } = restProps
+    } = restProps;
 
     const SCALES: DynamicScales = {
       pt: makeScaleHandler(paddingTop ?? pt ?? py ?? padding, scale, unit),
@@ -97,7 +97,7 @@ export const Box: BoxComponent = React.forwardRef(
       width: makeScaleHandler(width ?? w, scale, unit),
       height: makeScaleHandler(height ?? h, scale, unit),
       font: makeScaleHandler(font, scale, unit),
-    }
+    };
 
     return (
       <Element className={useClasses('box', className)} ref={ref} {...innerProps}>
@@ -113,10 +113,10 @@ export const Box: BoxComponent = React.forwardRef(
           }
         `}</style>
       </Element>
-    )
+    );
   },
-)
+);
 
-Box.displayName = 'HimalayaBox'
+Box.displayName = 'HimalayaBox';
 
-export default Box
+export default Box;

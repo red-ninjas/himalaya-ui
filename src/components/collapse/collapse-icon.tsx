@@ -1,7 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 interface Props {
-  active?: boolean
+  active?: boolean;
 }
 
 const CollapseIcon: React.FC<Props> = ({ active }) => {
@@ -27,9 +27,9 @@ const CollapseIcon: React.FC<Props> = ({ active }) => {
         }
       `}</style>
     </svg>
-  )
-}
+  );
+};
 
-const MemoCollapseIcon = React.memo(CollapseIcon)
+const MemoCollapseIcon = React.memo(CollapseIcon);
 
-export default MemoCollapseIcon
+export default MemoCollapseIcon;

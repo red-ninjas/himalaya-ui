@@ -1,4 +1,4 @@
-import Note from './note'
+import Note from './note';
 
-export type { NoteProps, NoteTypes } from './note'
-export default Note
+export type { NoteProps, NoteTypes } from './note';
+export default Note;

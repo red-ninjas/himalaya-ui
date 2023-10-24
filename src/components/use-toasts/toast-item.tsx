@@ -1,27 +1,27 @@
-'use client'
+'use client';
 
-import React, { useMemo } from 'react'
-import useTheme from '../use-theme'
-import type { Toast, ToastLayout } from './use-toast'
-import CssTransition from '../shared/css-transition'
-import { makeToastActions, getColors, getTranslateByPlacement } from './helpers'
-import useLayout from '../use-layout'
+import React, { useMemo } from 'react';
+import useTheme from '../use-theme';
+import type { Toast, ToastLayout } from './use-toast';
+import CssTransition from '../shared/css-transition';
+import { makeToastActions, getColors, getTranslateByPlacement } from './helpers';
+import useLayout from '../use-layout';
 
 export interface ToastItemProps {
-  toast: Toast
-  layout: Required<ToastLayout>
+  toast: Toast;
+  layout: Required<ToastLayout>;
 }
 
 const ToastItem: React.FC<ToastItemProps> = React.memo(({ toast, layout }) => {
-  const theme = useTheme()
-  const coreLayout = useLayout()
+  const theme = useTheme();
+  const coreLayout = useLayout();
   const { color, bgColor } = useMemo(
     () => getColors(theme.palette, toast.type),
     [theme.palette, toast.type],
-  )
-  const isReactNode = typeof toast.text !== 'string'
-  const { padding, margin, maxHeight, maxWidth, width, placement } = layout
-  const { enter, leave } = useMemo(() => getTranslateByPlacement(placement), [placement])
+  );
+  const isReactNode = typeof toast.text !== 'string';
+  const { padding, margin, maxHeight, maxWidth, width, placement } = layout;
+  const { enter, leave } = useMemo(() => getTranslateByPlacement(placement), [placement]);
 
   return (
     <CssTransition name="toast" visible={toast.visible} clearTime={350}>
@@ -95,7 +95,7 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(({ toast, layout }) => {
         `}</style>
       </div>
     </CssTransition>
-  )
-})
-ToastItem.displayName = 'HimalayToastItem'
-export default ToastItem
+  );
+});
+ToastItem.displayName = 'HimalayToastItem';
+export default ToastItem;

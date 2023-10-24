@@ -1,5 +1,5 @@
-import { GridOptions } from '../../model/grid'
-import { LineStyle } from '../../renderers/draw-line'
+import { GridOptions } from '../../model/grid';
+import { LineStyle } from '../../renderers/draw-line';
 
 export const gridOptionsDefaults: GridOptions = {
   vertLines: {
@@ -12,4 +12,4 @@ export const gridOptionsDefaults: GridOptions = {
     style: LineStyle.Solid,
     visible: true,
   },
-}
+};

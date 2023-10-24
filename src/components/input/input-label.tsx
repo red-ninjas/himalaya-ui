@@ -1,17 +1,17 @@
-import React from 'react'
-import useTheme from '../use-theme'
-import useLayout from '../use-layout'
+import React from 'react';
+import useTheme from '../use-theme';
+import useLayout from '../use-layout';
 
 export interface InputLabel {
-  isRight?: boolean
+  isRight?: boolean;
 }
 
 const InputLabel: React.FC<React.PropsWithChildren<InputLabel>> = ({
   children,
   isRight,
 }) => {
-  const theme = useTheme()
-  const layout = useLayout()
+  const theme = useTheme();
+  const layout = useLayout();
 
   return (
     <span className={isRight ? 'right' : ''}>
@@ -46,9 +46,9 @@ const InputLabel: React.FC<React.PropsWithChildren<InputLabel>> = ({
         }
       `}</style>
     </span>
-  )
-}
+  );
+};
 
-const MemoInputLabel = React.memo(InputLabel)
+const MemoInputLabel = React.memo(InputLabel);
 
-export default MemoInputLabel
+export default MemoInputLabel;

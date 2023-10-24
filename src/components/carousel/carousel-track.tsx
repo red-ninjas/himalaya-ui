@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import React from 'react'
-import { classNames } from './utils'
+import React from 'react';
+import { classNames } from './utils';
 
 export const CarouselTrack: React.FC<React.JSX.IntrinsicElements['div']> = ({
   children,
@@ -38,5 +38,5 @@ export const CarouselTrack: React.FC<React.JSX.IntrinsicElements['div']> = ({
         }
       `}</style>
     </div>
-  )
-}
+  );
+};

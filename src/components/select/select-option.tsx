@@ -1,23 +1,23 @@
-'use client'
-import React, { useMemo } from 'react'
-import useTheme from '../use-theme'
-import { useSelectContext } from './select-context'
-import useWarning from '../utils/use-warning'
-import Ellipsis from '../shared/ellipsis'
-import useScale, { withScale } from '../use-scale'
-import useClasses from '../use-classes'
+'use client';
+import React, { useMemo } from 'react';
+import useTheme from '../use-theme';
+import { useSelectContext } from './select-context';
+import useWarning from '../utils/use-warning';
+import Ellipsis from '../shared/ellipsis';
+import useScale, { withScale } from '../use-scale';
+import useClasses from '../use-classes';
 
 interface Props {
-  value?: string
-  disabled?: boolean
-  className?: string
-  divider?: boolean
-  label?: boolean
-  preventAllEvents?: boolean
+  value?: string;
+  disabled?: boolean;
+  className?: string;
+  divider?: boolean;
+  label?: boolean;
+  preventAllEvents?: boolean;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>
-export type SelectOptionProps = Props & NativeAttrs
+type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+export type SelectOptionProps = Props & NativeAttrs;
 
 const SelectOptionComponent: React.FC<React.PropsWithChildren<SelectOptionProps>> = ({
   value: identValue,
@@ -29,47 +29,47 @@ const SelectOptionComponent: React.FC<React.PropsWithChildren<SelectOptionProps>
   preventAllEvents = false,
   ...props
 }: React.PropsWithChildren<SelectOptionProps>) => {
-  const theme = useTheme()
-  const { SCALES } = useScale()
-  const { updateValue, value, disableAll } = useSelectContext()
-  const isDisabled = useMemo(() => disabled || disableAll, [disabled, disableAll])
-  const isLabel = useMemo(() => label || divider, [label, divider])
-  const classes = useClasses('option', { divider, label }, className)
+  const theme = useTheme();
+  const { SCALES } = useScale();
+  const { updateValue, value, disableAll } = useSelectContext();
+  const isDisabled = useMemo(() => disabled || disableAll, [disabled, disableAll]);
+  const isLabel = useMemo(() => label || divider, [label, divider]);
+  const classes = useClasses('option', { divider, label }, className);
   if (!isLabel && identValue === undefined) {
-    useWarning('The props "value" is required.', 'Select Option')
+    useWarning('The props "value" is required.', 'Select Option');
   }
 
   const selected = useMemo(() => {
-    if (!value) return false
+    if (!value) return false;
     if (typeof value === 'string') {
-      return identValue === value
+      return identValue === value;
     }
-    return value.includes(`${identValue}`)
-  }, [identValue, value])
+    return value.includes(`${identValue}`);
+  }, [identValue, value]);
 
   const bgColor = useMemo(() => {
-    if (isDisabled) return theme.palette.accents_1
-    return selected ? theme.palette.accents_2 : theme.palette.background
-  }, [selected, isDisabled, theme.palette])
+    if (isDisabled) return theme.palette.accents_1;
+    return selected ? theme.palette.accents_2 : theme.palette.background;
+  }, [selected, isDisabled, theme.palette]);
 
   const hoverBgColor = useMemo(() => {
-    if (isDisabled || isLabel || selected) return bgColor
-    return theme.palette.accents_1
-  }, [selected, isDisabled, theme.palette, isLabel, bgColor])
+    if (isDisabled || isLabel || selected) return bgColor;
+    return theme.palette.accents_1;
+  }, [selected, isDisabled, theme.palette, isLabel, bgColor]);
 
   const color = useMemo(() => {
-    if (isDisabled) return theme.palette.accents_4
-    return selected ? theme.palette.foreground : theme.palette.accents_5
-  }, [selected, isDisabled, theme.palette])
+    if (isDisabled) return theme.palette.accents_4;
+    return selected ? theme.palette.foreground : theme.palette.accents_5;
+  }, [selected, isDisabled, theme.palette]);
 
   const clickHandler = (event: React.MouseEvent<HTMLDivElement>) => {
-    if (preventAllEvents) return
-    event.stopPropagation()
-    event.nativeEvent.stopImmediatePropagation()
-    event.preventDefault()
-    if (isDisabled || isLabel) return
-    updateValue && updateValue(identValue)
-  }
+    if (preventAllEvents) return;
+    event.stopPropagation();
+    event.nativeEvent.stopImmediatePropagation();
+    event.preventDefault();
+    if (isDisabled || isLabel) return;
+    updateValue && updateValue(identValue);
+  };
 
   return (
     <div className={classes} onClick={clickHandler} {...props}>
@@ -124,9 +124,9 @@ const SelectOptionComponent: React.FC<React.PropsWithChildren<SelectOptionProps>
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-SelectOptionComponent.displayName = 'HimalayaSelectOption'
-const SelectOption = withScale(SelectOptionComponent)
-export default SelectOption
+SelectOptionComponent.displayName = 'HimalayaSelectOption';
+const SelectOption = withScale(SelectOptionComponent);
+export default SelectOption;

@@ -1,15 +1,15 @@
-'use client'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import React, { PropsWithChildren, useRef } from 'react'
-import { IBottomNavigationItem } from './index'
-import useClasses from '../use-classes'
-import useScale, { withScale } from '../use-scale'
-import useTheme from '../use-theme'
+'use client';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import React, { PropsWithChildren, useRef } from 'react';
+import { IBottomNavigationItem } from './index';
+import useClasses from '../use-classes';
+import useScale, { withScale } from '../use-scale';
+import useTheme from '../use-theme';
 
 export interface BottomNavigationItemProps extends IBottomNavigationItem {
-  exactMatch?: boolean
-  onClick?: () => void
+  exactMatch?: boolean;
+  onClick?: () => void;
 }
 
 const BottomNavigationItem: React.FC<PropsWithChildren<BottomNavigationItemProps>> = ({
@@ -18,28 +18,28 @@ const BottomNavigationItem: React.FC<PropsWithChildren<BottomNavigationItemProps
   icon,
   onClick,
 }) => {
-  const theme = useTheme()
-  const pathname = usePathname()
-  const { SCALES } = useScale()
-  const ref = useRef<HTMLAnchorElement | null>(null)
+  const theme = useTheme();
+  const pathname = usePathname();
+  const { SCALES } = useScale();
+  const ref = useRef<HTMLAnchorElement | null>(null);
 
   const isLinkActive = url
     ? exactMatch
       ? pathname == url
       : pathname.startsWith(url)
-    : false
+    : false;
 
   const btnClass = useClasses({
     'bottom-menu-item': true,
     active: isLinkActive,
-  })
+  });
 
   const handleClick = (e: any) => {
     if (onClick) {
-      e.preventDefault()
-      onClick()
+      e.preventDefault();
+      onClick();
     }
-  }
+  };
 
   return (
     <div className="bottom-navigation-item-outer">
@@ -111,8 +111,8 @@ const BottomNavigationItem: React.FC<PropsWithChildren<BottomNavigationItemProps
         }
       `}</style>
     </div>
-  )
-}
-BottomNavigationItem.displayName = 'HimalayaBottomNavigationItem'
+  );
+};
+BottomNavigationItem.displayName = 'HimalayaBottomNavigationItem';
 
-export default withScale(BottomNavigationItem)
+export default withScale(BottomNavigationItem);

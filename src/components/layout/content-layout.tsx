@@ -1,20 +1,20 @@
-'use client'
+'use client';
 
-import React from 'react'
-import { ContentLayoutProps } from '.'
-import useLayout from '../use-layout'
-import useScale, { withScale } from '../use-scale'
+import React from 'react';
+import { ContentLayoutProps } from '.';
+import useLayout from '../use-layout';
+import useScale, { withScale } from '../use-scale';
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof ContentLayoutProps>
-export type CardContentProps = ContentLayoutProps & NativeAttrs
+type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof ContentLayoutProps>;
+export type CardContentProps = ContentLayoutProps & NativeAttrs;
 
 const ContentLayoutComponent: React.FC<React.PropsWithChildren<CardContentProps>> = ({
   maxWidth,
   children,
   ...props
 }) => {
-  const layout = useLayout()
-  const { SCALES } = useScale()
+  const layout = useLayout();
+  const { SCALES } = useScale();
 
   return (
     <div className="content-layout" {...props}>
@@ -32,9 +32,9 @@ const ContentLayoutComponent: React.FC<React.PropsWithChildren<CardContentProps>
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-ContentLayoutComponent.displayName = 'HimalayaContentLayout'
-const ContentLayout = withScale(ContentLayoutComponent)
-export default ContentLayout
+ContentLayoutComponent.displayName = 'HimalayaContentLayout';
+const ContentLayout = withScale(ContentLayoutComponent);
+export default ContentLayout;

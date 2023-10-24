@@ -1,12 +1,12 @@
-'use client'
-import React from 'react'
-import useTheme from '../use-theme'
+'use client';
+import React from 'react';
+import useTheme from '../use-theme';
 
 const Scrollbar: React.FC<React.PropsWithChildren<{ background?: string }>> = ({
   children,
   background,
 }) => {
-  const theme = useTheme()
+  const theme = useTheme();
 
   return (
     <div className="scroll-area">
@@ -86,7 +86,7 @@ const Scrollbar: React.FC<React.PropsWithChildren<{ background?: string }>> = ({
         `}</style>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Scrollbar
+export default Scrollbar;

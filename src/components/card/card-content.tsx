@@ -1,21 +1,21 @@
-'use client'
-import React from 'react'
-import useScale, { withScale } from '../use-scale'
-import useClasses from '../use-classes'
+'use client';
+import React from 'react';
+import useScale, { withScale } from '../use-scale';
+import useClasses from '../use-classes';
 
 interface Props {
-  className?: string
+  className?: string;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>
-export type CardContentProps = Props & NativeAttrs
+type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+export type CardContentProps = Props & NativeAttrs;
 
 const CardContentComponent: React.FC<React.PropsWithChildren<CardContentProps>> = ({
   className = '',
   children,
   ...props
 }: CardContentProps) => {
-  const { SCALES } = useScale()
+  const { SCALES } = useScale();
 
   return (
     <div className={useClasses('content', className)} {...props}>
@@ -37,9 +37,9 @@ const CardContentComponent: React.FC<React.PropsWithChildren<CardContentProps>> 
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-CardContentComponent.displayName = 'HimalayaCardContent'
-const CardContent = withScale(CardContentComponent)
-export default CardContent
+CardContentComponent.displayName = 'HimalayaCardContent';
+const CardContent = withScale(CardContentComponent);
+export default CardContent;

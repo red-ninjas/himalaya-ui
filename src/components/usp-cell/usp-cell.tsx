@@ -1,20 +1,20 @@
-'use client'
+'use client';
 
-import React from 'react'
-import Card from '../card'
-import Link from '../link'
-import useTheme from '../use-theme'
-import NextLink from 'next/link'
+import React from 'react';
+import Card from '../card';
+import Link from '../link';
+import useTheme from '../use-theme';
+import NextLink from 'next/link';
 
 export type HomeCellProps = {
-  url: string
-  title: string
-  desc: string
-  icon: React.ReactNode
-}
+  url: string;
+  title: string;
+  desc: string;
+  icon: React.ReactNode;
+};
 
 const UspCell: React.FC<HomeCellProps> = ({ url, title, desc, icon }) => {
-  const theme = useTheme()
+  const theme = useTheme();
   return (
     <>
       <NextLink href={url} passHref legacyBehavior>
@@ -73,7 +73,7 @@ const UspCell: React.FC<HomeCellProps> = ({ url, title, desc, icon }) => {
         }
       `}</style>
     </>
-  )
-}
+  );
+};
 
-export default UspCell
+export default UspCell;

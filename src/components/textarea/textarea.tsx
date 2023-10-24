@@ -1,30 +1,30 @@
-'use client'
-import React, { useRef, useImperativeHandle, useEffect, useMemo, useState } from 'react'
-import useTheme from '../use-theme'
-import { NormalTypes, tuple } from '../utils/prop-types'
-import { getColors } from '../input/styles'
-import useScale, { withScale } from '../use-scale'
-import useClasses from '../use-classes'
+'use client';
+import React, { useRef, useImperativeHandle, useEffect, useMemo, useState } from 'react';
+import useTheme from '../use-theme';
+import { NormalTypes, tuple } from '../utils/prop-types';
+import { getColors } from '../input/styles';
+import useScale, { withScale } from '../use-scale';
+import useClasses from '../use-classes';
 
-const resizeTypes = tuple('none', 'both', 'horizontal', 'vertical', 'initial', 'inherit')
-export type TextareaResizes = (typeof resizeTypes)[number]
-export type TextareaTypes = NormalTypes
+const resizeTypes = tuple('none', 'both', 'horizontal', 'vertical', 'initial', 'inherit');
+export type TextareaResizes = (typeof resizeTypes)[number];
+export type TextareaTypes = NormalTypes;
 interface Props {
-  value?: string
-  initialValue?: string
-  placeholder?: string
-  type?: TextareaTypes
-  disabled?: boolean
-  readOnly?: boolean
-  onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void
-  onFocus?: (e: React.FocusEvent<HTMLTextAreaElement>) => void
-  onBlur?: (e: React.FocusEvent<HTMLTextAreaElement>) => void
-  className?: string
-  resize?: TextareaResizes
+  value?: string;
+  initialValue?: string;
+  placeholder?: string;
+  type?: TextareaTypes;
+  disabled?: boolean;
+  readOnly?: boolean;
+  onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  onFocus?: (e: React.FocusEvent<HTMLTextAreaElement>) => void;
+  onBlur?: (e: React.FocusEvent<HTMLTextAreaElement>) => void;
+  className?: string;
+  resize?: TextareaResizes;
 }
 
-type NativeAttrs = Omit<React.TextareaHTMLAttributes<any>, keyof Props>
-export type TextareaProps = Props & NativeAttrs
+type NativeAttrs = Omit<React.TextareaHTMLAttributes<any>, keyof Props>;
+export type TextareaProps = Props & NativeAttrs;
 
 const TextareaComponent = React.forwardRef<
   HTMLTextAreaElement,
@@ -47,46 +47,46 @@ const TextareaComponent = React.forwardRef<
     }: React.PropsWithChildren<TextareaProps>,
     ref: React.Ref<HTMLTextAreaElement | null>,
   ) => {
-    const theme = useTheme()
-    const { SCALES } = useScale()
-    const textareaRef = useRef<HTMLTextAreaElement>(null)
-    useImperativeHandle(ref, () => textareaRef.current)
-    const isControlledComponent = useMemo(() => value !== undefined, [value])
-    const [selfValue, setSelfValue] = useState<string>(initialValue)
-    const [hover, setHover] = useState<boolean>(false)
+    const theme = useTheme();
+    const { SCALES } = useScale();
+    const textareaRef = useRef<HTMLTextAreaElement>(null);
+    useImperativeHandle(ref, () => textareaRef.current);
+    const isControlledComponent = useMemo(() => value !== undefined, [value]);
+    const [selfValue, setSelfValue] = useState<string>(initialValue);
+    const [hover, setHover] = useState<boolean>(false);
     const { color, borderColor, hoverBorder } = useMemo(
       () => getColors(theme.palette, type),
       [theme.palette, type],
-    )
-    const classes = useClasses('wrapper', { hover, disabled }, className)
+    );
+    const classes = useClasses('wrapper', { hover, disabled }, className);
 
     const changeHandler = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-      if (disabled || readOnly) return
-      setSelfValue(event.target.value)
-      onChange && onChange(event)
-    }
+      if (disabled || readOnly) return;
+      setSelfValue(event.target.value);
+      onChange && onChange(event);
+    };
     const focusHandler = (e: React.FocusEvent<HTMLTextAreaElement>) => {
-      setHover(true)
-      onFocus && onFocus(e)
-    }
+      setHover(true);
+      onFocus && onFocus(e);
+    };
     const blurHandler = (e: React.FocusEvent<HTMLTextAreaElement>) => {
-      setHover(false)
-      onBlur && onBlur(e)
-    }
+      setHover(false);
+      onBlur && onBlur(e);
+    };
 
     useEffect(() => {
       if (isControlledComponent) {
-        setSelfValue(value as string)
+        setSelfValue(value as string);
       }
-    })
+    });
 
     const controlledValue = isControlledComponent
       ? { value: selfValue }
-      : { defaultValue: initialValue }
+      : { defaultValue: initialValue };
     const textareaProps = {
       ...props,
       ...controlledValue,
-    }
+    };
 
     return (
       <div className={classes}>
@@ -152,10 +152,10 @@ const TextareaComponent = React.forwardRef<
           }
         `}</style>
       </div>
-    )
+    );
   },
-)
+);
 
-TextareaComponent.displayName = 'HimalayaTextarea'
-const Textarea = withScale(TextareaComponent)
-export default Textarea
+TextareaComponent.displayName = 'HimalayaTextarea';
+const Textarea = withScale(TextareaComponent);
+export default Textarea;

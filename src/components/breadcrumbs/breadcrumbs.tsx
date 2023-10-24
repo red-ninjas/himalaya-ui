@@ -1,47 +1,47 @@
-'use client'
+'use client';
 
-import React, { ReactNode, useMemo } from 'react'
-import useTheme from '../use-theme'
-import BreadcrumbsSeparator from './breadcrumbs-separator'
-import { addColorAlpha } from '../utils/color'
-import useScale, { withScale } from '../use-scale'
+import React, { ReactNode, useMemo } from 'react';
+import useTheme from '../use-theme';
+import BreadcrumbsSeparator from './breadcrumbs-separator';
+import { addColorAlpha } from '../utils/color';
+import useScale, { withScale } from '../use-scale';
 
 interface Props {
-  separator?: string | ReactNode
-  className?: string
+  separator?: string | ReactNode;
+  className?: string;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>
-export type BreadcrumbsProps = Props & NativeAttrs
+type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+export type BreadcrumbsProps = Props & NativeAttrs;
 
 const BreadcrumbsComponent: React.FC<React.PropsWithChildren<BreadcrumbsProps>> = ({
   separator = '/',
   children,
   className = '',
 }: BreadcrumbsProps) => {
-  const theme = useTheme()
-  const { SCALES } = useScale()
+  const theme = useTheme();
+  const { SCALES } = useScale();
   const hoverColor = useMemo(() => {
-    return addColorAlpha(theme.palette.link, 0.85)
-  }, [theme.palette.link])
+    return addColorAlpha(theme.palette.link, 0.85);
+  }, [theme.palette.link]);
 
-  const childrenArray = React.Children.toArray(children)
+  const childrenArray = React.Children.toArray(children);
   const withSeparatorChildren = childrenArray.map((item, index) => {
-    if (!React.isValidElement(item)) return item
-    const last = childrenArray[index - 1]
+    if (!React.isValidElement(item)) return item;
+    const last = childrenArray[index - 1];
     const lastIsSeparator =
-      React.isValidElement(last) && last.type === BreadcrumbsSeparator
-    const currentIsSeparator = item.type === BreadcrumbsSeparator
+      React.isValidElement(last) && last.type === BreadcrumbsSeparator;
+    const currentIsSeparator = item.type === BreadcrumbsSeparator;
     if (!lastIsSeparator && !currentIsSeparator && index > 0) {
       return (
         <React.Fragment key={index}>
           <BreadcrumbsSeparator>{separator}</BreadcrumbsSeparator>
           {item}
         </React.Fragment>
-      )
+      );
     }
-    return item
-  })
+    return item;
+  });
 
   return (
     <nav className={className}>
@@ -84,9 +84,9 @@ const BreadcrumbsComponent: React.FC<React.PropsWithChildren<BreadcrumbsProps>> 
         }
       `}</style>
     </nav>
-  )
-}
+  );
+};
 
-BreadcrumbsComponent.displayName = 'HimalayaBreadcrumbs'
-const Breadcrumbs = withScale(BreadcrumbsComponent)
-export default Breadcrumbs
+BreadcrumbsComponent.displayName = 'HimalayaBreadcrumbs';
+const Breadcrumbs = withScale(BreadcrumbsComponent);
+export default Breadcrumbs;

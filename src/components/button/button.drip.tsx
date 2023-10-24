@@ -1,15 +1,15 @@
-'use client'
+'use client';
 
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef } from 'react';
 
 interface Props {
-  x: number
-  y: number
-  onCompleted: () => void
-  color: string
+  x: number;
+  y: number;
+  onCompleted: () => void;
+  color: string;
 }
 
-export type ButtonDrip = Props
+export type ButtonDrip = Props;
 
 const ButtonDrip: React.FC<ButtonDrip> = ({
   x = 0,
@@ -17,22 +17,22 @@ const ButtonDrip: React.FC<ButtonDrip> = ({
   color,
   onCompleted,
 }: ButtonDrip) => {
-  const dripRef = useRef<HTMLDivElement>(null)
+  const dripRef = useRef<HTMLDivElement>(null);
   /* istanbul ignore next */
-  const top = Number.isNaN(+y) ? 0 : y - 10
+  const top = Number.isNaN(+y) ? 0 : y - 10;
   /* istanbul ignore next */
-  const left = Number.isNaN(+x) ? 0 : x - 10
+  const left = Number.isNaN(+x) ? 0 : x - 10;
 
   useEffect(() => {
     /* istanbul ignore next */
-    if (!dripRef.current) return
-    dripRef.current.addEventListener('animationend', onCompleted)
+    if (!dripRef.current) return;
+    dripRef.current.addEventListener('animationend', onCompleted);
     return () => {
       /* istanbul ignore next */
-      if (!dripRef.current) return
-      dripRef.current.removeEventListener('animationend', onCompleted)
-    }
-  })
+      if (!dripRef.current) return;
+      dripRef.current.removeEventListener('animationend', onCompleted);
+    };
+  });
 
   return (
     <div ref={dripRef} className="drip">
@@ -79,8 +79,8 @@ const ButtonDrip: React.FC<ButtonDrip> = ({
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-ButtonDrip.displayName = 'HimalayaButtonDrip'
-export default ButtonDrip
+ButtonDrip.displayName = 'HimalayaButtonDrip';
+export default ButtonDrip;

@@ -1,17 +1,17 @@
-import { CanvasRenderingTarget2D } from 'fancy-canvas'
+import { CanvasRenderingTarget2D } from 'fancy-canvas';
 
-import { IDataSource } from '../model/idata-source'
-import { Pane } from '../model/pane'
-import { IPaneRenderer } from '../renderers/ipane-renderer'
+import { IDataSource } from '../model/idata-source';
+import { Pane } from '../model/pane';
+import { IPaneRenderer } from '../renderers/ipane-renderer';
 
-import { IPaneViewsGetter } from './ipane-view-getter'
+import { IPaneViewsGetter } from './ipane-view-getter';
 
 export type DrawFunction = (
   renderer: IPaneRenderer,
   target: CanvasRenderingTarget2D,
   isHovered: boolean,
   hitTestData?: unknown,
-) => void
+) => void;
 
 export function drawBackground(
   renderer: IPaneRenderer,
@@ -20,7 +20,7 @@ export function drawBackground(
   hitTestData?: unknown,
 ): void {
   if (renderer.drawBackground) {
-    renderer.drawBackground(target, isHovered, hitTestData)
+    renderer.drawBackground(target, isHovered, hitTestData);
   }
 }
 
@@ -30,10 +30,10 @@ export function drawForeground(
   isHovered: boolean,
   hitTestData?: unknown,
 ): void {
-  renderer.draw(target, isHovered, hitTestData)
+  renderer.draw(target, isHovered, hitTestData);
 }
 
-type DrawRendererFn = (renderer: IPaneRenderer) => void
+type DrawRendererFn = (renderer: IPaneRenderer) => void;
 
 export function drawSourcePaneViews(
   paneViewsGetter: IPaneViewsGetter,
@@ -41,12 +41,12 @@ export function drawSourcePaneViews(
   source: IDataSource,
   pane: Pane,
 ): void {
-  const paneViews = paneViewsGetter(source, pane)
+  const paneViews = paneViewsGetter(source, pane);
 
   for (const paneView of paneViews) {
-    const renderer = paneView.renderer()
+    const renderer = paneView.renderer();
     if (renderer !== null) {
-      drawRendererFn(renderer)
+      drawRendererFn(renderer);
     }
   }
 }

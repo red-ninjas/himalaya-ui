@@ -1,26 +1,26 @@
-'use client'
+'use client';
 
-import useScale, { withScale } from '../use-scale'
-import useClasses from '../use-classes'
-import useVisible from '../utils/use-visibile'
-import React, { createRef, useEffect, useState } from 'react'
+import useScale, { withScale } from '../use-scale';
+import useClasses from '../use-classes';
+import useVisible from '../utils/use-visibile';
+import React, { createRef, useEffect, useState } from 'react';
 interface Props {
-  delay?: number
-  transition?: number
-  blur?: number
-  startOpacity?: number
+  delay?: number;
+  transition?: number;
+  blur?: number;
+  startOpacity?: number;
 
-  rotate?: string
-  translateX?: string
-  translateY?: string
-  skewX?: string
-  skewY?: string
-  scaleX?: string
-  scaleY?: string
+  rotate?: string;
+  translateX?: string;
+  translateY?: string;
+  skewX?: string;
+  skewY?: string;
+  scaleX?: string;
+  scaleY?: string;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
-export type TransitionEffectProps = Props & NativeAttrs
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
+export type TransitionEffectProps = Props & NativeAttrs;
 
 const FadeInEffect: React.FC<React.PropsWithChildren<TransitionEffectProps>> = ({
   children,
@@ -37,15 +37,15 @@ const FadeInEffect: React.FC<React.PropsWithChildren<TransitionEffectProps>> = (
   scaleY = '1',
   ...props
 }: React.PropsWithChildren<TransitionEffectProps>) => {
-  const ref = createRef<HTMLDivElement>()
-  const [isActive, setIsActive] = useState<boolean>(false)
-  const isVisible = useVisible(ref)
-  const { SCALES } = useScale()
+  const ref = createRef<HTMLDivElement>();
+  const [isActive, setIsActive] = useState<boolean>(false);
+  const isVisible = useVisible(ref);
+  const { SCALES } = useScale();
   useEffect(() => {
     if (isVisible) {
-      setIsActive(true)
+      setIsActive(true);
     }
-  }, [isVisible])
+  }, [isVisible]);
 
   return (
     <div
@@ -53,7 +53,8 @@ const FadeInEffect: React.FC<React.PropsWithChildren<TransitionEffectProps>> = (
         'fade-in-effect-active': isActive,
       })}
       {...props}
-      ref={ref}>
+      ref={ref}
+    >
       {children}
 
       <style jsx global>{`
@@ -100,8 +101,8 @@ const FadeInEffect: React.FC<React.PropsWithChildren<TransitionEffectProps>> = (
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-FadeInEffect.displayName = 'HimalayaFadeInEffect'
-export default withScale(FadeInEffect)
+FadeInEffect.displayName = 'HimalayaFadeInEffect';
+export default withScale(FadeInEffect);

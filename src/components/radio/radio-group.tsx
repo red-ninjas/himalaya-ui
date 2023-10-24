@@ -1,20 +1,20 @@
-'use client'
-import React, { useEffect, useMemo, useState } from 'react'
-import { RadioContext } from './radio-context'
-import useScale, { withScale } from '../use-scale'
-import useClasses from '../use-classes'
+'use client';
+import React, { useEffect, useMemo, useState } from 'react';
+import { RadioContext } from './radio-context';
+import useScale, { withScale } from '../use-scale';
+import useClasses from '../use-classes';
 
 interface Props {
-  value?: string | number
-  initialValue?: string | number
-  disabled?: boolean
-  onChange?: (value: string | number) => void
-  className?: string
-  useRow?: boolean
+  value?: string | number;
+  initialValue?: string | number;
+  disabled?: boolean;
+  onChange?: (value: string | number) => void;
+  className?: string;
+  useRow?: boolean;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>
-export type RadioGroupProps = Props & NativeAttrs
+type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+export type RadioGroupProps = Props & NativeAttrs;
 
 const RadioGroupComponent: React.FC<React.PropsWithChildren<RadioGroupProps>> = ({
   disabled = false,
@@ -26,12 +26,12 @@ const RadioGroupComponent: React.FC<React.PropsWithChildren<RadioGroupProps>> = 
   useRow = false,
   ...props
 }: React.PropsWithChildren<RadioGroupProps>) => {
-  const { SCALES } = useScale()
-  const [selfVal, setSelfVal] = useState<string | number | undefined>(initialValue)
+  const { SCALES } = useScale();
+  const [selfVal, setSelfVal] = useState<string | number | undefined>(initialValue);
   const updateState = (nextValue: string | number) => {
-    setSelfVal(nextValue)
-    onChange && onChange(nextValue)
-  }
+    setSelfVal(nextValue);
+    onChange && onChange(nextValue);
+  };
 
   const providerValue = useMemo(() => {
     return {
@@ -39,13 +39,13 @@ const RadioGroupComponent: React.FC<React.PropsWithChildren<RadioGroupProps>> = 
       disabledAll: disabled,
       inGroup: true,
       value: selfVal,
-    }
-  }, [disabled, selfVal])
+    };
+  }, [disabled, selfVal]);
 
   useEffect(() => {
-    if (value === undefined) return
-    setSelfVal(value)
-  }, [value])
+    if (value === undefined) return;
+    setSelfVal(value);
+  }, [value]);
 
   return (
     <RadioContext.Provider value={providerValue}>
@@ -74,9 +74,9 @@ const RadioGroupComponent: React.FC<React.PropsWithChildren<RadioGroupProps>> = 
         }
       `}</style>
     </RadioContext.Provider>
-  )
-}
+  );
+};
 
-RadioGroupComponent.displayName = 'HimalayaRadioGroup'
-const RadioGroup = withScale(RadioGroupComponent)
-export default RadioGroup
+RadioGroupComponent.displayName = 'HimalayaRadioGroup';
+const RadioGroup = withScale(RadioGroupComponent);
+export default RadioGroup;

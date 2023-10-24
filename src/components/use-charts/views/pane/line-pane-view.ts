@@ -1,20 +1,20 @@
-import { BarPrice } from '../../model/bar'
-import { ISeriesBarColorer } from '../../model/series-bar-colorer'
-import { TimePointIndex } from '../../model/time-data'
+import { BarPrice } from '../../model/bar';
+import { ISeriesBarColorer } from '../../model/series-bar-colorer';
+import { TimePointIndex } from '../../model/time-data';
 import {
   LineStrokeItem,
   PaneRendererLine,
   PaneRendererLineData,
-} from '../../renderers/line-renderer'
+} from '../../renderers/line-renderer';
 
-import { LinePaneViewBase } from './line-pane-view-base'
+import { LinePaneViewBase } from './line-pane-view-base';
 
 export class SeriesLinePaneView extends LinePaneViewBase<
   'Line',
   LineStrokeItem,
   PaneRendererLine
 > {
-  protected readonly _renderer: PaneRendererLine = new PaneRendererLine()
+  protected readonly _renderer: PaneRendererLine = new PaneRendererLine();
 
   protected _createRawItem(
     time: TimePointIndex,
@@ -24,11 +24,11 @@ export class SeriesLinePaneView extends LinePaneViewBase<
     return {
       ...this._createRawItemBase(time, price),
       ...colorer.barStyle(time),
-    }
+    };
   }
 
   protected _prepareRendererData(): void {
-    const options = this._series.options()
+    const options = this._series.options();
 
     const data: PaneRendererLineData = {
       items: this._items,
@@ -40,8 +40,8 @@ export class SeriesLinePaneView extends LinePaneViewBase<
         : undefined,
       visibleRange: this._itemsVisibleRange,
       barWidth: this._model.timeScale().barSpacing(),
-    }
+    };
 
-    this._renderer.setData(data)
+    this._renderer.setData(data);
   }
 }

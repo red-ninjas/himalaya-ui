@@ -1,22 +1,22 @@
-'use client'
+'use client';
 
-import React, { useMemo } from 'react'
-import useTheme from '../use-theme'
-import { NormalTypes } from '../utils/prop-types'
-import { UIThemesPalette } from '../themes/presets'
-import useScale, { withScale } from '../use-scale'
-import useClasses from '../use-classes'
+import React, { useMemo } from 'react';
+import useTheme from '../use-theme';
+import { NormalTypes } from '../utils/prop-types';
+import { UIThemesPalette } from '../themes/presets';
+import useScale, { withScale } from '../use-scale';
+import useClasses from '../use-classes';
 
-export type BadgeTypes = NormalTypes
+export type BadgeTypes = NormalTypes;
 
 interface Props {
-  type?: BadgeTypes
-  dot?: boolean
-  className?: string
+  type?: BadgeTypes;
+  dot?: boolean;
+  className?: string;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>
-export type BadgeProps = Props & NativeAttrs
+type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+export type BadgeProps = Props & NativeAttrs;
 
 const getBgColor = (type: NormalTypes, palette: UIThemesPalette) => {
   const colors: { [key in NormalTypes]: string } = {
@@ -25,9 +25,9 @@ const getBgColor = (type: NormalTypes, palette: UIThemesPalette) => {
     warning: palette.warning,
     error: palette.error,
     secondary: palette.secondary,
-  }
-  return colors[type]
-}
+  };
+  return colors[type];
+};
 
 const BadgeComponent: React.FC<React.PropsWithChildren<BadgeProps>> = ({
   type = 'default' as BadgeTypes,
@@ -36,14 +36,14 @@ const BadgeComponent: React.FC<React.PropsWithChildren<BadgeProps>> = ({
   dot = false,
   ...props
 }: BadgeProps) => {
-  const theme = useTheme()
-  const { SCALES } = useScale()
-  const bg = useMemo(() => getBgColor(type, theme.palette), [type, theme.palette])
+  const theme = useTheme();
+  const { SCALES } = useScale();
+  const bg = useMemo(() => getBgColor(type, theme.palette), [type, theme.palette]);
   const color = useMemo(() => {
-    if (!type || type === 'default') return theme.palette.background
-    return 'white'
-  }, [type, theme.palette.background])
-  const classes = useClasses('badge', { dot }, className)
+    if (!type || type === 'default') return theme.palette.background;
+    return 'white';
+  }, [type, theme.palette.background]);
+  const classes = useClasses('badge', { dot }, className);
 
   return (
     <span className={classes} {...props}>
@@ -73,9 +73,9 @@ const BadgeComponent: React.FC<React.PropsWithChildren<BadgeProps>> = ({
         }
       `}</style>
     </span>
-  )
-}
+  );
+};
 
-BadgeComponent.displayName = 'HimalayaBadge'
-const Badge = withScale(BadgeComponent)
-export default Badge
+BadgeComponent.displayName = 'HimalayaBadge';
+const Badge = withScale(BadgeComponent);
+export default Badge;

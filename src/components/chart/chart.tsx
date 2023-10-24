@@ -1,90 +1,90 @@
-'use client'
+'use client';
 
-import Checkbox from '../checkbox'
-import Note from '../note'
-import { UIThemes } from '../themes'
+import Checkbox from '../checkbox';
+import Note from '../note';
+import { UIThemes } from '../themes';
 
-import { ColorType, LineType, createChart } from '../use-charts'
+import { ColorType, LineType, createChart } from '../use-charts';
 
-import moment from 'moment'
-import React, { createRef } from 'react'
-import { hexToRgb } from '../utils/color'
+import moment from 'moment';
+import React, { createRef } from 'react';
+import { hexToRgb } from '../utils/color';
 import {
   Time,
   UTCTimestamp,
-} from 'components/use-charts/model/horz-scale-behavior-time/types'
-import { TimeFormatterFn } from 'components/use-charts/model/localization-options'
-import { TickMarkFormatter } from 'components/use-charts/model/horz-scale-behavior-time/horz-scale-behavior-time'
-import { ISeriesApi } from 'components/use-charts/api/iseries-api'
+} from 'components/use-charts/model/horz-scale-behavior-time/types';
+import { TimeFormatterFn } from 'components/use-charts/model/localization-options';
+import { TickMarkFormatter } from 'components/use-charts/model/horz-scale-behavior-time/horz-scale-behavior-time';
+import { ISeriesApi } from 'components/use-charts/api/iseries-api';
 import {
   PriceFormatCustom,
   SeriesOptionsMap,
-} from 'components/use-charts/model/series-options'
-import { ChartOptions, IChartApi } from 'components/use-charts/api/create-chart'
-import { DeepPartial } from 'components/utils/types'
+} from 'components/use-charts/model/series-options';
+import { ChartOptions, IChartApi } from 'components/use-charts/api/create-chart';
+import { DeepPartial } from 'components/utils/types';
 
 interface ThemedChartItem {
-  time: number
-  value: number
-  low?: number
-  open?: number
-  high?: number
+  time: number;
+  value: number;
+  low?: number;
+  open?: number;
+  high?: number;
 }
 
-export type ThemedChartPriceFormatter = (value: number) => string
+export type ThemedChartPriceFormatter = (value: number) => string;
 export interface ThemedChartData {
-  data: ThemedChartItem[]
-  type: 'line' | 'area' | 'bar' | 'candle'
-  side?: 'left' | 'right'
-  showTitle?: boolean
-  visible?: boolean
-  color: string
-  priceLineVisible?: boolean
-  lastValueVisible?: boolean
-  priceFormatter?: ThemedChartPriceFormatter
+  data: ThemedChartItem[];
+  type: 'line' | 'area' | 'bar' | 'candle';
+  side?: 'left' | 'right';
+  showTitle?: boolean;
+  visible?: boolean;
+  color: string;
+  priceLineVisible?: boolean;
+  lastValueVisible?: boolean;
+  priceFormatter?: ThemedChartPriceFormatter;
 }
-const toolTipWidth = 80
-const toolTipHeight = 80
-const toolTipMargin = 15
+const toolTipWidth = 80;
+const toolTipHeight = 80;
+const toolTipMargin = 15;
 
 export const DefaulTimeFormatter = (businessDayOrTimestamp: Time) => {
   return moment
     .unix(Number(businessDayOrTimestamp) - moment().utcOffset() * 60)
-    .format('L LT (Z)')
-}
+    .format('L LT (Z)');
+};
 
 export const DefaulHourFormatter = (businessDayOrTimestamp: Time) => {
   return moment
     .unix(Number(businessDayOrTimestamp) - moment().utcOffset() * 60)
-    .format('L HH:mm')
-}
+    .format('L HH:mm');
+};
 export const DefaulDayFormatter = (businessDayOrTimestamp: Time) => {
   return moment
     .unix(Number(businessDayOrTimestamp) - moment().utcOffset() * 60)
-    .format('L')
-}
+    .format('L');
+};
 
 export const DateTimeFormatter = (businessDayOrTimestamp: Time) => {
   return moment
     .unix(Number(businessDayOrTimestamp) - moment().utcOffset() * 60)
-    .format('dddd, HH:mm')
-}
+    .format('dddd, HH:mm');
+};
 export const WeekdayFormatter = (businessDayOrTimestamp: Time) => {
   return moment
     .unix(Number(businessDayOrTimestamp) - moment().utcOffset() * 60)
-    .format('dddd')
-}
+    .format('dddd');
+};
 
 export const YearAndMonthConverter = (businessDayOrTimestamp: Time) => {
   return moment
     .unix(Number(businessDayOrTimestamp) - moment().utcOffset() * 60)
-    .format('MM, YYYY')
-}
+    .format('MM, YYYY');
+};
 
 export const ChartPriceFormatter = (value: number) => {
-  let locale = 'en-US'
+  let locale = 'en-US';
   if (typeof window != 'undefined') {
-    locale = window.navigator.languages[0] || 'en-US'
+    locale = window.navigator.languages[0] || 'en-US';
   }
 
   return Intl.NumberFormat(locale, {
@@ -95,74 +95,74 @@ export const ChartPriceFormatter = (value: number) => {
     maximumFractionDigits: 2,
     minimumFractionDigits: 0,
     currencyDisplay: 'code',
-  }).format(value)
-}
+  }).format(value);
+};
 
 export const ChartMarketPriceFormatter = (value: number, currency = 'USD') => {
-  let locale = 'en-US'
+  let locale = 'en-US';
   if (typeof window != 'undefined') {
-    locale = window.navigator.languages[0] || 'en-US'
+    locale = window.navigator.languages[0] || 'en-US';
   }
 
   return Intl.NumberFormat(locale, {
     style: 'currency',
     currency: currency,
     minimumFractionDigits: 2,
-  }).format(value)
-}
+  }).format(value);
+};
 
 export const ChartPercentFormatter = (value: number) => {
-  let locale = 'en-US'
+  let locale = 'en-US';
   if (typeof window != 'undefined') {
-    locale = window.navigator.languages[0] || 'en-US'
+    locale = window.navigator.languages[0] || 'en-US';
   }
 
   return Intl.NumberFormat(locale, {
     style: 'percent',
     notation: 'compact',
     maximumSignificantDigits: 2,
-  }).format(value / 100)
-}
+  }).format(value / 100);
+};
 
 export const ChartNumberFormatter = (value: number) => {
-  let locale = 'en-US'
+  let locale = 'en-US';
   if (typeof window != 'undefined') {
-    locale = window.navigator.languages[0] || 'en-US'
+    locale = window.navigator.languages[0] || 'en-US';
   }
 
   return Intl.NumberFormat(locale, {
     style: 'decimal',
     maximumSignificantDigits: 5,
-  }).format(value)
-}
+  }).format(value);
+};
 
 export interface ChartProps {
-  series: { [name: string]: ThemedChartData }
-  theme?: UIThemes
-  showLegends?: boolean
-  showTime?: boolean
-  showSeconds?: boolean
-  timeFormatter?: TimeFormatterFn
-  tickFormatter?: TickMarkFormatter
+  series: { [name: string]: ThemedChartData };
+  theme?: UIThemes;
+  showLegends?: boolean;
+  showTime?: boolean;
+  showSeconds?: boolean;
+  timeFormatter?: TimeFormatterFn;
+  tickFormatter?: TickMarkFormatter;
 }
 export interface ThemeChartSeriesDictonary {
-  [name: string]: ISeriesApi<keyof SeriesOptionsMap>
+  [name: string]: ISeriesApi<keyof SeriesOptionsMap>;
 }
 interface ThemedChartStates {
-  series: ThemeChartSeriesDictonary
-  activeSeries: string[]
-  isEmpty: boolean
+  series: ThemeChartSeriesDictonary;
+  activeSeries: string[];
+  isEmpty: boolean;
 }
 
 export default class ThemedChart extends React.Component<ChartProps> {
-  chart: IChartApi | undefined = undefined
-  chartContainerRef = createRef<HTMLDivElement>()
-  tooltipRef = createRef<HTMLDivElement>()
+  chart: IChartApi | undefined = undefined;
+  chartContainerRef = createRef<HTMLDivElement>();
+  tooltipRef = createRef<HTMLDivElement>();
 
-  override state: ThemedChartStates = { series: {}, activeSeries: [], isEmpty: false }
+  override state: ThemedChartStates = { series: {}, activeSeries: [], isEmpty: false };
 
   constructor(props: any) {
-    super(props)
+    super(props);
   }
 
   private options: DeepPartial<ChartOptions> = {
@@ -199,45 +199,48 @@ export default class ThemedChart extends React.Component<ChartProps> {
         ? this.props.timeFormatter
         : DefaulTimeFormatter,
     },
-  }
+  };
 
   protected addSerie(name: string, serie: ISeriesApi<keyof SeriesOptionsMap>) {
     // eslint-disable-next-line react/no-direct-mutation-state
-    this.state.series[name] = serie
-    this.setState(this.state)
+    this.state.series[name] = serie;
+    this.setState(this.state);
   }
 
   protected removeSerie(name: string) {
-    delete this.state.series[name]
-    this.setState(this.state)
+    delete this.state.series[name];
+    this.setState(this.state);
   }
 
   protected clearSeries() {
     for (const key of Object.keys(this.state.series)) {
-      delete this.state.series[key]
+      delete this.state.series[key];
     }
 
-    this.setState(this.state)
+    this.setState(this.state);
   }
 
   configure(options: DeepPartial<ChartOptions>): DeepPartial<ChartOptions> {
-    return options
+    return options;
   }
 
   override componentDidMount(): void {
     if (!this.chartContainerRef.current) {
-      return
+      return;
     }
-    this.options.width = this.chartContainerRef.current.clientWidth
-    this.options.height = 350
-    this.chart?.remove()
-    this.chart = createChart(this.chartContainerRef.current, this.configure(this.options))
+    this.options.width = this.chartContainerRef.current.clientWidth;
+    this.options.height = 350;
+    this.chart?.remove();
+    this.chart = createChart(
+      this.chartContainerRef.current,
+      this.configure(this.options),
+    );
     this.chart.subscribeCrosshairMove(param => {
-      const container = this.chartContainerRef.current
-      const toolTip = this.tooltipRef.current
+      const container = this.chartContainerRef.current;
+      const toolTip = this.tooltipRef.current;
 
       if (!toolTip || !container) {
-        return
+        return;
       }
 
       if (
@@ -248,61 +251,63 @@ export default class ThemedChart extends React.Component<ChartProps> {
         param.point.y < 0 ||
         param.point.y > container.clientHeight
       ) {
-        toolTip.style.display = 'none'
+        toolTip.style.display = 'none';
       } else {
         // time will be in the same format that we supplied to setData.
         // thus it will be YYYY-MM-DD
-        toolTip.style.display = 'block'
+        toolTip.style.display = 'block';
         //const data = param.seriesData.get(series);
 
-        const formatter = this.props.timeFormatter || DefaulTimeFormatter
-        let tooltip = `<div class="tooltip-graph-time">${formatter(param.time)}</div>`
+        const formatter = this.props.timeFormatter || DefaulTimeFormatter;
+        let tooltip = `<div class="tooltip-graph-time">${formatter(param.time)}</div>`;
         for (const key of Object.keys(this.state.series)) {
-          const serie = this.state.series[key]
-          const data: any = param.seriesData.get(serie)
+          const serie = this.state.series[key];
+          const data: any = param.seriesData.get(serie);
           const price =
             data && data['value'] !== undefined
               ? data['value']
               : data
               ? data['close']
-              : ''
-          const fmt = serie.options().priceFormat as PriceFormatCustom
-          const formatter = fmt.formatter
-          const priceFormatted = formatter ? formatter(price) : ChartPriceFormatter(price)
+              : '';
+          const fmt = serie.options().priceFormat as PriceFormatCustom;
+          const formatter = fmt.formatter;
+          const priceFormatted = formatter
+            ? formatter(price)
+            : ChartPriceFormatter(price);
 
           tooltip += `<div class="tooltip-graph-element"><div class="tooltip-graph-key">${key}</div><div style="color:${
             serie.options().baseLineColor
-          }" class="tooltip-graph-value">${priceFormatted}</div></div>`
+          }" class="tooltip-graph-value">${priceFormatted}</div></div>`;
         }
 
-        toolTip.innerHTML = tooltip
+        toolTip.innerHTML = tooltip;
 
-        const y = param.point.y
-        let left = param.point.x + toolTipMargin
+        const y = param.point.y;
+        let left = param.point.x + toolTipMargin;
         if (left > container.clientWidth - toolTipWidth) {
-          left = param.point.x - toolTipMargin - toolTipWidth
+          left = param.point.x - toolTipMargin - toolTipWidth;
         }
 
-        let top = y + toolTipMargin
+        let top = y + toolTipMargin;
         if (top > container.clientHeight - toolTipHeight) {
-          top = y - toolTipHeight - toolTipMargin
+          top = y - toolTipHeight - toolTipMargin;
         }
-        toolTip.style.left = left + 'px'
-        toolTip.style.top = top + 'px'
+        toolTip.style.left = left + 'px';
+        toolTip.style.top = top + 'px';
       }
-    })
-    window.addEventListener('resize', this.handleResize.bind(this))
-    this.setTheme()
-    this.generateData()
+    });
+    window.addEventListener('resize', this.handleResize.bind(this));
+    this.setTheme();
+    this.generateData();
   }
 
   override componentDidUpdate(prevProps: Readonly<ChartProps>): void {
     if (prevProps.theme?.type !== this.props.theme?.type) {
-      this.setTheme()
+      this.setTheme();
     }
 
     if (Object.keys(prevProps.series) === Object.keys(this.props.series)) {
-      this.generateData()
+      this.generateData();
     }
 
     if (prevProps.timeFormatter === this.props.timeFormatter) {
@@ -310,7 +315,7 @@ export default class ThemedChart extends React.Component<ChartProps> {
         localization: {
           timeFormatter: this.props.timeFormatter || DefaulTimeFormatter,
         },
-      })
+      });
     }
   }
 
@@ -333,20 +338,20 @@ export default class ThemedChart extends React.Component<ChartProps> {
               : 'rgba(0,0,0,0.1)',
         },
       },
-    })
+    });
   }
 
   checkSides() {
-    let hastLeftSide = false
-    let hasRightSide = false
+    let hastLeftSide = false;
+    let hasRightSide = false;
 
     for (const key of Object.keys(this.props.series)) {
       if (this.props.series[key] && this.state.series[key].options().visible) {
-        const side = this.props.series[key].side || 'right'
+        const side = this.props.series[key].side || 'right';
         if (side == 'right') {
-          hasRightSide = true
+          hasRightSide = true;
         } else if (side == 'left') {
-          hastLeftSide = true
+          hastLeftSide = true;
         }
       }
     }
@@ -360,20 +365,20 @@ export default class ThemedChart extends React.Component<ChartProps> {
         borderColor: 'rgba(0,0,0,0.0)',
         visible: hastLeftSide,
       },
-    })
+    });
   }
 
   renderData() {
     if (!this.chart) {
-      return
+      return;
     }
 
     for (const key of Object.keys(this.props.series)) {
       const defaultColor =
-        this.props.series[key].color || this.props.theme?.palette.success || '#eee'
+        this.props.series[key].color || this.props.theme?.palette.success || '#eee';
 
       if (this.props.series[key].type == 'area') {
-        const side = this.props.series[key].side || 'right'
+        const side = this.props.series[key].side || 'right';
         const area = this.chart.addAreaSeries({
           title: this.props.series[key].showTitle ? key : undefined,
           visible: this.props.series[key].visible,
@@ -391,20 +396,20 @@ export default class ThemedChart extends React.Component<ChartProps> {
               ? this.props.series[key].priceFormatter
               : ChartPriceFormatter,
           },
-        })
+        });
 
         area.setData(
           this.props.series[key].data.map(df => {
             return {
               time: df.time as UTCTimestamp,
               value: df.value,
-            }
+            };
           }),
-        )
+        );
 
-        this.addSerie(key, area)
+        this.addSerie(key, area);
       } else if (this.props.series[key].type == 'line') {
-        const side = this.props.series[key].side || 'right'
+        const side = this.props.series[key].side || 'right';
         const line = this.chart.addLineSeries({
           title: this.props.series[key].showTitle ? key : undefined,
           visible: this.props.series[key].visible,
@@ -420,20 +425,20 @@ export default class ThemedChart extends React.Component<ChartProps> {
               ? this.props.series[key].priceFormatter
               : ChartPriceFormatter,
           },
-        })
+        });
 
         line.setData(
           this.props.series[key].data.map(df => {
             return {
               time: df.time as UTCTimestamp,
               value: df.value,
-            }
+            };
           }),
-        )
+        );
 
-        this.addSerie(key, line)
+        this.addSerie(key, line);
       } else if (this.props.series[key].type == 'bar') {
-        const side = this.props.series[key].side || 'right'
+        const side = this.props.series[key].side || 'right';
         const bar = this.chart.addHistogramSeries({
           title: this.props.series[key].showTitle ? key : undefined,
           visible: this.props.series[key].visible,
@@ -447,20 +452,20 @@ export default class ThemedChart extends React.Component<ChartProps> {
               ? this.props.series[key].priceFormatter
               : ChartPriceFormatter,
           },
-        })
+        });
 
         bar.setData(
           this.props.series[key].data.map(df => {
             return {
               time: df.time as UTCTimestamp,
               value: df.value,
-            }
+            };
           }),
-        )
+        );
 
-        this.addSerie(key, bar)
+        this.addSerie(key, bar);
       } else if (this.props.series[key].type == 'candle') {
-        const side = this.props.series[key].side || 'right'
+        const side = this.props.series[key].side || 'right';
         const candle = this.chart.addCandlestickSeries({
           title: this.props.series[key].showTitle ? key : undefined,
           visible: this.props.series[key].visible,
@@ -473,7 +478,7 @@ export default class ThemedChart extends React.Component<ChartProps> {
               ? this.props.series[key].priceFormatter
               : ChartPriceFormatter,
           },
-        })
+        });
 
         candle.setData(
           this.props.series[key].data.map(df => {
@@ -483,81 +488,81 @@ export default class ThemedChart extends React.Component<ChartProps> {
               low: df.low,
               open: df.open,
               high: df.high,
-            }
+            };
           }),
-        )
+        );
 
-        this.addSerie(key, candle)
+        this.addSerie(key, candle);
       }
     }
 
-    this.chart.timeScale().fitContent()
-    this.checkSides()
+    this.chart.timeScale().fitContent();
+    this.checkSides();
   }
 
   private generateData() {
     if (this.chart) {
-      this.clearSeries()
-      this.renderData()
+      this.clearSeries();
+      this.renderData();
       // eslint-disable-next-line react/no-direct-mutation-state
-      this.state.activeSeries = this.getActiveSeries()
+      this.state.activeSeries = this.getActiveSeries();
       // eslint-disable-next-line react/no-direct-mutation-state
-      this.state.isEmpty = !this.isNotEmpty()
-      this.setState(this.state)
+      this.state.isEmpty = !this.isNotEmpty();
+      this.setState(this.state);
     }
   }
 
   getActiveSeries(): string[] {
-    const actives: string[] = []
+    const actives: string[] = [];
     for (const i of Object.keys(this.state.series)) {
-      if (this.state.series[i].options().visible) actives.push(i)
+      if (this.state.series[i].options().visible) actives.push(i);
     }
 
-    return actives
+    return actives;
   }
 
   override componentWillUnmount(): void {
-    window.removeEventListener('resize', this.handleResize)
+    window.removeEventListener('resize', this.handleResize);
   }
 
   private handleResize() {
     if (!this.chartContainerRef.current) {
-      return
+      return;
     }
-    this.chart?.applyOptions({ width: this.chartContainerRef.current.clientWidth })
+    this.chart?.applyOptions({ width: this.chartContainerRef.current.clientWidth });
   }
 
   private isNotEmpty() {
     for (const i of Object.keys(this.props.series)) {
       if (this.props.series[i].data && this.props.series[i].data.length > 0) {
-        return true
+        return true;
       }
     }
 
-    return false
+    return false;
   }
 
   override render() {
     const makeVisible = (key: any) => {
-      let keys: string[] = []
+      let keys: string[] = [];
       if (Array.isArray(key)) {
-        keys = key
+        keys = key;
       } else {
-        keys = [key]
+        keys = [key];
       }
 
       // eslint-disable-next-line react/no-direct-mutation-state
-      this.state.activeSeries = keys
+      this.state.activeSeries = keys;
 
       for (const serieKey of Object.keys(this.state.series)) {
         this.state.series[serieKey].applyOptions({
           visible: this.state.activeSeries.includes(serieKey),
-        })
+        });
       }
 
-      this.setState({ activeSeries: this.state.activeSeries })
-      this.checkSides()
-    }
+      this.setState({ activeSeries: this.state.activeSeries });
+      this.checkSides();
+    };
 
     return (
       <>
@@ -571,7 +576,8 @@ export default class ThemedChart extends React.Component<ChartProps> {
                 scale={0.75}
                 className="legends"
                 value={this.state.activeSeries}
-                onChange={value => makeVisible(value)}>
+                onChange={value => makeVisible(value)}
+              >
                 {Object.keys(this.state.series).map(i => (
                   <Checkbox key={i} className="series-checkbox" value={i}>
                     {i}
@@ -623,6 +629,6 @@ export default class ThemedChart extends React.Component<ChartProps> {
           }
         `}</style>
       </>
-    )
+    );
   }
 }

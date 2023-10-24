@@ -1,21 +1,21 @@
-import React, { useEffect, useMemo, useRef } from 'react'
-import useScale from '../use-scale'
-import useTheme from '../use-theme'
-import CssTransition from '../shared/css-transition'
-import { isChildElement } from '../utils/collections'
-import { DrawerPlacement, getDrawerTransform } from './helper'
-import useClasses from '../use-classes'
+import React, { useEffect, useMemo, useRef } from 'react';
+import useScale from '../use-scale';
+import useTheme from '../use-theme';
+import CssTransition from '../shared/css-transition';
+import { isChildElement } from '../utils/collections';
+import { DrawerPlacement, getDrawerTransform } from './helper';
+import useClasses from '../use-classes';
 
 interface Props {
-  className?: string
-  visible?: boolean
-  placement?: DrawerPlacement
-  radius?: number
-  leaveTime?: number
-  enterTime?: number
+  className?: string;
+  visible?: boolean;
+  placement?: DrawerPlacement;
+  radius?: number;
+  leaveTime?: number;
+  enterTime?: number;
 }
 
-export type DrawerWrapperProps = Props
+export type DrawerWrapperProps = Props;
 
 const DrawerWrapper: React.FC<React.PropsWithChildren<DrawerWrapperProps>> = ({
   className = '',
@@ -27,36 +27,36 @@ const DrawerWrapper: React.FC<React.PropsWithChildren<DrawerWrapperProps>> = ({
   enterTime = 300,
   ...props
 }: React.PropsWithChildren<DrawerWrapperProps>) => {
-  const theme = useTheme()
-  const { SCALES } = useScale()
-  const modalContent = useRef<HTMLDivElement>(null)
-  const tabStart = useRef<HTMLDivElement>(null)
-  const tabEnd = useRef<HTMLDivElement>(null)
-  const transform = useMemo(() => getDrawerTransform(placement), [placement])
-  const classes = useClasses('wrapper', placement, className)
+  const theme = useTheme();
+  const { SCALES } = useScale();
+  const modalContent = useRef<HTMLDivElement>(null);
+  const tabStart = useRef<HTMLDivElement>(null);
+  const tabEnd = useRef<HTMLDivElement>(null);
+  const transform = useMemo(() => getDrawerTransform(placement), [placement]);
+  const classes = useClasses('wrapper', placement, className);
 
   useEffect(() => {
-    if (!visible) return
-    const activeElement = document.activeElement
-    const isChild = isChildElement(modalContent.current, activeElement)
-    if (isChild) return
-    tabStart.current && tabStart.current.focus()
-  }, [visible])
+    if (!visible) return;
+    const activeElement = document.activeElement;
+    const isChild = isChildElement(modalContent.current, activeElement);
+    if (isChild) return;
+    tabStart.current && tabStart.current.focus();
+  }, [visible]);
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    const isTabDown = event.keyCode === 9
-    if (!visible || !isTabDown) return
-    const activeElement = document.activeElement
+    const isTabDown = event.keyCode === 9;
+    if (!visible || !isTabDown) return;
+    const activeElement = document.activeElement;
     if (event.shiftKey) {
       if (activeElement === tabStart.current) {
-        tabEnd.current && tabEnd.current.focus()
+        tabEnd.current && tabEnd.current.focus();
       }
     } else {
       if (activeElement === tabEnd.current) {
-        tabStart.current && tabStart.current.focus()
+        tabStart.current && tabStart.current.focus();
       }
     }
-  }
+  };
 
   return (
     <CssTransition name="wrapper" visible={visible} clearTime={300}>
@@ -160,8 +160,8 @@ const DrawerWrapper: React.FC<React.PropsWithChildren<DrawerWrapperProps>> = ({
         `}</style>
       </div>
     </CssTransition>
-  )
-}
+  );
+};
 
-DrawerWrapper.displayName = 'HimalayaDrawerWrapper'
-export default DrawerWrapper
+DrawerWrapper.displayName = 'HimalayaDrawerWrapper';
+export default DrawerWrapper;

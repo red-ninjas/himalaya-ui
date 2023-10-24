@@ -1,17 +1,17 @@
-'use client'
-import React from 'react'
-import useTheme from '../use-theme'
-import useScale, { withScale } from '../use-scale'
-import useClasses from '../use-classes'
-import useLayout from '../use-layout'
+'use client';
+import React from 'react';
+import useTheme from '../use-theme';
+import useScale, { withScale } from '../use-scale';
+import useClasses from '../use-classes';
+import useLayout from '../use-layout';
 
 interface Props {
-  disableAutoMargin?: boolean
-  className?: string
+  disableAutoMargin?: boolean;
+  className?: string;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>
-export type CardFooterProps = Props & NativeAttrs
+type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+export type CardFooterProps = Props & NativeAttrs;
 
 const CardFooterComponent: React.FC<React.PropsWithChildren<CardFooterProps>> = ({
   children,
@@ -19,10 +19,10 @@ const CardFooterComponent: React.FC<React.PropsWithChildren<CardFooterProps>> = 
   disableAutoMargin = false,
   ...props
 }: CardFooterProps) => {
-  const theme = useTheme()
-  const { SCALES } = useScale()
-  const layout = useLayout()
-  const classes = useClasses({ 'auto-margin': !disableAutoMargin }, className)
+  const theme = useTheme();
+  const { SCALES } = useScale();
+  const layout = useLayout();
+  const classes = useClasses({ 'auto-margin': !disableAutoMargin }, className);
 
   return (
     <footer className={classes} {...props}>
@@ -52,9 +52,9 @@ const CardFooterComponent: React.FC<React.PropsWithChildren<CardFooterProps>> = 
         }
       `}</style>
     </footer>
-  )
-}
+  );
+};
 
-CardFooterComponent.displayName = 'HimalayaCardFooter'
-const CardFooter = withScale(CardFooterComponent)
-export default CardFooter
+CardFooterComponent.displayName = 'HimalayaCardFooter';
+const CardFooter = withScale(CardFooterComponent);
+export default CardFooter;

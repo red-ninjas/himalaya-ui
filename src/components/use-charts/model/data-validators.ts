@@ -1,22 +1,22 @@
 /// <reference types="../../../typings/_build-time-constants" />
 
-import { assert } from '../helpers/assertions'
+import { assert } from '../helpers/assertions';
 
-import { isFulfilledData, SeriesDataItemTypeMap } from './data-consumer'
-import { IHorzScaleBehavior } from './ihorz-scale-behavior'
-import { CreatePriceLineOptions } from './price-line-options'
-import { SeriesMarker } from './series-markers'
-import { SeriesType } from './series-options'
+import { isFulfilledData, SeriesDataItemTypeMap } from './data-consumer';
+import { IHorzScaleBehavior } from './ihorz-scale-behavior';
+import { CreatePriceLineOptions } from './price-line-options';
+import { SeriesMarker } from './series-markers';
+import { SeriesType } from './series-options';
 
 export function checkPriceLineOptions(options: CreatePriceLineOptions): void {
   if (process.env.NODE_ENV === 'production') {
-    return
+    return;
   }
 
   assert(
     typeof options.price === 'number',
     `the type of 'price' price line's property must be a number, got '${typeof options.price}'`,
-  )
+  );
 }
 
 export function checkItemsAreOrdered<HorzScaleItem>(
@@ -28,22 +28,24 @@ export function checkItemsAreOrdered<HorzScaleItem>(
   allowDuplicates: boolean = false,
 ): void {
   if (process.env.NODE_ENV === 'production') {
-    return
+    return;
   }
 
   if (data.length === 0) {
-    return
+    return;
   }
 
-  let prevTime = bh.key(data[0].time)
+  let prevTime = bh.key(data[0].time);
   for (let i = 1; i < data.length; ++i) {
-    const currentTime = bh.key(data[i].time)
-    const checkResult = allowDuplicates ? prevTime <= currentTime : prevTime < currentTime
+    const currentTime = bh.key(data[i].time);
+    const checkResult = allowDuplicates
+      ? prevTime <= currentTime
+      : prevTime < currentTime;
     assert(
       checkResult,
       `data must be asc ordered by time, index=${i}, time=${currentTime}, prev time=${prevTime}`,
-    )
-    prevTime = currentTime
+    );
+    prevTime = currentTime;
   }
 }
 
@@ -52,30 +54,30 @@ export function checkSeriesValuesType<HorzScaleItem>(
   data: readonly SeriesDataItemTypeMap<HorzScaleItem>[SeriesType][],
 ): void {
   if (process.env.NODE_ENV === 'production') {
-    return
+    return;
   }
 
-  data.forEach(getChecker<HorzScaleItem>(type))
+  data.forEach(getChecker<HorzScaleItem>(type));
 }
 
 type Checker<HorzScaleItem> = (
   item: SeriesDataItemTypeMap<HorzScaleItem>[SeriesType],
-) => void
+) => void;
 
 export function getChecker<HorzScaleItem>(type: SeriesType): Checker<HorzScaleItem> {
   switch (type) {
     case 'Bar':
     case 'Candlestick':
-      return checkBarItem.bind(null, type)
+      return checkBarItem.bind(null, type);
 
     case 'Area':
     case 'Baseline':
     case 'Line':
     case 'Histogram':
-      return checkLineItem.bind(null, type)
+      return checkLineItem.bind(null, type);
 
     case 'Custom':
-      return checkCustomItem.bind(null, type)
+      return checkCustomItem.bind(null, type);
   }
 }
 
@@ -84,29 +86,33 @@ function checkBarItem<HorzScaleItem>(
   barItem: SeriesDataItemTypeMap<HorzScaleItem>[typeof type],
 ): void {
   if (!isFulfilledData(barItem)) {
-    return
+    return;
   }
 
   assert(
     typeof barItem.open === 'number',
-    `${type} series item data value of open must be a number, got=${typeof barItem.open}, value=${barItem.open
+    `${type} series item data value of open must be a number, got=${typeof barItem.open}, value=${
+      barItem.open
     }`,
-  )
+  );
   assert(
     typeof barItem.high === 'number',
-    `${type} series item data value of high must be a number, got=${typeof barItem.high}, value=${barItem.high
+    `${type} series item data value of high must be a number, got=${typeof barItem.high}, value=${
+      barItem.high
     }`,
-  )
+  );
   assert(
     typeof barItem.low === 'number',
-    `${type} series item data value of low must be a number, got=${typeof barItem.low}, value=${barItem.low
+    `${type} series item data value of low must be a number, got=${typeof barItem.low}, value=${
+      barItem.low
     }`,
-  )
+  );
   assert(
     typeof barItem.close === 'number',
-    `${type} series item data value of close must be a number, got=${typeof barItem.close}, value=${barItem.close
+    `${type} series item data value of close must be a number, got=${typeof barItem.close}, value=${
+      barItem.close
     }`,
-  )
+  );
 }
 
 function checkLineItem<HorzScaleItem>(
@@ -114,19 +120,20 @@ function checkLineItem<HorzScaleItem>(
   lineItem: SeriesDataItemTypeMap<HorzScaleItem>[typeof type],
 ): void {
   if (!isFulfilledData(lineItem)) {
-    return
+    return;
   }
 
   assert(
     typeof lineItem.value === 'number',
-    `${type} series item data value must be a number, got=${typeof lineItem.value}, value=${lineItem.value
+    `${type} series item data value must be a number, got=${typeof lineItem.value}, value=${
+      lineItem.value
     }`,
-  )
+  );
 }
 
 function checkCustomItem(): void {
   // type: 'Custom',
   // customItem: SeriesDataItemTypeMap[typeof type]
   // Nothing to check yet...
-  return
+  return;
 }

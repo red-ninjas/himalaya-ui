@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import React, { PropsWithChildren } from 'react'
-import { withScale } from '../use-scale'
+import React, { PropsWithChildren } from 'react';
+import { withScale } from '../use-scale';
 
 const Logo: React.FC<PropsWithChildren<{}>> = ({ children }) => {
   return (
@@ -15,6 +15,6 @@ const Logo: React.FC<PropsWithChildren<{}>> = ({ children }) => {
         }
       `}</style>
     </div>
-  )
-}
-export default withScale(Logo)
+  );
+};
+export default withScale(Logo);

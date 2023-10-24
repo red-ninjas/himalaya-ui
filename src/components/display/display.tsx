@@ -1,17 +1,17 @@
-'use client'
-import React, { ReactNode, useMemo } from 'react'
-import useTheme from '../use-theme'
-import useScale, { withScale } from '../use-scale'
-import useClasses from '../use-classes'
+'use client';
+import React, { ReactNode, useMemo } from 'react';
+import useTheme from '../use-theme';
+import useScale, { withScale } from '../use-scale';
+import useClasses from '../use-classes';
 
 interface Props {
-  caption?: ReactNode | string
-  shadow?: boolean
-  className?: string
+  caption?: ReactNode | string;
+  shadow?: boolean;
+  className?: string;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>
-export type DisplayProps = Props & NativeAttrs
+type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+export type DisplayProps = Props & NativeAttrs;
 
 const DisplayComponent: React.FC<React.PropsWithChildren<DisplayProps>> = ({
   children,
@@ -20,10 +20,10 @@ const DisplayComponent: React.FC<React.PropsWithChildren<DisplayProps>> = ({
   className = '',
   ...props
 }: React.PropsWithChildren<DisplayProps>) => {
-  const theme = useTheme()
-  const { SCALES } = useScale()
-  const classes = useClasses('display', className)
-  const showShadow = useMemo(() => shadow && theme.type !== 'dark', [theme.type, shadow])
+  const theme = useTheme();
+  const { SCALES } = useScale();
+  const classes = useClasses('display', className);
+  const showShadow = useMemo(() => shadow && theme.type !== 'dark', [theme.type, shadow]);
 
   return (
     <div className={classes} {...props}>
@@ -73,9 +73,9 @@ const DisplayComponent: React.FC<React.PropsWithChildren<DisplayProps>> = ({
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-DisplayComponent.displayName = 'HimalayaDisplay'
-const Display = withScale(DisplayComponent)
-export default Display
+DisplayComponent.displayName = 'HimalayaDisplay';
+const Display = withScale(DisplayComponent);
+export default Display;

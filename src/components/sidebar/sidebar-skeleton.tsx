@@ -1,22 +1,22 @@
-import useTheme from '../use-theme'
-import React, { useEffect, useState } from 'react'
+import useTheme from '../use-theme';
+import React, { useEffect, useState } from 'react';
 
-const DEFAULT_OPACITY = 0.75
-const LOADING_OPACITY = 0.45
+const DEFAULT_OPACITY = 0.75;
+const LOADING_OPACITY = 0.45;
 
 const SidebarSkeleton: React.FC<unknown> = () => {
-  const theme = useTheme()
-  const [opacity, setOpacity] = useState(DEFAULT_OPACITY)
+  const theme = useTheme();
+  const [opacity, setOpacity] = useState(DEFAULT_OPACITY);
   useEffect(() => {
     const timer = setInterval(() => {
       setOpacity(opacity =>
         opacity !== DEFAULT_OPACITY ? DEFAULT_OPACITY : LOADING_OPACITY,
-      )
-    }, 600)
+      );
+    }, 600);
     return () => {
-      window.clearTimeout(timer)
-    }
-  }, [])
+      window.clearTimeout(timer);
+    };
+  }, []);
   return (
     <div className="skeleton">
       <div className="item" style={{ width: '50%' }} />
@@ -47,7 +47,7 @@ const SidebarSkeleton: React.FC<unknown> = () => {
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-export default SidebarSkeleton
+export default SidebarSkeleton;

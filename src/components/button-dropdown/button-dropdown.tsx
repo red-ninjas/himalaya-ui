@@ -1,36 +1,36 @@
-'use client'
+'use client';
 
-import React, { MouseEvent, useCallback, useMemo, useRef, useState } from 'react'
-import useTheme from '../use-theme'
-import useClickAway from '../utils/use-click-away'
-import { getColor } from './styles'
-import ButtonDropdownIcon from './icon'
-import ButtonDropdownItem from './button-dropdown-item'
-import { ButtonDropdownContext } from './button-dropdown-context'
-import { NormalTypes } from '../utils/prop-types'
-import { pickChild, pickChildByProps } from '../utils/collections'
-import useScale, { withScale } from '../use-scale'
-import useClasses from '../use-classes'
-import useLayout from '../use-layout'
+import React, { MouseEvent, useCallback, useMemo, useRef, useState } from 'react';
+import useTheme from '../use-theme';
+import useClickAway from '../utils/use-click-away';
+import { getColor } from './styles';
+import ButtonDropdownIcon from './icon';
+import ButtonDropdownItem from './button-dropdown-item';
+import { ButtonDropdownContext } from './button-dropdown-context';
+import { NormalTypes } from '../utils/prop-types';
+import { pickChild, pickChildByProps } from '../utils/collections';
+import useScale, { withScale } from '../use-scale';
+import useClasses from '../use-classes';
+import useLayout from '../use-layout';
 
-export type ButtonDropdownTypes = NormalTypes
+export type ButtonDropdownTypes = NormalTypes;
 
 interface Props {
-  type?: ButtonDropdownTypes
-  auto?: boolean
-  loading?: boolean
-  disabled?: boolean
-  className?: string
-  icon?: React.ReactNode
+  type?: ButtonDropdownTypes;
+  auto?: boolean;
+  loading?: boolean;
+  disabled?: boolean;
+  className?: string;
+  icon?: React.ReactNode;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>
-export type ButtonDropdownProps = Props & NativeAttrs
+type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+export type ButtonDropdownProps = Props & NativeAttrs;
 
 const stopPropagation = (event: MouseEvent<HTMLElement>) => {
-  event.stopPropagation()
-  event.nativeEvent.stopImmediatePropagation()
-}
+  event.stopPropagation();
+  event.nativeEvent.stopImmediatePropagation();
+};
 
 const ButtonDropdownComponent: React.FC<React.PropsWithChildren<ButtonDropdownProps>> = ({
   children,
@@ -42,44 +42,44 @@ const ButtonDropdownComponent: React.FC<React.PropsWithChildren<ButtonDropdownPr
   icon,
   ...props
 }) => {
-  const { SCALES } = useScale()
-  const ref = useRef<HTMLDivElement>(null)
-  const theme = useTheme()
-  const layout = useLayout()
-  const colors = getColor(theme.palette, type)
-  const itemChildren = pickChild(children, ButtonDropdownItem)[1]
+  const { SCALES } = useScale();
+  const ref = useRef<HTMLDivElement>(null);
+  const theme = useTheme();
+  const layout = useLayout();
+  const colors = getColor(theme.palette, type);
+  const itemChildren = pickChild(children, ButtonDropdownItem)[1];
   const [itemChildrenWithoutMain, mainItemChildren] = pickChildByProps(
     itemChildren,
     'main',
     true,
-  )
-  const [visible, setVisible] = useState<boolean>(false)
+  );
+  const [visible, setVisible] = useState<boolean>(false);
   const clickHandler = useCallback(
     (event: MouseEvent<HTMLDetailsElement>) => {
-      event.preventDefault()
-      stopPropagation(event)
-      if (disabled || loading) return
-      setVisible(!visible)
+      event.preventDefault();
+      stopPropagation(event);
+      if (disabled || loading) return;
+      setVisible(!visible);
     },
     [visible],
-  )
+  );
 
   const initialValue = {
     type,
     auto,
     disabled,
     loading,
-  }
+  };
   const bgColor = useMemo(() => {
-    if (disabled || loading) return theme.palette.accents_1
-    return visible ? colors.hoverBgColor : colors.bgColor
-  }, [visible, colors, theme.palette])
+    if (disabled || loading) return theme.palette.accents_1;
+    return visible ? colors.hoverBgColor : colors.bgColor;
+  }, [visible, colors, theme.palette]);
   const [paddingLeft, paddingRight] = [
     auto ? SCALES.pl(1.15) : SCALES.pl(1.375),
     auto ? SCALES.pr(1.15) : SCALES.pr(1.375),
-  ]
+  ];
 
-  useClickAway(ref, () => setVisible(false))
+  useClickAway(ref, () => setVisible(false));
 
   return (
     <ButtonDropdownContext.Provider value={initialValue}>
@@ -200,9 +200,9 @@ const ButtonDropdownComponent: React.FC<React.PropsWithChildren<ButtonDropdownPr
         `}</style>
       </div>
     </ButtonDropdownContext.Provider>
-  )
-}
+  );
+};
 
-ButtonDropdownComponent.displayName = 'HimalayaButtonDropdown'
-const ButtonDropdown = withScale(ButtonDropdownComponent)
-export default ButtonDropdown
+ButtonDropdownComponent.displayName = 'HimalayaButtonDropdown';
+const ButtonDropdown = withScale(ButtonDropdownComponent);
+export default ButtonDropdown;

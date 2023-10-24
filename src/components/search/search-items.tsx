@@ -5,42 +5,42 @@ import React, {
   useMemo,
   useRef,
   useState,
-} from 'react'
-import { SearchResultGroup, SearchResults } from '.'
-import Highlight from '../shared/highlight'
-import useTheme from '../use-theme'
-import { useRect } from '../utils/layouts'
-import SearchItem from './search-item'
-import InnerScroll from '../scroll/inner-scroll'
+} from 'react';
+import { SearchResultGroup, SearchResults } from '.';
+import Highlight from '../shared/highlight';
+import useTheme from '../use-theme';
+import { useRect } from '../utils/layouts';
+import SearchItem from './search-item';
+import InnerScroll from '../scroll/inner-scroll';
 
 export const isSearchItem = (el?: HTMLElement): boolean => {
-  if (!el) return false
-  return !!el.attributes.getNamedItem('data-search-item')
-}
+  if (!el) return false;
+  return !!el.attributes.getNamedItem('data-search-item');
+};
 
 export type SearchItemsProps = {
-  data: SearchResults
-  onSelect: (url: string) => void
-  preventHoverHighlightSync?: boolean
-  displayHoverHighlight?: boolean
-}
+  data: SearchResults;
+  onSelect: (url: string) => void;
+  preventHoverHighlightSync?: boolean;
+  displayHoverHighlight?: boolean;
+};
 
 export type SearchItemsRef = HTMLUListElement & {
-  closeHighlight: () => void
-}
+  closeHighlight: () => void;
+};
 
 export const groupResults = (data: SearchResults) => {
   return data.reduce<SearchResultGroup[]>((acc, item) => {
-    const title = item.group || 'General'
-    const group = acc.find(group => group.title === title)
+    const title = item.group || 'General';
+    const group = acc.find(group => group.title === title);
     if (!group) {
-      acc.push({ title, items: [item] })
+      acc.push({ title, items: [item] });
     } else {
-      group.items.push(item)
+      group.items.push(item);
     }
-    return acc
-  }, [])
-}
+    return acc;
+  }, []);
+};
 
 const SearchItems = React.forwardRef<
   SearchItemsRef,
@@ -50,31 +50,31 @@ const SearchItems = React.forwardRef<
     { data, onSelect, preventHoverHighlightSync },
     outRef: React.Ref<SearchItemsRef | null>,
   ) => {
-    const theme = useTheme()
-    const { rect, setRect } = useRect()
-    const ref = useRef<HTMLUListElement | null>(null)
-    const [displayHighlight, setDisplayHighlight] = useState<boolean>(false)
+    const theme = useTheme();
+    const { rect, setRect } = useRect();
+    const ref = useRef<HTMLUListElement | null>(null);
+    const [displayHighlight, setDisplayHighlight] = useState<boolean>(false);
     useImperativeHandle(outRef, () =>
       Object.assign(ref.current || { closeHighlight: undefined }, {
         closeHighlight: () => setDisplayHighlight(false),
       }),
-    )
+    );
 
     const hoverHandler = (event: MouseEvent<HTMLButtonElement>) => {
-      if (preventHoverHighlightSync) return
-      if (!isSearchItem(event.target as HTMLButtonElement)) return
-      ;(event.target as HTMLButtonElement).focus()
-    }
+      if (preventHoverHighlightSync) return;
+      if (!isSearchItem(event.target as HTMLButtonElement)) return;
+      (event.target as HTMLButtonElement).focus();
+    };
     const focusHandler = (event: FocusEvent<HTMLButtonElement>) => {
-      if (!isSearchItem(event.target as HTMLButtonElement)) return
-      setRect(event, () => ref.current)
-      setDisplayHighlight(true)
-    }
+      if (!isSearchItem(event.target as HTMLButtonElement)) return;
+      setRect(event, () => ref.current);
+      setDisplayHighlight(true);
+    };
     const blurHandler = () => {
-      setDisplayHighlight(false)
-    }
+      setDisplayHighlight(false);
+    };
 
-    const grouppedResults = useMemo(() => groupResults(data), [data])
+    const grouppedResults = useMemo(() => groupResults(data), [data]);
     return (
       <InnerScroll type="vertical" maxHeight="350px">
         <ul className="results" role="listbox" ref={ref}>
@@ -125,8 +125,8 @@ const SearchItems = React.forwardRef<
           `}</style>
         </ul>
       </InnerScroll>
-    )
+    );
   },
-)
-SearchItems.displayName = 'HimalayaSearchItems'
-export default SearchItems
+);
+SearchItems.displayName = 'HimalayaSearchItems';
+export default SearchItems;

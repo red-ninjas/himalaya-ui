@@ -1,6 +1,6 @@
-import { Resource } from 'i18next'
+import { Resource } from 'i18next';
 
-export const UITranslationNameSpace = 'himalya'
+export const UITranslationNameSpace = 'himalya';
 export const UITranslations: Resource = {
   en: {
     ui: {
@@ -12,8 +12,8 @@ export const UITranslations: Resource = {
       test: 'test',
     },
   },
-}
+};
 export interface TranslationProviderProps {
-  translation?: Resource
-  defaultLanguage?: string
+  translation?: Resource;
+  defaultLanguage?: string;
 }

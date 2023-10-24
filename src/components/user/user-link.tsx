@@ -1,15 +1,15 @@
-'use client'
+'use client';
 
-import React from 'react'
-import Link from '../link'
+import React from 'react';
+import Link from '../link';
 
 interface Props {
-  href?: string
-  className?: string
+  href?: string;
+  className?: string;
 }
 
-type NativeAttrs = Omit<React.AnchorHTMLAttributes<any>, keyof Props>
-export type UserLinkProps = Props & NativeAttrs
+type NativeAttrs = Omit<React.AnchorHTMLAttributes<any>, keyof Props>;
+export type UserLinkProps = Props & NativeAttrs;
 
 const UserLink = React.forwardRef<
   HTMLAnchorElement,
@@ -30,9 +30,9 @@ const UserLink = React.forwardRef<
           }
         `}</style>
       </div>
-    )
+    );
   },
-)
+);
 
-UserLink.displayName = 'HimalayaUserLink'
-export default UserLink
+UserLink.displayName = 'HimalayaUserLink';
+export default UserLink;

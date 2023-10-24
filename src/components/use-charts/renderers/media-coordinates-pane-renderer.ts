@@ -1,6 +1,6 @@
-import { CanvasRenderingTarget2D, MediaCoordinatesRenderingScope } from 'fancy-canvas'
+import { CanvasRenderingTarget2D, MediaCoordinatesRenderingScope } from 'fancy-canvas';
 
-import { IPaneRenderer } from './ipane-renderer'
+import { IPaneRenderer } from './ipane-renderer';
 
 export abstract class MediaCoordinatesPaneRenderer implements IPaneRenderer {
   public draw(
@@ -10,7 +10,7 @@ export abstract class MediaCoordinatesPaneRenderer implements IPaneRenderer {
   ): void {
     target.useMediaCoordinateSpace((scope: MediaCoordinatesRenderingScope) =>
       this._drawImpl(scope, isHovered, hitTestData),
-    )
+    );
   }
 
   public drawBackground(
@@ -20,18 +20,18 @@ export abstract class MediaCoordinatesPaneRenderer implements IPaneRenderer {
   ): void {
     target.useMediaCoordinateSpace((scope: MediaCoordinatesRenderingScope) =>
       this._drawBackgroundImpl(scope, isHovered, hitTestData),
-    )
+    );
   }
 
   protected abstract _drawImpl(
     renderingScope: MediaCoordinatesRenderingScope,
     isHovered: boolean,
     hitTestData?: unknown,
-  ): void
+  ): void;
 
   protected _drawBackgroundImpl(
     _renderingScope: MediaCoordinatesRenderingScope,
     _isHovered: boolean,
     _hitTestData?: unknown,
-  ): void { }
+  ): void {}
 }

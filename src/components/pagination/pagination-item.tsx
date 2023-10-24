@@ -1,18 +1,18 @@
-'use client'
+'use client';
 
-import React, { useMemo } from 'react'
-import useTheme from '../use-theme'
-import { addColorAlpha } from '../utils/color'
-import useClasses from '../use-classes'
+import React, { useMemo } from 'react';
+import useTheme from '../use-theme';
+import { addColorAlpha } from '../utils/color';
+import useClasses from '../use-classes';
 
 interface Props {
-  active?: boolean
-  disabled?: boolean
-  onClick?: (e: React.MouseEvent) => void
+  active?: boolean;
+  disabled?: boolean;
+  onClick?: (e: React.MouseEvent) => void;
 }
 
-type NativeAttrs = Omit<React.ButtonHTMLAttributes<any>, keyof Props>
-export type PaginationItemProps = Props & NativeAttrs
+type NativeAttrs = Omit<React.ButtonHTMLAttributes<any>, keyof Props>;
+export type PaginationItemProps = Props & NativeAttrs;
 
 const PaginationItem: React.FC<React.PropsWithChildren<PaginationItemProps>> = ({
   active,
@@ -21,23 +21,23 @@ const PaginationItem: React.FC<React.PropsWithChildren<PaginationItemProps>> = (
   onClick,
   ...props
 }) => {
-  const theme = useTheme()
+  const theme = useTheme();
   const [hover, activeHover] = useMemo(
     () => [
       addColorAlpha(theme.palette.success, 0.1),
       addColorAlpha(theme.palette.success, 0.8),
     ],
     [theme.palette.success],
-  )
+  );
   const classes = useClasses({
     active,
     disabled,
-  })
+  });
 
   const clickHandler = (event: React.MouseEvent) => {
-    if (disabled) return
-    onClick && onClick(event)
-  }
+    if (disabled) return;
+    onClick && onClick(event);
+  };
 
   return (
     <li>
@@ -103,8 +103,8 @@ const PaginationItem: React.FC<React.PropsWithChildren<PaginationItemProps>> = (
         }
       `}</style>
     </li>
-  )
-}
+  );
+};
 
-PaginationItem.displayName = 'HimalayaPaginationItem'
-export default PaginationItem
+PaginationItem.displayName = 'HimalayaPaginationItem';
+export default PaginationItem;

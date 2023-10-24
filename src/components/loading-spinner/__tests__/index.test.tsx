@@ -1,13 +1,13 @@
-import React from 'react'
-import { mount } from 'enzyme'
-import { Loading } from 'components'
+import React from 'react';
+import { mount } from 'enzyme';
+import { Loading } from 'components';
 
 describe('Loading', () => {
   it('should render correctly', () => {
-    const wrapper = mount(<Loading />)
-    expect(wrapper.html()).toMatchSnapshot()
-    expect(() => wrapper.unmount()).toMatchSnapshot()
-  })
+    const wrapper = mount(<Loading />);
+    expect(wrapper.html()).toMatchSnapshot();
+    expect(() => wrapper.unmount()).toMatchSnapshot();
+  });
 
   it('should work with different types', () => {
     const wrapper = mount(
@@ -17,10 +17,10 @@ describe('Loading', () => {
         <Loading type="warning" />
         <Loading type="error" />
       </div>,
-    )
-    expect(wrapper.html()).toMatchSnapshot()
-    expect(() => wrapper.unmount()).toMatchSnapshot()
-  })
+    );
+    expect(wrapper.html()).toMatchSnapshot();
+    expect(() => wrapper.unmount()).toMatchSnapshot();
+  });
 
   it('should work with custom styles', () => {
     const wrapper = mount(
@@ -29,13 +29,13 @@ describe('Loading', () => {
         <Loading unit="20%" />
         <Loading unit="10px" />
       </div>,
-    )
-    expect(wrapper.html()).toMatchSnapshot()
-    expect(() => wrapper.unmount()).toMatchSnapshot()
-  })
+    );
+    expect(wrapper.html()).toMatchSnapshot();
+    expect(() => wrapper.unmount()).toMatchSnapshot();
+  });
 
   it('should work with children', () => {
-    const wrapper = mount(<Loading>test-children</Loading>)
-    expect(wrapper.find('.loading').text()).toContain('test-children')
-  })
-})
+    const wrapper = mount(<Loading>test-children</Loading>);
+    expect(wrapper.find('.loading').text()).toContain('test-children');
+  });
+});

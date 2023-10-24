@@ -9,5 +9,5 @@ export function isDefaultPriceScale(
   return (
     priceScaleId === DefaultPriceScaleId.Left ||
     priceScaleId === DefaultPriceScaleId.Right
-  )
+  );
 }

@@ -1,51 +1,51 @@
-import { BitmapCoordinatesRenderingScope } from 'fancy-canvas'
+import { BitmapCoordinatesRenderingScope } from 'fancy-canvas';
 
-import { PricedValue } from '../model/price-scale'
-import { SeriesItemsIndexesRange, TimedValue } from '../model/time-data'
+import { PricedValue } from '../model/price-scale';
+import { SeriesItemsIndexesRange, TimedValue } from '../model/time-data';
 
-import { BitmapCoordinatesPaneRenderer } from './bitmap-coordinates-pane-renderer'
-import { LinePoint, LineStyle, LineType, LineWidth, setLineStyle } from './draw-line'
-import { drawSeriesPointMarkers } from './draw-series-point-markers'
-import { walkLine } from './walk-line'
+import { BitmapCoordinatesPaneRenderer } from './bitmap-coordinates-pane-renderer';
+import { LinePoint, LineStyle, LineType, LineWidth, setLineStyle } from './draw-line';
+import { drawSeriesPointMarkers } from './draw-series-point-markers';
+import { walkLine } from './walk-line';
 
-export type LineItemBase = TimedValue & PricedValue & LinePoint
+export type LineItemBase = TimedValue & PricedValue & LinePoint;
 
 export interface PaneRendererLineDataBase<TItem extends LineItemBase = LineItemBase> {
-  lineType?: LineType
+  lineType?: LineType;
 
-  items: TItem[]
+  items: TItem[];
 
-  barWidth: number
+  barWidth: number;
 
-  lineWidth: LineWidth
-  lineStyle: LineStyle
+  lineWidth: LineWidth;
+  lineStyle: LineStyle;
 
-  visibleRange: SeriesItemsIndexesRange | null
+  visibleRange: SeriesItemsIndexesRange | null;
 
-  pointMarkersRadius?: number
+  pointMarkersRadius?: number;
 }
 
 function finishStyledArea(
   scope: BitmapCoordinatesRenderingScope,
   style: CanvasRenderingContext2D['strokeStyle'],
 ): void {
-  const ctx = scope.context
-  ctx.strokeStyle = style
-  ctx.stroke()
+  const ctx = scope.context;
+  ctx.strokeStyle = style;
+  ctx.stroke();
 }
 
 export abstract class PaneRendererLineBase<
   TData extends PaneRendererLineDataBase,
 > extends BitmapCoordinatesPaneRenderer {
-  protected _data: TData | null = null
+  protected _data: TData | null = null;
 
   public setData(data: TData): void {
-    this._data = data
+    this._data = data;
   }
 
   protected _drawImpl(renderingScope: BitmapCoordinatesRenderingScope): void {
     if (this._data === null) {
-      return
+      return;
     }
 
     const {
@@ -56,22 +56,22 @@ export abstract class PaneRendererLineBase<
       lineWidth,
       lineStyle,
       pointMarkersRadius,
-    } = this._data
+    } = this._data;
 
     if (visibleRange === null) {
-      return
+      return;
     }
 
-    const ctx = renderingScope.context
+    const ctx = renderingScope.context;
 
-    ctx.lineCap = 'butt'
-    ctx.lineWidth = lineWidth * renderingScope.verticalPixelRatio
+    ctx.lineCap = 'butt';
+    ctx.lineWidth = lineWidth * renderingScope.verticalPixelRatio;
 
-    setLineStyle(ctx, lineStyle)
+    setLineStyle(ctx, lineStyle);
 
-    ctx.lineJoin = 'round'
+    ctx.lineJoin = 'round';
 
-    const styleGetter = this._strokeStyle.bind(this)
+    const styleGetter = this._strokeStyle.bind(this);
 
     if (lineType !== undefined) {
       walkLine(
@@ -82,7 +82,7 @@ export abstract class PaneRendererLineBase<
         barWidth,
         styleGetter,
         finishStyledArea,
-      )
+      );
     }
 
     if (pointMarkersRadius) {
@@ -92,12 +92,12 @@ export abstract class PaneRendererLineBase<
         pointMarkersRadius,
         visibleRange,
         styleGetter,
-      )
+      );
     }
   }
 
   protected abstract _strokeStyle(
     renderingScope: BitmapCoordinatesRenderingScope,
     item: TData['items'][0],
-  ): CanvasRenderingContext2D['strokeStyle']
+  ): CanvasRenderingContext2D['strokeStyle'];
 }

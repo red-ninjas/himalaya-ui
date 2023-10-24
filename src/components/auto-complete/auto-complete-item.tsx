@@ -1,18 +1,18 @@
-'use client'
+'use client';
 
-import React, { useMemo } from 'react'
-import useTheme from '../use-theme'
-import { useAutoCompleteContext } from './auto-complete-context'
-import Ellipsis from '../shared/ellipsis'
-import useScale, { withScale } from '../use-scale'
-import useClasses from '../use-classes'
+import React, { useMemo } from 'react';
+import useTheme from '../use-theme';
+import { useAutoCompleteContext } from './auto-complete-context';
+import Ellipsis from '../shared/ellipsis';
+import useScale, { withScale } from '../use-scale';
+import useClasses from '../use-classes';
 
 interface Props {
-  value: string
-  isLabelOnly?: boolean
+  value: string;
+  isLabelOnly?: boolean;
 }
 
-export type AutoCompleteItemProps = Props & React.HTMLAttributes<any>
+export type AutoCompleteItemProps = Props & React.HTMLAttributes<any>;
 
 const AutoCompleteItemComponent: React.FC<
   React.PropsWithChildren<AutoCompleteItemProps>
@@ -21,18 +21,18 @@ const AutoCompleteItemComponent: React.FC<
   children,
   isLabelOnly,
 }: React.PropsWithChildren<AutoCompleteItemProps>) => {
-  const theme = useTheme()
+  const theme = useTheme();
 
-  const { SCALES } = useScale()
-  const { value, updateValue, updateVisible } = useAutoCompleteContext()
+  const { SCALES } = useScale();
+  const { value, updateValue, updateVisible } = useAutoCompleteContext();
   const selectHandler = () => {
-    updateValue && updateValue(identValue)
-    updateVisible && updateVisible(false)
-  }
-  const isActive = useMemo(() => value === identValue, [identValue, value])
+    updateValue && updateValue(identValue);
+    updateVisible && updateVisible(false);
+  };
+  const isActive = useMemo(() => value === identValue, [identValue, value]);
   const classes = useClasses('item', {
     active: isActive,
-  })
+  });
 
   return (
     <div className={classes} onClick={selectHandler}>
@@ -79,9 +79,9 @@ const AutoCompleteItemComponent: React.FC<
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-AutoCompleteItemComponent.displayName = 'HimalayaAutoCompleteItem'
-const AutoCompleteItem = withScale(AutoCompleteItemComponent)
-export default AutoCompleteItem
+AutoCompleteItemComponent.displayName = 'HimalayaAutoCompleteItem';
+const AutoCompleteItem = withScale(AutoCompleteItemComponent);
+export default AutoCompleteItem;

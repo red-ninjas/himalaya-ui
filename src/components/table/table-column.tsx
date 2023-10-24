@@ -1,15 +1,15 @@
-import React, { useEffect } from 'react'
-import { useTableContext } from './table-context'
-import useWarning from '../utils/use-warning'
-import { TableColumnRender, TableDataItemBase } from './table-types'
+import React, { useEffect } from 'react';
+import { useTableContext } from './table-context';
+import useWarning from '../utils/use-warning';
+import { TableColumnRender, TableDataItemBase } from './table-types';
 
 export type TableColumnProps<TableDataItem extends TableDataItemBase> = {
-  prop: keyof TableDataItem
-  label?: string
-  width?: number
-  className?: string
-  render?: TableColumnRender<TableDataItem>
-}
+  prop: keyof TableDataItem;
+  label?: string;
+  width?: number;
+  className?: string;
+  render?: TableColumnRender<TableDataItem>;
+};
 
 const TableColumn = <TableDataItem extends TableDataItemBase>(
   columnProps: React.PropsWithChildren<TableColumnProps<TableDataItem>>,
@@ -21,11 +21,11 @@ const TableColumn = <TableDataItem extends TableDataItemBase>(
     width,
     className = '',
     render: renderHandler = () => {},
-  } = columnProps as React.PropsWithChildren<TableColumnProps<TableDataItem>>
-  const { updateColumn } = useTableContext<TableDataItem>()
-  const safeProp = `${String(prop)}`.trim()
+  } = columnProps as React.PropsWithChildren<TableColumnProps<TableDataItem>>;
+  const { updateColumn } = useTableContext<TableDataItem>();
+  const safeProp = `${String(prop)}`.trim();
   if (!safeProp) {
-    useWarning('The props "prop" is required.', 'Table.Column')
+    useWarning('The props "prop" is required.', 'Table.Column');
   }
 
   useEffect(() => {
@@ -35,11 +35,11 @@ const TableColumn = <TableDataItem extends TableDataItemBase>(
       width,
       className,
       renderHandler,
-    })
-  }, [children, label, prop, width, className, renderHandler])
+    });
+  }, [children, label, prop, width, className, renderHandler]);
 
-  return null
-}
+  return null;
+};
 
-TableColumn.displayName = 'HimalayaTableColumn'
-export default TableColumn
+TableColumn.displayName = 'HimalayaTableColumn';
+export default TableColumn;

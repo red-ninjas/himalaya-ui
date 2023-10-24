@@ -1,10 +1,10 @@
-import { SnippetTypes } from '../utils/prop-types'
-import { UIThemesPalette } from '../themes/presets'
+import { SnippetTypes } from '../utils/prop-types';
+import { UIThemesPalette } from '../themes/presets';
 
 export type TooltipColors = {
-  bgColor: string
-  color: string
-}
+  bgColor: string;
+  color: string;
+};
 
 export const getColors = (
   type: SnippetTypes,
@@ -18,12 +18,12 @@ export const getColors = (
     secondary: palette.secondary,
     dark: palette.foreground,
     lite: palette.background,
-  }
+  };
   const color =
-    type === 'lite' || type === 'default' ? palette.foreground : palette.background
+    type === 'lite' || type === 'default' ? palette.foreground : palette.background;
 
   return {
     color,
     bgColor: colors[type],
-  }
-}
+  };
+};

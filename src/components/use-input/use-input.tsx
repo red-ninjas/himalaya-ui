@@ -1,23 +1,23 @@
-import React, { Dispatch, MutableRefObject, SetStateAction } from 'react'
-import useCurrentState from '../utils/use-current-state'
+import React, { Dispatch, MutableRefObject, SetStateAction } from 'react';
+import useCurrentState from '../utils/use-current-state';
 
 export type BindingsChangeTarget =
   | React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  | string
+  | string;
 
 const useInput = (
   initialValue: string,
 ): {
-  state: string
-  setState: Dispatch<SetStateAction<string>>
-  currentRef: MutableRefObject<string>
-  reset: () => void
+  state: string;
+  setState: Dispatch<SetStateAction<string>>;
+  currentRef: MutableRefObject<string>;
+  reset: () => void;
   bindings: {
-    value: string
-    onChange: (event: BindingsChangeTarget) => void
-  }
+    value: string;
+    onChange: (event: BindingsChangeTarget) => void;
+  };
 } => {
-  const [state, setState, currentRef] = useCurrentState<string>(initialValue)
+  const [state, setState, currentRef] = useCurrentState<string>(initialValue);
 
   return {
     state,
@@ -28,13 +28,13 @@ const useInput = (
       value: state,
       onChange: (event: BindingsChangeTarget) => {
         if (typeof event === 'object' && event.target) {
-          setState(event.target.value)
+          setState(event.target.value);
         } else {
-          setState(event as string)
+          setState(event as string);
         }
       },
     },
-  }
-}
+  };
+};
 
-export default useInput
+export default useInput;

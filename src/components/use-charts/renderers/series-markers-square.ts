@@ -1,6 +1,6 @@
-import { Coordinate } from '../model/coordinate'
+import { Coordinate } from '../model/coordinate';
 
-import { shapeSize } from './series-markers-utils'
+import { shapeSize } from './series-markers-utils';
 
 export function drawSquare(
   ctx: CanvasRenderingContext2D,
@@ -8,12 +8,12 @@ export function drawSquare(
   centerY: Coordinate,
   size: number,
 ): void {
-  const squareSize = shapeSize('square', size)
-  const halfSize = (squareSize - 1) / 2
-  const left = centerX - halfSize
-  const top = centerY - halfSize
+  const squareSize = shapeSize('square', size);
+  const halfSize = (squareSize - 1) / 2;
+  const left = centerX - halfSize;
+  const top = centerY - halfSize;
 
-  ctx.fillRect(left, top, squareSize, squareSize)
+  ctx.fillRect(left, top, squareSize, squareSize);
 }
 
 export function hitTestSquare(
@@ -23,10 +23,10 @@ export function hitTestSquare(
   x: Coordinate,
   y: Coordinate,
 ): boolean {
-  const squareSize = shapeSize('square', size)
-  const halfSize = (squareSize - 1) / 2
-  const left = centerX - halfSize
-  const top = centerY - halfSize
+  const squareSize = shapeSize('square', size);
+  const halfSize = (squareSize - 1) / 2;
+  const left = centerX - halfSize;
+  const top = centerY - halfSize;
 
-  return x >= left && x <= left + squareSize && y >= top && y <= top + squareSize
+  return x >= left && x <= left + squareSize && y >= top && y <= top + squareSize;
 }

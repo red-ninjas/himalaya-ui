@@ -1,21 +1,21 @@
-'use client'
+'use client';
 
-import React from 'react'
-import useScale, { withScale } from '../use-scale'
+import React from 'react';
+import useScale, { withScale } from '../use-scale';
 
 interface Props {
-  className?: string
+  className?: string;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>
-export type PageContentProps = Props & NativeAttrs
+type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+export type PageContentProps = Props & NativeAttrs;
 
 const PageContentComponent: React.FC<React.PropsWithChildren<PageContentProps>> = ({
   className = '',
   children,
   ...props
 }: React.PropsWithChildren<PageContentProps>) => {
-  const { SCALES } = useScale()
+  const { SCALES } = useScale();
 
   return (
     <main className={className} {...props}>
@@ -30,9 +30,9 @@ const PageContentComponent: React.FC<React.PropsWithChildren<PageContentProps>> 
         }
       `}</style>
     </main>
-  )
-}
+  );
+};
 
-PageContentComponent.displayName = 'HimalayaPageContent'
-const PageContent = withScale(PageContentComponent)
-export default PageContent
+PageContentComponent.displayName = 'HimalayaPageContent';
+const PageContent = withScale(PageContentComponent);
+export default PageContent;

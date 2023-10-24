@@ -15,12 +15,12 @@ export interface SolidColor {
   /**
    * Type of color.
    */
-  type: ColorType.Solid
+  type: ColorType.Solid;
 
   /**
    * Color.
    */
-  color: string
+  color: string;
 }
 
 /**
@@ -30,23 +30,23 @@ export interface VerticalGradientColor {
   /**
    * Type of color.
    */
-  type: ColorType.VerticalGradient
+  type: ColorType.VerticalGradient;
 
   /**
    * Top color
    */
-  topColor: string
+  topColor: string;
 
   /**
    * Bottom color
    */
-  bottomColor: string
+  bottomColor: string;
 }
 
 /**
  * Represents the background color of the chart.
  */
-export type Background = SolidColor | VerticalGradientColor
+export type Background = SolidColor | VerticalGradientColor;
 
 /** Represents layout options */
 export interface LayoutOptions {
@@ -55,26 +55,26 @@ export interface LayoutOptions {
    *
    * @defaultValue `{ type: ColorType.Solid, color: '#FFFFFF' }`
    */
-  background: Background
+  background: Background;
 
   /**
    * Color of text on the scales.
    *
    * @defaultValue `'#191919'`
    */
-  textColor: string
+  textColor: string;
 
   /**
    * Font size of text on scales in pixels.
    *
    * @defaultValue `12`
    */
-  fontSize: number
+  fontSize: number;
 
   /**
    * Font family of text on the scales.
    *
    * @defaultValue `-apple-system, BlinkMacSystemFont, 'Trebuchet MS', Roboto, Ubuntu, sans-serif`
    */
-  fontFamily: string
+  fontFamily: string;
 }

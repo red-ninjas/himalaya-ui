@@ -1,4 +1,4 @@
-import Col from './col'
+import Col from './col';
 
-export type { ColProps } from './col'
-export default Col
+export type { ColProps } from './col';
+export default Col;

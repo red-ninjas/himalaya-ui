@@ -1,20 +1,20 @@
-'use client'
+'use client';
 
-import useScale, { withScale } from '../use-scale'
-import useTheme from '../use-theme'
-import useLayout from '../use-layout'
+import useScale, { withScale } from '../use-scale';
+import useTheme from '../use-theme';
+import useLayout from '../use-layout';
 
-import Link from 'next/link'
-import React, { PropsWithChildren } from 'react'
-import Title from './title'
+import Link from 'next/link';
+import React, { PropsWithChildren } from 'react';
+import Title from './title';
 
 export interface LogoProps {
-  logoBackground?: string
-  title?: string
-  url?: string
-  size?: number
-  logoOnMobile?: boolean
-  titleOnMobile?: boolean
+  logoBackground?: string;
+  title?: string;
+  url?: string;
+  size?: number;
+  logoOnMobile?: boolean;
+  titleOnMobile?: boolean;
 }
 
 const Logo: React.FC<PropsWithChildren<LogoProps>> = ({
@@ -26,9 +26,9 @@ const Logo: React.FC<PropsWithChildren<LogoProps>> = ({
   logoOnMobile = false,
   titleOnMobile = true,
 }) => {
-  const theme = useTheme()
-  const layout = useLayout()
-  const { SCALES } = useScale()
+  const theme = useTheme();
+  const layout = useLayout();
+  const { SCALES } = useScale();
   return (
     <div className="logo">
       <Link legacyBehavior passHref href={url || '/'}>
@@ -95,8 +95,8 @@ const Logo: React.FC<PropsWithChildren<LogoProps>> = ({
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-Logo.displayName = 'HimalayaLogo'
-export default withScale(Logo)
+Logo.displayName = 'HimalayaLogo';
+export default withScale(Logo);

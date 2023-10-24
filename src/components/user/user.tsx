@@ -1,22 +1,22 @@
-'use client'
+'use client';
 
-import React, { ReactNode } from 'react'
-import Avatar from '../avatar'
-import useTheme from '../use-theme'
-import useScale, { withScale } from '../use-scale'
-import useClasses from '../use-classes'
-import useLayout from '../use-layout'
+import React, { ReactNode } from 'react';
+import Avatar from '../avatar';
+import useTheme from '../use-theme';
+import useScale, { withScale } from '../use-scale';
+import useClasses from '../use-classes';
+import useLayout from '../use-layout';
 
 interface Props {
-  name: ReactNode | string
-  src?: string
-  text?: string
-  className?: string
-  altText?: string
+  name: ReactNode | string;
+  src?: string;
+  text?: string;
+  className?: string;
+  altText?: string;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>
-export type UserProps = Props & NativeAttrs
+type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+export type UserProps = Props & NativeAttrs;
 
 const UserComponent: React.FC<React.PropsWithChildren<UserProps>> = ({
   src,
@@ -27,10 +27,10 @@ const UserComponent: React.FC<React.PropsWithChildren<UserProps>> = ({
   altText,
   ...props
 }: React.PropsWithChildren<UserProps>) => {
-  const theme = useTheme()
-  const layout = useLayout()
-  const { SCALES, getScaleProps } = useScale()
-  const scale = getScaleProps('scale') as number | undefined
+  const theme = useTheme();
+  const layout = useLayout();
+  const { SCALES, getScaleProps } = useScale();
+  const scale = getScaleProps('scale') as number | undefined;
   return (
     <div className={useClasses('user', className)} {...props}>
       <Avatar src={src} scale={scale} text={text} alt={altText} />
@@ -86,9 +86,9 @@ const UserComponent: React.FC<React.PropsWithChildren<UserProps>> = ({
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-UserComponent.displayName = 'HimalayaUser'
-const User = withScale(UserComponent)
-export default User
+UserComponent.displayName = 'HimalayaUser';
+const User = withScale(UserComponent);
+export default User;

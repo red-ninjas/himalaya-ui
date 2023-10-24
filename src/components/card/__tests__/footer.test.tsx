@@ -1,6 +1,6 @@
-import React from 'react'
-import { mount } from 'enzyme'
-import { Card } from 'components'
+import React from 'react';
+import { mount } from 'enzyme';
+import { Card } from 'components';
 
 describe('Card Footer', () => {
   it('should render correctly', () => {
@@ -9,19 +9,19 @@ describe('Card Footer', () => {
         <p>card</p>
         <Card.Footer>footer</Card.Footer>
       </Card>,
-    )
-    expect(wrapper.html()).toMatchSnapshot()
-    expect(() => wrapper.unmount()).not.toThrow()
-  })
+    );
+    expect(wrapper.html()).toMatchSnapshot();
+    expect(() => wrapper.unmount()).not.toThrow();
+  });
 
   it('should work properly when use alone', () => {
-    const wrapper = mount(<Card.Footer>footer</Card.Footer>)
-    expect(() => wrapper.unmount()).not.toThrow()
-  })
+    const wrapper = mount(<Card.Footer>footer</Card.Footer>);
+    expect(() => wrapper.unmount()).not.toThrow();
+  });
 
   it('should work with disable-auto-margin', () => {
-    const wrapper = mount(<Card.Footer disableAutoMargin>footer</Card.Footer>)
-    expect(wrapper.html()).toMatchSnapshot()
-    expect(() => wrapper.unmount()).not.toThrow()
-  })
-})
+    const wrapper = mount(<Card.Footer disableAutoMargin>footer</Card.Footer>);
+    expect(wrapper.html()).toMatchSnapshot();
+    expect(() => wrapper.unmount()).not.toThrow();
+  });
+});

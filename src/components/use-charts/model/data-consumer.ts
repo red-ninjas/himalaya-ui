@@ -1,7 +1,7 @@
-import { Time } from './horz-scale-behavior-time/types'
-import { CustomData, CustomSeriesWhitespaceData } from './icustom-series'
-import { Series } from './series'
-import { SeriesType } from './series-options'
+import { Time } from './horz-scale-behavior-time/types';
+import { CustomData, CustomSeriesWhitespaceData } from './icustom-series';
+import { Series } from './series';
+import { SeriesType } from './series-options';
 
 /**
  * Represents a whitespace data item, which is a data point without a value.
@@ -23,13 +23,13 @@ export interface WhitespaceData<HorzScaleItem = Time> {
   /**
    * The time of the data.
    */
-  time: HorzScaleItem
+  time: HorzScaleItem;
 
   /**
    * Additional custom values which will be ignored by the library, but
    * could be used by plugins.
    */
-  customValues?: Record<string, unknown>
+  customValues?: Record<string, unknown>;
 }
 
 /**
@@ -40,12 +40,12 @@ export interface SingleValueData<HorzScaleItem = Time>
   /**
    * The time of the data.
    */
-  time: HorzScaleItem
+  time: HorzScaleItem;
 
   /**
    * Price value of the data.
    */
-  value: number
+  value: number;
 }
 
 /**
@@ -55,7 +55,7 @@ export interface LineData<HorzScaleItem = Time> extends SingleValueData<HorzScal
   /**
    * Optional color value for certain data item. If missed, color from options is used
    */
-  color?: string
+  color?: string;
 }
 
 /**
@@ -66,7 +66,7 @@ export interface HistogramData<HorzScaleItem = Time>
   /**
    * Optional color value for certain data item. If missed, color from options is used
    */
-  color?: string
+  color?: string;
 }
 
 /**
@@ -76,17 +76,17 @@ export interface AreaData<HorzScaleItem = Time> extends SingleValueData<HorzScal
   /**
    * Optional line color value for certain data item. If missed, color from options is used
    */
-  lineColor?: string
+  lineColor?: string;
 
   /**
    * Optional top color value for certain data item. If missed, color from options is used
    */
-  topColor?: string
+  topColor?: string;
 
   /**
    * Optional bottom color value for certain data item. If missed, color from options is used
    */
-  bottomColor?: string
+  bottomColor?: string;
 }
 
 /**
@@ -97,32 +97,32 @@ export interface BaselineData<HorzScaleItem = Time>
   /**
    * Optional top area top fill color value for certain data item. If missed, color from options is used
    */
-  topFillColor1?: string
+  topFillColor1?: string;
 
   /**
    * Optional top area bottom fill color value for certain data item. If missed, color from options is used
    */
-  topFillColor2?: string
+  topFillColor2?: string;
 
   /**
    * Optional top area line color value for certain data item. If missed, color from options is used
    */
-  topLineColor?: string
+  topLineColor?: string;
 
   /**
    * Optional bottom area top fill color value for certain data item. If missed, color from options is used
    */
-  bottomFillColor1?: string
+  bottomFillColor1?: string;
 
   /**
    * Optional bottom area bottom fill color value for certain data item. If missed, color from options is used
    */
-  bottomFillColor2?: string
+  bottomFillColor2?: string;
 
   /**
    * Optional bottom area line color value for certain data item. If missed, color from options is used
    */
-  bottomLineColor?: string
+  bottomLineColor?: string;
 }
 
 /**
@@ -132,24 +132,24 @@ export interface OhlcData<HorzScaleItem = Time> extends WhitespaceData<HorzScale
   /**
    * The bar time.
    */
-  time: HorzScaleItem
+  time: HorzScaleItem;
 
   /**
    * The open price.
    */
-  open: number
+  open: number;
   /**
    * The high price.
    */
-  high: number
+  high: number;
   /**
    * The low price.
    */
-  low: number
+  low: number;
   /**
    * The close price.
    */
-  close: number
+  close: number;
 }
 
 /**
@@ -159,7 +159,7 @@ export interface BarData<HorzScaleItem = Time> extends OhlcData<HorzScaleItem> {
   /**
    * Optional color value for certain data item. If missed, color from options is used
    */
-  color?: string
+  color?: string;
 }
 
 /**
@@ -169,15 +169,15 @@ export interface CandlestickData<HorzScaleItem = Time> extends OhlcData<HorzScal
   /**
    * Optional color value for certain data item. If missed, color from options is used
    */
-  color?: string
+  color?: string;
   /**
    * Optional border color value for certain data item. If missed, color from options is used
    */
-  borderColor?: string
+  borderColor?: string;
   /**
    * Optional wick color value for certain data item. If missed, color from options is used
    */
-  wickColor?: string
+  wickColor?: string;
 }
 
 export function isWhitespaceData<HorzScaleItem = Time>(
@@ -186,7 +186,7 @@ export function isWhitespaceData<HorzScaleItem = Time>(
   return (
     (data as Partial<BarData<HorzScaleItem>>).open === undefined &&
     (data as Partial<LineData<HorzScaleItem>>).value === undefined
-  )
+  );
 }
 
 export function isFulfilledData<
@@ -201,7 +201,7 @@ export function isFulfilledData<
   return (
     (data as Partial<BarData<HorzScaleItem>>).open !== undefined ||
     (data as Partial<LineData<HorzScaleItem>>).value !== undefined
-  )
+  );
 }
 
 /**
@@ -213,31 +213,31 @@ export interface SeriesDataItemTypeMap<HorzScaleItem = Time> {
   /**
    * The types of bar series data.
    */
-  Bar: BarData<HorzScaleItem> | WhitespaceData<HorzScaleItem>
+  Bar: BarData<HorzScaleItem> | WhitespaceData<HorzScaleItem>;
   /**
    * The types of candlestick series data.
    */
-  Candlestick: CandlestickData<HorzScaleItem> | WhitespaceData<HorzScaleItem>
+  Candlestick: CandlestickData<HorzScaleItem> | WhitespaceData<HorzScaleItem>;
   /**
    * The types of area series data.
    */
-  Area: AreaData<HorzScaleItem> | WhitespaceData<HorzScaleItem>
+  Area: AreaData<HorzScaleItem> | WhitespaceData<HorzScaleItem>;
   /**
    * The types of baseline series data.
    */
-  Baseline: BaselineData<HorzScaleItem> | WhitespaceData<HorzScaleItem>
+  Baseline: BaselineData<HorzScaleItem> | WhitespaceData<HorzScaleItem>;
   /**
    * The types of line series data.
    */
-  Line: LineData<HorzScaleItem> | WhitespaceData<HorzScaleItem>
+  Line: LineData<HorzScaleItem> | WhitespaceData<HorzScaleItem>;
   /**
    * The types of histogram series data.
    */
-  Histogram: HistogramData<HorzScaleItem> | WhitespaceData<HorzScaleItem>
+  Histogram: HistogramData<HorzScaleItem> | WhitespaceData<HorzScaleItem>;
   /**
    * The base types of an custom series data.
    */
-  Custom: CustomData<HorzScaleItem> | CustomSeriesWhitespaceData<HorzScaleItem>
+  Custom: CustomData<HorzScaleItem> | CustomSeriesWhitespaceData<HorzScaleItem>;
 }
 
 export interface DataUpdatesConsumer<
@@ -247,9 +247,9 @@ export interface DataUpdatesConsumer<
   applyNewData(
     series: Series<TSeriesType>,
     data: SeriesDataItemTypeMap<HorzScaleItem>[TSeriesType][],
-  ): void
+  ): void;
   updateData(
     series: Series<TSeriesType>,
     data: SeriesDataItemTypeMap<HorzScaleItem>[TSeriesType],
-  ): void
+  ): void;
 }
