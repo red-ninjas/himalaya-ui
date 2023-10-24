@@ -48,11 +48,10 @@ const globals = {
 }
 
 const external = id =>
-  /^react|react-dom|styled-jsx|moment|fancy-canvas|@splidejs\/splide|next\/link|next\/navigation/.test(id)
+  /^react|react-dom|styled-jsx|moment|fancy-canvas|@splidejs\/splide|next|react-i18next|\/link|next\/navigation/.test(id)
 
 const cjsOutput = {
   format: 'cjs',
-
   exports: 'named',
   entryFileNames: '[name]/index.js',
   dir: distPath,

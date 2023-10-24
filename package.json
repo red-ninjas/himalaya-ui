@@ -1,6 +1,6 @@
 {
   "name": "@himalaya-ui/core",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "main": "dist/framework/index.js",
   "module": "dist/framework-esm/index.js",
   "types": "dist/framework-esm/index.d.ts",
@@ -203,7 +203,8 @@
     "react-dom": ">=18.2.0",
     "react-swipeable": ">=7.0.1",
     "styled-jsx": "^5.1.2",
-    "@splidejs/splide": "^4.1.4"
+    "@splidejs/splide": "^4.1.4",
+    "react-i18next": "^13.2.2"
   },
   "dependencies": {
     "@babel/runtime": "^7.23.1"
