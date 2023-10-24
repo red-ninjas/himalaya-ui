@@ -1,17 +1,15 @@
 'use client';
-import { getValidChildren } from 'components/utils/collections';
+import { getValidChildren } from '../utils/collections';
 import React, { createRef, useEffect, useState } from 'react';
 import Sidebar from '.';
-import {
-  Drawer,
-  InnerScroll,
-  useConfigs,
-  useScale,
-  useSidebar,
-  useTheme,
-  withScale,
-} from '../';
+
 import useLayout from '../use-layout';
+import useSidebar from '../use-sidebar';
+import useTheme from '../use-theme';
+import { useConfigs } from '../use-context';
+import useScale, { withScale } from '../use-scale';
+import Drawer from '../drawer';
+import { InnerScroll } from '../scroll';
 
 export interface SidebarLayoutProps {
   width?: number;
@@ -81,8 +79,7 @@ const SidebarLayout: React.FC<React.PropsWithChildren<SidebarLayoutProps>> = ({
           visible={isEnabled}
           wrapClassName={'sidebar-drawer'}
           onClose={() => setIsEnabled(false)}
-          placement="right"
-        >
+          placement="right">
           <div className="sidebar-content">
             <InnerScroll width={'100%'} height={'100%'} type="vertical">
               {sidebar}
@@ -98,14 +95,12 @@ const SidebarLayout: React.FC<React.PropsWithChildren<SidebarLayoutProps>> = ({
               className="sidebar"
               style={{
                 height: height === undefined ? '100%' : `calc(100% - ${height}px)`,
-              }}
-            >
+              }}>
               <InnerScroll
                 transparentBg={true}
                 width={'100%'}
                 height={'100%'}
-                type="vertical"
-              >
+                type="vertical">
                 {' '}
                 {sidebar}
               </InnerScroll>
@@ -114,8 +109,7 @@ const SidebarLayout: React.FC<React.PropsWithChildren<SidebarLayoutProps>> = ({
         )}
         <main
           className="main"
-          style={{ width: !isActive ? '100%' : `calc(100% - ${sideBarWidth})` }}
-        >
+          style={{ width: !isActive ? '100%' : `calc(100% - ${sideBarWidth})` }}>
           {content}
         </main>
         <div className="border-right-holder">
@@ -123,8 +117,7 @@ const SidebarLayout: React.FC<React.PropsWithChildren<SidebarLayoutProps>> = ({
             className="border-right"
             style={{
               height: height === undefined ? '100%' : `calc(100% - ${height}px)`,
-            }}
-          ></div>
+            }}></div>
         </div>
         <style jsx>{`
           .main {

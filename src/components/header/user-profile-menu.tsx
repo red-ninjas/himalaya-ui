@@ -1,6 +1,8 @@
 'use client';
-import { Avatar, Popover, useScale, withScale } from '../';
 
+import Avatar from '../avatar';
+import Popover from '../popover';
+import useScale from '../use-scale';
 import React, { PropsWithChildren } from 'react';
 
 export interface UserProfileMenuProps {
@@ -23,8 +25,7 @@ const UserProfileComponent: React.FC<PropsWithChildren<UserProfileMenuProps>> = 
         trigger="click"
         enterDelay={0}
         leaveDelay={0}
-        content={userProfileMenu}
-      >
+        content={userProfileMenu}>
         <Avatar text={name} scale={1.2}></Avatar>
       </Popover>
       <style jsx>{`
