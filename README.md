@@ -2,23 +2,13 @@
 
 ![HimalayaUI Logo](https://github.com/red-ninjas/himalaya-ui/blob/master/src/public/images/himalaya-banner-dark.png?raw=true)
 
-<p>
-  <a href="https://www.npmjs.com/package/himalaya-ui" target="_blank">
-    <img alt="Version" src="https://img.shields.io/npm/v/himalaya-ui.svg">
-  </a>
-  <img src="https://img.shields.io/badge/node-%3E%3D18.0.0-blue.svg" />
-  <img src="https://img.shields.io/badge/next-%3E%3D13.0.0-green.svg" />
-  
-  <a href="https://github.com/red-ninjas/himalaya-ui#readme" target="_blank">
-    <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
-  </a>
-  <a href="https://github.com/red-ninjas/himalaya-ui/graphs/commit-activity" target="_blank">
-    <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
-  </a>
-  <a href="https://github.com/red-ninjas/himalaya-ui/blob/master/LICENSE" target="_blank">
-    <img alt="License: MIT" src="https://img.shields.io/github/license/red-ninjas/himalaya-ui" />
-  </a>
-</p>
+[![NPM](https://img.shields.io/npm/v/@himalaya-ui/core.svg)](https://www.npmjs.com/package/@himalaya-ui/core)
+![Node](https://img.shields.io/badge/node-%3E%3D18.0.0-blue.svg)
+![NextJS](https://img.shields.io/badge/next-%3E%3D13.0.0-green.svg)
+[![Documentation](https://img.shields.io/badge/documentation-yes-brightgreen.svg)](https://himalaya-ui.com)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/red-ninjas/himalaya-ui/graphs/commit-activity)
+[![License](https://img.shields.io/github/license/red-ninjas/himalaya-ui)](https://github.com/red-ninjas/himalaya-ui/blob/master/LICENSE)
+
 
 > Himalaya is a modern and minimalist UI library for NextJS 13.
 
