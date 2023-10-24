@@ -1,15 +1,15 @@
-import '@fontsource-variable/figtree'
+import '@fontsource-variable/figtree';
 
-import { Analytics } from '@vercel/analytics/react'
+import { Analytics } from '@vercel/analytics/react';
 
-import { Providers } from '../lib/providers'
+import { Providers } from '../lib/providers';
 
-import { THEME_COOKIE_NAME } from 'components'
-import TilteInjector from 'lib/title-injector'
-import { cookies } from 'next/headers'
+import { THEME_COOKIE_NAME } from 'components';
+import TilteInjector from 'lib/title-injector';
+import { cookies } from 'next/headers';
 
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const defaultTheme = cookies().get(THEME_COOKIE_NAME)?.value || 'dark'
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const defaultTheme = cookies().get(THEME_COOKIE_NAME)?.value || 'dark';
   return (
     <html lang="en">
       <head>
@@ -23,5 +23,5 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <Analytics></Analytics>
       </body>
     </html>
-  )
+  );
 }
