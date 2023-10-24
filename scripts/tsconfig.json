@@ -31,12 +31,11 @@
     "noUnusedParameters": false,
     "noUnusedLocals": true,
     "noImplicitAny": false,
-    "target": "es6",
+    "target": "esnext",
     "lib": [
       "dom",
       "DOM.Iterable",
-      "es2017",
-      "es2016"
+      "esnext",
     ],
     "skipLibCheck": true,
     "allowJs": true,
@@ -56,10 +55,11 @@
     ]
   },
   "files": [
-    "../src/components/index.ts"
+    "../src/components/index.ts",
   ],
   "exclude": [
     "node_modules",
+    "../src/lib",
     "lib",
     "es"
   ]

@@ -1,7 +1,6 @@
 import React, { useMemo } from 'react'
 import { isObject } from 'components/themes/themes'
 import { LiveEditor, LiveProvider } from 'react-live'
-import { CUSTOM_THEME_TYPE } from 'lib/constants'
 import CopyIcon from 'components/snippet/snippet-icon'
 import makeCodeTheme from 'lib/components/playground/code-theme'
 import {
@@ -14,6 +13,7 @@ import {
   useClipboard,
   useLayout,
 } from 'components'
+import { CUSTOM_THEME_TYPE } from 'components/use-context/share'
 
 export const getDeepDifferents = <T,>(source: T, target: T): T => {
   if (!isObject(target) || !isObject(source)) return target

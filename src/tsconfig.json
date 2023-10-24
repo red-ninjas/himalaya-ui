@@ -9,11 +9,11 @@
     "jsx": "preserve",
     "noUnusedParameters": true,
     "noUnusedLocals": true,
-    "target": "es6",
+    "target": "esnext",
     "lib": [
       "DOM",
       "DOM.Iterable",
-      "es2017"
+      "esnext"
     ],
     "skipLibCheck": true,
     "allowJs": true,
@@ -32,11 +32,6 @@
       "dom-not-standarted"
     ],
     "incremental": true,
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ]
   },
   "exclude": [
     "node_modules",

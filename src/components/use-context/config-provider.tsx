@@ -22,8 +22,8 @@ import useCurrentState from '../use-current-state'
 import ThemeProvider from './theme-provider'
 import { THEME_COOKIE_NAME } from './share'
 import { DeepPartial } from '../utils/types'
-import { CUSTOM_THEME_TYPE } from '../../lib/constants'
 import useTheme from '../use-theme'
+import { CUSTOM_THEME_TYPE } from './share'
 export interface ConfigProps {
   themeType?: string | 'dark' | 'light' | 'grey'
   detectTheme?: boolean
