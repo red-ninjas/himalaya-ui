@@ -1,3 +1,4 @@
+'use client';
 import MenuIcon from '../icons/menu';
 import Button from '../button';
 import { useConfigs } from '../use-context/config-context';

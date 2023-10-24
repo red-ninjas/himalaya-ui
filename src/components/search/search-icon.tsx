@@ -1,3 +1,4 @@
+'use client';
 import React, { useMemo } from 'react';
 import { SearchResults } from './helper';
 import Type from '../icons/type';

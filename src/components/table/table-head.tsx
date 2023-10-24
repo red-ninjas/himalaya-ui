@@ -1,3 +1,4 @@
+'use client';
 import React, { useMemo } from 'react';
 import useTheme from '../use-theme';
 import { TableAbstractColumn, TableDataItemBase } from './table-types';

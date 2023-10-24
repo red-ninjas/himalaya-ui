@@ -1,3 +1,4 @@
+'use client';
 import React, { useEffect, useRef, useState } from 'react';
 import useRealShape from '../utils/use-real-shape';
 import useClasses from '../use-classes';

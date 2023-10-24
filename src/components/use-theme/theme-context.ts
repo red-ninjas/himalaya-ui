@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import Themes from '../themes';
 import { UIThemes } from '../themes/presets';

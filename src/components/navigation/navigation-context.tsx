@@ -1,3 +1,4 @@
+'use client';
 import { ReactiveDomReact } from '../utils/layouts';
 import React from 'react';
 

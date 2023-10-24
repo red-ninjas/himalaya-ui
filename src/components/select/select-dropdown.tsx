@@ -1,3 +1,4 @@
+'use client';
 import React, { CSSProperties, useImperativeHandle, useRef } from 'react';
 import useTheme from '../use-theme';
 import { useSelectContext } from './select-context';

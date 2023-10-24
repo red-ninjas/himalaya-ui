@@ -1,3 +1,4 @@
+'use client';
 import usePortal from '../utils/use-portal';
 import useWarning from '../utils/use-warning';
 import { useCallback } from 'react';

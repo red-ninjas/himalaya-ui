@@ -1,3 +1,4 @@
+'use client';
 import React, { useEffect, useImperativeHandle, useRef } from 'react';
 
 export type SelectInputProps = {

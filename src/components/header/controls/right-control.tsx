@@ -1,3 +1,4 @@
+'use client';
 import { PropsWithChildren } from 'react';
 
 const RightHeaderControl: React.FC<PropsWithChildren> = ({ ...props }) => {

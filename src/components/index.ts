@@ -317,4 +317,4 @@ export { default as BottomNavigation } from './bottom-navigation';
 export { default as RunningText } from './running-text';
 export { default as Footer, FooterBottom, FooterNavigation } from './footer';
 
-export * from './constants'
+export * from './constants';

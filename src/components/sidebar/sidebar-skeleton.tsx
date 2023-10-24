@@ -1,3 +1,4 @@
+'use client';
 import useTheme from '../use-theme';
 import React, { useEffect, useState } from 'react';
 

@@ -1,3 +1,4 @@
+'use client';
 import { Toast, ToastLayout } from '../use-toasts';
 import { UIThemes } from '../themes';
 import React from 'react';

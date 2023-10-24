@@ -1,3 +1,4 @@
+'use client';
 import React, { CSSProperties, MouseEvent } from 'react';
 
 export type TabsInternalCellProps = {

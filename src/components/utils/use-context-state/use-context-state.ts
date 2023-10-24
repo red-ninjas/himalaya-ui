@@ -1,3 +1,4 @@
+'use client';
 import { Dispatch, MutableRefObject, SetStateAction, useMemo } from 'react';
 import useCurrentState from '../use-current-state';
 import { capitalize } from '../collections';

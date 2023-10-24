@@ -1,3 +1,4 @@
+'use client';
 import React, { CSSProperties, useMemo } from 'react';
 import useTheme from '../use-theme';
 import { useAutoCompleteContext } from './auto-complete-context';

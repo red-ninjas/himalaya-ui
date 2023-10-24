@@ -1,3 +1,4 @@
+'use client';
 import React, { useContext } from 'react';
 
 export type PopoverConfig = {

@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import { TableAbstractColumn, TableDataItemBase } from './table-types';
 

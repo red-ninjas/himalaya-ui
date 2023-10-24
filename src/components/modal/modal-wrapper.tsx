@@ -1,3 +1,4 @@
+'use client';
 import React, { useEffect, useRef } from 'react';
 import useTheme from '../use-theme';
 import CssTransition from '../shared/css-transition';

@@ -1,3 +1,4 @@
+'use client';
 import React, { MutableRefObject } from 'react';
 
 export interface AutoCompleteConfig {

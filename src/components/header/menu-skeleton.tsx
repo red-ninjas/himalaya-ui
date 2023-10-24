@@ -1,3 +1,4 @@
+'use client';
 import React, { useEffect, useState } from 'react';
 import useTheme from '../use-theme';
 import { useConfigs } from '../use-context/config-context';

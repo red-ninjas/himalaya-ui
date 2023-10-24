@@ -1,3 +1,4 @@
+'use client';
 import useTheme from '../use-theme';
 import React, { useMemo } from 'react';
 import { Placement } from '../utils/prop-types';

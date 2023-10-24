@@ -1,3 +1,4 @@
+'use client';
 import useTheme from 'components/use-theme';
 import React from 'react';
 

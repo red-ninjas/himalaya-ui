@@ -1,3 +1,4 @@
+'use client';
 import React, { useEffect } from 'react';
 import { useTableContext } from './table-context';
 import useWarning from '../utils/use-warning';

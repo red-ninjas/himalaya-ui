@@ -1,3 +1,4 @@
+'use client';
 import { getValidChildren } from 'components/utils/collections';
 import React, { createRef, useEffect, useState } from 'react';
 import Sidebar from '.';

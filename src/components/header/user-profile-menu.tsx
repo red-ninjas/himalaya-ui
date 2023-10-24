@@ -1,3 +1,4 @@
+'use client';
 import { Avatar, Popover, useScale, withScale } from '../';
 
 import React, { PropsWithChildren } from 'react';

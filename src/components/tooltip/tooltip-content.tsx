@@ -1,3 +1,4 @@
+'use client';
 import React, { MutableRefObject, useEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import useTheme from '../use-theme';

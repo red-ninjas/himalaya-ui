@@ -1,3 +1,4 @@
+'use client';
 import React, { MouseEvent } from 'react';
 import useTheme from '../use-theme';
 import CssTransition from './css-transition';

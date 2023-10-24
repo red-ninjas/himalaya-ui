@@ -1,3 +1,4 @@
+'use client';
 import React, { Dispatch, MutableRefObject, SetStateAction } from 'react';
 import useCurrentState from '../utils/use-current-state';
 

@@ -1,3 +1,4 @@
+'use client';
 import { useTranslationSetup } from '../use-language/language-config';
 import React from 'react';
 import Select from '../select';

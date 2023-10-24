@@ -1,3 +1,4 @@
+'use client';
 import useTheme from '../use-theme';
 import Text from '../text';
 import React, { FocusEvent, MouseEvent } from 'react';

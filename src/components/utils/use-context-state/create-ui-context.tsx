@@ -1,3 +1,4 @@
+'use client';
 import React, { useImperativeHandle } from 'react';
 import useContextState, {
   ContextHandler,
