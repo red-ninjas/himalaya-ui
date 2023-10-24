@@ -48,7 +48,7 @@ const globals = {
 }
 
 const external = id =>
-  /^react|react-dom|styled-jsx|moment|fancy-canvas|next\/link|next\/navigation/.test(id)
+  /^react|react-dom|styled-jsx|moment|fancy-canvas|@splidejs\/splide|next\/link|next\/navigation/.test(id)
 
 const cjsOutput = {
   format: 'cjs',

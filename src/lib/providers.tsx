@@ -4,10 +4,6 @@ import { ConfigProvider, LayoutProvider } from 'components'
 import React from 'react'
 import { CoreLayout } from './layouts/core-layout'
 
-export interface LayoutProps {
-  getStaticProps?: any
-}
-
 export function Providers({
   children,
   defaultTheme,
