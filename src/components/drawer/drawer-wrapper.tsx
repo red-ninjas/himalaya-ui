@@ -1,3 +1,4 @@
+'use client';
 import React, { useEffect, useMemo, useRef } from 'react';
 import useScale from '../use-scale';
 import useTheme from '../use-theme';
@@ -66,8 +67,7 @@ const DrawerWrapper: React.FC<React.PropsWithChildren<DrawerWrapperProps>> = ({
         tabIndex={-1}
         onKeyDown={onKeyDown}
         ref={modalContent}
-        {...props}
-      >
+        {...props}>
         <div tabIndex={0} className="hide-tab start" aria-hidden="true" ref={tabStart} />
         {children}
         <div tabIndex={0} className="hide-tab end" aria-hidden="true" ref={tabEnd} />

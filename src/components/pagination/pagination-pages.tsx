@@ -1,3 +1,4 @@
+'use client';
 import React, { Dispatch, SetStateAction, useCallback, useMemo } from 'react';
 import PaginationItem from './pagination-item';
 import PaginationEllipsis from './pagination-ellipsis';
@@ -30,8 +31,7 @@ const PaginationPages: React.FC<Props> = ({ limit, count, current, setPage }) =>
       <PaginationItem
         key={`pagination-item-${value}`}
         active={value === active}
-        onClick={() => setPage(value)}
-      >
+        onClick={() => setPage(value)}>
         {value}
       </PaginationItem>
     ),
@@ -48,8 +48,7 @@ const PaginationPages: React.FC<Props> = ({ limit, count, current, setPage }) =>
       <PaginationItem
         key={`pagination-middle-${index}`}
         active={index + 1 === middleNumber}
-        onClick={() => setPage(value)}
-      >
+        onClick={() => setPage(value)}>
         {value}
       </PaginationItem>
     );
@@ -68,8 +67,7 @@ const PaginationPages: React.FC<Props> = ({ limit, count, current, setPage }) =>
             <PaginationItem
               key={`pagination-item-${value}`}
               active={value === current}
-              onClick={() => setPage(value)}
-            >
+              onClick={() => setPage(value)}>
               {value}
             </PaginationItem>
           );

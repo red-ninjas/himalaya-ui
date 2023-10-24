@@ -1,4 +1,5 @@
 'use client';
+
 import React, { useEffect, useMemo } from 'react';
 import PaginationPrevious from './pagination-previous';
 import PaginationNext from './pagination-next';

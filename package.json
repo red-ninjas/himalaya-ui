@@ -1,6 +1,6 @@
 {
   "name": "@himalaya-ui/core",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "main": "dist/bundle/index.js",
   "module": "dist/bundle/esm/index.js",
   "types": "dist/bundle/esm/index.d.ts",
@@ -117,6 +117,7 @@
     "@use-gesture/react": "^10.3.0",
     "@vercel/analytics": "^1.1.1",
     "babel-jest": "^29.7.0",
+    "babel-plugin-transform-next-use-client": "^1.1.1",
     "babel-plugin-transform-rename-import": "^2.3.0",
     "babel-plugin-tsconfig-paths-module-resolver": "^1.0.4",
     "bytes": "~3.1.2",

@@ -3356,6 +3356,11 @@ babel-plugin-polyfill-regenerator@^0.5.3:
   dependencies:
     "@babel/helper-define-polyfill-provider" "^0.4.3"
 
+babel-plugin-transform-next-use-client@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/babel-plugin-transform-next-use-client/-/babel-plugin-transform-next-use-client-1.1.1.tgz#648f3b3de16a09b490f5d0bc34143516ef91a4df"
+  integrity sha512-qqyurXN5ZWP7kqmgzzXaEgF0fCi8d72tE+wCQwSCrjfN+LC0fI1+ejhNE+DtVECY1EvYkUoO0tcr9izwC9xexg==
+
 babel-plugin-transform-rename-import@^2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-transform-rename-import/-/babel-plugin-transform-rename-import-2.3.0.tgz#5d9d645f937b0ca5c26a24b2510a06277b6ffd9b"

@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import PaginationItem from './pagination-item';
 import { usePaginationContext } from './pagination-context';

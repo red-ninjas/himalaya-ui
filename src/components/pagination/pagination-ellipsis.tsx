@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 import PaginationItem from './pagination-item';
 
@@ -13,8 +15,7 @@ const PaginationEllipsis: React.FC<Props> = ({ isBefore, onClick }) => {
     <PaginationItem
       onClick={e => onClick && onClick(e)}
       onMouseEnter={() => setShowMore(true)}
-      onMouseLeave={() => setShowMore(false)}
-    >
+      onMouseLeave={() => setShowMore(false)}>
       {showMore ? (
         <svg
           className="more"
@@ -24,8 +25,7 @@ const PaginationEllipsis: React.FC<Props> = ({ isBefore, onClick }) => {
           strokeLinecap="round"
           strokeLinejoin="round"
           fill="none"
-          shapeRendering="geometricPrecision"
-        >
+          shapeRendering="geometricPrecision">
           <path d="M13 17l5-5-5-5" />
           <path d="M6 17l5-5-5-5" />
         </svg>
@@ -36,8 +36,7 @@ const PaginationEllipsis: React.FC<Props> = ({ isBefore, onClick }) => {
           strokeLinecap="round"
           strokeLinejoin="round"
           fill="none"
-          shapeRendering="geometricPrecision"
-        >
+          shapeRendering="geometricPrecision">
           <circle cx="12" cy="12" r="1" fill="currentColor" />
           <circle cx="19" cy="12" r="1" fill="currentColor" />
           <circle cx="5" cy="12" r="1" fill="currentColor" />
