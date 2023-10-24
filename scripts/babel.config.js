@@ -20,7 +20,6 @@ module.exports = {
   ],
   plugins: [
     '@babel/plugin-transform-block-scoping',
-    'babel-plugin-transform-next-use-client',
     '@babel/plugin-proposal-class-properties',
     ['@babel/plugin-proposal-object-rest-spread', { loose: true }],
     ['@babel/plugin-transform-runtime', { useESModules: true }],
