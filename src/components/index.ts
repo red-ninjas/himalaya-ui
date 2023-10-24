@@ -249,7 +249,8 @@ export type { SidebarProps } from './sidebar';
 export { default as QuickBar, QuickBarLayout, QuickAction } from './quick-bar';
 export type { QuickBarProps, QuickBarLayoutProps } from './quick-bar';
 
-export { default as ConfigProvider, useConfigs, THEME_COOKIE_NAME } from './use-context';
+export { default as ConfigProvider, useConfigs } from './use-context';
+
 export type { ConfigProps } from './use-context';
 
 export { default as SearchProvider } from './use-search/search-provider';
@@ -315,3 +316,5 @@ export { default as BottomNavigation } from './bottom-navigation';
 
 export { default as RunningText } from './running-text';
 export { default as Footer, FooterBottom, FooterNavigation } from './footer';
+
+export * from './constants'

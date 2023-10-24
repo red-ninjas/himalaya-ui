@@ -4,7 +4,7 @@ import { Analytics } from '@vercel/analytics/react';
 
 import { Providers } from '../lib/providers';
 
-import { THEME_COOKIE_NAME } from 'components';
+import { THEME_COOKIE_NAME } from 'components/constants';
 import TilteInjector from 'lib/title-injector';
 import { cookies } from 'next/headers';
 

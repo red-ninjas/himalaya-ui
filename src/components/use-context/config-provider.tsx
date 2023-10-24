@@ -20,10 +20,9 @@ import StyledJsxRegistry from './registry';
 
 import useCurrentState from '../use-current-state';
 import ThemeProvider from './theme-provider';
-import { THEME_COOKIE_NAME } from './share';
+import { THEME_COOKIE_NAME, CUSTOM_THEME_TYPE } from '../constants';
 import { DeepPartial } from '../utils/types';
 import useTheme from '../use-theme';
-import { CUSTOM_THEME_TYPE } from './share';
 export interface ConfigProps {
   themeType?: string | 'dark' | 'light' | 'grey';
   detectTheme?: boolean;

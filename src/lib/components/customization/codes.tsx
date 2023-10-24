@@ -1,8 +1,8 @@
-import React, { useMemo } from 'react'
-import { isObject } from 'components/themes/themes'
-import { LiveEditor, LiveProvider } from 'react-live'
-import CopyIcon from 'components/snippet/snippet-icon'
-import makeCodeTheme from 'lib/components/playground/code-theme'
+import React, { useMemo } from 'react';
+import { isObject } from 'components/themes/themes';
+import { LiveEditor, LiveProvider } from 'react-live';
+import CopyIcon from 'components/snippet/snippet-icon';
+import makeCodeTheme from 'lib/components/playground/code-theme';
 import {
   Text,
   Spacer,
@@ -12,37 +12,37 @@ import {
   Themes,
   useClipboard,
   useLayout,
-} from 'components'
-import { CUSTOM_THEME_TYPE } from 'components/use-context/share'
+} from 'components';
+import { CUSTOM_THEME_TYPE } from 'components/constants';
 
 export const getDeepDifferents = <T,>(source: T, target: T): T => {
-  if (!isObject(target) || !isObject(source)) return target
+  if (!isObject(target) || !isObject(source)) return target;
 
-  const sourceKeys = Object.keys(source || {}) as Array<keyof T>
-  const result = {} as T
+  const sourceKeys = Object.keys(source || {}) as Array<keyof T>;
+  const result = {} as T;
   for (const key of sourceKeys) {
-    const sourceValue = source[key]
-    const targetValue = target[key]
+    const sourceValue = source[key];
+    const targetValue = target[key];
 
     if (isObject(sourceValue) && isObject(targetValue)) {
-      const childrenDiff = getDeepDifferents(sourceValue, { ...targetValue })
+      const childrenDiff = getDeepDifferents(sourceValue, { ...targetValue });
       if (Object.keys(childrenDiff || {}).length !== 0) {
-        result[key] = childrenDiff
+        result[key] = childrenDiff;
       }
     } else if (sourceValue !== targetValue) {
-      result[key] = targetValue
+      result[key] = targetValue;
     }
   }
-  return result
-}
+  return result;
+};
 
 const CustomizationCodes: React.FC<unknown> = () => {
-  const DefaultTheme = Themes.getPresetStaticTheme()
-  const theme = useTheme()
-  const layout = useLayout()
-  const codeTheme = makeCodeTheme(theme)
-  const { copy } = useClipboard()
-  const { setToast } = useToasts()
+  const DefaultTheme = Themes.getPresetStaticTheme();
+  const theme = useTheme();
+  const layout = useLayout();
+  const codeTheme = makeCodeTheme(theme);
+  const { copy } = useClipboard();
+  const { setToast } = useToasts();
 
   const deepDifferents = useMemo(
     () => ({
@@ -50,7 +50,7 @@ const CustomizationCodes: React.FC<unknown> = () => {
       type: CUSTOM_THEME_TYPE,
     }),
     [DefaultTheme, theme],
-  )
+  );
   const userCodes = useMemo(() => {
     return `const myTheme = ${JSON.stringify(deepDifferents, null, 2)}
 
@@ -65,13 +65,13 @@ const CustomizationCodes: React.FC<unknown> = () => {
  *      </ConfigProvider>
  *    )
  *  }
- **/`
-  }, [deepDifferents])
+ **/`;
+  }, [deepDifferents]);
 
   const copyCode = () => {
-    copy(userCodes)
-    setToast({ text: 'Theme code copied.' })
-  }
+    copy(userCodes);
+    setToast({ text: 'Theme code copied.' });
+  };
 
   return (
     <div className="custom-codes">
@@ -149,7 +149,7 @@ const CustomizationCodes: React.FC<unknown> = () => {
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-export default CustomizationCodes
+export default CustomizationCodes;
