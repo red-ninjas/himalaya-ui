@@ -32,7 +32,7 @@ jobs:
         - name: Build
           run: yarn build
         - name: Build bundle
-          run: yarn bundle
+          run: yarn build:bundle
         - name: Release
           run: cd dist/bundle && yarn publish --access public --non-interactive
           env:
