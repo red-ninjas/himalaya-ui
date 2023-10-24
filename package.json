@@ -1,11 +1,11 @@
 {
   "name": "@himalaya-ui/core",
-  "version": "0.0.16",
-  "main": "dist/framework/index.js",
-  "module": "dist/framework-esm/index.js",
-  "types": "dist/framework-esm/index.d.ts",
+  "version": "0.0.18",
+  "main": "dist/bundle/index.js",
+  "module": "dist/bundle/esm/index.js",
+  "types": "dist/bundle/esm/index.d.ts",
   "files": [
-    "/dist",
+    "/dist/bundle",
     "README.md",
     "package.json"
   ],
@@ -27,13 +27,14 @@
     "test": "jest --config .jest.config.js --no-cache --passWithNoTests",
     "test:update": "jest --config .jest.config.js --no-cache --update-snapshot",
     "test:coverage": "yarn test --coverage",
-    "build:clear": "rm -rf ./dist/framework ./dist/framework-esm",
+    "build:clear": "rm -rf ./dist/framework ./dist/esm",
     "build:rollup": "rollup -c scripts/rollup.config.js",
-    "build:babel": "babel --no-babelrc --config-file ./scripts/babel.config.js --extensions \".js,.ts,.tsx\" ./src/components --out-dir ./dist/framework-esm --ignore \"**/__tests__/**/*,**/*.d.ts\"",
+    "build:babel": "babel --no-babelrc --config-file ./scripts/babel.config.js --extensions \".js,.ts,.tsx\" ./src/components --out-dir ./dist/esm --ignore \"**/__tests__/**/*,**/*.d.ts\"",
     "build:after": "node scripts/move-built-in.js",
-    "build:types": "ttsc -p ./scripts & ttsc -p ./scripts --outDir ./dist/framework-esm",
-    "build": "yarn build:rollup && yarn build:babel && yarn build:types && yarn build:after",
-    "release": "yarn build && yarn publish --access public --non-interactive",
+    "build:types": "ttsc -p ./scripts & ttsc -p ./scripts --outDir ./dist/esm",
+    "build:bundle": "node scripts/build-bundle.mjs",
+    "build": "yarn build:rollup && yarn build:babel && yarn build:types && yarn build:after && build:bundle",
+    "release": "yarn build && yarn build:bundle && yarn publish --access public --non-interactive",
     "prepare": "husky install",
     "server:build": "cross-env NODE_ENV=production nest build",
     "server:after": "node scripts/move-server-in.js",
@@ -119,6 +120,7 @@
     "babel-plugin-transform-rename-import": "^2.3.0",
     "babel-plugin-tsconfig-paths-module-resolver": "^1.0.4",
     "bytes": "~3.1.2",
+    "clean-package": "^2.2.0",
     "cross-env": "~7.0.3",
     "dts-bundle-generator": "~8.0.1",
     "eslint": "^8.51.0",
@@ -196,15 +198,15 @@
     "styled-jsx": "^5.1.2"
   },
   "dependencies": {
-    "fancy-canvas": "^2.1.0",
     "@babel/runtime": "^7.23.1",
     "@splidejs/splide": "^4.1.4",
-    "react-i18next": "^13.2.2",
-    "moment": "^2.29.4",
-    "use-elapsed-time": "^3.0.4",
-    "values.js": "^2.1.1",
-    "nookies": "^2.5.2",
+    "fancy-canvas": "^2.1.0",
     "i18next": "^23.5.1",
-    "i18next-browser-languagedetector": "^7.1.0"
+    "i18next-browser-languagedetector": "^7.1.0",
+    "moment": "^2.29.4",
+    "nookies": "^2.5.2",
+    "react-i18next": "^13.2.2",
+    "use-elapsed-time": "^3.0.4",
+    "values.js": "^2.1.1"
   }
 }

@@ -29,7 +29,11 @@ jobs:
             registry-url: 'https://registry.npmjs.org'
         - name: Install Deps
           run: yarn install
-        - name: Build and release
-          run: yarn release 
+        - name: Build
+          run: yarn build
+        - name: Build bundle
+          run: yarn bundle
+        - name: Release
+          run: cd dist/bundle && yarn publish --access public --non-interactive
           env:
             NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

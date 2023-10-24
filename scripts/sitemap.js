@@ -14,7 +14,6 @@ const rl = readline.createInterface({
   crlfDelay: Infinity,
 })
 
-
 const exceptions = [
   '/_not-found',
   '/500',

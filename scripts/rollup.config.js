@@ -8,7 +8,7 @@ import path from 'path'
 const root = path.join(__dirname, '../src')
 const componentsPath = path.join(root, 'components')
 const distPath = path.join(root, '../dist/framework')
-const esmPath = path.join(root, '../dist/framework-esm')
+const esmPath = path.join(root, '../dist/esm')
 
 const extensions = ['.js', '.jsx', '.ts', '.tsx']
 

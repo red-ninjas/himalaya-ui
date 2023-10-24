@@ -1,8 +1,7 @@
 const { resolve, join } = require('path')
 const fs = require('fs-extra')
 const builtInPath = resolve(__dirname, 'built-in')
-const esmFolderPath = resolve(__dirname, '../dist/framework-esm')
-const packageJson = resolve(__dirname, '../package.json')
+const esmFolderPath = resolve(__dirname, '../dist/esm')
 const cjsFolderPath = resolve(__dirname, '../dist/framework')
 const builtInFiles = {
   esm: ['styled-jsx.es.js', 'styled-jsx-server.es.js'],
