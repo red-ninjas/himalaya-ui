@@ -36,6 +36,7 @@ const plugins = [
   }),
   localResolve(),
   nodeResolve({
+    browser: true,
     extensions,
   }),
   commonjs(),
