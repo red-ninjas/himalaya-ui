@@ -32,6 +32,11 @@
       "dom-not-standarted"
     ],
     "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
   "exclude": [
     "node_modules",
@@ -55,6 +60,6 @@
     "lib/**/*.tsx",
     "components/**/*.tsx",
     ".next/types/**/*.ts",
-    "../scripts/sitemap.js",
+    "../scripts/sitemap.js"
   ]
 }

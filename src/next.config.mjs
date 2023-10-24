@@ -6,7 +6,6 @@ import mapBox from '@mapbox/rehype-prism'
 import joinLine from 'rehype-join-line'
 import anylizer from '@next/bundle-analyzer'
 import remarkMdx from 'remark-mdx'
-import withImages from 'next-images'
 
 const withMDX = createMDX({
   extension: /\.(md|mdx)?$/,
@@ -77,4 +76,4 @@ const nextConfig = {
   },
 }
 
-export default withBundleAnalyzer(withImages(withMDX(nextConfig)))
+export default withBundleAnalyzer(withMDX(nextConfig))
