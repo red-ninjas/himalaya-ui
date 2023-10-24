@@ -56,7 +56,7 @@
   },
   "files": [
     "../src/components/index.ts",
-    "../src/components/constants.ts",
+    "../src/components/constants/index.ts",
   ],
   "exclude": [
     "node_modules",

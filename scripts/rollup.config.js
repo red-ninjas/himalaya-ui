@@ -52,7 +52,6 @@ const external = id =>
 
 const cjsOutput = {
   format: 'cjs',
-
   exports: 'named',
   entryFileNames: '[name]/index.js',
   dir: distPath,
