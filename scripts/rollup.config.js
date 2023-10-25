@@ -4,6 +4,7 @@ import localResolve from 'rollup-plugin-local-resolve'
 import babel from 'rollup-plugin-babel'
 import fs from 'fs-extra'
 import path from 'path'
+import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 
 const root = path.join(__dirname, '../src')
 const componentsPath = path.join(root, 'components')
@@ -35,6 +36,7 @@ const plugins = [
     runtimeHelpers: true,
   }),
   localResolve(),
+  peerDepsExternal(),
   nodeResolve({
     browser: true,
     extensions,
@@ -48,7 +50,7 @@ const globals = {
 }
 
 const external = id =>
-  /^react|react-dom|styled-jsx|moment|fancy-canvas|@splidejs\/splide|react-i18next|next\/link|next\/navigation/.test(id)
+  /^react|react-dom|next\/link|next\/navigation/.test(id)
 
 const cjsOutput = {
   format: 'cjs',
@@ -98,7 +100,6 @@ export default (async () => {
       .map(({ name, url }) => ({
         input: { [name]: url },
         output: [cjsOutput],
-        external,
         plugins,
         onwarn(warning, warn) {
           if (warning.code === 'MODULE_LEVEL_DIRECTIVE') {
@@ -122,7 +123,6 @@ export default (async () => {
           entryFileNames: 'index.js',
         },
       ],
-      external,
       plugins,
     },
   ]

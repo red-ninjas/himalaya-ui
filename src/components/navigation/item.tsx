@@ -96,8 +96,7 @@ const NavigationItem: React.FC<PropsWithChildren<NavigationItemProps>> = ({
         className="navigation-item"
         onMouseLeave={() => setIsHover(false)}
         onMouseOut={() => setIsHover(false)}
-        onMouseOver={onChildMouseOver}
-      >
+        onMouseOver={onChildMouseOver}>
         {childElements && isArray(childElements) && childElements?.length > 0 ? (
           <Popover
             onVisibleChange={visible => setIsPopoverVisibile(visible)}
@@ -111,15 +110,13 @@ const NavigationItem: React.FC<PropsWithChildren<NavigationItemProps>> = ({
             })}
             enterDelay={0}
             leaveDelay={0}
-            content={childs}
-          >
+            content={childs}>
             <Link passHref legacyBehavior href={url || ''}>
               <a className={btnClass} ref={ref} onClick={e => handleClick(e)}>
                 <span>{title}</span>
                 <span className="chevron-outer">
                   <span
-                    className={useClasses({ chevron: true, rotated: isPopoverVisibile })}
-                  >
+                    className={useClasses({ chevron: true, rotated: isPopoverVisibile })}>
                     <ChevronUp size={14} />
                   </span>
                 </span>
