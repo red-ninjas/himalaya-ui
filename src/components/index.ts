@@ -249,7 +249,7 @@ export type { SidebarProps } from './sidebar';
 export { default as QuickBar, QuickBarLayout, QuickAction } from './quick-bar';
 export type { QuickBarProps, QuickBarLayoutProps } from './quick-bar';
 
-export { default as ConfigProvider, useConfigs } from './use-context';
+export { default as ConfigProvider, StyledJsxRegistry, useConfigs } from './use-context';
 
 export type { ConfigProps } from './use-context';
 

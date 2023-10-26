@@ -19,7 +19,7 @@ To switch in the default themes you only need to set the value of `themeType`, y
 
 ```jsx
 // NAME:src/app.js
-import { CssBaseline, ConfigProvider } from 'himalaya'
+import { StyledJsxRegistry, ConfigProvider } from '@himalaya-ui/core'
 
 const App = () => {
   const [themeType, setThemeType] = useState('light')
@@ -27,10 +27,11 @@ const App = () => {
     setThemeType(last => (last === 'dark' ? 'light' : last === 'light' : 'grey' : 'dark'))
   }
   return (
-    <ConfigProvider themeType={themeType}>
-      <CssBaseline />
-      <YourComponent onClick={switchThemes} />
-    </ConfigProvider>
+    <StyledJsxRegistry>
+      <ConfigProvider themeType={themeType}>
+        <YourComponent onClick={switchThemes} />
+      </ConfigProvider>
+    </StyledJsxRegistry>
   )
 }
 ```
@@ -49,7 +50,7 @@ To detect a default theme you only need to set the value of `detectTheme` to `tr
 
 ```jsx
 // NAME:src/app.js
-import { CssBaseline, ConfigProvider } from 'himalaya'
+import { StyledJsxRegistry, ConfigProvider } from '@himalaya-ui/core'
 
 const App = () => {
   const [themeType, setThemeType] = useState('light')
@@ -57,10 +58,11 @@ const App = () => {
     setThemeType(last => (last === 'dark' ? 'light' : last === 'light' : 'grey' : 'dark'))
   }
   return (
-    <ConfigProvider detectTheme={true}>
-      <CssBaseline />
-      <YourComponent onClick={switchThemes} />
-    </ConfigProvider>
+    <StyledJsxRegistry>
+      <ConfigProvider detectTheme={true}>
+        <YourComponent onClick={switchThemes} />
+      </ConfigProvider>
+    </StyledJsxRegistry>
   )
 }
 ```
@@ -71,7 +73,7 @@ Customizing a theme is very simple in Himalaya, you just need to provide a new t
 and all the components will change automatically.
 
 ```jsx
-import { CssBaseline, ConfigProvider, Themes } from 'himalaya'
+import { StyledJsxRegistry, ConfigProvider, Themes } from '@himalaya-ui/core'
 
 const myTheme1 = Themes.createFromLight({
   type: 'coolTheme',
@@ -81,10 +83,11 @@ const myTheme1 = Themes.createFromLight({
 })
 
 const App = () => (
-  <ConfigProvider themes={[myTheme1]} themeType="coolTheme">
-    <CssBaseline />
-    <YourAppComponent onClick={switchThemes} />
-  </ConfigProvider>
+  <StyledJsxRegistry>
+    <ConfigProvider themes={[myTheme1]} themeType="coolTheme">
+      <YourAppComponent onClick={switchThemes} />
+    </ConfigProvider>
+  </StyledJsxRegistry>
 )
 ```
 
@@ -109,7 +112,7 @@ you can refer to the existing [type file](https://github.com/red-ninjas/himalaya
 which corresponds to project that support TypeScript, you can refer to the type directly in the package：
 
 ```ts
-import { UIThemes, UIThemesFont, UIThemesPalette, UIThemesExpressiveness } from 'himalaya'
+import { UIThemes, UIThemesFont, UIThemesPalette, UIThemesExpressiveness } from '@himalaya-ui/core'
 
 // usage:
 const myStyles: UIThemes = {
@@ -127,7 +130,7 @@ const myPalette: Partial<UIThemesPalette> = {
 You can override the style by defining a `className` on the component.
 
 ```jsx
-import { Button, Row } from 'himalaya'
+import { Button, Row } from '@himalaya-ui/core'
 
 const MyPage = () => (
   <Row>
@@ -159,7 +162,7 @@ You can use the Geist preset Hooks to get the theme states to create your own co
 For more information, please refer to [useTheme](/hooks/use-theme) documentation.
 
 ```jsx
-import { useTheme } from 'himalaya'
+import { useTheme } from '@himalaya-ui/core'
 
 const MyComponent = () => {
   const theme = useTheme()

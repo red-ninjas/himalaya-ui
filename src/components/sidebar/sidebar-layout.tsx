@@ -79,7 +79,8 @@ const SidebarLayout: React.FC<React.PropsWithChildren<SidebarLayoutProps>> = ({
           visible={isEnabled}
           wrapClassName={'sidebar-drawer'}
           onClose={() => setIsEnabled(false)}
-          placement="right">
+          placement="right"
+        >
           <div className="sidebar-content">
             <InnerScroll width={'100%'} height={'100%'} type="vertical">
               {sidebar}
@@ -95,12 +96,14 @@ const SidebarLayout: React.FC<React.PropsWithChildren<SidebarLayoutProps>> = ({
               className="sidebar"
               style={{
                 height: height === undefined ? '100%' : `calc(100% - ${height}px)`,
-              }}>
+              }}
+            >
               <InnerScroll
                 transparentBg={true}
                 width={'100%'}
                 height={'100%'}
-                type="vertical">
+                type="vertical"
+              >
                 {' '}
                 {sidebar}
               </InnerScroll>
@@ -109,7 +112,8 @@ const SidebarLayout: React.FC<React.PropsWithChildren<SidebarLayoutProps>> = ({
         )}
         <main
           className="main"
-          style={{ width: !isActive ? '100%' : `calc(100% - ${sideBarWidth})` }}>
+          style={{ width: !isActive ? '100%' : `calc(100% - ${sideBarWidth})` }}
+        >
           {content}
         </main>
         <div className="border-right-holder">
@@ -117,7 +121,8 @@ const SidebarLayout: React.FC<React.PropsWithChildren<SidebarLayoutProps>> = ({
             className="border-right"
             style={{
               height: height === undefined ? '100%' : `calc(100% - ${height}px)`,
-            }}></div>
+            }}
+          ></div>
         </div>
         <style jsx>{`
           .main {

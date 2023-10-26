@@ -7,6 +7,7 @@ import { Providers } from '../lib/providers';
 import { THEME_COOKIE_NAME } from 'components/constants';
 import TilteInjector from 'lib/title-injector';
 import { cookies } from 'next/headers';
+import StyledJsxRegistry from 'components/use-context/registry';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const defaultTheme = cookies().get(THEME_COOKIE_NAME)?.value || 'dark';
@@ -19,7 +20,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="robots" content="index,follow" />
       </head>
       <body>
-        <Providers defaultTheme={defaultTheme}>{children}</Providers>
+        <StyledJsxRegistry>
+          <Providers defaultTheme={defaultTheme}>{children}</Providers>
+        </StyledJsxRegistry>
         <Analytics></Analytics>
       </body>
     </html>

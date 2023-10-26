@@ -34,13 +34,14 @@ Also, Himalaya is based on the component library of framework React, which means
 
 ```jsx
 // NAME: /src/app.js
-import { ConfigProvider, CssBaseline } from 'himalaya'
+import { ConfigProvider, StyledJsxRegistry } from '@himalaya-ui/core'
 
 export default () => (
-  <ConfigProvider>
-    <CssBaseline /> // --> base styles
-    <AppComponent /> // --> your application
-  </ConfigProvider>
+  <StyledJsxRegistry>  // --> base styles, ssr injector
+    <ConfigProvider> // --> ui provider
+      <AppComponent /> // --> your application
+    </ConfigProvider>
+  </StyledJsxRegistry>
 )
 ```
 
@@ -50,7 +51,7 @@ export default () => (
 </h4>
 
 ```jsx
-import { Button, Page, Text } from 'himalaya'
+import { Button, Page, Text } from '@himalaya-ui/core'
 
 const Home = () => (
   <Page>
@@ -67,14 +68,15 @@ Once the project has been initialized, add the `/pages/_app.jsx` file to the `/p
 
 ```jsx
 // NAME:pages/_app.jsx
-import { ConfigProvider, CssBaseline } from 'himalaya'
+import { ConfigProvider, StyledJsxRegistry } from '@himalaya-ui/core'
 
 const App = ({ Component, pageProps }) => {
   return (
-    <ConfigProvider>
-      <CssBaseline />
-      <Component {...pageProps} />
-    </ConfigProvider>
+    <StyledJsxRegistry>
+      <ConfigProvider>
+        <Component {...pageProps} />
+      </ConfigProvider>
+    </StyledJsxRegistry>
   )
 }
 

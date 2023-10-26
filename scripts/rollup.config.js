@@ -36,7 +36,7 @@ const plugins = [
     runtimeHelpers: true,
   }),
   localResolve(),
-  peerDepsExternal(),
+  // peerDepsExternal(),
   nodeResolve({
     browser: true,
     extensions,
@@ -49,8 +49,9 @@ const globals = {
   'react-dom': 'ReactDOM',
 }
 
-const external = id =>
-  /^react|react-dom|next\/link|next\/navigation/.test(id)
+//const external = id => /^react|react-dom|styled-jsx|next|next\/link|next\/navigation/.test(id)
+
+const external = id => /^react|react-dom|next\/link|next\/navigation/.test(id)
 
 const cjsOutput = {
   format: 'cjs',
@@ -101,6 +102,7 @@ export default (async () => {
         input: { [name]: url },
         output: [cjsOutput],
         plugins,
+        external,
         onwarn(warning, warn) {
           if (warning.code === 'MODULE_LEVEL_DIRECTIVE') {
             return
@@ -123,6 +125,7 @@ export default (async () => {
           entryFileNames: 'index.js',
         },
       ],
+      external,
       plugins,
     },
   ]

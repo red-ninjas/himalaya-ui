@@ -53,7 +53,7 @@ const CapacityComponent: React.FC<CapacityProps> = ({
         }
 
         span {
-          width: ${percentValue}%;
+          width: ${percentValue + '%'};
           background-color: ${color};
           height: 100%;
           margin: 0;

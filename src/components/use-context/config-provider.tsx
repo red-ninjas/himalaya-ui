@@ -16,7 +16,6 @@ import {
   UpdateToastsLayoutFunction,
   defaultToastLayout,
 } from './config-context';
-import StyledJsxRegistry from './registry';
 
 import useCurrentState from '../use-current-state';
 import ThemeProvider from './theme-provider';
@@ -136,19 +135,17 @@ const ConfigProvider: React.FC<React.PropsWithChildren<ConfigProps>> = ({
   );
 
   return (
-    <StyledJsxRegistry>
-      <LayoutProvider>
-        <TranslationProvider>
-          <ConfigContext.Provider value={config}>
-            <ThemeProvider themes={themes} themeType={_themeType}>
-              <CssBaseline />
-              <div className="ui-app" {...handlers}>
-                {children}
-              </div>
-            </ThemeProvider>
-          </ConfigContext.Provider>
-        </TranslationProvider>
-      </LayoutProvider>
+    <LayoutProvider>
+      <TranslationProvider>
+        <ConfigContext.Provider value={config}>
+          <ThemeProvider themes={themes} themeType={_themeType}>
+            <CssBaseline />
+            <div className="ui-app" {...handlers}>
+              {children}
+            </div>
+          </ThemeProvider>
+        </ConfigContext.Provider>
+      </TranslationProvider>
       <style global jsx>{`
         .ui-app {
           width: 100%;
@@ -157,7 +154,7 @@ const ConfigProvider: React.FC<React.PropsWithChildren<ConfigProps>> = ({
           position: relative;
         }
       `}</style>
-    </StyledJsxRegistry>
+    </LayoutProvider>
   );
 };
 ConfigProvider.displayName = 'HimalayaConfigProvider';
