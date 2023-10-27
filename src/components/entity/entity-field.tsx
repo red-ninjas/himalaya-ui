@@ -10,6 +10,7 @@ function EntityFieldComponent({
   width = 'auto',
   right = false,
   avatar = null,
+  skeleton = null,
   ...others
 }: EntityFieldProps) {
   const theme = useTheme();
@@ -22,11 +23,16 @@ function EntityFieldComponent({
   return (
     <>
       <div className={wrapperClasses} {...others}>
-        {title && <span className="title">{title}</span>}
-        <div className="desc-wrapper">
-          {description && <div className="desc">{description}</div>}
-          {avatar && <span className="avatar">{avatar}</span>}
-        </div>
+        {skeleton}
+        {!skeleton && (
+          <>
+            {title && <span className="title">{title}</span>}
+            <div className="desc-wrapper">
+              {description && <div className="desc">{description}</div>}
+              {avatar && <span className="avatar">{avatar}</span>}
+            </div>
+          </>
+        )}
       </div>
       <style jsx global>{`
         .field-wrapper {

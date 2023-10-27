@@ -38,7 +38,7 @@ function EntityComponent({
         </div>
         {footer && <div className="entity-footer">{footer}</div>}
       </div>
-      <style jsx>{`
+      <style jsx global>{`
         .entity-outer-wrapper {
           width: 100%;
           display: flex;
@@ -47,9 +47,10 @@ function EntityComponent({
           align-items: flex-start;
 
           &.disabled {
-            background: ${theme.palette.accents_1};
+            background: ${theme.palette.accents_0};
             pointer-events: none;
             cursor: not-allowed;
+            border-radius: ${theme.style.radius};
           }
         }
 
@@ -82,6 +83,30 @@ function EntityComponent({
           .entity-footer {
             width: calc(100% - ${SCALES.ml(1)});
             margin-left: ${SCALES.ml(1)};
+          }
+        }
+
+        .entity-ellipsis {
+          display: inline-block;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          word-wrap: normal;
+          max-width: 100%;
+          min-width: 0;
+        }
+
+        .entity-spacer {
+          display: block;
+          width: 1px;
+          height: 1px;
+          min-width: 1px;
+          min-height: 1px;
+          margin-left: calc(24px - 1px);
+          margin-top: calc(24px - 1px);
+
+          &.expand {
+            flex: 1 1;
           }
         }
       `}</style>
