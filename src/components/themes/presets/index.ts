@@ -3,6 +3,15 @@ export interface Gradient {
   to: string;
 }
 
+
+export enum GradientPositionsEnum {
+  left = 'left',
+  right = 'right',
+  top = 'top',
+  bottom = 'bottom'
+}
+
+export type GradientPositions = GradientPositionsEnum | number;
 export interface UIThemesAccents {
   accents_0: string;
   accents_1: string;

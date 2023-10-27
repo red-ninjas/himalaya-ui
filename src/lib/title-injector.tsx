@@ -1,34 +1,34 @@
-'use client'
+'use client';
 
-import seeds from 'lib/data/seeds'
-import _ from 'lodash'
-import { usePathname } from 'next/navigation'
-import { useMemo } from 'react'
+import { Seeds } from 'lib/data';
+import _ from 'lodash';
+import { usePathname } from 'next/navigation';
+import { useMemo } from 'react';
 export interface Meta {
-  title: string
+  title: string;
 }
 
 const toCapitalize = (name: string) => {
-  const [first, ...rest] = name
-  return `${first.toUpperCase()}${rest.join('')}`
-}
+  const [first, ...rest] = name;
+  return `${first.toUpperCase()}${rest.join('')}`;
+};
 
 const TilteInjector = () => {
-  const pathName = usePathname()
-  const activeRecord = _.findLast(seeds, df => df.url === pathName)
+  const pathName = usePathname();
+  const activeRecord = _.findLast(Seeds, df => df.url === pathName);
 
   const capitalizeTitle = useMemo(() => {
-    if (!activeRecord) return undefined
-    if (activeRecord.name.toLowerCase().startsWith('use')) return `${activeRecord.name}`
-    return `${toCapitalize(activeRecord.name)}`
-  }, [activeRecord])
+    if (!activeRecord) return undefined;
+    if (activeRecord.name.toLowerCase().startsWith('use')) return `${activeRecord.name}`;
+    return `${toCapitalize(activeRecord.name)}`;
+  }, [activeRecord]);
 
   const capitalizeTitleGenerated = capitalizeTitle
     ? `${capitalizeTitle} — Himalaya UI`
-    : `Himalaya UI — An Open Source Next.js UI Library`
+    : `Himalaya UI — An Open Source Next.js UI Library`;
 
-  const domain = process.env.SITE_URL || 'https://himalaya-ui.com'
-  const fullPath = `${domain}${pathName}`
+  const domain = process.env.SITE_URL || 'https://himalaya-ui.com';
+  const fullPath = `${domain}${pathName}`;
   return (
     <>
       <title>{capitalizeTitleGenerated}</title>
@@ -50,7 +50,7 @@ const TilteInjector = () => {
       <meta property="twitter:description" content={capitalizeTitleGenerated} />
       <meta property="twitter:image" content="/images/himalaya-banner-dark.png" />
     </>
-  )
-}
+  );
+};
 
-export default TilteInjector
+export default TilteInjector;

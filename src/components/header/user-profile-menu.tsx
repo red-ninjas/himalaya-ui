@@ -25,7 +25,8 @@ const UserProfileComponent: React.FC<PropsWithChildren<UserProfileMenuProps>> = 
         trigger="click"
         enterDelay={0}
         leaveDelay={0}
-        content={userProfileMenu}>
+        content={userProfileMenu}
+      >
         <Avatar text={name} scale={1.2}></Avatar>
       </Popover>
       <style jsx>{`

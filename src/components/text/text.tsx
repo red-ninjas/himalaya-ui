@@ -4,6 +4,8 @@ import React, { ReactNode, useMemo } from 'react';
 import { NormalTypes } from '../utils/prop-types';
 import TextChild from './child';
 import { withScale } from '../use-scale';
+import { Gradient, GradientPositions } from '../themes/presets';
+import { TextColor } from './shared';
 
 export type TextTypes = NormalTypes;
 interface Props {
@@ -22,7 +24,10 @@ interface Props {
   em?: boolean;
   blockquote?: boolean;
   className?: string;
+  stroke?: number | string;
   type?: TextTypes;
+  color?: TextColor;
+  gradientDegress?: GradientPositions | number;
 }
 
 type ElementMap = { [key in keyof React.JSX.IntrinsicElements]?: boolean };

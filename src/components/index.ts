@@ -279,7 +279,6 @@ export { UspCell, type HomeCellProps } from './usp-cell';
 export { ThemeSwitcher } from './theme-switcher';
 export { default as Hero } from './hero';
 export { default as GradientWord } from './gradient-word';
-export { default as StrokeWord } from './stroke-word';
 
 export { default as ThemedChart } from './chart';
 export { default as Carousel, CarouselItem } from './carousel';

@@ -1,21 +1,21 @@
-export type Seed = {
+export type SearchRecord = {
   name: string;
   url: string;
   group?: string;
 };
 
-export type Seeds = Array<Seed>;
+export type SearchRecordArray = Array<SearchRecord>;
 
-export type SearchResults = Seeds;
+export type SearchResults = SearchRecordArray;
 export type SearchResultGroup = {
   title: string;
-  items: Seeds;
+  items: SearchRecordArray;
 };
 
-export const search = (keyword: string, localSeeds: Seed[]): SearchResults => {
+export const search = (keyword: string, localSeeds: SearchRecord[]): SearchResults => {
   const lowerCaseKeyword = keyword.toLowerCase();
   const data = localSeeds
-    .filter((seed: Seed) => {
+    .filter((seed: SearchRecord) => {
       if (seed.name.toLowerCase().includes(lowerCaseKeyword)) return true;
       return seed.group?.toLocaleLowerCase().includes(keyword);
     })

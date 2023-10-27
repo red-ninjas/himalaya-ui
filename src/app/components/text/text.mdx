@@ -16,7 +16,7 @@ Display text using well-defined typographic styles.
   desc="Use `Text` to standardize text content."
   scope={{ Text }}
   code={`
-<Text h1>Start your Himalaya journey.</Text>
+<Text  h1>Start your Himalaya journey.</Text>
 `}
 />
 
@@ -66,12 +66,14 @@ Display text using well-defined typographic styles.
   scope={{ Text }}
   code={`
 <Text b i style={{ letterSpacing: '0.6px' }}>
-  <Text span type="success">G</Text>
-  <Text span type="warning">e</Text>
-  <Text span type="secondary">i</Text>
-  <Text span type="error">s</Text>
-  <Text span style={{ color: '#ccc' }}>t</Text>
-  <Text span type="success" ml="5px">UI</Text>
+  <Text span type="success">H</Text>
+  <Text span type="warning">i</Text>
+  <Text span type="secondary">m</Text>
+  <Text span type="error">a</Text>
+  <Text span color={'#ccc'}>l</Text>
+  <Text span type="secondary" ml="5px">a</Text>
+  <Text span type="success" ml="5px">y</Text>
+  <Text span type="success" ml="5px">a</Text>
 </Text>
 `}
 />
@@ -90,6 +92,34 @@ Display text using well-defined typographic styles.
 />
 
 <Playground
+  title="Stroke"
+  scope={{ Text }}
+  code={`
+<>
+  <Text font="1rem"  mt={0} stroke={0.5}>Strike Size: 0.5px;</Text>
+  <Text font="2rem" stroke={'0.05rem'}>Strike Size: 0.05rem;</Text>
+  <Text font="3rem" mb={0} mt={0} stroke={'1px'}>Strike Size: 1px;</Text>
+</>
+`}
+/>
+
+<Playground
+  title="Gradient"
+  scope={{ Text }}
+  code={`() => {
+    const theme = useTheme();
+    return (
+      <>
+        <Text font="1rem" mt={0} color={theme.palette.gradient_1}>Gradient 1</Text>
+        <Text font="2rem" gradientDegress={'bottom'} color={theme.palette.gradient_2}>Gradient 2 with Bottom Direction</Text>
+        <Text font="3rem" mt={0} mb={0} gradientDegress={140} color={theme.palette.gradient_3}>Gradient 3 with 140 Degress Direction</Text>
+      </>
+    )
+}
+`}
+/>
+
+<Playground
   title="Compose"
   desc="Effect of multiple `Text` stacks"
   scope={{ Text }}
@@ -103,8 +133,7 @@ Display text using well-defined typographic styles.
     <Text small del>Indicates if the resource transmitted should be displayed inline (default behavior without the header),</Text>
     <Text small b>or if it should be handled like a download and the browser should present a “Save As” dialog.</Text>
   </Text>
-</>
-`} />
+</>`} />
 
 <Attributes edit="/pages/components/text.mdx">
 <Attributes.Title>Text.Props</Attributes.Title>
@@ -120,13 +149,29 @@ Display text using well-defined typographic styles.
 | **em**         | component name | `boolean`        | -                        | `false`   |
 | **b**          | component name | `boolean`        | -                        | `false`   |
 | **blockquote** | component name | `boolean`        | -                        | `false`   |
+| **stroke**     | stroke the text | `number`        | -                         | -   |
+| **color**     | color of text | `TextColor`        | [TextColor](#textcolor)                              | -   |
+| **gradientDegress**     | degress of gradient | `GradientPositions`        | [GradientPositions](#gradientpositions)                         |  `right`   |
 | **type**       | text type      | `TextTypes`      | [TextTypes](#texttypes)  | `default` |
 | ...            | native props   | `HTMLAttributes` | `'id', 'className', ...` | -         |
+
+
+<Attributes.Title>TextColor</Attributes.Title>
+
+```ts
+type TextColor = string | Gradient
+```
 
 <Attributes.Title>TextTypes</Attributes.Title>
 
 ```ts
 type TextTypes = 'default' | 'secondary' | 'success' | 'warning' | 'error'
+```
+
+<Attributes.Title>GradientPositions</Attributes.Title>
+
+```ts
+type GradientPositions = 'top' | 'left' | 'right' | 'bottom' | number
 ```
 
 </Attributes>

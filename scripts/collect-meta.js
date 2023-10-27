@@ -24,6 +24,7 @@ const groupWeights = {
   navigation: 7,
   others: 8,
   utils: 10,
+  effects: 12,
 }
 
 const getMetadata = async (files, parentPath) => {

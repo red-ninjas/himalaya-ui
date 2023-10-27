@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import { Anchor, Code, Github, Home, Layout } from 'components/icons'
-import { MDXProvider } from '@mdx-js/react/lib'
+import { Anchor, Code, Github, Home, Layout } from 'components/icons';
+import { MDXProvider } from '@mdx-js/react/lib';
 import {
   AnimatedCursor,
   Divider,
@@ -19,49 +19,48 @@ import {
   ThemeSwitcher,
   useLayout,
   useTheme,
-} from 'components'
-import FixedHeader from 'components/header/fixed-header'
-import ScrollableLayout from 'components/layout/scrollable-layout'
-import Search, { SearchButton, SearchResult, SearchResults } from 'components/search'
-import { capitalize } from 'components/utils/collections'
-import { BrandLogo, BrandTitle } from 'lib/components/icons'
-import { usePathname } from 'next/navigation'
-import React, { useState } from 'react'
-import metaData from '../data/metadata.json'
-import seeds from '../data/seeds'
-import { MdxComponents } from '../mdx-components'
-import NextLink from 'next/link'
+} from 'components';
+import FixedHeader from 'components/header/fixed-header';
+import ScrollableLayout from 'components/layout/scrollable-layout';
+import Search, { SearchButton, SearchResult, SearchResults } from 'components/search';
+import { capitalize } from 'components/utils/collections';
+import { BrandLogo, BrandTitle } from 'lib/components/icons';
+import { usePathname } from 'next/navigation';
+import React, { useState } from 'react';
+import metaData from '../data/metadata.json';
+import Seeds from '../data';
+import { MdxComponents } from '../mdx-components';
+import NextLink from 'next/link';
 export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
-  const theme = useTheme()
-  const layout = useLayout()
-  const pathname = usePathname()
-  const [isHidden, setIsHidden] = useState<boolean>(false)
+  const theme = useTheme();
+  const layout = useLayout();
+  const pathname = usePathname();
+  const [isHidden, setIsHidden] = useState<boolean>(false);
 
   async function doSearch(keyword: string): Promise<SearchResults> {
-    const lowerCaseKeyword = keyword.toLowerCase()
-    const data: SearchResults = seeds
-      .filter(seed => {
-        if (seed.name.toLowerCase().includes(lowerCaseKeyword)) return true
-        return seed.group?.toLocaleLowerCase().includes(keyword)
-      })
+    const lowerCaseKeyword = keyword.toLowerCase();
+    const data: SearchResults = Seeds.filter(seed => {
+      if (seed.name.toLowerCase().includes(lowerCaseKeyword)) return true;
+      return seed.group?.toLocaleLowerCase().includes(keyword);
+    })
       .slice(0, 10)
       .sort(seed => {
-        const startsWithName = seed.name.toLowerCase().startsWith(lowerCaseKeyword)
-        const startsWithGroup = seed.group?.toLowerCase().startsWith(lowerCaseKeyword)
-        if (startsWithName) return -1
-        if (startsWithGroup) return 0
-        return 1
+        const startsWithName = seed.name.toLowerCase().startsWith(lowerCaseKeyword);
+        const startsWithGroup = seed.group?.toLowerCase().startsWith(lowerCaseKeyword);
+        if (startsWithName) return -1;
+        if (startsWithGroup) return 0;
+        return 1;
       })
       .map(df => {
         const result: SearchResult = {
-          url: df.url,
+          url: df.url || '',
           group: df.group || 'General',
           name: df.name,
-        }
-        return result
-      })
+        };
+        return result;
+      });
 
-    return data
+    return data;
   }
 
   return (
@@ -78,15 +77,16 @@ export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
                     <Header.Left>
                       <MobileMenuButton></MobileMenuButton>
 
-                      <NextLink href={'/'}>
-                        <div className="logo">
+                      <NextLink passHref legacyBehavior href={'/'}>
+                        <a className="logo">
                           <BrandLogo size={35}></BrandLogo>{' '}
-                        </div>
+                        </a>
                       </NextLink>
-
-                      <div className="brand">
-                        <BrandTitle size={65}></BrandTitle>
-                      </div>
+                      <NextLink passHref legacyBehavior href={'/'}>
+                        <a className="brand">
+                          <BrandTitle size={65}></BrandTitle>
+                        </a>
+                      </NextLink>
                     </Header.Left>
                     <Header.Center>
                       <Navigation>
@@ -96,14 +96,14 @@ export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
                             key={index}
                             exactMatch={!df.children || df.children.length <= 0}
                             title={capitalize(df.name)}
-                            url={df.url}>
+                            url={df.url}
+                          >
                             {df.children.map((child, childIndex) => (
                               <Navigation.Item.Child
                                 key={childIndex}
                                 title={capitalize(child.name)}
-                                url={
-                                  child.children[0].url || df.url
-                                }></Navigation.Item.Child>
+                                url={child.children[0].url || df.url}
+                              ></Navigation.Item.Child>
                             ))}
                           </Navigation.Item>
                         ))}
@@ -122,7 +122,8 @@ export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
                       {df.children.map((child, childIndex) => (
                         <MobileMenu.SubGroup
                           key={childIndex}
-                          title={capitalize(child.name)}>
+                          title={capitalize(child.name)}
+                        >
                           {child.children.map((item, itemIndex) => (
                             <MobileMenu.Item
                               key={itemIndex}
@@ -147,7 +148,8 @@ export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
                   radius={50}
                   href="/guide"
                   exactMatch={false}
-                  tooltip="Guide">
+                  tooltip="Guide"
+                >
                   <Code size={20} />
                 </QuickAction>
                 <QuickAction
@@ -155,7 +157,8 @@ export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
                   radius={50}
                   href="/components"
                   exactMatch={false}
-                  tooltip="Components">
+                  tooltip="Components"
+                >
                   <Layout size={20} />
                 </QuickAction>
                 <QuickAction
@@ -163,7 +166,8 @@ export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
                   radius={50}
                   href="/hooks"
                   exactMatch={false}
-                  tooltip="Hooks">
+                  tooltip="Hooks"
+                >
                   <Anchor size={20} />
                 </QuickAction>
                 <Divider width={'100%'}></Divider>
@@ -219,6 +223,7 @@ export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
           .brand {
             display: inline-flex;
             align-items: center;
+            color: ${theme.palette.foreground};
           }
 
           .brand {
@@ -233,5 +238,5 @@ export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
         `}</style>
       </SearchProvider>
     </RoutingIndicator>
-  )
-}
+  );
+};

@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import {
   ContentLayout,
@@ -13,29 +13,29 @@ import {
   Sidebar,
   Text,
   useTheme,
-} from 'components'
-import { Title } from 'components/header'
-import BackButton from 'components/header/back-button'
-import SidebarGroup from 'components/sidebar/sidebar-group'
-import SidebarLayout from 'components/sidebar/sidebar-layout'
-import SidebarLink from 'components/sidebar/sidebar-link'
-import { SidebarProvider } from 'components/use-sidebar'
-import _ from 'lodash'
-import { usePathname } from 'next/navigation'
-import seeds from '../data/seeds'
+} from 'components';
+import { Title } from 'components/header';
+import BackButton from 'components/header/back-button';
+import SidebarGroup from 'components/sidebar/sidebar-group';
+import SidebarLayout from 'components/sidebar/sidebar-layout';
+import SidebarLink from 'components/sidebar/sidebar-link';
+import { SidebarProvider } from 'components/use-sidebar';
+import _ from 'lodash';
+import { usePathname } from 'next/navigation';
+import { Seeds } from '../data';
 
 export default function DocumentationLayout({ children }) {
-  const pathName = usePathname()
-  const seperated = pathName && pathName.length > 0 ? pathName.split('/') : []
-  const firstElement = seperated.length > 1 ? seperated[1] : '/'
-  const currentSeeds = seeds.filter(df => df.url.startsWith('/' + firstElement + '/'))
-  const activeRecord = _.findLast(seeds, df => df.url === pathName)
+  const pathName = usePathname();
+  const seperated = pathName && pathName.length > 0 ? pathName.split('/') : [];
+  const firstElement = seperated.length > 1 ? seperated[1] : '/';
+  const currentSeeds = Seeds.filter(df => df.url?.startsWith('/' + firstElement + '/'));
+  const activeRecord = _.findLast(Seeds, df => df.url === pathName);
   const groups = _.chain(currentSeeds)
     .groupBy('group')
     .map((value, key) => ({ title: key, children: value }))
-    .value()
+    .value();
 
-  const theme = useTheme()
+  const theme = useTheme();
   return (
     <ContentLayout padding={0}>
       <MobilePage>
@@ -58,12 +58,14 @@ export default function DocumentationLayout({ children }) {
                   <SidebarGroup
                     isActive={activeRecord ? activeRecord.group == item.title : false}
                     key={index}
-                    title={item.title}>
+                    title={item.title}
+                  >
                     {item.children.map((subChild, subIndex) => (
                       <SidebarLink
                         key={subIndex}
                         url={subChild.url}
-                        title={subChild.name}></SidebarLink>
+                        title={subChild.name}
+                      ></SidebarLink>
                     ))}
                   </SidebarGroup>
                 ))}
@@ -105,5 +107,5 @@ export default function DocumentationLayout({ children }) {
         }
       `}</style>
     </ContentLayout>
-  )
+  );
 }

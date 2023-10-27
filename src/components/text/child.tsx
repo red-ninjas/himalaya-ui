@@ -1,15 +1,23 @@
 'use client';
 
 import React, { useMemo } from 'react';
+import {
+  GradientPositions,
+  GradientPositionsEnum,
+  UIThemesPalette,
+} from '../themes/presets';
+import useScale from '../use-scale';
 import useTheme from '../use-theme';
 import { NormalTypes } from '../utils/prop-types';
-import { UIThemesPalette } from '../themes/presets';
-import useScale from '../use-scale';
+import { TextColor } from './shared';
 
 export interface Props {
   tag: keyof React.JSX.IntrinsicElements;
   type?: NormalTypes;
+  stroke?: number | string;
   className?: string;
+  color?: TextColor;
+  gradientDegress?: GradientPositions;
 }
 
 const getTypeColor = (type: NormalTypes, palette: UIThemesPalette) => {
@@ -31,6 +39,9 @@ const TextChild: React.FC<React.PropsWithChildren<TextChildProps>> = ({
   children,
   tag,
   className = '',
+  stroke,
+  color,
+  gradientDegress = GradientPositionsEnum.right,
   type = 'default' as NormalTypes,
   ...props
 }: React.PropsWithChildren<TextChildProps>) => {
@@ -42,7 +53,33 @@ const TextChild: React.FC<React.PropsWithChildren<TextChildProps>> = ({
   const my = getScaleProps(['margin', 'marginTop', 'marginBottom', 'my', 'mt', 'mb']);
   const px = getScaleProps(['padding', 'paddingLeft', 'paddingRight', 'pl', 'pr', 'px']);
   const py = getScaleProps(['padding', 'paddingTop', 'paddingBottom', 'pt', 'pb', 'py']);
-  const color = useMemo(() => getTypeColor(type, theme.palette), [type, theme.palette]);
+
+  const defaultColor = useMemo(() => {
+    if (color && typeof color === 'string') {
+      return `color: ` + color + ';';
+    } else if (color && color['from'] !== undefined && color['to'] !== undefined) {
+      const gradientDirection =
+        typeof gradientDegress === 'number'
+          ? gradientDegress + 'deg'
+          : 'to ' + gradientDegress;
+
+      return `background: linear-gradient(
+        ${gradientDirection},
+        ${color['from']},
+        ${color['to']}
+      );
+      background-size: 100%;
+      background-repeat: repeat;
+      background-clip: text;
+      text-fill-color: transparent;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      -moz-background-clip: text;
+      -moz-text-fill-color: transparent;`;
+    }
+
+    return `color: ` + getTypeColor(type, theme.palette) + ';';
+  }, [type, theme.palette, color, gradientDegress]);
   const classNames = useMemo<string>(() => {
     const keys = [
       { value: mx, className: 'mx' },
@@ -50,20 +87,26 @@ const TextChild: React.FC<React.PropsWithChildren<TextChildProps>> = ({
       { value: px, className: 'px' },
       { value: py, className: 'py' },
       { value: font, className: 'font' },
+      { value: stroke, className: 'stroke' },
     ];
     const scaleClassNames = keys.reduce((pre, next) => {
       if (typeof next.value === 'undefined') return pre;
       return `${pre} ${next.className}`;
     }, '');
     return `${scaleClassNames} ${className}`.trim();
-  }, [mx, my, px, py, font, className]);
+  }, [mx, my, px, py, font, className, stroke]);
 
   return (
     <Component className={classNames} {...props}>
       {children}
       <style jsx>{`
+        .stroke {
+          color: transparent;
+          -webkit-text-stroke: ${Number(stroke) ? stroke + 'px' : stroke}
+            ${theme.palette.foreground};
+        }
         ${tag} {
-          color: ${color};
+          ${defaultColor};
           width: ${SCALES.width(1, 'auto')};
           height: ${SCALES.height(1, 'auto')};
         }
