@@ -39,7 +39,7 @@ const GradientWord: React.FC<PropsWithChildren<GradientWordProps>> = ({
               0 0 / var(--bg-size) 100%;
             color: transparent;
             background-clip: text;
-
+            -webkit-background-clip: text;
             position: relative;
             z-index: 1;
             animation: foreground ${animationTime}ms linear infinite;
