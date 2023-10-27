@@ -1,10 +1,10 @@
 'use client';
 
 import React, { ReactNode, useMemo } from 'react';
+import { GradientPositions } from '../themes/presets';
+import { withScale } from '../use-scale';
 import { NormalTypes } from '../utils/prop-types';
 import TextChild from './child';
-import { withScale } from '../use-scale';
-import { Gradient, GradientPositions } from '../themes/presets';
 import { TextColor } from './shared';
 
 export type TextTypes = NormalTypes;
