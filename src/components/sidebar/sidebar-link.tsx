@@ -1,35 +1,31 @@
 'use client';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 import useLayout from '../use-layout';
 import useTheme from '../use-theme';
 
-export interface Props {
-  url?: string;
-  title: string;
-  onClick?: () => void;
-}
+export interface Props {}
 
-const SidebarLink: React.FC<Props> = ({ url, title, onClick }) => {
+type NativeAttrs = Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, keyof Props>;
+export type SideBarLinkProp = Props & NativeAttrs;
+
+const SidebarLink: React.FC<PropsWithChildren<SideBarLinkProp>> = ({
+  children,
+  href,
+  ...props
+}) => {
   const theme = useTheme();
   const layout = useLayout();
   const pathname = usePathname();
 
-  const isActive = pathname === url;
-
-  const handleClick = (e: any) => {
-    if (onClick) {
-      e.preventDefault();
-      onClick();
-    }
-  };
+  const isActive = pathname === href;
 
   return (
     <>
-      <Link legacyBehavior href={url || ''}>
-        <a onClick={handleClick} className={`link ${isActive ? 'active' : ''}`}>
-          {title}
+      <Link legacyBehavior href={href || ''}>
+        <a {...props} className={`link ${isActive ? 'active' : ''}`}>
+          {children}
         </a>
       </Link>
       <style jsx>{`

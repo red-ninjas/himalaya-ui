@@ -1,5 +1,5 @@
 'use client';
-import useTheme from 'components/use-theme';
+import useTheme from '../use-theme';
 import React from 'react';
 
 export interface SideItemProps {

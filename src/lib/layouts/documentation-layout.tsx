@@ -55,19 +55,17 @@ export default function DocumentationLayout({ children }) {
             <SidebarLayout>
               <Sidebar>
                 {groups.map((item, index) => (
-                  <SidebarGroup
+                  <Sidebar.Group
                     isActive={activeRecord ? activeRecord.group == item.title : false}
                     key={index}
                     title={item.title}
                   >
                     {item.children.map((subChild, subIndex) => (
-                      <SidebarLink
-                        key={subIndex}
-                        url={subChild.url}
-                        title={subChild.name}
-                      ></SidebarLink>
+                      <Sidebar.Item key={subIndex} href={subChild.url}>
+                        {subChild.name}
+                      </Sidebar.Item>
                     ))}
-                  </SidebarGroup>
+                  </Sidebar.Group>
                 ))}
               </Sidebar>
               <ContentLayout>
