@@ -6,7 +6,7 @@ import useLayout from '../use-layout';
 import useTheme from '../use-theme';
 
 export interface Props {
-  url: string;
+  url?: string;
   title: string;
   onClick?: () => void;
 }
@@ -27,7 +27,7 @@ const SidebarLink: React.FC<Props> = ({ url, title, onClick }) => {
 
   return (
     <>
-      <Link legacyBehavior href={url}>
+      <Link legacyBehavior href={url || ''}>
         <a onClick={handleClick} className={`link ${isActive ? 'active' : ''}`}>
           {title}
         </a>
