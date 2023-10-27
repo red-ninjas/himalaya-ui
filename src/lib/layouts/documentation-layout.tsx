@@ -16,9 +16,7 @@ import {
 } from 'components';
 import { Title } from 'components/header';
 import BackButton from 'components/header/back-button';
-import SidebarGroup from 'components/sidebar/sidebar-group';
 import SidebarLayout from 'components/sidebar/sidebar-layout';
-import SidebarLink from 'components/sidebar/sidebar-link';
 import { SidebarProvider } from 'components/use-sidebar';
 import _ from 'lodash';
 import { usePathname } from 'next/navigation';
