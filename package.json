@@ -169,11 +169,11 @@
     "rollup": "^2.64.0",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-local-resolve": "^1.0.7",
-    "rollup-plugin-peer-deps-external": "^2.2.4",
     "sass": "^1.69.0",
     "screenfull": "^6.0.2",
     "sharp": "^0.32.6",
     "sitemap": "^7.1.1",
+    "styled-jsx": "^5.1.2",
     "styled-jsx-plugin-sass": "^1.0.0",
     "svgo": "^3.0.2",
     "ts-jest": "^29.1.1",
@@ -186,8 +186,7 @@
     "ttsc": "^0.3.1",
     "typescript": "^5.2.2",
     "typescript-transform-paths": "^3.4.6",
-    "yarn": "^1.22.19",
-    "styled-jsx": "^5.1.2"
+    "yarn": "^1.22.19"
   },
   "peerDependencies": {
     "fancy-canvas": ">=2.1.0",

@@ -106,7 +106,7 @@ const TextChild: React.FC<React.PropsWithChildren<TextChildProps>> = ({
             ${theme.palette.foreground};
         }
         ${tag} {
-          ${defaultColor};
+          ${defaultColor}
           width: ${SCALES.width(1, 'auto')};
           height: ${SCALES.height(1, 'auto')};
         }

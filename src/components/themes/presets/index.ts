@@ -3,12 +3,11 @@ export interface Gradient {
   to: string;
 }
 
-
 export enum GradientPositionsEnum {
   left = 'left',
   right = 'right',
   top = 'top',
-  bottom = 'bottom'
+  bottom = 'bottom',
 }
 
 export type GradientPositions = GradientPositionsEnum | number;

@@ -4,7 +4,6 @@ import localResolve from 'rollup-plugin-local-resolve'
 import babel from 'rollup-plugin-babel'
 import fs from 'fs-extra'
 import path from 'path'
-import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 
 const root = path.join(__dirname, '../src')
 const componentsPath = path.join(root, 'components')
