@@ -54,14 +54,7 @@ const useToasts = (layout?: ToastLayout): ToastHooksResult => {
 
 	useEffect(() => {
 		if (!layout) return;
-		updateToastLayout(() =>
-			layout
-				? {
-						...defaultToastLayout,
-						...layout,
-				  }
-				: defaultToastLayout,
-		);
+		updateToastLayout(() => (layout ? { ...defaultToastLayout, ...layout } : defaultToastLayout));
 	}, []);
 
 	const cancel = (internalId: string) => {

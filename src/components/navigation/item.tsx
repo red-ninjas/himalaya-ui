@@ -3,7 +3,7 @@ import { ChevronUp } from '../icons';
 import { isArray } from 'lodash';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import React, { PropsWithChildren, useRef, useState } from 'react';
+import React, { MouseEvent, MouseEventHandler, PropsWithChildren, ReactEventHandler, useRef, useState } from 'react';
 import { INavigationItem } from '.';
 import Popover from '../popover';
 import useClasses from '../use-classes';
@@ -62,7 +62,7 @@ const NavigationItem: React.FC<PropsWithChildren<NavigationItemProps>> = ({
 		</div>
 	);
 
-	const handleClick = (e: any) => {
+	const handleClick: MouseEventHandler<HTMLAnchorElement> = e => {
 		if (onClick) {
 			e.preventDefault();
 			onClick();
@@ -105,7 +105,7 @@ const NavigationItem: React.FC<PropsWithChildren<NavigationItemProps>> = ({
 						content={childs}
 					>
 						<Link passHref legacyBehavior href={url || ''}>
-							<a className={btnClass} ref={ref} onClick={e => handleClick(e)}>
+							<a className={btnClass} ref={ref} onClick={handleClick}>
 								<span>{title}</span>
 								<span className="chevron-outer">
 									<span className={useClasses({ chevron: true, rotated: isPopoverVisibile })}>
@@ -117,7 +117,7 @@ const NavigationItem: React.FC<PropsWithChildren<NavigationItemProps>> = ({
 					</Popover>
 				) : (
 					<Link passHref legacyBehavior href={url || ''}>
-						<a className={btnClass} ref={ref} onClick={e => handleClick(e)}>
+						<a className={btnClass} ref={ref} onClick={handleClick}>
 							<span>{title}</span>
 						</a>
 					</Link>
