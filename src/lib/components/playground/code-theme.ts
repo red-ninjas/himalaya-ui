@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import { PrismTheme } from 'prism-react-renderer'
-import { UIThemes } from 'components/themes/presets'
+import { PrismTheme } from 'prism-react-renderer';
+import { UIThemes } from 'components/themes/presets';
 
 const makeCodeTheme = (theme: UIThemes): PrismTheme => ({
   plain: {
@@ -106,6 +106,6 @@ const makeCodeTheme = (theme: UIThemes): PrismTheme => ({
       },
     },
   ],
-})
+});
 
-export default makeCodeTheme
+export default makeCodeTheme;

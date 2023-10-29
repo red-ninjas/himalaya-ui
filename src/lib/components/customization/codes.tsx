@@ -3,16 +3,7 @@ import { isObject } from 'components/themes/themes';
 import { LiveEditor, LiveProvider } from 'react-live';
 import CopyIcon from 'components/snippet/snippet-icon';
 import makeCodeTheme from 'lib/components/playground/code-theme';
-import {
-  Text,
-  Spacer,
-  useTheme,
-  Code,
-  useToasts,
-  Themes,
-  useClipboard,
-  useLayout,
-} from 'components';
+import { Text, Spacer, useTheme, Code, useToasts, Themes, useClipboard, useLayout } from 'components';
 import { CUSTOM_THEME_TYPE } from 'components/constants';
 
 export const getDeepDifferents = <T,>(source: T, target: T): T => {

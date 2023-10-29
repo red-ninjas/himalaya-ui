@@ -10,3 +10,5 @@ esm
 *.d.ts
 *.yml
 *.snap
+*.mdx
+*.MD

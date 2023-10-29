@@ -2,17 +2,17 @@ import { QuickActionTypes } from '../utils/prop-types';
 import { HTMLAttributeAnchorTarget } from 'react';
 
 export interface QuickBarLayoutProps {
-	animationTime?: number;
+  animationTime?: number;
 }
 export interface QuickBarProps {
-	header?: React.ReactNode;
+  header?: React.ReactNode;
 }
 export interface QuickActionProps {
-	tooltip?: string | React.ReactNode;
-	exactMatch?: boolean;
-	radius?: number;
-	target?: HTMLAttributeAnchorTarget | undefined;
-	highlightLeft?: number;
-	href?: string;
-	type?: QuickActionTypes;
+  tooltip?: string | React.ReactNode;
+  exactMatch?: boolean;
+  radius?: number;
+  target?: HTMLAttributeAnchorTarget | undefined;
+  highlightLeft?: number;
+  href?: string;
+  type?: QuickActionTypes;
 }

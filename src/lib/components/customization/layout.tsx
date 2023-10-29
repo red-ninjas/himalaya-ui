@@ -1,12 +1,10 @@
-import { Grid, useLayout } from 'components'
-import React from 'react'
-import CustomizationCodes from './codes'
-import Demo from './demo'
+import { Grid, useLayout } from 'components';
+import React from 'react';
+import CustomizationCodes from './codes';
+import Demo from './demo';
 
-const CustomizationLayout: React.FC<React.PropsWithChildren<unknown>> = ({
-  children,
-}) => {
-  const layout = useLayout()
+const CustomizationLayout: React.FC<React.PropsWithChildren<unknown>> = ({ children }) => {
+  const layout = useLayout();
 
   return (
     <div className="layout">
@@ -37,7 +35,7 @@ const CustomizationLayout: React.FC<React.PropsWithChildren<unknown>> = ({
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-export default CustomizationLayout
+export default CustomizationLayout;

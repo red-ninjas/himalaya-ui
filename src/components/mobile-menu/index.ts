@@ -5,28 +5,28 @@ import MobileNavigationGroup from './group';
 import MobileNavigationSubGroup from './subgroup';
 
 export type INavigationItem = {
-	title?: string;
-	url?: string;
-	desc?: string;
-	icon?: React.ReactNode;
-	exactMatch?: boolean;
+  title?: string;
+  url?: string;
+  desc?: string;
+  icon?: React.ReactNode;
+  exactMatch?: boolean;
 };
 
 export type MobileMenuProps = {
-	isSwipeable?: boolean;
-	direction?: 'left' | 'right';
-	animationTime?: number;
+  isSwipeable?: boolean;
+  direction?: 'left' | 'right';
+  animationTime?: number;
 };
 
 export type MobileMenuButtonProps = {
-	notHiding?: boolean;
-	toggleMenu?: () => void;
+  notHiding?: boolean;
+  toggleMenu?: () => void;
 };
 
 export type MobileNavigationComponentType = typeof MobileMenu & {
-	Item: MobileNavigationItemComponentType;
-	Group: MobileNavigationGroupComponentType;
-	SubGroup: MobileNavigationSubGroupComponentType;
+  Item: MobileNavigationItemComponentType;
+  Group: MobileNavigationGroupComponentType;
+  SubGroup: MobileNavigationSubGroupComponentType;
 };
 
 export type MobileNavigationItemComponentType = typeof MobileNavigationItem;

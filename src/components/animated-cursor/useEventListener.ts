@@ -9,27 +9,27 @@ export function useEventListener<K extends keyof DocumentEventMap>(type: K, list
 export function useEventListener<K extends keyof WindowEventMap>(type: K, listener: (event: WindowEventMap[K]) => void, element?: Window): void;
 
 export function useEventListener<K extends keyof AllEventMaps>(
-	type: K,
-	listener: (event: AllEventMaps[K]) => void,
-	element?: HTMLElement | Document | Window | null,
+  type: K,
+  listener: (event: AllEventMaps[K]) => void,
+  element?: HTMLElement | Document | Window | null,
 ) {
-	const listenerRef = useRef(listener);
+  const listenerRef = useRef(listener);
 
-	useEffect(() => {
-		listenerRef.current = listener;
-	});
+  useEffect(() => {
+    listenerRef.current = listener;
+  });
 
-	useEffect(() => {
-		const el = element === undefined ? window : element;
+  useEffect(() => {
+    const el = element === undefined ? window : element;
 
-		const internalListener = (ev: AllEventMaps[K]) => {
-			return listenerRef.current(ev);
-		};
+    const internalListener = (ev: AllEventMaps[K]) => {
+      return listenerRef.current(ev);
+    };
 
-		el?.addEventListener(type, internalListener as EventListenerOrEventListenerObject);
+    el?.addEventListener(type, internalListener as EventListenerOrEventListenerObject);
 
-		return () => {
-			el?.removeEventListener(type, internalListener as EventListenerOrEventListenerObject);
-		};
-	}, [type, element]);
+    return () => {
+      el?.removeEventListener(type, internalListener as EventListenerOrEventListenerObject);
+    };
+  }, [type, element]);
 }

@@ -3,8 +3,8 @@ import { CandlestickSeriesPartialOptions, fillUpDownCandlesticksColors } from '.
 import { SeriesApi } from './series-api';
 
 export class CandlestickSeriesApi<HorzScaleItem> extends SeriesApi<'Candlestick', HorzScaleItem> {
-	public override applyOptions(options: CandlestickSeriesPartialOptions): void {
-		fillUpDownCandlesticksColors(options);
-		super.applyOptions(options);
-	}
+  public override applyOptions(options: CandlestickSeriesPartialOptions): void {
+    fillUpDownCandlesticksColors(options);
+    super.applyOptions(options);
+  }
 }

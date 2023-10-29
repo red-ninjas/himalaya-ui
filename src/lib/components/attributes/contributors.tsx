@@ -1,43 +1,43 @@
-import React, { useEffect, useMemo, useState } from 'react'
-import { Avatar, Link, Tooltip } from 'components'
-import { CONTRIBUTORS_URL, GITHUB_URL } from 'lib/constants'
-const RepoMasterURL = `${GITHUB_URL}/blob/master`
+import React, { useEffect, useMemo, useState } from 'react';
+import { Avatar, Link, Tooltip } from 'components';
+import { CONTRIBUTORS_URL, GITHUB_URL } from 'lib/constants';
+const RepoMasterURL = `${GITHUB_URL}/blob/master`;
 
 export interface Contributor {
-  name: string
-  avatar: string
-  url: string
+  name: string;
+  avatar: string;
+  url: string;
 }
 
 interface Props {
-  path: string
+  path: string;
 }
 
 const getContributors = async (path: string): Promise<Array<Contributor>> => {
   try {
-    const response = await fetch(`${CONTRIBUTORS_URL}?path=${path}`)
-    if (!response.ok || response.status === 204) return []
-    return response.json()
+    const response = await fetch(`${CONTRIBUTORS_URL}?path=${path}`);
+    if (!response.ok || response.status === 204) return [];
+    return response.json();
   } catch (e) {
-    return []
+    return [];
   }
-}
+};
 
 const Contributors: React.FC<Props> = ({ path }) => {
-  const [users, setUsers] = useState<Array<Contributor>>([])
-  const link = useMemo(() => `${RepoMasterURL}/${path || '/pages'}`, [])
+  const [users, setUsers] = useState<Array<Contributor>>([]);
+  const link = useMemo(() => `${RepoMasterURL}/${path || '/pages'}`, []);
 
   useEffect(() => {
-    let unmount = false
-    ;(async () => {
-      const contributors = await getContributors(path)
-      if (unmount) return
-      setUsers(contributors)
-    })()
+    let unmount = false;
+    (async () => {
+      const contributors = await getContributors(path);
+      if (unmount) return;
+      setUsers(contributors);
+    })();
     return () => {
-      unmount = true
-    }
-  }, [])
+      unmount = true;
+    };
+  }, []);
 
   return (
     <div className="contributors">
@@ -68,7 +68,7 @@ const Contributors: React.FC<Props> = ({ path }) => {
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-export default Contributors
+export default Contributors;

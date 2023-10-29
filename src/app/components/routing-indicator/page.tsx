@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import Documentation from './routing-indicator.mdx'
+import Documentation from './routing-indicator.mdx';
 
 export default function Page() {
-  return <Documentation />
+  return <Documentation />;
 }

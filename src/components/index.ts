@@ -246,20 +246,20 @@ export { default as GradientWord } from './gradient-word';
 export { default as ThemedChart } from './chart';
 export { default as Carousel, CarouselItem } from './carousel';
 export {
-	ChartNumberFormatter,
-	ChartPriceFormatter,
-	ChartMarketPriceFormatter,
-	ChartPercentFormatter,
-	type ChartProps,
-	DateTimeFormatter,
-	DefaulHourFormatter,
-	DefaulTimeFormatter,
-	type ThemeChartSeriesDictonary,
-	type ThemedChartData,
-	type ThemedChartPriceFormatter,
-	WeekdayFormatter,
-	YearAndMonthConverter,
-	DefaulDayFormatter,
+  ChartNumberFormatter,
+  ChartPriceFormatter,
+  ChartMarketPriceFormatter,
+  ChartPercentFormatter,
+  type ChartProps,
+  DateTimeFormatter,
+  DefaulHourFormatter,
+  DefaulTimeFormatter,
+  type ThemeChartSeriesDictonary,
+  type ThemedChartData,
+  type ThemedChartPriceFormatter,
+  WeekdayFormatter,
+  YearAndMonthConverter,
+  DefaulDayFormatter,
 } from './chart';
 
 export { type DataViewPoint, type DataViewState, type DataViewProps, DataViewSkeleton, DataView } from './data-view';

@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 export const __html = `
 <span class="token keyword">class</span> <span class="token class-name">Clock</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span>
@@ -11,8 +11,6 @@ export const __html = `
     <span class="token punctuation">)</span>
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-`.trim()
+`.trim();
 
-export const Clock: React.FC<unknown> = () => (
-  <code className="language-jsx" dangerouslySetInnerHTML={{ __html }} />
-)
+export const Clock: React.FC<unknown> = () => <code className="language-jsx" dangerouslySetInnerHTML={{ __html }} />;

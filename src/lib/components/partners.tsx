@@ -1,22 +1,12 @@
-import {
-  Carousel,
-  CarouselItem,
-  ContentLayout,
-  FadeInEffect,
-  Text,
-  useTheme,
-} from 'components'
-import { RedNinjas, Striked } from './icons'
+import { Carousel, CarouselItem, ContentLayout, FadeInEffect, Text, useTheme } from 'components';
+import { RedNinjas, Striked } from './icons';
 
 export default function Partners() {
-  const theme = useTheme()
+  const theme = useTheme();
   return (
     <FadeInEffect translateY="4rem">
       <div className="carousel">
-        <Text
-          mb={1.2}
-          small
-          style={{ color: theme.palette.accents_4, textTransform: 'uppercase' }}>
+        <Text mb={1.2} small style={{ color: theme.palette.accents_4, textTransform: 'uppercase' }}>
           With heavy support from
         </Text>
         <ContentLayout>
@@ -47,7 +37,8 @@ export default function Partners() {
                   perPage: 6,
                 },
               },
-            }}>
+            }}
+          >
             <CarouselItem>
               <a className="partner">
                 <Striked></Striked>
@@ -135,5 +126,5 @@ export default function Partners() {
         `}</style>
       </div>
     </FadeInEffect>
-  )
+  );
 }

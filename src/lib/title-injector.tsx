@@ -23,9 +23,7 @@ const TilteInjector = () => {
     return `${toCapitalize(activeRecord.name)}`;
   }, [activeRecord]);
 
-  const capitalizeTitleGenerated = capitalizeTitle
-    ? `${capitalizeTitle} — Himalaya UI`
-    : `Himalaya UI — An Open Source Next.js UI Library`;
+  const capitalizeTitleGenerated = capitalizeTitle ? `${capitalizeTitle} — Himalaya UI` : `Himalaya UI — An Open Source Next.js UI Library`;
 
   const domain = process.env.SITE_URL || 'https://himalaya-ui.com';
   const fullPath = `${domain}${pathName}`;

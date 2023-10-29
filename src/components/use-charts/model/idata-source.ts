@@ -9,7 +9,7 @@ import { Pane } from './pane';
 import { PriceScale } from './price-scale';
 
 export interface ZOrdered {
-	zorder(): number | null;
+  zorder(): number | null;
 }
 /**
  * Prefix meanings:
@@ -17,42 +17,42 @@ export interface ZOrdered {
  * - top: Pane views that are painted on the most top layer and ABOVE the crosshair
  */
 interface IPluginPaneViews {
-	bottomPaneViews?(pane: Pane): readonly IPaneView[];
-	pricePaneViews?(zOrder: SeriesPrimitivePaneViewZOrder): readonly IAxisView[];
-	timePaneViews?(zOrder: SeriesPrimitivePaneViewZOrder): readonly IAxisView[];
-	primitiveHitTest?(x: Coordinate, y: Coordinate): PrimitiveHoveredItem[];
+  bottomPaneViews?(pane: Pane): readonly IPaneView[];
+  pricePaneViews?(zOrder: SeriesPrimitivePaneViewZOrder): readonly IAxisView[];
+  timePaneViews?(zOrder: SeriesPrimitivePaneViewZOrder): readonly IAxisView[];
+  primitiveHitTest?(x: Coordinate, y: Coordinate): PrimitiveHoveredItem[];
 }
 
 interface IDataSourcePaneViews extends IPluginPaneViews {
-	paneViews(pane: Pane): readonly IPaneView[];
-	labelPaneViews(pane?: Pane): readonly IPaneView[];
+  paneViews(pane: Pane): readonly IPaneView[];
+  labelPaneViews(pane?: Pane): readonly IPaneView[];
 
-	/**
-	 * Pane views that are painted on the most top layer
-	 */
-	topPaneViews?(pane: Pane): readonly IPaneView[];
+  /**
+   * Pane views that are painted on the most top layer
+   */
+  topPaneViews?(pane: Pane): readonly IPaneView[];
 }
 
 export type DataSourcePaneViewGetterNames = keyof IDataSourcePaneViews;
 
 export interface IDataSource extends IDataSourcePaneViews, ZOrdered {
-	setZorder(value: number): void;
-	priceScale(): PriceScale | null;
-	setPriceScale(scale: PriceScale | null): void;
+  setZorder(value: number): void;
+  priceScale(): PriceScale | null;
+  setPriceScale(scale: PriceScale | null): void;
 
-	updateAllViews(): void;
+  updateAllViews(): void;
 
-	priceAxisViews(pane?: Pane, priceScale?: PriceScale): readonly IPriceAxisView[];
-	paneViews(pane: Pane): readonly IPaneView[];
-	labelPaneViews(pane?: Pane): readonly IPaneView[];
+  priceAxisViews(pane?: Pane, priceScale?: PriceScale): readonly IPriceAxisView[];
+  paneViews(pane: Pane): readonly IPaneView[];
+  labelPaneViews(pane?: Pane): readonly IPaneView[];
 
-	/**
-	 * Pane views that are painted on the most top layer
-	 */
-	topPaneViews?(pane: Pane): readonly IPaneView[];
-	timeAxisViews(): readonly ITimeAxisView[];
+  /**
+   * Pane views that are painted on the most top layer
+   */
+  topPaneViews?(pane: Pane): readonly IPaneView[];
+  timeAxisViews(): readonly ITimeAxisView[];
 
-	visible(): boolean;
+  visible(): boolean;
 
-	destroy?(): void;
+  destroy?(): void;
 }

@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import Documentation from './animated-cursor.mdx'
+import Documentation from './animated-cursor.mdx';
 
 export default function Page() {
-  return <Documentation />
+  return <Documentation />;
 }

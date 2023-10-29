@@ -92,12 +92,7 @@ export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
                       <Navigation>
                         <Navigation.Item title={'Home'} url={'/'}></Navigation.Item>
                         {metaData.map((df, index) => (
-                          <Navigation.Item
-                            key={index}
-                            exactMatch={!df.children || df.children.length <= 0}
-                            title={capitalize(df.name)}
-                            url={df.url}
-                          >
+                          <Navigation.Item key={index} exactMatch={!df.children || df.children.length <= 0} title={capitalize(df.name)} url={df.url}>
                             {df.children.map((child, childIndex) => (
                               <Navigation.Item.Child
                                 key={childIndex}
@@ -120,16 +115,9 @@ export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
                   {metaData.map((df, index) => (
                     <MobileMenu.Group key={index} title={capitalize(df.name)}>
                       {df.children.map((child, childIndex) => (
-                        <MobileMenu.SubGroup
-                          key={childIndex}
-                          title={capitalize(child.name)}
-                        >
+                        <MobileMenu.SubGroup key={childIndex} title={capitalize(child.name)}>
                           {child.children.map((item, itemIndex) => (
-                            <MobileMenu.Item
-                              key={itemIndex}
-                              url={item.url}
-                              title={item.name}
-                            />
+                            <MobileMenu.Item key={itemIndex} url={item.url} title={item.name} />
                           ))}
                         </MobileMenu.SubGroup>
                       ))}
@@ -143,31 +131,13 @@ export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
                   <Home size={20} />
                 </QuickAction>
                 <Divider width={'100%'}></Divider>
-                <QuickAction
-                  type="lite"
-                  radius={50}
-                  href="/guide"
-                  exactMatch={false}
-                  tooltip="Guide"
-                >
+                <QuickAction type="lite" radius={50} href="/guide" exactMatch={false} tooltip="Guide">
                   <Code size={20} />
                 </QuickAction>
-                <QuickAction
-                  type="lite"
-                  radius={50}
-                  href="/components"
-                  exactMatch={false}
-                  tooltip="Components"
-                >
+                <QuickAction type="lite" radius={50} href="/components" exactMatch={false} tooltip="Components">
                   <Layout size={20} />
                 </QuickAction>
-                <QuickAction
-                  type="lite"
-                  radius={50}
-                  href="/hooks"
-                  exactMatch={false}
-                  tooltip="Hooks"
-                >
+                <QuickAction type="lite" radius={50} href="/hooks" exactMatch={false} tooltip="Hooks">
                   <Anchor size={20} />
                 </QuickAction>
                 <Divider width={'100%'}></Divider>

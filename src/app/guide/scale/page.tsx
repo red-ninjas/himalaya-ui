@@ -1,6 +1,6 @@
-'use client'
-import Documentation from './scale.mdx'
+'use client';
+import Documentation from './scale.mdx';
 
 export default function Page() {
-  return <Documentation />
+  return <Documentation />;
 }

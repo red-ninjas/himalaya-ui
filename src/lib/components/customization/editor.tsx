@@ -1,8 +1,8 @@
-import RotateCcwIcon from 'components/icons/rotateCcw'
-import { Button, Text, useLayout, useTheme } from 'components'
-import { UIThemesExpressiveness, UIThemesPalette } from 'components/themes'
-import EditorColorItem from './editor-color-item'
-import EditorInputItem from './editor-input-item'
+import RotateCcwIcon from 'components/icons/rotateCcw';
+import { Button, Text, useLayout, useTheme } from 'components';
+import { UIThemesExpressiveness, UIThemesPalette } from 'components/themes';
+import EditorColorItem from './editor-color-item';
+import EditorInputItem from './editor-input-item';
 
 const basicColors: Array<keyof UIThemesPalette> = [
   'accents_1',
@@ -15,7 +15,7 @@ const basicColors: Array<keyof UIThemesPalette> = [
   'accents_8',
   'foreground',
   'background',
-]
+];
 const statusColors: Array<keyof UIThemesPalette> = [
   'success',
   'successLight',
@@ -26,47 +26,22 @@ const statusColors: Array<keyof UIThemesPalette> = [
   'warning',
   'warningLight',
   'warningDark',
-]
-const otherColors: Array<keyof UIThemesPalette> = [
-  'selection',
-  'secondary',
-  'link',
-  'border',
-  'code',
-  'cyan',
-  'purple',
-  'alert',
-  'violet',
-]
-const expressiveness: Array<keyof UIThemesExpressiveness> = [
-  'linkStyle',
-  'linkHoverStyle',
-  'dropdownBoxShadow',
-  'shadowSmall',
-  'shadowMedium',
-  'shadowLarge',
-]
+];
+const otherColors: Array<keyof UIThemesPalette> = ['selection', 'secondary', 'link', 'border', 'code', 'cyan', 'purple', 'alert', 'violet'];
+const expressiveness: Array<keyof UIThemesExpressiveness> = ['linkStyle', 'linkHoverStyle', 'dropdownBoxShadow', 'shadowSmall', 'shadowMedium', 'shadowLarge'];
 
 const Editor = () => {
-  const theme = useTheme()
-  const layout = useLayout()
+  const theme = useTheme();
+  const layout = useLayout();
 
-  const restColors = () => {}
-  const resetExpressiveness = () => {}
+  const restColors = () => {};
+  const resetExpressiveness = () => {};
 
   return (
     <div className="editor">
       <Text h3 mt="40px" font="22px">
         {'Colors'}
-        <Button
-          type="abort"
-          icon={<RotateCcwIcon />}
-          auto
-          px={0.65}
-          scale={0.4}
-          ml="10px"
-          onClick={restColors}
-        />
+        <Button type="abort" icon={<RotateCcwIcon />} auto px={0.65} scale={0.4} ml="10px" onClick={restColors} />
       </Text>
       <p className="subtitle">{'basic'}</p>
       <div className="content">
@@ -89,24 +64,12 @@ const Editor = () => {
 
       <Text h3 mt="40px">
         {'Expressiveness'}
-        <Button
-          type="abort"
-          icon={<RotateCcwIcon />}
-          auto
-          px={0.65}
-          scale={0.4}
-          ml="10px"
-          onClick={resetExpressiveness}
-        />
+        <Button type="abort" icon={<RotateCcwIcon />} auto px={0.65} scale={0.4} ml="10px" onClick={resetExpressiveness} />
       </Text>
       <p className="subtitle">{'basic'}</p>
       <div className="content">
         {expressiveness.map((item, index) => (
-          <EditorInputItem
-            key={`${item}-${index}`}
-            groupName="expressiveness"
-            keyName={item}
-          />
+          <EditorInputItem key={`${item}-${index}`} groupName="expressiveness" keyName={item} />
         ))}
       </div>
       <style jsx>{`
@@ -128,7 +91,7 @@ const Editor = () => {
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-export default Editor
+export default Editor;

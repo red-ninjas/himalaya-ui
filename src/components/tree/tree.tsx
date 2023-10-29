@@ -12,77 +12,77 @@ const FileTreeValueType = tuple('directory', 'file');
 const directoryType = FileTreeValueType[0];
 
 export type TreeFile = {
-	type: (typeof FileTreeValueType)[number];
-	name: string;
-	extra?: string;
-	files?: Array<TreeFile>;
+  type: (typeof FileTreeValueType)[number];
+  name: string;
+  extra?: string;
+  files?: Array<TreeFile>;
 };
 
 interface Props {
-	value?: Array<TreeFile>;
-	initialExpand?: boolean;
-	onClick?: (path: string) => void;
-	className?: string;
+  value?: Array<TreeFile>;
+  initialExpand?: boolean;
+  onClick?: (path: string) => void;
+  className?: string;
 }
 
 type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
 export type TreeProps = Props & NativeAttrs;
 
 const makeChildren = (value: Array<TreeFile> = []) => {
-	if (!value || !value.length) return null;
-	return value
-		.sort((a, b) => {
-			if (a.type !== b.type) return a.type !== directoryType ? 1 : -1;
+  if (!value || !value.length) return null;
+  return value
+    .sort((a, b) => {
+      if (a.type !== b.type) return a.type !== directoryType ? 1 : -1;
 
-			return `${a.name}`.charCodeAt(0) - `${b.name}`.charCodeAt(0);
-		})
-		.map((item, index) => {
-			if (item.type === directoryType)
-				return (
-					<TreeFolder name={item.name} extra={item.extra} key={`folder-${item.name}-${index}`}>
-						{makeChildren(item.files)}
-					</TreeFolder>
-				);
-			return <TreeFile name={item.name} extra={item.extra} key={`file-${item.name}-${index}`} />;
-		});
+      return `${a.name}`.charCodeAt(0) - `${b.name}`.charCodeAt(0);
+    })
+    .map((item, index) => {
+      if (item.type === directoryType)
+        return (
+          <TreeFolder name={item.name} extra={item.extra} key={`folder-${item.name}-${index}`}>
+            {makeChildren(item.files)}
+          </TreeFolder>
+        );
+      return <TreeFile name={item.name} extra={item.extra} key={`file-${item.name}-${index}`} />;
+    });
 };
 
 const Tree: React.FC<React.PropsWithChildren<TreeProps>> = ({
-	children,
-	onClick,
-	initialExpand = false,
-	value,
-	className = '',
-	...props
+  children,
+  onClick,
+  initialExpand = false,
+  value,
+  className = '',
+  ...props
 }: React.PropsWithChildren<TreeProps>) => {
-	const isImperative = Boolean(value && value.length > 0);
-	const onFileClick = (path: string) => {
-		onClick && onClick(path);
-	};
+  const isImperative = Boolean(value && value.length > 0);
+  const onFileClick = (path: string) => {
+    onClick && onClick(path);
+  };
 
-	const initialValue = useMemo(
-		() => ({
-			onFileClick,
-			initialExpand,
-			isImperative,
-		}),
-		[initialExpand],
-	);
+  const initialValue = useMemo(
+    () => ({
+      onFileClick,
+      initialExpand,
+      isImperative,
+    }),
+    [initialExpand],
+  );
 
-	const customChildren = isImperative ? makeChildren(value) : sortChildren(children, TreeFolder);
+  const customChildren = isImperative ? makeChildren(value) : sortChildren(children, TreeFolder);
 
-	return (
-		<TreeContext.Provider value={initialValue}>
-			<div className={useClasses('tree', className)} {...props}>
-				{customChildren}
-				<style jsx>{`
-					.tree {
-						padding-left: 1.625rem;
-					}
-				`}</style>
-			</div>
-		</TreeContext.Provider>
-	);
+  return (
+    <TreeContext.Provider value={initialValue}>
+      <div className={useClasses('tree', className)} {...props}>
+        {customChildren}
+        <style jsx>{`
+          .tree {
+            padding-left: 1.625rem;
+          }
+        `}</style>
+      </div>
+    </TreeContext.Provider>
+  );
 };
 
 Tree.displayName = 'HimalayaTree';

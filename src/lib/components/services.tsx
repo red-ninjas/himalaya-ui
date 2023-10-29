@@ -1,19 +1,11 @@
-import { Activity } from 'components/icons'
-import FeatherIcon from 'components/icons/feather'
-import GitHubIcon from 'components/icons/github'
-import PackageIcon from 'components/icons/package'
-import {
-  Button,
-  ContentLayout,
-  FadeInEffect,
-  Grid,
-  Hero,
-  Text,
-  useTheme,
-} from 'components'
-import { HomeCell } from '.'
+import { Activity } from 'components/icons';
+import FeatherIcon from 'components/icons/feather';
+import GitHubIcon from 'components/icons/github';
+import PackageIcon from 'components/icons/package';
+import { Button, ContentLayout, FadeInEffect, Grid, Hero, Text, useTheme } from 'components';
+import { HomeCell } from '.';
 export default function Services() {
-  const theme = useTheme()
+  const theme = useTheme();
   return (
     <ContentLayout>
       <FadeInEffect translateY="4rem">
@@ -22,50 +14,25 @@ export default function Services() {
             <Hero.Tag hasGradient={true}>UI library</Hero.Tag>
           </FadeInEffect>
           <FadeInEffect translateY="4rem">
-            <Text
-              margin={0}
-              marginTop={'12px'}
-              h4
-              font={'clamp(24px, 3.1vw, 48px)'}
-              style={{ fontWeight: '700', lineHeight: '1.2' }}>
+            <Text margin={0} marginTop={'12px'} h4 font={'clamp(24px, 3.1vw, 48px)'} style={{ fontWeight: '700', lineHeight: '1.2' }}>
               Scaling Excellence: UI Components Beyond Limits
             </Text>
           </FadeInEffect>
           <FadeInEffect translateY="4rem">
-            <Text
-              margin={0}
-              marginTop={'24px'}
-              p
-              font={'clamp(14px, 1.2vw, 16px)'}
-              style={{ color: theme.palette.accents_6, fontWeight: 400 }}>
-              Unlock unparalleled scalability and performance with our high-scalable UI
-              components, designed to meet the demands of your most ambitious projects.
+            <Text margin={0} marginTop={'24px'} p font={'clamp(14px, 1.2vw, 16px)'} style={{ color: theme.palette.accents_6, fontWeight: 400 }}>
+              Unlock unparalleled scalability and performance with our high-scalable UI components, designed to meet the demands of your most ambitious
+              projects.
             </Text>
           </FadeInEffect>
         </div>
         <Grid.Container gap={2} justify="center">
           <Grid xs={24} md={6}>
-            <FadeInEffect
-              width={'100%'}
-              height={'100%'}
-              translateY="4rem"
-              startOpacity={1}
-              blur={10}>
-              <HomeCell
-                icon={<PackageIcon />}
-                url="/components"
-                title="100+ React components"
-                desc="Over 100 React components, endless possibilities."
-              />
+            <FadeInEffect width={'100%'} height={'100%'} translateY="4rem" startOpacity={1} blur={10}>
+              <HomeCell icon={<PackageIcon />} url="/components" title="100+ React components" desc="Over 100 React components, endless possibilities." />
             </FadeInEffect>
           </Grid>
           <Grid xs={24} md={6}>
-            <FadeInEffect
-              width={'100%'}
-              height={'100%'}
-              translateY="4rem"
-              startOpacity={1}
-              blur={10}>
+            <FadeInEffect width={'100%'} height={'100%'} translateY="4rem" startOpacity={1} blur={10}>
               <HomeCell
                 icon={<FeatherIcon />}
                 url="/guide/themes"
@@ -75,12 +42,7 @@ export default function Services() {
             </FadeInEffect>
           </Grid>
           <Grid xs={24} md={6}>
-            <FadeInEffect
-              width={'100%'}
-              height={'100%'}
-              translateY="4rem"
-              startOpacity={1}
-              blur={10}>
+            <FadeInEffect width={'100%'} height={'100%'} translateY="4rem" startOpacity={1} blur={10}>
               <HomeCell
                 icon={<GitHubIcon />}
                 url="https://github.com/red-ninjas/himalaya-ui/"
@@ -90,12 +52,7 @@ export default function Services() {
             </FadeInEffect>
           </Grid>
           <Grid xs={24} md={6}>
-            <FadeInEffect
-              width={'100%'}
-              height={'100%'}
-              translateY="4rem"
-              startOpacity={1}
-              blur={10}>
+            <FadeInEffect width={'100%'} height={'100%'} translateY="4rem" startOpacity={1} blur={10}>
               <HomeCell
                 icon={<Activity />}
                 url="/"
@@ -134,5 +91,5 @@ export default function Services() {
         `}</style>
       </FadeInEffect>
     </ContentLayout>
-  )
+  );
 }

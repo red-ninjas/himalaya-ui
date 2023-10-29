@@ -1,6 +1,6 @@
-'use client'
-import Documentation from './skeleton.mdx'
+'use client';
+import Documentation from './skeleton.mdx';
 
 export default function Page() {
-  return <Documentation />
+  return <Documentation />;
 }

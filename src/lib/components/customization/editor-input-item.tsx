@@ -1,39 +1,31 @@
-import React, { useMemo } from 'react'
-import { useTheme, Input, UIThemes, useConfigs } from 'components'
+import React, { useMemo } from 'react';
+import { useTheme, Input, UIThemes, useConfigs } from 'components';
 
 type Props = {
-  value?: string
-  groupName: keyof UIThemes
-  keyName: string
-}
+  value?: string;
+  groupName: keyof UIThemes;
+  keyName: string;
+};
 
-const EditorInputItem: React.FC<React.PropsWithChildren<Props>> = ({
-  groupName,
-  keyName,
-}) => {
-  const theme = useTheme()
-  const { updateCustomTheme } = useConfigs()
+const EditorInputItem: React.FC<React.PropsWithChildren<Props>> = ({ groupName, keyName }) => {
+  const theme = useTheme();
+  const { updateCustomTheme } = useConfigs();
   const currentVal = useMemo(() => {
-    const group = theme[groupName]
-    const key = keyName as keyof typeof group
-    return theme[groupName][key]
-  }, [theme.expressiveness, keyName])
-  const width = useMemo(() => (`${currentVal}`.length > 15 ? '350px' : 'auto'), [])
+    const group = theme[groupName];
+    const key = keyName as keyof typeof group;
+    return theme[groupName][key];
+  }, [theme.expressiveness, keyName]);
+  const width = useMemo(() => (`${currentVal}`.length > 15 ? '350px' : 'auto'), []);
 
   const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     updateCustomTheme({
       [groupName]: { [keyName]: event.target.value },
-    })
-  }
+    });
+  };
 
   return (
     <div className="editor-item">
-      <Input
-        value={currentVal as string}
-        label={keyName}
-        onChange={changeHandler}
-        className="editor-input"
-      />
+      <Input value={currentVal as string} label={keyName} onChange={changeHandler} className="editor-input" />
       <style jsx>{`
         .editor-item {
           background-color: transparent;
@@ -54,7 +46,7 @@ const EditorInputItem: React.FC<React.PropsWithChildren<Props>> = ({
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-export default EditorInputItem
+export default EditorInputItem;

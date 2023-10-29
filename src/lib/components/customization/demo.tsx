@@ -1,20 +1,10 @@
-import React from 'react'
-import Colors from './colors'
-import {
-  useTheme,
-  Button,
-  Text,
-  Code,
-  Spacer,
-  Link,
-  Select,
-  Grid,
-  useLayout,
-} from 'components'
+import React from 'react';
+import Colors from './colors';
+import { useTheme, Button, Text, Code, Spacer, Link, Select, Grid, useLayout } from 'components';
 
 const Demo: React.FC<React.PropsWithChildren<unknown>> = () => {
-  const theme = useTheme()
-  const layout = useLayout()
+  const theme = useTheme();
+  const layout = useLayout();
 
   return (
     <div className="demo">
@@ -22,10 +12,7 @@ const Demo: React.FC<React.PropsWithChildren<unknown>> = () => {
         <Text h2 mb={0} font="13px">
           PREVIEWS
         </Text>
-        <Text>
-          Here&#39;s a preview of your changes to the Theme. When you set the changes, the
-          entire document site will change with the theme.
-        </Text>
+        <Text>Here&#39;s a preview of your changes to the Theme. When you set the changes, the entire document site will change with the theme.</Text>
 
         <Spacer h={1.7} />
         <Text h3 font="13px" type="secondary">
@@ -41,11 +28,9 @@ const Demo: React.FC<React.PropsWithChildren<unknown>> = () => {
           <Link rel="nofollow" href="https://en.wikipedia.org/wiki/HTTP/2" color>
             HTTP/2
           </Link>{' '}
-          allows the server to <Code>push</Code> content, that is, to respond with data
-          for more queries than the client requested. This allows the server to supply
-          data it knows a web browser will need to render a web page, without waiting for
-          the browser to examine the first response, and without the overhead of an
-          additional request cycle.
+          allows the server to <Code>push</Code> content, that is, to respond with data for more queries than the client requested. This allows the server to
+          supply data it knows a web browser will need to render a web page, without waiting for the browser to examine the first response, and without the
+          overhead of an additional request cycle.
         </Text>
         <Text h6>Heading</Text>
         <Text h5>Heading</Text>
@@ -100,7 +85,7 @@ const Demo: React.FC<React.PropsWithChildren<unknown>> = () => {
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-export default Demo
+export default Demo;

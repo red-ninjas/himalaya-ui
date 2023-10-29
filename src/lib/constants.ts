@@ -1,4 +1,3 @@
+export const GITHUB_URL = 'https://github.com/red-ninjas/himalaya-ui';
 
-export const GITHUB_URL = 'https://github.com/red-ninjas/himalaya-ui'
-
-export const CONTRIBUTORS_URL = 'https://contributors.himalaya-ui.com/api/users'
+export const CONTRIBUTORS_URL = 'https://contributors.himalaya-ui.com/api/users';

@@ -1,18 +1,18 @@
-'use client'
+'use client';
 
-import { Link, Text, useTheme } from 'components'
-import NextLink from 'next/link'
-import React from 'react'
+import { Link, Text, useTheme } from 'components';
+import NextLink from 'next/link';
+import React from 'react';
 
 export type HomeCellProps = {
-  url: string
-  title: string
-  desc: string
-  icon: React.ReactNode
-}
+  url: string;
+  title: string;
+  desc: string;
+  icon: React.ReactNode;
+};
 
 const HomeCell: React.FC<HomeCellProps> = ({ url, title, desc, icon }) => {
-  const theme = useTheme()
+  const theme = useTheme();
   return (
     <NextLink href={url} passHref legacyBehavior>
       <Link style={{ width: '100%', height: '100%' }}>
@@ -22,12 +22,7 @@ const HomeCell: React.FC<HomeCellProps> = ({ url, title, desc, icon }) => {
             {title}
           </Text>
 
-          <Text
-            color={theme.palette.accents_6}
-            p
-            margin={0}
-            font={1}
-            className="feature-desc">
+          <Text color={theme.palette.accents_6} p margin={0} font={1} className="feature-desc">
             {desc}
           </Text>
 
@@ -63,7 +58,7 @@ const HomeCell: React.FC<HomeCellProps> = ({ url, title, desc, icon }) => {
         `}</style>
       </Link>
     </NextLink>
-  )
-}
+  );
+};
 
-export default HomeCell
+export default HomeCell;

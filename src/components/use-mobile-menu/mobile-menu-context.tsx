@@ -2,13 +2,13 @@
 import React from 'react';
 
 export interface MobileMenuContextProps {
-	isEnabled: boolean;
-	setIsEnabled: (value: boolean) => void;
+  isEnabled: boolean;
+  setIsEnabled: (value: boolean) => void;
 }
 
 export const defaultConfigs: MobileMenuContextProps = {
-	setIsEnabled: () => {},
-	isEnabled: false,
+  setIsEnabled: () => {},
+  isEnabled: false,
 };
 
 export const MobileMenuContext = React.createContext<MobileMenuContextProps>(defaultConfigs);

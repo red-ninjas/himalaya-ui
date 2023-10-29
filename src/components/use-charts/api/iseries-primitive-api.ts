@@ -10,18 +10,18 @@ import { ISeriesApi } from './iseries-api';
  * a refresh of the chart.
  */
 export interface SeriesAttachedParameter<HorzScaleItem = Time, TSeriesType extends SeriesType = keyof SeriesOptionsMap> {
-	/**
-	 * Chart instance.
-	 */
-	chart: IChartApiBase<HorzScaleItem>;
-	/**
-	 * Series to which the Primitive is attached.
-	 */
-	series: ISeriesApi<TSeriesType, HorzScaleItem>;
-	/**
-	 * Request an update (redraw the chart)
-	 */
-	requestUpdate: () => void;
+  /**
+   * Chart instance.
+   */
+  chart: IChartApiBase<HorzScaleItem>;
+  /**
+   * Series to which the Primitive is attached.
+   */
+  series: ISeriesApi<TSeriesType, HorzScaleItem>;
+  /**
+   * Request an update (redraw the chart)
+   */
+  requestUpdate: () => void;
 }
 
 /**

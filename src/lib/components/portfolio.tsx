@@ -1,14 +1,4 @@
-import {
-  Button,
-  ContentLayout,
-  FadeInEffect,
-  Grid,
-  Hero,
-  Link,
-  ResponsiveImage,
-  Text,
-  useTheme,
-} from 'components'
+import { Button, ContentLayout, FadeInEffect, Grid, Hero, Link, ResponsiveImage, Text, useTheme } from 'components';
 
 export function PortfolioItem({
   image,
@@ -18,26 +8,20 @@ export function PortfolioItem({
   width,
   height,
 }: {
-  image?: string
-  title: string
-  desc: string
-  width: number
-  height: number
-  url?: string
+  image?: string;
+  title: string;
+  desc: string;
+  width: number;
+  height: number;
+  url?: string;
 }) {
-  const theme = useTheme()
+  const theme = useTheme();
   return (
     <FadeInEffect translateY="4rem">
       <div className="portfolio">
         {image && (
           <div className="portfolio-image">
-            <ResponsiveImage
-              alt={title}
-              src={image}
-              width={width}
-              height={height}
-              draggable={false}
-            />
+            <ResponsiveImage alt={title} src={image} width={width} height={height} draggable={false} />
           </div>
         )}
         <FadeInEffect translateY="4rem">
@@ -84,11 +68,11 @@ export function PortfolioItem({
         `}</style>
       </div>
     </FadeInEffect>
-  )
+  );
 }
 
 export default function Portfolio() {
-  const theme = useTheme()
+  const theme = useTheme();
   return (
     <ContentLayout>
       <FadeInEffect transition={1000} translateY="4rem">
@@ -99,26 +83,14 @@ export default function Portfolio() {
             </Hero.Tag>
           </FadeInEffect>
           <FadeInEffect translateY="4rem">
-            <Text
-              margin={0}
-              marginTop={'12px'}
-              h4
-              font={'clamp(24px, 3.1vw, 48px)'}
-              style={{ fontWeight: '700', lineHeight: '1.2' }}>
+            <Text margin={0} marginTop={'12px'} h4 font={'clamp(24px, 3.1vw, 48px)'} style={{ fontWeight: '700', lineHeight: '1.2' }}>
               Diverse, dynamic, and innovative: Explore real projects made with Himalaya.
             </Text>
           </FadeInEffect>
           <FadeInEffect translateY="4rem">
-            <Text
-              margin={0}
-              marginTop={'24px'}
-              p
-              font={'clamp(14px, 1.2vw, 16px)'}
-              style={{ color: theme.palette.accents_6, fontWeight: 400 }}>
-              Our UI library stands out with over 3 fully functional demo projects,
-              offering real-world application scenarios, and a rich repository of 100+
-              examples showcasing its extensive capabilities for diverse design and
-              development needs.
+            <Text margin={0} marginTop={'24px'} p font={'clamp(14px, 1.2vw, 16px)'} style={{ color: theme.palette.accents_6, fontWeight: 400 }}>
+              Our UI library stands out with over 3 fully functional demo projects, offering real-world application scenarios, and a rich repository of 100+
+              examples showcasing its extensive capabilities for diverse design and development needs.
             </Text>
           </FadeInEffect>
         </div>
@@ -188,5 +160,5 @@ export default function Portfolio() {
         }
       `}</style>
     </ContentLayout>
-  )
+  );
 }

@@ -1,27 +1,27 @@
-'use client'
+'use client';
 
-import React, { useEffect, useRef, useState } from 'react'
-import { Link, useTheme } from 'components'
-import AnchorIcon from './anchor-icon'
+import React, { useEffect, useRef, useState } from 'react';
+import { Link, useTheme } from 'components';
+import AnchorIcon from './anchor-icon';
 
 export interface Props {
-  pure?: boolean
+  pure?: boolean;
 }
 
 export const virtualAnchorEncode = (text?: string) => {
-  if (!text) return undefined
-  return text.toLowerCase().replace(/ /g, '-')
-}
+  if (!text) return undefined;
+  return text.toLowerCase().replace(/ /g, '-');
+};
 
 const VirtualAnchor: React.FC<React.PropsWithChildren<Props>> = ({ children, pure }) => {
-  const theme = useTheme()
-  const ref = useRef<HTMLAnchorElement>(null)
-  const [id, setId] = useState<string | undefined>()
+  const theme = useTheme();
+  const ref = useRef<HTMLAnchorElement>(null);
+  const [id, setId] = useState<string | undefined>();
 
   useEffect(() => {
-    if (!ref.current) return
-    setId(virtualAnchorEncode(ref.current.textContent || undefined))
-  }, [ref.current])
+    if (!ref.current) return;
+    setId(virtualAnchorEncode(ref.current.textContent || undefined));
+  }, [ref.current]);
 
   return (
     <span className="parent" ref={ref}>
@@ -75,7 +75,7 @@ const VirtualAnchor: React.FC<React.PropsWithChildren<Props>> = ({ children, pur
         }
       `}</style>
     </span>
-  )
-}
+  );
+};
 
-export default VirtualAnchor
+export default VirtualAnchor;

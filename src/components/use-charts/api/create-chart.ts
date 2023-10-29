@@ -22,22 +22,22 @@ import { IChartApiBase } from './ichart-api';
  * @returns An interface to the created chart
  */
 export function createChartEx<HorzScaleItem, THorzScaleBehavior extends IHorzScaleBehavior<HorzScaleItem>>(
-	container: string | HTMLElement,
-	horzScaleBehavior: THorzScaleBehavior,
-	options?: DeepPartial<ReturnType<THorzScaleBehavior['options']>>,
+  container: string | HTMLElement,
+  horzScaleBehavior: THorzScaleBehavior,
+  options?: DeepPartial<ReturnType<THorzScaleBehavior['options']>>,
 ): IChartApiBase<HorzScaleItem> {
-	let htmlElement: HTMLElement;
-	if (isString(container)) {
-		const element = document.getElementById(container);
-		assert(element !== null, `Cannot find element in DOM with id=${container}`);
-		htmlElement = element;
-	} else {
-		htmlElement = container;
-	}
+  let htmlElement: HTMLElement;
+  if (isString(container)) {
+    const element = document.getElementById(container);
+    assert(element !== null, `Cannot find element in DOM with id=${container}`);
+    htmlElement = element;
+  } else {
+    htmlElement = container;
+  }
 
-	const res = new ChartApi<HorzScaleItem>(htmlElement, horzScaleBehavior, options);
-	horzScaleBehavior.setOptions(res.options());
-	return res;
+  const res = new ChartApi<HorzScaleItem>(htmlElement, horzScaleBehavior, options);
+  horzScaleBehavior.setOptions(res.options());
+  return res;
 }
 
 /**
@@ -49,12 +49,12 @@ export type ChartOptions = TimeChartOptions;
  * The main interface of a single chart using time for horizontal scale.
  */
 export interface IChartApi extends IChartApiBase<Time> {
-	/**
-	 * Applies new options to the chart
-	 *
-	 * @param options - Any subset of options.
-	 */
-	applyOptions(options: DeepPartial<ChartOptions>): void;
+  /**
+   * Applies new options to the chart
+   *
+   * @param options - Any subset of options.
+   */
+  applyOptions(options: DeepPartial<ChartOptions>): void;
 }
 
 /**
@@ -65,5 +65,5 @@ export interface IChartApi extends IChartApiBase<Time> {
  * @returns An interface to the created chart
  */
 export function createChart(container: string | HTMLElement, options?: DeepPartial<ChartOptions>): IChartApi {
-	return createChartEx<Time, HorzScaleBehaviorTime>(container, new HorzScaleBehaviorTime(), HorzScaleBehaviorTime.applyDefaults(options));
+  return createChartEx<Time, HorzScaleBehaviorTime>(container, new HorzScaleBehaviorTime(), HorzScaleBehaviorTime.applyDefaults(options));
 }

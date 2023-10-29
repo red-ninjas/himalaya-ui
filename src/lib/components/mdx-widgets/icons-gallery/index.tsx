@@ -1,8 +1,8 @@
-import dynamic from 'next/dynamic'
+import dynamic from 'next/dynamic';
 
 const IconsGallery = dynamic(() => import('./icons-gallery'), {
   ssr: false,
   loading: () => null,
-})
+});
 
-export default IconsGallery
+export default IconsGallery;

@@ -1,6 +1,6 @@
-'use client'
+'use client';
 
-import { Code } from 'components/icons'
+import { Code } from 'components/icons';
 import {
   Button,
   ContentLayout,
@@ -17,22 +17,15 @@ import {
   Section,
   Text,
   useTheme,
-} from 'components'
-import ThemeProvider from 'components/use-context/theme-provider'
-import { capitalize } from 'components/utils/collections'
-import {
-  Background,
-  Facts,
-  Partners,
-  Portfolio,
-  RunningSlogan,
-  Services,
-} from 'lib/components'
-import metaData from '../lib/data/metadata.json'
-import { BrandLogo } from 'lib/components/icons'
+} from 'components';
+import ThemeProvider from 'components/use-context/theme-provider';
+import { capitalize } from 'components/utils/collections';
+import { Background, Facts, Partners, Portfolio, RunningSlogan, Services } from 'lib/components';
+import metaData from '../lib/data/metadata.json';
+import { BrandLogo } from 'lib/components/icons';
 
 export default function Index() {
-  const theme = useTheme()
+  const theme = useTheme();
   return (
     <>
       <div className="hero">
@@ -44,17 +37,13 @@ export default function Index() {
               </Grid>
               <Grid lg={22} justify="center">
                 <Hero.Title>
-                  Scaling Heights of <GradientWord>Design Excellence</GradientWord>: Your
-                  UI Journey{' '}
-                  <span style={{ textDecoration: 'underline', fontWeight: 300 }}>
-                    Begins Here!
-                  </span>
+                  Scaling Heights of <GradientWord>Design Excellence</GradientWord>: Your UI Journey{' '}
+                  <span style={{ textDecoration: 'underline', fontWeight: 300 }}>Begins Here!</span>
                 </Hero.Title>
               </Grid>
               <Grid lg={18} justify="center">
                 <Hero.Desc>
-                  Elevate your Next.js web development with our open-source UI library,
-                  offering a comprehensive suite of customizable components for building
+                  Elevate your Next.js web development with our open-source UI library, offering a comprehensive suite of customizable components for building
                   modern and user-friendly interfaces.
                 </Hero.Desc>
               </Grid>
@@ -109,9 +98,7 @@ export default function Index() {
           {metaData.slice(0, 3).map((df, index) => (
             <FooterNavigation title={capitalize(df.name)} key={index}>
               {df.children.slice(0, 5).map((child, childIndex) => (
-                <FooterNavigation.Item
-                  key={childIndex}
-                  href={child.children[0].url || df.url}>
+                <FooterNavigation.Item key={childIndex} href={child.children[0].url || df.url}>
                   {capitalize(child.name)}
                 </FooterNavigation.Item>
               ))}
@@ -168,5 +155,5 @@ export default function Index() {
         }
       `}</style>
     </>
-  )
+  );
 }

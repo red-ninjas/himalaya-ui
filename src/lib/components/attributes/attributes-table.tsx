@@ -1,11 +1,11 @@
-'use client'
+'use client';
 
-import { Card, useTheme, useLayout } from 'components'
-import React from 'react'
+import { Card, useTheme, useLayout } from 'components';
+import React from 'react';
 
 const AttributesTable: React.FC<React.PropsWithChildren<unknown>> = ({ children }) => {
-  const theme = useTheme()
-  const layout = useLayout()
+  const theme = useTheme();
+  const layout = useLayout();
 
   return (
     <Card className="attr">
@@ -83,7 +83,7 @@ const AttributesTable: React.FC<React.PropsWithChildren<unknown>> = ({ children 
         }
       `}</style>
     </Card>
-  )
-}
+  );
+};
 
-export default AttributesTable
+export default AttributesTable;

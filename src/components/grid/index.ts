@@ -2,7 +2,7 @@ import Grid from './grid';
 import GridContainer from './grid-container';
 
 export type GridComponentType = typeof Grid & {
-	Container: typeof GridContainer;
+  Container: typeof GridContainer;
 };
 (Grid as GridComponentType).Container = GridContainer;
 

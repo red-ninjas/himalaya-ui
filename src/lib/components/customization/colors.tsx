@@ -1,22 +1,11 @@
-import { Card, Grid, useLayout } from 'components'
-import { CardTypes } from 'components/utils/prop-types'
-import React from 'react'
+import { Card, Grid, useLayout } from 'components';
+import { CardTypes } from 'components/utils/prop-types';
+import React from 'react';
 
-const types = [
-  'secondary',
-  'success',
-  'warning',
-  'error',
-  'dark',
-  'alert',
-  'purple',
-  'violet',
-  'cyan',
-  'lite',
-]
+const types = ['secondary', 'success', 'warning', 'error', 'dark', 'alert', 'purple', 'violet', 'cyan', 'lite'];
 
 const Colors: React.FC<React.PropsWithChildren<unknown>> = () => {
-  const layout = useLayout()
+  const layout = useLayout();
   return (
     <div className="colors">
       <Grid.Container gap={1} pl={0} mr="10px">
@@ -27,7 +16,7 @@ const Colors: React.FC<React.PropsWithChildren<unknown>> = () => {
                 {type}
               </Card>
             </Grid>
-          )
+          );
         })}
       </Grid.Container>
       <style jsx>{`
@@ -44,7 +33,7 @@ const Colors: React.FC<React.PropsWithChildren<unknown>> = () => {
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-export default Colors
+export default Colors;

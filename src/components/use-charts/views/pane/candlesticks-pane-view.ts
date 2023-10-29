@@ -6,24 +6,24 @@ import { CandlestickItem, PaneRendererCandlesticks } from '../../renderers/candl
 import { BarsPaneViewBase } from './bars-pane-view-base';
 
 export class SeriesCandlesticksPaneView extends BarsPaneViewBase<'Candlestick', CandlestickItem, PaneRendererCandlesticks> {
-	protected readonly _renderer: PaneRendererCandlesticks = new PaneRendererCandlesticks();
+  protected readonly _renderer: PaneRendererCandlesticks = new PaneRendererCandlesticks();
 
-	protected _createRawItem(time: TimePointIndex, bar: SeriesPlotRow<'Candlestick'>, colorer: SeriesBarColorer<'Candlestick'>): CandlestickItem {
-		return {
-			...this._createDefaultItem(time, bar, colorer),
-			...colorer.barStyle(time),
-		};
-	}
+  protected _createRawItem(time: TimePointIndex, bar: SeriesPlotRow<'Candlestick'>, colorer: SeriesBarColorer<'Candlestick'>): CandlestickItem {
+    return {
+      ...this._createDefaultItem(time, bar, colorer),
+      ...colorer.barStyle(time),
+    };
+  }
 
-	protected _prepareRendererData(): void {
-		const candlestickStyleProps = this._series.options();
+  protected _prepareRendererData(): void {
+    const candlestickStyleProps = this._series.options();
 
-		this._renderer.setData({
-			bars: this._items,
-			barSpacing: this._model.timeScale().barSpacing(),
-			wickVisible: candlestickStyleProps.wickVisible,
-			borderVisible: candlestickStyleProps.borderVisible,
-			visibleRange: this._itemsVisibleRange,
-		});
-	}
+    this._renderer.setData({
+      bars: this._items,
+      barSpacing: this._model.timeScale().barSpacing(),
+      wickVisible: candlestickStyleProps.wickVisible,
+      borderVisible: candlestickStyleProps.borderVisible,
+      visibleRange: this._itemsVisibleRange,
+    });
+  }
 }

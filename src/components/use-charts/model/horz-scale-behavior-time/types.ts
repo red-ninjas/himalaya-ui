@@ -27,18 +27,18 @@ export type UTCTimestamp = Nominal<number, 'UTCTimestamp'>;
  * ```
  */
 export interface BusinessDay {
-	/**
-	 * The year.
-	 */
-	year: number;
-	/**
-	 * The month.
-	 */
-	month: number;
-	/**
-	 * The day.
-	 */
-	day: number;
+  /**
+   * The year.
+   */
+  year: number;
+  /**
+   * The month.
+   */
+  month: number;
+  /**
+   * The day.
+   */
+  day: number;
 }
 
 /**
@@ -56,8 +56,8 @@ export interface BusinessDay {
 export type Time = UTCTimestamp | BusinessDay | string;
 
 export interface TimePoint {
-	timestamp: UTCTimestamp;
-	businessDay?: BusinessDay;
+  timestamp: UTCTimestamp;
+  businessDay?: BusinessDay;
 }
 
 /**
@@ -67,7 +67,7 @@ export interface TimePoint {
  * @returns `true` if `time` is a {@link BusinessDay} object, false otherwise.
  */
 export function isBusinessDay(time: Time): time is BusinessDay {
-	return !isNumber(time) && !isString(time);
+  return !isNumber(time) && !isString(time);
 }
 
 /**
@@ -77,33 +77,33 @@ export function isBusinessDay(time: Time): time is BusinessDay {
  * @returns `true` if `time` is a {@link UTCTimestamp} number, false otherwise.
  */
 export function isUTCTimestamp(time: Time): time is UTCTimestamp {
-	return isNumber(time);
+  return isNumber(time);
 }
 
 /**
  * Represents the type of a tick mark on the time axis.
  */
 export const enum TickMarkType {
-	/**
-	 * The start of the year (e.g. it's the first tick mark in a year).
-	 */
-	Year,
-	/**
-	 * The start of the month (e.g. it's the first tick mark in a month).
-	 */
-	Month,
-	/**
-	 * A day of the month.
-	 */
-	DayOfMonth,
-	/**
-	 * A time without seconds.
-	 */
-	Time,
-	/**
-	 * A time with seconds.
-	 */
-	TimeWithSeconds,
+  /**
+   * The start of the year (e.g. it's the first tick mark in a year).
+   */
+  Year,
+  /**
+   * The start of the month (e.g. it's the first tick mark in a month).
+   */
+  Month,
+  /**
+   * A day of the month.
+   */
+  DayOfMonth,
+  /**
+   * A time without seconds.
+   */
+  Time,
+  /**
+   * A time with seconds.
+   */
+  TimeWithSeconds,
 }
 
 /**
@@ -114,16 +114,16 @@ export const enum TickMarkType {
  * @example Between 2020-01-01 and 2020-02-02 there is a month of difference, i.e. for 2020-02-02 weight would be a month.
  */
 export const enum TickMarkWeight {
-	LessThanSecond = 0,
-	Second = 10,
-	Minute1 = 20,
-	Minute5 = 21,
-	Minute30 = 22,
-	Hour1 = 30,
-	Hour3 = 31,
-	Hour6 = 32,
-	Hour12 = 33,
-	Day = 50,
-	Month = 60,
-	Year = 70,
+  LessThanSecond = 0,
+  Second = 10,
+  Minute1 = 20,
+  Minute5 = 21,
+  Minute30 = 22,
+  Hour1 = 30,
+  Hour3 = 31,
+  Hour6 = 32,
+  Hour12 = 33,
+  Day = 50,
+  Month = 60,
+  Year = 70,
 }

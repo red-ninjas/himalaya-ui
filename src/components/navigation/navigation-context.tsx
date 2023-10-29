@@ -3,12 +3,12 @@ import { ReactiveDomReact } from '../utils/layouts';
 import React from 'react';
 
 export interface NavigationConfig {
-	rect?: ReactiveDomReact;
-	onMouseOver: (e: ReactiveDomReact) => void;
+  rect?: ReactiveDomReact;
+  onMouseOver: (e: ReactiveDomReact) => void;
 }
 
 export const defaultConfigs: NavigationConfig = {
-	onMouseOver: () => {},
+  onMouseOver: () => {},
 };
 
 export const NavigationContext = React.createContext<NavigationConfig>(defaultConfigs);

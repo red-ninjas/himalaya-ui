@@ -1,4 +1,4 @@
-import DocumentationLayout from 'lib/layouts/documentation-layout'
+import DocumentationLayout from 'lib/layouts/documentation-layout';
 export default function Layout({ children }) {
-  return <DocumentationLayout>{children}</DocumentationLayout>
+  return <DocumentationLayout>{children}</DocumentationLayout>;
 }

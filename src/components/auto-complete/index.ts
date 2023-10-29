@@ -4,10 +4,10 @@ import AutoCompleteSearching from './auto-complete-searching';
 import AutoCompleteEmpty from './auto-complete-empty';
 
 export type AutoCompleteComponentType = typeof AutoComplete & {
-	Item: typeof AutoCompleteItem;
-	Option: typeof AutoCompleteItem;
-	Searching: typeof AutoCompleteSearching;
-	Empty: typeof AutoCompleteEmpty;
+  Item: typeof AutoCompleteItem;
+  Option: typeof AutoCompleteItem;
+  Searching: typeof AutoCompleteSearching;
+  Empty: typeof AutoCompleteEmpty;
 };
 (AutoComplete as AutoCompleteComponentType).Item = AutoCompleteItem;
 (AutoComplete as AutoCompleteComponentType).Option = AutoCompleteItem;

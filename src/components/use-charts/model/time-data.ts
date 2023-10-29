@@ -14,26 +14,26 @@ export type TickMarkWeightValue = Nominal<number, 'TickMarkWeightValue'>;
  * Represents a point on the time scale
  */
 export interface TimeScalePoint {
-	/** Weight of the point */
-	readonly timeWeight: TickMarkWeightValue;
-	/** Time of the point */
-	readonly time: InternalHorzScaleItem;
-	/** Original time for the point */
-	readonly originalTime: unknown;
+  /** Weight of the point */
+  readonly timeWeight: TickMarkWeightValue;
+  /** Time of the point */
+  readonly time: InternalHorzScaleItem;
+  /** Original time for the point */
+  readonly originalTime: unknown;
 }
 
 /**
  * Represents a generic range `from` one value `to` another.
  */
 export interface Range<T> {
-	/**
-	 * The from value. The start of the range.
-	 */
-	from: T;
-	/**
-	 * The to value. The end of the range.
-	 */
-	to: T;
+  /**
+   * The from value. The start of the range.
+   */
+  from: T;
+  /**
+   * The to value. The end of the range.
+   */
+  to: T;
 }
 
 export type TimePointsRange = Range<Omit<TimeScalePoint, 'timeWeight'>>;
@@ -63,41 +63,41 @@ export type Logical = Nominal<number, 'Logical'>;
 export type LogicalRange = Range<Logical>;
 
 export interface TimedValue {
-	time: TimePointIndex;
-	x: Coordinate;
+  time: TimePointIndex;
+  x: Coordinate;
 }
 
 export type SeriesItemsIndexesRange = Range<number>;
 
 function lowerBoundItemsCompare(item: TimedValue, time: TimePointIndex): boolean {
-	return item.time < time;
+  return item.time < time;
 }
 
 function upperBoundItemsCompare(time: TimePointIndex, item: TimedValue): boolean {
-	return time < item.time;
+  return time < item.time;
 }
 
 export function visibleTimedValues(items: TimedValue[], range: RangeImpl<TimePointIndex>, extendedRange: boolean): SeriesItemsIndexesRange {
-	const firstBar = range.left();
-	const lastBar = range.right();
+  const firstBar = range.left();
+  const lastBar = range.right();
 
-	const from = lowerbound<TimedValue, TimePointIndex>(items, firstBar, lowerBoundItemsCompare);
-	const to = upperbound<TimedValue, TimePointIndex>(items, lastBar, upperBoundItemsCompare);
+  const from = lowerbound<TimedValue, TimePointIndex>(items, firstBar, lowerBoundItemsCompare);
+  const to = upperbound<TimedValue, TimePointIndex>(items, lastBar, upperBoundItemsCompare);
 
-	if (!extendedRange) {
-		return { from, to };
-	}
+  if (!extendedRange) {
+    return { from, to };
+  }
 
-	let extendedFrom = from;
-	let extendedTo = to;
+  let extendedFrom = from;
+  let extendedTo = to;
 
-	if (from > 0 && from < items.length && items[from].time >= firstBar) {
-		extendedFrom = from - 1;
-	}
+  if (from > 0 && from < items.length && items[from].time >= firstBar) {
+    extendedFrom = from - 1;
+  }
 
-	if (to > 0 && to < items.length && items[to - 1].time <= lastBar) {
-		extendedTo = to + 1;
-	}
+  if (to > 0 && to < items.length && items[to - 1].time <= lastBar) {
+    extendedTo = to + 1;
+  }
 
-	return { from: extendedFrom, to: extendedTo };
+  return { from: extendedFrom, to: extendedTo };
 }

@@ -2,7 +2,7 @@ import Checkbox from './checkbox';
 import CheckboxGroup from './checkbox-group';
 
 export type CheckboxComponentType = typeof Checkbox & {
-	Group: typeof CheckboxGroup;
+  Group: typeof CheckboxGroup;
 };
 (Checkbox as CheckboxComponentType).Group = CheckboxGroup;
 

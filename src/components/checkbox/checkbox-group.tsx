@@ -7,73 +7,73 @@ import useScale, { withScale } from '../use-scale';
 import useClasses from '../use-classes';
 
 interface Props {
-	value: string[];
-	disabled?: boolean;
-	onChange?: (values: string[]) => void;
-	className?: string;
+  value: string[];
+  disabled?: boolean;
+  onChange?: (values: string[]) => void;
+  className?: string;
 }
 
 type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
 export type CheckboxGroupProps = Props & NativeAttrs;
 
 const CheckboxGroupComponent: React.FC<React.PropsWithChildren<CheckboxGroupProps>> = ({
-	disabled = false,
-	onChange,
-	value,
-	children,
-	className = '',
-	...props
+  disabled = false,
+  onChange,
+  value,
+  children,
+  className = '',
+  ...props
 }: CheckboxGroupProps) => {
-	const { SCALES } = useScale();
-	const [selfVal, setSelfVal] = useState<string[]>([]);
-	const classes = useClasses('group', className);
-	if (!value) {
-		value = [];
-		useWarning('Props "value" is required.', 'Checkbox Group');
-	}
+  const { SCALES } = useScale();
+  const [selfVal, setSelfVal] = useState<string[]>([]);
+  const classes = useClasses('group', className);
+  if (!value) {
+    value = [];
+    useWarning('Props "value" is required.', 'Checkbox Group');
+  }
 
-	const updateState = (val: string, checked: boolean) => {
-		const removed = selfVal.filter(v => v !== val);
-		const next = checked ? [...removed, val] : removed;
-		setSelfVal(next);
-		onChange && onChange(next);
-	};
+  const updateState = (val: string, checked: boolean) => {
+    const removed = selfVal.filter(v => v !== val);
+    const next = checked ? [...removed, val] : removed;
+    setSelfVal(next);
+    onChange && onChange(next);
+  };
 
-	const providerValue = useMemo(() => {
-		return {
-			updateState,
-			disabledAll: disabled,
-			inGroup: true,
-			values: selfVal,
-		};
-	}, [disabled, selfVal]);
+  const providerValue = useMemo(() => {
+    return {
+      updateState,
+      disabledAll: disabled,
+      inGroup: true,
+      values: selfVal,
+    };
+  }, [disabled, selfVal]);
 
-	useEffect(() => {
-		setSelfVal(value);
-	}, [value.join(',')]);
+  useEffect(() => {
+    setSelfVal(value);
+  }, [value.join(',')]);
 
-	return (
-		<CheckboxContext.Provider value={providerValue}>
-			<div className={classes} {...props}>
-				{children}
-				<style jsx>{`
-					.group {
-						width: ${SCALES.width(1, 'auto')};
-						height: ${SCALES.height(1, 'auto')};
-						padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
-						margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
-					}
-					.group :global(label) {
-						margin-right: calc(${SCALES.font(1)} * 2);
-						--checkbox-size: ${SCALES.font(1)};
-					}
-					.group :global(label:last-of-type) {
-						margin-right: 0;
-					}
-				`}</style>
-			</div>
-		</CheckboxContext.Provider>
-	);
+  return (
+    <CheckboxContext.Provider value={providerValue}>
+      <div className={classes} {...props}>
+        {children}
+        <style jsx>{`
+          .group {
+            width: ${SCALES.width(1, 'auto')};
+            height: ${SCALES.height(1, 'auto')};
+            padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
+            margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
+          }
+          .group :global(label) {
+            margin-right: calc(${SCALES.font(1)} * 2);
+            --checkbox-size: ${SCALES.font(1)};
+          }
+          .group :global(label:last-of-type) {
+            margin-right: 0;
+          }
+        `}</style>
+      </div>
+    </CheckboxContext.Provider>
+  );
 };
 
 CheckboxGroupComponent.displayName = 'HimalayaCheckboxGroup';

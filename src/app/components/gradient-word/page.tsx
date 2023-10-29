@@ -1,6 +1,6 @@
-'use client'
-import Documentation from './gradient-word.mdx'
+'use client';
+import Documentation from './gradient-word.mdx';
 
 export default function Page() {
-  return <Documentation />
+  return <Documentation />;
 }

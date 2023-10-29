@@ -1,6 +1,6 @@
-'use client'
-import Documentation from './collapse.mdx'
+'use client';
+import Documentation from './collapse.mdx';
 
 export default function Page() {
-  return <Documentation />
+  return <Documentation />;
 }

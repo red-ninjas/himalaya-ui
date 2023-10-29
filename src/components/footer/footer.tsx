@@ -10,35 +10,35 @@ import { ContentLayout } from '../layout';
 import useTheme from '../use-theme';
 
 const Footer: React.FC<PropsWithChildren<FooterProps>> = ({ children }) => {
-	const [, footerBottom] = pickChild(children, FooterBottom);
-	const [, footerBlock] = pickChild(children, FooterBlock);
+  const [, footerBottom] = pickChild(children, FooterBottom);
+  const [, footerBlock] = pickChild(children, FooterBlock);
 
-	const { SCALES } = useScale();
-	const theme = useTheme();
-	return (
-		<>
-			<footer className="footer">
-				<ContentLayout paddingTop={SCALES.pt(2)} paddingBottom={SCALES.pb(2)}>
-					<div className="blocks">{footerBlock}</div>
-				</ContentLayout>
-				{footerBottom}
-			</footer>
+  const { SCALES } = useScale();
+  const theme = useTheme();
+  return (
+    <>
+      <footer className="footer">
+        <ContentLayout paddingTop={SCALES.pt(2)} paddingBottom={SCALES.pb(2)}>
+          <div className="blocks">{footerBlock}</div>
+        </ContentLayout>
+        {footerBottom}
+      </footer>
 
-			<style jsx>{`
-				.footer {
-					display: flex;
-					flex-direction: column;
-					flex-wrap: wrap;
-					border-top: 1px solid ${theme.palette.border};
-				}
-				.blocks {
-					display: flex;
-					justify-content: space-between;
-					flex-wrap: wrap;
-				}
-			`}</style>
-		</>
-	);
+      <style jsx>{`
+        .footer {
+          display: flex;
+          flex-direction: column;
+          flex-wrap: wrap;
+          border-top: 1px solid ${theme.palette.border};
+        }
+        .blocks {
+          display: flex;
+          justify-content: space-between;
+          flex-wrap: wrap;
+        }
+      `}</style>
+    </>
+  );
 };
 
 export default withScale(Footer);

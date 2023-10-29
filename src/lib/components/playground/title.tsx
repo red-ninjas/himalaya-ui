@@ -1,32 +1,30 @@
-'use client'
-import React from 'react'
-import { VirtualAnchor } from '../pures'
+'use client';
+import React from 'react';
+import { VirtualAnchor } from '../pures';
 
 export type TitleProps = {
-  title: React.ReactNode | string
-  desc?: React.ReactNode | string
-}
+  title: React.ReactNode | string;
+  desc?: React.ReactNode | string;
+};
 
 const replaceCode = (desc: string): string => {
-  if (!desc.includes('`')) return desc
-  let count = 0
+  if (!desc.includes('`')) return desc;
+  let count = 0;
   return desc.replace(/`/g, () => {
-    const val = count % 2 === 0 ? '<code>' : '</code>'
-    count++
-    return val
-  })
-}
+    const val = count % 2 === 0 ? '<code>' : '</code>';
+    count++;
+    return val;
+  });
+};
 
 const Title: React.FC<TitleProps> = React.memo(({ title, desc = '' }: TitleProps) => {
-  const isStringDesc = typeof desc === 'string'
+  const isStringDesc = typeof desc === 'string';
   return (
     <>
       <h3>
         <VirtualAnchor>{title}</VirtualAnchor>
       </h3>
-      {desc && isStringDesc && (
-        <p dangerouslySetInnerHTML={{ __html: replaceCode(desc) }} />
-      )}
+      {desc && isStringDesc && <p dangerouslySetInnerHTML={{ __html: replaceCode(desc) }} />}
       {desc && !isStringDesc && <p>{desc}</p>}
       <style jsx>{`
         h3 {
@@ -48,8 +46,8 @@ const Title: React.FC<TitleProps> = React.memo(({ title, desc = '' }: TitleProps
         }
       `}</style>
     </>
-  )
-})
+  );
+});
 
-Title.displayName = 'HimalayaPlayGroundTitle'
-export default Title
+Title.displayName = 'HimalayaPlayGroundTitle';
+export default Title;

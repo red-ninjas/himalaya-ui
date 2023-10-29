@@ -1,6 +1,6 @@
-'use client'
-import Documentation from './grid.mdx'
+'use client';
+import Documentation from './grid.mdx';
 
 export default function Page() {
-  return <Documentation />
+  return <Documentation />;
 }

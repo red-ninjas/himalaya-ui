@@ -1,30 +1,26 @@
-'use client'
-import React, { useEffect, useState } from 'react'
-import { useTheme } from 'components'
+'use client';
+import React, { useEffect, useState } from 'react';
+import { useTheme } from 'components';
 
 interface Props {
-  visible: boolean
-  onClose?: () => void
+  visible: boolean;
+  onClose?: () => void;
 }
 
-const MockPage: React.FC<React.PropsWithChildren<Props>> = ({
-  visible: customVisible,
-  onClose,
-  children,
-}) => {
-  const theme = useTheme()
-  const [visible, setVisible] = useState<boolean>(false)
+const MockPage: React.FC<React.PropsWithChildren<Props>> = ({ visible: customVisible, onClose, children }) => {
+  const theme = useTheme();
+  const [visible, setVisible] = useState<boolean>(false);
 
   useEffect(() => {
     if (customVisible !== undefined) {
-      setVisible(customVisible)
+      setVisible(customVisible);
     }
-  }, [customVisible])
+  }, [customVisible]);
 
   const clickHandler = () => {
-    setVisible(false)
-    onClose && onClose()
-  }
+    setVisible(false);
+    onClose && onClose();
+  };
   return (
     <section onClick={clickHandler} className={visible ? 'active' : ''}>
       {children}
@@ -48,7 +44,7 @@ const MockPage: React.FC<React.PropsWithChildren<Props>> = ({
         }
       `}</style>
     </section>
-  )
-}
+  );
+};
 
-export default MockPage
+export default MockPage;

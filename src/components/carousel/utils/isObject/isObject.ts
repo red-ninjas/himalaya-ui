@@ -6,5 +6,5 @@
  * @return `true` if the subject is an object, or otherwise `false`.
  */
 export function isObject(subject: unknown): subject is object {
-	return subject !== null && typeof subject === 'object';
+  return subject !== null && typeof subject === 'object';
 }

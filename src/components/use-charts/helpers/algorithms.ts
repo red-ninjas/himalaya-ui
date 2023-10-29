@@ -7,25 +7,25 @@
 export type LowerBoundComparatorType<TArrayElementType, TValueType> = (a: TArrayElementType, b: TValueType) => boolean;
 
 export function lowerbound<TArrayElementType, TValueType>(
-	arr: readonly TArrayElementType[],
-	value: TValueType,
-	compare: LowerBoundComparatorType<TArrayElementType, TValueType>,
-	start: number = 0,
-	to: number = arr.length,
+  arr: readonly TArrayElementType[],
+  value: TValueType,
+  compare: LowerBoundComparatorType<TArrayElementType, TValueType>,
+  start: number = 0,
+  to: number = arr.length,
 ): number {
-	let count: number = to - start;
-	while (0 < count) {
-		const count2: number = count >> 1;
-		const mid: number = start + count2;
-		if (compare(arr[mid], value)) {
-			start = mid + 1;
-			count -= count2 + 1;
-		} else {
-			count = count2;
-		}
-	}
+  let count: number = to - start;
+  while (0 < count) {
+    const count2: number = count >> 1;
+    const mid: number = start + count2;
+    if (compare(arr[mid], value)) {
+      start = mid + 1;
+      count -= count2 + 1;
+    } else {
+      count = count2;
+    }
+  }
 
-	return start;
+  return start;
 }
 
 /**
@@ -37,23 +37,23 @@ export function lowerbound<TArrayElementType, TValueType>(
 export type UpperBoundComparatorType<TValueType, TArrayElementType> = (a: TValueType, b: TArrayElementType) => boolean;
 
 export function upperbound<TArrayElementType, TValueType>(
-	arr: readonly TArrayElementType[],
-	value: TValueType,
-	compare: UpperBoundComparatorType<TValueType, TArrayElementType>,
-	start: number = 0,
-	to: number = arr.length,
+  arr: readonly TArrayElementType[],
+  value: TValueType,
+  compare: UpperBoundComparatorType<TValueType, TArrayElementType>,
+  start: number = 0,
+  to: number = arr.length,
 ): number {
-	let count: number = to - start;
-	while (0 < count) {
-		const count2: number = count >> 1;
-		const mid: number = start + count2;
-		if (!compare(value, arr[mid])) {
-			start = mid + 1;
-			count -= count2 + 1;
-		} else {
-			count = count2;
-		}
-	}
+  let count: number = to - start;
+  while (0 < count) {
+    const count2: number = count >> 1;
+    const mid: number = start + count2;
+    if (!compare(value, arr[mid])) {
+      start = mid + 1;
+      count -= count2 + 1;
+    } else {
+      count = count2;
+    }
+  }
 
-	return start;
+  return start;
 }

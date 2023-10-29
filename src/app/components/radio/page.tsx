@@ -1,6 +1,6 @@
-'use client'
-import Documentation from './radio.mdx'
+'use client';
+import Documentation from './radio.mdx';
 
 export default function Page() {
-  return <Documentation />
+  return <Documentation />;
 }

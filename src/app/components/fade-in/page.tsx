@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import Documentation from './fade-in.mdx'
+import Documentation from './fade-in.mdx';
 
 export default function Page() {
-  return <Documentation />
+  return <Documentation />;
 }

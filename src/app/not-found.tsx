@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import { ErrorPage404 } from 'components'
+import { ErrorPage404 } from 'components';
 
 export default function Error() {
-  return <ErrorPage404></ErrorPage404>
+  return <ErrorPage404></ErrorPage404>;
 }

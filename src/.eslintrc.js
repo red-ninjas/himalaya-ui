@@ -1,4 +1,3 @@
-
 module.exports = {
   parser: '@typescript-eslint/parser',
   extends: [
@@ -9,7 +8,7 @@ module.exports = {
     'plugin:react-hooks/recommended',
     'eslint:recommended',
     'plugin:react/recommended',
-    "plugin:@typescript-eslint/recommended"
+    'plugin:@typescript-eslint/recommended',
   ],
   settings: {
     react: {
@@ -25,7 +24,7 @@ module.exports = {
       jsx: true,
     },
   },
-  "ignorePatterns": ["**/*.test.js", "**/*.test.ts", "**/*.test.tsx", '.eslintrc.js'],
+  ignorePatterns: ['**/*.test.js', '**/*.test.ts', '**/*.test.tsx', '.eslintrc.js'],
   rules: {
     indent: 0,
     '@typescript-eslint/indent': 0,
@@ -37,6 +36,6 @@ module.exports = {
     'react/jsx-curly-brace-presence': 0,
     'react-hooks/rules-of-hooks': 1,
     '@typescript-eslint/no-explicit-any': 1,
-    "react/no-unknown-property": ["error", { ignore: ["jsx", "global"] }],
+    'react/no-unknown-property': ['error', { ignore: ['jsx', 'global'] }],
   },
-}
+};

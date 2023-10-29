@@ -5,10 +5,10 @@ import HeroTag from './hero-tag';
 import HeroTitle from './hero-title';
 
 export type HeroType = typeof Hero & {
-	Title: typeof HeroTitle;
-	Desc: typeof HeroDesc;
-	Actions: typeof HeroActions;
-	Tag: typeof HeroTag;
+  Title: typeof HeroTitle;
+  Desc: typeof HeroDesc;
+  Actions: typeof HeroActions;
+  Tag: typeof HeroTag;
 };
 (Hero as HeroType).Title = HeroTitle;
 (Hero as HeroType).Desc = HeroDesc;

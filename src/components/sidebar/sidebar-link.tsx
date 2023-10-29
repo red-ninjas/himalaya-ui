@@ -11,48 +11,48 @@ type NativeAttrs = Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, keyof Pro
 export type SideBarLinkProp = Props & NativeAttrs;
 
 const SidebarLink: React.FC<PropsWithChildren<SideBarLinkProp>> = ({ children, href, ...props }) => {
-	const theme = useTheme();
-	const layout = useLayout();
-	const pathname = usePathname();
+  const theme = useTheme();
+  const layout = useLayout();
+  const pathname = usePathname();
 
-	const isActive = pathname === href;
+  const isActive = pathname === href;
 
-	return (
-		<>
-			<Link legacyBehavior href={href || ''}>
-				<a {...props} className={`link ${isActive ? 'active' : ''}`}>
-					{children}
-				</a>
-			</Link>
-			<style jsx>{`
-				a {
-					font: inherit;
-				}
+  return (
+    <>
+      <Link legacyBehavior href={href || ''}>
+        <a {...props} className={`link ${isActive ? 'active' : ''}`}>
+          {children}
+        </a>
+      </Link>
+      <style jsx>{`
+        a {
+          font: inherit;
+        }
 
-				.link {
-					display: flex;
-					align-items: baseline;
-					font-size: 0.9rem;
-					color: ${theme.palette.accents_6};
-					padding: calc(${layout.gap} * 0.375) 0;
-					transition: all 200ms ease;
-				}
+        .link {
+          display: flex;
+          align-items: baseline;
+          font-size: 0.9rem;
+          color: ${theme.palette.accents_6};
+          padding: calc(${layout.gap} * 0.375) 0;
+          transition: all 200ms ease;
+        }
 
-				.link:hover {
-					color: ${theme.palette.foreground};
-				}
+        .link:hover {
+          color: ${theme.palette.foreground};
+        }
 
-				.link.active {
-					color: ${theme.palette.link};
-					font-weight: 600;
-				}
+        .link.active {
+          color: ${theme.palette.link};
+          font-weight: 600;
+        }
 
-				.link.active span {
-					color: ${theme.palette.foreground};
-				}
-			`}</style>
-		</>
-	);
+        .link.active span {
+          color: ${theme.palette.foreground};
+        }
+      `}</style>
+    </>
+  );
 };
 
 export default SidebarLink;

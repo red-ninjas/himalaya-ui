@@ -1,6 +1,6 @@
 {
   "name": "@himalaya-ui/core",
-  "version": "0.0.36",
+  "version": "0.0.37",
   "main": "dist/bundle/index.js",
   "module": "dist/bundle/esm/index.js",
   "types": "dist/bundle/esm/index.d.ts",
@@ -21,7 +21,7 @@
     "docs:collect": "node scripts/collect-meta.js",
     "docs:build": "yarn docs:collect && cross-env NODE_ENV=production next build ./src && yarn docs:sitemap",
     "docs:sitemap": "node scripts/sitemap.js",
-    "prettier": "prettier --write src/components",
+    "prettier": "prettier --write src",
     "lint": "next lint ./src",
     "test": "jest --config .jest.config.js --no-cache --passWithNoTests",
     "test:update": "jest --config .jest.config.js --no-cache --update-snapshot",

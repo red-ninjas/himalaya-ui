@@ -5,19 +5,19 @@ import PageFooter from './page-footer';
 import { SidebarProps } from '../sidebar/sidebar';
 
 export interface Meta {
-	title: string;
+  title: string;
 }
 export interface LayoutProps {
-	meta: Meta;
-	sidebar?: SidebarProps;
-	getStaticProps?: any;
+  meta: Meta;
+  sidebar?: SidebarProps;
+  getStaticProps?: any;
 }
 
 export type PageComponentType = typeof Page & {
-	Header: typeof PageHeader;
-	Content: typeof PageContent;
-	Body: typeof PageContent;
-	Footer: typeof PageFooter;
+  Header: typeof PageHeader;
+  Content: typeof PageContent;
+  Body: typeof PageContent;
+  Footer: typeof PageFooter;
 };
 (Page as PageComponentType).Header = PageHeader;
 (Page as PageComponentType).Content = PageContent;

@@ -4,9 +4,9 @@ import RightHeaderControl from './controls/right-control';
 import Header from './header';
 
 export type HeaderComponentType = typeof Header & {
-	Left: typeof LeftHeaderControl;
-	Right: typeof RightHeaderControl;
-	Center: typeof CenterHeaderControl;
+  Left: typeof LeftHeaderControl;
+  Right: typeof RightHeaderControl;
+  Center: typeof CenterHeaderControl;
 };
 (Header as HeaderComponentType).Left = LeftHeaderControl;
 (Header as HeaderComponentType).Center = CenterHeaderControl;

@@ -1,6 +1,6 @@
-'use client'
-import Documentation from './use-toast.mdx'
+'use client';
+import Documentation from './use-toast.mdx';
 
 export default function Page() {
-  return <Documentation />
+  return <Documentation />;
 }

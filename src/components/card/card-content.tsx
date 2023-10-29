@@ -4,36 +4,36 @@ import useScale, { withScale } from '../use-scale';
 import useClasses from '../use-classes';
 
 interface Props {
-	className?: string;
+  className?: string;
 }
 
 type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
 export type CardContentProps = Props & NativeAttrs;
 
 const CardContentComponent: React.FC<React.PropsWithChildren<CardContentProps>> = ({ className = '', children, ...props }: CardContentProps) => {
-	const { SCALES } = useScale();
+  const { SCALES } = useScale();
 
-	return (
-		<div className={useClasses('content', className)} {...props}>
-			{children}
-			<style jsx>{`
-				.content {
-					width: ${SCALES.width(1, '100%')};
-					height: ${SCALES.height(1, 'auto')};
-					padding: ${SCALES.pt(1)} ${SCALES.pr(1)} ${SCALES.pb(1)} ${SCALES.pl(1)};
-					margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
-				}
+  return (
+    <div className={useClasses('content', className)} {...props}>
+      {children}
+      <style jsx>{`
+        .content {
+          width: ${SCALES.width(1, '100%')};
+          height: ${SCALES.height(1, 'auto')};
+          padding: ${SCALES.pt(1)} ${SCALES.pr(1)} ${SCALES.pb(1)} ${SCALES.pl(1)};
+          margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
+        }
 
-				.content > :global(p:first-child) {
-					margin-top: 0;
-				}
+        .content > :global(p:first-child) {
+          margin-top: 0;
+        }
 
-				.content > :global(p:last-child) {
-					margin-bottom: 0;
-				}
-			`}</style>
-		</div>
-	);
+        .content > :global(p:last-child) {
+          margin-bottom: 0;
+        }
+      `}</style>
+    </div>
+  );
 };
 
 CardContentComponent.displayName = 'HimalayaCardContent';

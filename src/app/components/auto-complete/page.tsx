@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import Documentation from './auto-complete.mdx'
+import Documentation from './auto-complete.mdx';
 
 export default function Page() {
-  return <Documentation />
+  return <Documentation />;
 }

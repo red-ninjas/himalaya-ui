@@ -6,49 +6,49 @@ import { Pane } from './pane';
 
 /** Grid line options. */
 export interface GridLineOptions {
-	/**
-	 * Line color.
-	 *
-	 * @defaultValue `'#D6DCDE'`
-	 */
-	color: string;
+  /**
+   * Line color.
+   *
+   * @defaultValue `'#D6DCDE'`
+   */
+  color: string;
 
-	/**
-	 * Line style.
-	 *
-	 * @defaultValue {@link LineStyle.Solid}
-	 */
-	style: LineStyle;
+  /**
+   * Line style.
+   *
+   * @defaultValue {@link LineStyle.Solid}
+   */
+  style: LineStyle;
 
-	/**
-	 * Display the lines.
-	 *
-	 * @defaultValue `true`
-	 */
-	visible: boolean;
+  /**
+   * Display the lines.
+   *
+   * @defaultValue `true`
+   */
+  visible: boolean;
 }
 
 /** Structure describing grid options. */
 export interface GridOptions {
-	/**
-	 * Vertical grid line options.
-	 */
-	vertLines: GridLineOptions;
+  /**
+   * Vertical grid line options.
+   */
+  vertLines: GridLineOptions;
 
-	/**
-	 * Horizontal grid line options.
-	 */
-	horzLines: GridLineOptions;
+  /**
+   * Horizontal grid line options.
+   */
+  horzLines: GridLineOptions;
 }
 
 export class Grid {
-	private _paneView: GridPaneView;
+  private _paneView: GridPaneView;
 
-	public constructor(pane: Pane) {
-		this._paneView = new GridPaneView(pane);
-	}
+  public constructor(pane: Pane) {
+    this._paneView = new GridPaneView(pane);
+  }
 
-	public paneView(): IUpdatablePaneView {
-		return this._paneView;
-	}
+  public paneView(): IUpdatablePaneView {
+    return this._paneView;
+  }
 }

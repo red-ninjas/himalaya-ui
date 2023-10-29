@@ -10,44 +10,44 @@ import { LineStrokeItem, PaneRendererLine } from '../../renderers/line-renderer'
 import { LinePaneViewBase } from './line-pane-view-base';
 
 export class SeriesAreaPaneView extends LinePaneViewBase<'Area', AreaFillItem & LineStrokeItem, CompositeRenderer> {
-	protected readonly _renderer: CompositeRenderer = new CompositeRenderer();
-	private readonly _areaRenderer: PaneRendererArea = new PaneRendererArea();
-	private readonly _lineRenderer: PaneRendererLine = new PaneRendererLine();
+  protected readonly _renderer: CompositeRenderer = new CompositeRenderer();
+  private readonly _areaRenderer: PaneRendererArea = new PaneRendererArea();
+  private readonly _lineRenderer: PaneRendererLine = new PaneRendererLine();
 
-	public constructor(series: ISeries<'Area'>, model: IChartModelBase) {
-		super(series, model);
-		this._renderer.setRenderers([this._areaRenderer, this._lineRenderer]);
-	}
+  public constructor(series: ISeries<'Area'>, model: IChartModelBase) {
+    super(series, model);
+    this._renderer.setRenderers([this._areaRenderer, this._lineRenderer]);
+  }
 
-	protected _createRawItem(time: TimePointIndex, price: BarPrice, colorer: ISeriesBarColorer<'Area'>): AreaFillItem & LineStrokeItem {
-		return {
-			...this._createRawItemBase(time, price),
-			...colorer.barStyle(time),
-		};
-	}
+  protected _createRawItem(time: TimePointIndex, price: BarPrice, colorer: ISeriesBarColorer<'Area'>): AreaFillItem & LineStrokeItem {
+    return {
+      ...this._createRawItemBase(time, price),
+      ...colorer.barStyle(time),
+    };
+  }
 
-	protected _prepareRendererData(): void {
-		const options = this._series.options();
+  protected _prepareRendererData(): void {
+    const options = this._series.options();
 
-		this._areaRenderer.setData({
-			lineType: options.lineType,
-			items: this._items,
-			lineStyle: options.lineStyle,
-			lineWidth: options.lineWidth,
-			baseLevelCoordinate: null,
-			invertFilledArea: options.invertFilledArea,
-			visibleRange: this._itemsVisibleRange,
-			barWidth: this._model.timeScale().barSpacing(),
-		});
+    this._areaRenderer.setData({
+      lineType: options.lineType,
+      items: this._items,
+      lineStyle: options.lineStyle,
+      lineWidth: options.lineWidth,
+      baseLevelCoordinate: null,
+      invertFilledArea: options.invertFilledArea,
+      visibleRange: this._itemsVisibleRange,
+      barWidth: this._model.timeScale().barSpacing(),
+    });
 
-		this._lineRenderer.setData({
-			lineType: options.lineVisible ? options.lineType : undefined,
-			items: this._items,
-			lineStyle: options.lineStyle,
-			lineWidth: options.lineWidth,
-			visibleRange: this._itemsVisibleRange,
-			barWidth: this._model.timeScale().barSpacing(),
-			pointMarkersRadius: options.pointMarkersVisible ? options.pointMarkersRadius || options.lineWidth / 2 + 2 : undefined,
-		});
-	}
+    this._lineRenderer.setData({
+      lineType: options.lineVisible ? options.lineType : undefined,
+      items: this._items,
+      lineStyle: options.lineStyle,
+      lineWidth: options.lineWidth,
+      visibleRange: this._itemsVisibleRange,
+      barWidth: this._model.timeScale().barSpacing(),
+      pointMarkersRadius: options.pointMarkersVisible ? options.pointMarkersRadius || options.lineWidth / 2 + 2 : undefined,
+    });
+  }
 }

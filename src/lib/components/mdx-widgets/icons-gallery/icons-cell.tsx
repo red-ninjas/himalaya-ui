@@ -1,29 +1,29 @@
-import React from 'react'
-import { Text, useLayout, useTheme } from 'components'
+import React from 'react';
+import { Text, useLayout, useTheme } from 'components';
 
 export const getFileName = (name: string): string => {
-  return name.replace(/^(.)/, g => g.toLowerCase())
-}
+  return name.replace(/^(.)/, g => g.toLowerCase());
+};
 
 export const getImportString = (name: string) => {
-  const fileName = getFileName(name)
-  const single = `import ${name} from 'components/icons/${fileName}'`
-  const normal = `import { ${name} } from 'components/icons'`
+  const fileName = getFileName(name);
+  const single = `import ${name} from 'components/icons/${fileName}'`;
+  const normal = `import { ${name} } from 'components/icons'`;
   return {
     single,
     normal,
-  }
-}
+  };
+};
 
 interface Props {
-  component: React.ComponentType<any>
-  name: string
-  onClick: (name: string) => void
+  component: React.ComponentType<any>;
+  name: string;
+  onClick: (name: string) => void;
 }
 
 const IconsCell: React.FC<Props> = ({ component: Component, name, onClick }) => {
-  const theme = useTheme()
-  const layout = useLayout()
+  const theme = useTheme();
+  const layout = useLayout();
   return (
     <div className="icon-item" key={name} onClick={() => onClick(name)}>
       <Component />
@@ -68,7 +68,7 @@ const IconsCell: React.FC<Props> = ({ component: Component, name, onClick }) => 
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-export default React.memo(IconsCell)
+export default React.memo(IconsCell);

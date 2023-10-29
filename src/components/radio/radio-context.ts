@@ -2,15 +2,15 @@
 import React from 'react';
 
 export interface RadioConfig {
-	updateState?: (value: string | number) => void;
-	disabledAll: boolean;
-	value?: string | number;
-	inGroup: boolean;
+  updateState?: (value: string | number) => void;
+  disabledAll: boolean;
+  value?: string | number;
+  inGroup: boolean;
 }
 
 const defaultContext = {
-	disabledAll: false,
-	inGroup: false,
+  disabledAll: false,
+  inGroup: false,
 };
 
 export const RadioContext = React.createContext<RadioConfig>(defaultContext);

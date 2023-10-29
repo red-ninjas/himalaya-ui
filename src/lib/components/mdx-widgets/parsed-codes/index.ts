@@ -1,3 +1,3 @@
-export * from './clock'
-export * from './greeting'
-export * from './types'
+export * from './clock';
+export * from './greeting';
+export * from './types';
