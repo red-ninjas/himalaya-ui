@@ -1,10 +1,10 @@
 'use client';
-import { ChevronUp } from '../icons';
 import { isArray } from 'lodash';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import React, { MouseEvent, MouseEventHandler, PropsWithChildren, ReactEventHandler, useRef, useState } from 'react';
+import React, { MouseEventHandler, PropsWithChildren, useRef, useState } from 'react';
 import { INavigationItem } from '.';
+import { ChevronUp } from '../icons';
 import Popover from '../popover';
 import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';

@@ -3,8 +3,9 @@ import type { DeepPartial } from '../utils/types';
 import lightTheme from './presets/default';
 import darkTheme from './presets/dark';
 import greyTheme from './presets/grey';
+import _ from 'lodash';
 
-export type UIUserTheme = DeepPartial<UIThemes> & { type: string };
+export type UIUserTheme = DeepPartial<UIThemes>;
 
 export const isObject = (target: unknown) => target && typeof target === 'object';
 
@@ -37,7 +38,7 @@ const getPresets = (): Array<UIThemes> => {
 };
 
 const getPresetStaticTheme = (): UIThemes => {
-	return lightTheme;
+	return darkTheme;
 };
 
 const isAvailableThemeType = (type?: string): boolean => {
@@ -59,15 +60,12 @@ const hasUserCustomTheme = (themes: Array<UIThemes> = []): boolean => {
 };
 
 const create = (base: UIThemes, custom: UIUserTheme): UIThemes => {
-	if (!isAvailableThemeType(custom.type)) {
-		throw new Error('Duplicate or unavailable theme type');
-	}
-
 	return deepDuplicable(base, custom) as UIThemes;
 };
 
 const createFromDark = (custom: UIUserTheme) => create(darkTheme, custom);
 const createFromLight = (custom: UIUserTheme) => create(lightTheme, custom);
+const createFromGrey = (custom: UIUserTheme) => create(greyTheme, custom);
 
 const Themes = {
 	isPresetTheme,
@@ -78,6 +76,7 @@ const Themes = {
 	create,
 	createFromDark,
 	createFromLight,
+	createFromGrey
 };
 
 export default Themes;

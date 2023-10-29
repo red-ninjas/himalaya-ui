@@ -5,6 +5,7 @@ import Themes from '../themes';
 import { UIThemes } from '../themes/presets';
 import { ThemeContext } from '../use-theme/theme-context';
 import { AllThemesConfig, AllThemesContext } from '../use-all-themes/all-themes-context';
+import _ from 'lodash';
 
 export interface Props {
 	themeType?: string;
@@ -25,11 +26,10 @@ const ThemeProvider: React.FC<PropsWithChildren<Props>> = ({ children, themeType
 	useEffect(() => {
 		if (!themes?.length) return;
 		setAllThemes(last => {
-			const safeThemes = themes.filter(item => Themes.isAvailableThemeType(item.type));
-			const nextThemes = Themes.getPresets().concat(safeThemes);
+			const mergedThemes = _.merge(Themes.getPresets(), themes);
 			return {
 				...last,
-				themes: nextThemes,
+				themes: mergedThemes,
 			};
 		});
 	}, [themes]);
