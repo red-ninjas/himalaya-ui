@@ -12,65 +12,61 @@ import { ISeries } from './series';
 import { SeriesType } from './series-options';
 
 export class CustomPriceLine {
-  private readonly _series: ISeries<SeriesType>;
-  private readonly _priceLineView: CustomPriceLinePaneView;
-  private readonly _priceAxisView: CustomPriceLinePriceAxisView;
-  private readonly _panePriceAxisView: PanePriceAxisView;
-  private readonly _options: PriceLineOptions;
+	private readonly _series: ISeries<SeriesType>;
+	private readonly _priceLineView: CustomPriceLinePaneView;
+	private readonly _priceAxisView: CustomPriceLinePriceAxisView;
+	private readonly _panePriceAxisView: PanePriceAxisView;
+	private readonly _options: PriceLineOptions;
 
-  public constructor(series: ISeries<SeriesType>, options: PriceLineOptions) {
-    this._series = series;
-    this._options = options;
-    this._priceLineView = new CustomPriceLinePaneView(series, this);
-    this._priceAxisView = new CustomPriceLinePriceAxisView(series, this);
-    this._panePriceAxisView = new PanePriceAxisView(
-      this._priceAxisView,
-      series,
-      series.model(),
-    );
-  }
+	public constructor(series: ISeries<SeriesType>, options: PriceLineOptions) {
+		this._series = series;
+		this._options = options;
+		this._priceLineView = new CustomPriceLinePaneView(series, this);
+		this._priceAxisView = new CustomPriceLinePriceAxisView(series, this);
+		this._panePriceAxisView = new PanePriceAxisView(this._priceAxisView, series, series.model());
+	}
 
-  public applyOptions(options: Partial<PriceLineOptions>): void {
-    merge(this._options, options);
-    this.update();
-    this._series.model().lightUpdate();
-  }
+	public applyOptions(options: Partial<PriceLineOptions>): void {
+		merge(this._options, options);
+		this.update();
+		this._series.model().lightUpdate();
+	}
 
-  public options(): PriceLineOptions {
-    return this._options;
-  }
+	public options(): PriceLineOptions {
+		return this._options;
+	}
 
-  public paneView(): IPaneView {
-    return this._priceLineView;
-  }
+	public paneView(): IPaneView {
+		return this._priceLineView;
+	}
 
-  public labelPaneView(): IPaneView {
-    return this._panePriceAxisView;
-  }
+	public labelPaneView(): IPaneView {
+		return this._panePriceAxisView;
+	}
 
-  public priceAxisView(): IPriceAxisView {
-    return this._priceAxisView;
-  }
+	public priceAxisView(): IPriceAxisView {
+		return this._priceAxisView;
+	}
 
-  public update(): void {
-    this._priceLineView.update();
-    this._priceAxisView.update();
-  }
+	public update(): void {
+		this._priceLineView.update();
+		this._priceAxisView.update();
+	}
 
-  public yCoord(): Coordinate | null {
-    const series = this._series;
-    const priceScale = series.priceScale();
-    const timeScale = series.model().timeScale();
+	public yCoord(): Coordinate | null {
+		const series = this._series;
+		const priceScale = series.priceScale();
+		const timeScale = series.model().timeScale();
 
-    if (timeScale.isEmpty() || priceScale.isEmpty()) {
-      return null;
-    }
+		if (timeScale.isEmpty() || priceScale.isEmpty()) {
+			return null;
+		}
 
-    const firstValue = series.firstValue();
-    if (firstValue === null) {
-      return null;
-    }
+		const firstValue = series.firstValue();
+		if (firstValue === null) {
+			return null;
+		}
 
-    return priceScale.priceToCoordinate(this._options.price, firstValue.value);
-  }
+		return priceScale.priceToCoordinate(this._options.price, firstValue.value);
+	}
 }

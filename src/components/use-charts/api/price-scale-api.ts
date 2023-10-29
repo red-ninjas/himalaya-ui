@@ -9,32 +9,31 @@ import { PriceScale, PriceScaleOptions } from '../model/price-scale';
 import { IPriceScaleApi } from './iprice-scale-api';
 
 export class PriceScaleApi implements IPriceScaleApi {
-  private _chartWidget: IChartWidgetBase;
-  private readonly _priceScaleId: string;
+	private _chartWidget: IChartWidgetBase;
+	private readonly _priceScaleId: string;
 
-  public constructor(chartWidget: IChartWidgetBase, priceScaleId: string) {
-    this._chartWidget = chartWidget;
-    this._priceScaleId = priceScaleId;
-  }
+	public constructor(chartWidget: IChartWidgetBase, priceScaleId: string) {
+		this._chartWidget = chartWidget;
+		this._priceScaleId = priceScaleId;
+	}
 
-  public applyOptions(options: DeepPartial<PriceScaleOptions>): void {
-    this._chartWidget.model().applyPriceScaleOptions(this._priceScaleId, options);
-  }
+	public applyOptions(options: DeepPartial<PriceScaleOptions>): void {
+		this._chartWidget.model().applyPriceScaleOptions(this._priceScaleId, options);
+	}
 
-  public options(): Readonly<PriceScaleOptions> {
-    return this._priceScale().options();
-  }
+	public options(): Readonly<PriceScaleOptions> {
+		return this._priceScale().options();
+	}
 
-  public width(): number {
-    if (!isDefaultPriceScale(this._priceScaleId)) {
-      return 0;
-    }
+	public width(): number {
+		if (!isDefaultPriceScale(this._priceScaleId)) {
+			return 0;
+		}
 
-    return this._chartWidget.getPriceAxisWidth(this._priceScaleId);
-  }
+		return this._chartWidget.getPriceAxisWidth(this._priceScaleId);
+	}
 
-  private _priceScale(): PriceScale {
-    return ensureNotNull(this._chartWidget.model().findPriceScale(this._priceScaleId))
-      .priceScale;
-  }
+	private _priceScale(): PriceScale {
+		return ensureNotNull(this._chartWidget.model().findPriceScale(this._priceScaleId)).priceScale;
+	}
 }

@@ -6,23 +6,20 @@
  *
  * @return A provided object itself.
  */
-export function forOwn<T extends object>(
-  object: T,
-  iteratee: (value: T[keyof T], key: keyof T) => boolean | void,
-): T {
-  if (object) {
-    const keys = Object.keys(object) as Array<keyof T>;
+export function forOwn<T extends object>(object: T, iteratee: (value: T[keyof T], key: keyof T) => boolean | void): T {
+	if (object) {
+		const keys = Object.keys(object) as Array<keyof T>;
 
-    for (let i = 0; i < keys.length; i++) {
-      const key = keys[i];
+		for (let i = 0; i < keys.length; i++) {
+			const key = keys[i];
 
-      if (key !== '__proto__') {
-        if (iteratee(object[key], key) === false) {
-          break;
-        }
-      }
-    }
-  }
+			if (key !== '__proto__') {
+				if (iteratee(object[key], key) === false) {
+					break;
+				}
+			}
+		}
+	}
 
-  return object;
+	return object;
 }

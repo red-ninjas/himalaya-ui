@@ -4,20 +4,20 @@ import { UIThemes } from '../themes';
 import { ThemedChartData } from '../chart';
 
 export interface DataViewPoint {
-  label: string;
-  property: string;
+	label: string;
+	property: string;
 }
 
 export interface DataViewState {
-  data: any[];
-  fields: DataViewPoint[];
-  isEmpty?: boolean;
+	data: any[];
+	fields: DataViewPoint[];
+	isEmpty?: boolean;
 }
 
 export interface DataViewProps {
-  series: { [name: string]: ThemedChartData };
-  theme?: UIThemes;
-  timeFormatter?: TimeFormatterFn;
+	series: { [name: string]: ThemedChartData };
+	theme?: UIThemes;
+	timeFormatter?: TimeFormatterFn;
 }
 export { default as DataView } from './data-view';
 export { default as DataViewSkeleton } from './skeleton';

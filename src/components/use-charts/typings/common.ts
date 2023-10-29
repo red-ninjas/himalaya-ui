@@ -10,20 +10,20 @@ export type TimerId = ReturnType<typeof setTimeout>;
  * It's NOT e.buttons (with s)!
  */
 export const enum MouseEventButton {
-  Left = 0,
-  Middle = 1,
-  Right = 2,
-  Fourth = 3,
-  Fifth = 4,
+	Left = 0,
+	Middle = 1,
+	Right = 2,
+	Fourth = 3,
+	Fifth = 4,
 }
 
 interface InputDeviceCapabilities {
-  firesTouchEvents?: boolean;
+	firesTouchEvents?: boolean;
 }
 
 export interface UIEvent {
-  /** https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/sourceCapabilities */
-  sourceCapabilities?: InputDeviceCapabilities;
+	/** https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/sourceCapabilities */
+	sourceCapabilities?: InputDeviceCapabilities;
 }
 
 /**
@@ -33,17 +33,17 @@ export interface UIEvent {
  * Note: This is a partial type definition for the low entropy properties.
  */
 export interface UADataBrand {
-  brand: string;
-  version: string;
+	brand: string;
+	version: string;
 }
 export interface Navigator {
-  userAgentData?: {
-    brands: UADataBrand[];
-    platform: string;
-    mobile: boolean;
-  };
+	userAgentData?: {
+		brands: UADataBrand[];
+		platform: string;
+		mobile: boolean;
+	};
 }
 
 export interface Window {
-  chrome: unknown;
+	chrome: unknown;
 }

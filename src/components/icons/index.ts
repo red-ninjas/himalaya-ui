@@ -1,8 +1,8 @@
 import { SVGAttributes } from 'react';
 
 export interface IconProps {
-  size?: string | number;
-  color?: string;
+	size?: string | number;
+	color?: string;
 }
 
 type NativeAttrs = Omit<SVGAttributes<SVGElement>, keyof IconProps>;

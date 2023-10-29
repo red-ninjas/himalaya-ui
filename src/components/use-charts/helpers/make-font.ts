@@ -14,15 +14,15 @@ export const defaultFontFamily = `-apple-system, BlinkMacSystemFont, 'Trebuchet 
  * @returns The font string.
  */
 export function makeFont(size: number, family?: string, style?: string): string {
-  if (style !== undefined) {
-    style = `${style} `;
-  } else {
-    style = '';
-  }
+	if (style !== undefined) {
+		style = `${style} `;
+	} else {
+		style = '';
+	}
 
-  if (family === undefined) {
-    family = defaultFontFamily;
-  }
+	if (family === undefined) {
+		family = defaultFontFamily;
+	}
 
-  return `${style}${size}px ${family}`;
+	return `${style}${size}px ${family}`;
 }

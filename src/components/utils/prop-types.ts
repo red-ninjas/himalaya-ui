@@ -6,57 +6,16 @@ const buttonTypes = tuple('default', 'secondary', 'success', 'warning', 'error',
 
 const normalTypes = tuple('default', 'secondary', 'success', 'warning', 'error');
 
-const snippetTypes = tuple(
-  'default',
-  'secondary',
-  'success',
-  'warning',
-  'error',
-  'dark',
-  'lite',
-);
-const quickActionTypes = tuple(
-  'default',
-  'secondary',
-  'success',
-  'warning',
-  'error',
-  'dark',
-  'lite',
-);
+const snippetTypes = tuple('default', 'secondary', 'success', 'warning', 'error', 'dark', 'lite');
+const quickActionTypes = tuple('default', 'secondary', 'success', 'warning', 'error', 'dark', 'lite');
 
-const cardTypes = tuple(
-  'default',
-  'secondary',
-  'success',
-  'warning',
-  'error',
-  'dark',
-  'lite',
-  'alert',
-  'purple',
-  'violet',
-  'cyan',
-);
+const cardTypes = tuple('default', 'secondary', 'success', 'warning', 'error', 'dark', 'lite', 'alert', 'purple', 'violet', 'cyan');
 
 const copyTypes = tuple('default', 'silent', 'prevent');
 
 const triggerTypes = tuple('hover', 'click');
 
-const placement = tuple(
-  'top',
-  'topStart',
-  'topEnd',
-  'left',
-  'leftStart',
-  'leftEnd',
-  'bottom',
-  'bottomStart',
-  'bottomEnd',
-  'right',
-  'rightStart',
-  'rightEnd',
-);
+const placement = tuple('top', 'topStart', 'topEnd', 'left', 'leftStart', 'leftEnd', 'bottom', 'bottomStart', 'bottomEnd', 'right', 'rightStart', 'rightEnd');
 
 const dividerAlign = tuple('start', 'center', 'end', 'left', 'right');
 

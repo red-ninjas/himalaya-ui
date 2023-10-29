@@ -5,10 +5,10 @@ import ModalContent from './modal-content';
 import ModalAction from './modal-action';
 
 export type ModalComponentType = typeof Modal & {
-  Title: typeof ModalTitle;
-  Subtitle: typeof ModalSubtitle;
-  Content: typeof ModalContent;
-  Action: typeof ModalAction;
+	Title: typeof ModalTitle;
+	Subtitle: typeof ModalSubtitle;
+	Content: typeof ModalContent;
+	Action: typeof ModalAction;
 };
 (Modal as ModalComponentType).Title = ModalTitle;
 (Modal as ModalComponentType).Subtitle = ModalSubtitle;

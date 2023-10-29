@@ -8,85 +8,85 @@ import useClasses from '../use-classes';
 import useLayout from '../use-layout';
 
 interface Props {
-  name: ReactNode | string;
-  src?: string;
-  text?: string;
-  className?: string;
-  altText?: string;
+	name: ReactNode | string;
+	src?: string;
+	text?: string;
+	className?: string;
+	altText?: string;
 }
 
 type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
 export type UserProps = Props & NativeAttrs;
 
 const UserComponent: React.FC<React.PropsWithChildren<UserProps>> = ({
-  src,
-  text,
-  name,
-  children,
-  className = '',
-  altText,
-  ...props
+	src,
+	text,
+	name,
+	children,
+	className = '',
+	altText,
+	...props
 }: React.PropsWithChildren<UserProps>) => {
-  const theme = useTheme();
-  const layout = useLayout();
-  const { SCALES, getScaleProps } = useScale();
-  const scale = getScaleProps('scale') as number | undefined;
-  return (
-    <div className={useClasses('user', className)} {...props}>
-      <Avatar src={src} scale={scale} text={text} alt={altText} />
-      <div className="names">
-        <span className="name">{name}</span>
-        <span className="social">{children}</span>
-      </div>
+	const theme = useTheme();
+	const layout = useLayout();
+	const { SCALES, getScaleProps } = useScale();
+	const scale = getScaleProps('scale') as number | undefined;
+	return (
+		<div className={useClasses('user', className)} {...props}>
+			<Avatar src={src} scale={scale} text={text} alt={altText} />
+			<div className="names">
+				<span className="name">{name}</span>
+				<span className="social">{children}</span>
+			</div>
 
-      <style jsx>{`
-        .user {
-          display: inline-flex;
-          justify-content: center;
-          align-items: center;
-          max-width: 100%;
-          --user-font-size: ${SCALES.font(1)};
-          font-size: var(--user-font-size);
-          width: ${SCALES.width(1, 'max-content')};
-          height: ${SCALES.height(1, 'auto')};
-          padding: ${SCALES.pt(0)} ${SCALES.pr(0.5)} ${SCALES.pb(0)} ${SCALES.pl(0.5)};
-          margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
-        }
+			<style jsx>{`
+				.user {
+					display: inline-flex;
+					justify-content: center;
+					align-items: center;
+					max-width: 100%;
+					--user-font-size: ${SCALES.font(1)};
+					font-size: var(--user-font-size);
+					width: ${SCALES.width(1, 'max-content')};
+					height: ${SCALES.height(1, 'auto')};
+					padding: ${SCALES.pt(0)} ${SCALES.pr(0.5)} ${SCALES.pb(0)} ${SCALES.pl(0.5)};
+					margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
+				}
 
-        .names {
-          font-size: inherit;
-          margin-left: ${layout.gapHalf};
-          display: inline-flex;
-          flex-direction: column;
-          white-space: nowrap;
-        }
+				.names {
+					font-size: inherit;
+					margin-left: ${layout.gapHalf};
+					display: inline-flex;
+					flex-direction: column;
+					white-space: nowrap;
+				}
 
-        .name {
-          font-size: calc(0.89 * var(--user-font-size));
-          color: ${theme.palette.accents_8};
-          line-height: 1.1em;
-          text-transform: capitalize;
-          font-weight: 500;
-          max-width: 15rem;
-          text-overflow: ellipsis;
-          overflow: hidden;
-        }
+				.name {
+					font-size: calc(0.89 * var(--user-font-size));
+					color: ${theme.palette.accents_8};
+					line-height: 1.1em;
+					text-transform: capitalize;
+					font-weight: 500;
+					max-width: 15rem;
+					text-overflow: ellipsis;
+					overflow: hidden;
+				}
 
-        .social {
-          font-size: calc(0.75 * var(--user-font-size));
-          color: ${theme.palette.accents_6};
-        }
+				.social {
+					font-size: calc(0.75 * var(--user-font-size));
+					color: ${theme.palette.accents_6};
+				}
 
-        .social :global(*:first-child) {
-          margin-top: 0;
-        }
+				.social :global(*:first-child) {
+					margin-top: 0;
+				}
 
-        .social :global(*:last-child) {
-          margin-bottom: 0;
-        }
-      `}</style>
-    </div>
-  );
+				.social :global(*:last-child) {
+					margin-bottom: 0;
+				}
+			`}</style>
+		</div>
+	);
 };
 
 UserComponent.displayName = 'HimalayaUser';

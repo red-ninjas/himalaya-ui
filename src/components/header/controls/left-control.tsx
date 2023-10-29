@@ -2,7 +2,7 @@
 import { PropsWithChildren } from 'react';
 
 const LeftHeaderControl: React.FC<PropsWithChildren> = ({ ...props }) => {
-  return props.children;
+	return props.children;
 };
 
 LeftHeaderControl.displayName = 'HimalyaLeftHeader';

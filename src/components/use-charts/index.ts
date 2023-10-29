@@ -1,9 +1,6 @@
 /// <reference types="../../typings/_build-time-constants" />
 
-import {
-  customStyleDefaults,
-  seriesOptionsDefaults,
-} from './api/options/series-options-defaults';
+import { customStyleDefaults, seriesOptionsDefaults } from './api/options/series-options-defaults';
 import { CustomSeriesOptions } from './model/series-options';
 
 export { LineStyle, LineType } from './renderers/draw-line';
@@ -18,8 +15,8 @@ export { ColorType } from './model/layout-options';
 export { isBusinessDay, isUTCTimestamp } from './model/horz-scale-behavior-time/types';
 export { TickMarkType } from './model/horz-scale-behavior-time/types';
 export const customSeriesDefaultOptions: CustomSeriesOptions = {
-  ...seriesOptionsDefaults,
-  ...customStyleDefaults,
+	...seriesOptionsDefaults,
+	...customStyleDefaults,
 };
 
 export { createChart, createChartEx } from './api/create-chart';
@@ -28,5 +25,5 @@ export { createChart, createChartEx } from './api/create-chart';
  * Returns the current version as a string. For example `'3.3.0'`.
  */
 export function version(): string {
-  return process.env.BUILD_VERSION;
+	return process.env.BUILD_VERSION;
 }

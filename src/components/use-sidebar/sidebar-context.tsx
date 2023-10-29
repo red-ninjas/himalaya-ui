@@ -2,13 +2,13 @@
 import React from 'react';
 
 export interface SidebarContextProps {
-  isEnabled: boolean;
-  setIsEnabled: (value: boolean) => void;
+	isEnabled: boolean;
+	setIsEnabled: (value: boolean) => void;
 }
 
 export const defaultConfigs: SidebarContextProps = {
-  setIsEnabled: () => {},
-  isEnabled: false,
+	setIsEnabled: () => {},
+	isEnabled: false,
 };
 
 export const SidebarContext = React.createContext<SidebarContextProps>(defaultConfigs);

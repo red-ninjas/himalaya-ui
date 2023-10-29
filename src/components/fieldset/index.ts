@@ -6,12 +6,12 @@ import FieldsetGroup from './fieldset-group';
 import FieldsetContent from './fieldset-content';
 
 export type FieldsetComponentType = typeof Fieldset & {
-  Title: typeof FieldsetTitle;
-  Subtitle: typeof FieldsetSubtitle;
-  Footer: typeof FieldsetFooter;
-  Group: typeof FieldsetGroup;
-  Content: typeof FieldsetContent;
-  Body: typeof FieldsetContent;
+	Title: typeof FieldsetTitle;
+	Subtitle: typeof FieldsetSubtitle;
+	Footer: typeof FieldsetFooter;
+	Group: typeof FieldsetGroup;
+	Content: typeof FieldsetContent;
+	Body: typeof FieldsetContent;
 };
 (Fieldset as FieldsetComponentType).Title = FieldsetTitle;
 (Fieldset as FieldsetComponentType).Subtitle = FieldsetSubtitle;

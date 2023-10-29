@@ -11,145 +11,138 @@ import useClasses from '../use-classes';
 
 export type ToastTypes = NormalTypes;
 interface Props {
-  text?: string | string[];
-  symbol?: string;
-  toastText?: string;
-  toastType?: ToastTypes;
-  filled?: boolean;
-  copy?: CopyTypes;
-  type?: SnippetTypes;
-  className?: string;
+	text?: string | string[];
+	symbol?: string;
+	toastText?: string;
+	toastType?: ToastTypes;
+	filled?: boolean;
+	copy?: CopyTypes;
+	type?: SnippetTypes;
+	className?: string;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
 export type SnippetProps = Props & NativeAttrs;
 
 const textArrayToString = (text: string[]): string => {
-  return text.reduce((pre, current) => {
-    if (!current) return pre;
-    return pre ? `${pre}\n${current}` : current;
-  }, '');
+	return text.reduce((pre, current) => {
+		if (!current) return pre;
+		return pre ? `${pre}\n${current}` : current;
+	}, '');
 };
 
 const SnippetComponent: React.FC<React.PropsWithChildren<SnippetProps>> = ({
-  type = 'default' as SnippetTypes,
-  filled = false,
-  children,
-  symbol = '$',
-  toastText = 'Copied to clipboard!',
-  toastType = 'success' as ToastTypes,
-  text,
-  copy: copyType = 'default' as CopyTypes,
-  className = '',
-  ...props
+	type = 'default' as SnippetTypes,
+	filled = false,
+	children,
+	symbol = '$',
+	toastText = 'Copied to clipboard!',
+	toastType = 'success' as ToastTypes,
+	text,
+	copy: copyType = 'default' as CopyTypes,
+	className = '',
+	...props
 }: React.PropsWithChildren<SnippetProps>) => {
-  const theme = useTheme();
-  const { SCALES } = useScale();
-  const { copy } = useClipboard();
-  const { setToast } = useToasts();
-  const ref = useRef<HTMLPreElement>(null);
-  const isMultiLine = text && Array.isArray(text);
+	const theme = useTheme();
+	const { SCALES } = useScale();
+	const { copy } = useClipboard();
+	const { setToast } = useToasts();
+	const ref = useRef<HTMLPreElement>(null);
+	const isMultiLine = text && Array.isArray(text);
 
-  const style = useMemo(
-    () => getStyles(type, theme.palette, filled),
-    [type, theme.palette, filled],
-  );
-  const showCopyIcon = useMemo(() => copyType !== 'prevent', [copyType]);
-  const childText = useMemo<string | undefined | null>(() => {
-    if (isMultiLine) return textArrayToString(text as string[]);
-    if (!children) return text as string;
-    if (!ref.current) return '';
-    return ref.current.textContent;
-  }, [ref.current, children, text]);
-  const symbolBefore = useMemo(() => {
-    const str = symbol.trim();
-    return str ? `${str} ` : '';
-  }, [symbol]);
+	const style = useMemo(() => getStyles(type, theme.palette, filled), [type, theme.palette, filled]);
+	const showCopyIcon = useMemo(() => copyType !== 'prevent', [copyType]);
+	const childText = useMemo<string | undefined | null>(() => {
+		if (isMultiLine) return textArrayToString(text as string[]);
+		if (!children) return text as string;
+		if (!ref.current) return '';
+		return ref.current.textContent;
+	}, [ref.current, children, text, isMultiLine]);
 
-  const clickHandler = () => {
-    if (!childText || !showCopyIcon) return;
-    copy(childText);
-    if (copyType === 'silent') return;
-    setToast({ text: toastText, type: toastType });
-  };
+	const symbolBefore = useMemo(() => {
+		const str = symbol.trim();
+		return str ? `${str} ` : '';
+	}, [symbol]);
 
-  return (
-    <div className={useClasses('snippet', className)} {...props}>
-      {isMultiLine ? (
-        (text as string[]).map((t, index) => <pre key={`snippet-${index}-${t}`}>{t}</pre>)
-      ) : (
-        <pre ref={ref}>{children || text}</pre>
-      )}
-      {showCopyIcon && (
-        <div className="copy" onClick={clickHandler}>
-          <SnippetIcon />
-        </div>
-      )}
-      <style jsx>{`
-        .snippet {
-          position: relative;
-          max-width: 100%;
-          color: ${style.color};
-          background-color: ${style.bgColor};
-          border: 1px solid ${style.border};
-          border-radius: ${theme.style.radius};
-          --snippet-font-size: ${SCALES.font(0.8125)};
-          --snippet-padding-top: ${SCALES.pt(0.667)};
-          font-size: var(--snippet-font-size);
-          width: ${SCALES.width(1, 'initial')};
-          height: ${SCALES.height(1, 'auto')};
-          padding: ${SCALES.pt(0.667)} ${SCALES.pr(2.667)} ${SCALES.pb(0.667)}
-            ${SCALES.pl(0.667)};
-          margin: ${SCALES.mt(1)} ${SCALES.mr(0)} ${SCALES.mb(1)} ${SCALES.ml(0)};
-        }
+	const clickHandler = () => {
+		if (!childText || !showCopyIcon) return;
+		copy(childText);
+		if (copyType === 'silent') return;
+		setToast({ text: toastText, type: toastType });
+	};
 
-        pre {
-          margin: 0;
-          padding: 0;
-          border: none;
-          background-color: transparent;
-          color: ${style.color};
-          font-size: inherit;
-        }
+	return (
+		<div className={useClasses('snippet', className)} {...props}>
+			{isMultiLine ? (text as string[]).map((t, index) => <pre key={`snippet-${index}-${t}`}>{t}</pre>) : <pre ref={ref}>{children || text}</pre>}
+			{showCopyIcon && (
+				<div className="copy" onClick={clickHandler}>
+					<SnippetIcon />
+				</div>
+			)}
+			<style jsx>{`
+				.snippet {
+					position: relative;
+					max-width: 100%;
+					color: ${style.color};
+					background-color: ${style.bgColor};
+					border: 1px solid ${style.border};
+					border-radius: ${theme.style.radius};
+					--snippet-font-size: ${SCALES.font(0.8125)};
+					--snippet-padding-top: ${SCALES.pt(0.667)};
+					font-size: var(--snippet-font-size);
+					width: ${SCALES.width(1, 'initial')};
+					height: ${SCALES.height(1, 'auto')};
+					padding: ${SCALES.pt(0.667)} ${SCALES.pr(2.667)} ${SCALES.pb(0.667)} ${SCALES.pl(0.667)};
+					margin: ${SCALES.mt(1)} ${SCALES.mr(0)} ${SCALES.mb(1)} ${SCALES.ml(0)};
+				}
 
-        pre::before {
-          content: '${symbolBefore}';
-          user-select: none;
-        }
+				pre {
+					margin: 0;
+					padding: 0;
+					border: none;
+					background-color: transparent;
+					color: ${style.color};
+					font-size: inherit;
+				}
 
-        pre :global(*) {
-          margin: 0;
-          padding: 0;
-          font-size: inherit;
-          color: inherit;
-        }
+				pre::before {
+					content: '${symbolBefore}';
+					user-select: none;
+				}
 
-        .copy {
-          position: absolute;
-          right: 0;
-          top: 0;
-          bottom: 0;
-          height: calc(100% - 2px);
-          background-color: ${style.bgColor};
-          display: inline-flex;
-          justify-content: center;
-          align-items: ${isMultiLine ? 'flex-start' : 'center'};
-          width: calc(3.281 * var(--snippet-font-size));
-          color: inherit;
-          transition: opacity 150ms ease 0s;
-          border-radius: ${theme.style.radius};
-          cursor: pointer;
-          user-select: none;
-          padding-top: ${isMultiLine ? 'var(--snippet-padding-top)' : 0};
-          opacity: 0.65;
-        }
+				pre :global(*) {
+					margin: 0;
+					padding: 0;
+					font-size: inherit;
+					color: inherit;
+				}
 
-        .copy:hover {
-          opacity: 1;
-        }
-      `}</style>
-    </div>
-  );
+				.copy {
+					position: absolute;
+					right: 0;
+					top: 0;
+					bottom: 0;
+					height: calc(100% - 2px);
+					background-color: ${style.bgColor};
+					display: inline-flex;
+					justify-content: center;
+					align-items: ${isMultiLine ? 'flex-start' : 'center'};
+					width: calc(3.281 * var(--snippet-font-size));
+					color: inherit;
+					transition: opacity 150ms ease 0s;
+					border-radius: ${theme.style.radius};
+					cursor: pointer;
+					user-select: none;
+					padding-top: ${isMultiLine ? 'var(--snippet-padding-top)' : 0};
+					opacity: 0.65;
+				}
+
+				.copy:hover {
+					opacity: 1;
+				}
+			`}</style>
+		</div>
+	);
 };
 
 SnippetComponent.displayName = 'HimalayaSnippet';

@@ -2,8 +2,8 @@ import Popover from './popover';
 import PopoverItem from './popover-item';
 
 export type PopoverComponentType = typeof Popover & {
-  Item: typeof PopoverItem;
-  Option: typeof PopoverItem;
+	Item: typeof PopoverItem;
+	Option: typeof PopoverItem;
 };
 (Popover as PopoverComponentType).Item = PopoverItem;
 (Popover as PopoverComponentType).Option = PopoverItem;

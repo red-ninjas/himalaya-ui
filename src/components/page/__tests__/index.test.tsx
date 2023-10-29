@@ -4,47 +4,47 @@ import { mount } from 'enzyme';
 import { Page, ConfigProvider } from 'components';
 
 describe('Page', () => {
-  it('should render correctly', () => {
-    const wrapper = mount(<Page>test-value</Page>);
-    expect(wrapper.text()).toContain('test-value');
-    expect(wrapper.html()).toMatchSnapshot();
-    expect(() => wrapper.unmount()).not.toThrow();
-  });
+	it('should render correctly', () => {
+		const wrapper = mount(<Page>test-value</Page>);
+		expect(wrapper.text()).toContain('test-value');
+		expect(wrapper.html()).toMatchSnapshot();
+		expect(() => wrapper.unmount()).not.toThrow();
+	});
 
-  it('the first page should not contain content', () => {
-    const html = ReactDom.renderToString(<Page render="effect">test-value</Page>);
-    expect(html).not.toContain('test-value');
+	it('the first page should not contain content', () => {
+		const html = ReactDom.renderToString(<Page render="effect">test-value</Page>);
+		expect(html).not.toContain('test-value');
 
-    const wrapper = mount(<Page render="effect">test-value</Page>);
-    expect(wrapper.html()).toContain('test-value');
-  });
+		const wrapper = mount(<Page render="effect">test-value</Page>);
+		expect(wrapper.html()).toContain('test-value');
+	});
 
-  it('the first page should contain seo string', () => {
-    const html = ReactDom.renderToString(<Page render="effect-seo">test-value</Page>);
-    expect(html).toContain('test-value');
-    expect(html).toContain('hidden');
+	it('the first page should contain seo string', () => {
+		const html = ReactDom.renderToString(<Page render="effect-seo">test-value</Page>);
+		expect(html).toContain('test-value');
+		expect(html).toContain('hidden');
 
-    const wrapper = mount(<Page render="effect">test-value</Page>);
-    expect(wrapper.html()).toContain('test-value');
-  });
+		const wrapper = mount(<Page render="effect">test-value</Page>);
+		expect(wrapper.html()).toContain('test-value');
+	});
 
-  it('the global styles should be added to body element', () => {
-    const wrapper = mount(<Page dotBackdrop />);
-    expect(wrapper.html()).toContain('global(body)');
-  });
+	it('the global styles should be added to body element', () => {
+		const wrapper = mount(<Page dotBackdrop />);
+		expect(wrapper.html()).toContain('global(body)');
+	});
 
-  it('should disable dot style when in dark mode', () => {
-    const wrapper = mount(
-      <ConfigProvider themeType="dark">
-        <Page dotBackdrop />
-      </ConfigProvider>,
-    );
-    expect(wrapper.html()).not.toContain('global(body)');
-  });
+	it('should disable dot style when in dark mode', () => {
+		const wrapper = mount(
+			<ConfigProvider themeType="dark">
+				<Page dotBackdrop />
+			</ConfigProvider>,
+		);
+		expect(wrapper.html()).not.toContain('global(body)');
+	});
 
-  it('should work correctly with dot configs', () => {
-    const wrapper = mount(<Page dotBackdrop dotSize="20px" dotSpace={0.5} />);
-    expect(wrapper.html()).toMatchSnapshot();
-    expect(() => wrapper.unmount()).not.toThrow();
-  });
+	it('should work correctly with dot configs', () => {
+		const wrapper = mount(<Page dotBackdrop dotSize="20px" dotSpace={0.5} />);
+		expect(wrapper.html()).toMatchSnapshot();
+		expect(() => wrapper.unmount()).not.toThrow();
+	});
 });

@@ -3,10 +3,10 @@ import CardFooter from './card-footer';
 import CardContent from './card-content';
 
 export type CardComponentType = typeof Card & {
-  Footer: typeof CardFooter;
-  Actions: typeof CardFooter;
-  Content: typeof CardContent;
-  Body: typeof CardContent;
+	Footer: typeof CardFooter;
+	Actions: typeof CardFooter;
+	Content: typeof CardContent;
+	Body: typeof CardContent;
 };
 (Card as CardComponentType).Footer = CardFooter;
 (Card as CardComponentType).Actions = CardFooter;
