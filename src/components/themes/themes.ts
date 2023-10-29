@@ -1,9 +1,9 @@
-import { UIThemes } from './presets/index';
 import type { DeepPartial } from '../utils/types';
-import lightTheme from './presets/default';
 import darkTheme from './presets/dark';
+import lightTheme from './presets/default';
 import greyTheme from './presets/grey';
-import _ from 'lodash';
+import { UIThemes } from './presets/index';
+import { generateAccents, generateColors } from './presets/shared';
 
 export type UIUserTheme = DeepPartial<UIThemes>;
 
@@ -76,7 +76,9 @@ const Themes = {
 	create,
 	createFromDark,
 	createFromLight,
-	createFromGrey
+	createFromGrey,
+	generateAccents,
+	generateColors
 };
 
 export default Themes;
