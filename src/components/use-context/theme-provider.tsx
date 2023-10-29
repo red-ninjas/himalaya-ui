@@ -14,7 +14,7 @@ export interface Props {
 
 const ThemeProvider: React.FC<PropsWithChildren<Props>> = ({ children, themeType, themes = [] }) => {
   const [allThemes, setAllThemes] = useState<AllThemesConfig>({
-    themes: Themes.getPresets(),
+    themes: !themes || themes.length > 0 ? themes : Themes.getPresets(),
   });
 
   const currentTheme = useMemo<UIThemes>(() => {

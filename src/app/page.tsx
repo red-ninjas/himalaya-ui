@@ -148,7 +148,6 @@ export default function Index() {
           width: 100%;
           bottom: 0;
           opacity: 0.5;
-          color: red;
           --color-face-1: ${theme.palette.accents_0};
           --color-face-2: ${theme.palette.accents_2};
           --color-face-3: ${theme.palette.accents_4};
