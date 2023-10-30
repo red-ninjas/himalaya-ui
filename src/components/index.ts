@@ -317,4 +317,6 @@ export { default as Footer, FooterBottom, FooterNavigation } from './footer';
 
 export { default as Entity } from './entity';
 
+export { default as Menu } from './menu';
+
 export * from './constants';
