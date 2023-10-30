@@ -155,7 +155,9 @@ export type { AllThemesConfig } from './use-all-themes';
 export { default as useSearch } from './use-search';
 export { default as useSidebar, SidebarProvider } from './use-sidebar';
 export { default as useQuickBar, QuickBarProvider } from './use-quickbar';
-export { SidebarLayout } from './sidebar'
+export { SidebarLayout, Sidebar } from './sidebar';
+export type { SidebarProps } from './sidebar';
+
 export { default as useLayout, LayoutProvider, defaultBreakpoints } from './use-layout';
 export type { BreakpointsItem, LayoutProps } from './use-layout';
 
@@ -206,8 +208,7 @@ export type { INavigationItem } from './navigation';
 export { default as Search, SearchButton } from './search';
 export type { SearchProps, SearchResult, SearchResultGroup, SearchResults, SearchFunction } from './search';
 
-export { default as Sidebar } from './sidebar';
-export type { SidebarProps } from './sidebar';
+
 
 export { default as QuickBar, QuickBarLayout, QuickAction } from './quick-bar';
 export type { QuickBarProps, QuickBarLayoutProps } from './quick-bar';
