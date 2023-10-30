@@ -1,10 +1,13 @@
-import { PropsWithChildren } from 'react';
+import { PropsWithChildren, ReactElement } from 'react';
 import { EntityProps } from './index';
 import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';
 import useTheme from '../use-theme';
 import { pickChild } from '../utils/collections';
 import EntityField from './entity-field';
+import Menu from '../menu';
+import { MoreHorizontal } from '../icons';
+import MenuItem from '../menu/menu-item';
 
 function EntityComponent({
   children,
@@ -26,6 +29,14 @@ function EntityComponent({
     disabled,
   });
 
+  let items = menuItems;
+
+  if (items) {
+    const [, mItems] = pickChild(items.props.children, MenuItem);
+
+    items = mItems as unknown as ReactElement;
+  }
+
   return (
     <>
       <div className={outerClasses} {...others}>
@@ -34,7 +45,13 @@ function EntityComponent({
           {thumbnail}
           {entityFields}
           {actions && <span className="entity-actions">{actions}</span>}
-          {menuItems}
+          {items && (
+            <span className="entity-menu">
+              <Menu placement="bottomEnd" trigger={<MoreHorizontal />}>
+                {items}
+              </Menu>
+            </span>
+          )}
         </div>
         {footer && <div className="entity-footer">{footer}</div>}
       </div>
@@ -83,6 +100,15 @@ function EntityComponent({
           .entity-footer {
             width: calc(100% - ${SCALES.ml(1)});
             margin-left: ${SCALES.ml(1)};
+          }
+
+          .entity-menu {
+            position: relative;
+            margin-left: ${SCALES.ml(0.5)};
+            right: 0;
+            justify-content: center;
+            align-items: center;
+            display: flex;
           }
         }
 
