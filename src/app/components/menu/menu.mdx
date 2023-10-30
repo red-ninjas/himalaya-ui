@@ -1,0 +1,77 @@
+import { Layout, Playground, Attributes } from 'lib/components';
+import { Menu, Link } from 'components';
+import MoreHorizontal from 'components/icons/moreHorizontal';
+
+export const meta = {
+  title: 'Menu',
+  group: 'Data Display',
+};
+
+# Menu
+
+<Playground
+  scope={{ Menu, Link }}
+  title={'Menu example'}
+  desc={'Example of a menu'}
+  code={`
+  () => {
+     return (
+    <Menu trigger="Menu">
+			<Menu.Item>
+				<Link href="/">Link Item 1</Link>
+			</Menu.Item>
+		</Menu>
+    );
+  };
+  `}
+/>
+
+<Playground
+  scope={{ Menu, Link, MoreHorizontal }}
+  title={'Menu with custom trigger icon'}
+  code={`
+  () => {
+     return (
+    <Menu trigger={<MoreHorizontal />}>
+			<Menu.Item>
+				<Link href="/">Link Item 1</Link>
+			</Menu.Item>
+		</Menu>
+    );
+  };
+  `}
+/>
+
+<Attributes edit="/pages/components/menu.mdx">
+<Attributes.Title>Menu.Props</Attributes.Title>
+
+| Attribute  | Description              | Type                      | Accepted values          | Default       |
+| ---------- | ------------------------ | ------------------------- | ------------------------ | ------------- |
+| placement? | Placement of menu        | `Placement`               | -                        | `startBottom` |
+| tigger?:   | Trigger element for menu | `ReactElement` / `string` | -                        | `Menu`        |
+| ...        | native props             | `HTMLAttributes`          | `'id', 'className', ...` | -             |
+
+<Attributes.Title>Menu.Item.Props</Attributes.Title>
+
+| Attribute | Description  | Type             | Accepted values          | Default |
+| --------- | ------------ | ---------------- | ------------------------ | ------- |
+| ...       | native props | `HTMLAttributes` | `'id', 'className', ...` | -       |
+
+<Attributes.Title>Placement</Attributes.Title>
+
+```ts
+type Placement = 'top'
+  | 'topStart',
+  | 'topEnd',
+  | 'left',
+  | 'leftStart',
+  | 'leftEnd',
+  | 'bottom',
+  | 'bottomStart',
+  | 'bottomEnd',
+  | 'right',
+  | 'rightStart',
+  | 'rightEnd',
+```
+
+</Attributes>

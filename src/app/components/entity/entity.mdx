@@ -1,0 +1,367 @@
+import { Layout, Playground, Attributes } from 'lib/components';
+import {
+  Entity,
+  Link,
+  Image,
+  Checkbox,
+  Button,
+  Footer,
+  FooterNavigation,
+  FooterBottom,
+  Logo,
+  Input,
+  Skeleton,
+  Menu,
+  Divider,
+} from 'components';
+
+export const meta = {
+  title: 'Entity',
+  group: 'Layout',
+};
+
+# Entity
+
+Display a collection of related information of a resource entity.
+
+<Playground
+  title="Fields"
+  scope={{ Entity, Link, Image }}
+  code={`
+() => {
+  return (
+    <Entity>
+      <Entity.Field title="GitHub" description="Guillermo Rauch" />
+      <Entity.Field active={false} title="Inactive" description="This field is inactive" />
+      <Entity.Field width="20%" title="Fixed Width" description={<Link color tab href="/docs">Open docs</Link>} />
+      <Entity.Field label width={'100px'} title="Label" description={<i>Encrypted</i>} />
+      <Entity.Field right description="Right Aligned" avatar={<Image width="280px" height="160px" src="/images/himalaya-banner.png" />} />
+    </Entity>
+  )
+}
+`}
+/>
+
+<Playground
+  title="Thumbnail"
+  scope={{ Entity, Link, Image }}
+  code={`
+() => {
+  return (
+    <Entity
+    thumbnail={
+      <Entity.Thumbnail size={24}>
+        <Image width={1.5} height={1.5} src="/images/himalaya-banner.png" />
+      </Entity.Thumbnail>
+    }
+   >
+    <Entity.Field title="GitHub" description={<>Guillermo Rauch (<Link href="https://github.com/rauchg">@rauchg</Link>)</>} />
+    <Entity.Field right description="Connected 1h ago" />
+  </Entity>
+  )
+}
+`}
+/>
+
+<Playground
+  title="Checkbox"
+  scope={{ Entity, Link, Checkbox, Button }}
+  code={`
+  () => {
+    return (
+      <Entity
+        checkbox={<Checkbox onChange={() => alert('clicked')}/>}
+        actions={<Button size="small" type="secondary">Revoke</Button>}
+      >
+        <Entity.Field title="Vercel CLI on chris.lan" description="Last used just now" />
+      </Entity>
+    )
+  }
+`}
+/>
+
+<Playground
+  title="Actions"
+  scope={{ Entity, Link, Image, Button }}
+  code={`
+() => {
+  return (
+  <Entity
+    thumbnail={
+      <Entity.Thumbnail size={24}>
+        <Image width={1.5} height={1.5} src="/images/himalaya-banner.png" />
+      </Entity.Thumbnail>
+    }
+    actions={<div>
+      <Button size="small" type="secondary" style={{ marginRight: 16 }}>Decline</Button>
+      <Button size="small">Accept</Button>
+    </div>}
+>
+    <Entity.Field title="Leo Lamprecht" description="leo"/>
+  </Entity>
+  )
+}
+`}
+/>
+
+<Playground
+  title="Menu Items"
+  scope={{ Entity, Link, Image, Button, Menu, Divider }}
+  code={`
+() => {
+  return (
+  <Entity
+    menuItems={
+      <>
+      <Menu.Item><Link href="/">Profile</Link></Menu.Item>
+      <Menu.Item><Link href="/">Settings</Link></Menu.Item>
+      <Menu.Item><Link href="/">Logout</Link></Menu.Item>
+      </>
+    }
+  >
+    <Entity.Field title="GitHub" description="Guillermo Rauch" />
+      <Entity.Field active={false} title="Inactive" description="This field is inactive" />
+      <Entity.Field width="20%" title="Fixed Width" description={<Link color tab href="/docs">Open docs</Link>} />
+      <Entity.Field label width={'100px'} title="Label" description={<i>Encrypted</i>} />
+      <Entity.Field right description="Right Aligned" avatar={<Image width="280px" height="160px" src="/images/himalaya-banner.png" />} />
+  </Entity>
+  )
+}
+`}
+/>
+
+<Playground
+  title="Footer"
+  scope={{ Entity, Link, Image, Button, Footer, FooterNavigation, FooterBottom, Logo }}
+  code={`
+() => {
+  return (
+  <Entity
+    thumbnail={
+      <Entity.Thumbnail size={24}>
+        <Image width={1.5} height={1.5} src="/images/himalaya-banner.png" />
+      </Entity.Thumbnail>
+    }
+    footer={
+      <>
+      <Footer>
+      <Footer.Block justify="space-between">
+        <FooterNavigation title="Footer Title">
+            <FooterNavigation.Item href="#">Item 1</FooterNavigation.Item>
+            <FooterNavigation.Item href="#">Item 2</FooterNavigation.Item>
+            <FooterNavigation.Item href="#">Item 3</FooterNavigation.Item>
+        </FooterNavigation>
+      </Footer.Block>
+      <Footer.Block justify="flex-end">
+        Test
+      </Footer.Block>
+    </Footer>
+    <FooterBottom>
+      <FooterBottom.Block>
+        <div className='logo-footer'><Logo></Logo></div>
+      </FooterBottom.Block>
+      <FooterBottom.Block justify='flex-end'>
+        Copyright by <Link color href='https://redninjas.dev' target='_blank'>{' '}RedNinjas LTD</Link>
+      </FooterBottom.Block>
+    </FooterBottom>
+    </>
+    }
+    actions={<div>
+      <Button size="small" type="secondary" style={{ marginRight: 16 }}>Decline</Button>
+      <Button size="small">Accept</Button>
+    </div>}
+>
+    <Entity.Field title="Leo Lamprecht" description="leo"/>
+  </Entity>
+  )
+}
+`}
+/>
+
+<Playground
+  title="Disabled"
+  scope={{ Entity, Link, Image }}
+  code={`
+() => {
+  return (
+    <Entity disabled>
+      <Entity.Field title="GitHub" description="Guillermo Rauch" />
+      <Entity.Field active={false} title="Inactive" description="This field is inactive" />
+      <Entity.Field width="20%" title="Fixed Width" description={<Link color tab href="/docs">Open docs</Link>} />
+      <Entity.Field label width={'100px'} title="Label" description={<i>Encrypted</i>} />
+      <Entity.Field right description="Right Aligned" avatar={<Image width="280px" height="160px" src="/images/himalaya-banner.png" />} />
+    </Entity>
+  )
+}
+`}
+/>
+
+<Playground
+  title="Skeleton"
+  scope={{ Entity, Button, Image, Skeleton }}
+  code={`
+() => {
+  return (
+  <Entity
+    thumbnail={
+      <Entity.Thumbnail size={24}>
+        <Image width={1.5} height={1.5} src="/images/himalaya-banner.png" />
+      </Entity.Thumbnail>
+    }
+    actions={<div>
+      <Button size="small" type="secondary" style={{ marginRight: 16 }}>Decline</Button>
+      <Button size="small">Accept</Button>
+    </div>}
+>
+    <Entity.Field
+      skeleton={<Skeleton width={10} />}
+      title="Leo Lamprecht" description="leo"
+    />
+  </Entity>
+  )
+}
+`}
+/>
+
+<Playground
+  title="Form"
+  scope={{ Entity, Link, Image, Button, Input }}
+  code={`
+() => {
+  return (
+    <Entity.Form
+      footerNote={<>Learn more about <Link href="/" color>Custom Domains →</Link></>}
+      primaryAction={<Button size="small">Add</Button>}
+      extraActions={
+        <>
+          <Button size="small" type="error">Buy</Button>
+          <Button size="small" type="warning" style={{marginLeft: '8px'}}>Transfer In</Button>
+        </>
+      }
+    >
+      <Input placeholder="example.com">Domain</Input>
+    </Entity.Form>
+  )
+}
+`}
+/>
+
+<Playground
+  title="No Action Buttons"
+  scope={{ Entity, Link, Image, Button, Input }}
+  code={`
+() => {
+  return (
+    <Entity.Form
+      footerNote={<>Learn more about <Link href="/" color>Custom Domains →</Link></>}
+    >
+      <Input placeholder="example.com">Domain</Input>
+    </Entity.Form>
+  )
+}
+`}
+/>
+
+<Playground
+  title="No Separate Line"
+  scope={{ Entity, Link, Image, Button, Input }}
+  code={`
+() => {
+  return (
+    <Entity.Form
+      footerSeparator={false}
+      footerNote={<>Learn more about <Link href="/" color>Custom Domains →</Link></>}
+    >
+      <Input placeholder="example.com">Domain</Input>
+    </Entity.Form>
+  )
+}
+`}
+/>
+
+<Playground
+  title="With Secondary Action"
+  scope={{ Entity, Link, Image, Button, Input }}
+  code={`
+() => {
+  return (
+    <Entity.Form
+      title="With Secondary Action"
+      footerNote={<>Learn more about <Link href="/" color>Env Variables →</Link></>}
+      primaryAction={<Button size="small">Save</Button>}
+      secondaryAction={<Button size="small" type="secondary">Discard</Button>}
+    >
+      <Input placeholder="example.com">Domain</Input>
+    </Entity.Form>
+  )
+}
+`}
+/>
+
+<Playground
+  title="With Destructive Action"
+  scope={{ Entity, Link, Image, Button, Input }}
+  code={`
+() => {
+  return (
+    <Entity.Form
+      title="With Destructive Action"
+      footerNote={<>Learn more about <Link href="/" color>Env Variables →</Link></>}
+      primaryAction={<Button size="small">Save</Button>}
+      secondaryAction={<Button size="small" type="secondary">Discard</Button>}
+      destructiveAction={<Button size="small" type="error">Remove</Button>}
+    >
+      <Input placeholder="example.com">Domain</Input>
+    </Entity.Form>
+  )
+}
+`}
+/>
+
+<Attributes edit="/pages/components/entity.mdx">
+<Attributes.Title>Entity.Props</Attributes.Title>
+
+| Attribute  | Description                                           | Type             | Accepted values            | Default |
+| ---------- | ----------------------------------------------------- | ---------------- | -------------------------- | ------- |
+| thumbnail? | To add a thumbnail on left side                       | `ReactElement`   | -                          | null    |
+| footer?    | To add elements at the footer of entity.              | `ReactElement`   | -                          | null    |
+| actions?   | To add action buttons in the entity                   | `ReactElement`   | -                          | null    |
+| checkbox?  | To add a checkbox on left side                        | `ReactElement`   | -                          | null    |
+| menuItems? | To add a menu item with three dots icon on right side | `ReactElement`   | -                          | null    |
+| disable?   | To disable the entity entity                          | `ReactElement`   | -                          | null    |
+| ...        | native props                                          | `HTMLAttributes` | `'name', 'className', ...` | -       |
+
+<Attributes.Title>Entity.Field.Props</Attributes.Title>
+
+| Attribute    | Description                                    | Type                     | Accepted values          | Default |
+| ------------ | ---------------------------------------------- | ------------------------ | ------------------------ | ------- |
+| title?       | To add title for entity field                  | `string`                 | -                        | null    |
+| description? | To add description for entity field            | `string`/ `ReactElement` | -                        | null    |
+| active?      | To enable or disable the state of entity field | `boolean`                | `true` / `false`         | `true`  |
+| width?       | To set the width of entity field               | `string`                 | -                        | `auto`  |
+| right?       | To right align the entity field                | `boolean`                | `true` / `false`         | `false` |
+| avatar?      | To add any avatar in the entity field          | `ReactElement`           | -                        | null    |
+| skeleton?    | To show skeleton in the entity field           | `ReactElement`           | -                        | null    |
+| ...          | native props                                   | `HTMLAttributes`         | `'id', 'className', ...` | -       |
+
+<Attributes.Title>Entity.Thumbnail.Props</Attributes.Title>
+
+| Attribute | Description                                             | Type             | Accepted values          | Default |
+| --------- | ------------------------------------------------------- | ---------------- | ------------------------ | ------- |
+| size?     | To set the size of thumbnail on the left side of entity | `number`         | -                        | `24`    |
+| ...       | native props                                            | `HTMLAttributes` | `'id', 'className', ...` | -       |
+
+<Attributes.Title>Entity.Form.Props</Attributes.Title>
+
+| Attribute          | Description                           | Type                      | Accepted values          | Default   |
+| ------------------ | ------------------------------------- | ------------------------- | ------------------------ | --------- |
+| title?             | To add title for entity form          | `ReactElement` / `string` | -                        | `Add New` |
+| primaryAction?     | To add actions on the bottom right    | `ReactElement`            | -                        | `null`    |
+| secondaryAction?   | To add actions on the bottom right    | `ReactElement`            | -                        | `null`    |
+| destructiveAction? | To add actions on the bottom left     | `ReactElement`            | -                        | `null`    |
+| extraActions?      | To add actions on the top left        | `ReactElement`            | -                        | `null`    |
+| footerNote?        | To add note in the entity form footer | `ReactElement` / `string` | -                        | `null`    |
+| footerSeparator?   | To have a separator line for footer   | `boolean`                 | `true` / `false`         | `true`    |
+| ...                | native props                          | `HTMLAttributes`          | `'id', 'className', ...` | -         |
+
+</Attributes>
