@@ -49,18 +49,10 @@ function EntityFormComponent({
               <p className="entity-body-text">{footerNote}</p>
             </div>
           )}
-          {destructiveAction && (
-            <div className="entity-form-footer-destructive-action">
-              {destructiveAction}
-            </div>
-          )}
+          {destructiveAction && <div className="entity-form-footer-destructive-action">{destructiveAction}</div>}
           <span className="entity-form-spacer entity-spacer expand"></span>
-          {secondaryAction && (
-            <div className="entity-form-footer-secondary-action">{secondaryAction}</div>
-          )}
-          {primaryAction && (
-            <div className="entity-form-footer-primary-action">{primaryAction}</div>
-          )}
+          {secondaryAction && <div className="entity-form-footer-secondary-action">{secondaryAction}</div>}
+          {primaryAction && <div className="entity-form-footer-primary-action">{primaryAction}</div>}
         </div>
       </div>
       <style jsx>{`

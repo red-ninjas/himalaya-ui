@@ -5,11 +5,7 @@ import { PropsWithChildren } from 'react';
 import Image from '../image';
 import useTheme from '../use-theme';
 
-function EntityThumbnailComponent({
-  size = 24,
-  children,
-  ...other
-}: PropsWithChildren<EntityThumbnailProps>) {
+function EntityThumbnailComponent({ size = 24, children, ...other }: PropsWithChildren<EntityThumbnailProps>) {
   const { SCALES } = useScale();
   const theme = useTheme();
   const [, image] = pickChild(children, Image);

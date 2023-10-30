@@ -5,21 +5,12 @@ import { pickChild } from '../utils/collections';
 import { PropsWithChildren } from 'react';
 import MenuItem from './menu-item';
 
-function MenuComponent({
-  trigger = 'Menu',
-  placement = 'bottomStart',
-  children,
-  ...other
-}: PropsWithChildren<MenuProps>) {
+function MenuComponent({ trigger = 'Menu', placement = 'bottomStart', children, ...other }: PropsWithChildren<MenuProps>) {
   const [, menuItems] = pickChild(children, MenuItem);
   const { SCALES } = useScale();
   return (
     <>
-      <Popover
-        {...other}
-        placement={placement}
-        content={<div className="menu-items">{menuItems}</div>}
-      >
+      <Popover {...other} placement={placement} content={<div className="menu-items">{menuItems}</div>}>
         <div className="trigger">{trigger}</div>
       </Popover>
       <style jsx>{`
