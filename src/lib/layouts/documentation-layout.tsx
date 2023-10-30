@@ -41,7 +41,7 @@ export default function DocumentationLayout({ children }) {
             <Header>
               <Header.Left>
                 <BackButton url="/"></BackButton>
-                <Title>Test</Title>
+                <Title>{activeRecord?.name}</Title>
               </Header.Left>
               <Header.Right>
                 <MobileMenuButton></MobileMenuButton>
@@ -77,7 +77,15 @@ export default function DocumentationLayout({ children }) {
               </FooterBottom>
             </SidebarLayout>
           </SidebarProvider>
-          <MobileMenu direction="right">Test</MobileMenu>
+          <MobileMenu direction="right">
+            {groups.map((item, index) => (
+              <MobileMenu.Group key={index} title={item.title}>
+                {item.children.map((subChild, subIndex) => (
+                  <MobileMenu.Item title={subChild.name} key={subIndex} url={subChild.url}></MobileMenu.Item>
+                ))}
+              </MobileMenu.Group>
+            ))}
+          </MobileMenu>
         </MobileMenuProvider>
       </MobilePage>
 

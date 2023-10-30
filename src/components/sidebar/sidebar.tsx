@@ -3,14 +3,12 @@ import { usePathname } from 'next/navigation';
 import React, { PropsWithChildren, useEffect, useRef } from 'react';
 import { useConfigs } from '../use-context/config-context';
 import useLayout from '../use-layout';
-import SidebarGroup from './sidebar-group';
-import SidebarLink from './sidebar-link';
 
 export interface SidebarProps {
   header?: React.ReactNode;
 }
 
-export const Sidebar: React.FC<PropsWithChildren<SidebarProps>> = ({ children, ...props }) => {
+const Sidebar: React.FC<PropsWithChildren<SidebarProps>> = ({ children, ...props }) => {
   const layout = useLayout();
   const pathname = usePathname();
   const boxRef = useRef<HTMLDivElement>(null);
@@ -57,12 +55,4 @@ export const Sidebar: React.FC<PropsWithChildren<SidebarProps>> = ({ children, .
 
 Sidebar.displayName = 'HimalayaSidebar';
 
-export type SidebarComponentType = typeof Sidebar & {
-  Group: typeof SidebarGroup;
-  Item: typeof SidebarLink;
-};
-
-(Sidebar as SidebarComponentType).Group = SidebarGroup;
-(Sidebar as SidebarComponentType).Item = SidebarLink;
-
-export default Sidebar as SidebarComponentType;
+export default Sidebar;

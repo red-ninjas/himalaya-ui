@@ -1,7 +1,7 @@
 'use client';
 import { pickChild } from '../utils/collections';
 import React, { createRef, useEffect, useState } from 'react';
-import Sidebar from './sidebar';
+import Sidebar from './';
 
 import useLayout from '../use-layout';
 import useSidebar from '../use-sidebar';

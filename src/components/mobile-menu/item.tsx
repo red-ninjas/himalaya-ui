@@ -1,10 +1,12 @@
 'use client';
 import Link from 'next/link';
-import React, { PropsWithChildren } from 'react';
+import React, { MouseEventHandler, PropsWithChildren } from 'react';
 import Popover from '../popover';
 import useScale, { withScale } from '../use-scale';
 import useTheme from '../use-theme';
 import { INavigationItem } from './index';
+import { usePathname } from 'next/navigation';
+import useClasses from '../use-classes';
 
 export interface NavigationItemProps extends INavigationItem {
   onClick?: () => void;
@@ -13,8 +15,9 @@ export interface NavigationItemProps extends INavigationItem {
 const NavigationItem: React.FC<PropsWithChildren<NavigationItemProps>> = ({ url = '/', ...props }) => {
   const theme = useTheme();
   const { SCALES } = useScale();
+  const pathname = usePathname();
 
-  const handleClick = (e: any) => {
+  const handleClick: MouseEventHandler<HTMLAnchorElement> = e => {
     if (props.onClick) {
       e.preventDefault();
       props.onClick();
@@ -25,7 +28,12 @@ const NavigationItem: React.FC<PropsWithChildren<NavigationItemProps>> = ({ url 
     <>
       <Popover.Item padding="6px">
         <Link legacyBehavior passHref href={url || ''}>
-          <a onClick={e => handleClick(e)} className="sub-item">
+          <a
+            onClick={handleClick}
+            className={useClasses('sub-item', {
+              'is-active': pathname == url,
+            })}
+          >
             <div className="icon-with-title">
               {props.icon && <span className="icon-holder">{props.icon}</span>}
               <span>{props.title}</span>
@@ -34,7 +42,13 @@ const NavigationItem: React.FC<PropsWithChildren<NavigationItemProps>> = ({ url 
         </Link>
       </Popover.Item>
       <style jsx>{`
+        .icon-with-title {
+          display: inline-flex;
+          gap: 6px;
+          align-items: center;
+        }
         .sub-item {
+          color: ${theme.palette.accents_5};
           font-weight: 500;
           min-width: 120px;
           padding: 6px 12px;
@@ -46,6 +60,11 @@ const NavigationItem: React.FC<PropsWithChildren<NavigationItemProps>> = ({ url 
           width: 100%;
         }
 
+        .is-active {
+          color: ${theme.palette.foreground};
+          font-weight: bold;
+        }
+
         .icon-holder {
           width: 16px;
           display: inline-flex;
@@ -54,13 +73,6 @@ const NavigationItem: React.FC<PropsWithChildren<NavigationItemProps>> = ({ url 
 
         :global(.icon-holder > *) {
           width: 100%;
-        }
-
-        .icon-with-title {
-          color: ${theme.palette.accents_5};
-          display: inline-flex;
-          gap: 6px;
-          align-items: center;
         }
       `}</style>
     </>
