@@ -120,7 +120,6 @@ export const ChartNumberFormatter = (value: number) => {
 
 export interface ChartProps {
   series: { [name: string]: ThemedChartData };
-  theme?: UIThemes;
   showLegends?: boolean;
   showTime?: boolean;
   showSeconds?: boolean;
