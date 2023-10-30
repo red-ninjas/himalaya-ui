@@ -36,6 +36,16 @@ function EntityFieldComponent({
       </div>
       <style jsx global>{`
         .field-wrapper {
+          .title {
+            font-weight: 600;
+          }
+
+          .desc {
+            margin-top: 0px;
+            margin-bottom: 0px;
+            color: ${theme.palette.accents_5};
+          }
+
           display: flex;
           justify-content: center;
           flex-direction: column;
@@ -69,11 +79,6 @@ function EntityFieldComponent({
               background: ${theme.palette.accents_8};
             }
           }
-        }
-
-        .desc {
-          margin-top: 0px;
-          margin-bottom: 0px;
         }
       `}</style>
     </>

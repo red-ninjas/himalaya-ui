@@ -57,6 +57,7 @@ function EntityComponent({
       </div>
       <style jsx global>{`
         .entity-outer-wrapper {
+          font-size: ${SCALES.font(0.88)};
           width: 100%;
           display: flex;
           justify-content: flex-start;
@@ -64,19 +65,17 @@ function EntityComponent({
           align-items: flex-start;
 
           &.disabled {
-            background: ${theme.palette.accents_0};
-            pointer-events: none;
+            background: ${theme.palette.accents_1};
             cursor: not-allowed;
-            border-radius: ${theme.style.radius};
           }
+          border: 1px solid ${theme.palette.border};
+          border-radius: ${theme.style.radius};
         }
 
         .entity-wrapper {
           height: auto;
           width: 100%;
           padding: ${SCALES.px(1)} ${SCALES.py(1)};
-          border: 1px solid ${theme.palette.border};
-          border-radius: ${theme.style.radius};
           display: flex;
           justify-content: flex-start;
           flex-wrap: wrap;

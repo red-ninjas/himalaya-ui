@@ -62,7 +62,6 @@ function EntityFormComponent({
           padding: ${SCALES.pt(1)} ${SCALES.pr(1)} ${SCALES.pb(1)} ${SCALES.pl(1)};
           border: 1px solid ${theme.palette.accents_2};
           border-radius: ${theme.style.radius};
-          background: ${theme.palette.accents_1};
 
           .entity-body-text {
             font-weight: 600;
@@ -83,6 +82,7 @@ function EntityFormComponent({
               self-align: 'flex-start';
               margin-top: 0;
               margin-bottom: 0;
+              font-weight: 600;
               color: ${theme.palette.accents_8};
               flex: 1 1;
             }
