@@ -12,6 +12,9 @@ const Logo: React.FC<PropsWithChildren<{}>> = ({ children }) => {
           display: block;
           font-size: 0.95em;
           font-weight: 500;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
         }
       `}</style>
     </div>

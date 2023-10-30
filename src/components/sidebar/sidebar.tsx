@@ -54,5 +54,4 @@ const Sidebar: React.FC<PropsWithChildren<SidebarProps>> = ({ children, ...props
 };
 
 Sidebar.displayName = 'HimalayaSidebar';
-
 export default Sidebar;

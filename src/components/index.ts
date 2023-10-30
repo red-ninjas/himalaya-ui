@@ -156,7 +156,7 @@ export { default as useSearch } from './use-search';
 export { default as useSidebar, SidebarProvider } from './use-sidebar';
 export { default as useQuickBar, QuickBarProvider } from './use-quickbar';
 
-export { default as Sidebar } from './sidebar';
+export { Sidebar } from './sidebar';
 export { default as SidebarLayout } from './sidebar/sidebar-layout';
 export type { SidebarProps } from './sidebar';
 
