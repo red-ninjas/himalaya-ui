@@ -9,12 +9,7 @@ export const meta = {
 
 # Scale
 
-<Note type="warning">
-  This feature was introduced in v2.2.0 and up. If you’re using older versions of Geist,
-  please upgrade before trying it out.
-</Note>
-
-The scalable nature of the Geist gives great flexibility to each component.
+The scalable nature of the Himalya gives great flexibility to each component.
 You can freely scale the component size, rewrite the proportion of the component local space,
 adjust the inner and outer layout structure, etc.
 
@@ -24,11 +19,11 @@ and get the best user experience in any layout style.
 
 ## Scaling
 
-Different from common component libraries, Geist no longer uses `size` related props to control component volume.
-Each component of Geist has a suitable layout volume by default, you can dynamically scale components with the `scale` props.
+Different from common component libraries, Himalya no longer uses `size` related props to control component volume.
+Each component of Himalya has a suitable layout volume by default, you can dynamically scale components with the `scale` props.
 
 As the example, the `Button` component has an equal reduction in all space occupancy (including fonts).
-Geist renders the specified volume components **realistically** by dynamically calculating the component size.
+Himalya renders the specified volume components **realistically** by dynamically calculating the component size.
 This ensures that the layout and typography are always the same as expected.
 
 <Display width="500px" caption="Render Button component at 0.5 scaling">
@@ -65,7 +60,7 @@ You can define each scalable property individually, a scale number or CSS string
 ## Scaling unit
 
 The volume of the component depends on both the `scale` property entered by the user and the **scaling unit**.
-The default scaling unit is `16px`, but Geist allows you to customize this value at different levels to achieve a high level of customization.
+The default scaling unit is `16px`, but Himalya allows you to customize this value at different levels to achieve a high level of customization.
 
 For a single component, we can easily set props on the component:
 
@@ -97,7 +92,7 @@ const App = () => (
 
 ## Development with scale
 
-The scale feature in Geist is also exported, so you can use scale to create custom components with dynamic scaling capabilities.
+The scale feature in Himalya is also exported, so you can use scale to create custom components with dynamic scaling capabilities.
 For more information, please read section [use-scale](/hooks/use-scale 'use-scale').
 
 ## Alias
