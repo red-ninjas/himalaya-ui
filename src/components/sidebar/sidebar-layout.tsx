@@ -1,7 +1,7 @@
 'use client';
-import { getValidChildren } from '../utils/collections';
+import { pickChild } from '../utils/collections';
 import React, { createRef, useEffect, useState } from 'react';
-import Sidebar from '.';
+import Sidebar from './sidebar';
 
 import useLayout from '../use-layout';
 import useSidebar from '../use-sidebar';
@@ -45,16 +45,7 @@ const useRefDimensions = (ref: React.RefObject<HTMLDivElement>) => {
 };
 
 const SidebarLayout: React.FC<React.PropsWithChildren<SidebarLayoutProps>> = ({ children, width, hasBorder = true, hideOnMobile = true }) => {
-  const sidebar = getValidChildren(children).map(item => {
-    if (item.type === Sidebar) {
-      return item;
-    }
-  });
-  const content = getValidChildren(children).map(item => {
-    if (item.type !== Sidebar) {
-      return item;
-    }
-  });
+  const [content, sidebar] = pickChild(children, Sidebar);
 
   const { isEnabled, setIsEnabled } = useSidebar();
 

@@ -16,8 +16,7 @@ import {
 } from 'components';
 import { Title } from 'components/header';
 import BackButton from 'components/header/back-button';
-import SidebarLayout from 'components/sidebar/sidebar-layout';
-import { SidebarProvider } from 'components/use-sidebar';
+import { SidebarProvider, SidebarLayout } from 'components';
 import _ from 'lodash';
 import { usePathname } from 'next/navigation';
 import { Seeds } from '../data';

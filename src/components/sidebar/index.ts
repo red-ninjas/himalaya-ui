@@ -11,4 +11,5 @@ export type SidebarComponentType = typeof Sidebar & {
 (Sidebar as SidebarComponentType).Group = SidebarGroup;
 (Sidebar as SidebarComponentType).Item = SidebarLink;
 
+export { default as SidebarLayout } from './sidebar-layout';
 export default Sidebar as SidebarComponentType;

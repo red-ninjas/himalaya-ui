@@ -155,7 +155,7 @@ export type { AllThemesConfig } from './use-all-themes';
 export { default as useSearch } from './use-search';
 export { default as useSidebar, SidebarProvider } from './use-sidebar';
 export { default as useQuickBar, QuickBarProvider } from './use-quickbar';
-
+export { SidebarLayout } from './sidebar'
 export { default as useLayout, LayoutProvider, defaultBreakpoints } from './use-layout';
 export type { BreakpointsItem, LayoutProps } from './use-layout';
 
