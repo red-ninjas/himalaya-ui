@@ -55,7 +55,7 @@ function EntityComponent({
         </div>
         {footer && <div className="entity-footer">{footer}</div>}
       </div>
-      <style jsx global>{`
+      <style jsx>{`
         .entity-outer-wrapper {
           font-size: ${SCALES.font(0.88)};
           width: 100%;
@@ -152,4 +152,4 @@ function EntityComponent({
 
 EntityComponent.displayName = 'HimalayaEntity';
 const Entity = withScale(EntityComponent);
-export default withScale(Entity);
+export default Entity;
