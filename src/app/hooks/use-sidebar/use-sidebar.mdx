@@ -1,16 +1,16 @@
 import { Layout, Playground, Attributes } from 'lib/components'
-import { useSidebar, Link, Button, useToasts, Spacer } from 'components'
+import { useSidebar, Button, useToasts } from 'components'
 
 export const meta = {
   title: 'useSidebar',
   group: 'Utilities',
 }
 
-# useClipboard
+# useSidebar
 
-Copy string to clipboard.
+Simplify Sidebar Control.
 
-This is custom React hooks, you need to follow the <Link target="_blank" color href="https://reactjs.org/docs/hooks-rules.html">Basic Rules</Link> when you use it.
+The useSidebar hook grants access to the sidebar state, allowing you to effortlessly manage and control the visibility and behavior of a sidebar component.
 
 <Playground
   title="Sidebar Context Usage"
@@ -36,19 +36,20 @@ This is custom React hooks, you need to follow the <Link target="_blank" color h
 `}
 />
 
-<Attributes edit="/pages/hooks/use-clipboard.mdx">
-<Attributes.Title>useClipboard</Attributes.Title>
+<Attributes edit="/pages/hooks/use-sidebar.mdx">
+<Attributes.Title>useSidebar</Attributes.Title>
 
 ```ts
-type UseClipboardOptions = {
-  onError: Function
+type SidebarContextProps = {
+  isEnabled: boolean;
+  setIsEnabled: (value: boolean) => void;
 }
 
-type CopyResult = {
-  copy: (text: string) => void
+const defaultConfigs: SidebarContextProps = {
+  setIsEnabled: () => {},
+  isEnabled: false,
 }
 
-const useClipboard = (options?: UseClipboardOptions) => CopyResult
 ```
 
 </Attributes>
