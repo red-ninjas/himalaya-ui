@@ -1,21 +1,39 @@
 'use client';
-import React, { useState } from 'react';
-import useTheme from '../use-theme';
+import React, { PropsWithChildren, useState } from 'react';
+import Button from '../button';
 import { ChevronDown } from '../icons';
+import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';
+import useTheme from '../use-theme';
 
 interface Props {
   expanded: boolean;
   onClick: () => void;
 }
 
+const useRefDimensions = ref => {
+  const [dimensions, setDimensions] = useState({ width: 1, height: 2 });
+  React.useEffect(() => {
+    if (ref.current) {
+      const { current } = ref;
+      const boundingRect = current.getBoundingClientRect();
+      const { width, height } = boundingRect;
+      setDimensions({ width: Math.round(width), height: Math.round(height) });
+    }
+  }, [ref]);
+  return dimensions;
+};
+
 type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
 export type ShowMoreProps = Props & NativeAttrs;
 
-const ShowMore: React.FC<ShowMoreProps> = ({ expanded, onClick }) => {
+const ShowMore: React.FC<PropsWithChildren<ShowMoreProps>> = ({ children, expanded, onClick }) => {
   const theme = useTheme();
   const [iconRotated, setIconRotated] = useState(false);
   const { SCALES } = useScale();
+
+  const ref = React.createRef<HTMLDivElement>();
+  const dimensions = useRefDimensions(ref);
 
   const toggleIconRotation = () => {
     setIconRotated(!iconRotated);
@@ -29,48 +47,74 @@ const ShowMore: React.FC<ShowMoreProps> = ({ expanded, onClick }) => {
         toggleIconRotation();
       }}
     >
-      <div className="show-more-line" />
-      <button className="show-more-button">
-        {expanded ? 'Show Less' : 'Show More'}
-        <span className={`show-more-arrow ${iconRotated ? 'rotate' : ''}`}>
-          <ChevronDown />
-        </span>
-      </button>
-      <div className="show-more-line" />
+      <div className="show-more-bar">
+        <div className="show-more-line" />
 
+        <Button
+          type="secondary"
+          scale={0.9}
+          iconRight={
+            <ChevronDown
+              className={useClasses('chevon-icon', {
+                rotate: expanded,
+              })}
+            />
+          }
+          auto
+        >
+          {expanded ? 'Show less' : 'Show more'}
+        </Button>
+
+        <div className="show-more-line" />
+      </div>
+      <div className="show-more-content">
+        <div className="inner-height" ref={ref}>
+          {children}
+        </div>
+      </div>
       <style jsx>{`
+        .inner-height {
+          display: block;
+          width: 100%;
+        }
         .show-more {
-          width: ${SCALES.width(1, 'auto')};
-          display: flex;
-          align-items: center;
-          cursor: pointer;
+          width: 100%;
+          display: block;
+
+          .show-more-bar {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            width: 100%;
+            flex-wrap: no-wrap;
+          }
+
+          .show-more-line {
+            width: 100%;
+            height: ${SCALES.height(0.08)};
+            background-color: ${theme.palette.border};
+          }
+
+          .show-more-content {
+            height: 0;
+            transition: height 0.3s ease;
+            overflow: hidden;
+            width: 100%;
+            display: block;
+          }
         }
 
-        .show-more-line {
-          width: 100%;
-          height: ${SCALES.height(0.195)};
-          background-color: ${theme.palette.border};
+        .show-more :global(.chevon-icon) {
+          transition: transform 0.3s ease-in-out;
         }
-        .show-more-button {
-          max-width: 100%;
-          padding: ${SCALES.px(0.88)} ${SCALES.py(1.15)};
-          display: flex;
-          align-items: center;
-          font-size: 14px;
-          text-wrap: nowrap;
-          cursor: pointer;
-          border: 1px solid ${theme.palette.border};
-          border-radius: 100px;
-          background-color: ${theme.palette.background};
-          color: ${theme.palette.accents_5};
-        }
-        .show-more-arrow {
-          display: inline-flex;
-          margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0.2)};
-          transition: transform 0.2s ease-in-out;
-        }
-        .show-more-arrow.rotate {
+        .show-more :global(.rotate) {
           transform: rotate(180deg);
+        }
+
+        .expanded {
+          .show-more-content {
+            height: ${dimensions.height}px;
+          }
         }
       `}</style>
     </div>
