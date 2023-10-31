@@ -1,6 +1,6 @@
-import { default as SidebarComponent } from "./sidebar";
-import SidebarGroup from "./sidebar-group";
-import SidebarLink from "./sidebar-link";
+import { default as SidebarComponent } from './sidebar';
+import SidebarGroup from './sidebar-group';
+import SidebarLink from './sidebar-link';
 
 export type SidebarComponentType = typeof SidebarComponent & {
   Group: typeof SidebarGroup;

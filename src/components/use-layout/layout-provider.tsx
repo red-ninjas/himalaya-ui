@@ -5,7 +5,7 @@ import { defaultBreakpoints } from './shared';
 
 const LayoutProvider: React.FC<React.PropsWithChildren<LayoutPropsContext>> = ({
   children,
-  pageWidth = '750pt',
+  pageWidth = '920pt',
   pageMargin = '16pt',
   gap = '16pt',
   gapNegative = `-16pt`,
@@ -18,7 +18,7 @@ const LayoutProvider: React.FC<React.PropsWithChildren<LayoutPropsContext>> = ({
   breakpoints = defaultBreakpoints,
   radius = '6px',
   unit = '16px',
-  pageWidthWithMargin = '782pt',
+  pageWidthWithMargin = '950pt',
 }) => {
   return (
     <LayoutContext.Provider

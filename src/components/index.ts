@@ -277,4 +277,8 @@ export type { ShowMoreProps } from './show-more';
 export { default as RunningText } from './running-text';
 export { default as Footer, FooterBottom, FooterNavigation } from './footer';
 
+export { default as Entity } from './entity';
+
+export { default as Menu } from './menu';
+
 export * from './constants';
