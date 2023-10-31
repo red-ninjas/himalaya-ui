@@ -9,7 +9,6 @@ export type InputColor = {
 
 export const getColors = (palette: UIThemesPalette, status?: NormalTypes): InputColor => {
   const colors: { [key in NormalTypes]: InputColor } = {
-
     default: {
       color: palette.foreground,
       borderColor: palette.border,

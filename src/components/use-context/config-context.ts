@@ -40,8 +40,8 @@ export interface ConfigProviderContextParams {
 
 export const defaultConfigs: ConfigProviderContextParams = {
   sidebarScrollHeight: 0,
-  updateSidebarScrollHeight: () => { },
-  setTheme: () => { },
+  updateSidebarScrollHeight: () => {},
+  setTheme: () => {},
   isMobile: false,
   swipeToRight: undefined,
   swipedToLeft: undefined,
@@ -54,7 +54,7 @@ export const defaultConfigs: ConfigProviderContextParams = {
   lastUpdateToastId: null,
   updateLastToastId: () => null,
   customTheme: {},
-  updateCustomTheme: () => { },
+  updateCustomTheme: () => {},
 };
 
 export const ConfigContext = React.createContext<ConfigProviderContextParams>(defaultConfigs);

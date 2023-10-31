@@ -77,7 +77,7 @@ const Themes = {
   generateAccents,
   generateColors,
   generateColor,
-  generateSteppedColors
+  generateSteppedColors,
 };
 
 export default Themes;

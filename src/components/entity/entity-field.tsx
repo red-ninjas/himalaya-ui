@@ -38,6 +38,9 @@ function EntityFieldComponent({
       </div>
       <style jsx>{`
         .field-wrapper {
+          justify-content: flex-start;
+          width: 100%;
+
           .title {
             font-weight: 600;
           }
@@ -49,7 +52,6 @@ function EntityFieldComponent({
           }
 
           display: flex;
-          justify-content: center;
           flex-direction: column;
           align-items: stretch;
           flex: 1;
@@ -62,7 +64,7 @@ function EntityFieldComponent({
 
           &.right {
             .desc-wrapper {
-              justify-content: flex-end !important;
+              justify-content: flex-end;
             }
           }
 
@@ -79,6 +81,19 @@ function EntityFieldComponent({
               height: 24px !important;
               border-radius: 50%;
               background: ${theme.palette.accents_8};
+            }
+          }
+        }
+
+        @media screen and (max-width: 600px) {
+          .field-wrapper {
+            flex-wrap: wrap;
+            width: 100%;
+          }
+
+          .right {
+            .desc-wrapper {
+              justify-content: flex-start !important;
             }
           }
         }

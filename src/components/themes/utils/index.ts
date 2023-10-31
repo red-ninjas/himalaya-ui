@@ -1,7 +1,7 @@
-import _ from "lodash";
-import { UIThemesAccents, UIThemesColors } from "../presets";
-import { Color } from "./color";
-import { ColorVariable } from "./color-variable";
+import _ from 'lodash';
+import { UIThemesAccents, UIThemesColors } from '../presets';
+import { Color } from './color';
+import { ColorVariable } from './color-variable';
 
 export const generateSteppedColors = (background = '#ffffff', text = '#000000') => {
   const color = new Color(background);
@@ -29,15 +29,15 @@ export const generateColor = (value: string): ColorVariable => {
 };
 
 export interface GenerateColorProps {
-  secondary?: string,
-  error?: string,
-  success?: string,
-  warning?: string,
-  primary?: string,
-  tertiary?: string,
-  link?: string,
-  code?: string,
-  selection?: string,
+  secondary?: string;
+  error?: string;
+  success?: string;
+  warning?: string;
+  primary?: string;
+  tertiary?: string;
+  link?: string;
+  code?: string;
+  selection?: string;
 }
 
 export const generateColors = (newConfig?: GenerateColorProps): UIThemesColors => {
@@ -69,6 +69,6 @@ export const generateAccents = (background: string, foreground: string): UITheme
     border: generateColor[1],
     highlite: generateColor[1],
     background: background,
-    foreground: foreground
+    foreground: foreground,
   };
 };

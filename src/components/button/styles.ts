@@ -112,7 +112,6 @@ export const getButtonGhostHoverColors = (palette: UIThemesPalette, type: Button
       color: palette.secondary.contrast,
     },
 
-
     success: {
       bg: palette.success.value,
       border: palette.background,

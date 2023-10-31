@@ -10,6 +10,7 @@ import useTheme from '../use-theme';
 import { pickChild } from '../utils/collections';
 import EntityField from './entity-field';
 import { EntityProps } from './index';
+import { addColorAlpha } from 'components/utils/color';
 
 function EntityComponent({
   children,
@@ -69,6 +70,7 @@ function EntityComponent({
 
           padding: ${SCALES.pt(1)} ${SCALES.pr(1)} ${SCALES.pb(1)} ${SCALES.pl(1)};
           margin: ${SCALES.mt(1, 'auto')} ${SCALES.mr(1, 'auto')} ${SCALES.mb(1, 'auto')} ${SCALES.ml(1, 'auto')};
+          background: ${addColorAlpha(theme.palette.accents_0, 0.3)};
 
           &.disabled {
             background: ${theme.palette.accents_1};
@@ -94,6 +96,8 @@ function EntityComponent({
           flex-wrap: wrap;
           align-items: center;
           background-clip: padding-box;
+
+          gap: 12px;
 
           .entity-checkbox {
             display: flex;
@@ -145,6 +149,17 @@ function EntityComponent({
 
           &.expand {
             flex: 1 1;
+          }
+        }
+
+        @media screen and (max-width: 600px) {
+          .entity-wrapper {
+            flex-direction: column;
+            flex-wrap: wrap;
+          }
+          .entity-wrapper :global(.field-wrapper) {
+            border-bottom: 1px solid ${theme.palette.border};
+            padding-bottom: 12px;
           }
         }
       `}</style>

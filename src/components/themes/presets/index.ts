@@ -1,4 +1,4 @@
-import { ColorVariable } from "../utils/color-variable";
+import { ColorVariable } from '../utils/color-variable';
 
 export interface Gradient {
   from: string;
@@ -30,8 +30,8 @@ export interface UIThemesAccents {
 }
 export interface UIThemesColors {
   primary: ColorVariable;
-  secondary: ColorVariable,
-  tertiary: ColorVariable,
+  secondary: ColorVariable;
+  tertiary: ColorVariable;
   success: ColorVariable;
   error: ColorVariable;
   warning: ColorVariable;
@@ -41,7 +41,6 @@ export interface UIThemesColors {
 }
 
 export interface UIThemesCore {
-
   gradient_1: Gradient;
   gradient_2: Gradient;
   gradient_3: Gradient;

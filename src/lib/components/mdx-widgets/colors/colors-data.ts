@@ -61,7 +61,7 @@ const colorsData: { [key: string]: ColorEnum } = {
   secondary,
   tertiary,
   gradient,
-  link
+  link,
 };
 
 export const getColorData = (type: string): ColorEnum => {
