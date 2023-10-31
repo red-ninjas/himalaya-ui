@@ -1,6 +1,6 @@
 'use client';
 import { ChevronRight, ChevronDown } from '../icons';
-import React, { PropsWithChildren, ReactNode, useRef, useState } from 'react';
+import React, { MouseEventHandler, PropsWithChildren, ReactNode, useRef, useState } from 'react';
 import { INavigationItem } from './index';
 import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';
@@ -13,7 +13,7 @@ export interface MobileNavigationGroupProps extends INavigationItem {
   expanded?: boolean;
 }
 
-const MobileNavigationGroup: React.FC<PropsWithChildren<MobileNavigationGroupProps>> = ({ children, title, url, expanded = false }) => {
+const MobileNavigationGroup: React.FC<PropsWithChildren<MobileNavigationGroupProps>> = ({ children, title, url, expanded = true }) => {
   const theme = useTheme();
   const { SCALES } = useScale();
   const router = useRouter();
@@ -56,8 +56,7 @@ const MobileNavigationGroup: React.FC<PropsWithChildren<MobileNavigationGroupPro
       </div>
     );
   };
-
-  const handleGroupClick = (e: any) => {
+  const handleGroupClick: MouseEventHandler<HTMLAnchorElement> = e => {
     e.preventDefault();
     e.stopPropagation();
 
@@ -133,7 +132,7 @@ const MobileNavigationGroup: React.FC<PropsWithChildren<MobileNavigationGroupPro
           width: ${SCALES.width(1, 'auto')};
           height: ${SCALES.height(1, 'auto')};
           padding: ${SCALES.pt(0.875)} ${SCALES.pr(0.55)} ${SCALES.pb(0.875)} ${SCALES.pl(0.55)};
-          margin: ${SCALES.mt(0)} ${SCALES.mr(0.2)} ${SCALES.mb(0)} ${SCALES.ml(0.2)};
+          margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
           z-index: 1;
 
           animation: fadeIn 200ms ease;

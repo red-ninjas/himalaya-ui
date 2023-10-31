@@ -8,7 +8,7 @@ export interface SidebarProps {
   header?: React.ReactNode;
 }
 
-export const Sidebar: React.FC<PropsWithChildren<SidebarProps>> = ({ children, ...props }) => {
+const Sidebar: React.FC<PropsWithChildren<SidebarProps>> = ({ children, ...props }) => {
   const layout = useLayout();
   const pathname = usePathname();
   const boxRef = useRef<HTMLDivElement>(null);
@@ -53,4 +53,5 @@ export const Sidebar: React.FC<PropsWithChildren<SidebarProps>> = ({ children, .
   );
 };
 
+Sidebar.displayName = 'HimalayaSidebar';
 export default Sidebar;

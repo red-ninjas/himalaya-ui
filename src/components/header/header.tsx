@@ -61,9 +61,11 @@ const HeaderComponent: React.FC<HeaderProps> = ({ children, transcluent = true }
             <div className="left-controls">
               <div className="left-controls-inner">{leftHeaderControl}</div>
             </div>
-            <div className="center-controls">
-              <div className="center-controls-inner">{centerHeaderControl}</div>
-            </div>
+            {centerHeaderControl && centerHeaderControl.length > 0 && (
+              <div className="center-controls">
+                <div className="center-controls-inner">{centerHeaderControl}</div>
+              </div>
+            )}
             <div className="right-controls">
               <div className="right-controls-inner">{rightHeaderControl}</div>
             </div>
@@ -93,20 +95,22 @@ const HeaderComponent: React.FC<HeaderProps> = ({ children, transcluent = true }
           user-select: none;
           padding: 0;
           height: ${SCALES.height(1, '60px')};
+          gap: 12px;
         }
 
         .left-controls {
-          flex: 1 1;
           display: flex;
           align-items: center;
           justify-content: flex-start;
           align-self: stretch;
+          overflow: hidden;
         }
         .left-controls-inner {
           display: flex;
           align-items: center;
           gap: 6px;
           height: 100%;
+          width: 100%;
         }
 
         .center-controls {
@@ -125,7 +129,6 @@ const HeaderComponent: React.FC<HeaderProps> = ({ children, transcluent = true }
         }
 
         .right-controls {
-          flex: 1 1;
           display: flex;
           align-items: center;
           justify-content: flex-end;

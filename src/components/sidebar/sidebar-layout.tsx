@@ -1,7 +1,8 @@
 'use client';
-import { getValidChildren } from '../utils/collections';
+import { pickChild } from '../utils/collections';
 import React, { createRef, useEffect, useState } from 'react';
-import Sidebar from '.';
+import { Sidebar } from './types';
+import { default as SidebarWithoutTypes } from './sidebar';
 
 import useLayout from '../use-layout';
 import useSidebar from '../use-sidebar';
@@ -45,16 +46,8 @@ const useRefDimensions = (ref: React.RefObject<HTMLDivElement>) => {
 };
 
 const SidebarLayout: React.FC<React.PropsWithChildren<SidebarLayoutProps>> = ({ children, width, hasBorder = true, hideOnMobile = true }) => {
-  const sidebar = getValidChildren(children).map(item => {
-    if (item.type === Sidebar) {
-      return item;
-    }
-  });
-  const content = getValidChildren(children).map(item => {
-    if (item.type !== Sidebar) {
-      return item;
-    }
-  });
+  const [content, sidebar] = pickChild(children, Sidebar);
+  const [contentExtra, sidebarWithoutTypes] = pickChild(content, SidebarWithoutTypes);
 
   const { isEnabled, setIsEnabled } = useSidebar();
 
@@ -73,6 +66,7 @@ const SidebarLayout: React.FC<React.PropsWithChildren<SidebarLayoutProps>> = ({ 
           <div className="sidebar-content">
             <InnerScroll width={'100%'} height={'100%'} type="vertical">
               {sidebar}
+              {sidebarWithoutTypes}
             </InnerScroll>
           </div>
         </Drawer>
@@ -88,14 +82,14 @@ const SidebarLayout: React.FC<React.PropsWithChildren<SidebarLayoutProps>> = ({ 
               }}
             >
               <InnerScroll transparentBg={true} width={'100%'} height={'100%'} type="vertical">
-                {' '}
                 {sidebar}
+                {sidebarWithoutTypes}
               </InnerScroll>
             </div>
           </div>
         )}
         <main className="main" style={{ width: !isActive ? '100%' : `calc(100% - ${sideBarWidth})` }}>
-          {content}
+          {contentExtra}
         </main>
         <div className="border-right-holder">
           <div
