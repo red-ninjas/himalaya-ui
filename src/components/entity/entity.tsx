@@ -66,11 +66,15 @@ function EntityComponent({
           align-items: flex-start;
 
           padding: ${SCALES.pt(1)} ${SCALES.pr(1)} ${SCALES.pb(1)} ${SCALES.pl(1)};
-          margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
+          margin: ${SCALES.mt(1, 'auto')} ${SCALES.mr(1, 'auto')} ${SCALES.mb(1, 'auto')} ${SCALES.ml(1, 'auto')};
 
           &.disabled {
             background: ${theme.palette.accents_1};
             cursor: not-allowed;
+
+            .entity-wrapper {
+              opacity: 0.6;
+            }
           }
           border: 1px solid ${theme.palette.border};
           border-radius: ${theme.style.radius};
