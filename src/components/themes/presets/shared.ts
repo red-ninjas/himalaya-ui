@@ -60,8 +60,8 @@ export const generateAccents = (mainColor: string, isTint): UIThemesAccents => {
     accents_6: '#' + (isTint ? mainColorConverter.tint(70).hex : mainColorConverter.shade(70).hex),
     accents_7: '#' + (isTint ? mainColorConverter.tint(80).hex : mainColorConverter.shade(80).hex),
     accents_8: '#' + (isTint ? mainColorConverter.tint(90).hex : mainColorConverter.shade(90).hex),
-    border: '#' + (isTint ? mainColorConverter.tint(12).hex : mainColorConverter.shade(8.5).hex),
-    secondary: '#' + (isTint ? mainColorConverter.tint(8.5).hex : mainColorConverter.shade(7.5).hex),
+    border: '#' + (isTint ? mainColorConverter.tint(12.5).hex : mainColorConverter.shade(12.5).hex),
+    secondary: '#' + (isTint ? mainColorConverter.tint(8.5).hex : mainColorConverter.shade(8.5).hex),
     background: mainColor,
   };
 };

@@ -126,7 +126,7 @@ const SidebarLayout: React.FC<React.PropsWithChildren<SidebarLayoutProps>> = ({ 
           .border-right-holder {
             position: relative;
             height: 100%;
-            width: 1px;
+            width: 0.5px;
           }
 
           .sidebar {
@@ -155,7 +155,7 @@ const SidebarLayout: React.FC<React.PropsWithChildren<SidebarLayoutProps>> = ({ 
           .border-right {
             position: fixed;
             height: 100%;
-            width: 1px;
+            width: 0.5px;
             background: ${hasBorder ? theme.palette.border : 'transparent'};
           }
 
