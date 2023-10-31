@@ -22,7 +22,7 @@ const useRefDimensions = (ref: React.RefObject<HTMLDivElement>) => {
       const boundingRect = ref?.current?.getBoundingClientRect();
 
       if (boundingRect != undefined) {
-        const { width, height } = boundingRect;
+        const { height } = boundingRect;
         setHeight(height);
       }
     });
