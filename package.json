@@ -1,6 +1,6 @@
 {
   "name": "@himalaya-ui/core",
-  "version": "0.0.49",
+  "version": "0.0.50",
   "main": "dist/bundle/index.js",
   "module": "dist/bundle/esm/index.js",
   "types": "dist/bundle/esm/index.d.ts",

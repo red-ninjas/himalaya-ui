@@ -1,13 +1,13 @@
 import { PropsWithChildren, ReactElement } from 'react';
-import { EntityProps } from './index';
+import { MoreHorizontal } from '../icons';
+import Menu from '../menu';
+import MenuItem from '../menu/menu-item';
 import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';
 import useTheme from '../use-theme';
 import { pickChild } from '../utils/collections';
 import EntityField from './entity-field';
-import Menu from '../menu';
-import { MoreHorizontal } from '../icons';
-import MenuItem from '../menu/menu-item';
+import { EntityProps } from './index';
 
 function EntityComponent({
   children,
@@ -42,7 +42,7 @@ function EntityComponent({
       <div className={outerClasses} {...others}>
         <div className={classes}>
           {checkbox && <span className="entity-checkbox">{checkbox}</span>}
-          {thumbnail}
+          {thumbnail && <span className="entity-thumbnail">{thumbnail}</span>}
           {entityFields}
           {actions && <span className="entity-actions">{actions}</span>}
           {items && (
@@ -60,9 +60,13 @@ function EntityComponent({
           font-size: ${SCALES.font(0.88)};
           width: 100%;
           display: flex;
+          gap: 12px;
           justify-content: flex-start;
           flex-direction: column;
           align-items: flex-start;
+
+          padding: ${SCALES.pt(1)} ${SCALES.pr(1)} ${SCALES.pb(1)} ${SCALES.pl(1)};
+          margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
 
           &.disabled {
             background: ${theme.palette.accents_1};
@@ -72,10 +76,13 @@ function EntityComponent({
           border-radius: ${theme.style.radius};
         }
 
+        .entity-thumbnail {
+          margin-right: ${SCALES.mr(1)};
+        }
+
         .entity-wrapper {
           height: auto;
           width: 100%;
-          padding: ${SCALES.px(1)} ${SCALES.py(1)};
           display: flex;
           justify-content: flex-start;
           flex-wrap: wrap;
