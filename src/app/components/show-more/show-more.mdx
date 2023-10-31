@@ -1,0 +1,34 @@
+import { Layout, Playground, Attributes } from 'lib/components'
+import { ShowMore } from 'components'
+import { useState } from 'react'
+
+export const meta = {
+  title: 'Show More',
+  group: 'Layout',
+}
+
+# Show More
+
+Styling component to show expanded or collapsed content.
+
+<Playground
+  scope={{ ShowMore, useState }}
+  code={`
+() => {
+  const [expanded, setExpanded] = useState(false);
+  return (
+    <ShowMore expanded={expanded} onClick={() => setExpanded(!expanded)} />
+  );
+}
+`}
+/>
+
+<Attributes edit="/pages/components/show-more.mdx">
+  <Attributes.Title>ShowMore.Props</Attributes.Title>
+
+| Attribute    | Description                                         | Type         | Accepted Values                        | Default |
+| ------------ | --------------------------------------------------- | ------------ | -------------------------------------- | ------- |
+| **expanded** | Indicates whether content is expanded or collapsed. | `boolean`    | `true` (expanded), `false` (collapsed) | `false` |
+| **onClick**  | A callback function to handle the click event.      | `() => void` | -                                      | -       |
+
+</Attributes>
