@@ -1,5 +1,5 @@
 'use client';
-import React, { PropsWithChildren, useState } from 'react';
+import React, { PropsWithChildren, useEffect, useState } from 'react';
 import Button from '../button';
 import { ChevronDown } from '../icons';
 import useClasses from '../use-classes';
@@ -11,17 +11,30 @@ interface Props {
   onClick: () => void;
 }
 
-const useRefDimensions = ref => {
-  const [dimensions, setDimensions] = useState({ width: 1, height: 2 });
-  React.useEffect(() => {
-    if (ref.current) {
-      const { current } = ref;
-      const boundingRect = current.getBoundingClientRect();
-      const { width, height } = boundingRect;
-      setDimensions({ width: Math.round(width), height: Math.round(height) });
+const useRefDimensions = (ref: React.RefObject<HTMLDivElement>) => {
+  const [height, setHeight] = useState<number | undefined>(undefined);
+
+  useEffect(() => {
+    if (!ref.current) {
+      return;
     }
-  }, [ref]);
-  return dimensions;
+    const resizeObserver = new ResizeObserver(() => {
+      const boundingRect = ref?.current?.getBoundingClientRect();
+
+      if (boundingRect != undefined) {
+        const { width, height } = boundingRect;
+        setHeight(height);
+      }
+    });
+
+    resizeObserver.observe(ref.current);
+
+    return function cleanup() {
+      resizeObserver.disconnect();
+    };
+  }, [ref.current]);
+
+  return height;
 };
 
 type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
@@ -113,7 +126,7 @@ const ShowMore: React.FC<PropsWithChildren<ShowMoreProps>> = ({ children, expand
 
         .expanded {
           .show-more-content {
-            height: ${dimensions.height}px;
+            height: ${dimensions}px;
           }
         }
       `}</style>
