@@ -5,6 +5,7 @@ export interface HeroProps {
 }
 export interface HeroTagProps {
   hasGradient?: boolean;
+  background?: string;
   gradient?: Gradient;
   textColor?: string;
 }

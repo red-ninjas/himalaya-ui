@@ -62,6 +62,8 @@ Used to trigger an operation.
   code={`
 <Grid.Container gap={1.5}>
   <Grid><Button auto type="default">Default</Button></Grid>
+  <Grid><Button auto type="primary">Primary</Button></Grid>
+  <Grid><Button auto type="tertiary">Tertiary</Button></Grid>
   <Grid><Button auto type="secondary">Secondary</Button></Grid>
   <Grid><Button auto type="success">Success</Button></Grid>
   <Grid><Button auto type="warning">Warning</Button></Grid>
@@ -77,6 +79,9 @@ Used to trigger an operation.
   scope={{ Button, Grid }}
   code={`
 <Grid.Container gap={1.5}>
+  <Grid><Button type="default" ghost auto scale={0.7}>Default</Button></Grid>
+  <Grid><Button type="primary" ghost auto scale={0.7}>Primary</Button></Grid>
+  <Grid><Button  type="tertiary" ghost auto scale={0.7}>Tertiary</Button></Grid>
   <Grid><Button type="secondary" ghost auto scale={0.7}>Secondary</Button></Grid>
   <Grid><Button type="success" ghost auto scale={0.7}>Success</Button></Grid>
   <Grid><Button type="warning" ghost auto scale={0.7}>Warning</Button></Grid>
@@ -155,6 +160,8 @@ Used to trigger an operation.
 ```ts
 type ButtonTypes =
   | 'default'
+  | 'primary'
+  | 'tertiary'
   | 'secondary'
   | 'success'
   | 'warning'

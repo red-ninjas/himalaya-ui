@@ -65,6 +65,7 @@ const Editor: React.FC<Props> = ({ code }) => {
           overflow: hidden;
           border-bottom-left-radius: ${theme.style.radius};
           border-bottom-right-radius: ${theme.style.radius};
+          background-color: ${theme.palette.accents_0};
         }
 
         details summary::-webkit-details-marker {

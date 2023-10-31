@@ -2,14 +2,14 @@ export const tuple = <T extends string[]>(...args: T) => args;
 
 export const tupleNumber = <T extends number[]>(...args: T) => args;
 
-const buttonTypes = tuple('default', 'secondary', 'success', 'warning', 'error', 'abort');
+const buttonTypes = tuple('default', 'primary', 'tertiary', 'secondary', 'success', 'warning', 'error', 'abort');
 
-const normalTypes = tuple('default', 'secondary', 'success', 'warning', 'error');
+const normalTypes = tuple('default', 'primary', 'tertiary', 'secondary', 'success', 'warning', 'error');
 
-const snippetTypes = tuple('default', 'secondary', 'success', 'warning', 'error', 'dark', 'lite');
-const quickActionTypes = tuple('default', 'secondary', 'success', 'warning', 'error', 'dark', 'lite');
+const snippetTypes = tuple('default', 'primary', 'tertiary', 'secondary', 'success', 'warning', 'error', 'dark', 'lite');
+const quickActionTypes = tuple('default', 'primary', 'tertiary', 'secondary', 'success', 'warning', 'error', 'dark', 'lite');
 
-const cardTypes = tuple('default', 'secondary', 'success', 'warning', 'error', 'dark', 'lite', 'alert', 'purple', 'violet', 'cyan');
+const cardTypes = tuple('default', 'secondary', 'success', 'warning', 'error', 'dark', 'lite', 'alert', 'primary', 'tertiary');
 
 const copyTypes = tuple('default', 'silent', 'prevent');
 

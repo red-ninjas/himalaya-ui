@@ -27,7 +27,7 @@ export interface ConfigProviderContextParams {
   swipedToLeft?: SwipeEventData | undefined;
   onSwiping?: SwipeEventData | undefined;
   themes?: Array<UIThemes>;
-  themeType?: string | 'dark' | 'light' | 'grey';
+  themeType?: string | 'dark' | 'light';
   toasts: Array<Toast>;
   updateToasts: UpdateToastsFunction;
   toastLayout: Required<ToastLayout>;
@@ -40,8 +40,8 @@ export interface ConfigProviderContextParams {
 
 export const defaultConfigs: ConfigProviderContextParams = {
   sidebarScrollHeight: 0,
-  updateSidebarScrollHeight: () => {},
-  setTheme: () => {},
+  updateSidebarScrollHeight: () => { },
+  setTheme: () => { },
   isMobile: false,
   swipeToRight: undefined,
   swipedToLeft: undefined,
@@ -54,7 +54,7 @@ export const defaultConfigs: ConfigProviderContextParams = {
   lastUpdateToastId: null,
   updateLastToastId: () => null,
   customTheme: {},
-  updateCustomTheme: () => {},
+  updateCustomTheme: () => { },
 };
 
 export const ConfigContext = React.createContext<ConfigProviderContextParams>(defaultConfigs);

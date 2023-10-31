@@ -1,3 +1,5 @@
+'use client';
+
 import { PropsWithChildren, ReactElement } from 'react';
 import { MoreHorizontal } from '../icons';
 import Menu from '../menu';

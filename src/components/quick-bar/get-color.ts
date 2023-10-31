@@ -11,42 +11,50 @@ export type QuickBarColors = {
 export const getColors = (type: SnippetTypes, palette: UIThemesPalette): QuickBarColors => {
   const colors: Record<QuickActionTypes, string> = {
     default: palette.accents_2,
-    secondary: palette.secondary,
-    success: palette.success,
-    warning: palette.warning,
-    error: palette.error,
+    secondary: palette.secondary.value,
+    tertiary: palette.tertiary.value,
+    primary: palette.primary.value,
+    success: palette.success.value,
+    warning: palette.warning.value,
+    error: palette.error.value,
     dark: palette.foreground,
     lite: 'transparent',
   };
 
   const hoverColors: Record<QuickActionTypes, string> = {
     default: palette.accents_3,
-    secondary: palette.secondary,
-    success: palette.successLight,
-    warning: palette.warningLight,
-    error: palette.errorLight,
+    tertiary: palette.tertiary.light,
+    primary: palette.primary.light,
+    secondary: palette.secondary.light,
+    success: palette.success.light,
+    warning: palette.warning.light,
+    error: palette.error.light,
     dark: palette.accents_7,
-    lite: palette.accents_3,
+    lite: palette.foreground,
   };
 
   const textColors: Record<QuickActionTypes, string> = {
     default: palette.accents_6,
-    secondary: palette.secondary,
-    success: palette.successLighter,
-    warning: palette.warningLighter,
-    error: palette.errorLighter,
+    tertiary: palette.tertiary.lighter,
+    primary: palette.primary.lighter,
+    secondary: palette.secondary.lighter,
+    success: palette.success.lighter,
+    warning: palette.warning.lighter,
+    error: palette.error.lighter,
     dark: palette.background,
-    lite: palette.accents_6,
+    lite: palette.secondary.lighter,
   };
 
   const textColorsHover: Record<QuickActionTypes, string> = {
     default: palette.accents_7,
-    secondary: palette.secondary,
-    success: palette.foreground,
-    warning: palette.foreground,
-    error: palette.foreground,
+    primary: palette.primary.contrast,
+    tertiary: palette.tertiary.contrast,
+    secondary: palette.secondary.contrast,
+    success: palette.success.contrast,
+    warning: palette.warning.contrast,
+    error: palette.error.contrast,
     dark: palette.foreground,
-    lite: '#fff',
+    lite: palette.background,
   };
 
   return {

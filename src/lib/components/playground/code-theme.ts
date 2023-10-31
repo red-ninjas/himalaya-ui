@@ -33,7 +33,7 @@ const makeCodeTheme = (theme: UIThemes): PrismTheme => ({
     {
       types: ['property', 'function'],
       style: {
-        color: theme.palette.success,
+        color: theme.palette.success.value,
       },
     },
     {
@@ -45,7 +45,7 @@ const makeCodeTheme = (theme: UIThemes): PrismTheme => ({
     {
       types: ['attr-name'],
       style: {
-        color: theme.palette.warning,
+        color: theme.palette.warning.value,
       },
     },
     {
@@ -66,7 +66,7 @@ const makeCodeTheme = (theme: UIThemes): PrismTheme => ({
         'variable',
       ],
       style: {
-        color: theme.palette.purple,
+        color: theme.palette.tertiary.value,
       },
     },
     {
@@ -78,7 +78,7 @@ const makeCodeTheme = (theme: UIThemes): PrismTheme => ({
     {
       types: ['language-javascript', 'script'],
       style: {
-        color: theme.palette.success,
+        color: theme.palette.primary.value,
       },
     },
     {

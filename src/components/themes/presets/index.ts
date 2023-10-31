@@ -1,3 +1,5 @@
+import { ColorVariable } from "../utils/color-variable";
+
 export interface Gradient {
   from: string;
   to: string;
@@ -14,6 +16,7 @@ export type GradientPositions = GradientPositionsEnum | number;
 export interface UIThemesAccents {
   accents_0: string;
   accents_1: string;
+  foreground: string;
   accents_2: string;
   accents_3: string;
   accents_4: string;
@@ -23,39 +26,21 @@ export interface UIThemesAccents {
   accents_8: string;
   border: string;
   background: string;
-  secondary: string;
+  highlite: string;
 }
 export interface UIThemesColors {
-  success: string;
-  successLighter: string;
-  successLight: string;
-  successDark: string;
-  error: string;
-  errorLighter: string;
-  errorLight: string;
-  errorDark: string;
-  warning: string;
-  warningLighter: string;
-  warningLight: string;
-  warningDark: string;
-  cyan: string;
-  cyanLighter: string;
-  cyanLight: string;
-  cyanDark: string;
-  violet: string;
-  violetLighter: string;
-  violetLight: string;
-  violetDark: string;
+  primary: ColorVariable;
+  secondary: ColorVariable,
+  tertiary: ColorVariable,
+  success: ColorVariable;
+  error: ColorVariable;
+  warning: ColorVariable;
+  link: ColorVariable;
+  code: string;
+  selection: string;
 }
 
 export interface UIThemesCore {
-  foreground: string;
-  selection: string;
-  code: string;
-  link: string;
-  purple: string;
-  magenta: string;
-  alert: string;
 
   gradient_1: Gradient;
   gradient_2: Gradient;

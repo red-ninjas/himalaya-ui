@@ -1,3 +1,5 @@
+'use client';
+
 import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';
 import useTheme from '../use-theme';
@@ -34,7 +36,7 @@ function EntityFieldComponent({
           </>
         )}
       </div>
-      <style jsx global>{`
+      <style jsx>{`
         .field-wrapper {
           .title {
             font-weight: 600;

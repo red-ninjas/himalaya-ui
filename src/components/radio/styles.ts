@@ -15,24 +15,34 @@ export const getColors = (palette: UIThemesPalette, status?: NormalTypes): Radio
       bg: palette.foreground,
     },
     secondary: {
-      label: palette.foreground,
-      border: palette.border,
-      bg: palette.foreground,
+      label: palette.secondary.value,
+      border: palette.secondary.value,
+      bg: palette.secondary.value,
     },
     success: {
-      label: palette.success,
-      border: palette.success,
-      bg: palette.success,
+      label: palette.success.value,
+      border: palette.success.value,
+      bg: palette.success.value,
+    },
+    primary: {
+      label: palette.primary.value,
+      border: palette.primary.value,
+      bg: palette.primary.value,
+    },
+    tertiary: {
+      label: palette.tertiary.value,
+      border: palette.tertiary.value,
+      bg: palette.tertiary.value,
     },
     warning: {
-      label: palette.warning,
-      border: palette.warning,
-      bg: palette.warning,
+      label: palette.warning.value,
+      border: palette.warning.value,
+      bg: palette.warning.value,
     },
     error: {
-      label: palette.error,
-      border: palette.error,
-      bg: palette.error,
+      label: palette.error.value,
+      border: palette.error.value,
+      bg: palette.error.value,
     },
   };
 

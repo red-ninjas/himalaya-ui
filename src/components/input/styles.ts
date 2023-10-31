@@ -9,6 +9,7 @@ export type InputColor = {
 
 export const getColors = (palette: UIThemesPalette, status?: NormalTypes): InputColor => {
   const colors: { [key in NormalTypes]: InputColor } = {
+
     default: {
       color: palette.foreground,
       borderColor: palette.border,
@@ -16,23 +17,33 @@ export const getColors = (palette: UIThemesPalette, status?: NormalTypes): Input
     },
     secondary: {
       color: palette.foreground,
-      borderColor: palette.secondary,
-      hoverBorder: palette.secondary,
+      borderColor: palette.secondary.light,
+      hoverBorder: palette.secondary.value,
     },
     success: {
       color: palette.foreground,
-      borderColor: palette.successLight,
-      hoverBorder: palette.success,
+      borderColor: palette.success.light,
+      hoverBorder: palette.success.value,
+    },
+    primary: {
+      color: palette.foreground,
+      borderColor: palette.primary.light,
+      hoverBorder: palette.primary.value,
+    },
+    tertiary: {
+      color: palette.foreground,
+      borderColor: palette.tertiary.light,
+      hoverBorder: palette.tertiary.value,
     },
     warning: {
       color: palette.foreground,
-      borderColor: palette.warningLight,
-      hoverBorder: palette.warning,
+      borderColor: palette.warning.light,
+      hoverBorder: palette.warning.value,
     },
     error: {
-      color: palette.error,
-      borderColor: palette.error,
-      hoverBorder: palette.errorDark,
+      color: palette.foreground,
+      borderColor: palette.error.light,
+      hoverBorder: palette.error.value,
     },
   };
 
