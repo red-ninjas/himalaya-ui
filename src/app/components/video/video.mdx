@@ -1,0 +1,37 @@
+import { Layout, Playground, Attributes } from 'lib/components'
+import { Video } from 'components'
+
+export const meta = {
+  title: 'Video',
+  group: 'General',
+}
+
+# Video
+
+Display video content.
+
+<Playground
+  scope={{ Video }}
+  code={`
+<Video
+  src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4"
+  width={2000 / 3.5}
+  height={1300 / 2.7}
+  controls={true}
+  autoplay={true}
+  muted={true}
+/>
+`}
+/>
+<Attributes edit="/pages/components/video.mdx">
+  <Attributes.Title>Video.Props</Attributes.Title>
+
+| Attribute    | Description                             | Type      | Accepted Values            | Default |
+| ------------ | --------------------------------------- | --------- | -------------------------- | ------- |
+| **src**      | The source URL of the video.            | `string`  | -                          | -       |
+| **width**    | The width of the video player.          | `number`  | -                          | -       |
+| **height**   | The height of the video player.         | `number`  | -                          | -       |
+| **controls** | Determines if video controls are shown. | `boolean` | `false` (to hide controls) | `true`  |
+| **autoplay** | Determines if the video should autoplay. | `boolean` | `true` (to autoplay)       | `false` |
+| **muted**    | Determines if the video should be muted. | `boolean` | `true` (to mute)          | `false` |
+</Attributes>
