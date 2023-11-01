@@ -1,6 +1,6 @@
 'use client';
 import React, { useRef, useState } from 'react';
-import { PlayFill, PauseFill, Minimize, Maximize, Volume2, VolumeX } from 'components/icons';
+import { PlayFill, PauseFill, Minimize, Maximize, Volume2, VolumeX } from '../icons';
 import useTheme from '../use-theme';
 
 interface Props {
@@ -32,13 +32,14 @@ const Video: React.FC<VideoProps> = ({ src, width, height, controls, autoplay = 
       setIsMuted(!isMuted);
     }
   };
+
   const handleFullScreen = () => {
     if (!isFullScreen) {
-      videoRef?.current?.requestFullscreen();
-      setIsFullScreen(true);
+      if (videoRef.current) {
+        videoRef.current.requestFullscreen();
+      }
     } else {
-      document.exitFullscreen();
-      setIsFullScreen(false);
+      setIsFullScreen(!isFullScreen);
     }
   };
 
