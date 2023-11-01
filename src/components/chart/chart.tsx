@@ -16,6 +16,7 @@ import { ISeriesApi } from 'components/use-charts/api/iseries-api';
 import { PriceFormatCustom, SeriesOptionsMap } from 'components/use-charts/model/series-options';
 import { ChartOptions, IChartApi } from 'components/use-charts/api/create-chart';
 import { DeepPartial } from 'components/utils/types';
+import { withThemeContext } from '../use-theme';
 
 interface ThemedChartItem {
   time: number;
@@ -120,7 +121,8 @@ export const ChartNumberFormatter = (value: number) => {
 
 export interface ChartProps {
   series: { [name: string]: ThemedChartData };
-  theme?: UIThemes;
+  // theme?: UIThemes;
+  context?: UIThemes;
   showLegends?: boolean;
   showTime?: boolean;
   showSeconds?: boolean;
@@ -136,7 +138,7 @@ interface ThemedChartStates {
   isEmpty: boolean;
 }
 
-export default class ThemedChart extends React.Component<ChartProps> {
+class ThemedChart extends React.Component<ChartProps> {
   chart: IChartApi | undefined = undefined;
   chartContainerRef = createRef<HTMLDivElement>();
   tooltipRef = createRef<HTMLDivElement>();
@@ -272,7 +274,7 @@ export default class ThemedChart extends React.Component<ChartProps> {
   }
 
   override componentDidUpdate(prevProps: Readonly<ChartProps>): void {
-    if (prevProps.theme?.type !== this.props.theme?.type) {
+    if (prevProps.context?.type !== this.props.context?.type) {
       this.setTheme();
     }
 
@@ -292,14 +294,14 @@ export default class ThemedChart extends React.Component<ChartProps> {
   private setTheme() {
     this.chart?.applyOptions({
       layout: {
-        textColor: this.props.theme?.type == 'dark' ? '#fff' : '#000',
+        textColor: this.props.context?.type == 'dark' ? '#fff' : '#000',
       },
       grid: {
         vertLines: {
-          color: this.props.theme?.type == 'dark' ? 'rgba(255,255,255,0.15)' : 'rgba(0,0,0,0.1)',
+          color: this.props.context?.type == 'dark' ? 'rgba(255,255,255,0.15)' : 'rgba(0,0,0,0.1)',
         },
         horzLines: {
-          color: this.props.theme?.type == 'dark' ? 'rgba(255,255,255,0.15)' : 'rgba(0,0,0,0.1)',
+          color: this.props.context?.type == 'dark' ? 'rgba(255,255,255,0.15)' : 'rgba(0,0,0,0.1)',
         },
       },
     });
@@ -338,7 +340,7 @@ export default class ThemedChart extends React.Component<ChartProps> {
     }
 
     for (const key of Object.keys(this.props.series)) {
-      const defaultColor = this.props.series[key].color || this.props.theme?.palette.primary.value || '#eee';
+      const defaultColor = this.props.series[key].color || this.props.context?.palette.primary.value || '#eee';
 
       if (this.props.series[key].type == 'area') {
         const side = this.props.series[key].side || 'right';
@@ -555,13 +557,13 @@ export default class ThemedChart extends React.Component<ChartProps> {
             left: 12px;
             pointer-events: none;
             border: 1px solid;
-            border-color: ${this.props.theme?.palette.border};
+            border-color: ${this.props.context?.palette.border};
             border-radius: 6px;
             font-family: -apple-system, BlinkMacSystemFont, 'Trebuchet MS', Roboto, Ubuntu, sans-serif;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            color: ${this.props.theme?.palette.foreground};
-            background: ${this.props.theme?.palette.background};
+            color: ${this.props.context?.palette.foreground};
+            background: ${this.props.context?.palette.background};
             font-size: calc(1 * 12px);
             padding: calc(0.65 * 12px) calc(0.9 * 12px) calc(0.65 * 12px) calc(0.9 * 12px);
           }
@@ -574,10 +576,12 @@ export default class ThemedChart extends React.Component<ChartProps> {
             margin-top: 12px;
           }
           :global(.series-checkbox .text) {
-            color: ${this.props.theme?.palette.accents_5};
+            color: ${this.props.context?.palette.accents_5};
           }
         `}</style>
       </>
     );
   }
 }
+
+export default withThemeContext(ThemedChart);
