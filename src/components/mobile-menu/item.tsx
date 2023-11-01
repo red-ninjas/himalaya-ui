@@ -40,7 +40,7 @@ const NavigationItem: React.FC<PropsWithChildren<NavigationItemProps>> = ({ url 
           </a>
         </Link>
       </div>
-      <style jsx>{`
+      <style jsx global>{`
         .item {
           display: flex;
           box-sizing: border-box;
@@ -56,6 +56,11 @@ const NavigationItem: React.FC<PropsWithChildren<NavigationItemProps>> = ({ url 
           height: ${SCALES.height(1, 'auto')};
           padding: ${SCALES.pt(0.875)} ${SCALES.pr(0.55)} ${SCALES.pb(0.875)} ${SCALES.pl(0.55)};
           margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
+          border-bottom: 1px solid ${theme.palette.border};
+        }
+
+        .sub-group-inner .item {
+          border-bottom: unset;
         }
 
         .item:hover {
