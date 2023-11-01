@@ -1,0 +1,55 @@
+import { Layout, Playground, Attributes } from 'lib/components'
+import { useSidebar, Button, useToasts } from 'components'
+
+export const meta = {
+  title: 'useSidebar',
+  group: 'Utilities',
+}
+
+# useSidebar
+
+Simplify Sidebar Control.
+
+The useSidebar hook grants access to the sidebar state, allowing you to effortlessly manage and control the visibility and behavior of a sidebar component.
+
+<Playground
+  title="Sidebar Context Usage"
+  desc="Access the sidebar context and interact with the sidebar's state."
+  scope={{ useSidebar , Button}}
+  code={`
+() => {
+  const { isEnabled, setIsEnabled } = useSidebar();
+  const enableSidebar = () => {
+    setIsEnabled(true);
+  };
+  const disableSidebar = () => {
+    setIsEnabled(false);
+  };
+  return (
+    <>
+      <p>Sidebar is {isEnabled ? 'enabled' : 'disabled'}</p>
+      <Button scale={0.5}  onClick={enableSidebar}>Enable Sidebar</Button>
+      <Button ml="10px" scale={0.5}  onClick={disableSidebar}>Disable Sidebar</Button>
+    </>
+  );
+}
+`}
+/>
+
+<Attributes edit="/pages/hooks/use-sidebar.mdx">
+<Attributes.Title>useSidebar</Attributes.Title>
+
+```ts
+type SidebarContextProps = {
+  isEnabled: boolean;
+  setIsEnabled: (value: boolean) => void;
+}
+
+const defaultConfigs: SidebarContextProps = {
+  setIsEnabled: () => {},
+  isEnabled: false,
+}
+
+```
+
+</Attributes>
