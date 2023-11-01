@@ -10,7 +10,7 @@ import useTheme from '../use-theme';
 import { pickChild } from '../utils/collections';
 import EntityField from './entity-field';
 import { EntityProps } from './index';
-import { addColorAlpha } from 'components/utils/color';
+import { addColorAlpha } from '../utils/color';
 
 function EntityComponent({
   children,
@@ -70,7 +70,7 @@ function EntityComponent({
 
           padding: ${SCALES.pt(1)} ${SCALES.pr(1)} ${SCALES.pb(1)} ${SCALES.pl(1)};
           margin: ${SCALES.mt(1, 'auto')} ${SCALES.mr(1, 'auto')} ${SCALES.mb(1, 'auto')} ${SCALES.ml(1, 'auto')};
-          background: ${addColorAlpha(theme.palette.accents_0, 0.3)};
+          background: ${addColorAlpha(theme.palette.accents_0, 0.15)};
 
           &.disabled {
             background: ${theme.palette.accents_1};
