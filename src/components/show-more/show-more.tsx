@@ -40,7 +40,7 @@ const useRefDimensions = (ref: React.RefObject<HTMLDivElement>) => {
 type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
 export type ShowMoreProps = Props & NativeAttrs;
 
-const ShowMoreComponent: React.FC<ShowMoreProps> = ({ expanded, onClick }) => {
+const ShowMore: React.FC<PropsWithChildren<ShowMoreProps>> = ({ children, expanded, onClick }) => {
   const theme = useTheme();
   const [iconRotated, setIconRotated] = useState(false);
   const { SCALES } = useScale();
@@ -134,6 +134,5 @@ const ShowMoreComponent: React.FC<ShowMoreProps> = ({ expanded, onClick }) => {
   );
 };
 
-ShowMoreComponent.displayName = 'HimalayaShowMore';
-const ShowMore = withScale(ShowMoreComponent);
-export default ShowMore;
+ShowMore.displayName = 'HimalayaShowMore';
+export default withScale(ShowMore);
