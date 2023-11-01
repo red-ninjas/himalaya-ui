@@ -155,6 +155,8 @@ export type { AllThemesConfig } from './use-all-themes';
 export { default as useSearch } from './use-search';
 export { default as useSidebar, SidebarProvider } from './use-sidebar';
 export { default as useQuickBar, QuickBarProvider } from './use-quickbar';
+export { default as SidebarSwitcher } from './sidebar/sidebar-switcher';
+export { default as SidebarSkeleton } from './sidebar/sidebar-skeleton';
 
 export { Sidebar } from './sidebar';
 export { default as SidebarLayout } from './sidebar/sidebar-layout';
@@ -273,6 +275,9 @@ export { default as BottomNavigation } from './bottom-navigation';
 
 export { default as ShowMore } from './show-more';
 export type { ShowMoreProps } from './show-more';
+
+export { default as Video } from './video';
+export type { VideoProps } from './video';
 
 export { default as RunningText } from './running-text';
 export { default as Footer, FooterBottom, FooterNavigation } from './footer';

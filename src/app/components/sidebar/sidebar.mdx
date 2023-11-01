@@ -1,0 +1,117 @@
+import { Layout, Playground, Attributes , MockPage} from 'lib/components'
+import { SidebarLayout, Sidebar, SidebarSwitcher, SidebarSkeleton, Page, Button, ContentLayout, Text} from 'components'
+
+export const meta = {
+  title: 'Sidebar',
+  group: 'Layout',
+}
+
+# Sidebar
+Display a sidebar
+
+<Playground
+  title="General"
+  desc="Display a basic sidebar with group titles and links."
+  scope={{ Sidebar}}
+  code={`
+<Sidebar >
+  <Sidebar.Group title="Group 1">
+    <Sidebar.Item href="/page1">Link 1</Sidebar.Link>
+    <Sidebar.Item href="/page2">Link 2</Sidebar.Link>
+  </Sidebar.Group>
+</Sidebar>
+`}
+/>
+
+<Playground
+  title="SidebarLayout"
+  desc="Create a layout with a sidebar and content."
+  scope={{ Page, MockPage, Button, Sidebar, SidebarLayout, ContentLayout , Text}}
+  code={`
+() => {
+  const Child = () => (
+    <>
+<SidebarLayout>
+  <Sidebar>
+    <Sidebar.Group title="Group 1">
+      <Sidebar.Item href="#">Link 1</Sidebar.Link>
+      <Sidebar.Item href="#">Link 2</Sidebar.Link>
+    </Sidebar.Group>
+      <Sidebar.Group title="Group 2">
+      <Sidebar.Item href="#">Link 3</Sidebar.Link>
+      <Sidebar.Item href="#">Link 4</Sidebar.Link>
+    </Sidebar.Group>
+  </Sidebar>
+  <ContentLayout>
+   <Text h4>
+    Fast Web sites:
+    </Text>
+    <Text p>
+    Caching is very important for fast Web sites. This article describes different methods of caching and how to use HTTP Headers to control them.
+    </Text>
+    <Text p b>
+    A brief description of the changes between the early versions of HTTP, to the modern HTTP/2, the emergent HTTP/3 and beyond.
+    </Text>
+  </ContentLayout>
+</SidebarLayout>
+    </>
+  )
+  const [visible, setVisible] = React.useState(false)
+  return (
+    <>
+      <Button onClick={() => setVisible(true)} auto>Show SidebarLayout</Button>
+      <MockPage visible={visible} onClose={() => setVisible(false)}>
+        <Page><Child /></Page>
+      </MockPage>
+    </>
+  )
+}
+`}
+/>
+
+<Playground
+  title="Sidebar Loading Skeleton"
+  desc="Display a loading skeleton for the sidebar."
+  scope={{ SidebarSkeleton }}
+  code={`
+<SidebarSkeleton />
+`}
+/>
+
+<Playground
+  title="Activate Sidebar (Mobile Only)"
+  desc="A button that allows users to activate the sidebar."
+  scope={{ SidebarSwitcher }}
+  code={`
+<SidebarSwitcher />
+`}
+/>
+
+
+
+<Attributes edit="/pages/components/sidebar.mdx">
+<Attributes.Title>Sidebar.Props</Attributes.Title>
+
+| Attribute  | Description    | Type               | Accepted values          | Default |
+| ---------- | -------------- | ------------------ | ------------------------ | ------- |
+| **header** | Header content | `React.ReactNode`  | -                        | -       |
+| ...        | native props   | `HTMLAttributes`   | `'id', 'className', ...` | -       |
+
+<Attributes.Title>SidebarGroup.Props</Attributes.Title>
+
+| Attribute   | Description                   | Type      | Accepted values | Default |
+| ----------- | ----------------------------- | --------- | --------------- | ------- |
+| **title**   | The title of the sidebar group | `string`  | -               | -       |
+| **isActive**| Whether the group is active   | `boolean` | -               | -       |
+| ...         | native props                   | `HTMLAttributes` | `'id', 'className', ...` | - |
+
+
+<Attributes.Title>SidebarLink.Props</Attributes.Title>
+
+| Attribute | Description         | Type | Accepted values | Default |
+| --------- | ------------------- | ---- | --------------- | ------- |
+| **href**  | The URL to link to | `string` | -           | -       |
+| ...       | native props        | `HTMLAttributes` | `'id', 'className', ...` | - |
+
+
+</Attributes>
