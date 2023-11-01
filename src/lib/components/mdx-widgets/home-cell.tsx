@@ -43,7 +43,7 @@ const HomeCell: React.FC<HomeCellProps> = ({ url, title, desc, icon }) => {
             height: 40px;
             width: 40px;
             border-radius: 2rem;
-            background: ${theme.palette.accents_2};
+            background: ${theme.palette.accents_0};
             border: 1px solid ${theme.palette.border};
             color: ${theme.palette.accents_5};
             display: flex;

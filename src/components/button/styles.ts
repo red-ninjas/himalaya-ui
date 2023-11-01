@@ -56,8 +56,8 @@ export const getButtonColors = (palette: UIThemesPalette, props: ButtonProps): B
       color: palette.accents_5,
     },
     secondary: {
-      bg: palette.accents_0,
-      border: palette.accents_1,
+      bg: palette.secondary.value,
+      border: palette.secondary.light,
       color: palette.secondary.contrast,
     },
     primary: {
