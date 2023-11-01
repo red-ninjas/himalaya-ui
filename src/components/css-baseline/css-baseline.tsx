@@ -102,7 +102,7 @@ const CssBaseline: React.FC = () => {
         -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
         -webkit-box-align: center;
         align-items: center;
-        color: ${theme.palette.link};
+        color: ${theme.palette.link.value};
         text-decoration: ${theme.expressiveness.linkStyle};
       }
 
@@ -298,7 +298,7 @@ const CssBaseline: React.FC = () => {
       blockquote {
         padding: calc(0.667 * ${layout.gap}) ${layout.gap};
         color: ${theme.palette.accents_5};
-        background-color: ${theme.palette.accents_1};
+        background-color: ${theme.palette.accents_0};
         border-radius: ${theme.style.radius};
         margin: 1.5em 0;
         border: 1px solid ${theme.palette.border};

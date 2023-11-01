@@ -2,7 +2,6 @@
 import React, { useMemo } from 'react';
 import useScale, { withScale } from '../use-scale';
 import useTheme from '../use-theme';
-import { addColorAlpha } from '../utils/color';
 
 interface Props {
   block?: boolean;
@@ -27,8 +26,8 @@ const CodeComponent: React.FC<React.PropsWithChildren<CodeProps>> = ({
   const { background, border } = useMemo(() => {
     if (!classic)
       return {
-        border: theme.palette.accents_1,
-        background: addColorAlpha(theme.palette.accents_1, 0.75),
+        border: theme.palette.border,
+        background: theme.palette.accents_0,
       };
     return {
       border: theme.palette.border,

@@ -23,7 +23,7 @@ import { THEME_COOKIE_NAME, CUSTOM_THEME_TYPE } from '../constants';
 import { DeepPartial } from '../utils/types';
 import useTheme from '../use-theme';
 export interface ConfigProps {
-  themeType?: string | 'dark' | 'light' | 'grey';
+  themeType?: string | 'dark' | 'light';
   detectTheme?: boolean;
   themes?: Array<UIThemes>;
 }

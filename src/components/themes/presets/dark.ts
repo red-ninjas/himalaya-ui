@@ -1,30 +1,23 @@
 import { UIThemes, UIThemesExpressiveness, UIThemesPalette } from './index';
-import { defaultFont, defaultStyles, generateAccents, generateColors } from './shared';
+import { defaultFont, defaultStyles } from './shared';
+import { generateAccents, generateColors } from '../utils';
 
-const ascents = generateAccents('#080808', true);
+const ascents = generateAccents('#060606', '#ffffff');
 const colors = generateColors();
 export const palette: UIThemesPalette = Object.assign(
   ascents,
   {
-    foreground: '#fff',
-    selection: '#f81ce5',
-    code: '#47b6b7',
-    link: '#47b6b7',
-    purple: '#f81ce5',
-    alert: '#ff0080',
-    magenta: '#eb367f',
-
     gradient_1: {
-      from: '#00bcd4',
-      to: '#b822ef',
+      from: '#c81f93',
+      to: '#7214c5',
     },
     gradient_2: {
-      from: '#7d00d9',
-      to: '#ff0080',
+      from: '#29f5a0',
+      to: '#01a1f8',
     },
     gradient_3: {
-      from: '#ff4d4d',
-      to: '#fbca00',
+      from: '#fb6272',
+      to: '#fd9746',
     },
   },
   colors,

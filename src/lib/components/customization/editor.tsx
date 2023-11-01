@@ -16,18 +16,8 @@ const basicColors: Array<keyof UIThemesPalette> = [
   'foreground',
   'background',
 ];
-const statusColors: Array<keyof UIThemesPalette> = [
-  'success',
-  'successLight',
-  'successDark',
-  'error',
-  'errorLight',
-  'errorDark',
-  'warning',
-  'warningLight',
-  'warningDark',
-];
-const otherColors: Array<keyof UIThemesPalette> = ['selection', 'secondary', 'link', 'border', 'code', 'cyan', 'purple', 'alert', 'violet'];
+const statusColors: Array<keyof UIThemesPalette> = ['success', 'error', 'warning', 'primary', 'tertiary', 'secondary'];
+const otherColors: Array<keyof UIThemesPalette> = ['primary', 'tertiary', 'selection', 'secondary', 'link', 'border', 'code'];
 const expressiveness: Array<keyof UIThemesExpressiveness> = ['linkStyle', 'linkHoverStyle', 'dropdownBoxShadow', 'shadowSmall', 'shadowMedium', 'shadowLarge'];
 
 const Editor = () => {

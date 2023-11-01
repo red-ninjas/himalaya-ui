@@ -55,12 +55,12 @@ Display an indicator that requires attention.
   const theme = useTheme()
   return (
     <>
-      <Badge style={{ backgroundColor: theme.palette.successLight }}>Success Light</Badge> <Spacer h={.5} />
-      <Badge style={{ backgroundColor: theme.palette.successDark }}>Success Dark</Badge> <Spacer h={.5} />
-      <Badge style={{ backgroundColor: theme.palette.alert }}>Alert</Badge> <Spacer h={.5} />
-      <Badge style={{ backgroundColor: theme.palette.purple }}>Purple</Badge> <Spacer h={.5} />
-      <Badge style={{ backgroundColor: theme.palette.violet }}>Violet</Badge> <Spacer h={.5} />
-      <Badge style={{ backgroundColor: theme.palette.cyanLighter, color: theme.palette.foreground }}>Cyan Lighter</Badge> <Spacer h={.5} />
+      <Badge style={{ backgroundColor: theme.palette.success.light }}>Success Light</Badge> <Spacer h={.5} />
+      <Badge style={{ backgroundColor: theme.palette.success.dark }}>Success Dark</Badge> <Spacer h={.5} />
+      <Badge style={{ backgroundColor: theme.palette.danger.value }}>Alert</Badge> <Spacer h={.5} />
+      <Badge style={{ backgroundColor: theme.palette.warning.value }}>Purple</Badge> <Spacer h={.5} />
+      <Badge style={{ backgroundColor: theme.palette.primary.value }}>Violet</Badge> <Spacer h={.5} />
+      <Badge style={{ backgroundColor: theme.palette.tertiary.value, color: theme.tertiary.tertiary.contrast }}>Cyan Lighter</Badge> <Spacer h={.5} />
     </>
   )
 }

@@ -10,7 +10,7 @@ export type ExampleBlockProps = {
 };
 
 const getBackground = (theme: UIThemes, plain: number | boolean) => {
-  if (typeof plain !== 'number') return theme.palette.success;
+  if (typeof plain !== 'number') return theme.palette.primary.value;
 
   const colors = [
     theme.palette.accents_1,
@@ -20,7 +20,7 @@ const getBackground = (theme: UIThemes, plain: number | boolean) => {
     theme.palette.accents_5,
     theme.palette.accents_6,
   ];
-  return colors[plain - 1] || theme.palette.success;
+  return colors[plain - 1] || theme.palette.primary.value;
 };
 
 const ExampleBlock: React.FC<React.PropsWithChildren<ExampleBlockProps>> = React.memo(

@@ -11,16 +11,22 @@ export const getColors = (palette: UIThemesPalette, status?: NormalTypes): Selec
       bg: palette.accents_8,
     },
     secondary: {
-      bg: palette.accents_8,
+      bg: palette.secondary.value,
     },
     success: {
-      bg: palette.success,
+      bg: palette.success.value,
+    },
+    tertiary: {
+      bg: palette.tertiary.value,
+    },
+    primary: {
+      bg: palette.primary.value,
     },
     warning: {
-      bg: palette.warning,
+      bg: palette.warning.value,
     },
     error: {
-      bg: palette.error,
+      bg: palette.error.value,
     },
   };
 

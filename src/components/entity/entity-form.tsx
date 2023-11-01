@@ -1,3 +1,5 @@
+'use client';
+
 import { EntityFormProps } from './index';
 import useScale, { withScale } from '../use-scale';
 import useClasses from '../use-classes';

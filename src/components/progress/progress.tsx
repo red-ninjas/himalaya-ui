@@ -30,10 +30,12 @@ export type ProgressProps = Props & NativeAttrs;
 const getCurrentColor = (ratio: number, palette: UIThemesPalette, type: ProgressTypes, colors: ProgressColors = {}): string => {
   const defaultColors: { [key in ProgressTypes]: string } = {
     default: palette.foreground,
-    success: palette.success,
-    secondary: palette.secondary,
-    warning: palette.warning,
-    error: palette.error,
+    success: palette.success.value,
+    secondary: palette.secondary.value,
+    primary: palette.primary.value,
+    tertiary: palette.tertiary.value,
+    warning: palette.warning.value,
+    error: palette.error.value,
   };
   const colorKeys = Object.keys(colors);
   if (colorKeys.length === 0) return defaultColors[type];

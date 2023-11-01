@@ -31,9 +31,12 @@ export type RatingProps = Props & NativeAttrs;
 const getColor = (type: RatingTypes, palette: UIThemesPalette): string => {
   const colors: { [key in RatingTypes]?: string } = {
     default: palette.foreground,
-    success: palette.success,
-    warning: palette.warning,
-    error: palette.error,
+    success: palette.success.value,
+    warning: palette.warning.value,
+    tertiary: palette.tertiary.value,
+    secondary: palette.secondary.value,
+    primary: palette.primary.value,
+    error: palette.error.value,
   };
   return colors[type] || (colors.default as string);
 };

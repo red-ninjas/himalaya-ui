@@ -1,10 +1,9 @@
 'use client';
 
-import React, { ReactNode, useMemo } from 'react';
+import React, { ReactNode } from 'react';
+import useScale, { withScale } from '../use-scale';
 import useTheme from '../use-theme';
 import BreadcrumbsSeparator from './breadcrumbs-separator';
-import { addColorAlpha } from '../utils/color';
-import useScale, { withScale } from '../use-scale';
 
 interface Props {
   separator?: string | ReactNode;
@@ -17,9 +16,6 @@ export type BreadcrumbsProps = Props & NativeAttrs;
 const BreadcrumbsComponent: React.FC<React.PropsWithChildren<BreadcrumbsProps>> = ({ separator = '/', children, className = '' }: BreadcrumbsProps) => {
   const theme = useTheme();
   const { SCALES } = useScale();
-  const hoverColor = useMemo(() => {
-    return addColorAlpha(theme.palette.link, 0.85);
-  }, [theme.palette.link]);
 
   const childrenArray = React.Children.toArray(children);
   const withSeparatorChildren = childrenArray.map((item, index) => {
@@ -56,7 +52,7 @@ const BreadcrumbsComponent: React.FC<React.PropsWithChildren<BreadcrumbsProps>> 
         }
 
         nav :global(.link:hover) {
-          color: ${hoverColor};
+          color: ${theme.palette.link.value};
         }
 
         nav > :global(span:last-of-type) {

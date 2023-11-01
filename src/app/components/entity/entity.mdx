@@ -6,6 +6,7 @@ import {
   Checkbox,
   Button,
   Footer,
+  Avatar,
   FooterNavigation,
   FooterBottom,
   Logo,
@@ -26,7 +27,7 @@ Display a collection of related information of a resource entity.
 
 <Playground
   title="Fields"
-  scope={{ Entity, Link, Image }}
+  scope={{ Entity, Link, Image, Avatar}}
   code={`
 () => {
   return (
@@ -35,7 +36,7 @@ Display a collection of related information of a resource entity.
       <Entity.Field active={false} title="Inactive" description="This field is inactive" />
       <Entity.Field width="20%" title="Fixed Width" description={<Link color tab href="/docs">Open docs</Link>} />
       <Entity.Field label width={'100px'} title="Label" description={<i>Encrypted</i>} />
-      <Entity.Field right description="Right Aligned" avatar={<Image width="280px" height="160px" src="/images/himalaya-banner.png" />} />
+      <Entity.Field right description="Right Aligned" avatar={<Avatar text="W" scale={1.4} />} />
     </Entity>
   )
 }
@@ -44,15 +45,13 @@ Display a collection of related information of a resource entity.
 
 <Playground
   title="Thumbnail"
-  scope={{ Entity, Link, Image }}
+  scope={{ Entity, Link, Image, Avatar }}
   code={`
 () => {
   return (
     <Entity
     thumbnail={
-      <Entity.Thumbnail size={24}>
-        <Image width={1.5} height={1.5} src="/images/himalaya-banner.png" />
-      </Entity.Thumbnail>
+        <Avatar text="W" scale={1.4} />
     }
    >
     <Entity.Field title="GitHub" description={<>Guillermo Rauch (<Link href="https://github.com/rauchg">@rauchg</Link>)</>} />
@@ -82,15 +81,13 @@ Display a collection of related information of a resource entity.
 
 <Playground
   title="Actions"
-  scope={{ Entity, Link, Image, Button }}
+  scope={{ Entity, Link, Image, Button, Avatar}}
   code={`
 () => {
   return (
   <Entity
     thumbnail={
-      <Entity.Thumbnail size={24}>
-        <Image width={1.5} height={1.5} src="/images/himalaya-banner.png" />
-      </Entity.Thumbnail>
+      <Avatar text="W" scale={1.4} />
     }
     actions={<div>
       <Button size="small" type="secondary" style={{ marginRight: 16 }}>Decline</Button>
@@ -106,16 +103,16 @@ Display a collection of related information of a resource entity.
 
 <Playground
   title="Menu Items"
-  scope={{ Entity, Link, Image, Button, Menu, Divider }}
+  scope={{ Entity, Link, Image, Button, Menu, Divider, Avatar }}
   code={`
 () => {
   return (
   <Entity
     menuItems={
       <>
-      <Menu.Item><Link href="/">Profile</Link></Menu.Item>
-      <Menu.Item><Link href="/">Settings</Link></Menu.Item>
-      <Menu.Item><Link href="/">Logout</Link></Menu.Item>
+        <Menu.Item><Link href="/">Profile</Link></Menu.Item>
+        <Menu.Item><Link href="/">Settings</Link></Menu.Item>
+        <Menu.Item><Link href="/">Logout</Link></Menu.Item>
       </>
     }
   >
@@ -123,7 +120,7 @@ Display a collection of related information of a resource entity.
       <Entity.Field active={false} title="Inactive" description="This field is inactive" />
       <Entity.Field width="20%" title="Fixed Width" description={<Link color tab href="/docs">Open docs</Link>} />
       <Entity.Field label width={'100px'} title="Label" description={<i>Encrypted</i>} />
-      <Entity.Field right description="Right Aligned" avatar={<Image width="280px" height="160px" src="/images/himalaya-banner.png" />} />
+      <Entity.Field right description="Right Aligned" avatar={<Image width="60px" height="60px" src="/images/himalaya-banner.png" />} />
   </Entity>
   )
 }
@@ -132,44 +129,15 @@ Display a collection of related information of a resource entity.
 
 <Playground
   title="Footer"
-  scope={{ Entity, Link, Image, Button, Footer, FooterNavigation, FooterBottom, Logo }}
+  scope={{ Entity, Link, Image, Button, Footer, FooterNavigation, FooterBottom, Logo, Avatar }}
   code={`
 () => {
   return (
   <Entity
     thumbnail={
-      <Entity.Thumbnail size={24}>
-        <Image width={1.5} height={1.5} src="/images/himalaya-banner.png" />
-      </Entity.Thumbnail>
+      <Avatar text="W" scale={1.4} />
     }
-    footer={
-      <>
-      <Footer>
-      <Footer.Block justify="space-between">
-        <FooterNavigation title="Footer Title">
-            <FooterNavigation.Item href="#">Item 1</FooterNavigation.Item>
-            <FooterNavigation.Item href="#">Item 2</FooterNavigation.Item>
-            <FooterNavigation.Item href="#">Item 3</FooterNavigation.Item>
-        </FooterNavigation>
-      </Footer.Block>
-      <Footer.Block justify="flex-end">
-        Test
-      </Footer.Block>
-    </Footer>
-    <FooterBottom>
-      <FooterBottom.Block>
-        <div className='logo-footer'><Logo></Logo></div>
-      </FooterBottom.Block>
-      <FooterBottom.Block justify='flex-end'>
-        Copyright by <Link color href='https://redninjas.dev' target='_blank'>{' '}RedNinjas LTD</Link>
-      </FooterBottom.Block>
-    </FooterBottom>
-    </>
-    }
-    actions={<div>
-      <Button size="small" type="secondary" style={{ marginRight: 16 }}>Decline</Button>
-      <Button size="small">Accept</Button>
-    </div>}
+    footer={"Footer"}
 >
     <Entity.Field title="Leo Lamprecht" description="leo"/>
   </Entity>
@@ -180,7 +148,7 @@ Display a collection of related information of a resource entity.
 
 <Playground
   title="Disabled"
-  scope={{ Entity, Link, Image }}
+  scope={{ Entity, Link, Image, Avatar }}
   code={`
 () => {
   return (
@@ -189,7 +157,7 @@ Display a collection of related information of a resource entity.
       <Entity.Field active={false} title="Inactive" description="This field is inactive" />
       <Entity.Field width="20%" title="Fixed Width" description={<Link color tab href="/docs">Open docs</Link>} />
       <Entity.Field label width={'100px'} title="Label" description={<i>Encrypted</i>} />
-      <Entity.Field right description="Right Aligned" avatar={<Image width="280px" height="160px" src="/images/himalaya-banner.png" />} />
+      <Entity.Field right description="Right Aligned" avatar={<Image width="60px" height="60px" src="/images/himalaya-banner.png" />} />
     </Entity>
   )
 }
@@ -198,15 +166,13 @@ Display a collection of related information of a resource entity.
 
 <Playground
   title="Skeleton"
-  scope={{ Entity, Button, Image, Skeleton }}
+  scope={{ Entity, Button, Image, Skeleton, Avatar }}
   code={`
 () => {
   return (
   <Entity
     thumbnail={
-      <Entity.Thumbnail size={24}>
-        <Image width={1.5} height={1.5} src="/images/himalaya-banner.png" />
-      </Entity.Thumbnail>
+       <Avatar text="W" scale={1.4} />
     }
     actions={<div>
       <Button size="small" type="secondary" style={{ marginRight: 16 }}>Decline</Button>
@@ -343,13 +309,6 @@ Display a collection of related information of a resource entity.
 | avatar?      | To add any avatar in the entity field          | `ReactElement`           | -                        | null    |
 | skeleton?    | To show skeleton in the entity field           | `ReactElement`           | -                        | null    |
 | ...          | native props                                   | `HTMLAttributes`         | `'id', 'className', ...` | -       |
-
-<Attributes.Title>Entity.Thumbnail.Props</Attributes.Title>
-
-| Attribute | Description                                             | Type             | Accepted values          | Default |
-| --------- | ------------------------------------------------------- | ---------------- | ------------------------ | ------- |
-| size?     | To set the size of thumbnail on the left side of entity | `number`         | -                        | `24`    |
-| ...       | native props                                            | `HTMLAttributes` | `'id', 'className', ...` | -       |
 
 <Attributes.Title>Entity.Form.Props</Attributes.Title>
 

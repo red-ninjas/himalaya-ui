@@ -43,7 +43,7 @@ const SidebarLink: React.FC<PropsWithChildren<SideBarLinkProp>> = ({ children, h
         }
 
         .link.active {
-          color: ${theme.palette.link};
+          color: ${theme.palette.link.value};
           font-weight: 600;
         }
 

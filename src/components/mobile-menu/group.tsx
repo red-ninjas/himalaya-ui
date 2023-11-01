@@ -1,13 +1,14 @@
 'use client';
-import { ChevronRight, ChevronDown } from '../icons';
+import { addColorAlpha } from '../utils/color';
+import { useRouter } from 'next/navigation';
 import React, { MouseEventHandler, PropsWithChildren, ReactNode, useRef, useState } from 'react';
-import { INavigationItem } from './index';
+import { ChevronDown, ChevronRight } from '../icons';
 import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';
 import useTheme from '../use-theme';
 import { pickChild } from '../utils/collections';
+import { INavigationItem } from './index';
 import MobileNavigationSubGroup from './subgroup';
-import { useRouter } from 'next/navigation';
 
 export interface MobileNavigationGroupProps extends INavigationItem {
   expanded?: boolean;
@@ -33,7 +34,7 @@ const MobileNavigationGroup: React.FC<PropsWithChildren<MobileNavigationGroupPro
         <div>{childElements}</div>
         <style jsx>{`
           .child-grid {
-            background-color: ${theme.palette.accents_0};
+            background-color: ${addColorAlpha(theme.palette.accents_0, 0.3)};
             padding: ${SCALES.pt(0)} ${SCALES.pr(0.55)} ${SCALES.pb(0)} ${SCALES.pl(0.875)};
 
             transition: height 200ms ease;
@@ -122,7 +123,7 @@ const MobileNavigationGroup: React.FC<PropsWithChildren<MobileNavigationGroupPro
           white-space: nowrap;
           background-color: transparent;
           color: ${theme.palette.accents_5};
-          border-bottom: 1px solid ${theme.palette.accents_2};
+          border-bottom: 1px solid ${theme.palette.border};
           user-select: none;
           display: flex;
           align-items: center;

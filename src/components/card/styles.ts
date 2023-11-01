@@ -18,20 +18,24 @@ export const getStyles = (type: CardTypes, palette: UIThemesPalette, isShadow?: 
       bgColor: palette.foreground,
     },
     secondary: {
-      color: palette.background,
-      bgColor: palette.secondary,
+      color: palette.secondary.contrast,
+      bgColor: palette.secondary.value,
     },
     success: {
-      color: palette.background,
-      bgColor: palette.success,
+      color: palette.success.contrast,
+      bgColor: palette.success.value,
+    },
+    primary: {
+      color: palette.primary.contrast,
+      bgColor: palette.primary.value,
     },
     warning: {
-      color: palette.background,
-      bgColor: palette.warning,
+      color: palette.warning.contrast,
+      bgColor: palette.warning.value,
     },
     error: {
-      color: palette.background,
-      bgColor: palette.error,
+      color: palette.error.contrast,
+      bgColor: palette.error.value,
     },
     lite: {
       color: palette.foreground,
@@ -39,19 +43,11 @@ export const getStyles = (type: CardTypes, palette: UIThemesPalette, isShadow?: 
     },
     alert: {
       color: 'white',
-      bgColor: palette.alert,
+      bgColor: palette.error.value,
     },
-    purple: {
-      color: 'white',
-      bgColor: palette.purple,
-    },
-    violet: {
-      color: 'white',
-      bgColor: palette.violet,
-    },
-    cyan: {
-      color: 'black',
-      bgColor: palette.cyan,
+    tertiary: {
+      color: palette.tertiary.contrast,
+      bgColor: palette.tertiary.value,
     },
   };
   const showBorder = type === 'default' && !isShadow;

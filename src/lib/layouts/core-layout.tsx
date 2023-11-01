@@ -28,7 +28,7 @@ import { BrandLogo, BrandTitle } from 'lib/components/icons';
 import { usePathname } from 'next/navigation';
 import React, { useState } from 'react';
 import metaData from '../data/metadata.json';
-import Seeds from '../data';
+import { Seeds } from '../data';
 import { MdxComponents } from '../mdx-components';
 import NextLink from 'next/link';
 export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
@@ -166,10 +166,10 @@ export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
             color: ${theme.palette.accents_4};
           }
           span.class-name {
-            color: ${theme.palette.warning};
+            color: ${theme.palette.warning.value};
           }
           span.maybe-class-name {
-            color: ${theme.palette.purple};
+            color: ${theme.palette.tertiary.value};
           }
           span.token.string {
             color: ${theme.palette.accents_5};
@@ -178,7 +178,7 @@ export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
             color: ${theme.palette.accents_3};
           }
           span.keyword {
-            color: ${theme.palette.success};
+            color: ${theme.palette.primary.value};
           }
           span.plain-text {
             color: ${theme.palette.accents_3};

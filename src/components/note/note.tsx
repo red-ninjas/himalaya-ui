@@ -20,18 +20,22 @@ export type NoteProps = Props & NativeAttrs;
 
 const getStatusColor = (type: NoteTypes, filled: boolean, theme: UIThemes) => {
   const colors: { [key in NoteTypes]?: string } = {
-    secondary: theme.palette.secondary,
-    success: theme.palette.success,
-    warning: theme.palette.warning,
-    error: theme.palette.error,
+    primary: theme.palette.primary.value,
+    tertiary: theme.palette.tertiary.value,
+    secondary: theme.palette.secondary.value,
+    success: theme.palette.success.value,
+    warning: theme.palette.warning.value,
+    error: theme.palette.error.value,
   };
   const statusColor = colors[type];
 
   const borderColors: { [key in NoteTypes]?: string } = {
-    secondary: theme.palette.border,
-    success: theme.palette.successDark,
-    warning: theme.palette.warningDark,
-    error: theme.palette.errorDark,
+    primary: theme.palette.primary.dark,
+    tertiary: theme.palette.tertiary.dark,
+    secondary: theme.palette.secondary.dark,
+    success: theme.palette.success.dark,
+    warning: theme.palette.warning.dark,
+    error: theme.palette.error.dark,
   };
   const borderColorsType = borderColors[type];
 

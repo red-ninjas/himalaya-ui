@@ -24,7 +24,7 @@ import { StyledJsxRegistry, ConfigProvider } from '@himalaya-ui/core'
 const App = () => {
   const [themeType, setThemeType] = useState('light')
   const switchThemes = () => {
-    setThemeType(last => (last === 'dark' ? 'light' : last === 'light' : 'grey' : 'dark'))
+    setThemeType(last => (last === 'dark' ? 'light' : 'dark'))
   }
   return (
     <StyledJsxRegistry>
@@ -55,7 +55,7 @@ import { StyledJsxRegistry, ConfigProvider } from '@himalaya-ui/core'
 const App = () => {
   const [themeType, setThemeType] = useState('light')
   const switchThemes = () => {
-    setThemeType(last => (last === 'dark' ? 'light' : last === 'light' : 'grey' : 'dark'))
+    setThemeType(last => (last === 'dark' ? 'light' : 'dark'))
   }
   return (
     <StyledJsxRegistry>
@@ -167,7 +167,7 @@ import { useTheme } from '@himalaya-ui/core'
 const MyComponent = () => {
   const theme = useTheme()
   return (
-    <div style={{ color: theme.palette.success }}>
+    <div style={{ color: theme.palette.success.value }}>
       <span>hello world!</span>
     </div>
   )

@@ -338,7 +338,7 @@ export default class ThemedChart extends React.Component<ChartProps> {
     }
 
     for (const key of Object.keys(this.props.series)) {
-      const defaultColor = this.props.series[key].color || this.props.theme?.palette.success || '#eee';
+      const defaultColor = this.props.series[key].color || this.props.theme?.palette.primary.value || '#eee';
 
       if (this.props.series[key].type == 'area') {
         const side = this.props.series[key].side || 'right';

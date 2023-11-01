@@ -273,6 +273,9 @@ export type { AnimatedCursorProps } from './animated-cursor';
 
 export { default as BottomNavigation } from './bottom-navigation';
 
+export { default as ShowMore } from './show-more';
+export type { ShowMoreProps } from './show-more';
+
 export { default as RunningText } from './running-text';
 export { default as Footer, FooterBottom, FooterNavigation } from './footer';
 

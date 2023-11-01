@@ -73,7 +73,7 @@ const AutoCompleteItemComponent: React.FC<React.PropsWithChildren<AutoCompleteIt
 
         .item.active {
           background-color: ${theme.palette.accents_1};
-          color: ${theme.palette.success};
+          color: ${theme.palette.primary.value};
         }
       `}</style>
     </div>
