@@ -1,6 +1,6 @@
 'use client';
 import React, { useRef, useState } from 'react';
-import { PlayFill, PauseFill, Repeat, Minimize, Maximize, Volume2, VolumeX } from 'components/icons';
+import { PlayFill, PauseFill, Minimize, Maximize, Volume2, VolumeX } from 'components/icons';
 import useTheme from '../use-theme';
 
 interface Props {

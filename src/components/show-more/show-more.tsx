@@ -12,7 +12,7 @@ interface Props {
 type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
 export type ShowMoreProps = Props & NativeAttrs;
 
-const ShowMore: React.FC<ShowMoreProps> = ({ expanded, onClick }) => {
+const ShowMoreComponent: React.FC<ShowMoreProps> = ({ expanded, onClick }) => {
   const theme = useTheme();
   const [iconRotated, setIconRotated] = useState(false);
   const { SCALES } = useScale();
@@ -77,5 +77,6 @@ const ShowMore: React.FC<ShowMoreProps> = ({ expanded, onClick }) => {
   );
 };
 
-ShowMore.displayName = 'HimalayaShowMore';
-export default withScale(ShowMore);
+ShowMoreComponent.displayName = 'HimalayaShowMore';
+const ShowMore = withScale(ShowMoreComponent);
+export default ShowMore;
