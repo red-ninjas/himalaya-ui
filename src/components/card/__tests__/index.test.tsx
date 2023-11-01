@@ -28,7 +28,7 @@ describe('Card', () => {
         <Card type="success">card</Card>
         <Card type="violet">card</Card>
         <Card type="lite">card</Card>
-        <Card type="cyan">card</Card>
+        <Card type="primary">card</Card>
         <Card type="secondary">card</Card>
         <Card type="warning">card</Card>
       </div>,

@@ -3,7 +3,6 @@ import { ReactElement } from 'react';
 import Entity from './entity';
 import EntityField from './entity-field';
 import EntityForm from './entity-form';
-import EntityThumbnail from './entity-thumbnail';
 export type EntityProps = {
   thumbnail?: ReactElement | null;
   footer?: ReactElement | null;
@@ -41,11 +40,9 @@ export { default as EntityField } from './entity-field';
 
 export type EntityComponentType = typeof Entity & {
   Field: typeof EntityField;
-  Thumbnail: typeof EntityThumbnail;
   Form: typeof EntityForm;
 };
 (Entity as EntityComponentType).Field = EntityField;
-(Entity as EntityComponentType).Thumbnail = EntityThumbnail;
 (Entity as EntityComponentType).Form = EntityForm;
 
 export default Entity as EntityComponentType;

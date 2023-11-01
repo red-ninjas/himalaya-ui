@@ -21,10 +21,12 @@ export type LoadingSpinnerProps = Props & NativeAttrs;
 const getIconBgColor = (type: LoadingSpinnerTypes, palette: UIThemesPalette, color?: string) => {
   const colors: { [key in LoadingSpinnerTypes]: string } = {
     default: palette.accents_6,
-    secondary: palette.secondary,
-    success: palette.success,
-    warning: palette.warning,
-    error: palette.error,
+    secondary: palette.secondary.value,
+    primary: palette.primary.value,
+    tertiary: palette.tertiary.value,
+    success: palette.success.value,
+    warning: palette.warning.value,
+    error: palette.error.value,
   };
 
   return color ? color : colors[type];

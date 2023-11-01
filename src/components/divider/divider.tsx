@@ -21,10 +21,12 @@ const getColor = (type: DividerTypes, palette: UIThemesPalette) => {
   const colors: { [key in DividerTypes]: string } = {
     default: palette.border,
     lite: palette.accents_1,
-    success: palette.successLight,
-    warning: palette.warningLight,
-    error: palette.errorLight,
-    secondary: palette.secondary,
+    success: palette.success.light,
+    primary: palette.primary.light,
+    tertiary: palette.tertiary.light,
+    warning: palette.warning.light,
+    error: palette.error.light,
+    secondary: palette.secondary.light,
     dark: palette.foreground,
   };
   return colors[type];

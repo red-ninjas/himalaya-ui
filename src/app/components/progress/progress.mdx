@@ -36,9 +36,9 @@ Display progress relative to a limit or related to a task.
   const theme = useTheme()
   const [value, setValue] = useState(20)
   const colors = {
-    20: theme.palette.error,
-    40: theme.palette.warning,
-    60: theme.palette.success,
+    20: theme.palette.error.value,
+    40: theme.palette.warning.value,
+    60: theme.palette.success.value,
     80: '#000',
   }
   return (

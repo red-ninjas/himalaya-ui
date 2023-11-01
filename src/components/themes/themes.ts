@@ -1,9 +1,8 @@
 import type { DeepPartial } from '../utils/types';
 import darkTheme from './presets/dark';
 import lightTheme from './presets/default';
-import greyTheme from './presets/grey';
 import { UIThemes } from './presets/index';
-import { generateAccents, generateColors } from './presets/shared';
+import { generateAccents, generateColor, generateColors, generateSteppedColors } from './utils';
 
 export type UIUserTheme = DeepPartial<UIThemes>;
 
@@ -34,7 +33,7 @@ export const deepDuplicable = <T extends Record<string, unknown>>(source: T, tar
 };
 
 const getPresets = (): Array<UIThemes> => {
-  return [lightTheme, darkTheme, greyTheme];
+  return [lightTheme, darkTheme];
 };
 
 const getPresetStaticTheme = (): UIThemes => {
@@ -65,7 +64,6 @@ const create = (base: UIThemes, custom: UIUserTheme): UIThemes => {
 
 const createFromDark = (custom: UIUserTheme) => create(darkTheme, custom);
 const createFromLight = (custom: UIUserTheme) => create(lightTheme, custom);
-const createFromGrey = (custom: UIUserTheme) => create(greyTheme, custom);
 
 const Themes = {
   isPresetTheme,
@@ -76,9 +74,10 @@ const Themes = {
   create,
   createFromDark,
   createFromLight,
-  createFromGrey,
   generateAccents,
   generateColors,
+  generateColor,
+  generateSteppedColors,
 };
 
 export default Themes;

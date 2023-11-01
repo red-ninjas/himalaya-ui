@@ -21,10 +21,12 @@ export type BadgeProps = Props & NativeAttrs;
 const getBgColor = (type: NormalTypes, palette: UIThemesPalette) => {
   const colors: { [key in NormalTypes]: string } = {
     default: palette.foreground,
-    success: palette.success,
-    warning: palette.warning,
-    error: palette.error,
-    secondary: palette.secondary,
+    success: palette.success.value,
+    secondary: palette.secondary.value,
+    primary: palette.primary.value,
+    tertiary: palette.tertiary.value,
+    warning: palette.warning.value,
+    error: palette.error.value,
   };
   return colors[type];
 };

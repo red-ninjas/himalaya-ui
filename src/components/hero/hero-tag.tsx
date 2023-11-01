@@ -6,7 +6,13 @@ import useScale, { withScale } from '../use-scale';
 import useClasses from '../use-classes';
 import { HeroTagProps } from './share';
 
-const HeroTag: React.FC<PropsWithChildren<HeroTagProps>> = ({ children, hasGradient = false, gradient, textColor }: PropsWithChildren<HeroTagProps>) => {
+const HeroTag: React.FC<PropsWithChildren<HeroTagProps>> = ({
+  children,
+  hasGradient = false,
+  gradient,
+  textColor,
+  background,
+}: PropsWithChildren<HeroTagProps>) => {
   const theme = useTheme();
   const { SCALES } = useScale();
   return (
@@ -20,6 +26,7 @@ const HeroTag: React.FC<PropsWithChildren<HeroTagProps>> = ({ children, hasGradi
           border-radius: 30px;
           border: 1px solid ${theme.palette.accents_2};
           color: ${theme.palette.accents_8};
+          background: ${background || 'transparent'};
           display: inline-block;
           word-break: break-word;
           padding: ${SCALES.pt(0.45)} ${SCALES.pr(1.9)} ${SCALES.pb(0.45)} ${SCALES.pl(1.9)};
@@ -27,7 +34,8 @@ const HeroTag: React.FC<PropsWithChildren<HeroTagProps>> = ({ children, hasGradi
 
           --start-color: ${gradient ? gradient.from : theme.palette.gradient_1.from};
           --end-color: ${gradient ? gradient.to : theme.palette.gradient_1.to};
-          --font-color: ${textColor || '#fff'};
+          --font-color: ${textColor || theme.palette.accents_8};
+          color: var(--font-color);
           overflow: hidden;
         }
 

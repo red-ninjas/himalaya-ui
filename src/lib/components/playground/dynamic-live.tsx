@@ -44,9 +44,9 @@ const DynamicLive: React.FC<Props> = ({ code, scope }) => {
         .wrapper > :global(.live-error) {
           padding: 10px 12px 0 12px;
           margin-bottom: 0;
-          border: 2px ${theme.palette.error} dotted;
+          border: 2px ${theme.palette.error.value} dotted;
           border-radius: 10px;
-          color: ${theme.palette.errorLight};
+          color: ${theme.palette.error.light};
           font-size: 13px;
         }
       `}</style>

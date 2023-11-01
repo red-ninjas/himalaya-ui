@@ -47,7 +47,7 @@ A common container component.
   scope={{ Card, Grid, Text }}
   code={`
 () => {
-  const types = ['secondary', 'success', 'warning', 'error', 'dark', 'alert', 'purple', 'violet', 'cyan']
+  const types = ['primary', 'secondary', 'tertiary',  'success', 'warning', 'error', 'dark', 'alert']
   return (
     <Grid.Container gap={1.5}>
       {types.map(type => (
@@ -160,9 +160,8 @@ type CardType =
   | 'dark'
   | 'lite'
   | 'alert'
-  | 'purple'
-  | 'violet'
-  | 'cyan'
+  | 'tertiary'
+  | 'primary'
 ```
 
 </Attributes>

@@ -22,8 +22,10 @@ const getRandomColors = () => {
 
     if (typeof value === 'string') {
       return value;
-    } else {
-      return value.from;
+    } else if (value['from'] !== undefined) {
+      return (value as any).from as string;
+    } else if (value['value'] !== undefined) {
+      return (value as any).value as string;
     }
   });
   const deduplicatedColors = [...new Set(...basicColors)];
@@ -39,8 +41,10 @@ const EditorColorItem: React.FC<React.PropsWithChildren<Props>> = ({ keyName }) 
   let mainColorConverted = '';
   if (typeof mainColor === 'string') {
     mainColorConverted = mainColor;
-  } else {
-    mainColorConverted = mainColor.from;
+  } else if (mainColor['from'] !== undefined) {
+    return (mainColor as any).from;
+  } else if (mainColor['value'] !== undefined) {
+    return (mainColor as any).value;
   }
   const randomColors = useMemo(() => getRandomColors(), []);
   const colorChangeHandler = () => {};

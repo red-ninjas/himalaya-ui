@@ -11,7 +11,9 @@ export default function Services() {
       <FadeInEffect translateY="4rem">
         <div className="header">
           <FadeInEffect translateY="4rem">
-            <Hero.Tag hasGradient={true}>UI library</Hero.Tag>
+            <Hero.Tag background={theme.palette.primary.value} textColor={theme.palette.primary.contrast}>
+              UI library
+            </Hero.Tag>
           </FadeInEffect>
           <FadeInEffect translateY="4rem">
             <Text margin={0} marginTop={'12px'} h4 font={'clamp(24px, 3.1vw, 48px)'} style={{ fontWeight: '700', lineHeight: '1.2' }}>

@@ -50,7 +50,7 @@ export default function Index() {
             </Grid.Container>
             <Hero.Actions>
               <Link href={'/guide/'}>
-                <Button auto icon={<Code></Code>} scale={1.3}>
+                <Button type="primary" auto icon={<Code></Code>} scale={1.3}>
                   Documentation
                 </Button>
               </Link>
@@ -67,14 +67,12 @@ export default function Index() {
         </div>
       </div>
 
-      <FadeInEffect blur={10} transition={1000}>
-        <Partners></Partners>
-      </FadeInEffect>
-
       <Section>
         <Services></Services>
       </Section>
-
+      <FadeInEffect blur={10} transition={1000}>
+        <Partners></Partners>
+      </FadeInEffect>
       <ThemeProvider themeType="light">
         <PageLayout>
           <Section>
@@ -90,8 +88,11 @@ export default function Index() {
       <Section>
         <Facts></Facts>
       </Section>
-
-      <RunningSlogan></RunningSlogan>
+      <ThemeProvider themeType="light">
+        <PageLayout>
+          <RunningSlogan></RunningSlogan>
+        </PageLayout>
+      </ThemeProvider>
 
       <Footer>
         <Footer.Block justify="space-between">
@@ -146,7 +147,7 @@ export default function Index() {
         .hero-bg {
           position: absolute;
           width: 100%;
-          bottom: 0;
+          bottom: -5px;
           opacity: 0.5;
           --color-face-1: ${theme.palette.accents_0};
           --color-face-2: ${theme.palette.accents_2};
