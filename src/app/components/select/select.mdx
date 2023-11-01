@@ -227,7 +227,7 @@ The Select contain an additional Hooks, see subsection [useModal](/hooks/use-mod
 <Attributes.Title>Select.Props</Attributes.Title>
 
 | Attribute                   | Description                                              | Type                         | Accepted values             | Default         |
-| --------------------------- | -------------------------------------------------------- | ---------------------------- | --------------------------- | --------------- | --- |
+| --------------------------- | -------------------------------------------------------- | ---------------------------- | --------------------------- | --------------- |
 | **value**                   | selected value                                           | `string`, `string[]`         | -                           | -               |
 | **initialValue**            | initial value                                            | `string`, `string[]`         | -                           | -               |
 | **placeholder**             | placeholder string                                       | `string`                     | -                           | -               |
@@ -238,7 +238,7 @@ The Select contain an additional Hooks, see subsection [useModal](/hooks/use-mod
 | **multiple**                | support multiple selection                               | `boolean`                    | -                           | `false`         |
 | **clearable**               | add clear icon on multiple selection (ignored otherwise) | `boolean`                    | -                           | `true`          |
 | **disabled**                | disable current radio                                    | `boolean`                    | -                           | `false`         |
-| **onChange**                | selected value                                           | `(val: string                | string[]) => void`          | -               | -   |
+| **onChange**                | selected value                                           | `(val: string                | string[]) => void`          | -               |
 | **dropdownClassName**       | className of dropdown menu                               | `string`                     | -                           | -               |
 | **dropdownStyle**           | style of dropdown menu                                   | `object`                     | -                           | -               |
 | **disableMatchWidth**       | disable Option from follow Select width                  | `boolean`                    | -                           | `false`         |
@@ -270,7 +270,7 @@ type SelectRef = {
 <Attributes.Title>SelectTypes</Attributes.Title>
 
 ```ts
-type SelectTypes = 'default' | 'secondary' | 'success' | 'warning' | 'error'
+type SelectTypes = 'default' | 'primary' | 'tertiary' | 'secondary' | 'success' | 'warning' | 'error'
 ```
 
 </Attributes>

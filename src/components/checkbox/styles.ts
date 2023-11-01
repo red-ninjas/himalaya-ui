@@ -17,15 +17,23 @@ export const getColors = (palette: UIThemesPalette, status?: NormalTypes): Check
       bg: palette.background,
     },
     success: {
-      fill: palette.success, // fondo
+      fill: palette.success.value,
       bg: palette.background,
     },
     warning: {
-      fill: palette.warning,
+      fill: palette.warning.value,
       bg: palette.background,
     },
     error: {
-      fill: palette.error,
+      fill: palette.error.value,
+      bg: palette.background,
+    },
+    primary: {
+      fill: palette.primary.value,
+      bg: palette.background,
+    },
+    tertiary: {
+      fill: palette.tertiary.value,
       bg: palette.background,
     },
   };

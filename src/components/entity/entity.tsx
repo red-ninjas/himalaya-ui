@@ -1,13 +1,16 @@
+'use client';
+
 import { PropsWithChildren, ReactElement } from 'react';
-import { EntityProps } from './index';
+import { MoreHorizontal } from '../icons';
+import Menu from '../menu';
+import MenuItem from '../menu/menu-item';
 import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';
 import useTheme from '../use-theme';
 import { pickChild } from '../utils/collections';
 import EntityField from './entity-field';
-import Menu from '../menu';
-import { MoreHorizontal } from '../icons';
-import MenuItem from '../menu/menu-item';
+import { EntityProps } from './index';
+import { addColorAlpha } from 'components/utils/color';
 
 function EntityComponent({
   children,
@@ -42,7 +45,7 @@ function EntityComponent({
       <div className={outerClasses} {...others}>
         <div className={classes}>
           {checkbox && <span className="entity-checkbox">{checkbox}</span>}
-          {thumbnail}
+          {thumbnail && <span className="entity-thumbnail">{thumbnail}</span>}
           {entityFields}
           {actions && <span className="entity-actions">{actions}</span>}
           {items && (
@@ -55,32 +58,46 @@ function EntityComponent({
         </div>
         {footer && <div className="entity-footer">{footer}</div>}
       </div>
-      <style jsx global>{`
+      <style jsx>{`
         .entity-outer-wrapper {
           font-size: ${SCALES.font(0.88)};
           width: 100%;
           display: flex;
+          gap: 12px;
           justify-content: flex-start;
           flex-direction: column;
           align-items: flex-start;
 
+          padding: ${SCALES.pt(1)} ${SCALES.pr(1)} ${SCALES.pb(1)} ${SCALES.pl(1)};
+          margin: ${SCALES.mt(1, 'auto')} ${SCALES.mr(1, 'auto')} ${SCALES.mb(1, 'auto')} ${SCALES.ml(1, 'auto')};
+          background: ${addColorAlpha(theme.palette.accents_0, 0.3)};
+
           &.disabled {
             background: ${theme.palette.accents_1};
             cursor: not-allowed;
+
+            .entity-wrapper {
+              opacity: 0.6;
+            }
           }
           border: 1px solid ${theme.palette.border};
           border-radius: ${theme.style.radius};
         }
 
+        .entity-thumbnail {
+          margin-right: ${SCALES.mr(1)};
+        }
+
         .entity-wrapper {
           height: auto;
           width: 100%;
-          padding: ${SCALES.px(1)} ${SCALES.py(1)};
           display: flex;
           justify-content: flex-start;
           flex-wrap: wrap;
           align-items: center;
           background-clip: padding-box;
+
+          gap: 12px;
 
           .entity-checkbox {
             display: flex;
@@ -134,6 +151,17 @@ function EntityComponent({
             flex: 1 1;
           }
         }
+
+        @media screen and (max-width: 600px) {
+          .entity-wrapper {
+            flex-direction: column;
+            flex-wrap: wrap;
+          }
+          .entity-wrapper :global(.field-wrapper) {
+            border-bottom: 1px solid ${theme.palette.border};
+            padding-bottom: 12px;
+          }
+        }
       `}</style>
     </>
   );
@@ -141,4 +169,4 @@ function EntityComponent({
 
 EntityComponent.displayName = 'HimalayaEntity';
 const Entity = withScale(EntityComponent);
-export default withScale(Entity);
+export default Entity;

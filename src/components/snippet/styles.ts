@@ -15,23 +15,33 @@ export const getStyles = (type: SnippetTypes, palette: UIThemesPalette, fill?: b
       bgColor: palette.background,
     },
     success: {
-      color: palette.success,
-      border: palette.success,
+      color: palette.success.value,
+      border: palette.success.value,
       bgColor: palette.background,
     },
     warning: {
-      color: palette.warning,
-      border: palette.warning,
+      color: palette.warning.value,
+      border: palette.warning.value,
       bgColor: palette.background,
     },
     error: {
-      color: palette.error,
-      border: palette.error,
+      color: palette.error.value,
+      border: palette.error.value,
       bgColor: palette.background,
     },
     secondary: {
-      color: palette.secondary,
-      border: palette.secondary,
+      color: palette.secondary.value,
+      border: palette.secondary.value,
+      bgColor: palette.background,
+    },
+    primary: {
+      color: palette.primary.value,
+      border: palette.primary.value,
+      bgColor: palette.background,
+    },
+    tertiary: {
+      color: palette.tertiary.value,
+      border: palette.tertiary.value,
       bgColor: palette.background,
     },
     lite: {

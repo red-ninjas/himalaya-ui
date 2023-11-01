@@ -42,9 +42,9 @@ const SearchItem: React.FC<SearchItemProps> = ({ data, onMouseOver, onSelect, on
           .container:focus {
             color: ${theme.palette.foreground};
           }
-          .container:global(.value) {
+          .container :global(.value) {
           }
-          .container:global(svg) {
+          .container :global(svg) {
             width: 16px;
             height: 16px;
           }

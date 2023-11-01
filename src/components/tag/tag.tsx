@@ -26,20 +26,26 @@ const getColors = (type: TagTypes, palette: UIThemesPalette, invert: boolean) =>
   const colors: {
     [key in TagTypes]: Pick<TagColors, 'color'> & Partial<TagColors>;
   } = {
+    tertiary: {
+      color: palette.tertiary.value,
+    },
+    primary: {
+      color: palette.primary.value,
+    },
     default: {
       color: palette.foreground,
     },
     success: {
-      color: palette.success,
+      color: palette.success.value,
     },
     warning: {
-      color: palette.warning,
+      color: palette.warning.value,
     },
     error: {
-      color: palette.error,
+      color: palette.error.value,
     },
     secondary: {
-      color: palette.secondary,
+      color: palette.secondary.value,
     },
     dark: {
       color: palette.foreground,

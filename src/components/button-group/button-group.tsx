@@ -19,17 +19,21 @@ interface Props {
 type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
 export type ButtonGroupProps = Props & NativeAttrs;
 
-const getGroupBorderColors = (palette: UIThemesPalette, props: ButtonGroupProps): string => {
-  const { ghost = false, type = 'default' as ButtonTypes } = props;
-  if (!ghost && type !== 'default') return palette.background;
+const getGroupBorderColors = (palette: UIThemesPalette, type = 'default' as ButtonTypes, disabled = false): string => {
+  if (disabled) {
+    return palette.border;
+  }
   const colors: { [key in ButtonTypes]?: string } = {
-    default: palette.border,
-    success: palette.success,
-    secondary: palette.secondary,
-    error: palette.error,
-    warning: palette.warning,
+    primary: palette.primary.darker,
+    tertiary: palette.tertiary.darker,
+    default: palette.accents_7,
+    success: palette.success.darker,
+    secondary: palette.secondary.darker,
+    error: palette.error.darker,
+    warning: palette.warning.darker,
+    abort: palette.border,
   };
-  return colors.default as string;
+  return colors[type] as string;
 };
 
 const ButtonGroupComponent: React.FC<React.PropsWithChildren<ButtonGroupProps>> = (groupProps: ButtonGroupProps) => {
@@ -46,8 +50,8 @@ const ButtonGroupComponent: React.FC<React.PropsWithChildren<ButtonGroupProps>> 
     [disabled, type],
   );
   const border = useMemo(() => {
-    return getGroupBorderColors(theme.palette, groupProps);
-  }, [theme, type, disabled, ghost]);
+    return getGroupBorderColors(theme.palette, type, disabled);
+  }, [theme, type, disabled]);
   const classes = useClasses(
     'btn-group',
     {

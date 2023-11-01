@@ -25,8 +25,8 @@ const LinkComponent = React.forwardRef<HTMLAnchorElement, React.PropsWithChildre
   ) => {
     const theme = useTheme();
     const { SCALES } = useScale();
-    const linkColor = color || block ? theme.palette.link : 'inherit';
-    const hoverColor = color || block ? theme.palette.successLight : 'inherit';
+    const linkColor = color || block ? theme.palette.link.value : 'inherit';
+    const hoverColor = color || block ? theme.palette.link.light : 'inherit';
     const decoration = underline ? 'underline' : 'none';
     const classes = useClasses('link', { block }, className);
 
@@ -61,7 +61,7 @@ const LinkComponent = React.forwardRef<HTMLAnchorElement, React.PropsWithChildre
           }
 
           .link:hover {
-            background-color: ${block ? addColorAlpha(theme.palette.link, 0.1) : 'unset'};
+            background-color: ${block ? addColorAlpha(theme.palette.link.light, 0.1) : 'unset'};
             color: ${hoverColor};
           }
         `}</style>

@@ -26,10 +26,12 @@ export const makeToastActions = (actions: Toast['actions'], cancelHandle: () => 
 export const getColors = (palette: UIThemesPalette, type?: NormalTypes) => {
   const colors: { [key in NormalTypes]: string } = {
     default: palette.background,
-    secondary: palette.secondary,
-    success: palette.success,
-    warning: palette.warning,
-    error: palette.error,
+    secondary: palette.secondary.value,
+    success: palette.success.value,
+    warning: palette.warning.value,
+    error: palette.error.value,
+    primary: palette.primary.value,
+    tertiary: palette.tertiary.value,
   };
   const isDefault = !type || type === 'default';
   if (isDefault)

@@ -1,12 +1,11 @@
 'use client';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import React, { MouseEventHandler, PropsWithChildren } from 'react';
-import Popover from '../popover';
+import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';
 import useTheme from '../use-theme';
 import { INavigationItem } from './index';
-import { usePathname } from 'next/navigation';
-import useClasses from '../use-classes';
 
 export interface NavigationItemProps extends INavigationItem {
   onClick?: () => void;
@@ -26,7 +25,7 @@ const NavigationItem: React.FC<PropsWithChildren<NavigationItemProps>> = ({ url 
 
   return (
     <>
-      <Popover.Item padding="6px">
+      <div className="item">
         <Link legacyBehavior passHref href={url || ''}>
           <a
             onClick={handleClick}
@@ -40,8 +39,29 @@ const NavigationItem: React.FC<PropsWithChildren<NavigationItemProps>> = ({ url 
             </div>
           </a>
         </Link>
-      </Popover.Item>
+      </div>
       <style jsx>{`
+        .item {
+          display: flex;
+          box-sizing: border-box;
+          justify-content: flex-start;
+          align-items: center;
+          color: ${theme.palette.accents_5};
+          transition:
+            color,
+            background-color 150ms linear;
+          line-height: 1.25em;
+          font-size: ${SCALES.font(0.875)};
+          width: ${SCALES.width(1, 'auto')};
+          height: ${SCALES.height(1, 'auto')};
+          padding: ${SCALES.pt(0.875)} ${SCALES.pr(0.55)} ${SCALES.pb(0.875)} ${SCALES.pl(0.55)};
+          margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
+        }
+
+        .item:hover {
+          color: ${theme.palette.foreground};
+        }
+
         .icon-with-title {
           display: inline-flex;
           gap: 6px;
@@ -51,7 +71,6 @@ const NavigationItem: React.FC<PropsWithChildren<NavigationItemProps>> = ({ url 
           color: ${theme.palette.accents_5};
           font-weight: 500;
           min-width: 120px;
-          padding: 6px 12px;
           font-size: ${SCALES.pt(1)};
           display: inline-flex;
           flex-direction: column;

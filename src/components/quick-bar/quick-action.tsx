@@ -61,7 +61,7 @@ export const QuickBar: React.FC<PropsWithChildren<QuickActionProps>> = ({
             .quick-action.is-active:before {
               content: ' ';
               position: absolute;
-              background: ${theme.palette.success};
+              background: ${theme.palette.primary.value};
               width: 4px;
               height: 100%;
               left: calc(${highlightLeft}px - 2px);
@@ -72,7 +72,7 @@ export const QuickBar: React.FC<PropsWithChildren<QuickActionProps>> = ({
             .quick-action:hover:before {
               content: ' ';
               position: absolute;
-              background: ${theme.palette.success};
+              background: ${theme.palette.primary.value};
               width: 4px;
               height: 100%;
               left: calc(${highlightLeft}px - 2px);

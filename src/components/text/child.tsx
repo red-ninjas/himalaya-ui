@@ -19,10 +19,12 @@ export interface Props {
 const getTypeColor = (type: NormalTypes, palette: UIThemesPalette) => {
   const colors: { [key in NormalTypes]: string } = {
     default: 'inherit',
-    secondary: palette.secondary,
-    success: palette.success,
-    warning: palette.warning,
-    error: palette.error,
+    secondary: palette.secondary.value,
+    success: palette.success.value,
+    warning: palette.warning.value,
+    error: palette.error.value,
+    primary: palette.primary.value,
+    tertiary: palette.tertiary.value,
   };
 
   return colors[type] || colors.default;

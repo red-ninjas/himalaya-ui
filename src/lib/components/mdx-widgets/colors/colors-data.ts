@@ -19,44 +19,31 @@ const normal: ColorEnum = {
 };
 
 const error: ColorEnum = {
-  errorLighter: 'Lighter',
-  errorLight: 'Light',
-  error: 'Default',
-  errorDark: 'Dark',
+  error: 'Value',
 };
 
 const success: ColorEnum = {
-  successLighter: 'Lighter',
-  successLight: 'Light',
-  success: 'Default',
-  successDark: 'Dark',
+  success: 'Value',
 };
 
 const warning: ColorEnum = {
-  warningLighter: 'Lighter',
-  warningLight: 'Light',
-  warning: 'Default',
-  warningDark: 'Dark',
+  warning: 'Value',
 };
 
-const violet: ColorEnum = {
-  violetLighter: 'Lighter',
-  violetLight: 'Light',
-  violet: 'Default',
-  violetDark: 'Dark',
+const primary: ColorEnum = {
+  primary: 'Value',
 };
 
-const cyan: ColorEnum = {
-  cyanLighter: 'Lighter',
-  cyanLight: 'Light',
-  cyan: 'Default',
-  cyanDark: 'Dark',
+const secondary: ColorEnum = {
+  secondary: 'Value',
 };
 
-const highlight: ColorEnum = {
-  alert: 'Alert',
-  purple: 'Purple',
-  magenta: 'Magenta',
+const tertiary: ColorEnum = {
+  tertiary: 'Value',
+};
+
+const link: ColorEnum = {
+  link: 'Value',
 };
 
 const gradient: ColorEnum = {
@@ -70,41 +57,14 @@ const colorsData: { [key: string]: ColorEnum } = {
   success,
   warning,
   error,
-  violet,
-  cyan,
-  highlight,
+  primary,
+  secondary,
+  tertiary,
   gradient,
+  link,
 };
 
 export const getColorData = (type: string): ColorEnum => {
   const data = colorsData[type];
   return data || (colorsData.normal as ColorEnum);
-};
-
-export const getCurrentColor = (palette: UIThemesPalette, type: string, index: number): string => {
-  if (type === 'normal') {
-    if (index >= 5) return palette.background;
-    return palette.foreground;
-  }
-
-  if (type === 'highlight') {
-    if (index < 3) return 'white';
-    return 'black';
-  }
-
-  if (type === 'gradient') {
-    return 'white';
-  }
-
-  if (type === 'warning' || type === 'cyan') {
-    if (index < 3) return 'black';
-    return 'white';
-  }
-
-  if (Object.keys(colorsData[type]).find(key => key.endsWith('Lighter'))) {
-    if (index === 0) return 'black';
-    return 'white';
-  }
-
-  return palette.background;
 };

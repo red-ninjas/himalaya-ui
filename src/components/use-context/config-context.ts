@@ -27,7 +27,7 @@ export interface ConfigProviderContextParams {
   swipedToLeft?: SwipeEventData | undefined;
   onSwiping?: SwipeEventData | undefined;
   themes?: Array<UIThemes>;
-  themeType?: string | 'dark' | 'light' | 'grey';
+  themeType?: string | 'dark' | 'light';
   toasts: Array<Toast>;
   updateToasts: UpdateToastsFunction;
   toastLayout: Required<ToastLayout>;
