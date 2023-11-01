@@ -24,7 +24,6 @@ const Video: React.FC<VideoProps> = ({ src, width, height, controls, autoplay = 
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
 
-  const videoContainerRef = useRef(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const handletoggleMute = () => {
@@ -35,7 +34,7 @@ const Video: React.FC<VideoProps> = ({ src, width, height, controls, autoplay = 
   };
   const handleFullScreen = () => {
     if (!isFullScreen) {
-      videoContainerRef.current.requestFullscreen();
+      videoRef?.current?.requestFullscreen();
       setIsFullScreen(true);
     } else {
       document.exitFullscreen();
@@ -71,7 +70,7 @@ const Video: React.FC<VideoProps> = ({ src, width, height, controls, autoplay = 
   };
 
   return (
-    <div className="video-player" ref={videoContainerRef}>
+    <div className="video-player">
       <div className="video-container">
         <video
           ref={videoRef}
