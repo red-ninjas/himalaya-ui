@@ -1,23 +1,23 @@
 'use client';
 
+import { PropsWithChildren } from 'react';
 import { ArrowDown } from '../icons';
+import { ContentLayout } from '../layout';
+import useLayout from '../use-layout';
 import { useScale, withScale } from '../use-scale';
 import useTheme from '../use-theme';
-import { ContentLayout } from '../layout';
-import { PropsWithChildren } from 'react';
-import { HeroProps } from './share';
+import { HeroPropsNative } from './share';
 
-const Hero: React.FC<PropsWithChildren<HeroProps>> = ({ children, withDownArrow = true }) => {
+const Hero: React.FC<PropsWithChildren<HeroPropsNative>> = ({ children, withDownArrow = true, ...props }) => {
   const theme = useTheme();
+  const layout = useLayout();
   const { SCALES } = useScale();
 
   return (
     <>
-      <header className="hero full-height valign bord-thin-bottom">
+      <header {...props} className="hero full-height valign bord-thin-bottom">
         <ContentLayout>
-          <div className="hero-inner">
-            <div className="hero-title">{children}</div>
-          </div>
+          <div className="hero-inner">{children}</div>
         </ContentLayout>
         {withDownArrow && (
           <div className="arrow-down main-bg">
@@ -36,7 +36,7 @@ const Hero: React.FC<PropsWithChildren<HeroProps>> = ({ children, withDownArrow 
           border-bottom: 1px solid ${theme.palette.border};
           min-height: calc(${SCALES.height(0, '100vh')} - ${withDownArrow ? 50 : 0}px);
           padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
-          margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
+          margin: ${SCALES.mt(0)} ${SCALES.mr(0, 'auto')} ${SCALES.mb(0)} ${SCALES.ml(0, 'auto')};
         }
         .actions {
           display: inline-flex;
@@ -85,10 +85,6 @@ const Hero: React.FC<PropsWithChildren<HeroProps>> = ({ children, withDownArrow 
           transform: rotate(90deg);
         }
 
-        .hero-title {
-          margin-top: ${withDownArrow ? 50 : 0}px;
-          text-align: center;
-        }
         .hero-inner {
           --bs-gutter-x: 1.5rem;
           --bs-gutter-y: 0;
@@ -96,8 +92,11 @@ const Hero: React.FC<PropsWithChildren<HeroProps>> = ({ children, withDownArrow 
           flex-wrap: wrap;
           margin-top: calc(var(--bs-gutter-y) * -1);
           justify-content: center;
-
+          margin-top: ${withDownArrow ? 50 : 0}px;
           margin-bottom: ${withDownArrow ? 100 : 0}px;
+          text-align: center;
+          gap: ${layout.gap};
+          flex-direction: column;
         }
         .container {
           width: 100%;

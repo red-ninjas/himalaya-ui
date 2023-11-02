@@ -1,28 +1,30 @@
 'use client';
 
-import useTheme from '../use-theme';
-import Text from '../text';
 import { PropsWithChildren } from 'react';
 import { useScale, withScale } from '../use-scale';
+import useTheme from '../use-theme';
+import { HeroCoreProps } from './share';
 
-const HeroDesc: React.FC<PropsWithChildren> = ({ ...props }) => {
+const HeroDesc: React.FC<PropsWithChildren<HeroCoreProps>> = ({ Tag = 'h2', children, ...props }: PropsWithChildren<HeroCoreProps>) => {
   const theme = useTheme();
   const { SCALES } = useScale();
 
   return (
-    <Text
-      h2
-      mt={'24px'}
-      mb={0}
-      font={SCALES.font(5, 'clamp(16px, 3vw, 20px)')}
-      style={{
-        fontWeight: '400',
-        color: theme.palette.accents_5,
-        wordBreak: 'break-word',
-      }}
-    >
-      {props.children}
-    </Text>
+    <Tag className="desc" {...props}>
+      {children}
+
+      <style jsx>{`
+        .desc {
+          font-size: ${SCALES.font(1.3)};
+          word-break: break-word;
+          font-weight: 400;
+          display: inline-block;
+          padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
+          margin: ${SCALES.mt(0, 'auto')} ${SCALES.mr(0, 'auto')} ${SCALES.mb(0, 'auto')} ${SCALES.ml(0, 'auto')};
+          color: ${theme.palette.accents_5};
+        }
+      `}</style>
+    </Tag>
   );
 };
 

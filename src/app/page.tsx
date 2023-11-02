@@ -1,6 +1,5 @@
 'use client';
 
-import { Code } from 'components/icons';
 import {
   Button,
   ContentLayout,
@@ -9,8 +8,6 @@ import {
   Footer,
   FooterBottom,
   FooterNavigation,
-  GradientWord,
-  Grid,
   Hero,
   Link,
   PageLayout,
@@ -18,11 +15,12 @@ import {
   Text,
   useTheme,
 } from 'components';
+import { Code } from 'components/icons';
 import ThemeProvider from 'components/use-context/theme-provider';
 import { capitalize } from 'components/utils/collections';
 import { Background, Facts, Partners, Portfolio, RunningSlogan, Services } from 'lib/components';
-import metaData from '../lib/data/metadata.json';
 import { BrandLogo } from 'lib/components/icons';
+import metaData from '../lib/data/metadata.json';
 
 export default function Index() {
   const theme = useTheme();
@@ -30,31 +28,22 @@ export default function Index() {
     <>
       <div className="hero">
         <div className="hero-inner">
-          <Hero>
-            <Grid.Container gap={0} justify="center">
-              <Grid lg={22} justify="center">
-                <Hero.Tag>HIMALAYA UI</Hero.Tag>
-              </Grid>
-              <Grid lg={22} justify="center">
-                <Hero.Title>
-                  Scaling Heights of <GradientWord>Design Excellence</GradientWord>: Your UI Journey{' '}
-                  <span style={{ textDecoration: 'underline', fontWeight: 300 }}>Begins Here!</span>
-                </Hero.Title>
-              </Grid>
-              <Grid lg={18} justify="center">
-                <Hero.Desc>
-                  Elevate your Next.js web development with our open-source UI library, offering a comprehensive suite of customizable components for building
-                  modern and user-friendly interfaces.
-                </Hero.Desc>
-              </Grid>
-            </Grid.Container>
+          <Hero style={{ maxWidth: 1020 }}>
+            <Hero.Tag>HIMALAYA UI</Hero.Tag>
+            <Hero.Title>
+              Scaling Heights of Design Excellence: Your UI Journey <span style={{ textDecoration: 'underline', fontWeight: 300 }}>Begins Here!</span>
+            </Hero.Title>
+            <Hero.Desc>
+              Elevate your Next.js web development with our open-source UI library, offering a comprehensive suite of customizable components for building
+              modern and user-friendly interfaces.
+            </Hero.Desc>
             <Hero.Actions>
-              <Link href={'/guide/'}>
+              <Link href={'/guide/introduction'}>
                 <Button type="primary" auto icon={<Code></Code>} scale={1.3}>
                   Documentation
                 </Button>
               </Link>
-              <Link href={'/guide/'}>
+              <Link href={'/guide/installation'}>
                 <Button type="secondary" scale={1.3}>
                   Installation
                 </Button>
@@ -70,9 +59,15 @@ export default function Index() {
       <Section>
         <Services></Services>
       </Section>
-      <FadeInEffect blur={10} transition={1000}>
-        <Partners></Partners>
-      </FadeInEffect>
+
+      <ThemeProvider themeType="dark">
+        <PageLayout>
+          <FadeInEffect blur={10} transition={1000}>
+            <Partners></Partners>
+          </FadeInEffect>
+        </PageLayout>
+      </ThemeProvider>
+
       <ThemeProvider themeType="light">
         <PageLayout>
           <Section>
@@ -88,7 +83,7 @@ export default function Index() {
       <Section>
         <Facts></Facts>
       </Section>
-      <ThemeProvider themeType="light">
+      <ThemeProvider themeType={theme.type == 'light' ? 'dark' : 'light'}>
         <PageLayout>
           <RunningSlogan></RunningSlogan>
         </PageLayout>
@@ -147,8 +142,8 @@ export default function Index() {
         .hero-bg {
           position: absolute;
           width: 100%;
-          bottom: -5px;
-          opacity: 0.5;
+          top: 0;
+          height: 100%;
           --color-face-1: ${theme.palette.accents_0};
           --color-face-2: ${theme.palette.accents_2};
           --color-face-3: ${theme.palette.accents_4};

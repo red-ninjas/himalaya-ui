@@ -12,11 +12,12 @@ const HeroTag: React.FC<PropsWithChildren<HeroTagProps>> = ({
   gradient,
   textColor,
   background,
+  Tag = 'h6',
 }: PropsWithChildren<HeroTagProps>) => {
   const theme = useTheme();
   const { SCALES } = useScale();
   return (
-    <h6 className={useClasses('tag', { gradient: hasGradient })}>
+    <Tag className={useClasses('tag', { gradient: hasGradient })}>
       {children}
       <style jsx>{`
         .tag {
@@ -29,14 +30,16 @@ const HeroTag: React.FC<PropsWithChildren<HeroTagProps>> = ({
           background: ${background || 'transparent'};
           display: inline-block;
           word-break: break-word;
-          padding: ${SCALES.pt(0.45)} ${SCALES.pr(1.9)} ${SCALES.pb(0.45)} ${SCALES.pl(1.9)};
-          margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
 
           --start-color: ${gradient ? gradient.from : theme.palette.gradient_1.from};
           --end-color: ${gradient ? gradient.to : theme.palette.gradient_1.to};
           --font-color: ${textColor || theme.palette.accents_8};
+
           color: var(--font-color);
           overflow: hidden;
+
+          padding: ${SCALES.pt(0.45)} ${SCALES.pr(1.9)} ${SCALES.pb(0.45)} ${SCALES.pl(1.9)};
+          margin: ${SCALES.mt(0, 'auto')} ${SCALES.mr(0, 'auto')} ${SCALES.mb(0, 'auto')} ${SCALES.ml(0, 'auto')};
         }
 
         .gradient {
@@ -45,7 +48,7 @@ const HeroTag: React.FC<PropsWithChildren<HeroTagProps>> = ({
           color: var(--font-color);
         }
       `}</style>
-    </h6>
+    </Tag>
   );
 };
 
