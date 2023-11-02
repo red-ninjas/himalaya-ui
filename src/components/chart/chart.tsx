@@ -6,17 +6,17 @@ import { UIThemes } from '../themes';
 
 import { ColorType, LineType, createChart } from '../use-charts';
 
-import moment from 'moment';
-import React, { createRef } from 'react';
-import { hexToRgb } from '../utils/color';
+import { ChartOptions, IChartApi } from 'components/use-charts/api/create-chart';
+import { ISeriesApi } from 'components/use-charts/api/iseries-api';
+import { TickMarkFormatter } from 'components/use-charts/model/horz-scale-behavior-time/horz-scale-behavior-time';
 import { Time, UTCTimestamp } from 'components/use-charts/model/horz-scale-behavior-time/types';
 import { TimeFormatterFn } from 'components/use-charts/model/localization-options';
-import { TickMarkFormatter } from 'components/use-charts/model/horz-scale-behavior-time/horz-scale-behavior-time';
-import { ISeriesApi } from 'components/use-charts/api/iseries-api';
 import { PriceFormatCustom, SeriesOptionsMap } from 'components/use-charts/model/series-options';
-import { ChartOptions, IChartApi } from 'components/use-charts/api/create-chart';
 import { DeepPartial } from 'components/utils/types';
+import moment from 'moment';
+import React, { createRef } from 'react';
 import { withThemeContext } from '../use-theme';
+import { hexToRgb } from '../utils/color';
 
 interface ThemedChartItem {
   time: number;
@@ -41,7 +41,7 @@ export interface ThemedChartData {
 const toolTipWidth = 80;
 const toolTipHeight = 80;
 const toolTipMargin = 15;
-
+const defaultChartHeight = 350;
 export const DefaulTimeFormatter = (businessDayOrTimestamp: Time) => {
   return moment.unix(Number(businessDayOrTimestamp) - moment().utcOffset() * 60).format('L LT (Z)');
 };
@@ -123,6 +123,7 @@ export interface ChartProps {
   series: { [name: string]: ThemedChartData };
   // theme?: UIThemes;
   context?: UIThemes;
+  height?: number;
   showLegends?: boolean;
   showTime?: boolean;
   showSeconds?: boolean;
@@ -211,7 +212,7 @@ class ThemedChart extends React.Component<ChartProps> {
       return;
     }
     this.options.width = this.chartContainerRef.current.clientWidth;
-    this.options.height = 350;
+    this.options.height = this.getHeight();
     this.chart?.remove();
     this.chart = createChart(this.chartContainerRef.current, this.configure(this.options));
     this.chart.subscribeCrosshairMove(param => {
@@ -272,8 +273,11 @@ class ThemedChart extends React.Component<ChartProps> {
     this.setTheme();
     this.generateData();
   }
-
   override componentDidUpdate(prevProps: Readonly<ChartProps>): void {
+    if (prevProps.height !== this.props.height) {
+      this.setHeight(this.props.height || defaultChartHeight);
+    }
+
     if (prevProps.context?.type !== this.props.context?.type) {
       this.setTheme();
     }
@@ -291,6 +295,14 @@ class ThemedChart extends React.Component<ChartProps> {
     }
   }
 
+  private setHeight(height: number) {
+    this.chart?.applyOptions({
+      height,
+    });
+  }
+  private getHeight(): number {
+    return this.props.height || defaultChartHeight;
+  }
   private setTheme() {
     this.chart?.applyOptions({
       layout: {

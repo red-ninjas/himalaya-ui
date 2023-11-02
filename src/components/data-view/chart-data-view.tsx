@@ -3,15 +3,13 @@
 import Text from '../text';
 
 import React, { useState } from 'react';
-import { ChartProps } from '../chart';
-import useTheme from '../use-theme';
+import ThemedChart, { ChartProps } from '../chart';
 import Toggle from '../toggle';
-import ThemedChart from '../chart';
-// import ChartSkeleton from '../chart'
+import useTheme from '../use-theme';
 import DataView from './data-view';
-// import DataViewSkeleton from './skeleton'
+const defaultDataViewHeight = 350;
 
-const GraphDataView: React.FC<ChartProps> = props => {
+const GraphDataView: React.FC<ChartProps> = ({ height = defaultDataViewHeight, timeFormatter, ...props }) => {
   const theme = useTheme();
 
   const [isDataView, setIsDataView] = useState<boolean>(false);
@@ -20,7 +18,7 @@ const GraphDataView: React.FC<ChartProps> = props => {
   };
 
   return (
-    <div>
+    <div className="data-view-core" style={{ height: height }}>
       <div className="dataViewSwitcher">
         <Text style={{ color: theme.palette.accents_5 }} mb={0} font={'14px'} mt={0} mr={0}>
           Data view
@@ -28,15 +26,20 @@ const GraphDataView: React.FC<ChartProps> = props => {
         <Toggle onChange={dataViewHandler} />
       </div>
 
-      {isDataView ? <DataView {...props}></DataView> : <ThemedChart {...props}></ThemedChart>}
+      {isDataView ? (
+        <DataView series={props.series} timeFormatter={timeFormatter} height={height} context={theme}></DataView>
+      ) : (
+        <ThemedChart context={theme} timeFormatter={timeFormatter} height={height} {...props}></ThemedChart>
+      )}
 
       <style jsx>{`
+        .data-view-core {
+        }
         .dataViewSwitcher {
           display: flex;
           align-items: center;
           gap: 8px;
           justify-content: flex-end;
-          margin-bottom: 12px;
         }
       `}</style>
     </div>

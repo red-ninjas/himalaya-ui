@@ -1,11 +1,13 @@
 'use client';
 
-import Note from '../note';
-import Table from '../table';
 import React from 'react';
 import { ChartPriceFormatter, DefaulTimeFormatter } from '../chart';
-import { DataViewProps, DataViewState } from './index';
+import Note from '../note';
 import { InnerScroll } from '../scroll';
+import Table from '../table';
+import { DataViewProps, DataViewState } from './index';
+
+const defaultDataViewHeight = 350;
 
 const generateKey = (text: string) => {
   return text
@@ -19,7 +21,7 @@ const generateKey = (text: string) => {
     .replace(/--+/g, '-');
 };
 
-export default class DataView extends React.Component<DataViewProps> {
+class DataView extends React.Component<DataViewProps> {
   state: DataViewState = { data: [], fields: [], isEmpty: false };
 
   constructor(props: DataViewProps) {
@@ -45,11 +47,23 @@ export default class DataView extends React.Component<DataViewProps> {
       },
     });
 
+    this.setState({
+      fields: [],
+      data: [],
+    });
+
+    const fields: any = [
+      {
+        property: 'time',
+        label: 'Date',
+      },
+    ];
+
     const tempData: { [date: number]: any } = {};
     for (const key in this.props.series) {
       const slugKey = generateKey(key);
       const values = this.props.series[key];
-      this.state.fields.push({ property: slugKey, label: key });
+      fields.push({ property: slugKey, label: key });
       values.data.forEach(df => {
         if (tempData[df.time] == undefined) {
           tempData[df.time] = {};
@@ -64,23 +78,24 @@ export default class DataView extends React.Component<DataViewProps> {
       return values;
     });
 
+    console.log({
+      fields,
+      data: generatedData.reverse(),
+    });
+
     this.setState({
-      ...this.state,
+      fields,
       data: generatedData.reverse(),
     });
   }
 
   componentWillUnmount(): void {}
 
-  /* eslint-disable */
-  // @ts-ignore
-  render() {
+  override render() {
     return (
       <>
         {this.state.data && this.state.data.length > 0 ? (
-          // @ts-ignore
-          <InnerScroll type="vertical" maxHeight="350px">
-            {/* @ts-ignore */}
+          <InnerScroll type="vertical" maxHeight={this.props.height || defaultDataViewHeight}>
             <Table scale={0.75} data={this.state.data}>
               {this.state.fields.map((field, index) => {
                 return <Table.Column key={index} prop={field.property} label={field.label} />;
@@ -88,10 +103,11 @@ export default class DataView extends React.Component<DataViewProps> {
             </Table>
           </InnerScroll>
         ) : (
-          // @ts-ignore
           <Note>No datas found. </Note>
         )}
       </>
     );
   }
 }
+
+export default DataView;
