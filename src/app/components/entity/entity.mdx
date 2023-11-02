@@ -1,20 +1,5 @@
 import { Layout, Playground, Attributes } from 'lib/components';
-import {
-  Entity,
-  Link,
-  Image,
-  Checkbox,
-  Button,
-  Footer,
-  Avatar,
-  FooterNavigation,
-  FooterBottom,
-  Logo,
-  Input,
-  Skeleton,
-  Menu,
-  Divider,
-} from 'components';
+import { Entity, Link, Image, Checkbox, Button, Footer, Avatar, FooterNavigation, FooterBottom, Logo, Input, Skeleton, Menu, Divider } from 'components';
 
 export const meta = {
   title: 'Entity',
@@ -23,11 +8,12 @@ export const meta = {
 
 # Entity
 
-Display a collection of related information of a resource entity.
+The `Entity` UI component is designed to display a collection of related information for a resource entity. It provides a structured and visually appealing way to present data about an entity.
 
 <Playground
   title="Fields"
-  scope={{ Entity, Link, Image, Avatar}}
+  desc="The `Entity.Field` component is composed of various fields that represent different attributes or properties of the entity. Each field may contain data like names, statuses, labels, and more."
+  scope={{ Entity, Link, Image, Avatar }}
   code={`
 () => {
   return (
@@ -45,6 +31,7 @@ Display a collection of related information of a resource entity.
 
 <Playground
   title="Thumbnail"
+  desc=" In certain cases, you can include a thumbnail image to represent the entity or an associated resource."
   scope={{ Entity, Link, Image, Avatar }}
   code={`
 () => {
@@ -64,6 +51,7 @@ Display a collection of related information of a resource entity.
 
 <Playground
   title="Checkbox"
+  desc="The component can include checkboxes for making selections or performing actions related to the entity."
   scope={{ Entity, Link, Checkbox, Button }}
   code={`
   () => {
@@ -81,7 +69,7 @@ Display a collection of related information of a resource entity.
 
 <Playground
   title="Actions"
-  scope={{ Entity, Link, Image, Button, Avatar}}
+  scope={{ Entity, Link, Image, Button, Avatar }}
   code={`
 () => {
   return (
@@ -129,6 +117,7 @@ Display a collection of related information of a resource entity.
 
 <Playground
   title="Footer"
+  desc="A footer section can be included to provide additional information or actions related to the entity."
   scope={{ Entity, Link, Image, Button, Footer, FooterNavigation, FooterBottom, Logo, Avatar }}
   code={`
 () => {

@@ -1,17 +1,19 @@
-import { Box } from 'components'
-import { Layout, Playground, Attributes } from 'lib/components'
+import { Box } from 'components';
+import { Layout, Playground, Attributes } from 'lib/components';
 
 export const meta = {
   title: 'Box',
   group: 'Layout',
-}
+};
 
 # Box
 
-Polymorphic scalable component.
+The `Box` UI component is a versatile and scalable element that can adapt to various use cases within your web application.
 
 <Playground
   scope={{ Box }}
+  desc="The `Box` component is a flexible building block that can contain any content you want to display."
+  title="Box example"
   code={`
 <Box>
     Hello
@@ -21,7 +23,7 @@ Polymorphic scalable component.
 
 <Playground
   title="Polymorphic property"
-  desc="Provide an element to render the Box as."
+  desc="You can specify the element to render the `Box` as, allowing you to tailor it to your specific needs. For example, you can render it as a paragraph, an anchor tag, or other HTML elements."
   scope={{ Box }}
   code={`
 <Box as='a' href='#'>
@@ -32,7 +34,7 @@ Polymorphic scalable component.
 
 <Playground
   title="Scalability"
-  desc="Use props to scale the Box."
+  desc="The `Box` component is highly scalable. You can use props to adjust its appearance, size, and styling, making it suitable for different parts of your application."
   scope={{ Box }}
   code={`
 <Box font={3} py='3rem' mx='auto' width='300px'>

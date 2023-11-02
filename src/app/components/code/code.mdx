@@ -8,10 +8,11 @@ export const meta = {
 
 # Code
 
-Show source code in a standardized way. Want to display shell code snippets? try [Snippet](/components/snippet).
+The `Code` UI component serves as a versatile tool for displaying source code in a standardized and visually appealing way.
+Want to display shell code snippets? try [Snippet](/components/snippet).
 
 <Playground
-  desc="Basic inline codes."
+  desc="The component allows you to insert basic inline code snippets into your content."
   scope={{ Code, Text }}
   code={`
 <Text my={0}>Run <Code>yarn add @himalaya-ui/core</Code> to install.</Text>
@@ -20,7 +21,7 @@ Show source code in a standardized way. Want to display shell code snippets? try
 
 <Playground
   title="Code Block"
-  desc="Multi line code display."
+  desc="You can display multi-line code blocks with syntax highlighting and formatting, making it easy to showcase code examples."
   scope={{ Code, ExampleCodes: ParsedCodes.Types }}
   code={`
 <Code block my={0}><ExampleCodes /></Code>

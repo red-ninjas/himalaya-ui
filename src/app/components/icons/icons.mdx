@@ -1,19 +1,20 @@
-import Title from 'lib/components/playground/title'
-import Github from 'components/icons/github'
-import { Spacer, Tabs, Snippet } from 'components'
-import { Layout, Playground, Attributes, IconsGallery } from 'lib/components'
+import Title from 'lib/components/playground/title';
+import Github from 'components/icons/github';
+import { Spacer, Tabs, Snippet } from 'components';
+import { Layout, Playground, Attributes, IconsGallery } from 'lib/components';
 
 export const meta = {
   title: 'Icons',
   group: 'General',
-}
+};
 
 # Icons
 
-Display semantic vector graphics in SVG format.
+The `Icon` component is a dynamic tool for effortlessly incorporating over 350 semantic vector SVG graphics into your web app, elevating its visual impact and functionality.
 
 <Playground
   title="Import"
+  desc="You can easily import and use a variety of icons in your application or website, enhancing the visual appeal and functionality of your interface."
   scope={{ Github, Spacer }}
   code={`
 // import * as Icon from 'components/icons'
@@ -27,6 +28,7 @@ Display semantic vector graphics in SVG format.
 
 <Playground
   title="Color"
+  desc="Customize the color of icons to match your design scheme and create a cohesive and visually appealing user experience."
   scope={{ Github }}
   code={`
 <Github color="red" />
@@ -35,6 +37,7 @@ Display semantic vector graphics in SVG format.
 
 <Playground
   title="Sizes"
+  desc="Adjust the size of icons as needed to ensure they are appropriately scaled within your layout."
   scope={{ Github, Spacer }}
   code={`
 <>

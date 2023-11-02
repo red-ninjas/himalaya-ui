@@ -6,6 +6,7 @@ export type MetadataEntry = {
   group?: string;
   index?: number;
   localeName?: string;
+  description?: string,
   children?: MetadataEntry | Array<MetadataEntry>;
 };
 

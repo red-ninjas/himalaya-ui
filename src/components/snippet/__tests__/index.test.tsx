@@ -2,7 +2,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 import { Snippet } from 'components';
 
-const command = 'yarn add himalaya';
+const command = 'yarn add @himalaya-ui/core';
 const multiLine = ['cd project', 'now'];
 
 describe('Snippet', () => {

@@ -2,12 +2,12 @@ export const meta = {
   title: 'Themes',
   group: 'Customization',
   index: 25,
-}
+};
 
 # Themes
 
 **Himalaya** now supports a variety of themes, and it is very easy to create or inherit modifications, no third-party styles or configs.
-As a basic option, there are three themes available, `light`, `grey` and `dark`.
+As a basic option, there are three themes available, `light` and `dark`.
 
 ## Switch themes
 
@@ -19,21 +19,21 @@ To switch in the default themes you only need to set the value of `themeType`, y
 
 ```jsx
 // NAME:src/app.js
-import { StyledJsxRegistry, ConfigProvider } from '@himalaya-ui/core'
+import { StyledJsxRegistry, ConfigProvider } from '@himalaya-ui/core';
 
 const App = () => {
-  const [themeType, setThemeType] = useState('light')
+  const [themeType, setThemeType] = useState('light');
   const switchThemes = () => {
-    setThemeType(last => (last === 'dark' ? 'light' : 'dark'))
-  }
+    setThemeType(last => (last === 'dark' ? 'light' : 'dark'));
+  };
   return (
     <StyledJsxRegistry>
       <ConfigProvider themeType={themeType}>
         <YourComponent onClick={switchThemes} />
       </ConfigProvider>
     </StyledJsxRegistry>
-  )
-}
+  );
+};
 ```
 
 ## Detect theme
@@ -50,21 +50,21 @@ To detect a default theme you only need to set the value of `detectTheme` to `tr
 
 ```jsx
 // NAME:src/app.js
-import { StyledJsxRegistry, ConfigProvider } from '@himalaya-ui/core'
+import { StyledJsxRegistry, ConfigProvider } from '@himalaya-ui/core';
 
 const App = () => {
-  const [themeType, setThemeType] = useState('light')
+  const [themeType, setThemeType] = useState('light');
   const switchThemes = () => {
-    setThemeType(last => (last === 'dark' ? 'light' : 'dark'))
-  }
+    setThemeType(last => (last === 'dark' ? 'light' : 'dark'));
+  };
   return (
     <StyledJsxRegistry>
       <ConfigProvider detectTheme={true}>
         <YourComponent onClick={switchThemes} />
       </ConfigProvider>
     </StyledJsxRegistry>
-  )
-}
+  );
+};
 ```
 
 ## Customizing theme
@@ -73,14 +73,14 @@ Customizing a theme is very simple in Himalaya, you just need to provide a new t
 and all the components will change automatically.
 
 ```jsx
-import { StyledJsxRegistry, ConfigProvider, Themes } from '@himalaya-ui/core'
+import { StyledJsxRegistry, ConfigProvider, Themes } from '@himalaya-ui/core';
 
 const myTheme1 = Themes.createFromLight({
   type: 'coolTheme',
   palette: {
     success: '#000',
   },
-})
+});
 
 const App = () => (
   <StyledJsxRegistry>
@@ -88,7 +88,7 @@ const App = () => (
       <YourAppComponent onClick={switchThemes} />
     </ConfigProvider>
   </StyledJsxRegistry>
-)
+);
 ```
 
 Function `Themes.createFromLight` allows you to fork a new theme based on Light Theme,
@@ -112,15 +112,15 @@ you can refer to the existing [type file](https://github.com/red-ninjas/himalaya
 which corresponds to project that support TypeScript, you can refer to the type directly in the package：
 
 ```ts
-import { UIThemes, UIThemesFont, UIThemesPalette, UIThemesExpressiveness } from '@himalaya-ui/core'
+import { UIThemes, UIThemesFont, UIThemesPalette, UIThemesExpressiveness } from '@himalaya-ui/core';
 
 // usage:
 const myStyles: UIThemes = {
   /* ... */
-}
+};
 const myPalette: Partial<UIThemesPalette> = {
   /* ... */
-}
+};
 ```
 
 ## Customizer
@@ -153,7 +153,7 @@ const MyPage = () => (
   <Row>
     <Button style={{ margin: '20px' }}>Click me!</Button>
   </Row>
-)
+);
 ```
 
 ## Build components
@@ -162,16 +162,16 @@ You can use the Himalya preset Hooks to get the theme states to create your own 
 For more information, please refer to [useTheme](/hooks/use-theme) documentation.
 
 ```jsx
-import { useTheme } from '@himalaya-ui/core'
+import { useTheme } from '@himalaya-ui/core';
 
 const MyComponent = () => {
-  const theme = useTheme()
+  const theme = useTheme();
   return (
     <div style={{ color: theme.palette.success.value }}>
       <span>hello world!</span>
     </div>
-  )
-}
+  );
+};
 ```
 
 ## Themes APIs
@@ -187,3 +187,5 @@ const MyComponent = () => {
 - `Themes.hasUserCustomTheme` - Check if a list of themes has a custom.
 - `Themes.getPresets` - Get a default list of themes.
 - `Themes.getPresetStaticTheme` - Get the theme loaded by Himalaya default.
+- `Themes.generateAccents` - Generate background, forground and accents colors.
+- `Themes.generateColors` - Generate any type color such as primary, secondary, etc.

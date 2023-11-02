@@ -31,6 +31,10 @@ const IconsGallery: React.FC<unknown> = () => {
   return (
     <>
       <h3 className="title">{'Icons Gallery'}</h3>
+      <p>
+        Explore and select from a wide range of available icons to suit your specific needs, helping to improve the visual representation of various elements
+        and actions in your UI.
+      </p>
       <Card>
         <Input width="100%" icon={<Icons.Search />} placeholder={'Search'} {...bindings} />
         <div className="icons-grid">

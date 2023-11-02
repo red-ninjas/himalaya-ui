@@ -1,7 +1,15 @@
-const fs = require('fs-extra');
-const path = require('path');
-const extractMetadata = require('extract-mdx-metadata');
+import fs from 'fs-extra';
+import path from 'path'
+import extractMetadata from 'extract-mdx-metadata'
+import { remark } from 'remark'
+
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 const pagePrefix = path.join(__dirname, '../src/app');
+
+import strip from 'strip-markdown'
 
 const getTargetPath = () => {
   return path.join(__dirname, '../src/lib/data/', `metadata.json`);
@@ -27,7 +35,12 @@ const groupWeights = {
   effects: 12,
 };
 
-const getDescription = content => {
+const truncateString = (string = '', maxLength = 50) =>
+  string.length > maxLength
+    ? `${string.substring(0, maxLength)}…`
+    : string
+
+const getDescription = async content => {
   const lines = content.split('\n');
   let description = '';
 
@@ -50,7 +63,14 @@ const getDescription = content => {
       }
     }
   }
-  return description.trim();
+
+
+  const file = await remark()
+    .use(strip)
+    .process(description.replace(/<[^>]*>?/gm, ''));
+
+  const reformat = String(file).replace(/(\r\n|\n|\r)/gm, "").replace(/\s+/g, ' ').trim()
+  return truncateString(reformat, 295);
 };
 
 const getMetadata = async (files, parentPath) => {
@@ -104,10 +124,12 @@ const getMetadata = async (files, parentPath) => {
             const previousFolder = path.basename(filePath);
             try {
               const content = await fs.readFile(path.join(filePath, previousFolder + '.mdx'), 'utf-8');
-
               const meta = await extractMetadata(content);
+              const description = await getDescription(content);
 
-              const description = getDescription(content);
+              if (!description || description.length <= 0) {
+                console.warn("Cant found any description for ", path.join(filePath, previousFolder + '.mdx'));
+              }
 
               const url = filePath.replace(pagePrefix, '').replace('.mdx', '').replace(/\\/g, '/').toString();
               const val = {

@@ -1,10 +1,10 @@
-import { Code, Spacer, Tabs, Dot, Snippet, Text } from 'components'
+import { Code, Spacer, Tabs, Dot, Snippet, Text } from 'components';
 
 export const meta = {
   title: 'Installation',
   group: 'Getting Started',
   index: 10,
-}
+};
 
 # Installation
 
@@ -21,10 +21,10 @@ Also, Himalaya is based on the component library of framework React, which means
 
 <Tabs initialValue="yarn" hideDivider hideBorder align="flex-end" mt="-46px">
   <Tabs.Item label="Yarn" value="yarn">
-    <Snippet>yarn add himalaya</Snippet>
+    <Snippet>yarn add @himalaya-ui/core</Snippet>
   </Tabs.Item>
   <Tabs.Item label="Npm" value="npm">
-    <Snippet>npm i himalaya</Snippet>
+    <Snippet>npm i @himalaya-ui/core</Snippet>
   </Tabs.Item>
 </Tabs>
 <Spacer h={0.5} />
@@ -34,15 +34,19 @@ Also, Himalaya is based on the component library of framework React, which means
 
 ```jsx
 // NAME: /src/app.js
-import { ConfigProvider, StyledJsxRegistry } from '@himalaya-ui/core'
+import { ConfigProvider, StyledJsxRegistry } from '@himalaya-ui/core';
 
 export default () => (
-  <StyledJsxRegistry>  // --> base styles, ssr injector
-    <ConfigProvider> // --> ui provider
+  <StyledJsxRegistry>
+    {' '}
+    // --> base styles, ssr injector
+    <ConfigProvider>
+      {' '}
+      // --> ui provider
       <AppComponent /> // --> your application
     </ConfigProvider>
   </StyledJsxRegistry>
-)
+);
 ```
 
 <Spacer h={0} mb="8px" />
@@ -51,14 +55,14 @@ export default () => (
 </h4>
 
 ```jsx
-import { Button, Page, Text } from '@himalaya-ui/core'
+import { Button, Page, Text } from '@himalaya-ui/core';
 
 const Home = () => (
   <Page>
     <Text h1>Home Page</Text>
     <Button>Submit</Button>
   </Page>
-)
+);
 ```
 
 ## Next.js project
@@ -68,7 +72,7 @@ Once the project has been initialized, add the `/app/layout.jsx` file to the `/a
 
 ```jsx
 // NAME:pages/_app.jsx
-import { ConfigProvider, StyledJsxRegistry } from '@himalaya-ui/core'
+import { ConfigProvider, StyledJsxRegistry } from '@himalaya-ui/core';
 
 const App = ({ Component, pageProps }) => {
   return (
@@ -77,10 +81,10 @@ const App = ({ Component, pageProps }) => {
         <Component {...pageProps} />
       </ConfigProvider>
     </StyledJsxRegistry>
-  )
-}
+  );
+};
 
-export default App
+export default App;
 ```
 
 If you need server-side rendering in Next.js project,
@@ -101,6 +105,5 @@ Some fonts in Web applications do not render best on the _Windows_ platform, or 
 ## Add `Figtree Variable` to your project:
 
 <Code block my={0} width="100%">
-  <span className="token keyword module">import</span>{' '}
-  <span className="token string">'@fontsource-variable/figtree'</span>
+  <span className="token keyword module">import</span> <span className="token string">'@fontsource-variable/figtree'</span>
 </Code>
