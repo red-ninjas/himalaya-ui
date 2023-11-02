@@ -1,4 +1,4 @@
-<h1 align="center">Welcome to Himalaya UI 👋</h1>
+# Welcome to Himalaya UI 👋
 
 ![HimalayaUI Logo](https://github.com/red-ninjas/himalaya-ui/blob/master/src/public/images/himalaya-banner-dark.png?raw=true)
 
@@ -9,27 +9,48 @@
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/red-ninjas/himalaya-ui/graphs/commit-activity)
 [![License](https://img.shields.io/github/license/red-ninjas/himalaya-ui)](https://github.com/red-ninjas/himalaya-ui/blob/master/LICENSE)
 
-
-> Himalaya is a modern and minimalist UI library for NextJS 13.
-
 ### 🏠 [Homepage](https://himalaya-ui.com)
-
 ### ✨ [Demo](https://github.com/red-ninjas/landing-page)
+### 📘 [Documentation](https://himalaya-ui.com)
+
 
 ## Prerequisites
 
 - node >=18.0.0
 
-## Install
+## Installation
+
+Choose your preferred package manager to install Himalaya UI:
 
 ```sh
-yarn install
+yarn add @himalaya-ui/core
+```
+```sh
+npm install @himalaya-ui/core
 ```
 
-## Run tests
+## Run Tests
+
+You can run tests using the following command:
 
 ```sh
 yarn test
+```
+
+## Getting Started
+
+Here's a simple example of how to use Himalaya UI within your Next.js 13 and React application:
+
+```jsx
+import { ConfigProvider, StyledJsxRegistry } from '@himalaya-ui/core'
+
+export default () => (
+  <StyledJsxRegistry>  <!-- base styles, ssr injector -->
+    <ConfigProvider> <!-- ui provider -->
+      <AppComponent /> <!-- your application -->
+    </ConfigProvider>
+  </StyledJsxRegistry>
+)
 ```
 
 ## Author
@@ -39,15 +60,26 @@ yarn test
 * Website: https://redninjas.dev
 * Github: [@red-ninjas](https://github.com/red-ninjas)
 
+👤 **Stefan Kalysta**
+
+* Github: [@kalysti](https://github.com/kalysti)
+
+👤 **Syed Abubakar**
+
+* Github: [@dev-ABsid](https://github.com/dev-ABsid)
+
 ## 🤝 Contributing
 
-Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/red-ninjas/himalaya-ui/issues). You can also take a look at the [contributing guide](https://github.com/red-ninjas/himalaya-ui/blob/master/CONTRIBUTING.md).
+We welcome contributions, issues, and feature requests from the community! Please visit our [issues page](https://github.com/red-ninjas/himalaya-ui/issues) to report problems or make suggestions. You can also find our [contributing guide](https://github.com/red-ninjas/himalaya-ui/blob/master/CONTRIBUTING.md) for more information.
 
-## Show your support
+## Show Your Support
 
-Give a ⭐️ if this project helped you!
+If Himalaya UI has helped you in your projects, show your support by giving us a ⭐️!
 
 ## 📝 License
 
-Copyright © 2023 [RedNinjas LTD](https://github.com/red-ninjas).<br />
-This project is [MIT](https://github.com/red-ninjas/himalaya-ui/blob/master/LICENSE) licensed.
+Himalaya UI is licensed under the MIT License. The MIT License is a permissive open source license that allows you to use, modify, and distribute the software for both commercial and non-commercial purposes. You are granted extensive freedom to customize and integrate Himalaya UI into your projects while maintaining the freedom to use it as you see fit.
+
+Copyright © 2023 [RedNinjas LTD](https://github.com/red-ninjas).
+
+For more details, please review the full [MIT License](https://github.com/red-ninjas/himalaya-ui/blob/master/LICENSE) provided by the project.
