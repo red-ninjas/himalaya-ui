@@ -2,6 +2,7 @@
 import React, { useMemo } from 'react';
 import useTheme from '../use-theme';
 import { TableAbstractColumn, TableDataItemBase } from './table-types';
+import useLayout from '../use-layout';
 
 interface Props<TableDataItem extends TableDataItemBase> {
   width: number;
@@ -30,6 +31,7 @@ const makeColgroup = <TableDataItem extends TableDataItemBase>(width: number, co
 
 const TableHead = <TableDataItem extends TableDataItemBase>(props: TableHeadProps<TableDataItem>) => {
   const theme = useTheme();
+  const layout = useLayout();
   const { columns, width } = props as TableHeadProps<TableDataItem>;
   const isScalableWidth = useMemo(() => columns.find(item => !!item.width), [columns]);
   const colgroup = useMemo(() => {
@@ -57,15 +59,14 @@ const TableHead = <TableDataItem extends TableDataItemBase>(props: TableHeadProp
         }
 
         th {
-          padding: 0 0.5em;
-          font-size: calc(0.75 * var(--table-font-size));
-          font-weight: normal;
+          padding: ${layout.gapHalf} ${layout.gapQuarter};
+          font-size: calc(0.8 * var(--table-font-size));
+          font-weight: 600;
           text-align: left;
           letter-spacing: 0;
           vertical-align: middle;
-          min-height: calc(2.5 * var(--table-font-size));
           color: ${theme.palette.accents_5};
-          background: ${theme.palette.accents_1};
+          background: transparent;
           border-bottom: 1px solid ${theme.palette.border};
           border-top: 1px solid ${theme.palette.border};
           border-radius: 0;
@@ -91,8 +92,8 @@ const TableHead = <TableDataItem extends TableDataItemBase>(props: TableHeadProp
           display: flex;
           align-items: center;
           -webkit-box-align: center;
-          min-height: calc(2.5 * var(--table-font-size));
           text-transform: uppercase;
+          line-height: calc(1.4 * var(--table-font-size));
         }
       `}</style>
     </>
