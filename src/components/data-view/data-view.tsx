@@ -88,7 +88,7 @@ class DataView extends React.Component<DataViewProps> {
 
   override render() {
     return (
-      <div>
+      <>
         {this.state.data && this.state.data.length > 0 ? (
           <InnerScroll type="vertical" maxHeight={this.props.height || defaultDataViewHeight}>
             <Table scale={0.75} data={this.state.data}>
@@ -100,7 +100,7 @@ class DataView extends React.Component<DataViewProps> {
         ) : (
           <Note>No datas found. </Note>
         )}
-      </div>
+      </>
     );
   }
 }
