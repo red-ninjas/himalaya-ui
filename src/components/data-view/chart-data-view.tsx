@@ -27,7 +27,7 @@ const GraphDataView: React.FC<ChartProps> = ({ height = defaultDataViewHeight, t
       </div>
 
       {isDataView ? (
-        <DataView series={props.series} timeFormatter={timeFormatter} height={height} context={theme}></DataView>
+        <DataView series={props.series} timeFormatter={timeFormatter} height={height}></DataView>
       ) : (
         <ThemedChart context={theme} timeFormatter={timeFormatter} height={height} {...props}></ThemedChart>
       )}
