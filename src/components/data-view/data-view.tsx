@@ -78,11 +78,6 @@ class DataView extends React.Component<DataViewProps> {
       return values;
     });
 
-    console.log({
-      fields,
-      data: generatedData.reverse(),
-    });
-
     this.setState({
       fields,
       data: generatedData.reverse(),
@@ -93,19 +88,19 @@ class DataView extends React.Component<DataViewProps> {
 
   override render() {
     return (
-      <>
+      <div>
         {this.state.data && this.state.data.length > 0 ? (
           <InnerScroll type="vertical" maxHeight={this.props.height || defaultDataViewHeight}>
             <Table scale={0.75} data={this.state.data}>
-              {this.state.fields.map((field, index) => {
-                return <Table.Column key={index} prop={field.property} label={field.label} />;
-              })}
+              {this.state.fields.map((field, index) => (
+                <Table.Column key={index} prop={field.property} label={field.label} />
+              ))}
             </Table>
           </InnerScroll>
         ) : (
           <Note>No datas found. </Note>
         )}
-      </>
+      </div>
     );
   }
 }

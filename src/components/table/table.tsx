@@ -96,7 +96,8 @@ function TableComponent<TableDataItem extends TableDataItemBase>(tableProps: Rea
 
 TableComponent.displayName = 'HimalayaTable';
 TableComponent.Column = TableColumn;
-const Table = withScale(TableComponent);
+const Table = withScale(TableComponent) as any;
+Table.Column = TableColumn;
 
 export type TableType = typeof Table & {
   Column: typeof TableColumn;
