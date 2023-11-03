@@ -87,21 +87,17 @@ class DataView extends React.Component<DataViewProps> {
   componentWillUnmount(): void {}
 
   override render() {
-    return (
-      <>
-        {this.state.data && this.state.data.length > 0 ? (
-          <InnerScroll type="vertical" maxHeight={this.props.height || defaultDataViewHeight}>
-            <Table scale={0.75} data={this.state.data}>
-              {this.state.fields.map((field, index) => (
-                <Table.Column key={index} prop={field.property} label={field.label} />
-              ))}
-            </Table>
-          </InnerScroll>
-        ) : (
-          <Note>No datas found. </Note>
-        )}
-      </>
-    );
+    if (this.state.data && this.state.data.length > 0) {
+      return (
+        <InnerScroll type="vertical" maxHeight={this.props.height || defaultDataViewHeight}>
+          <Table scale={0.75} data={this.state.data}>
+            {this.state.fields.map((field, index) => (
+              <Table.Column key={index} prop={field.property} label={field.label} />
+            ))}
+          </Table>
+        </InnerScroll>
+      );
+    } else return <Note>No datas found. </Note>;
   }
 }
 
