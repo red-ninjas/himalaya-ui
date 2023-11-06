@@ -15,16 +15,16 @@ export type GaugeTypes = NormalTypes;
 interface Props {
   value?: number;
   max?: number;
-  fixedTop?: boolean;
-  fixedBottom?: boolean;
+  // fixedTop?: boolean;
+  // fixedBottom?: boolean;
   colors?: GaugeColors;
   type?: GaugeTypes;
-  className?: string;
-  indeterminate?: boolean;
-  size?: string[];
+  // indeterminate?: boolean;
+  showValue?: boolean;
+  size?: 'timy' | 'small' | 'medium' | 'large';
 }
 
-type NativeAttrs = Omit<React.GaugeHTMLAttributes<any>, keyof Props>;
+type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
 export type GaugeProps = Props & NativeAttrs;
 
 const getCurrentColor = (ratio: number, palette: UIThemesPalette, type: GaugeTypes, colors: GaugeColors = {}): string => {
@@ -51,27 +51,31 @@ const GaugeComponent: React.FC<GaugeProps> = ({
   className = '',
   type = 'default' as GaugeTypes,
   colors,
-  fixedTop = false,
-  fixedBottom = false,
-  indeterminate = false,
+  // fixedTop = false,
+  // fixedBottom = false,
+  // indeterminate = false,
+  showValue = false,
   size,
   ...props
 }: GaugeProps) => {
   const theme = useTheme();
   const { SCALES } = useScale();
+  SCALES;
   const percentValue = useProportions(value, max);
   const currentColor = getCurrentColor(percentValue, theme.palette, type, colors);
-  const fixed = fixedTop || fixedBottom;
-  const classes = useClasses('gauge', { fixed }, className);
+  // const fixed = fixedTop || fixedBottom;
+  const classes = useClasses('gauge', className);
 
   const radius = size === 'tiny' ? 45 : size === 'small' ? 60 : size === 'medium' ? 75 : 90;
+  const textSizes = size === 'tiny' ? '1rem' : size === 'small' ? '1.5rem' : size === 'medium' ? '2rem' : '2.5rem';
+  const fontWeight = size === 'tiny' || size === 'small' ? 500 : 600;
   const strokeWidth = 10;
   const circumference = 2 * Math.PI * (radius - strokeWidth / 2);
   const dashArray = circumference;
   const dashOffset = (1 - value / 100) * dashArray;
 
   return (
-    <div className={classes}>
+    <div className={classes} {...props}>
       {/* <div
         className={useClasses('inner', {
           indeterminate: indeterminate,
@@ -96,12 +100,49 @@ const GaugeComponent: React.FC<GaugeProps> = ({
           fill="none"
           stroke={currentColor}
           strokeWidth={strokeWidth}
+          strokeLinecap="round"
           strokeDasharray={dashArray}
           strokeDashoffset={dashOffset}
         />
       </svg>
+      {showValue && <div className="gauge-content">{percentValue}</div>}
       {/* {showValue && <p>{value}%</p>} */}
       <style jsx>{`
+        svg {
+          shape-rendering: crispEdges;
+
+          > circle {
+            shape-rendering: geometricprecision;
+          }
+        }
+
+        .gauge {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          position: relative;
+
+          * {
+            transition: all 1s ease;
+          }
+
+          > .gauge-content {
+            animation: gauge-fadein 1s ease forwards;
+            animation-delay: 0s;
+            display: flex;
+            opacity: 0;
+            position: absolute;
+            font-size: ${textSizes};
+            font-weight: ${fontWeight};
+          }
+        }
+
+        @keyframes gauge-fadein {
+          to {
+            opacity: 1;
+          }
+        }
         @keyframes indeterminate {
           0% {
             transform: translateX(0) scaleX(0);
