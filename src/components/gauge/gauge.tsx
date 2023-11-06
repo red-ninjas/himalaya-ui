@@ -21,7 +21,7 @@ interface Props {
   type?: GaugeTypes;
   // indeterminate?: boolean;
   showValue?: boolean;
-  size?: 'tiny' | 'small' | 'medium' | 'large';
+  size?: 'tiny' | 'small' | 'medium' | 'large' | string;
 }
 
 type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
@@ -66,10 +66,10 @@ const GaugeComponent: React.FC<GaugeProps> = ({
   // const fixed = fixedTop || fixedBottom;
   const classes = useClasses('gauge', className);
 
-  const radius = size === 'tiny' ? 45 : size === 'small' ? 60 : size === 'medium' ? 75 : 90;
-  const textSizes = size === 'tiny' ? '1rem' : size === 'small' ? '1.5rem' : size === 'medium' ? '2rem' : '2.5rem';
+  const radius = size === 'tiny' ? 45 : size === 'small' ? 60 : size === 'medium' ? 75 : size === 'large' ? 90 : parseFloat(size);
+  const textSizes = size === 'tiny' ? SCALES.font(1) : size === 'small' ? SCALES.font(1.5) : size === 'medium' ? SCALES.font(2) : SCALES.font(2.5);
   const fontWeight = size === 'tiny' || size === 'small' ? 500 : 600;
-  const strokeWidth = 10;
+  const strokeWidth = radius < 45 ? 5 : 10;
   const circumference = 2 * Math.PI * (radius - strokeWidth / 2);
   const dashArray = circumference;
   const dashOffset = (1 - value / 100) * dashArray;

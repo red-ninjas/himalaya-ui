@@ -45,6 +45,16 @@ Display gauge progress relative to a limit or related to a task.
 />
 
 <Playground
+  title="Custom size"
+  scope={{ Gauge, Grid }}
+  code={`
+<Grid.Container gap={2} justify="center" height="250px">
+  <Grid xs={12} style={{display: 'flex', justifyContent: 'center'}}><Gauge type="success" showValue value={80} size="100" /></Grid>
+</Grid.Container>
+`}
+/>
+
+<Playground
   title="Custom Colors"
   scope={{ Gauge, Grid, Spacer, Button }}
   code={`
@@ -73,15 +83,15 @@ Display gauge progress relative to a limit or related to a task.
 <Attributes edit="/pages/components/gauge.mdx">
 <Attributes.Title>Gauge.Props</Attributes.Title>
 
-| Attribute     | Description               | Type                        | Accepted values                       | Default   |
-| ------------- | ------------------------- | --------------------------- | ------------------------------------- | --------- |
-| **value**     | current value             | `number`                    | -                                     | 0         |
-| **showValue** | show current value or not | `boolean`                   | `true`/s`false`                       | `false`   |
-| **max**       | max value                 | `number`                    | -                                     | 100       |
-| **colors**    | custom colors             | `{ [key: number]: string }` | -                                     | -         |
-| **type**      | predefined state types    | `guageTypes`                | [GuageTypes](#guagetypes)             | `default` |
-| **size**      | size of gauge             | `string`                    | `tiny` / `small` / `medium` / `large` | `medium`  |
-| ...           | native props              | `ProgressHTMLAttributes`    | `'aria-busy', ...`                    | -         |
+| Attribute     | Description               | Type                        | Accepted values                                 | Default   |
+| ------------- | ------------------------- | --------------------------- | ----------------------------------------------- | --------- |
+| **value**     | current value             | `number`                    | -                                               | 0         |
+| **showValue** | show current value or not | `boolean`                   | `true`/s`false`                                 | `false`   |
+| **max**       | max value                 | `number`                    | -                                               | 100       |
+| **colors**    | custom colors             | `{ [key: number]: string }` | -                                               | -         |
+| **type**      | predefined state types    | `guageTypes`                | [GuageTypes](#guagetypes)                       | `default` |
+| **size**      | size of gauge             | `string`                    | `tiny` / `small` / `medium` / `large`/ `string` | `medium`  |
+| ...           | native props              | `ProgressHTMLAttributes`    | `'aria-busy', ...`                              | -         |
 
 <Attributes.Title>GaugeTypes</Attributes.Title>
 
