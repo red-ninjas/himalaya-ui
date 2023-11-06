@@ -1,5 +1,6 @@
 'use client';
 
+import Tooltip from '../tooltip';
 import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';
 import useTheme from '../use-theme';
@@ -13,6 +14,7 @@ function EntityFieldComponent({
   right = false,
   avatar = null,
   skeleton = null,
+  tooltip = '',
   ...others
 }: EntityFieldProps) {
   const theme = useTheme();
@@ -22,13 +24,25 @@ function EntityFieldComponent({
     disabled: !active,
     right,
   });
+
+  const renderTitle = () => {
+    if (tooltip) {
+      return (
+        <Tooltip text={tooltip}>
+          <span className="title">{title}</span>
+        </Tooltip>
+      );
+    }
+
+    return <span className="title">{title}</span>;
+  };
   return (
     <>
       <div className={wrapperClasses} {...others}>
         {skeleton}
         {!skeleton && (
           <>
-            {title && <span className="title">{title}</span>}
+            {title && renderTitle()}
             <div className="desc-wrapper">
               {description && <div className="desc">{description}</div>}
               {avatar && <span className="avatar">{avatar}</span>}

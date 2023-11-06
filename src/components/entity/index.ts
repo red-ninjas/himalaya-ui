@@ -20,6 +20,7 @@ export type EntityFieldProps = {
   right?: boolean;
   avatar?: ReactElement | null;
   skeleton?: ReactElement | null;
+  tooltip?: string;
 };
 
 export type EntityThumbnailProps = {
