@@ -21,7 +21,7 @@ interface Props {
   type?: GaugeTypes;
   // indeterminate?: boolean;
   showValue?: boolean;
-  size?: 'timy' | 'small' | 'medium' | 'large';
+  size?: 'tiny' | 'small' | 'medium' | 'large';
 }
 
 type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
