@@ -15,11 +15,8 @@ export type GaugeTypes = NormalTypes;
 interface Props {
   value?: number;
   max?: number;
-  // fixedTop?: boolean;
-  // fixedBottom?: boolean;
   colors?: GaugeColors;
   type?: GaugeTypes;
-  // indeterminate?: boolean;
   showValue?: boolean;
   size?: 'tiny' | 'small' | 'medium' | 'large' | string;
 }
@@ -51,19 +48,14 @@ const GaugeComponent: React.FC<GaugeProps> = ({
   className = '',
   type = 'default' as GaugeTypes,
   colors,
-  // fixedTop = false,
-  // fixedBottom = false,
-  // indeterminate = false,
   showValue = false,
   size,
   ...props
 }: GaugeProps) => {
   const theme = useTheme();
   const { SCALES } = useScale();
-  SCALES;
   const percentValue = useProportions(value, max);
   const currentColor = getCurrentColor(percentValue, theme.palette, type, colors);
-  // const fixed = fixedTop || fixedBottom;
   const classes = useClasses('gauge', className);
 
   const radius = size === 'tiny' ? 45 : size === 'small' ? 60 : size === 'medium' ? 75 : size === 'large' ? 90 : parseFloat(size ?? '45');
@@ -76,13 +68,6 @@ const GaugeComponent: React.FC<GaugeProps> = ({
 
   return (
     <div className={classes} {...props}>
-      {/* <div
-        className={useClasses('inner', {
-          indeterminate: indeterminate,
-        })}
-        title={`${percentValue}%`}
-      />
-      <progress className={className} value={value} max={max} {...props} /> */}
       <svg width={2 * radius} height={2 * radius} viewBox={`0 0 ${2 * radius} ${2 * radius}`}>
         <circle
           cx={radius}
@@ -106,7 +91,6 @@ const GaugeComponent: React.FC<GaugeProps> = ({
         />
       </svg>
       {showValue && <div className="gauge-content">{percentValue}</div>}
-      {/* {showValue && <p>{value}%</p>} */}
       <style jsx>{`
         svg {
           shape-rendering: crispEdges;
@@ -115,7 +99,6 @@ const GaugeComponent: React.FC<GaugeProps> = ({
             shape-rendering: geometricprecision;
           }
         }
-
         .gauge {
           display: flex;
           flex-direction: column;

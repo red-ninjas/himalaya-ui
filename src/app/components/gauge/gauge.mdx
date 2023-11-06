@@ -1,5 +1,5 @@
 import { Layout, Playground, Attributes } from 'lib/components';
-import { Gauge, Progress, Spacer, Grid, useTheme, Button } from 'components';
+import { Gauge, Progress, Spacer, Grid, Box, useTheme, Button } from 'components';
 import { useState } from 'react';
 
 export const meta = {
@@ -9,7 +9,7 @@ export const meta = {
 
 # Gauge
 
-Display gauge progress relative to a limit or related to a task.
+Display `Gauge` UI component to show progress.
 
 <Playground
   scope={{ Gauge }}
@@ -20,37 +20,38 @@ Display gauge progress relative to a limit or related to a task.
 
 <Playground
   title="With values"
-  scope={{ Gauge, Grid }}
+  scope={{ Gauge, Box }}
   code={`
-<Grid.Container gap={2} justify="center" height="250px">
-  <Grid xs={6} style={{display: 'flex', justifyContent: 'center'}}><Gauge value={20} size="tiny" type="primary" showValue={true} /></Grid>
-  <Grid xs={6} style={{display: 'flex', justifyContent: 'center'}}><Gauge value={40} size="small" type="error" showValue={true} /></Grid>
-  <Grid xs={6} style={{display: 'flex', justifyContent: 'center'}}><Gauge value={60} size="medium" type="success" showValue={true} /></Grid>
-  <Grid xs={6} style={{display: 'flex', justifyContent: 'center'}}><Gauge value={80} size="large" type="warning" showValue={true} /></Grid>
-</Grid.Container>
+<Box style={{display: 'flex', gap: 15}}>
+  <Gauge value={20} size="tiny" type="primary" showValue={true} />
+  <Gauge value={40} size="small" type="error" showValue={true} />
+  <Gauge value={60} size="medium" type="success" showValue={true} />
+  <Gauge value={80} size="large" type="warning" showValue={true} />
+</Box>
 `}
 />
 
 <Playground
   title="Without values"
-  scope={{ Gauge, Grid }}
+  scope={{ Gauge, Box }}
   code={`
-<Grid.Container gap={2} justify="center" height="250px">
-  <Grid xs={6} style={{display: 'flex', justifyContent: 'center'}}><Gauge type="error" value={20} size="tiny" /></Grid>
-  <Grid xs={6} style={{display: 'flex', justifyContent: 'center'}}><Gauge type="tertiary" value={40} size="small" /></Grid>
-  <Grid xs={6} style={{display: 'flex', justifyContent: 'center'}}><Gauge type="primary" value={60} size="medium" /></Grid>
-  <Grid xs={6} style={{display: 'flex', justifyContent: 'center'}}><Gauge type="success" value={80} size="large" /></Grid>
-</Grid.Container>
+<Box style={{display: 'flex', gap: 15}}>
+  <Gauge value={20} size="tiny" type="primary" />
+  <Gauge value={40} size="small" type="error" />
+  <Gauge value={60} size="medium" type="success"  />
+  <Gauge value={80} size="large" type="warning"  />
+</Box>
 `}
 />
 
 <Playground
   title="Custom size"
-  scope={{ Gauge, Grid }}
+  scope={{ Gauge, Box }}
   code={`
-<Grid.Container gap={2} justify="center" height="250px">
-  <Grid xs={12} style={{display: 'flex', justifyContent: 'center'}}><Gauge type="success" showValue value={80} size="100" /></Grid>
-</Grid.Container>
+<Box style={{display: 'flex', gap: 15}}>
+  <Gauge type="success" colors={{ primary: "red", secondary: "blue" }}
+ showValue value={80} size="100" />
+</Box>
 `}
 />
 
@@ -65,7 +66,7 @@ Display gauge progress relative to a limit or related to a task.
     20: theme.palette.error.value,
     40: theme.palette.warning.value,
     60: theme.palette.success.value,
-    80: '#000',
+    80: theme.palette.accents_5,
   }
   return (
     <>
