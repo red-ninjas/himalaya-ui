@@ -66,7 +66,7 @@ const GaugeComponent: React.FC<GaugeProps> = ({
   // const fixed = fixedTop || fixedBottom;
   const classes = useClasses('gauge', className);
 
-  const radius = size === 'tiny' ? 45 : size === 'small' ? 60 : size === 'medium' ? 75 : size === 'large' ? 90 : parseFloat(size);
+  const radius = size === 'tiny' ? 45 : size === 'small' ? 60 : size === 'medium' ? 75 : size === 'large' ? 90 : parseFloat(size ?? '45');
   const textSizes = size === 'tiny' ? SCALES.font(1) : size === 'small' ? SCALES.font(1.5) : size === 'medium' ? SCALES.font(2) : SCALES.font(2.5);
   const fontWeight = size === 'tiny' || size === 'small' ? 500 : 600;
   const strokeWidth = radius < 45 ? 5 : 10;
