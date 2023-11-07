@@ -18,7 +18,7 @@ const GraphDataView: React.FC<ChartProps> = ({ height = defaultDataViewHeight, t
   };
 
   return (
-    <div className="data-view-core" style={{ height: height }}>
+    <div className="data-view-core">
       <div className="dataViewSwitcher">
         <Text style={{ color: theme.palette.accents_5 }} mb={0} font={'14px'} mt={0} mr={0}>
           Data view
