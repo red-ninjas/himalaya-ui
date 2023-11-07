@@ -3,7 +3,7 @@
 import React, { useEffect, useMemo } from 'react';
 import { createPortal } from 'react-dom';
 import useClasses from '../use-classes';
-import { useConfigs } from '../use-context';
+import { useConfigs } from '../use-context/config-context';
 import useLayout from '../use-layout';
 import useCurrentState from '../utils/use-current-state';
 import usePortal from '../utils/use-portal';
