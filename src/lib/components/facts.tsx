@@ -66,7 +66,7 @@ export default function Facts() {
             <FactItem title="Contributors" amount={8} />
           </Grid>
           <Grid xs={24} md={8} justify="center">
-            <FactItem title="Forks" amount={328} />
+            <FactItem title="Forks" amount={20} />
           </Grid>
         </Grid.Container>
 

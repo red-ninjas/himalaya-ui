@@ -40,58 +40,13 @@ export default function Partners() {
             }}
           >
             <CarouselItem>
-              <a className="partner">
+              <a href="https://striked.gg" rel="noreferrer" target="_blank" className="partner">
                 <Striked></Striked>
               </a>
             </CarouselItem>
             <CarouselItem>
-              <a className="partner">
-                <Striked></Striked>
-              </a>
-            </CarouselItem>
-            <CarouselItem>
-              <a className="partner">
-                <Striked></Striked>
-              </a>
-            </CarouselItem>
-            <CarouselItem>
-              <a className="partner">
-                <Striked></Striked>
-              </a>
-            </CarouselItem>
-            <CarouselItem>
-              <a className="partner">
-                <Striked></Striked>
-              </a>
-            </CarouselItem>
-            <CarouselItem>
-              <a className="partner">
-                <Striked></Striked>
-              </a>
-            </CarouselItem>
-            <CarouselItem>
-              <a className="partner">
-                <Striked></Striked>
-              </a>
-            </CarouselItem>
-            <CarouselItem>
-              <a className="partner">
-                <Striked></Striked>
-              </a>
-            </CarouselItem>
-            <CarouselItem>
-              <a className="partner">
-                <Striked></Striked>
-              </a>
-            </CarouselItem>
-            <CarouselItem>
-              <a className="partner">
+              <a href="https://redninjas.dev" rel="noreferrer" target="_blank" className="partner">
                 <RedNinjas></RedNinjas>
-              </a>
-            </CarouselItem>
-            <CarouselItem>
-              <a className="partner">
-                <Striked></Striked>
               </a>
             </CarouselItem>
           </Carousel>
