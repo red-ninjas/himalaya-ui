@@ -285,4 +285,7 @@ export { default as Entity } from './entity';
 
 export { default as Menu } from './menu';
 
+export { default as Gauge } from './gauge';
+export type { GaugeProps } from './gauge';
+
 export * from './constants';

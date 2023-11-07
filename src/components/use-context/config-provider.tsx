@@ -22,6 +22,7 @@ import ThemeProvider from './theme-provider';
 import { THEME_COOKIE_NAME, CUSTOM_THEME_TYPE } from '../constants';
 import { DeepPartial } from '../utils/types';
 import useTheme from '../use-theme';
+import ToastContainer from '../use-toasts/toast-container';
 export interface ConfigProps {
   themeType?: string | 'dark' | 'light';
   detectTheme?: boolean;
@@ -133,6 +134,7 @@ const ConfigProvider: React.FC<React.PropsWithChildren<ConfigProps>> = ({
             <div className="ui-app" {...handlers}>
               {children}
             </div>
+            <ToastContainer />
           </ThemeProvider>
         </ConfigContext.Provider>
       </TranslationProvider>

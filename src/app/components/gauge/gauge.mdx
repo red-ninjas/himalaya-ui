@@ -1,0 +1,103 @@
+import { Layout, Playground, Attributes } from 'lib/components';
+import { Gauge, Progress, Spacer, Grid, Box, useTheme, Button } from 'components';
+import { useState } from 'react';
+
+export const meta = {
+  title: 'Gauge',
+  group: 'Feedback',
+};
+
+# Gauge
+
+Display `Gauge` UI component to show progress.
+
+<Playground
+  scope={{ Gauge }}
+  code={`
+<Gauge value={80} size="medium" showValue={true} />
+`}
+/>
+
+<Playground
+  title="With values"
+  scope={{ Gauge, Box }}
+  code={`
+<Box style={{display: 'flex', gap: 15}}>
+  <Gauge value={20} size="tiny" type="primary" showValue={true} />
+  <Gauge value={40} size="small" type="error" showValue={true} />
+  <Gauge value={60} size="medium" type="success" showValue={true} />
+  <Gauge value={80} size="large" type="warning" showValue={true} />
+</Box>
+`}
+/>
+
+<Playground
+  title="Without values"
+  scope={{ Gauge, Box }}
+  code={`
+<Box style={{display: 'flex', gap: 15}}>
+  <Gauge value={20} size="tiny" type="primary" />
+  <Gauge value={40} size="small" type="error" />
+  <Gauge value={60} size="medium" type="success"  />
+  <Gauge value={80} size="large" type="warning"  />
+</Box>
+`}
+/>
+
+<Playground
+  title="Custom size"
+  scope={{ Gauge, Box }}
+  code={`
+<Box style={{display: 'flex', gap: 15}}>
+  <Gauge type="success" colors={{ primary: "red", secondary: "blue" }}
+ showValue value={80} size="100" />
+</Box>
+`}
+/>
+
+<Playground
+  title="Custom Colors"
+  scope={{ Gauge, Grid, Spacer, Button }}
+  code={`
+() => {
+  const theme = useTheme()
+  const [value, setValue] = useState(20)
+  const colors = {
+    20: theme.palette.error.value,
+    40: theme.palette.warning.value,
+    60: theme.palette.success.value,
+    80: theme.palette.accents_5,
+  }
+  return (
+    <>
+      <Gauge type="warning" colors={colors} value={value} showValue={true} size="large" />
+      <Spacer />
+      <Button onClick={() => setValue((value + 20) > 100 ? 20 : (value + 20))} auto scale={0.5}>Increase</Button>
+      <Spacer w={.5} inline />
+      <Button onClick={() => setValue(20)} auto scale={0.5} type="abort">Reset</Button>
+    </>
+  )
+}
+`}
+/>
+
+<Attributes edit="/pages/components/gauge.mdx">
+<Attributes.Title>Gauge.Props</Attributes.Title>
+
+| Attribute     | Description               | Type                        | Accepted values                                 | Default   |
+| ------------- | ------------------------- | --------------------------- | ----------------------------------------------- | --------- |
+| **value**     | current value             | `number`                    | -                                               | 0         |
+| **showValue** | show current value or not | `boolean`                   | `true`/s`false`                                 | `false`   |
+| **max**       | max value                 | `number`                    | -                                               | 100       |
+| **colors**    | custom colors             | `{ [key: number]: string }` | -                                               | -         |
+| **type**      | predefined state types    | `guageTypes`                | [GuageTypes](#guagetypes)                       | `default` |
+| **size**      | size of gauge             | `string`                    | `tiny` / `small` / `medium` / `large`/ `string` | `medium`  |
+| ...           | native props              | `ProgressHTMLAttributes`    | `'aria-busy', ...`                              | -         |
+
+<Attributes.Title>GaugeTypes</Attributes.Title>
+
+```ts
+type guageTypes = 'default' | 'primary' | 'secondary' | 'tertiary' | 'success' | 'warning' | 'error';
+```
+
+</Attributes>
