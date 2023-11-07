@@ -10,12 +10,12 @@ describe('Button', () => {
 
   it('should render as the provided element', async () => {
     const wrapper = mount(
-      <Box as="a" href="https://geist.com">
+      <Box as="a" href="https://himalaya-ui.com">
         Box
       </Box>,
     );
 
-    expect(wrapper.exists('a[href="https://geist.com"]')).toBe(true);
+    expect(wrapper.exists('a[href="https://himalaya-ui.com"]')).toBe(true);
     expect(() => wrapper.unmount()).not.toThrow();
   });
 

@@ -14,9 +14,9 @@ const Edge = ({ size = 24, color, style, ...props }: IconPropsNative) => {
       style={{ ...style, color: color }}
     >
       <path
-        fill="var(--geist-foreground)"
+        fill="var(--ui-icon-foreground)"
         fillRule="evenodd"
-        stroke="var(--geist-foreground)"
+        stroke="var(--ui-icon-foreground)"
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth=".2"

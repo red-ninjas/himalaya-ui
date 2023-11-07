@@ -1,10 +1,10 @@
-import { Layout, Playground, Attributes } from 'lib/components'
-import { useClipboard, Link, Button, useToasts, Spacer } from 'components'
+import { Layout, Playground, Attributes } from 'lib/components';
+import { useClipboard, Link, Button, useToasts, Spacer } from 'components';
 
 export const meta = {
   title: 'useClipboard',
   group: 'Utilities',
-}
+};
 
 # useClipboard
 
@@ -19,7 +19,7 @@ This is custom React hooks, you need to follow the <Link target="_blank" color h
   const { setToast } = useToasts()
   const { copy } = useClipboard()
   const handler = () => {
-    copy('hello, geist-ui')
+    copy('hello, himalaya')
     setToast({ text: 'Text copied.' })
   }
   return (
@@ -36,14 +36,14 @@ This is custom React hooks, you need to follow the <Link target="_blank" color h
 
 ```ts
 type UseClipboardOptions = {
-  onError: Function
-}
+  onError: Function;
+};
 
 type CopyResult = {
-  copy: (text: string) => void
-}
+  copy: (text: string) => void;
+};
 
-const useClipboard = (options?: UseClipboardOptions) => CopyResult
+const useClipboard = (options?: UseClipboardOptions) => CopyResult;
 ```
 
 </Attributes>

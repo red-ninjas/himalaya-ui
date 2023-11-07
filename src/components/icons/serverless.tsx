@@ -19,7 +19,7 @@ const Serverless = ({ size = 24, color, style, ...props }: IconPropsNative) => {
         </mask>
       </defs>
       <path
-        stroke="var(--geist-foreground)"
+        stroke="var(--ui-icon-foreground)"
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth="1.5"

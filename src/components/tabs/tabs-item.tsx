@@ -41,16 +41,7 @@ const TabsItemComponent: React.FC<React.PropsWithChildren<TabsItemProps>> = ({
     };
 
     return (
-      <div
-        ref={ref}
-        className={classes}
-        role="button"
-        key={value}
-        onMouseOver={onMouseOver}
-        onClick={clickHandler}
-        style={active ? activeStyle : {}}
-        data-geist="tab-item"
-      >
+      <div ref={ref} className={classes} role="button" key={value} onMouseOver={onMouseOver} onClick={clickHandler} style={active ? activeStyle : {}}>
         {label}
         <style jsx>{`
           .tab {
