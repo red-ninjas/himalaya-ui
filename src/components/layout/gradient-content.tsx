@@ -5,6 +5,7 @@ import React from 'react';
 import useTheme from '../use-theme';
 import ContentLayout from './content-layout';
 import { GradientContentProps } from '.';
+import Image from '../image';
 
 type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof GradientContentProps>;
 export type CardContentProps = GradientContentProps & NativeAttrs;
@@ -17,7 +18,7 @@ const GradientContentComponent: React.FC<React.PropsWithChildren<CardContentProp
   return (
     <div className="gradient-layout" {...props}>
       <div className="gradient-content">
-        <div className="bg-gradient">{props.img}</div>
+        <div className="bg-gradient">{props.img && <Image src={props.img} height="100%" width="100%" alt={props.img} />}</div>
         <div className="gradient-space">
           <ContentLayout>{children}</ContentLayout>
         </div>
@@ -40,13 +41,23 @@ const GradientContentComponent: React.FC<React.PropsWithChildren<CardContentProp
         }
         .bg-gradient {
           position: absolute;
-          background: ${props.gradient || defaultGradient};
           width: 100%;
           z-index: 0;
           max-height: ${gradientheight};
           left: 0;
           top: 0;
           height: 100%;
+
+          &:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            display: inline-block;
+            background: ${props.gradient || defaultGradient};
+          }
         }
       `}</style>
     </div>
