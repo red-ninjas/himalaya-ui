@@ -11,7 +11,7 @@ export { MismatchDirection } from './model/plot-list';
 export { PriceScaleMode } from './model/price-scale';
 export { PriceLineSource, LastPriceAnimationMode } from './model/series-options';
 export { ColorType } from './model/layout-options';
-
+export * from './model/horz-scale-behavior-time/types';
 export { isBusinessDay, isUTCTimestamp } from './model/horz-scale-behavior-time/types';
 export { TickMarkType } from './model/horz-scale-behavior-time/types';
 export const customSeriesDefaultOptions: CustomSeriesOptions = {

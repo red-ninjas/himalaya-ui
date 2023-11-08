@@ -256,6 +256,7 @@ export {
   DateTimeFormatter,
   DefaulHourFormatter,
   DefaulTimeFormatter,
+  DefaulFormatter,
   type ThemeChartSeriesDictonary,
   type ThemedChartData,
   type ThemedChartPriceFormatter,

@@ -42,26 +42,31 @@ const toolTipWidth = 80;
 const toolTipHeight = 80;
 const toolTipMargin = 15;
 const defaultChartHeight = 350;
-export const DefaulTimeFormatter = (businessDayOrTimestamp: Time) => {
-  return moment.unix(Number(businessDayOrTimestamp) - moment().utcOffset() * 60).format('L LT (Z)');
+
+export const DefaulFormatter = (timeInUTC: Time, format = 'dddd.MM.YYYY, HH:mm') => {
+  return moment.unix(Number(timeInUTC) - moment().utcOffset() * 60).format(format);
 };
 
-export const DefaulHourFormatter = (businessDayOrTimestamp: Time) => {
-  return moment.unix(Number(businessDayOrTimestamp) - moment().utcOffset() * 60).format('L HH:mm');
-};
-export const DefaulDayFormatter = (businessDayOrTimestamp: Time) => {
-  return moment.unix(Number(businessDayOrTimestamp) - moment().utcOffset() * 60).format('L');
+export const DefaulTimeFormatter = (timeInUTC: Time) => {
+  return DefaulFormatter(timeInUTC, 'L LT (Z)');
 };
 
-export const DateTimeFormatter = (businessDayOrTimestamp: Time) => {
-  return moment.unix(Number(businessDayOrTimestamp) - moment().utcOffset() * 60).format('dddd, HH:mm');
+export const DefaulHourFormatter = (timeInUTC: Time) => {
+  return DefaulFormatter(timeInUTC, 'L HH:mm');
 };
-export const WeekdayFormatter = (businessDayOrTimestamp: Time) => {
-  return moment.unix(Number(businessDayOrTimestamp) - moment().utcOffset() * 60).format('dddd');
+export const DefaulDayFormatter = (timeInUTC: Time) => {
+  return DefaulFormatter(timeInUTC, 'L');
 };
 
-export const YearAndMonthConverter = (businessDayOrTimestamp: Time) => {
-  return moment.unix(Number(businessDayOrTimestamp) - moment().utcOffset() * 60).format('MM, YYYY');
+export const DateTimeFormatter = (timeInUTC: Time) => {
+  return DefaulFormatter(timeInUTC, 'dddd, HH:mm');
+};
+export const WeekdayFormatter = (timeInUTC: Time) => {
+  return DefaulFormatter(timeInUTC, 'dddd');
+};
+
+export const YearAndMonthConverter = (timeInUTC: Time) => {
+  return DefaulFormatter(timeInUTC, 'MM, YYYY');
 };
 
 export const ChartPriceFormatter = (value: number) => {
