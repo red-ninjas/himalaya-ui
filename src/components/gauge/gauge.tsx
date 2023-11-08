@@ -1,11 +1,10 @@
 'use client';
 import React from 'react';
+import { UIThemesPalette } from '../themes/presets';
+import useClasses from '../use-classes';
 import useTheme from '../use-theme';
 import { useProportions } from '../utils/calculations';
-import { UIThemesPalette } from '../themes/presets';
 import { NormalTypes } from '../utils/prop-types';
-import useScale, { withScale } from '../use-scale';
-import useClasses from '../use-classes';
 
 export type GaugeColors = {
   [key: number]: string;
@@ -18,7 +17,7 @@ interface Props {
   colors?: GaugeColors;
   type?: GaugeTypes;
   showValue?: boolean;
-  size?: 'tiny' | 'small' | 'medium' | 'large' | string;
+  size?: number;
 }
 
 type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
@@ -49,32 +48,30 @@ const GaugeComponent: React.FC<GaugeProps> = ({
   type = 'default' as GaugeTypes,
   colors,
   showValue = false,
-  size,
+  size = 50,
   ...props
 }: GaugeProps) => {
   const theme = useTheme();
-  const { SCALES } = useScale();
   const percentValue = useProportions(value, max);
   const currentColor = getCurrentColor(percentValue, theme.palette, type, colors);
   const classes = useClasses('gauge', className);
 
-  const radius = size === 'tiny' ? 45 : size === 'small' ? 60 : size === 'medium' ? 75 : size === 'large' ? 90 : parseFloat(size ?? '45');
-  const textSizes = size === 'tiny' ? SCALES.font(1) : size === 'small' ? SCALES.font(1.5) : size === 'medium' ? SCALES.font(2) : SCALES.font(2.5);
-  const fontWeight = size === 'tiny' || size === 'small' ? 500 : 600;
-  const strokeWidth = radius < 45 ? 5 : 10;
+  const radius = size / 2;
+  // const textSizes = size === 'tiny' ? SCALES.font(1) : size === 'small' ? SCALES.font(1.5) : size === 'medium' ? SCALES.font(2) : SCALES.font(2.5);
+  const strokeWidth = radius / 7;
   const circumference = 2 * Math.PI * (radius - strokeWidth / 2);
   const dashArray = circumference;
   const dashOffset = (1 - value / 100) * dashArray;
 
   return (
     <div className={classes} {...props}>
-      <svg width={2 * radius} height={2 * radius} viewBox={`0 0 ${2 * radius} ${2 * radius}`}>
+      <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
         <circle
           cx={radius}
           cy={radius}
           r={radius - strokeWidth / 2}
           fill="none"
-          stroke={theme.palette.accents_2}
+          stroke={theme.palette.accents_1}
           strokeWidth={strokeWidth}
           strokeDasharray={dashArray}
         />
@@ -85,7 +82,6 @@ const GaugeComponent: React.FC<GaugeProps> = ({
           fill="none"
           stroke={currentColor}
           strokeWidth={strokeWidth}
-          strokeLinecap="round"
           strokeDasharray={dashArray}
           strokeDashoffset={dashOffset}
         />
@@ -106,18 +102,19 @@ const GaugeComponent: React.FC<GaugeProps> = ({
           align-items: center;
           position: relative;
 
+          font-size: ${size / 4}px;
+          font-weight: 500;
+
           * {
             transition: all 1s ease;
           }
 
-          > .gauge-content {
+          .gauge-content {
             animation: gauge-fadein 1s ease forwards;
             animation-delay: 0s;
             display: flex;
             opacity: 0;
             position: absolute;
-            font-size: ${textSizes};
-            font-weight: ${fontWeight};
           }
         }
 
@@ -143,5 +140,5 @@ const GaugeComponent: React.FC<GaugeProps> = ({
 };
 
 GaugeComponent.displayName = 'HimalayGauge';
-const Gauge = withScale(GaugeComponent);
+const Gauge = GaugeComponent;
 export default Gauge;
