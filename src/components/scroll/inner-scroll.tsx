@@ -1,10 +1,10 @@
 'use client';
 import { usePathname } from 'next/navigation';
 import React, { createRef, useEffect } from 'react';
+import { InnerScrollEvent } from '.';
+import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';
 import useTheme from '../use-theme';
-import useClasses from '../use-classes';
-import { InnerScrollEvent } from '.';
 
 export interface InnerScrollProps {
   maxHeight?: number | string;
@@ -55,13 +55,8 @@ const InnerScrollComponent: React.FC<React.PropsWithChildren<InnerScrollProps>> 
         horizontal: type == 'both' || type == 'horizontal',
       })}
     >
-      <div className="inner-container">{children}</div>
+      {children}
       <style jsx>{`
-        .inner-container {
-          width: 100%;
-          flex-direction: column;
-          min-height: 100%;
-        }
         .inner-scroll {
           overflow: hidden;
           width: 100%;
