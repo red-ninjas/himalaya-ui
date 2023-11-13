@@ -60,6 +60,7 @@ const InnerScrollComponent: React.FC<React.PropsWithChildren<InnerScrollProps>> 
         .inner-container {
           width: 100%;
           flex-direction: column;
+          min-height: 100%;
         }
         .inner-scroll {
           overflow: hidden;
