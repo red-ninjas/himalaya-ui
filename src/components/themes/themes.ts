@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import type { DeepPartial } from '../utils/types';
 import darkTheme from './presets/dark';
 import lightTheme from './presets/default';
@@ -7,30 +8,6 @@ import { generateAccents, generateColor, generateColors, generateSteppedColors }
 export type UIUserTheme = DeepPartial<UIThemes>;
 
 export const isObject = (target: unknown) => target && typeof target === 'object';
-
-export const deepDuplicable = <T extends Record<string, unknown>>(source: T, target: T): T => {
-  if (!isObject(target) || !isObject(source)) return source as T;
-
-  const sourceKeys = Object.keys(source) as Array<keyof T>;
-  const result = {} as any;
-  for (const key of sourceKeys) {
-    const sourceValue = source[key];
-    const targetValue = target[key];
-
-    if (Array.isArray(sourceValue) && Array.isArray(targetValue)) {
-      result[key] = targetValue.concat(sourceValue);
-    } else if (isObject(sourceValue) && isObject(targetValue)) {
-      result[key] = deepDuplicable(sourceValue as Record<string, unknown>, {
-        ...(targetValue as Record<string, unknown>),
-      });
-    } else if (targetValue) {
-      result[key] = targetValue;
-    } else {
-      result[key] = sourceValue;
-    }
-  }
-  return result;
-};
 
 const getPresets = (): Array<UIThemes> => {
   return [lightTheme, darkTheme];
@@ -59,7 +36,7 @@ const hasUserCustomTheme = (themes: Array<UIThemes> = []): boolean => {
 };
 
 const create = (base: UIThemes, custom: UIUserTheme): UIThemes => {
-  return deepDuplicable(base, custom) as UIThemes;
+  return _.merge({ ...base }, custom) as UIThemes;
 };
 
 const createFromDark = (custom: UIUserTheme) => create(darkTheme, custom);

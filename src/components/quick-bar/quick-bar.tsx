@@ -1,23 +1,18 @@
 'use client';
 
 import React, { PropsWithChildren } from 'react';
-import { QuickBarProps } from './share';
-import useTheme from '../use-theme';
-import withScale from '../use-scale/with-scale';
-import { InnerScroll } from '../scroll';
 import useScale from '../use-scale';
-import useQuickBar from '../use-quickbar';
+import withScale from '../use-scale/with-scale';
+import useTheme from '../use-theme';
+import { QuickBarProps } from './share';
 
 const QuickBar: React.FC<PropsWithChildren<QuickBarProps>> = ({ children }) => {
   const theme = useTheme();
   const { SCALES } = useScale();
-  const { isEnabled } = useQuickBar();
 
   return (
     <div className="quick-bar">
-      <InnerScroll transparentBg={true} width={'100%'} height={'100%'} type="vertical">
-        <div className="quick-bar-inner">{isEnabled && children}</div>
-      </InnerScroll>
+      <div className="quick-bar-inner">{children}</div>
       <style jsx>{`
         .quick-bar-inner {
           display: flex;

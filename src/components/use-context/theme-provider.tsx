@@ -5,7 +5,6 @@ import Themes from '../themes';
 import { UIThemes } from '../themes/presets';
 import { ThemeContext } from '../use-theme/theme-context';
 import { AllThemesConfig, AllThemesContext } from '../use-all-themes/all-themes-context';
-import _ from 'lodash';
 
 export interface Props {
   themeType?: string;
@@ -14,7 +13,7 @@ export interface Props {
 
 const ThemeProvider: React.FC<PropsWithChildren<Props>> = ({ children, themeType, themes = [] }) => {
   const [allThemes, setAllThemes] = useState<AllThemesConfig>({
-    themes: !themes || themes.length > 0 ? themes : Themes.getPresets(),
+    themes: themes && themes.length > 0 ? themes : Themes.getPresets(),
   });
 
   const currentTheme = useMemo<UIThemes>(() => {
@@ -25,13 +24,7 @@ const ThemeProvider: React.FC<PropsWithChildren<Props>> = ({ children, themeType
 
   useEffect(() => {
     if (!themes?.length) return;
-    setAllThemes(last => {
-      const mergedThemes = _.merge(Themes.getPresets(), themes);
-      return {
-        ...last,
-        themes: mergedThemes,
-      };
-    });
+    setAllThemes({ themes });
   }, [themes]);
 
   return (
