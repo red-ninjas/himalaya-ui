@@ -38,12 +38,14 @@ export const font = defaultFont;
 
 export const style = defaultStyles;
 
-export const themes: UIThemes = {
-  type: 'light',
-  font,
-  palette,
-  style,
-  expressiveness,
+export const lightTheme = (): UIThemes => {
+  return {
+    type: 'light',
+    font,
+    palette,
+    expressiveness,
+    style,
+  };
 };
 
-export default themes;
+export default lightTheme;

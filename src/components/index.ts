@@ -223,8 +223,6 @@ export { default as SearchProvider } from './use-search/search-provider';
 export { InnerScroll } from './scroll';
 export type { InnerScrollProps } from './scroll';
 
-export { default as Scrollbar } from './layout/scrollbar';
-
 export { ContentLayout, PageLayout, ScrollableLayout, GradientContent } from './layout';
 export type { ContentLayoutProps } from './layout';
 export type { GradientContentProps } from './layout';

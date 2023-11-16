@@ -58,6 +58,45 @@ const InnerScrollComponent: React.FC<React.PropsWithChildren<InnerScrollProps>> 
       {children}
       <style jsx>{`
         .inner-scroll {
+          scrollbar-color: ${theme.palette.accents_1} ${theme.palette.accents_2};
+          scrollbar-width: var(--page-scrollbar-width, 6px);
+        }
+        .inner-scroll::-webkit-scrollbar-track {
+          border-radius: ${theme.style.radius};
+          cursor: pointer;
+        }
+
+        .inner-scroll::-webkit-scrollbar-thumb {
+          border-radius: ${theme.style.radius};
+          cursor: pointer;
+        }
+
+        .inner-scroll::-webkit-scrollbar-corner,
+        .inner-scroll::-webkit-resizer {
+          background: transparent;
+          border: 0px solid transparent;
+          width: 0;
+          height: 0;
+        }
+
+        .inner-scroll:hover::-webkit-scrollbar-track {
+          z-index: 9999;
+        }
+
+        .inner-scroll:hover::-webkit-scrollbar-thumb {
+          background: ${theme.palette.accents_2};
+        }
+
+        .inner-scroll:hover::-webkit-scrollbar-corner,
+        .inner-scroll:hover::-webkit-resizer {
+          background: ${theme.palette.accents_2};
+        }
+
+        .inner-scroll:hover::-webkit-scrollbar-corner {
+          background: transparent;
+        }
+
+        .inner-scroll {
           overflow: hidden;
           width: 100%;
           scroll-behavior: smooth;
@@ -80,59 +119,6 @@ const InnerScrollComponent: React.FC<React.PropsWithChildren<InnerScrollProps>> 
           width: var(--page-scrollbar-width, 6px);
           height: var(--page-scrollbar-width, 6px);
           background: ${transparentBg ? 'transparent' : theme.palette.accents_1};
-        }
-
-        .inner-scroll::-webkit-scrollbar-track:vertical {
-          border-radius: ${theme.style.radius};
-          cursor: pointer;
-        }
-
-        .inner-scroll::-webkit-scrollbar-thumb:vertical {
-          border-radius: ${theme.style.radius};
-          cursor: pointer;
-        }
-
-        .inner-scroll::-webkit-scrollbar-track:horizontal {
-          border-radius: ${theme.style.radius};
-          cursor: pointer;
-        }
-
-        .inner-scroll::-webkit-scrollbar-thumb:horizontal {
-          border-radius: ${theme.style.radius};
-          cursor: pointer;
-        }
-
-        .inner-scroll::-webkit-scrollbar-corner,
-        .inner-scroll::-webkit-resizer {
-          background: transparent;
-          border: 0px solid transparent;
-          width: 0;
-          height: 0;
-        }
-
-        .inner-scroll:hover::-webkit-scrollbar-track:vertical {
-          z-index: 9999;
-        }
-
-        .inner-scroll:hover::-webkit-scrollbar-thumb:vertical {
-          background: ${theme.palette.accents_2};
-        }
-
-        .inner-scroll:hover::-webkit-scrollbar-track:horizontal {
-          z-index: 9999;
-        }
-
-        .inner-scroll:hover::-webkit-scrollbar-thumb:horizontal {
-          background: ${theme.palette.accents_2};
-        }
-
-        .inner-scroll:hover::-webkit-scrollbar-corner,
-        .inner-scroll:hover::-webkit-resizer {
-          background: ${theme.palette.accents_2};
-        }
-
-        .inner-scroll:hover::-webkit-scrollbar-corner {
-          background: transparent;
         }
       `}</style>
     </div>

@@ -1,6 +1,5 @@
 'use client';
 
-import { Anchor, Code, Github, Home, Layout } from 'components/icons';
 import { MDXProvider } from '@mdx-js/react/lib';
 import {
   AnimatedCursor,
@@ -21,16 +20,17 @@ import {
   useTheme,
 } from 'components';
 import FixedHeader from 'components/header/fixed-header';
+import { Anchor, Code, Github, Home, Layout } from 'components/icons';
 import ScrollableLayout from 'components/layout/scrollable-layout';
 import Search, { SearchButton, SearchResult, SearchResults } from 'components/search';
 import { capitalize } from 'components/utils/collections';
 import { BrandLogo, BrandTitle } from 'lib/components/icons';
+import NextLink from 'next/link';
 import { usePathname } from 'next/navigation';
 import React, { useState } from 'react';
-import metaData from '../data/metadata.json';
 import { Seeds } from '../data';
+import metaData from '../data/metadata.json';
 import { MdxComponents } from '../mdx-components';
-import NextLink from 'next/link';
 export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
   const theme = useTheme();
   const layout = useLayout();
@@ -126,7 +126,7 @@ export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
                 </MobileMenu>
                 <MDXProvider components={MdxComponents}>{children}</MDXProvider>
               </ScrollableLayout>
-              <QuickBar>
+              <QuickBar height={'100%'} width={'100%'}>
                 <QuickAction type="lite" href="/" radius={50} tooltip="Home">
                   <Home size={20} />
                 </QuickAction>

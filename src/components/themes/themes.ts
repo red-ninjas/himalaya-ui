@@ -9,12 +9,38 @@ export type UIUserTheme = DeepPartial<UIThemes>;
 
 export const isObject = (target: unknown) => target && typeof target === 'object';
 
+export const defaultDarkTheme = darkTheme();
+export const defaultLightTheme = lightTheme();
+
 const getPresets = (): Array<UIThemes> => {
-  return [lightTheme, darkTheme];
+  return [defaultLightTheme, defaultDarkTheme];
 };
 
+export const deepDuplicable = <T extends Record<string, unknown>>(source: T, target: T): T => {
+  if (!isObject(target) || !isObject(source)) return source as T;
+
+  const sourceKeys = Object.keys(source) as Array<keyof T>;
+  const result: any = {};
+  for (const key of sourceKeys) {
+    const sourceValue = source[key];
+    const targetValue = target[key];
+
+    if (Array.isArray(sourceValue) && Array.isArray(targetValue)) {
+      result[key] = targetValue.concat(sourceValue);
+    } else if (isObject(sourceValue) && isObject(targetValue)) {
+      result[key] = deepDuplicable(sourceValue as Record<string, unknown>, {
+        ...(targetValue as Record<string, unknown>),
+      });
+    } else if (targetValue) {
+      result[key] = targetValue;
+    } else {
+      result[key] = sourceValue;
+    }
+  }
+  return result;
+};
 const getPresetStaticTheme = (): UIThemes => {
-  return darkTheme;
+  return defaultDarkTheme;
 };
 
 const isAvailableThemeType = (type?: string): boolean => {
@@ -36,11 +62,11 @@ const hasUserCustomTheme = (themes: Array<UIThemes> = []): boolean => {
 };
 
 const create = (base: UIThemes, custom: UIUserTheme): UIThemes => {
-  return _.merge({ ...base }, custom) as UIThemes;
+  return deepDuplicable(base, custom) as UIThemes;
 };
 
-const createFromDark = (custom: UIUserTheme) => create(darkTheme, custom);
-const createFromLight = (custom: UIUserTheme) => create(lightTheme, custom);
+const createFromDark = (custom: UIUserTheme) => create(darkTheme(), custom);
+const createFromLight = (custom: UIUserTheme) => create(lightTheme(), custom);
 
 const Themes = {
   isPresetTheme,

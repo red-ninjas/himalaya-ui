@@ -38,12 +38,14 @@ export const expressiveness: UIThemesExpressiveness = {
 export const font = defaultFont;
 export const style = defaultStyles;
 
-export const themes: UIThemes = {
-  type: 'dark',
-  font,
-  palette,
-  expressiveness,
-  style,
+export const darkTheme = (): UIThemes => {
+  return {
+    type: 'dark',
+    font,
+    palette,
+    expressiveness,
+    style,
+  };
 };
 
-export default themes;
+export default darkTheme;
