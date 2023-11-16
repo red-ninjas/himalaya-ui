@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import type { DeepPartial } from '../utils/types';
 import darkTheme from './presets/dark';
 import lightTheme from './presets/default';
