@@ -25,6 +25,11 @@ export type DataChangedScope = 'full' | 'update';
 export type DataChangedHandler = (scope: DataChangedScope) => void;
 
 /**
+ * A custom function use to handle options changed events.
+ */
+export type OptionsChangedHandler = (options: SeriesPartialOptionsMap[SeriesType]) => void;
+
+/**
  * Represents a range of bars and the number of bars outside the range.
  */
 // actually range might be either exist or not
@@ -226,6 +231,29 @@ export interface ISeriesApi<
   unsubscribeDataChanged(handler: DataChangedHandler): void;
 
   /**
+   * Subscribe to the data changed event. This event is fired whenever the `update` or `setData` method is evoked
+   * on the series.
+   *
+   * @param handler - Handler to be called on a data changed event.
+   * @example
+   * ```js
+   * series.subscribeOptionsChanged(myHandler);
+   * ```
+   */
+  subscribeOptionsChanged(handler: OptionsChangedHandler): void;
+
+  /**
+   * Unsubscribe a handler that was previously subscribed using {@link unsubscribeOptionsChanged}.
+   *
+   * @param handler - Previously subscribed handler
+   * @example
+   * ```js
+   * chart.unsubscribeOptionsChanged(myHandler);
+   * ```
+   */
+  unsubscribeOptionsChanged(handler: OptionsChangedHandler): void;
+
+  /**
    * Allows to set/replace all existing series markers with new ones.
    *
    * @param data - An array of series markers. This array should be sorted by time. Several markers with same time are allowed.
@@ -301,6 +329,11 @@ export interface ISeriesApi<
    * ```
    */
   removePriceLine(line: IPriceLine): void;
+
+  /**
+   * Return current series id
+   */
+  seriesID(): string;
 
   /**
    * Return current series type.

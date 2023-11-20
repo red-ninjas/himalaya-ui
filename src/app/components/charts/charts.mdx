@@ -1,144 +1,53 @@
-import { Layout, Playground, Attributes } from 'lib/components'
-import {
-  ThemedChart,
-  Link,
-  Text,
-  Code,
-  Spacer,
-  useTheme,
-  GraphDataView,
-} from 'components'
-import NextLink from 'next/link'
+import { Layout, Playground, Attributes } from 'lib/components';
+import { ThemedChart, Link, Text, Code, Spacer, useTheme, GraphDataView } from 'components';
+import NextLink from 'next/link';
+import { useRef, useEffect, createRef } from 'react';
 
 export const meta = {
   title: 'Charts',
   group: 'Charts',
-}
+};
 
 # Charts
 
 Charts creates interactive financial charts.
 
 <Playground
-  title="Data view example"
-  desc="A line chart with data view toggle"
-  scope={{ GraphDataView, useTheme }}
+  title="Line chart example"
+  desc="A line chart exmaple"
+  scope={{ ThemedChart, useTheme }}
   code={`
     () => {
-      const theme = useTheme();
       return (
-        <>
-          <GraphDataView theme={theme} showLegends={true} series={{
-            'Long-term Assets': {
-              data: [
-                      { value: 1, time: 1642425322 },
-                      { value: 8, time: 1642511722 },
-                      { value: 10, time: 1642598122 },
-                      { value: 20, time: 1642684522 },
-                      { value: 10, time: 1642770922 },
-                      { value: 43, time: 1642857322 },
-                      { value: 41, time: 1642943722 },
-                      { value: 43, time: 1643030122 },
-                      { value: 56, time: 1643116522 },
-                      { value: 46, time: 1643202922 },
-                    ],
-              type: 'area',
-              color: theme.palette.success.value,
-            },
-          }}></GraphDataView>
-        </>
+        <ThemedChart>
+          <ThemedChart.Line title="Test Line" data={[
+            { value: 1, time: 1642425322 },
+            { value: 8, time: 1642511722 },
+            { value: 10, time: 1642598122 },
+            { value: 20, time: 1642684522 },
+            { value: 10, time: 1642770922 },
+            { value: 43, time: 1642857322 },
+            { value: 41, time: 1642943722 },
+            { value: 43, time: 1643030122 },
+            { value: 56, time: 1643116522 },
+            { value: 46, time: 1643202922 },
+          ]} />
+        </ThemedChart>
       )
     }
   `}
 />
 
 <Playground
-  title="Line Chart"
-  desc="A line chart is a type of chart that displays information as a series of data points connected by straight line segments"
+  title="Area chart example"
+  desc="A area chart example"
   scope={{ ThemedChart, useTheme }}
   code={`
     () => {
-      const theme = useTheme();
       return (
         <>
-          <ThemedChart
-            series={{
-              "line-chart": {
-                data: [
-                  { value: 1, time: 1642425322 },
-                  { value: 8, time: 1642511722 },
-                  { value: 10, time: 1642598122 },
-                  { value: 20, time: 1642684522 },
-                  { value: 10, time: 1642770922 },
-                  { value: 43, time: 1642857322 },
-                  { value: 41, time: 1642943722 },
-                  { value: 43, time: 1643030122 },
-                  { value: 56, time: 1643116522 },
-                  { value: 46, time: 1643202922 },
-                ],
-                type: "line",
-                title: "Line",
-                color: "#fff000",
-              },
-            }}
-            theme={theme}
-          />
-        </>
-      )
-    }
-  `}
-/>
-
-<Playground
-  title="Area Chart"
-  desc="An area chart is basically a colored area between the line connecting all data points and the time scale."
-  scope={{ ThemedChart, useTheme }}
-  code={`
-    () => {
-      const theme = useTheme();
-      return (
-        <>
-          <ThemedChart
-            series={{
-              "area-chart": {
-              data: [
-                { value: 1, time: 1642425322 },
-                { value: 8, time: 1642511722 },
-                { value: 10, time: 1642598122 },
-                { value: 20, time: 1642684522 },
-                { value: 10, time: 1642770922 },
-                { value: 43, time: 1642857322 },
-                { value: 41, time: 1642943722 },
-                { value: 43, time: 1643030122 },
-                { value: 56, time: 1643116522 },
-                { value: 46, time: 1643202922 },
-                ],
-              type: "area",
-              title: "Area",
-              color: "#fff000",
-              },
-            }}
-            theme={theme}
-          />
-        </>
-      )
-    }
-  `}
-/>
-
-<Playground
-  title="Bar Chart"
-  desc="A bar chart shows price movements in the form of bars."
-  scope={{ ThemedChart, useTheme }}
-  code={`
-      () => {
-        const theme = useTheme()
-        return (
-        <>
-        <ThemedChart
-        series={{
-          "bar-chart": {
-          data: [
+          <ThemedChart>
+            <ThemedChart.Area title="Test Area" data={[
               { value: 1, time: 1642425322 },
               { value: 8, time: 1642511722 },
               { value: 10, time: 1642598122 },
@@ -149,17 +58,38 @@ Charts creates interactive financial charts.
               { value: 43, time: 1643030122 },
               { value: 56, time: 1643116522 },
               { value: 46, time: 1643202922 },
-              ],
-            type: "bar",
-            title: "Line",
-            color: "#fff000",
-          },
-        }}
-      theme = {theme}
-    />
-    </>
-  )}
-`}
+            ]} />
+          </ThemedChart>
+        </>
+      )
+    }
+  `}
+/>
+
+<Playground
+  title="Bar chart example"
+  desc="A bar chart example"
+  scope={{ ThemedChart, useTheme }}
+  code={`
+    () => {
+      return (
+        <ThemedChart>
+          <ThemedChart.Bar title="Test Area" data={[
+            { value: 1, time: 1642425322 },
+            { value: 8, time: 1642511722 },
+            { value: 10, time: 1642598122 },
+            { value: 20, time: 1642684522 },
+            { value: 10, time: 1642770922 },
+            { value: 43, time: 1642857322 },
+            { value: 41, time: 1642943722 },
+            { value: 43, time: 1643030122 },
+            { value: 56, time: 1643116522 },
+            { value: 46, time: 1643202922 },
+          ]} />
+        </ThemedChart>
+      )
+    }
+  `}
 />
 
 <Playground
@@ -167,31 +97,99 @@ Charts creates interactive financial charts.
   desc="A candlestick chart shows price movements in the form of candlesticks. On the candlestick chart, open & close values form a solid body of a candle while wicks show high & low values for a candlestick's time intervas"
   scope={{ ThemedChart, useTheme }}
   code={`
-      () => {
-        const theme = useTheme()
+    () => {
+      return (
+        <ThemedChart showPopover={false}>
+            <ThemedChart.Candle  title="Test Area" data={[
+                { time: 1642425322, open: 75.16, high: 82.84, low: 36.16, value: 45.72 },
+                { time: 1642511722, open: 45.12, high: 53.90, low: 45.12, value: 48.09 },
+                { time: 1642598122, open: 60.71, high: 60.71, low: 53.39, value: 59.29 },
+                { time: 1642770922, open: 68.26, high: 68.26, low: 59.04, value: 60.50 },
+                { time: 1642857322, open: 67.71, high: 105.85, low: 66.67, value: 91.04 },
+          ]} />
+        </ThemedChart>
+      )
+    }
+`}
+/>
+
+<Playground
+  title="Multi-Line chart example"
+  desc="A multi line chart example with different colors and legends"
+  scope={{ ThemedChart, useTheme }}
+  code={`() => {
+      const theme = useTheme();
+      return (
+          <ThemedChart>
+            <ThemedChart.Line color={theme.palette.primary.value} title="Test Line" data={[
+              { value: 1, time: 1642425322 },
+              { value: 8, time: 1642511722 },
+              { value: 10, time: 1642598122 },
+              { value: 20, time: 1642684522 },
+              { value: 10, time: 1642770922 },
+              { value: 43, time: 1642857322 },
+              { value: 41, time: 1642943722 },
+              { value: 43, time: 1643030122 },
+              { value: 56, time: 1643116522 },
+              { value: 46, time: 1643202922 },
+            ]} />
+            <ThemedChart.Line color={theme.palette.error.value} title="Test Line 2" data={[
+              { value: 4, time: 1642425322 },
+              { value: 17, time: 1642511722 },
+              { value: 17, time: 1642598122 },
+              { value: 15, time: 1642684522 },
+              { value: 43, time: 1642770922 },
+              { value: 28, time: 1642857322 },
+              { value: 61, time: 1642943722 },
+              { value: 43, time: 1643030122 },
+              { value: 39, time: 1643116522 },
+              { value: 12, time: 1643202922 },
+            ]} />
+          <ThemedChart.Legends/>
+          </ThemedChart>
+      )
+}
+`}
+/>
+
+<Playground
+  title="Update example"
+  desc="A time based update example"
+  scope={{ ThemedChart, useTheme, useRef, useEffect, createRef }}
+  code={`() => {
+        const chartRef = React.createRef();
+        const data = [
+              { value: 1, time: 1642425322 },
+              { value: 8, time: 1642511722 },
+              { value: 10, time: 1642598122 },
+              { value: 20, time: 1642684522 },
+              { value: 10, time: 1642770922 },
+              { value: 43, time: 1642857322 },
+              { value: 41, time: 1642943722 },
+              { value: 43, time: 1643030122 },
+              { value: 56, time: 1643116522 },
+              { value: 46, time: 1643202922 },
+        ];
+        React.useEffect(() => {
+          const last = data[data.length -1];
+          const interval = setInterval(() => {
+            const min = last.value - 5;
+            const max = last.value + 5;
+            last.value = Math.random() * (max - min) + min;
+            last.time = last.time + (60 *  60 );
+            if(chartRef && chartRef.current)
+            {
+                chartRef.current.update(last);
+            }
+          }, 1500);
+          return () => clearInterval(interval);
+        }, [chartRef]);
         return (
-          <ThemedChart
-            series={{
-              "candlestick-chart": {
-                data: [
-                  { time: '2018-12-22', open: 75.16, high: 82.84, low: 36.16, value: 45.72 },
-                  { time: '2018-12-23', open: 45.12, high: 53.90, low: 45.12, value: 48.09 },
-                  { time: '2018-12-24', open: 60.71, high: 60.71, low: 53.39, value: 59.29 },
-                  { time: '2018-12-25', open: 68.26, high: 68.26, low: 59.04, value: 60.50 },
-                  { time: '2018-12-26', open: 67.71, high: 105.85, low: 66.67, value: 91.04 },
-                  { time: '2018-12-27', open: 91.04, high: 121.40, low: 82.70, value: 111.40 },
-                  { time: '2018-12-28', open: 111.51, high: 142.83, low: 83.34, value: 131.25},
-                  { time: '2018-12-29', open: 131.33, high: 151.17, low: 77.68, value: 96.43 },
-                  { time: '2018-12-30', open: 106.33, high: 110.20, low: 90.39, value: 98.10 },
-                  { time: '2018-12-31', open: 109.87, high: 114.69, low: 85.66, value: 111.26 },
-                  ],
-                type: "candle"
-              },
-            }}
-            theme = {theme}
-          />
-        )
-      }
+          <ThemedChart>
+            <ThemedChart.Line ref={chartRef} title="Test Line" data={data} />
+          </ThemedChart>
+      )
+}
 `}
 />
 
@@ -211,28 +209,28 @@ Charts creates interactive financial charts.
 
 ```ts
 type ThemedChartData = {
-  data: ThemedChartItem[]
-  type: 'line' | 'area' | 'bar' | 'candle'
-  side?: 'left' | 'right'
-  showTitle?: boolean
-  visible?: boolean
-  color: string
-  priceLineVisible?: boolean
-  lastValueVisible?: boolean
-  priceFormatter?: ThemedChartPriceFormatter
-}
+  data: ThemedChartItem[];
+  type: 'line' | 'area' | 'bar' | 'candle';
+  side?: 'left' | 'right';
+  showTitle?: boolean;
+  visible?: boolean;
+  color: string;
+  priceLineVisible?: boolean;
+  lastValueVisible?: boolean;
+  priceFormatter?: ThemedChartPriceFormatter;
+};
 ```
 
 <Attributes.Title>UIThemes</Attributes.Title>
 
 ```ts
 type UIThemes = {
-  type: string
-  font: UIThemesFont
-  palette: UIThemesPalette
-  breakpoints: UIThemesBreakpoints
-  expressiveness: UIThemesExpressiveness
-}
+  type: string;
+  font: UIThemesFont;
+  palette: UIThemesPalette;
+  breakpoints: UIThemesBreakpoints;
+  expressiveness: UIThemesExpressiveness;
+};
 ```
 
 </Attributes>

@@ -188,6 +188,8 @@
     "ttsc": "^0.3.1",
     "typescript": "^5.2.2",
     "typescript-transform-paths": "^3.4.6",
+    "use-resize-observer": "^9.1.0",
+    "usehooks-ts": "^2.9.1",
     "yarn": "^1.22.19"
   },
   "peerDependencies": {

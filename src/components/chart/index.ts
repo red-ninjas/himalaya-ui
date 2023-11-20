@@ -1,22 +1,24 @@
-import ThemedChart from './chart';
+import Chart from './chart';
+import ChartArea from './chart-area';
+import ChartBar from './chart-bar';
+import ChartCandle from './chart-candle';
+import ChartLegends from './chart-legends';
+import ChartLine from './chart-line';
 
-export {
-  ChartNumberFormatter,
-  ChartPriceFormatter,
-  ChartMarketPriceFormatter,
-  ChartPercentFormatter,
-  type ChartProps,
-  DateTimeFormatter,
-  DefaulHourFormatter,
-  DefaulTimeFormatter,
-  DefaulFormatter,
-  type ThemeChartSeriesDictonary,
-  type ThemedChartData,
-  type ThemedChartPriceFormatter,
-  WeekdayFormatter,
-  YearAndMonthConverter,
-  DefaulDayFormatter,
-} from './chart';
+export * from './shared';
+export type * from './shared';
 
-export { default as ChartSkeleton } from './skeleton';
-export default ThemedChart;
+export type ThemedChartComponentType = typeof Chart & {
+  Line: typeof ChartLine;
+  Area: typeof ChartArea;
+  Bar: typeof ChartBar;
+  Candle: typeof ChartCandle;
+  Legends: typeof ChartLegends;
+};
+(Chart as ThemedChartComponentType).Line = ChartLine;
+(Chart as ThemedChartComponentType).Area = ChartArea;
+(Chart as ThemedChartComponentType).Bar = ChartBar;
+(Chart as ThemedChartComponentType).Candle = ChartCandle;
+(Chart as ThemedChartComponentType).Legends = ChartLegends;
+
+export default Chart as ThemedChartComponentType;
