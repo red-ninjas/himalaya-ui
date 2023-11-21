@@ -1,35 +1,35 @@
+import useScale, { withScale } from '../use-scale';
 import { useEffect, useState } from 'react';
 import Checkbox from '../checkbox';
 import Text from '../text';
-import { ISeriesApi } from '../use-charts/api/iseries-api';
-import { SeriesType } from '../use-charts/model/series-options';
-import useScale, { withScale } from '../use-scale';
+import { OnNewSerieHandler } from '../use-charts/api/ichart-api';
+import { Time } from '../use-charts/model/horz-scale-behavior-time/types';
 import useTheme from '../use-theme';
 import { useChart } from './chart-context';
 import { ILegendStatesDictonary, LegendDictonary } from './shared';
 
-const ChartLegends: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({ ...props }) => {
+const ChartDataView: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({ ...props }) => {
   const { chart } = useChart();
   const [_series, _setSeries] = useState<LegendDictonary>({});
   const [legends, setLegends] = useState<ILegendStatesDictonary>([]);
   const theme = useTheme();
   const { SCALES } = useScale();
-
-  const addNewSerie = (props: ISeriesApi<SeriesType>) => {
+  const newChartDetected: OnNewSerieHandler<Time> = props => {
     const newSeries = { ..._series };
     newSeries[props.seriesID()] = props;
     _setSeries(newSeries);
 
-    legends.push({
-      visible: props.options().visible,
-      title: props.options().title,
-      key: props.seriesID(),
-    });
-
-    setLegends(legends);
+    setLegends([
+      ...legends,
+      {
+        visible: props.options().visible,
+        title: props.options().title,
+        key: props.seriesID(),
+      },
+    ]);
   };
 
-  const deleteChartDetected = (props: ISeriesApi<SeriesType>) => {
+  const deleteChartDetected: OnNewSerieHandler<Time> = props => {
     const newSeries = { ..._series };
     delete newSeries[props.seriesID()];
 
@@ -38,18 +38,27 @@ const ChartLegends: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({ ...props
   };
 
   //init
-  //implement on title update
   useEffect(() => {
     if (chart) {
+      const newSeries = { ..._series };
+      const newLegends: ILegendStatesDictonary = [];
       for (const serie of chart.getSeries()) {
-        addNewSerie(serie);
-      }
+        newSeries[serie.seriesID()] = serie;
 
-      chart.subscribeNewSerie(addNewSerie);
+        newLegends.push({
+          visible: serie.options().visible,
+          title: serie.options().title,
+          key: serie.seriesID(),
+        });
+      }
+      _setSeries(newSeries);
+      setLegends(newLegends);
+
+      chart.subscribeNewSerie(newChartDetected);
       chart.subscribeDestroyedSerie(deleteChartDetected);
 
       return () => {
-        chart.unsubscribeNewSerie(addNewSerie);
+        chart.unsubscribeNewSerie(newChartDetected);
         chart.unsubscribeDestroyedSerie(deleteChartDetected);
       };
     }
@@ -100,5 +109,5 @@ const ChartLegends: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({ ...props
   );
 };
 
-ChartLegends.displayName = 'HimalayaChartLegends';
-export default withScale(ChartLegends);
+ChartDataView.displayName = 'HimalayaChartDataView';
+export default withScale(ChartDataView);

@@ -5,6 +5,7 @@ import { BarData, HistogramData, LineData, WhitespaceData } from '../model/data-
 import { Time } from '../model/horz-scale-behavior-time/types';
 import { CustomData, ICustomSeriesPaneView } from '../model/icustom-series';
 import { Point } from '../model/point';
+import { ISeries } from '../model/series';
 import {
   AreaSeriesPartialOptions,
   BarSeriesPartialOptions,
@@ -22,6 +23,7 @@ import { TouchMouseEventData } from '../model/touch-mouse-event-data';
 import { IPriceScaleApi } from './iprice-scale-api';
 import { ISeriesApi } from './iseries-api';
 import { ITimeScaleApi } from './itime-scale-api';
+import { SeriesApi } from './series-api';
 
 /**
  * Dimensions of the Chart Pane
@@ -84,6 +86,16 @@ export interface MouseEventParams<HorzScaleItem = Time> {
 export type MouseEventHandler<HorzScaleItem> = (param: MouseEventParams<HorzScaleItem>) => void;
 
 /**
+ * A custom function use to handle new series
+ */
+export type OnNewSerieHandler<HorzScaleItem> = (options: ISeriesApi<SeriesType, HorzScaleItem>) => void;
+
+/**
+ * A custom function use to handle destroyed series
+ */
+export type OnSerieDestroyedHandler<HorzScaleItem> = (options: ISeriesApi<SeriesType, HorzScaleItem>) => void;
+
+/**
  * The main interface of a single chart.
  */
 export interface IChartApiBase<HorzScaleItem = Time> {
@@ -91,6 +103,10 @@ export interface IChartApiBase<HorzScaleItem = Time> {
    * Removes the chart object including all DOM elements. This is an irreversible operation, you cannot do anything with the chart after removing it.
    */
   remove(): void;
+
+  getSeries(): ISeriesApi<SeriesType, HorzScaleItem>[];
+
+  //  Map<SeriesApi<SeriesType, HorzScaleItem>, Series<SeriesType>>
 
   /**
    * Sets fixed size of the chart. By default chart takes up 100% of its container.
@@ -266,6 +282,14 @@ export interface IChartApiBase<HorzScaleItem = Time> {
    * ```
    */
   unsubscribeDblClick(handler: MouseEventHandler<HorzScaleItem>): void;
+
+  subscribeNewSerie(handler: OnNewSerieHandler<HorzScaleItem>): void;
+
+  subscribeDestroyedSerie(handler: OnSerieDestroyedHandler<HorzScaleItem>): void;
+
+  unsubscribeNewSerie(handler: OnNewSerieHandler<HorzScaleItem>): void;
+
+  unsubscribeDestroyedSerie(handler: OnSerieDestroyedHandler<HorzScaleItem>): void;
 
   /**
    * Subscribe to the crosshair move event.

@@ -47,14 +47,16 @@ export interface ChartSerie {
   priceFormatter?: ThemedChartPriceFormatter;
   onOptionsChanged?: (data: SeriesPartialOptionsMap[SeriesType]) => void;
 }
-export interface ILegend {
-  api: ISeriesApi<SeriesType>;
+export interface ILegendVisibleStates {
   title: string;
+  key: string;
   visible: boolean;
 }
 
-export type LegendDictonary = { [key: string]: ILegend };
-export interface ChartProps {
+export type LegendDictonary = { [key: string]: ISeriesApi<SeriesType> };
+export type ILegendStatesDictonary = Array<ILegendVisibleStates>;
+
+interface ChartProperties {
   height?: number;
   showTime?: boolean;
   showBottomHover?: boolean;
@@ -64,6 +66,9 @@ export interface ChartProps {
   tickFormatter?: TickMarkFormatter;
   hasSides?: 'right' | 'left' | 'both';
 }
+
+type NativeChartAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof ChartProperties>;
+export type ChartProps = ChartProperties & NativeChartAttrs;
 
 export interface ChartLineProp extends ChartSerie {
   data: Array<ThemedChartDataRecord>;
