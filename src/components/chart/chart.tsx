@@ -2,16 +2,17 @@
 
 import { ColorType, createChart } from '../use-charts';
 
-import React, { Children, createRef, useEffect, useMemo, useState } from 'react';
+import { ISeriesApi } from 'components/use-charts/api/iseries-api';
+import React, { createRef, useCallback, useEffect, useMemo, useState } from 'react';
 import { ChartOptions, IChartApi } from '../use-charts/api/create-chart';
-import { MouseEventHandler } from '../use-charts/api/ichart-api';
+import { MouseEventHandler, OnSerieOptionsChangedHandler } from '../use-charts/api/ichart-api';
 import { Time } from '../use-charts/model/horz-scale-behavior-time/types';
-import { PriceFormatCustom } from '../use-charts/model/series-options';
+import { PriceFormatCustom, SeriesType } from '../use-charts/model/series-options';
+import useScale, { withScale } from '../use-scale';
 import useTheme from '../use-theme';
 import { DeepPartial } from '../utils/types';
 import { ChartConfig, ChartContext } from './chart-context';
-import { ChartPriceFormatter, ChartProps, DefaulTimeFormatter } from './shared';
-import useScale, { withScale } from '../use-scale';
+import { ChartPriceFormatter, ChartProps, DefaulTimeFormatter, ILegendStatesDictonary, LegendDictonary } from './shared';
 
 const toolTipWidth = 80;
 const toolTipHeight = 80;
@@ -58,6 +59,48 @@ const Chart: React.FC<React.PropsWithChildren<ChartProps>> = ({
   const chartOuterContainerRef = createRef<HTMLDivElement>();
   const width = useRefDimensions(chartOuterContainerRef);
   const { SCALES } = useScale();
+
+  let _legends: ILegendStatesDictonary = [];
+  let _series: LegendDictonary = [];
+
+  const [series, setSeries] = useState<LegendDictonary>([]);
+  const [legends, setLegends] = useState<ILegendStatesDictonary>([]);
+
+  const addNewSerie = (props: ISeriesApi<SeriesType>) => {
+    console.log('ADD NEW SERIE', props.seriesID(), props.options().title);
+    _series.push(props);
+    setSeries(_series);
+    _legends.push({
+      visible: props.options().visible,
+      title: props.options().title,
+      key: props.seriesID(),
+    });
+    setLegends(_legends);
+  };
+
+  const deleteChartDetected = (props: ISeriesApi<SeriesType>) => {
+    _series = _series.filter(a => a.seriesID() !== props.seriesID());
+    _legends = _legends.filter(a => a.key !== props.seriesID());
+    setLegends(_legends);
+    setSeries(_series);
+  };
+
+  const onChangeOptions: OnSerieOptionsChangedHandler = (id, options) => {
+    console.log('UPDATE SERIE', options.title);
+
+    const legendIndex = _legends.findIndex(element => {
+      return element.key === id;
+    });
+    if (legendIndex >= 0) {
+      if (options.title !== undefined) {
+        _legends[legendIndex].title = options.title;
+      }
+      if (options.visible !== undefined) {
+        _legends[legendIndex].visible = options.visible;
+      }
+      setLegends(_legends);
+    }
+  };
 
   const tooltipRef = createRef<HTMLDivElement>();
   const defaultOptions: DeepPartial<ChartOptions> = {
@@ -155,8 +198,6 @@ const Chart: React.FC<React.PropsWithChildren<ChartProps>> = ({
   const [options, setOptions] = useState<DeepPartial<ChartOptions>>(defaultOptions);
   const [chart, setChart] = useState<IChartApi>();
 
-  const arrayChildren = Children.toArray(children);
-
   //init
   useEffect(() => {
     if (chartContainerRef.current !== null && chartOuterContainerRef.current !== null && tooltipRef.current !== null) {
@@ -167,9 +208,17 @@ const Chart: React.FC<React.PropsWithChildren<ChartProps>> = ({
 
       // eslint-disable-next-line react-hooks/exhaustive-deps
       const newChart = createChart(chartContainerRef.current, startOptions);
+
+      newChart.subscribeSerieOptionsChanged(onChangeOptions);
+      newChart.subscribeNewSerie(addNewSerie.bind(this));
+      newChart.subscribeDestroyedSerie(deleteChartDetected.bind(this));
+
       setChart(newChart);
 
       return () => {
+        newChart.unsubscribeSerieOptionsChanged(onChangeOptions);
+        newChart.unsubscribeNewSerie(addNewSerie);
+        newChart.unsubscribeDestroyedSerie(deleteChartDetected);
         newChart?.remove();
         setChart(undefined);
       };
@@ -228,8 +277,10 @@ const Chart: React.FC<React.PropsWithChildren<ChartProps>> = ({
   const config = useMemo<ChartConfig>(
     () => ({
       chart,
+      legends,
+      series,
     }),
-    [chart],
+    [chart, legends, series.length],
   );
 
   return (

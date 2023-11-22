@@ -1,7 +1,7 @@
 import { Layout, Playground, Attributes } from 'lib/components';
-import { ThemedChart, Link, Text, Code, Spacer, useTheme, GraphDataView } from 'components';
+import { ThemedChart, Link, Text, Code, Button, Spacer, useTheme, GraphDataView } from 'components';
 import NextLink from 'next/link';
-import { useRef, useEffect, createRef } from 'react';
+import { useRef, useEffect, createRef, useState } from 'react';
 
 export const meta = {
   title: 'Charts',
@@ -145,8 +145,56 @@ Charts creates interactive financial charts.
               { value: 39, time: 1643116522 },
               { value: 12, time: 1643202922 },
             ]} />
-          <ThemedChart.Legends/>
+            <ThemedChart.Legends/>
           </ThemedChart>
+      )
+}
+`}
+/>
+
+<Playground
+  title="Title or Data change example"
+  desc="A multi line chart example with different colors and legends"
+  scope={{ ThemedChart, useTheme, Button, useState }}
+  code={`() => {
+      const min = 1;
+      const max = 100;
+      const theme = useTheme();
+      const [enabled, setEnabled] = useState<boolean>(false);
+      const generateData = () => {
+        return [{ value: Math.random() * (max - min) + min, time: 1642425322 },
+          { value: Math.random() * (max - min) + min, time: 1642511722 },
+          { value: Math.random() * (max - min) + min, time: 1642598122 },
+          { value: Math.random() * (max - min) + min, time: 1642684522 },
+          { value: Math.random() * (max - min) + min, time: 1642770922 },
+          { value: Math.random() * (max - min) + min, time: 1642857322 },
+          { value: Math.random() * (max - min) + min, time: 1642943722 },
+          { value: Math.random() * (max - min) + min, time: 1643030122 },
+          { value: Math.random() * (max - min) + min, time: 1643116522 },
+          { value: Math.random() * (max - min) + min, time: 1643202922 }];
+      };
+      const [data, setData] = useState<any>(generateData());
+      const [data2, setData2] = useState<any>(generateData());
+      const [title, setTitle] = useState<any>('Serie 1');
+      const hideHandler = () => setEnabled(!enabled);
+      const changeDataHandler = () => {
+        setData(generateData());
+        setData2(generateData());
+      };
+      const changeTitle = () => {
+        setTitle('New Serie ' +  Math.random());
+      };
+      return (
+          <>
+            <Button auto scale={0.5} onClick={hideHandler} type="warning">{enabled ? 'Hide Serie 2': 'Show Serie 2'}</Button>
+            <Button auto scale={0.5} onClick={changeDataHandler} type="warning">Change Data</Button>
+            <Button auto scale={0.5} onClick={changeTitle} type="warning">Change Title</Button>
+            <ThemedChart>
+              <ThemedChart.Line color={theme.palette.primary.value} title={title} data={data} />
+              {enabled && <ThemedChart.Line color={theme.palette.error.value} title="Serie 2" data={data2} />}
+              <ThemedChart.Legends/>
+            </ThemedChart>
+          </>
       )
 }
 `}

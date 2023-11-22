@@ -48,12 +48,12 @@ export interface ChartSerie {
   onOptionsChanged?: (data: SeriesPartialOptionsMap[SeriesType]) => void;
 }
 export interface ILegendVisibleStates {
-  title: string;
+  title?: string;
   key: string;
-  visible: boolean;
+  visible?: boolean;
 }
 
-export type LegendDictonary = { [key: string]: ISeriesApi<SeriesType> };
+export type LegendDictonary = Array<ISeriesApi<SeriesType>>;
 export type ILegendStatesDictonary = Array<ILegendVisibleStates>;
 
 interface ChartProperties {

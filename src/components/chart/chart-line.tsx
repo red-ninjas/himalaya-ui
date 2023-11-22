@@ -114,7 +114,7 @@ const ChartLine = forwardRef(
         );
       }
       // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [data.length]);
+    }, [data]);
 
     return null;
   },

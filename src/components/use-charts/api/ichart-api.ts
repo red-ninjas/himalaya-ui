@@ -15,6 +15,7 @@ import {
   HistogramSeriesPartialOptions,
   LineSeriesPartialOptions,
   SeriesPartialOptions,
+  SeriesPartialOptionsMap,
   SeriesType,
 } from '../model/series-options';
 import { Logical } from '../model/time-data';
@@ -95,10 +96,16 @@ export type OnNewSerieHandler<HorzScaleItem> = (options: ISeriesApi<SeriesType, 
  */
 export type OnSerieDestroyedHandler<HorzScaleItem> = (options: ISeriesApi<SeriesType, HorzScaleItem>) => void;
 
+export type OnSerieOptionsChangedHandler = (id: string, options: SeriesPartialOptionsMap[SeriesType]) => void;
+
 /**
  * The main interface of a single chart.
  */
 export interface IChartApiBase<HorzScaleItem = Time> {
+  subscribeSerieOptionsChanged(handler: OnSerieOptionsChangedHandler): void;
+
+  unsubscribeSerieOptionsChanged(handler: OnSerieOptionsChangedHandler): void;
+  onSerieOptionChanged(id: string, scope: SeriesPartialOptionsMap[SeriesType]): void;
   /**
    * Removes the chart object including all DOM elements. This is an irreversible operation, you cannot do anything with the chart after removing it.
    */

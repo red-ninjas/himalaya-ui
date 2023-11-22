@@ -1,70 +1,19 @@
-import { useEffect, useState } from 'react';
 import Checkbox from '../checkbox';
 import Text from '../text';
-import { ISeriesApi } from '../use-charts/api/iseries-api';
-import { SeriesType } from '../use-charts/model/series-options';
 import useScale, { withScale } from '../use-scale';
 import useTheme from '../use-theme';
 import { useChart } from './chart-context';
-import { ILegendStatesDictonary, LegendDictonary } from './shared';
 
 const ChartLegends: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({ ...props }) => {
-  const { chart } = useChart();
-  const [_series, _setSeries] = useState<LegendDictonary>({});
-  const [legends, setLegends] = useState<ILegendStatesDictonary>([]);
+  const { series, legends } = useChart();
   const theme = useTheme();
   const { SCALES } = useScale();
 
-  const addNewSerie = (props: ISeriesApi<SeriesType>) => {
-    const newSeries = { ..._series };
-    newSeries[props.seriesID()] = props;
-    _setSeries(newSeries);
-
-    legends.push({
-      visible: props.options().visible,
-      title: props.options().title,
-      key: props.seriesID(),
-    });
-
-    setLegends(legends);
-  };
-
-  const deleteChartDetected = (props: ISeriesApi<SeriesType>) => {
-    const newSeries = { ..._series };
-    delete newSeries[props.seriesID()];
-
-    _setSeries(newSeries);
-    setLegends(legends.filter(a => a.key !== props.seriesID()));
-  };
-
-  //init
-  //implement on title update
-  useEffect(() => {
-    if (chart) {
-      for (const serie of chart.getSeries()) {
-        addNewSerie(serie);
-      }
-
-      chart.subscribeNewSerie(addNewSerie);
-      chart.subscribeDestroyedSerie(deleteChartDetected);
-
-      return () => {
-        chart.unsubscribeNewSerie(addNewSerie);
-        chart.unsubscribeDestroyedSerie(deleteChartDetected);
-      };
-    }
-  }, [chart]);
-
   const onVisibleChanged = (legendIds: string[]) => {
-    for (const serieId in _series) {
-      _series[serieId].applyOptions({ visible: legendIds.includes(serieId) });
-
-      const newLegends = legends.map(df => {
-        df.visible = legendIds.includes(df.key);
-        return df;
+    for (const serie of series) {
+      serie.applyOptions({
+        visible: legendIds.includes(serie.seriesID()),
       });
-
-      setLegends(newLegends);
     }
   };
 
@@ -81,8 +30,7 @@ const ChartLegends: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({ ...props
               {legend.title}
             </Checkbox>
           ))}
-        </Checkbox.Group>
-
+        </Checkbox.Group>{' '}
         <style jsx>{`
           .chart-legends {
             width: 100%;

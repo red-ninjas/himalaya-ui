@@ -16,7 +16,7 @@ const ChartDataView: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({ ...prop
   const { SCALES } = useScale();
   const newChartDetected: OnNewSerieHandler<Time> = props => {
     const newSeries = { ..._series };
-    newSeries[props.seriesID()] = props;
+    newSeries[props.seriesID()] = { api: props };
     _setSeries(newSeries);
 
     setLegends([
@@ -40,19 +40,9 @@ const ChartDataView: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({ ...prop
   //init
   useEffect(() => {
     if (chart) {
-      const newSeries = { ..._series };
-      const newLegends: ILegendStatesDictonary = [];
       for (const serie of chart.getSeries()) {
-        newSeries[serie.seriesID()] = serie;
-
-        newLegends.push({
-          visible: serie.options().visible,
-          title: serie.options().title,
-          key: serie.seriesID(),
-        });
+        newChartDetected(serie);
       }
-      _setSeries(newSeries);
-      setLegends(newLegends);
 
       chart.subscribeNewSerie(newChartDetected);
       chart.subscribeDestroyedSerie(deleteChartDetected);
@@ -65,8 +55,9 @@ const ChartDataView: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({ ...prop
   }, [chart]);
 
   const onVisibleChanged = (legendIds: string[]) => {
+    console.log(legendIds);
     for (const serieId in _series) {
-      _series[serieId].applyOptions({ visible: legendIds.includes(serieId) });
+      _series[serieId].api.applyOptions({ visible: legendIds.includes(serieId) });
 
       const newLegends = legends.map(df => {
         df.visible = legendIds.includes(df.key);

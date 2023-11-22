@@ -263,6 +263,7 @@ export class SeriesApi<
   private _onOptionsChanged(scope: SeriesPartialOptionsMap[SeriesType]): void {
     if (this._optionsChangedDelegate.hasListeners()) {
       this._optionsChangedDelegate.fire(scope);
+      this._chartApi.onSerieOptionChanged(this._seriesID, scope);
     }
   }
 }
