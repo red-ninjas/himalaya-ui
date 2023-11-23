@@ -1,4 +1,4 @@
-import { hexToRgb } from 'components/utils/color';
+import { hexToRgb } from '../utils/color';
 import { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
 import { LineType, UTCTimestamp } from '../use-charts';
 import { ISeriesApi } from '../use-charts/api/iseries-api';
