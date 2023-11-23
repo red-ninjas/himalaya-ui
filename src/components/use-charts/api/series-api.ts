@@ -256,14 +256,17 @@ export class SeriesApi<
   }
 
   private _onDataChanged(scope: DataChangedScope): void {
+    this._chartApi.onSerieDataChanged(this);
+
     if (this._dataChangedDelegate.hasListeners()) {
       this._dataChangedDelegate.fire(scope);
     }
   }
+
   private _onOptionsChanged(scope: SeriesPartialOptionsMap[SeriesType]): void {
     if (this._optionsChangedDelegate.hasListeners()) {
       this._optionsChangedDelegate.fire(scope);
-      this._chartApi.onSerieOptionChanged(this._seriesID, scope);
     }
+    this._chartApi.onSerieOptionChanged(this._seriesID, scope);
   }
 }

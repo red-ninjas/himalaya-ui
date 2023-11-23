@@ -22,7 +22,7 @@ import { Logical } from '../model/time-data';
 import { TouchMouseEventData } from '../model/touch-mouse-event-data';
 
 import { IPriceScaleApi } from './iprice-scale-api';
-import { ISeriesApi } from './iseries-api';
+import { DataChangedScope, ISeriesApi } from './iseries-api';
 import { ITimeScaleApi } from './itime-scale-api';
 import { SeriesApi } from './series-api';
 
@@ -90,6 +90,8 @@ export type MouseEventHandler<HorzScaleItem> = (param: MouseEventParams<HorzScal
  * A custom function use to handle new series
  */
 export type OnNewSerieHandler<HorzScaleItem> = (options: ISeriesApi<SeriesType, HorzScaleItem>) => void;
+
+export type OnSerieDataChangedHandler<HorzScaleItem> = (options: ISeriesApi<SeriesType, HorzScaleItem>) => void;
 
 /**
  * A custom function use to handle destroyed series
@@ -328,6 +330,11 @@ export interface IChartApiBase<HorzScaleItem = Time> {
    */
   unsubscribeCrosshairMove(handler: MouseEventHandler<HorzScaleItem>): void;
 
+  subscribeSerieDataChanged(handler: OnSerieDataChangedHandler<HorzScaleItem>): void;
+
+  unsubscribeSerieDataChanged(handler: OnSerieDataChangedHandler<HorzScaleItem>): void;
+
+  onSerieDataChanged(api: SeriesApi<SeriesType, HorzScaleItem>): void;
   /**
    * Returns API to manipulate a price scale.
    *

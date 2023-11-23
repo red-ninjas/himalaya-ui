@@ -19,7 +19,6 @@ const ChartLine = forwardRef(
       lastValueVisible,
       priceFormatter = ChartPriceFormatter,
       lineType = LineType.Curved,
-      onOptionsChanged,
     }: ChartLineProp,
     ref,
   ) => {
@@ -65,12 +64,6 @@ const ChartLine = forwardRef(
       };
     };
 
-    const onOptionChanged: OptionsChangedHandler = options => {
-      if (onOptionsChanged) {
-        onOptionsChanged(options);
-      }
-    };
-
     useEffect(() => {
       if (chart) {
         const line = chart.addLineSeries(getPropertes());
@@ -84,12 +77,8 @@ const ChartLine = forwardRef(
           }),
         );
 
-        line.subscribeOptionsChanged(onOptionChanged);
-
         setSerie(line);
-
         return () => {
-          line.unsubscribeOptionsChanged(onOptionChanged);
           chart?.removeSeries(line);
         };
       }

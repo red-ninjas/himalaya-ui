@@ -39,12 +39,13 @@ import {
   MouseEventHandler,
   MouseEventParams,
   OnNewSerieHandler,
+  OnSerieDataChangedHandler,
   OnSerieDestroyedHandler,
   OnSerieOptionsChangedHandler,
   PaneSize,
 } from './ichart-api';
 import { IPriceScaleApi } from './iprice-scale-api';
-import { ISeriesApi } from './iseries-api';
+import { DataChangedScope, ISeriesApi } from './iseries-api';
 import { ITimeScaleApi } from './itime-scale-api';
 import { chartOptionsDefaults } from './options/chart-options-defaults';
 import {
@@ -138,6 +139,7 @@ export class ChartApi<HorzScaleItem> implements IChartApiBase<HorzScaleItem>, Da
   private readonly _newSerieDelegate: Delegate<ISeriesApi<SeriesType, HorzScaleItem>> = new Delegate();
   private readonly _destroySerieDelegate: Delegate<ISeriesApi<SeriesType, HorzScaleItem>> = new Delegate();
   private readonly _serieOptionsChangedDelegate: Delegate<string, SeriesPartialOptionsMap[SeriesType]> = new Delegate();
+  private readonly _serieDataChangedDelegate: Delegate<ISeriesApi<SeriesType, HorzScaleItem>> = new Delegate();
 
   public constructor(container: HTMLElement, horzScaleBehavior: IHorzScaleBehavior<HorzScaleItem>, options?: DeepPartial<ChartOptionsImpl<HorzScaleItem>>) {
     this._dataLayer = new DataLayer<HorzScaleItem>(horzScaleBehavior);
@@ -169,6 +171,14 @@ export class ChartApi<HorzScaleItem> implements IChartApiBase<HorzScaleItem>, Da
     this._timeScaleApi = new TimeScaleApi(model, this._chartWidget.timeAxisWidget(), this._horzScaleBehavior);
   }
 
+  subscribeSerieDataChanged(handler: OnSerieDataChangedHandler<HorzScaleItem>): void {
+    this._serieDataChangedDelegate.subscribe(handler);
+  }
+
+  unsubscribeSerieDataChanged(handler: OnSerieDataChangedHandler<HorzScaleItem>): void {
+    this._serieDataChangedDelegate.unsubscribe(handler);
+  }
+
   subscribeSerieOptionsChanged(handler: OnSerieOptionsChangedHandler) {
     this._serieOptionsChangedDelegate.subscribe(handler);
   }
@@ -180,6 +190,12 @@ export class ChartApi<HorzScaleItem> implements IChartApiBase<HorzScaleItem>, Da
   onSerieOptionChanged(id: string, scope: SeriesPartialOptionsMap[SeriesType]): void {
     if (this._serieOptionsChangedDelegate.hasListeners()) {
       this._serieOptionsChangedDelegate.fire(id, scope);
+    }
+  }
+
+  onSerieDataChanged(api: SeriesApi<SeriesType, HorzScaleItem>): void {
+    if (this._serieDataChangedDelegate.hasListeners()) {
+      this._serieDataChangedDelegate.fire(api);
     }
   }
 
@@ -219,6 +235,7 @@ export class ChartApi<HorzScaleItem> implements IChartApiBase<HorzScaleItem>, Da
     this._destroySerieDelegate.destroy();
     this._serieOptionsChangedDelegate.destroy();
     this._newSerieDelegate.destroy();
+    this._serieDataChangedDelegate.destroy();
     this._dataLayer.destroy();
   }
 
@@ -275,7 +292,11 @@ export class ChartApi<HorzScaleItem> implements IChartApiBase<HorzScaleItem>, Da
   }
 
   public removeSeries(seriesApi: SeriesApi<SeriesType, HorzScaleItem>): void {
-    const series = ensureDefined(this._seriesMap.get(seriesApi));
+    const series = this._seriesMap.get(seriesApi);
+
+    if (series === undefined) {
+      return;
+    }
 
     const update = this._dataLayer.removeSeries(series);
     const model = this._chartWidget.model();

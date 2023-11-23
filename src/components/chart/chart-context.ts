@@ -2,17 +2,15 @@
 
 import React from 'react';
 import { IChartApi } from '../use-charts/api/create-chart';
-import { ILegendStatesDictonary, LegendDictonary } from './shared';
+import { ILegendStatesDictonary } from './shared';
 
 export interface ChartConfig {
   chart: IChartApi | undefined;
-  legends: ILegendStatesDictonary;
-  series: LegendDictonary;
+  series: ILegendStatesDictonary;
 }
 
 const defaultContext = {
   chart: undefined,
-  legends: [],
   series: [],
 };
 

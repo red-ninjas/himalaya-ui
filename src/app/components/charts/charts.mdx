@@ -1,5 +1,5 @@
 import { Layout, Playground, Attributes } from 'lib/components';
-import { ThemedChart, Link, Text, Code, Button, Spacer, useTheme, GraphDataView } from 'components';
+import { ThemedChart, Link, Text, Code, Button, ToggleList, Spacer, useTheme, GraphDataView } from 'components';
 import NextLink from 'next/link';
 import { useRef, useEffect, createRef, useState } from 'react';
 
@@ -155,7 +155,7 @@ Charts creates interactive financial charts.
 <Playground
   title="Title or Data change example"
   desc="A multi line chart example with different colors and legends"
-  scope={{ ThemedChart, useTheme, Button, useState }}
+  scope={{ ThemedChart, useTheme, Button, useState, ToggleList }}
   code={`() => {
       const min = 1;
       const max = 100;
@@ -175,6 +175,7 @@ Charts creates interactive financial charts.
       };
       const [data, setData] = useState<any>(generateData());
       const [data2, setData2] = useState<any>(generateData());
+      const [dataViewMode, setDataViewMode] = useState<string>('graph');
       const [title, setTitle] = useState<any>('Serie 1');
       const hideHandler = () => setEnabled(!enabled);
       const changeDataHandler = () => {
@@ -189,10 +190,15 @@ Charts creates interactive financial charts.
             <Button auto scale={0.5} onClick={hideHandler} type="warning">{enabled ? 'Hide Serie 2': 'Show Serie 2'}</Button>
             <Button auto scale={0.5} onClick={changeDataHandler} type="warning">Change Data</Button>
             <Button auto scale={0.5} onClick={changeTitle} type="warning">Change Title</Button>
-            <ThemedChart>
+            <ToggleList value={dataViewMode} onChange={val => setDataViewMode(val == 'graph' ? 'graph' : 'data')}>
+              <ToggleList.Item value="graph">Graph</ToggleList.Item>
+              <ToggleList.Item value="data">Data</ToggleList.Item>
+            </ToggleList>
+            <ThemedChart viewMode={dataViewMode}>
               <ThemedChart.Line color={theme.palette.primary.value} title={title} data={data} />
               {enabled && <ThemedChart.Line color={theme.palette.error.value} title="Serie 2" data={data2} />}
               <ThemedChart.Legends/>
+              <ThemedChart.DataView/>
             </ThemedChart>
           </>
       )

@@ -144,9 +144,6 @@ export default function Index() {
           width: 100%;
           top: 0;
           height: 100%;
-          --color-face-1: ${theme.palette.accents_0};
-          --color-face-2: ${theme.palette.accents_2};
-          --color-face-3: ${theme.palette.accents_4};
         }
       `}</style>
     </>

@@ -2,17 +2,20 @@
 
 import { ColorType, createChart } from '../use-charts';
 
-import { ISeriesApi } from 'components/use-charts/api/iseries-api';
-import React, { createRef, useCallback, useEffect, useMemo, useState } from 'react';
+import React, { createRef, useEffect, useMemo, useState } from 'react';
+import { InnerScroll } from '../scroll';
 import { ChartOptions, IChartApi } from '../use-charts/api/create-chart';
-import { MouseEventHandler, OnSerieOptionsChangedHandler } from '../use-charts/api/ichart-api';
+import { MouseEventHandler, OnSerieDataChangedHandler, OnSerieOptionsChangedHandler } from '../use-charts/api/ichart-api';
+import { ISeriesApi } from '../use-charts/api/iseries-api';
 import { Time } from '../use-charts/model/horz-scale-behavior-time/types';
 import { PriceFormatCustom, SeriesType } from '../use-charts/model/series-options';
 import useScale, { withScale } from '../use-scale';
 import useTheme from '../use-theme';
+import { hasChild, pickChild } from '../utils/collections';
 import { DeepPartial } from '../utils/types';
 import { ChartConfig, ChartContext } from './chart-context';
-import { ChartPriceFormatter, ChartProps, DefaulTimeFormatter, ILegendStatesDictonary, LegendDictonary } from './shared';
+import ChartDataview from './chart-dataview';
+import { ChartPriceFormatter, ChartProps, ChartViewMode, DefaulTimeFormatter, ILegendStatesDictonary } from './shared';
 
 const toolTipWidth = 80;
 const toolTipHeight = 80;
@@ -52,6 +55,7 @@ const Chart: React.FC<React.PropsWithChildren<ChartProps>> = ({
   hasSides = 'right',
   timeFormatter = DefaulTimeFormatter,
   tickFormatter,
+  viewMode = 'graph',
   ...props
 }) => {
   const theme = useTheme();
@@ -60,47 +64,10 @@ const Chart: React.FC<React.PropsWithChildren<ChartProps>> = ({
   const width = useRefDimensions(chartOuterContainerRef);
   const { SCALES } = useScale();
 
-  let _legends: ILegendStatesDictonary = [];
-  let _series: LegendDictonary = [];
+  let _chart: IChartApi | undefined = undefined;
+  const [chart, setChart] = useState<IChartApi>();
 
-  const [series, setSeries] = useState<LegendDictonary>([]);
-  const [legends, setLegends] = useState<ILegendStatesDictonary>([]);
-
-  const addNewSerie = (props: ISeriesApi<SeriesType>) => {
-    console.log('ADD NEW SERIE', props.seriesID(), props.options().title);
-    _series.push(props);
-    setSeries(_series);
-    _legends.push({
-      visible: props.options().visible,
-      title: props.options().title,
-      key: props.seriesID(),
-    });
-    setLegends(_legends);
-  };
-
-  const deleteChartDetected = (props: ISeriesApi<SeriesType>) => {
-    _series = _series.filter(a => a.seriesID() !== props.seriesID());
-    _legends = _legends.filter(a => a.key !== props.seriesID());
-    setLegends(_legends);
-    setSeries(_series);
-  };
-
-  const onChangeOptions: OnSerieOptionsChangedHandler = (id, options) => {
-    console.log('UPDATE SERIE', options.title);
-
-    const legendIndex = _legends.findIndex(element => {
-      return element.key === id;
-    });
-    if (legendIndex >= 0) {
-      if (options.title !== undefined) {
-        _legends[legendIndex].title = options.title;
-      }
-      if (options.visible !== undefined) {
-        _legends[legendIndex].visible = options.visible;
-      }
-      setLegends(_legends);
-    }
-  };
+  const [series, setSeries] = useState<ILegendStatesDictonary>([]);
 
   const tooltipRef = createRef<HTMLDivElement>();
   const defaultOptions: DeepPartial<ChartOptions> = {
@@ -140,6 +107,12 @@ const Chart: React.FC<React.PropsWithChildren<ChartProps>> = ({
       timeFormatter: timeFormatter,
     },
   };
+
+  const [options, setOptions] = useState<DeepPartial<ChartOptions>>(defaultOptions);
+
+  const [otherChilds, dataView] = pickChild(children, ChartDataview);
+  const hasDataView = hasChild(children, ChartDataview);
+  const [_viewMode, _setViewMode] = useState<ChartViewMode>(viewMode);
 
   const tooltipSubscriber: MouseEventHandler<Time> = param => {
     const container = chartContainerRef.current;
@@ -195,8 +168,40 @@ const Chart: React.FC<React.PropsWithChildren<ChartProps>> = ({
     }
   };
 
-  const [options, setOptions] = useState<DeepPartial<ChartOptions>>(defaultOptions);
-  const [chart, setChart] = useState<IChartApi>();
+  const addNewSerie = async (props: ISeriesApi<SeriesType>) => {
+    await setSeries(prevArray => [
+      ...prevArray,
+      {
+        api: props,
+        visible: props.options().visible,
+        title: props.options().title,
+        key: props.seriesID(),
+      },
+    ]);
+  };
+
+  const onChangeOptions: OnSerieOptionsChangedHandler = async (id, options) => {
+    await setSeries(prevArray =>
+      prevArray.map(df => {
+        if (df.key == id) {
+          if (options.title !== undefined) {
+            df.title = options.title;
+          }
+          if (options.visible !== undefined) {
+            df.visible = options.visible;
+          }
+        }
+        return df;
+      }),
+    );
+  };
+
+  const deleteChartDetected = async (props: ISeriesApi<SeriesType>) => {
+    const id = props.seriesID();
+    await setSeries(prevArray => prevArray.filter(a => a.key !== id));
+  };
+
+  const onDataChangeOptions: OnSerieDataChangedHandler<SeriesType> = async api => {};
 
   //init
   useEffect(() => {
@@ -207,24 +212,28 @@ const Chart: React.FC<React.PropsWithChildren<ChartProps>> = ({
       setOptions(startOptions);
 
       // eslint-disable-next-line react-hooks/exhaustive-deps
-      const newChart = createChart(chartContainerRef.current, startOptions);
+      _chart = createChart(chartContainerRef.current, startOptions);
 
-      newChart.subscribeSerieOptionsChanged(onChangeOptions);
-      newChart.subscribeNewSerie(addNewSerie.bind(this));
-      newChart.subscribeDestroyedSerie(deleteChartDetected.bind(this));
+      _chart.subscribeSerieOptionsChanged(onChangeOptions);
+      _chart.subscribeSerieDataChanged(onDataChangeOptions);
+      _chart.subscribeNewSerie(addNewSerie);
+      _chart.subscribeDestroyedSerie(deleteChartDetected);
 
-      setChart(newChart);
-
+      setChart(_chart);
       return () => {
-        newChart.unsubscribeSerieOptionsChanged(onChangeOptions);
-        newChart.unsubscribeNewSerie(addNewSerie);
-        newChart.unsubscribeDestroyedSerie(deleteChartDetected);
-        newChart?.remove();
-        setChart(undefined);
+        if (_chart) {
+          _chart.unsubscribeSerieOptionsChanged(onChangeOptions);
+          _chart.unsubscribeNewSerie(addNewSerie);
+          _chart.unsubscribeDestroyedSerie(deleteChartDetected);
+          _chart.unsubscribeSerieDataChanged(onDataChangeOptions);
+          _chart.remove();
+        }
       };
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  //tooltip
   useEffect(() => {
     if (chart && tooltipRef) {
       chart.unsubscribeCrosshairMove(tooltipSubscriber);
@@ -232,20 +241,25 @@ const Chart: React.FC<React.PropsWithChildren<ChartProps>> = ({
         chart.subscribeCrosshairMove(tooltipSubscriber);
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [chart, tooltipRef, showPopover]);
 
+  //width
   useEffect(() => {
     if (width !== undefined && chart !== undefined) {
       options.width = width;
       chart?.applyOptions(options);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [width]);
 
+  //height
   useEffect(() => {
     if (chart !== undefined && height != undefined) {
       options.height = height;
       chart.applyOptions(options);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [height]);
 
   useEffect(() => {
@@ -272,34 +286,47 @@ const Chart: React.FC<React.PropsWithChildren<ChartProps>> = ({
         },
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [theme.type, theme.palette.foreground, hasSides]);
 
-  const config = useMemo<ChartConfig>(
-    () => ({
+  useEffect(() => {
+    _setViewMode(viewMode);
+  }, [viewMode]);
+
+  const config = useMemo<ChartConfig>(() => {
+    return {
       chart,
-      legends,
       series,
-    }),
-    [chart, legends, series.length],
-  );
+    };
+  }, [chart, series]);
 
   return (
     <ChartContext.Provider value={config}>
       <div className="chart-container" {...props} ref={chartOuterContainerRef}>
-        <div className="chart-inner" ref={chartContainerRef}></div>
-        <div className="graph-tooltip" ref={tooltipRef}></div>
-        {children}
+        <div className="chart-outer" style={{ display: _viewMode == 'graph' ? 'block' : 'none' }}>
+          <div className="chart-inner" ref={chartContainerRef}></div>
+          <div className="graph-tooltip" ref={tooltipRef}></div>
+          {otherChilds}
+        </div>
+        <InnerScroll style={{ display: hasDataView && _viewMode == 'data' ? 'block' : 'none', maxHeight: height }} type="vertical">
+          {dataView}
+        </InnerScroll>
       </div>
+
       <style jsx>{`
+        .chart-outer {
+          position: relative;
+          width: 100%;
+          background: transparent;
+          border: 1px solid ${theme.palette.border};
+          border-radius: ${theme.style.radius};
+        }
         .chart-inner {
           padding: ${SCALES.pt(0.475)} ${SCALES.pr(0.875)} ${SCALES.pb(0.475)} ${SCALES.pl(0.875)};
         }
         .chart-container {
           position: relative;
           width: 100%;
-          background: transparent;
-          border: 1px solid ${theme.palette.border};
-          border-radius: ${theme.style.radius};
           margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
         }
         .graph-tooltip {

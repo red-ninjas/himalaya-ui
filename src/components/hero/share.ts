@@ -1,4 +1,4 @@
-import { Gradient } from 'components/themes/presets';
+import { Gradient } from '../themes/presets';
 import { HTMLAttributes } from 'react';
 export interface HeroProps {
   extraPaddingDown?: number;

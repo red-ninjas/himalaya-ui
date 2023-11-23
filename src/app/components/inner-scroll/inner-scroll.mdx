@@ -1,17 +1,17 @@
-import { Layout, Playground, Attributes } from 'lib/components'
-import { Skeleton, InnerScroll } from 'components'
-import React, { useState } from 'react'
-import { Award, Github } from 'components/icons'
-import { SearchResult, SearchResults } from 'components/search'
+import { Layout, Playground, Attributes } from 'lib/components';
+import { Skeleton, InnerScroll } from 'components';
+import React, { useState } from 'react';
+import { Award, Github } from 'components/icons';
+import { SearchResult, SearchResults } from 'components/search';
 
 export const meta = {
   title: 'Inner scroll',
   group: 'Layout',
-}
+};
 
 # Scroll component
 
-The `InnerScroll` component is a flexible element that empowers your content with scrollable capabilities. 
+The `InnerScroll` component is a flexible element that empowers your content with scrollable capabilities.
 Whether you need vertical, horizontal, or both directions, InnerScroll can adapt to your content requirements, making it an invaluable addition to your layout.
 
 ## Vertical scroll
@@ -24,7 +24,7 @@ Whether you need vertical, horizontal, or both directions, InnerScroll can adapt
   code={`
 () => {
   return (
-    <InnerScroll maxHeight={'150px'} padding={1}>
+    <InnerScroll style={{ maxHeight:150 }}  padding={1}>
      <Skeleton  height={10}></Skeleton>
     </InnerScroll>
   )
@@ -58,7 +58,7 @@ Whether you need vertical, horizontal, or both directions, InnerScroll can adapt
   code={`
 () => {
   return (
-    <InnerScroll maxWidth={'200px'} padding={1}>
+    <InnerScroll style={{ maxWidth:200 }} padding={1}>
      <Skeleton  height={'250px'} width={'350px'}></Skeleton>
     </InnerScroll>
   )
@@ -74,7 +74,7 @@ Whether you need vertical, horizontal, or both directions, InnerScroll can adapt
   code={`
 () => {
   return (
-    <InnerScroll width={'200px'}  padding={1}>
+    <InnerScroll width={'200px'} padding={1}>
       <Skeleton height={10}  width={'350px'}></Skeleton>
     </InnerScroll>
   )
@@ -92,7 +92,7 @@ Whether you need vertical, horizontal, or both directions, InnerScroll can adapt
   code={`
 () => {
   return (
-    <InnerScroll maxWidth={'200px'} maxHeight={'200px'} padding={1}>
+    <InnerScroll style={{ maxWidth: 200, maxHeight: 200} padding={1}>
      <Skeleton  height={'350px'} width={'350px'}></Skeleton>
     </InnerScroll>
   )
@@ -118,12 +118,10 @@ Whether you need vertical, horizontal, or both directions, InnerScroll can adapt
 <Attributes edit="/pages/components/scroll.mdx">
 <Attributes.Title>VerticalScroll.Props</Attributes.Title>
 
-| Attribute     | Description            | Type                             | Accepted values          | Default |
-| ------------- | ---------------------- | -------------------------------- | ------------------------ | ------- |
-| **maxHeight** | Maximum height         | `string or number`               | -                        | -       |
-| **maxWidth**  | Maximum width          | `string or number`               | -                        | -       |
-| **type**      | Type of scroll element | `vertical or horizontal or both` | -                        | `both`  |
-| **ref**       | forwardRef             | `Ref<HTMLDivElement or null>`    | -                        | -       |
-| ...           | native props           | `ButtonHTMLAttributes`           | `'id', 'className', ...` | -       |
+| Attribute | Description            | Type                             | Accepted values          | Default |
+| --------- | ---------------------- | -------------------------------- | ------------------------ | ------- |
+| **type**  | Type of scroll element | `vertical or horizontal or both` | -                        | `both`  |
+| **ref**   | forwardRef             | `Ref<HTMLDivElement or null>`    | -                        | -       |
+| ...       | native props           | `ButtonHTMLAttributes`           | `'id', 'className', ...` | -       |
 
 </Attributes>

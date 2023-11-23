@@ -6,22 +6,23 @@ import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';
 import useTheme from '../use-theme';
 
-export interface InnerScrollProps {
-  maxHeight?: number | string;
-  maxWidth?: number | string;
+interface InnerScrollNativeProps {
   type?: 'horizontal' | 'vertical' | 'both';
   scrollUpOnRouteChange?: boolean;
   transparentBg?: boolean;
   onScroll?: (event: InnerScrollEvent) => void;
 }
+
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof InnerScrollNativeProps>;
+export type InnerScrollProps = InnerScrollNativeProps & NativeAttrs;
+
 const InnerScrollComponent: React.FC<React.PropsWithChildren<InnerScrollProps>> = ({
   children,
-  maxHeight,
-  maxWidth,
   type = 'both',
   transparentBg = false,
   scrollUpOnRouteChange = true,
   onScroll = () => {},
+  ...props
 }) => {
   const theme = useTheme();
   const { SCALES } = useScale();
@@ -48,12 +49,12 @@ const InnerScrollComponent: React.FC<React.PropsWithChildren<InnerScrollProps>> 
     <div
       ref={ref}
       onScroll={onScrollHandler}
-      style={{ maxHeight: maxHeight, maxWidth: maxWidth }}
       className={useClasses({
         'inner-scroll': true,
         vertical: type == 'both' || type == 'vertical',
         horizontal: type == 'both' || type == 'horizontal',
       })}
+      {...props}
     >
       {children}
       <style jsx>{`

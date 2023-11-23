@@ -22,6 +22,7 @@ export interface ThemedChartDataCandleRecord {
 }
 export type ChartTypes = 'line' | 'area' | 'bar' | 'candle';
 export type ChartSide = 'left' | 'right';
+export type ChartViewMode = 'graph' | 'data';
 
 export interface ThemedChartData {
   data: ThemedChartDataRecord[];
@@ -47,13 +48,25 @@ export interface ChartSerie {
   priceFormatter?: ThemedChartPriceFormatter;
   onOptionsChanged?: (data: SeriesPartialOptionsMap[SeriesType]) => void;
 }
+export type SeriesDataTableItem = { time: string; value: string };
+export type SeriesColumnItem = { title?: string; data: SeriesDataTableItem[] };
+export type SeriesDataTable = { [key: string]: SeriesColumnItem };
+export interface ITabledataField {
+  property: string;
+  label?: string;
+}
+export interface ITabledata {
+  fields: ITabledataField[];
+  data: any[];
+}
+
 export interface ILegendVisibleStates {
   title?: string;
   key: string;
   visible?: boolean;
+  api: ISeriesApi<SeriesType>;
 }
 
-export type LegendDictonary = Array<ISeriesApi<SeriesType>>;
 export type ILegendStatesDictonary = Array<ILegendVisibleStates>;
 
 interface ChartProperties {
@@ -65,6 +78,7 @@ interface ChartProperties {
   timeFormatter?: TimeFormatterFn;
   tickFormatter?: TickMarkFormatter;
   hasSides?: 'right' | 'left' | 'both';
+  viewMode?: ChartViewMode;
 }
 
 type NativeChartAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof ChartProperties>;

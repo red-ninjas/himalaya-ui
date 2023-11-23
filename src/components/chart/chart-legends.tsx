@@ -5,32 +5,32 @@ import useTheme from '../use-theme';
 import { useChart } from './chart-context';
 
 const ChartLegends: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({ ...props }) => {
-  const { series, legends } = useChart();
+  const { series } = useChart();
   const theme = useTheme();
   const { SCALES } = useScale();
 
   const onVisibleChanged = (legendIds: string[]) => {
     for (const serie of series) {
-      serie.applyOptions({
-        visible: legendIds.includes(serie.seriesID()),
+      serie.api.applyOptions({
+        visible: legendIds.includes(serie.api.seriesID()),
       });
     }
   };
 
   return (
-    legends &&
-    legends.length > 0 && (
+    series &&
+    series.length > 0 && (
       <div {...props} className="chart-legends">
         <Text pr={1.5} small style={{ color: theme.palette.accents_3 }}>
           Legend
         </Text>
-        <Checkbox.Group scale={0.75} className="legends" onChange={onVisibleChanged} value={legends.filter(df => df.visible).map(df => df.key)}>
-          {legends.map(legend => (
+        <Checkbox.Group scale={0.75} className="legends" onChange={onVisibleChanged} value={series.filter(df => df.visible).map(df => df.key)}>
+          {series.map(legend => (
             <Checkbox key={legend.key} className="series-checkbox" value={legend.key}>
               {legend.title}
             </Checkbox>
           ))}
-        </Checkbox.Group>{' '}
+        </Checkbox.Group>
         <style jsx>{`
           .chart-legends {
             width: 100%;

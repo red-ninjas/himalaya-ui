@@ -1,104 +1,81 @@
-import useScale, { withScale } from '../use-scale';
-import { useEffect, useState } from 'react';
-import Checkbox from '../checkbox';
-import Text from '../text';
-import { OnNewSerieHandler } from '../use-charts/api/ichart-api';
-import { Time } from '../use-charts/model/horz-scale-behavior-time/types';
-import useTheme from '../use-theme';
+import { forwardRef, useEffect, useState } from 'react';
+import Table from '../table';
+import { withScale } from '../use-scale';
 import { useChart } from './chart-context';
-import { ILegendStatesDictonary, LegendDictonary } from './shared';
+import { ITabledata, ITabledataField } from './shared';
 
-const ChartDataView: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({ ...props }) => {
+const ChartDataView = forwardRef(() => {
   const { chart } = useChart();
-  const [_series, _setSeries] = useState<LegendDictonary>({});
-  const [legends, setLegends] = useState<ILegendStatesDictonary>([]);
-  const theme = useTheme();
-  const { SCALES } = useScale();
-  const newChartDetected: OnNewSerieHandler<Time> = props => {
-    const newSeries = { ..._series };
-    newSeries[props.seriesID()] = { api: props };
-    _setSeries(newSeries);
 
-    setLegends([
-      ...legends,
+  const updateDataView = async () => {
+    await setData(prevArray => {
+      if (chart) {
+        const _fields: ITabledataField[] = [{ label: 'Time', property: 'time' }];
+        const series = chart.getSeries();
+        const transform: {} = {};
+
+        for (const serie of series) {
+          _fields.push({ label: serie.options().title, property: serie.seriesID() });
+          const data = serie.data();
+          const id = serie.seriesID();
+          const formatter = serie.priceFormatter();
+          for (const item of data) {
+            const valueUnformatted = item['value'] || item['close'];
+            const value = (formatter ? formatter.format(valueUnformatted) : valueUnformatted).toString();
+            // const time = timeFormatter(item.time);
+            const time = item.time.toString();
+            if (transform[time] === undefined) {
+              transform[time] = {};
+            }
+
+            transform[time].time = time;
+            transform[time][id] = value;
+          }
+        }
+
+        return { data: Object.values(transform), fields: _fields };
+      }
+      return prevArray;
+    });
+  };
+
+  const [data, setData] = useState<ITabledata>({
+    fields: [
       {
-        visible: props.options().visible,
-        title: props.options().title,
-        key: props.seriesID(),
+        label: 'Time',
+        property: 'time',
       },
-    ]);
-  };
+    ],
+    data: [],
+  });
 
-  const deleteChartDetected: OnNewSerieHandler<Time> = props => {
-    const newSeries = { ..._series };
-    delete newSeries[props.seriesID()];
-
-    _setSeries(newSeries);
-    setLegends(legends.filter(a => a.key !== props.seriesID()));
-  };
-
-  //init
   useEffect(() => {
     if (chart) {
-      for (const serie of chart.getSeries()) {
-        newChartDetected(serie);
-      }
-
-      chart.subscribeNewSerie(newChartDetected);
-      chart.subscribeDestroyedSerie(deleteChartDetected);
-
-      return () => {
-        chart.unsubscribeNewSerie(newChartDetected);
-        chart.unsubscribeDestroyedSerie(deleteChartDetected);
-      };
+      updateDataView();
+      chart.subscribeSerieOptionsChanged(updateDataView);
+      chart.subscribeSerieDataChanged(updateDataView);
+      chart.subscribeNewSerie(updateDataView);
+      chart.subscribeDestroyedSerie(updateDataView);
     }
+
+    return () => {
+      if (chart) {
+        chart.unsubscribeSerieOptionsChanged(updateDataView);
+        chart.unsubscribeNewSerie(updateDataView);
+        chart.unsubscribeDestroyedSerie(updateDataView);
+        chart.unsubscribeSerieDataChanged(updateDataView);
+      }
+    };
   }, [chart]);
 
-  const onVisibleChanged = (legendIds: string[]) => {
-    console.log(legendIds);
-    for (const serieId in _series) {
-      _series[serieId].api.applyOptions({ visible: legendIds.includes(serieId) });
-
-      const newLegends = legends.map(df => {
-        df.visible = legendIds.includes(df.key);
-        return df;
-      });
-
-      setLegends(newLegends);
-    }
-  };
-
   return (
-    legends &&
-    legends.length > 0 && (
-      <div {...props} className="chart-legends">
-        <Text pr={1.5} small style={{ color: theme.palette.accents_3 }}>
-          Legend
-        </Text>
-        <Checkbox.Group scale={0.75} className="legends" onChange={onVisibleChanged} value={legends.filter(df => df.visible).map(df => df.key)}>
-          {legends.map(legend => (
-            <Checkbox key={legend.key} className="series-checkbox" value={legend.key}>
-              {legend.title}
-            </Checkbox>
-          ))}
-        </Checkbox.Group>
-
-        <style jsx>{`
-          .chart-legends {
-            width: 100%;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            background: ${theme.palette.accents_0};
-            border-radius: 0 0 ${theme.style.radius} ${theme.style.radius};
-            padding: ${SCALES.pt(0.475)} ${SCALES.pr(0.875)} ${SCALES.pb(0.475)} ${SCALES.pl(0.875)};
-            margin: ${SCALES.mt(1)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
-          }
-        `}</style>
-      </div>
-    )
+    <Table scale={0.75} data={data.data}>
+      {data.fields.map((field, index) => (
+        <Table.Column key={index} prop={field.property} label={field.label} />
+      ))}
+    </Table>
   );
-};
+});
 
 ChartDataView.displayName = 'HimalayaChartDataView';
 export default withScale(ChartDataView);
