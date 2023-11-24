@@ -113,7 +113,7 @@ export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
                 <MobileMenu>
                   <MobileMenu.Item url="/" title="Home" />
                   {metaData.map((df, index) => (
-                    <MobileMenu.Group key={index} title={capitalize(df.name)}>
+                    <MobileMenu.Group key={index} title={capitalize(df.name)} expanded={index < 1}>
                       {df.children.map((child, childIndex) => (
                         <MobileMenu.SubGroup key={childIndex} title={capitalize(child.name)}>
                           {child.children.map((item, itemIndex) => (
