@@ -71,10 +71,6 @@ export default function Index() {
         </Section>
       </PageLayout>
 
-      <ContentLayout padding={0}>
-        <Divider width={'100%'}></Divider>
-      </ContentLayout>
-
       <Section>
         <Facts></Facts>
       </Section>
