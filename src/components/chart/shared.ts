@@ -1,9 +1,7 @@
 import moment from 'moment';
 import { LineType } from '../use-charts';
-import { TickMarkFormatter } from '../use-charts/model/horz-scale-behavior-time/horz-scale-behavior-time';
-import { Time } from '../use-charts/model/horz-scale-behavior-time/types';
-import { TimeFormatterFn } from '../use-charts/model/localization-options';
 import { ISeriesApi } from '../use-charts/api/iseries-api';
+import { Time } from '../use-charts/model/horz-scale-behavior-time/types';
 import { SeriesPartialOptionsMap, SeriesType } from '../use-charts/model/series-options';
 
 export type ThemedChartPriceFormatter = (value: number) => string;
@@ -68,21 +66,6 @@ export interface ILegendVisibleStates {
 }
 
 export type ILegendStatesDictonary = Array<ILegendVisibleStates>;
-
-interface ChartProperties {
-  height?: number;
-  showTime?: boolean;
-  showBottomHover?: boolean;
-  showPopover?: boolean;
-  showSeconds?: boolean;
-  timeFormatter?: TimeFormatterFn;
-  tickFormatter?: TickMarkFormatter;
-  hasSides?: 'right' | 'left' | 'both';
-  viewMode?: ChartViewMode;
-}
-
-type NativeChartAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof ChartProperties>;
-export type ChartProps = ChartProperties & NativeChartAttrs;
 
 export interface ChartLineProp extends ChartSerie {
   data: Array<ThemedChartDataRecord>;

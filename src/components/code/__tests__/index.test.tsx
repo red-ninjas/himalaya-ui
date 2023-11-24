@@ -31,7 +31,7 @@ describe('Code', () => {
 
   it('should work correctly with title', () => {
     const wrapper = render(
-      <Code block name="name" classic>
+      <Code block name="name">
         code
       </Code>,
     );

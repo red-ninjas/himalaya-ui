@@ -7,7 +7,6 @@ interface Props {
   block?: boolean;
   className?: string;
   name?: string;
-  classic?: boolean;
 }
 
 type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
@@ -18,22 +17,16 @@ const CodeComponent: React.FC<React.PropsWithChildren<CodeProps>> = ({
   block = false,
   className = '',
   name = '',
-  classic = false,
   ...props
 }: React.PropsWithChildren<CodeProps>) => {
   const { SCALES } = useScale();
   const theme = useTheme();
   const { background, border } = useMemo(() => {
-    if (!classic)
-      return {
-        border: theme.palette.border,
-        background: theme.palette.accents_0,
-      };
     return {
       border: theme.palette.border,
-      background: theme.palette.background,
+      background: 'transparent',
     };
-  }, [classic, theme.palette]);
+  }, [theme.palette]);
 
   if (!block) return <code {...props}>{children}</code>;
 
@@ -54,7 +47,7 @@ const CodeComponent: React.FC<React.PropsWithChildren<CodeProps>> = ({
           font-size: ${SCALES.font(0.875)};
           width: ${SCALES.width(1, 'initial')};
           height: ${SCALES.height(1, 'auto')};
-          margin: ${SCALES.mt(1.3)} ${SCALES.mr(0)} ${SCALES.mb(1.3)} ${SCALES.ml(0)};
+          margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
           border-radius: ${theme.style.radius};
           background-color: ${background};
         }
@@ -83,7 +76,7 @@ const CodeComponent: React.FC<React.PropsWithChildren<CodeProps>> = ({
         }
         .name {
           border: 1px solid ${theme.palette.border};
-          background-color: ${theme.palette.accents_2};
+          background-color: ${theme.palette.accents_0};
           color: ${theme.palette.accents_5};
           height: auto;
           line-height: 1.35em;

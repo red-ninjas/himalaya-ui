@@ -1,4 +1,4 @@
-import '@fontsource-variable/figtree';
+import '@fontsource-variable/instrument-sans';
 
 import { Analytics } from '@vercel/analytics/react';
 
