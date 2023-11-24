@@ -36,7 +36,6 @@ const AttributesTitle: React.FC<React.PropsWithChildren<AttributesTitleProps>> =
         h4 {
           display: inline-flex;
           align-items: center;
-          height: 2rem;
           padding-left: ${layout.gapQuarter};
           padding-right: ${layout.gapHalf};
           background-color: ${theme.palette.accents_1};

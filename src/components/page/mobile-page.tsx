@@ -15,7 +15,7 @@ const MobilePage: React.FC<React.PropsWithChildren<{}>> = React.memo(({ children
           .sub-page {
             width: 100%;
             height: 100%;
-            top: 0;
+            top: 50px;
             left: 0;
             position: absolute;
             background: ${theme.palette.background};
