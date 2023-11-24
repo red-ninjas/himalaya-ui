@@ -11,12 +11,12 @@ import {
   MobileMenuProvider,
   MobilePage,
   Sidebar,
+  SidebarLayout,
+  SidebarProvider,
   Text,
-  useTheme,
 } from 'components';
 import { Title } from 'components/header';
 import BackButton from 'components/header/back-button';
-import { SidebarProvider, SidebarLayout } from 'components';
 import _ from 'lodash';
 import { usePathname } from 'next/navigation';
 import { Seeds } from '../data';
@@ -32,7 +32,6 @@ export default function DocumentationLayout({ children }) {
     .map((value, key) => ({ title: key, children: value }))
     .value();
 
-  const theme = useTheme();
   return (
     <ContentLayout padding={0}>
       <MobilePage>
