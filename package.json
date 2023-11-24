@@ -202,7 +202,9 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.23.1",
+    "@nestjs/axios": "^3.0.1",
     "@splidejs/splide": "^4.1.4",
+    "axios": "^1.6.2",
     "fancy-canvas": "^2.1.0",
     "i18next": "^23.5.1",
     "i18next-browser-languagedetector": "^7.1.0",

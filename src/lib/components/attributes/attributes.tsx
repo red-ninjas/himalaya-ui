@@ -11,7 +11,10 @@ export interface AttributesProps {
 }
 
 const Attributes: React.FC<React.PropsWithChildren<AttributesProps>> = React.memo(({ edit, children }) => {
-  const path = edit.replace('/pages', 'pages');
+  const pathParts = edit.split('/');
+  const lastPart = pathParts.pop();
+  const path = pathParts.join('/') + '/' + lastPart?.replace(/\.mdx$/, '') + '/' + lastPart;
+
   const apiTitles = useMemo(() => {
     if (React.Children.count(children) === 0) return null;
     return (
