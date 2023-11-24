@@ -95,14 +95,11 @@ export default function DocumentationLayout({ children }) {
         .markdown h4,
         .markdown h5,
         .markdown h6 {
-          margin: 1.6em 0 0.6em;
+          margin: 1em 0 0.6em;
         }
 
         .markdown h1 {
           margin-top: 0;
-        }
-        .markdown p {
-          color: ${theme.palette.accents_5};
         }
       `}</style>
     </ContentLayout>

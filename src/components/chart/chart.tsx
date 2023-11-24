@@ -15,7 +15,24 @@ import { hasChild, pickChild } from '../utils/collections';
 import { DeepPartial } from '../utils/types';
 import { ChartConfig, ChartContext } from './chart-context';
 import ChartDataview from './chart-dataview';
-import { ChartPriceFormatter, ChartProps, ChartViewMode, DefaulTimeFormatter, ILegendStatesDictonary } from './shared';
+import { ChartPriceFormatter, ChartViewMode, DefaulTimeFormatter, ILegendStatesDictonary } from './shared';
+import { TimeFormatterFn } from '../use-charts/model/localization-options';
+import { TickMarkFormatter } from '../use-charts/model/horz-scale-behavior-time/horz-scale-behavior-time';
+
+interface ChartProperties {
+  height?: number;
+  showTime?: boolean;
+  showBottomHover?: boolean;
+  showPopover?: boolean;
+  showSeconds?: boolean;
+  timeFormatter?: TimeFormatterFn;
+  tickFormatter?: TickMarkFormatter;
+  hasSides?: 'right' | 'left' | 'both';
+  viewMode?: ChartViewMode;
+}
+
+type NativeChartAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof ChartProperties>;
+export type ChartProps = ChartProperties & NativeChartAttrs;
 
 const toolTipWidth = 80;
 const toolTipHeight = 80;

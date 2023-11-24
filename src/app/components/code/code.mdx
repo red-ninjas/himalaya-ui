@@ -1,10 +1,10 @@
-import { Code, Text } from 'components'
-import { Layout, Playground, Attributes, ParsedCodes } from 'lib/components'
+import { Code, Text } from 'components';
+import { Layout, Playground, Attributes, ParsedCodes } from 'lib/components';
 
 export const meta = {
   title: 'Code',
   group: 'General',
-}
+};
 
 # Code
 
@@ -46,23 +46,13 @@ Want to display shell code snippets? try [Snippet](/components/snippet).
 `}
 />
 
-<Playground
-  title="classic style"
-  desc="The classic design style with a line border instead of a background."
-  scope={{ Code, ExampleCodes: ParsedCodes.Clock }}
-  code={`
-<Code block classic name="/Components/Clock.jsx" my={0}><ExampleCodes /></Code>
-`}
-/>
-
 <Attributes edit="/pages/components/code.mdx">
 <Attributes.Title>Code.Props</Attributes.Title>
 
-| Attribute   | Description                                 | Type             | Accepted values    | Default |
-| ----------- | ------------------------------------------- | ---------------- | ------------------ | ------- |
-| **block**   | show code in `pre`                          | `boolean`        | -                  | `false` |
-| **name**    | text displayed at the top of the code block | `string`         | -                  | -       |
-| **classic** | display with classic style                  | `boolean`        | -                  | `false` |
-| ...         | native props                                | `HTMLAttributes` | `'className', ...` | -       |
+| Attribute | Description                                 | Type             | Accepted values    | Default |
+| --------- | ------------------------------------------- | ---------------- | ------------------ | ------- |
+| **block** | show code in `pre`                          | `boolean`        | -                  | `false` |
+| **name**  | text displayed at the top of the code block | `string`         | -                  | -       |
+| ...       | native props                                | `HTMLAttributes` | `'className', ...` | -       |
 
 </Attributes>

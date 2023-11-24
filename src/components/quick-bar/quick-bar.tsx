@@ -4,7 +4,12 @@ import React, { PropsWithChildren } from 'react';
 import useScale from '../use-scale';
 import withScale from '../use-scale/with-scale';
 import useTheme from '../use-theme';
-import { QuickBarProps } from './share';
+interface NativeQuickBarProps {
+  header?: React.ReactNode;
+}
+
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof NativeQuickBarProps>;
+export type QuickBarProps = NativeQuickBarProps & NativeAttrs;
 
 const QuickBarComponent: React.FC<PropsWithChildren<QuickBarProps>> = ({ children, ...props }) => {
   const theme = useTheme();

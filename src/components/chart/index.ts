@@ -7,7 +7,7 @@ import ChartLegends from './chart-legends';
 import ChartLine from './chart-line';
 export * from './shared';
 export type * from './shared';
-
+export type { ChartProps } from './chart';
 export type ThemedChartComponentType = typeof Chart & {
   Line: typeof ChartLine;
   Area: typeof ChartArea;
