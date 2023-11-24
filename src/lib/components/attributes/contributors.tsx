@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Avatar, Link, Tooltip } from 'components';
-import { CONTRIBUTORS_URL, GITHUB_URL } from 'lib/constants';
-const RepoMasterURL = `${GITHUB_URL}/blob/master`;
+import { GITHUB_CONTRIBUTORS_URL, GITHUB_URL } from 'lib/constants';
+const RepoMasterURL = `${GITHUB_URL}/tree/master/src`;
 
 export interface Contributor {
   name: string;
@@ -13,19 +13,45 @@ interface Props {
   path: string;
 }
 
-const getContributors = async (path: string): Promise<Array<Contributor>> => {
+interface ContributorWithDetails {
+  name: string;
+  avatar_url: string;
+  html_url: string;
+}
+
+const getContributors = async (path: string): Promise<Array<ContributorWithDetails>> => {
   try {
-    const response = await fetch(`${CONTRIBUTORS_URL}?path=${path}`);
+    const response = await fetch(`${GITHUB_CONTRIBUTORS_URL}/commits?path=src/${path}`);
     if (!response.ok || response.status === 204) return [];
-    return response.json();
+
+    const commits = await response.json();
+    const uniqueContributorsSet = new Set();
+    const contributorsWithDetails = commits
+      .map(commit => {
+        const login = commit.author.login;
+
+        if (!uniqueContributorsSet.has(login)) {
+          uniqueContributorsSet.add(login);
+          return {
+            avatar_url: commit.author.avatar_url,
+            html_url: commit.author.html_url,
+            name: commit.author.login,
+          };
+        }
+
+        return null;
+      })
+      .filter(Boolean);
+
+    return contributorsWithDetails;
   } catch (e) {
     return [];
   }
 };
 
 const Contributors: React.FC<Props> = ({ path }) => {
-  const [users, setUsers] = useState<Array<Contributor>>([]);
-  const link = useMemo(() => `${RepoMasterURL}/${path || '/pages'}`, []);
+  const [users, setUsers] = useState<Array<ContributorWithDetails>>([]);
+  const link = useMemo(() => `${RepoMasterURL}/${path || '/components'}`, []);
 
   useEffect(() => {
     let unmount = false;
@@ -42,9 +68,9 @@ const Contributors: React.FC<Props> = ({ path }) => {
   return (
     <div className="contributors">
       {users.map((user, index) => (
-        <Tooltip leaveDelay={0} text={<b>{user.name}</b>} key={`${user.url}-${index}`}>
-          <Link color target="_blank" rel="nofollow" href={user.url}>
-            <Avatar src={user.avatar} />
+        <Tooltip leaveDelay={0} text={<b>{user.name}</b>} key={`${user.html_url}-${index}`}>
+          <Link color target="_blank" rel="nofollow" href={user?.html_url}>
+            <Avatar src={user?.avatar_url} />
           </Link>
         </Tooltip>
       ))}

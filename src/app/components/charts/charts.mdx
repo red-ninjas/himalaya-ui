@@ -247,22 +247,25 @@ Charts creates interactive financial charts.
 `}
 />
 
-<Attributes edit="/pages/components/charts.mdx">
+<Attributes edit="/app/components/charts.mdx">
 <Attributes.Title>ThemedChart.Props</Attributes.Title>
 
-| Attribute         | Description  | Type                | Accepted values | Default |
-| ----------------- | ------------ | ------------------- | --------------- | ------- |
-| **series**        | chart data   | `ThemedChartData`   | -               | -       |
-| **showLegends**   | show lagend  | `boolean`           | -               | `false` |
-| **showTime**      | show time    | `boolean`           | -               | `false` |
-| **showSeconds**   | show seconds | `boolean`           | -               | `false` |
-| **timeFormatter** | format time  | `TimeFormatterFn`   | -               | -       |
-| **tickFormatter** | format tick  | `TickMarkFormatter` | -               | -       |
+  | Attribute           | Description         | Type                       | Accepted values | Default  |
+  | ------------------- | ------------------- | -------------------------- | --------------- | -------- |
+  | **height**          | chart height        | `number`                   | -               | -        |
+  | **showTime**        | show time           | `boolean`                  | -               | `false`  |
+  | **showBottomHover** | show bottom hover   | `boolean`                  | -               | `false`  |
+  | **showPopover**     | show popover        | `boolean`                  | -               | `false`  |
+  | **showSeconds**     | show seconds        | `boolean`                  | -               | `false`  |
+  | **timeFormatter**   | format time         | `TimeFormatterFn`          | -               | -        |
+  | **tickFormatter**   | format tick         | `TickMarkFormatter`        | -               | -        |
+  | **hasSides**        | chart sides         | `'right' | 'left' | 'both'` | -               | -        |
+  | **viewMode**        | chart view mode     | `ChartViewMode`            | -               | -        |
 
-<Attributes.Title>ThemedChartData</Attributes.Title>
+<Attributes.Title>ThemedChartSeriesProps</Attributes.Title>
 
 ```ts
-type ThemedChartData = {
+type ThemedChartSeriesProps = {
   data: ThemedChartItem[];
   type: 'line' | 'area' | 'bar' | 'candle';
   side?: 'left' | 'right';
@@ -275,16 +278,5 @@ type ThemedChartData = {
 };
 ```
 
-<Attributes.Title>UIThemes</Attributes.Title>
-
-```ts
-type UIThemes = {
-  type: string;
-  font: UIThemesFont;
-  palette: UIThemesPalette;
-  breakpoints: UIThemesBreakpoints;
-  expressiveness: UIThemesExpressiveness;
-};
-```
 
 </Attributes>

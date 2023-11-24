@@ -43,6 +43,14 @@ export default function Facts() {
   const theme = useTheme();
   const ref = useRef<HTMLDivElement>(null);
 
+  const [githubData, setGithubData] = useState<Record<string, number>>({});
+
+  useEffect(() => {
+    fetch('/api/github')
+      .then(response => response.json())
+      .then(data => setGithubData(data))
+      .catch(error => console.error(error));
+  }, []);
   return (
     <ContentLayout>
       <FadeInEffect translateY="4rem">
@@ -63,10 +71,10 @@ export default function Facts() {
             <FactItem title="Components" amount={72} />
           </Grid>
           <Grid xs={24} md={8} justify="center">
-            <FactItem title="Contributors" amount={8} />
+            <FactItem title="Contributors" amount={githubData?.contributorsCount} />
           </Grid>
           <Grid xs={24} md={8} justify="center">
-            <FactItem title="Forks" amount={20} />
+            <FactItem title="Forks" amount={githubData?.forksCount} />
           </Grid>
         </Grid.Container>
 

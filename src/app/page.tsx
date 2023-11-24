@@ -1,20 +1,6 @@
 'use client';
 
-import {
-  Button,
-  ContentLayout,
-  Divider,
-  FadeInEffect,
-  Footer,
-  FooterBottom,
-  FooterNavigation,
-  Hero,
-  Link,
-  PageLayout,
-  Section,
-  Text,
-  useTheme,
-} from 'components';
+import { Button, FadeInEffect, Footer, FooterBottom, FooterNavigation, Hero, Link, PageLayout, Section, Text, useTheme } from 'components';
 import { Code } from 'components/icons';
 import { capitalize } from 'components/utils/collections';
 import { Background, Facts, Partners, Portfolio, RunningSlogan, Services } from 'lib/components';
@@ -70,10 +56,6 @@ export default function Index() {
           <Portfolio></Portfolio>
         </Section>
       </PageLayout>
-
-      <ContentLayout padding={0}>
-        <Divider width={'100%'}></Divider>
-      </ContentLayout>
 
       <Section>
         <Facts></Facts>

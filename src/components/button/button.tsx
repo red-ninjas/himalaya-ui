@@ -144,7 +144,7 @@ const ButtonComponent = React.forwardRef<HTMLButtonElement, React.PropsWithChild
             transition-timing-function: ease;
           }
 
-          .btn:hover {
+          .btn:hover:not([disabled]) {
             color: ${hover.color};
             --ui-button-color: ${hover.color};
             background-color: ${hover.bg};

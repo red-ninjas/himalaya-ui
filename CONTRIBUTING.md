@@ -29,7 +29,7 @@ At any time, you think it's ok, you can start the following steps to submit your
 
 #### **About document page**
 
-1. Document page must have `meta` field. refer to [here](https://github.com/red-ninjas/himalaya-ui/blame/master/pages/components/avatar.mdx#L4).
+1. Document page must have `meta` field. refer to [here](https://github.com/red-ninjas/himalaya-ui/blob/master/src/app/components/avatar/avatar.mdx#L4).
 2. If you are creating a new component, please provide at least one document.
 3. Do Document using [mdx-js](https://github.com/mdx-js/mdx), here is [vs-code plug-in](https://github.com/silvenon/vscode-mdx).
 

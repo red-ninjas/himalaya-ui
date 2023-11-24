@@ -20,6 +20,7 @@ const AttributesTable: React.FC<React.PropsWithChildren<unknown>> = ({ children 
         }
         .attr h4.title {
           margin-top: calc(${layout.gap} * 2.2);
+          background-color: ${theme.palette.accents_0};
         }
         .attr h4.title:first-of-type {
           margin-top: 0;
@@ -46,7 +47,7 @@ const AttributesTable: React.FC<React.PropsWithChildren<unknown>> = ({ children 
           font-size: 0.75rem;
           font-weight: 400;
           letter-spacing: 0;
-          background: ${theme.palette.accents_1};
+          background: ${theme.palette.accents_0};
           border-bottom: 1px solid ${theme.palette.border};
           border-top: 1px solid ${theme.palette.border};
         }
