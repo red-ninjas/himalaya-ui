@@ -36,7 +36,7 @@ export default function DocumentationLayout({ children }) {
     <ContentLayout padding={0}>
       <MobilePage>
         <MobileMenuProvider direction="right">
-          <FixedHeader onDesktop={false} onMobile={false}>
+          <FixedHeader onDesktop={false} onMobile={true}>
             <Header>
               <Header.Left>
                 <BackButton url="/"></BackButton>
