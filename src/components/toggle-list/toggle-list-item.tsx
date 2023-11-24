@@ -1,13 +1,12 @@
 'use client';
 import React, { PropsWithChildren, createRef, useEffect, useMemo, useState } from 'react';
-import { List } from '../icons';
 import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';
 import useTheme from '../use-theme';
 import useWarning from '../utils/use-warning';
+import { ToggleListEvent } from './shared';
 import ToggleListIcon from './toggle-list-icon';
 import { useToggleListContext } from './toggle-list-provider';
-import { ToggleListEvent } from './shared';
 
 interface Props {
   checked?: boolean;
@@ -24,7 +23,7 @@ const ToggleListItemComponent: React.FC<PropsWithChildren<ToggleProps>> = ({
   disabled = false,
   value: toggleValue,
   onChange,
-  icon = <List />,
+  icon,
   children,
   ...props
 }: ToggleProps) => {
@@ -72,7 +71,6 @@ const ToggleListItemComponent: React.FC<PropsWithChildren<ToggleProps>> = ({
           align-items: center;
           padding: 0;
           margin: 0;
-          padding-left: ${SCALES.pl(0.85)};
         }
         input {
           display: none;
@@ -85,6 +83,7 @@ const ToggleListItemComponent: React.FC<PropsWithChildren<ToggleProps>> = ({
           position: relative;
           overflow: hidden;
           font-size: ${SCALES.font(0.9)};
+          min-height: ${SCALES.height(1.5)};
           border-radius: ${theme.style.radius};
           gap: ${SCALES.font(0.25)};
           padding: ${SCALES.pt(0.25)} ${SCALES.pr(1)} ${SCALES.pb(0.25)} ${SCALES.pl(1)};
@@ -95,8 +94,9 @@ const ToggleListItemComponent: React.FC<PropsWithChildren<ToggleProps>> = ({
         .toggle-list-item.active {
           background: ${theme.palette.background};
         }
-        .has-icon {
-          min-width: calc((${SCALES.font(0.9)} + ${SCALES.pl(0.7)} + ${SCALES.pl(0.7)});
+
+        .has-icon .name {
+          padding-left: ${SCALES.pl(0.85)};
         }
       `}</style>
     </label>

@@ -1,5 +1,6 @@
 import { Layout, Playground, Attributes } from 'lib/components';
-import { ToggleList, Spacer } from 'components';
+import { ToggleList } from 'components';
+import { List } from 'components/icons';
 
 export const meta = {
   title: 'Toggle List',
@@ -11,12 +12,38 @@ export const meta = {
 Displays a toggle list event
 
 <Playground
-  scope={{ ToggleList, Spacer }}
+  scope={{ ToggleList }}
   code={`
 <>
   <ToggleList value="test">
     <ToggleList.Item value="test">List</ToggleList.Item>
     <ToggleList.Item value="test2">Grid</ToggleList.Item>
+  </ToggleList>
+</>
+`}
+/>
+
+<Playground
+  title="Toggle list with icons"
+  scope={{ ToggleList, List }}
+  code={`
+<>
+  <ToggleList value="test">
+    <ToggleList.Item icon={<List />} value="test">List</ToggleList.Item>
+    <ToggleList.Item icon={<List />} value="test2">Grid</ToggleList.Item>
+  </ToggleList>
+</>
+`}
+/>
+
+<Playground
+  title="Toggle list without text"
+  scope={{ ToggleList, List }}
+  code={`
+<>
+  <ToggleList value="test">
+    <ToggleList.Item icon={<List />} value="test"></ToggleList.Item>
+    <ToggleList.Item icon={<List />} value="test2"></ToggleList.Item>
   </ToggleList>
 </>
 `}

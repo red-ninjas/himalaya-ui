@@ -1,6 +1,6 @@
 import { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
 import { LineType, UTCTimestamp } from '../use-charts';
-import { ISeriesApi, OptionsChangedHandler } from '../use-charts/api/iseries-api';
+import { ISeriesApi } from '../use-charts/api/iseries-api';
 import { LineSeriesPartialOptions } from '../use-charts/model/series-options';
 import useTheme from '../use-theme';
 import { useChart } from './chart-context';

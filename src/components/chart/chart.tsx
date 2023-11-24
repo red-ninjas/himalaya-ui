@@ -5,7 +5,7 @@ import { ColorType, createChart } from '../use-charts';
 import React, { createRef, useEffect, useMemo, useState } from 'react';
 import { InnerScroll } from '../scroll';
 import { ChartOptions, IChartApi } from '../use-charts/api/create-chart';
-import { MouseEventHandler, OnSerieDataChangedHandler, OnSerieOptionsChangedHandler } from '../use-charts/api/ichart-api';
+import { MouseEventHandler, OnSerieOptionsChangedHandler } from '../use-charts/api/ichart-api';
 import { ISeriesApi } from '../use-charts/api/iseries-api';
 import { Time } from '../use-charts/model/horz-scale-behavior-time/types';
 import { PriceFormatCustom, SeriesType } from '../use-charts/model/series-options';
@@ -46,7 +46,7 @@ const useRefDimensions = (ref: React.RefObject<HTMLDivElement>) => {
   return width;
 };
 
-const Chart: React.FC<React.PropsWithChildren<ChartProps>> = ({
+const ChartComponent: React.FC<React.PropsWithChildren<ChartProps>> = ({
   children,
   height = 350,
   showPopover = true,
@@ -201,8 +201,6 @@ const Chart: React.FC<React.PropsWithChildren<ChartProps>> = ({
     await setSeries(prevArray => prevArray.filter(a => a.key !== id));
   };
 
-  const onDataChangeOptions: OnSerieDataChangedHandler<SeriesType> = async api => {};
-
   //init
   useEffect(() => {
     if (chartContainerRef.current !== null && chartOuterContainerRef.current !== null && tooltipRef.current !== null) {
@@ -215,7 +213,6 @@ const Chart: React.FC<React.PropsWithChildren<ChartProps>> = ({
       _chart = createChart(chartContainerRef.current, startOptions);
 
       _chart.subscribeSerieOptionsChanged(onChangeOptions);
-      _chart.subscribeSerieDataChanged(onDataChangeOptions);
       _chart.subscribeNewSerie(addNewSerie);
       _chart.subscribeDestroyedSerie(deleteChartDetected);
 
@@ -225,7 +222,6 @@ const Chart: React.FC<React.PropsWithChildren<ChartProps>> = ({
           _chart.unsubscribeSerieOptionsChanged(onChangeOptions);
           _chart.unsubscribeNewSerie(addNewSerie);
           _chart.unsubscribeDestroyedSerie(deleteChartDetected);
-          _chart.unsubscribeSerieDataChanged(onDataChangeOptions);
           _chart.remove();
         }
       };
@@ -365,5 +361,6 @@ const Chart: React.FC<React.PropsWithChildren<ChartProps>> = ({
   );
 };
 
-Chart.displayName = 'HimalayaChart';
-export default withScale(Chart);
+ChartComponent.displayName = 'HimalayaChart';
+const Chart = withScale(ChartComponent);
+export default Chart;

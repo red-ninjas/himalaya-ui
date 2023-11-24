@@ -6,7 +6,7 @@ import withScale from '../use-scale/with-scale';
 import useTheme from '../use-theme';
 import { QuickBarProps } from './share';
 
-const QuickBar: React.FC<PropsWithChildren<QuickBarProps>> = ({ children, ...props }) => {
+const QuickBarComponent: React.FC<PropsWithChildren<QuickBarProps>> = ({ children, ...props }) => {
   const theme = useTheme();
   const { SCALES } = useScale();
 
@@ -40,5 +40,6 @@ const QuickBar: React.FC<PropsWithChildren<QuickBarProps>> = ({ children, ...pro
   );
 };
 
-QuickBar.displayName = 'HimalayaQuickBar';
-export default withScale(QuickBar);
+QuickBarComponent.displayName = 'HimalayaQuickBar';
+const QuickBar = withScale(QuickBarComponent);
+export default QuickBar;

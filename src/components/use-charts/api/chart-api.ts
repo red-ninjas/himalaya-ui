@@ -45,7 +45,7 @@ import {
   PaneSize,
 } from './ichart-api';
 import { IPriceScaleApi } from './iprice-scale-api';
-import { DataChangedScope, ISeriesApi } from './iseries-api';
+import { ISeriesApi } from './iseries-api';
 import { ITimeScaleApi } from './itime-scale-api';
 import { chartOptionsDefaults } from './options/chart-options-defaults';
 import {

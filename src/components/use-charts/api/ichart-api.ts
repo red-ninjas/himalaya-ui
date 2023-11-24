@@ -5,7 +5,6 @@ import { BarData, HistogramData, LineData, WhitespaceData } from '../model/data-
 import { Time } from '../model/horz-scale-behavior-time/types';
 import { CustomData, ICustomSeriesPaneView } from '../model/icustom-series';
 import { Point } from '../model/point';
-import { ISeries } from '../model/series';
 import {
   AreaSeriesPartialOptions,
   BarSeriesPartialOptions,
@@ -22,7 +21,7 @@ import { Logical } from '../model/time-data';
 import { TouchMouseEventData } from '../model/touch-mouse-event-data';
 
 import { IPriceScaleApi } from './iprice-scale-api';
-import { DataChangedScope, ISeriesApi } from './iseries-api';
+import { ISeriesApi } from './iseries-api';
 import { ITimeScaleApi } from './itime-scale-api';
 import { SeriesApi } from './series-api';
 

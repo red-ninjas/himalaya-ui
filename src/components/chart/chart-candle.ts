@@ -2,7 +2,6 @@ import { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
 import { UTCTimestamp } from '../use-charts';
 import { ISeriesApi } from '../use-charts/api/iseries-api';
 import { CandlestickSeriesPartialOptions } from '../use-charts/model/series-options';
-import useTheme from '../use-theme';
 import { useChart } from './chart-context';
 import { ChartCandleProp, ChartPriceFormatter, ThemedChartDataCandleRecord } from './shared';
 
@@ -10,7 +9,6 @@ const ChartCandle = forwardRef(
   (
     {
       side = 'right',
-      color,
       title,
       data,
       showTitle = false,
@@ -21,7 +19,6 @@ const ChartCandle = forwardRef(
     }: ChartCandleProp,
     ref,
   ) => {
-    const theme = useTheme();
     const { chart } = useChart();
 
     const [serie, setSerie] = useState<ISeriesApi<'Candlestick'>>();
@@ -41,7 +38,6 @@ const ChartCandle = forwardRef(
     }));
 
     const getPropertes = (): CandlestickSeriesPartialOptions => {
-      const currentColor = color ? color : theme.palette.primary.value;
       return {
         title: showTitle ? title : undefined,
         visible: visible,
