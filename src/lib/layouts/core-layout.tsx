@@ -72,7 +72,7 @@ export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
           <QuickBarProvider>
             <QuickBarLayout>
               <ScrollableLayout onScroll={event => setIsHidden(event.scrollTop >= 200)}>
-                <FixedHeader hide={pathname == '/' && isHidden}>
+                <FixedHeader hide={pathname == '/' && isHidden} onDesktop={true} onMobile={pathname == '/'}>
                   <Header>
                     <Header.Left>
                       <MobileMenuButton></MobileMenuButton>

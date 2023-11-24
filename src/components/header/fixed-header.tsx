@@ -33,7 +33,7 @@ const FixedHeader: React.FC<React.PropsWithChildren<FixedHeaderProps>> = ({ chil
           width: 100%;
           max-width: 100%;
           top: 0;
-          z-index: 99;
+          z-index: 9;
           display: ${isActive ? 'block' : 'none'};
           transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
           transition-duration: 0.5s;
