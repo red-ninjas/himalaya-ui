@@ -24,10 +24,10 @@ export interface RadioEvent {
 interface Props {
   checked?: boolean;
   value?: string | number;
-  type?: RadioTypes;
-  className?: string;
   disabled?: boolean;
   onChange?: (e: RadioEvent) => void;
+  type?: RadioTypes;
+  className?: string;
 }
 
 type NativeAttrs = Omit<React.InputHTMLAttributes<any>, keyof Props>;

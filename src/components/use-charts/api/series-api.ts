@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import { IPriceFormatter } from '../formatters/iprice-formatter';
 
 import { ensureNotNull } from '../helpers/assertions';
@@ -26,7 +27,7 @@ import { getSeriesDataCreator } from './get-series-data-creator';
 import { type IChartApiBase } from './ichart-api';
 import { IPriceLine } from './iprice-line';
 import { IPriceScaleApi } from './iprice-scale-api';
-import { BarsInfo, DataChangedHandler, DataChangedScope, ISeriesApi } from './iseries-api';
+import { BarsInfo, DataChangedHandler, DataChangedScope, ISeriesApi, OptionsChangedHandler } from './iseries-api';
 import { ISeriesPrimitive } from './iseries-primitive-api';
 import { priceLineOptionsDefaults } from './options/price-line-options-defaults';
 import { PriceLine } from './price-line-api';
@@ -47,6 +48,8 @@ export class SeriesApi<
   private readonly _priceScaleApiProvider: IPriceScaleApiProvider<HorzScaleItem>;
   private readonly _horzScaleBehavior: IHorzScaleBehavior<HorzScaleItem>;
   private readonly _dataChangedDelegate: Delegate<DataChangedScope> = new Delegate();
+  private readonly _optionsChangedDelegate: Delegate<SeriesPartialOptionsMap[SeriesType]> = new Delegate();
+  private readonly _seriesID: string;
 
   public constructor(
     series: Series<TSeriesType>,
@@ -60,10 +63,12 @@ export class SeriesApi<
     this._priceScaleApiProvider = priceScaleApiProvider;
     this._horzScaleBehavior = horzScaleBehavior;
     this._chartApi = chartApi;
+    this._seriesID = _.uniqueId('serie-');
   }
 
   public destroy(): void {
     this._dataChangedDelegate.destroy();
+    this._optionsChangedDelegate.destroy();
   }
 
   public priceFormatter(): IPriceFormatter {
@@ -174,6 +179,14 @@ export class SeriesApi<
     this._dataChangedDelegate.unsubscribe(handler);
   }
 
+  public subscribeOptionsChanged(handler: OptionsChangedHandler): void {
+    this._optionsChangedDelegate.subscribe(handler);
+  }
+
+  public unsubscribeOptionsChanged(handler: OptionsChangedHandler): void {
+    this._optionsChangedDelegate.unsubscribe(handler);
+  }
+
   public setMarkers(data: SeriesMarker<HorzScaleItem>[]): void {
     checkItemsAreOrdered(data, this._horzScaleBehavior, true);
 
@@ -191,6 +204,7 @@ export class SeriesApi<
 
   public applyOptions(options: TPartialOptions): void {
     this._series.applyOptions(options);
+    this._onOptionsChanged(options);
   }
 
   public options(): Readonly<TOptions> {
@@ -217,6 +231,10 @@ export class SeriesApi<
     return this._series.seriesType();
   }
 
+  public seriesID(): string {
+    return this._seriesID;
+  }
+
   public attachPrimitive(primitive: ISeriesPrimitive<HorzScaleItem>): void {
     // at this point we cast the generic to unknown because we
     // don't want the model to know the types of the API (◑_◑)
@@ -238,8 +256,17 @@ export class SeriesApi<
   }
 
   private _onDataChanged(scope: DataChangedScope): void {
+    this._chartApi.onSerieDataChanged(this);
+
     if (this._dataChangedDelegate.hasListeners()) {
       this._dataChangedDelegate.fire(scope);
     }
+  }
+
+  private _onOptionsChanged(scope: SeriesPartialOptionsMap[SeriesType]): void {
+    if (this._optionsChangedDelegate.hasListeners()) {
+      this._optionsChangedDelegate.fire(scope);
+    }
+    this._chartApi.onSerieOptionChanged(this._seriesID, scope);
   }
 }

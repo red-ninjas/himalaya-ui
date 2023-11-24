@@ -4,9 +4,13 @@ import { HTMLAttributeAnchorTarget } from 'react';
 export interface QuickBarLayoutProps {
   animationTime?: number;
 }
-export interface QuickBarProps {
+interface NativeQuickBarProps {
   header?: React.ReactNode;
 }
+
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof NativeQuickBarProps>;
+export type QuickBarProps = NativeQuickBarProps & NativeAttrs;
+
 export interface QuickActionProps {
   tooltip?: string | React.ReactNode;
   exactMatch?: boolean;

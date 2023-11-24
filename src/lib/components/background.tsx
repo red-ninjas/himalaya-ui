@@ -25,7 +25,6 @@ export default function Background() {
         .header {
           position: relative;
           text-align: center;
-          background: linear-gradient(60deg, ${theme.palette.background} 0%, ${addColorAlpha(theme.palette.primary.value, 0.3)} 100%);
           color: white;
           height: 100%;
           overflow: hidden;

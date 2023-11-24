@@ -45,6 +45,7 @@ function TableComponent<TableDataItem extends TableDataItemBase>(tableProps: Rea
   const [{ width }, updateShape] = useRealShape<HTMLTableElement>(ref);
   const [columns, setColumns] = useState<Array<TableAbstractColumn<TableDataItem>>>([]);
   const [data, setData] = useState<Array<TableDataItem>>(initialData);
+
   const updateColumn = (column: TableAbstractColumn<TableDataItem>) => {
     setColumns(last => {
       const hasColumn = last.find(item => item.prop === column.prop);
@@ -56,10 +57,17 @@ function TableComponent<TableDataItem extends TableDataItemBase>(tableProps: Rea
     });
   };
 
+  const deleteColumn = (prop: keyof TableDataItem) => {
+    setColumns(last => {
+      return last.filter(item => item.prop !== prop);
+    });
+  };
+
   const contextValue = useMemo<TableConfig<TableDataItem>>(
     () => ({
       columns,
       updateColumn,
+      deleteColumn,
     }),
     [columns],
   );
@@ -68,6 +76,7 @@ function TableComponent<TableDataItem extends TableDataItemBase>(tableProps: Rea
     if (typeof customData === 'undefined') return;
     setData(customData);
   }, [customData]);
+
   useResize(() => updateShape());
 
   return (

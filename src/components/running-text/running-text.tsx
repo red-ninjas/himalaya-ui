@@ -4,24 +4,27 @@ import { PropsWithChildren } from 'react';
 import { RunningTextProps } from '.';
 import useScale, { withScale } from '../use-scale';
 
-const RunningText: React.FC<PropsWithChildren<RunningTextProps>> = ({ children, animationTime = 80000, gap = 3 }: PropsWithChildren<RunningTextProps>) => {
+const RunningText: React.FC<PropsWithChildren<RunningTextProps>> = ({
+  children,
+  animationTime = 80000,
+  gap = 3,
+  ...props
+}: PropsWithChildren<RunningTextProps>) => {
   const { SCALES } = useScale();
   return (
-    <>
-      <div className="running-outer">
-        <div className="running-inner">
-          <div className="running-text">{children}</div>
-
-          <div className="running-text">{children}</div>
-        </div>
+    <div className="running-outer" {...props}>
+      <div className="running-inner">
+        <div className="running-text">{children}</div>
+        <div className="running-text">{children}</div>
+        <div className="running-text">{children}</div>
       </div>
-
       <style jsx>{`
         .running-outer {
           position: relative;
           z-index: 3;
           text-transform: uppercase !important;
           padding: 0;
+          overflow: hidden;
           word-break: break-all;
           padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
           margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
@@ -60,7 +63,7 @@ const RunningText: React.FC<PropsWithChildren<RunningTextProps>> = ({ children, 
           padding: 0 30px;
         }
       `}</style>
-    </>
+    </div>
   );
 };
 

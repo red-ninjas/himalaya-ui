@@ -14,6 +14,7 @@ import {
   HistogramSeriesPartialOptions,
   LineSeriesPartialOptions,
   SeriesPartialOptions,
+  SeriesPartialOptionsMap,
   SeriesType,
 } from '../model/series-options';
 import { Logical } from '../model/time-data';
@@ -22,6 +23,7 @@ import { TouchMouseEventData } from '../model/touch-mouse-event-data';
 import { IPriceScaleApi } from './iprice-scale-api';
 import { ISeriesApi } from './iseries-api';
 import { ITimeScaleApi } from './itime-scale-api';
+import { SeriesApi } from './series-api';
 
 /**
  * Dimensions of the Chart Pane
@@ -84,13 +86,35 @@ export interface MouseEventParams<HorzScaleItem = Time> {
 export type MouseEventHandler<HorzScaleItem> = (param: MouseEventParams<HorzScaleItem>) => void;
 
 /**
+ * A custom function use to handle new series
+ */
+export type OnNewSerieHandler<HorzScaleItem> = (options: ISeriesApi<SeriesType, HorzScaleItem>) => void;
+
+export type OnSerieDataChangedHandler<HorzScaleItem> = (options: ISeriesApi<SeriesType, HorzScaleItem>) => void;
+
+/**
+ * A custom function use to handle destroyed series
+ */
+export type OnSerieDestroyedHandler<HorzScaleItem> = (options: ISeriesApi<SeriesType, HorzScaleItem>) => void;
+
+export type OnSerieOptionsChangedHandler = (id: string, options: SeriesPartialOptionsMap[SeriesType]) => void;
+
+/**
  * The main interface of a single chart.
  */
 export interface IChartApiBase<HorzScaleItem = Time> {
+  subscribeSerieOptionsChanged(handler: OnSerieOptionsChangedHandler): void;
+
+  unsubscribeSerieOptionsChanged(handler: OnSerieOptionsChangedHandler): void;
+  onSerieOptionChanged(id: string, scope: SeriesPartialOptionsMap[SeriesType]): void;
   /**
    * Removes the chart object including all DOM elements. This is an irreversible operation, you cannot do anything with the chart after removing it.
    */
   remove(): void;
+
+  getSeries(): ISeriesApi<SeriesType, HorzScaleItem>[];
+
+  //  Map<SeriesApi<SeriesType, HorzScaleItem>, Series<SeriesType>>
 
   /**
    * Sets fixed size of the chart. By default chart takes up 100% of its container.
@@ -267,6 +291,14 @@ export interface IChartApiBase<HorzScaleItem = Time> {
    */
   unsubscribeDblClick(handler: MouseEventHandler<HorzScaleItem>): void;
 
+  subscribeNewSerie(handler: OnNewSerieHandler<HorzScaleItem>): void;
+
+  subscribeDestroyedSerie(handler: OnSerieDestroyedHandler<HorzScaleItem>): void;
+
+  unsubscribeNewSerie(handler: OnNewSerieHandler<HorzScaleItem>): void;
+
+  unsubscribeDestroyedSerie(handler: OnSerieDestroyedHandler<HorzScaleItem>): void;
+
   /**
    * Subscribe to the crosshair move event.
    *
@@ -297,6 +329,11 @@ export interface IChartApiBase<HorzScaleItem = Time> {
    */
   unsubscribeCrosshairMove(handler: MouseEventHandler<HorzScaleItem>): void;
 
+  subscribeSerieDataChanged(handler: OnSerieDataChangedHandler<HorzScaleItem>): void;
+
+  unsubscribeSerieDataChanged(handler: OnSerieDataChangedHandler<HorzScaleItem>): void;
+
+  onSerieDataChanged(api: SeriesApi<SeriesType, HorzScaleItem>): void;
   /**
    * Returns API to manipulate a price scale.
    *

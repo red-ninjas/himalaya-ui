@@ -64,7 +64,7 @@ const SearchItems = React.forwardRef<SearchItemsRef, React.PropsWithChildren<Sea
 
     const grouppedResults = useMemo(() => groupResults(data), [data]);
     return (
-      <InnerScroll type="vertical" maxHeight="350px">
+      <InnerScroll type="vertical" style={{ maxHeight: 350 }}>
         <ul className="results" role="listbox" ref={ref}>
           <Highlight className="results-hover" rect={rect} visible={displayHighlight} activeOpacity={0.5} />
           {grouppedResults.map(group => (

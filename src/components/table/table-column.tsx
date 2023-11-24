@@ -21,7 +21,7 @@ const TableColumn = <TableDataItem extends TableDataItemBase>(columnProps: React
     className = '',
     render: renderHandler = () => {},
   } = columnProps as React.PropsWithChildren<TableColumnProps<TableDataItem>>;
-  const { updateColumn } = useTableContext<TableDataItem>();
+  const { updateColumn, deleteColumn } = useTableContext<TableDataItem>();
   const safeProp = `${String(prop)}`.trim();
   if (!safeProp) {
     useWarning('The props "prop" is required.', 'Table.Column');
@@ -35,7 +35,13 @@ const TableColumn = <TableDataItem extends TableDataItemBase>(columnProps: React
       className,
       renderHandler,
     });
-  }, [children, label, prop, width, className, renderHandler]);
+  }, [children, label, safeProp, width, className]);
+
+  useEffect(() => {
+    return () => {
+      deleteColumn(safeProp);
+    };
+  }, []);
 
   return null;
 };

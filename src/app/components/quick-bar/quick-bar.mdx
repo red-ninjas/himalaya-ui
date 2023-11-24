@@ -1,17 +1,11 @@
-import {
-  QuickBar,
-  QuickAction,
-  QuickBarLayout,
-  QuickBarProvider,
-  Divider,
-} from 'components'
-import { Playground, Attributes } from 'lib/components'
-import { Anchor, Code, Github, Home, Layout } from 'components/icons'
+import { QuickBar, QuickAction, QuickBarLayout, QuickBarProvider, Divider } from 'components';
+import { Playground, Attributes } from 'lib/components';
+import { Anchor, Code, Github, Home, Layout } from 'components/icons';
 
 export const meta = {
   title: 'Quick Bar',
   group: 'Navigation',
-}
+};
 
 # Quick Bar
 
@@ -35,7 +29,7 @@ QuickBar is a customizable sidebar component designed for navigation .
   code={`
 <QuickBarProvider>
     <QuickBarLayout>
-        <QuickBar>
+        <QuickBar style={{  position: 'relative'  }}>
             <QuickAction type='lite' radius={50} href='#'  tooltip='Home'><Home size={20} /></QuickAction>
             <Divider width={'100%'}></Divider>
             <QuickAction type='lite' radius={50} href='#' tooltip='Guide'><Code size={20} /></QuickAction>
@@ -80,9 +74,3 @@ QuickBar is a customizable sidebar component designed for navigation .
 | `type` (optional)          | URL to navigate when the QuickActionButton is clicked.                  | `default, success, warning, error, dark, lite` | -               | default |
 
 </Attributes>
-
-<style jsx>{`
-  .quick-bar {
-    position: relative !important;
-  }
-`}</style>

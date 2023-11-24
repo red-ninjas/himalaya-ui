@@ -40,7 +40,7 @@ const useRefDimensions = (ref: React.RefObject<HTMLDivElement>) => {
     return function cleanup() {
       resizeObserver.disconnect();
     };
-  }, [ref.current]);
+  }, [ref]);
 
   return height;
 };

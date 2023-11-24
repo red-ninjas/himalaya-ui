@@ -6,12 +6,12 @@ import withScale from '../use-scale/with-scale';
 import useTheme from '../use-theme';
 import { QuickBarProps } from './share';
 
-const QuickBar: React.FC<PropsWithChildren<QuickBarProps>> = ({ children }) => {
+const QuickBarComponent: React.FC<PropsWithChildren<QuickBarProps>> = ({ children, ...props }) => {
   const theme = useTheme();
   const { SCALES } = useScale();
 
   return (
-    <div className="quick-bar">
+    <div className="quick-bar" {...props}>
       <div className="quick-bar-inner">{children}</div>
       <style jsx>{`
         .quick-bar-inner {
@@ -40,5 +40,6 @@ const QuickBar: React.FC<PropsWithChildren<QuickBarProps>> = ({ children }) => {
   );
 };
 
-QuickBar.displayName = 'HimalayaQuickBar';
-export default withScale(QuickBar);
+QuickBarComponent.displayName = 'HimalayaQuickBar';
+const QuickBar = withScale(QuickBarComponent);
+export default QuickBar;
