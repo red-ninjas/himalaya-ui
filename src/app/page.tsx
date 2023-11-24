@@ -16,7 +16,6 @@ import {
   useTheme,
 } from 'components';
 import { Code } from 'components/icons';
-import ThemeProvider from 'components/use-context/theme-provider';
 import { capitalize } from 'components/utils/collections';
 import { Background, Facts, Partners, Portfolio, RunningSlogan, Services } from 'lib/components';
 import { BrandLogo } from 'lib/components/icons';
@@ -60,21 +59,17 @@ export default function Index() {
         <Services></Services>
       </Section>
 
-      <ThemeProvider themeType="dark">
-        <PageLayout>
-          <FadeInEffect blur={10} transition={1000}>
-            <Partners></Partners>
-          </FadeInEffect>
-        </PageLayout>
-      </ThemeProvider>
+      <PageLayout>
+        <FadeInEffect blur={10} transition={1000}>
+          <Partners></Partners>
+        </FadeInEffect>
+      </PageLayout>
 
-      <ThemeProvider themeType="light">
-        <PageLayout>
-          <Section>
-            <Portfolio></Portfolio>
-          </Section>
-        </PageLayout>
-      </ThemeProvider>
+      <PageLayout>
+        <Section>
+          <Portfolio></Portfolio>
+        </Section>
+      </PageLayout>
 
       <ContentLayout padding={0}>
         <Divider width={'100%'}></Divider>
@@ -83,11 +78,9 @@ export default function Index() {
       <Section>
         <Facts></Facts>
       </Section>
-      <ThemeProvider themeType={theme.type == 'light' ? 'dark' : 'light'}>
-        <PageLayout>
-          <RunningSlogan></RunningSlogan>
-        </PageLayout>
-      </ThemeProvider>
+      <PageLayout>
+        <RunningSlogan></RunningSlogan>
+      </PageLayout>
 
       <Footer>
         <Footer.Block justify="space-between">
