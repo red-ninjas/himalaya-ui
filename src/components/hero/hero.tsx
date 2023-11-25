@@ -1,6 +1,6 @@
 'use client';
 
-import { PropsWithChildren } from 'react';
+import { PropsWithChildren, useEffect, useRef, useState } from 'react';
 import { ArrowDown } from '../icons';
 import { ContentLayout } from '../layout';
 import useLayout from '../use-layout';
@@ -12,16 +12,26 @@ const Hero: React.FC<PropsWithChildren<HeroPropsNative>> = ({ children, withDown
   const theme = useTheme();
   const layout = useLayout();
   const { SCALES } = useScale();
+  const heroRef = useRef<HTMLElement | null>(null);
+
+  const handleArrowSmoothScroll = () => {
+    if (heroRef.current) {
+      const nextSibling = heroRef.current.parentElement?.parentElement?.nextElementSibling;
+      if (nextSibling) {
+        nextSibling.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  };
 
   return (
     <>
-      <header {...props} className="hero full-height valign bord-thin-bottom">
+      <header {...props} className="hero full-height valign bord-thin-bottom" ref={heroRef}>
         <ContentLayout>
           <div className="hero-inner">{children}</div>
         </ContentLayout>
         {withDownArrow && (
           <div className="arrow-down main-bg">
-            <div className="shine-effect arrow-down-inner">
+            <div className="shine-effect arrow-down-inner" onClick={handleArrowSmoothScroll}>
               <ArrowDown width={20}></ArrowDown>
             </div>
           </div>
@@ -29,6 +39,9 @@ const Hero: React.FC<PropsWithChildren<HeroPropsNative>> = ({ children, withDown
       </header>
 
       <style jsx>{`
+        body {
+          scroll-behavior: smooth;
+        }
         .hero {
           align-items: center;
           position: relative;

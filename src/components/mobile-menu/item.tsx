@@ -54,7 +54,7 @@ const NavigationItem: React.FC<PropsWithChildren<NavigationItemProps>> = ({ url 
           font-size: ${SCALES.font(0.875)};
           width: ${SCALES.width(1, 'auto')};
           height: ${SCALES.height(1, 'auto')};
-          padding: ${SCALES.pt(0.875)} ${SCALES.pr(0.55)} ${SCALES.pb(0.875)} ${SCALES.pl(0.55)};
+          padding: ${SCALES.pt(0.67)} ${SCALES.pr(0.55)} ${SCALES.pb(0.67)} ${SCALES.pl(0.55)};
           margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
           border-bottom: 1px solid ${theme.palette.border};
         }
