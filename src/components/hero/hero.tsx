@@ -1,6 +1,6 @@
 'use client';
 
-import { PropsWithChildren, useEffect, useRef, useState } from 'react';
+import { PropsWithChildren, useRef } from 'react';
 import { ArrowDown } from '../icons';
 import { ContentLayout } from '../layout';
 import useLayout from '../use-layout';
