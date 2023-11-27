@@ -1,5 +1,7 @@
+import axios from 'axios';
 import { ContentLayout, CountUp, FadeInEffect, Grid, Hero, Text, useTheme } from 'components';
 import useVisible from 'components/utils/use-visibile';
+import { GITHUB_CONTRIBUTORS_URL } from 'lib/constants';
 import { useEffect, useRef, useState } from 'react';
 
 export function FactItem({ amount = 0, title = '' }: { amount?: number; title: string }) {
@@ -43,14 +45,26 @@ export default function Facts() {
   const theme = useTheme();
   const ref = useRef<HTMLDivElement>(null);
 
-  const [githubData, setGithubData] = useState<Record<string, number>>({});
+  const [repoStatistics, setRepoStatistics] = useState<Record<string, number>>({});
 
   useEffect(() => {
-    fetch('/api/github')
-      .then(response => response.json())
-      .then(data => setGithubData(data))
-      .catch(error => console.error(error));
+    const fetchGithubData = async () => {
+      try {
+        const repoResponse = await axios.get(GITHUB_CONTRIBUTORS_URL);
+        const forksCount = repoResponse.data.forks_count;
+
+        const contributorsResponse = await axios.get(`${GITHUB_CONTRIBUTORS_URL}/contributors`);
+        const contributorsCount = contributorsResponse.data.length;
+
+        setRepoStatistics({ forksCount, contributorsCount });
+      } catch (error) {
+        console.error('Error fetching GitHub data:', error.message);
+      }
+    };
+
+    fetchGithubData();
   }, []);
+
   return (
     <ContentLayout>
       <FadeInEffect translateY="4rem">
@@ -71,10 +85,10 @@ export default function Facts() {
             <FactItem title="Components" amount={72} />
           </Grid>
           <Grid xs={24} md={8} justify="center">
-            <FactItem title="Contributors" amount={githubData?.contributorsCount} />
+            <FactItem title="Contributors" amount={repoStatistics?.contributorsCount} />
           </Grid>
           <Grid xs={24} md={8} justify="center">
-            <FactItem title="Forks" amount={githubData?.forksCount} />
+            <FactItem title="Forks" amount={repoStatistics?.forksCount} />
           </Grid>
         </Grid.Container>
 

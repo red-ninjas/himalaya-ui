@@ -8,19 +8,37 @@ import { useScale, withScale } from '../use-scale';
 import useTheme from '../use-theme';
 import { HeroPropsNative } from './share';
 
-const Hero: React.FC<PropsWithChildren<HeroPropsNative>> = ({ children, withDownArrow = true, ...props }) => {
+const Hero: React.FC<PropsWithChildren<HeroPropsNative>> = ({ children, withDownArrow = true, scrollToId, ...props }) => {
   const theme = useTheme();
   const layout = useLayout();
   const { SCALES } = useScale();
   const heroRef = useRef<HTMLElement | null>(null);
 
   const handleArrowSmoothScroll = () => {
-    if (heroRef.current) {
-      const nextSibling = heroRef.current.parentElement?.parentElement?.nextElementSibling;
-      if (nextSibling) {
-        nextSibling.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (scrollToId) {
+      const targetElement = document.getElementById(scrollToId);
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        return;
+      } else {
+        if (heroRef.current) {
+          const nextSibling = heroRef.current.parentElement?.nextElementSibling;
+          if (nextSibling) {
+            nextSibling.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+        console.warn(`No element found with ID '${scrollToId}'. Falling back to default scrolling behavior.`);
       }
+    } else {
+      console.warn("No 'scrollToId' provided.");
     }
+
+    // if (heroRef.current) {
+    //   const nextSibling = heroRef.current.parentElement?.parentElement?.nextElementSibling;
+    //   if (nextSibling) {
+    //     nextSibling.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    //   }
+    // }
   };
 
   return (
