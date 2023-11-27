@@ -1,6 +1,6 @@
 'use client';
 
-import { PropsWithChildren } from 'react';
+import { PropsWithChildren, useRef } from 'react';
 import { ArrowDown } from '../icons';
 import { ContentLayout } from '../layout';
 import useLayout from '../use-layout';
@@ -8,20 +8,41 @@ import { useScale, withScale } from '../use-scale';
 import useTheme from '../use-theme';
 import { HeroPropsNative } from './share';
 
-const Hero: React.FC<PropsWithChildren<HeroPropsNative>> = ({ children, withDownArrow = true, ...props }) => {
+const Hero: React.FC<PropsWithChildren<HeroPropsNative>> = ({ children, withDownArrow = true, scrollToId, ...props }) => {
   const theme = useTheme();
   const layout = useLayout();
   const { SCALES } = useScale();
+  const heroRef = useRef<HTMLElement | null>(null);
+
+  const handleArrowSmoothScroll = () => {
+    if (scrollToId) {
+      const targetElement = document.getElementById(scrollToId);
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        return;
+      } else {
+        if (heroRef.current) {
+          const nextSibling = heroRef.current.parentElement?.nextElementSibling;
+          if (nextSibling) {
+            nextSibling.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+        console.warn(`No element found with ID '${scrollToId}'. Falling back to default scrolling behavior.`);
+      }
+    } else {
+      console.warn("No 'scrollToId' provided.");
+    }
+  };
 
   return (
     <>
-      <header {...props} className="hero full-height valign bord-thin-bottom">
+      <header {...props} className="hero full-height valign bord-thin-bottom" ref={heroRef}>
         <ContentLayout>
           <div className="hero-inner">{children}</div>
         </ContentLayout>
         {withDownArrow && (
           <div className="arrow-down main-bg">
-            <div className="shine-effect arrow-down-inner">
+            <div className="shine-effect arrow-down-inner" onClick={handleArrowSmoothScroll}>
               <ArrowDown width={20}></ArrowDown>
             </div>
           </div>
@@ -29,6 +50,9 @@ const Hero: React.FC<PropsWithChildren<HeroPropsNative>> = ({ children, withDown
       </header>
 
       <style jsx>{`
+        body {
+          scroll-behavior: smooth;
+        }
         .hero {
           align-items: center;
           position: relative;

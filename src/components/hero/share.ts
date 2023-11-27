@@ -3,6 +3,7 @@ import { HTMLAttributes } from 'react';
 export interface HeroProps {
   extraPaddingDown?: number;
   withDownArrow?: boolean;
+  scrollToId?: string;
 }
 
 type NativeAttrs = Omit<HTMLAttributes<HTMLDivElement>, keyof HeroProps>;

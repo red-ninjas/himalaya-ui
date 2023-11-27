@@ -13,7 +13,7 @@ export default function Index() {
     <>
       <div className="hero">
         <div className="hero-inner">
-          <Hero style={{ maxWidth: 1020 }}>
+          <Hero style={{ maxWidth: 1020 }} scrollToId="services">
             <Hero.Tag>HIMALAYA UI</Hero.Tag>
             <Hero.Title>
               Scaling Heights of Design Excellence: Your UI Journey <span style={{ textDecoration: 'underline', fontWeight: 300 }}>Begins Here!</span>
@@ -41,9 +41,11 @@ export default function Index() {
         </div>
       </div>
 
-      <Section>
-        <Services></Services>
-      </Section>
+      <div id="services">
+        <Section>
+          <Services></Services>
+        </Section>
+      </div>
 
       <PageLayout>
         <FadeInEffect blur={10} transition={1000}>
