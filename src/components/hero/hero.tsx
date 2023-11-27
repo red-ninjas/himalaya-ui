@@ -32,13 +32,6 @@ const Hero: React.FC<PropsWithChildren<HeroPropsNative>> = ({ children, withDown
     } else {
       console.warn("No 'scrollToId' provided.");
     }
-
-    // if (heroRef.current) {
-    //   const nextSibling = heroRef.current.parentElement?.parentElement?.nextElementSibling;
-    //   if (nextSibling) {
-    //     nextSibling.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    //   }
-    // }
   };
 
   return (
