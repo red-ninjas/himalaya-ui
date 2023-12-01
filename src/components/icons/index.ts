@@ -21,6 +21,7 @@ export { default as AlignRight } from './alignRight';
 export { default as Anchor } from './anchor';
 export { default as Aperture } from './aperture';
 export { default as Archive } from './archive';
+export { default as CandleChart } from './candleChart';
 export { default as ArrowDown } from './arrowDown';
 export { default as ArrowDownCircle } from './arrowDownCircle';
 export { default as ArrowDownCircleFill } from './arrowDownCircleFill';

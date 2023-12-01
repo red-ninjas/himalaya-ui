@@ -245,7 +245,9 @@ export { ThemeSwitcher } from './theme-switcher';
 export { default as Hero } from './hero';
 export { default as GradientWord } from './gradient-word';
 
-export { default as ThemedChart } from './chart';
+export { default as Chart } from './chart';
+export type * from './chart';
+
 export { default as Carousel, CarouselItem } from './carousel';
 
 export { default as AnimatedCursor } from './animated-cursor';
@@ -269,5 +271,4 @@ export { default as Menu } from './menu';
 export { default as Gauge } from './gauge';
 export type { GaugeProps } from './gauge';
 
-export * from './chart';
 export * from './constants';

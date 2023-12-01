@@ -1,5 +1,5 @@
 import { Layout, Playground, Attributes } from 'lib/components';
-import { ThemedChart, Link, Text, Code, Button, ToggleList, Spacer, useTheme, GraphDataView } from 'components';
+import { Chart, Link, Text, Code, Button, ToggleList, Spacer, useTheme, GraphDataView } from 'components';
 import NextLink from 'next/link';
 import { useRef, useEffect, createRef, useState } from 'react';
 
@@ -15,12 +15,12 @@ Charts creates interactive financial charts.
 <Playground
   title="Line chart example"
   desc="A line chart exmaple"
-  scope={{ ThemedChart, useTheme }}
+  scope={{ Chart, useTheme }}
   code={`
     () => {
       return (
-        <ThemedChart>
-          <ThemedChart.Line title="Test Line" data={[
+        <Chart>
+          <Chart.Line title="Test Line" data={[
             { value: 1, time: 1642425322 },
             { value: 8, time: 1642511722 },
             { value: 10, time: 1642598122 },
@@ -32,7 +32,7 @@ Charts creates interactive financial charts.
             { value: 56, time: 1643116522 },
             { value: 46, time: 1643202922 },
           ]} />
-        </ThemedChart>
+        </Chart>
       )
     }
   `}
@@ -41,13 +41,13 @@ Charts creates interactive financial charts.
 <Playground
   title="Area chart example"
   desc="A area chart example"
-  scope={{ ThemedChart, useTheme }}
+  scope={{ Chart, useTheme }}
   code={`
     () => {
       return (
         <>
-          <ThemedChart>
-            <ThemedChart.Area title="Test Area" data={[
+          <Chart>
+            <Chart.Area title="Test Area" data={[
               { value: 1, time: 1642425322 },
               { value: 8, time: 1642511722 },
               { value: 10, time: 1642598122 },
@@ -59,7 +59,7 @@ Charts creates interactive financial charts.
               { value: 56, time: 1643116522 },
               { value: 46, time: 1643202922 },
             ]} />
-          </ThemedChart>
+          </Chart>
         </>
       )
     }
@@ -69,12 +69,12 @@ Charts creates interactive financial charts.
 <Playground
   title="Bar chart example"
   desc="A bar chart example"
-  scope={{ ThemedChart, useTheme }}
+  scope={{ Chart, useTheme }}
   code={`
     () => {
       return (
-        <ThemedChart>
-          <ThemedChart.Bar title="Test Area" data={[
+        <Chart>
+          <Chart.Bar title="Test Area" data={[
             { value: 1, time: 1642425322 },
             { value: 8, time: 1642511722 },
             { value: 10, time: 1642598122 },
@@ -86,7 +86,7 @@ Charts creates interactive financial charts.
             { value: 56, time: 1643116522 },
             { value: 46, time: 1643202922 },
           ]} />
-        </ThemedChart>
+        </Chart>
       )
     }
   `}
@@ -95,19 +95,19 @@ Charts creates interactive financial charts.
 <Playground
   title="Candlestick Chart"
   desc="A candlestick chart shows price movements in the form of candlesticks. On the candlestick chart, open & close values form a solid body of a candle while wicks show high & low values for a candlestick's time intervas"
-  scope={{ ThemedChart, useTheme }}
+  scope={{ Chart, useTheme }}
   code={`
     () => {
       return (
-        <ThemedChart showPopover={false}>
-            <ThemedChart.Candle  title="Test Area" data={[
+        <Chart showPopover={false}>
+            <Chart.Candle  title="Test Area" data={[
                 { time: 1642425322, open: 75.16, high: 82.84, low: 36.16, value: 45.72 },
                 { time: 1642511722, open: 45.12, high: 53.90, low: 45.12, value: 48.09 },
                 { time: 1642598122, open: 60.71, high: 60.71, low: 53.39, value: 59.29 },
                 { time: 1642770922, open: 68.26, high: 68.26, low: 59.04, value: 60.50 },
                 { time: 1642857322, open: 67.71, high: 105.85, low: 66.67, value: 91.04 },
           ]} />
-        </ThemedChart>
+        </Chart>
       )
     }
 `}
@@ -116,12 +116,12 @@ Charts creates interactive financial charts.
 <Playground
   title="Multi-Line chart example"
   desc="A multi line chart example with different colors and legends"
-  scope={{ ThemedChart, useTheme }}
+  scope={{ Chart, useTheme }}
   code={`() => {
       const theme = useTheme();
       return (
-          <ThemedChart>
-            <ThemedChart.Line color={theme.palette.primary.value} title="Test Line" data={[
+          <Chart>
+            <Chart.Line color={theme.palette.primary.value} title="Test Line" data={[
               { value: 1, time: 1642425322 },
               { value: 8, time: 1642511722 },
               { value: 10, time: 1642598122 },
@@ -133,7 +133,7 @@ Charts creates interactive financial charts.
               { value: 56, time: 1643116522 },
               { value: 46, time: 1643202922 },
             ]} />
-            <ThemedChart.Line color={theme.palette.error.value} title="Test Line 2" data={[
+            <Chart.Line color={theme.palette.error.value} title="Test Line 2" data={[
               { value: 4, time: 1642425322 },
               { value: 17, time: 1642511722 },
               { value: 17, time: 1642598122 },
@@ -145,8 +145,8 @@ Charts creates interactive financial charts.
               { value: 39, time: 1643116522 },
               { value: 12, time: 1643202922 },
             ]} />
-            <ThemedChart.Legends/>
-          </ThemedChart>
+            <Chart.Legends/>
+          </Chart>
       )
 }
 `}
@@ -155,7 +155,7 @@ Charts creates interactive financial charts.
 <Playground
   title="Title or Data change example"
   desc="A multi line chart example with different colors and legends"
-  scope={{ ThemedChart, useTheme, Button, useState, ToggleList }}
+  scope={{ Chart, useTheme, Button, useState, ToggleList }}
   code={`() => {
       const min = 1;
       const max = 100;
@@ -194,12 +194,12 @@ Charts creates interactive financial charts.
               <ToggleList.Item value="graph">Graph</ToggleList.Item>
               <ToggleList.Item value="data">Data</ToggleList.Item>
             </ToggleList>
-            <ThemedChart viewMode={dataViewMode}>
-              <ThemedChart.Line color={theme.palette.primary.value} title={title} data={data} />
-              {enabled && <ThemedChart.Line color={theme.palette.error.value} title="Serie 2" data={data2} />}
-              <ThemedChart.Legends/>
-              <ThemedChart.DataView/>
-            </ThemedChart>
+            <Chart viewMode={dataViewMode}>
+              <Chart.Line color={theme.palette.primary.value} title={title} data={data} />
+              {enabled && <Chart.Line color={theme.palette.error.value} title="Serie 2" data={data2} />}
+              <Chart.Legends/>
+              <Chart.DataView/>
+            </Chart>
           </>
       )
 }
@@ -209,7 +209,7 @@ Charts creates interactive financial charts.
 <Playground
   title="Update example"
   desc="A time based update example"
-  scope={{ ThemedChart, useTheme, useRef, useEffect, createRef }}
+  scope={{ Chart, useTheme, useRef, useEffect, createRef }}
   code={`() => {
         const chartRef = React.createRef();
         const data = [
@@ -239,16 +239,16 @@ Charts creates interactive financial charts.
           return () => clearInterval(interval);
         }, [chartRef]);
         return (
-          <ThemedChart>
-            <ThemedChart.Line ref={chartRef} title="Test Line" data={data} />
-          </ThemedChart>
+          <Chart>
+            <Chart.Line ref={chartRef} title="Test Line" data={data} />
+          </Chart>
       )
 }
 `}
 />
 
 <Attributes edit="/app/components/charts.mdx">
-<Attributes.Title>ThemedChart.Props</Attributes.Title>
+<Attributes.Title>Chart.Props</Attributes.Title>
 
   | Attribute           | Description         | Type                       | Accepted values | Default  |
   | ------------------- | ------------------- | -------------------------- | --------------- | -------- |
@@ -262,11 +262,11 @@ Charts creates interactive financial charts.
   | **hasSides**        | chart sides         | `'right' | 'left' | 'both'` | -               | -        |
   | **viewMode**        | chart view mode     | `ChartViewMode`            | -               | -        |
 
-<Attributes.Title>ThemedChartSeriesProps</Attributes.Title>
+<Attributes.Title>ChartSeriesProps</Attributes.Title>
 
 ```ts
-type ThemedChartSeriesProps = {
-  data: ThemedChartItem[];
+type ChartSeriesProps = {
+  data: ChartItem[];
   type: 'line' | 'area' | 'bar' | 'candle';
   side?: 'left' | 'right';
   showTitle?: boolean;
@@ -274,7 +274,7 @@ type ThemedChartSeriesProps = {
   color: string;
   priceLineVisible?: boolean;
   lastValueVisible?: boolean;
-  priceFormatter?: ThemedChartPriceFormatter;
+  priceFormatter?: ChartPriceFormatter;
 };
 ```
 

@@ -21,7 +21,7 @@ interface ContributorWithDetails {
 
 const getContributors = async (path: string): Promise<Array<ContributorWithDetails>> => {
   try {
-    const response = await fetch(`${GITHUB_CONTRIBUTORS_URL}/commits?path=src/${path}`);
+    const response = await fetch(`${GITHUB_CONTRIBUTORS_URL}/commits?path=src${path}`);
     if (!response.ok || response.status === 204) return [];
 
     const commits = await response.json();
@@ -51,7 +51,7 @@ const getContributors = async (path: string): Promise<Array<ContributorWithDetai
 
 const Contributors: React.FC<Props> = ({ path }) => {
   const [users, setUsers] = useState<Array<ContributorWithDetails>>([]);
-  const link = useMemo(() => `${RepoMasterURL}/${path || '/components'}`, []);
+  const link = useMemo(() => `${RepoMasterURL}/${path || '/components'}`, [path]);
 
   useEffect(() => {
     let unmount = false;
