@@ -271,4 +271,6 @@ export { default as Menu } from './menu';
 export { default as Gauge } from './gauge';
 export type { GaugeProps } from './gauge';
 
+export { LanguageSwitcher } from './language-switcher';
+
 export * from './constants';
