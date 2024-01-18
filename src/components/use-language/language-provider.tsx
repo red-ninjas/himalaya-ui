@@ -23,11 +23,9 @@ const TranslationProvider: React.FC<React.PropsWithChildren<TranslationProviderP
       resources: merged,
       fallbackLng: defaultLanguage,
       supportedLngs: ['en', 'de'],
-      nonExplicitSupportedLngs: true,
       interpolation: {
         escapeValue: false,
       },
-      load: 'languageOnly',
     });
 
   const [currentLanguage, setCurrentLanguage] = useState<string>(i18n.language);
