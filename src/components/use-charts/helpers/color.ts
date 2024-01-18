@@ -199,10 +199,10 @@ function normalizeAlphaComponent(component: AlphaComponent): AlphaComponent {
     !(component <= 0) && !(component > 0)
       ? (0 as AlphaComponent)
       : component < 0
-      ? (0 as AlphaComponent)
-      : component > 1
-      ? (1 as AlphaComponent)
-      : Math.round(component * 10000) / 10000
+        ? (0 as AlphaComponent)
+        : component > 1
+          ? (1 as AlphaComponent)
+          : Math.round(component * 10000) / 10000
   ) as AlphaComponent;
 }
 

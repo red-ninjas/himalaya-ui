@@ -14,10 +14,10 @@ export type Merge<T extends object, U extends object> = Omit<T, keyof U> & {
     ? U[K] extends any[]
       ? U[K]
       : T[K] extends object
-      ? Merge<T[K], U[K]> extends infer A
-        ? Cast<A, object>
-        : never
-      : U[K]
+        ? Merge<T[K], U[K]> extends infer A
+          ? Cast<A, object>
+          : never
+        : U[K]
     : U[K];
 } & Omit<U, keyof T>;
 
