@@ -61,9 +61,6 @@ const cjsOutput = {
     if (id.includes('node_modules/styled-jsx')) {
       return 'styled-jsx.cjs'
     }
-    if (id.includes('node_modules/react-i18next')) {
-      return 'react-i18next.cjs'
-    }
   },
   chunkFileNames: '[name].js',
   globals,

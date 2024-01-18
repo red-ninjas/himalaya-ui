@@ -231,9 +231,6 @@ export type { GradientContentProps } from './layout';
 export { default as RoutingIndicator } from './routing-indicator';
 export type { ScrollableLayoutProps } from './layout';
 
-export { TranslationProvider } from './use-language';
-export type { TranslationProviderProps } from './use-language';
-
 export { default as MobileMenu, MobileMenuButton } from './mobile-menu';
 export type { MobileMenuProps } from './mobile-menu';
 
@@ -270,7 +267,5 @@ export { default as Menu } from './menu';
 
 export { default as Gauge } from './gauge';
 export type { GaugeProps } from './gauge';
-
-export { LanguageSwitcher } from './language-switcher';
 
 export * from './constants';

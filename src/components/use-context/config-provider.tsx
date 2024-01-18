@@ -5,7 +5,6 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { SwipeEventData, useSwipeable } from 'react-swipeable';
 import CssBaseline from '../css-baseline';
 import Themes, { UIThemes } from '../themes';
-import { TranslationProvider } from '../use-language';
 import { LayoutProvider } from '../use-layout';
 import useMediaQuery from '../use-media-query';
 import {
@@ -17,12 +16,12 @@ import {
   defaultToastLayout,
 } from './config-context';
 
+import { CUSTOM_THEME_TYPE, THEME_COOKIE_NAME } from '../constants';
 import useCurrentState from '../use-current-state';
-import ThemeProvider from './theme-provider';
-import { THEME_COOKIE_NAME, CUSTOM_THEME_TYPE } from '../constants';
-import { DeepPartial } from '../utils/types';
 import useTheme from '../use-theme';
 import ToastContainer from '../use-toasts/toast-container';
+import { DeepPartial } from '../utils/types';
+import ThemeProvider from './theme-provider';
 export interface ConfigProps {
   themeType?: string | 'dark' | 'light';
   detectTheme?: boolean;
@@ -127,17 +126,15 @@ const ConfigProvider: React.FC<React.PropsWithChildren<ConfigProps>> = ({
 
   return (
     <LayoutProvider>
-      <TranslationProvider>
-        <ConfigContext.Provider value={config}>
-          <ThemeProvider themes={themes} themeType={_themeType}>
-            <CssBaseline />
-            <div className="ui-app" {...handlers}>
-              {children}
-            </div>
-            <ToastContainer />
-          </ThemeProvider>
-        </ConfigContext.Provider>
-      </TranslationProvider>
+      <ConfigContext.Provider value={config}>
+        <ThemeProvider themes={themes} themeType={_themeType}>
+          <CssBaseline />
+          <div className="ui-app" {...handlers}>
+            {children}
+          </div>
+          <ToastContainer />
+        </ThemeProvider>
+      </ConfigContext.Provider>
       <style global jsx>{`
         .ui-app {
           width: 100%;
