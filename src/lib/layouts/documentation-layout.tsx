@@ -14,6 +14,7 @@ import {
   SidebarLayout,
   SidebarProvider,
   Text,
+  useTheme,
 } from 'components';
 import { Title } from 'components/header';
 import BackButton from 'components/header/back-button';
@@ -22,6 +23,7 @@ import { usePathname } from 'next/navigation';
 import { Seeds } from '../data';
 
 export default function DocumentationLayout({ children }) {
+  const theme = useTheme();
   const pathName = usePathname();
   const seperated = pathName && pathName.length > 0 ? pathName.split('/') : [];
   const firstElement = seperated.length > 1 ? seperated[1] : '/';
@@ -99,6 +101,11 @@ export default function DocumentationLayout({ children }) {
 
         .markdown h1 {
           margin-top: 0;
+        }
+
+        .markdown p,
+        .markdown small {
+          color: ${theme.palette.accents_5};
         }
       `}</style>
     </ContentLayout>

@@ -1,7 +1,5 @@
-import '@fontsource-variable/instrument-sans';
-
+import '@fontsource-variable/inter';
 import { Analytics } from '@vercel/analytics/react';
-
 import { Providers } from '../lib/providers';
 
 import { THEME_COOKIE_NAME } from 'components/constants';

@@ -67,6 +67,9 @@ export interface UIThemesFont {
   sans: string;
   mono: string;
   prism: string;
+  baseSize: number;
+  headingFactor: number;
+  baseLineHeight: number;
 }
 
 export interface UIThemes {

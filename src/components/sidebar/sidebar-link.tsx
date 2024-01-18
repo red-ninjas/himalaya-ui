@@ -33,7 +33,7 @@ const SidebarLink: React.FC<PropsWithChildren<SideBarLinkProp>> = ({ children, h
           display: flex;
           align-items: baseline;
           font-size: 0.9rem;
-          color: ${theme.palette.accents_6};
+          color: ${theme.palette.accents_5};
           padding: calc(${layout.gap} * 0.375) 0;
           transition: all 200ms ease;
         }
