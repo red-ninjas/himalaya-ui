@@ -30,8 +30,9 @@ export const QuickBar: React.FC<PropsWithChildren<QuickActionProps>> = ({
 
   return (
     <Tooltip placement="right" text={tooltip} padding={0.3} font="12px" type="dark" leaveDelay={0} enterDelay={0}>
-      <Link href={href || ''} target={target} passHref legacyBehavior>
+      <Link href={href || ''} passHref legacyBehavior>
         <a
+          target={target}
           className={useClasses('quick-action', {
             'is-active': isLinkActive,
           })}

@@ -142,7 +142,7 @@ export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
                 </QuickAction>
                 <Divider width={'100%'}></Divider>
 
-                <QuickAction type="lite" radius={50} tooltip="On Github">
+                <QuickAction href="https://github.com/red-ninjas/himalaya-ui" target="_blank" type="lite" radius={50} tooltip="On Github">
                   <Github size={20} />
                 </QuickAction>
               </QuickBar>
