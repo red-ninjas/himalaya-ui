@@ -22,6 +22,7 @@ const TranslationProvider: React.FC<React.PropsWithChildren<TranslationProviderP
     .init({
       resources: merged,
       fallbackLng: defaultLanguage,
+      supportedLngs: ['en', 'de'],
       interpolation: {
         escapeValue: false,
       },
