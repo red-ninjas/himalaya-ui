@@ -3,7 +3,7 @@ import { usePathname } from 'next/navigation';
 import React, { PropsWithChildren, useEffect, useRef } from 'react';
 import { useConfigs } from '../use-context/config-context';
 import useLayout from '../use-layout';
-import useScale from '../use-scale';
+import useScale, { withScale } from '../use-scale';
 
 export interface SidebarProps {
   header?: React.ReactNode;
@@ -55,4 +55,4 @@ const Sidebar: React.FC<PropsWithChildren<SidebarProps>> = ({ children, ...props
 };
 
 Sidebar.displayName = 'HimalayaSidebar';
-export default Sidebar;
+export default withScale(Sidebar);
