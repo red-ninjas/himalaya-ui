@@ -3,6 +3,7 @@ import { usePathname } from 'next/navigation';
 import React, { PropsWithChildren, useEffect, useRef } from 'react';
 import { useConfigs } from '../use-context/config-context';
 import useLayout from '../use-layout';
+import useScale from '../use-scale';
 
 export interface SidebarProps {
   header?: React.ReactNode;
@@ -13,6 +14,7 @@ const Sidebar: React.FC<PropsWithChildren<SidebarProps>> = ({ children, ...props
   const pathname = usePathname();
   const boxRef = useRef<HTMLDivElement>(null);
   const { sidebarScrollHeight, updateSidebarScrollHeight } = useConfigs();
+  const { SCALES } = useScale();
 
   useEffect(() => {
     if (!boxRef.current) return;
@@ -31,7 +33,6 @@ const Sidebar: React.FC<PropsWithChildren<SidebarProps>> = ({ children, ...props
       <style jsx>{`
         .sides {
           width: 100%;
-          padding-bottom: ${layout.gap};
         }
         .box {
           overflow-y: auto;
@@ -40,12 +41,17 @@ const Sidebar: React.FC<PropsWithChildren<SidebarProps>> = ({ children, ...props
           display: flex;
           flex-direction: column;
           align-items: center;
+          gap: ${layout.gap};
+          padding: ${SCALES.pt(0.5)} 0 ${SCALES.pb(0.5)} 0;
         }
         .box::-webkit-scrollbar {
           width: 0;
           background-color: transparent;
         }
-        .box > :global(.item) {
+        .box > :global(.item:first-child) {
+          margin-top: ${layout.gap};
+        }
+        .box > :global(.item:last-child) {
           margin-bottom: ${layout.gap};
         }
       `}</style>

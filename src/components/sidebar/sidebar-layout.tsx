@@ -136,7 +136,7 @@ const SidebarLayout: React.FC<React.PropsWithChildren<SidebarLayoutProps>> = ({ 
             z-index: 100;
             overflow: hidden;
             border-right: ${hasBorder ? '1px solid ' + theme.palette.border : '0px solid transparent'};
-            padding: ${SCALES.pt(1)} 0 ${SCALES.pb(1)} 0;
+            padding: 0;
           }
 
           :global(.sidebar-drawer) {
