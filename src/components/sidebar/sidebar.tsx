@@ -42,7 +42,7 @@ const Sidebar: React.FC<PropsWithChildren<SidebarProps>> = ({ children, ...props
           flex-direction: column;
           align-items: center;
           gap: ${layout.gap};
-          padding: ${SCALES.pt(1)} ${SCALES.pl(0)} ${SCALES.pb(1)} ${SCALES.pr(0)};
+          padding: ${SCALES.pt(1)} ${SCALES.pr(0)} ${SCALES.pb(1)} ${SCALES.pl(0)};
         }
         .box::-webkit-scrollbar {
           width: 0;

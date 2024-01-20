@@ -8,10 +8,10 @@ const ContentLayoutComponent: React.FC<React.PropsWithChildren<{}>> = ({ childre
   const theme = useTheme();
 
   return (
-    <div className="content-layout" {...props}>
+    <div className="page-layout" {...props}>
       {children}
       <style jsx>{`
-        .content-layout {
+        .page-layout {
           width: 100%;
           background: ${theme.palette.background};
           color: ${theme.palette.foreground};
