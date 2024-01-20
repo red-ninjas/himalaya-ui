@@ -147,6 +147,7 @@ const SidebarLayout: React.FC<React.PropsWithChildren<SidebarLayoutProps>> = ({ 
             min-height: 100%;
             display: flex;
             justify-content: space-between;
+            box-sizing: border-box;
             width: 100%;
             position: relative;
             padding: ${SCALES.pt(0)} ${SCALES.pr(1)} ${SCALES.pb(0)} ${SCALES.pl(1)};

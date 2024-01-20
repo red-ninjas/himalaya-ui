@@ -38,6 +38,7 @@ const Sidebar: React.FC<PropsWithChildren<SidebarProps>> = ({ children, ...props
           overflow-y: auto;
           overflow-x: hidden;
           height: 100%;
+          box-sizing: border-box;
           display: flex;
           flex-direction: column;
           align-items: center;
