@@ -42,17 +42,11 @@ const Sidebar: React.FC<PropsWithChildren<SidebarProps>> = ({ children, ...props
           flex-direction: column;
           align-items: center;
           gap: ${layout.gap};
-          padding: ${SCALES.pt(0.5)} 0 ${SCALES.pb(0.5)} 0;
+          padding: ${SCALES.pt(1)} ${SCALES.pl(0)} ${SCALES.pb(1)} ${SCALES.pr(0)};
         }
         .box::-webkit-scrollbar {
           width: 0;
           background-color: transparent;
-        }
-        .box > :global(.item:first-child) {
-          margin-top: ${layout.gap};
-        }
-        .box > :global(.item:last-child) {
-          margin-bottom: ${layout.gap};
         }
       `}</style>
     </div>
