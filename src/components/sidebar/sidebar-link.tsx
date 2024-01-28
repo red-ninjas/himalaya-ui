@@ -7,12 +7,14 @@ import useTheme from '../use-theme';
 
 export interface Props {
   icon?: React.ReactNode;
+  activeColor?: string;
+  activeBackground?: string;
 }
 
 type NativeAttrs = Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, keyof Props>;
 export type SideBarLinkProp = Props & NativeAttrs;
 
-const SidebarLink: React.FC<PropsWithChildren<SideBarLinkProp>> = ({ children, icon, href, ...props }) => {
+const SidebarLink: React.FC<PropsWithChildren<SideBarLinkProp>> = ({ children, icon, activeColor, activeBackground, href, ...props }) => {
   const theme = useTheme();
   const pathname = usePathname();
   const { SCALES } = useScale();
@@ -31,6 +33,7 @@ const SidebarLink: React.FC<PropsWithChildren<SideBarLinkProp>> = ({ children, i
             margin-right: 6px;
             color: ${theme.palette.accents_3};
             transition: all 200ms ease;
+            display: inline-flex;
           }
 
           .sidebar-link {
@@ -59,17 +62,13 @@ const SidebarLink: React.FC<PropsWithChildren<SideBarLinkProp>> = ({ children, i
           }
 
           .sidebar-link.active {
-            color: ${theme.palette.link.value};
-            background: ${theme.palette.accents_0};
+            background: ${activeBackground || theme.palette.accents_0};
             font-weight: 600;
           }
 
-          .sidebar-link.active .sidebar-link-title {
-            color: ${theme.palette.foreground};
-          }
-
+          .sidebar-link.active .sidebar-link-title,
           .sidebar-link.active .sidebar-link-icon {
-            color: ${theme.palette.foreground};
+            color: ${activeColor || theme.palette.foreground};
           }
         `}</style>
       </a>
