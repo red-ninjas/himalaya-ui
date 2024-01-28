@@ -2,7 +2,6 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React, { PropsWithChildren } from 'react';
-import useLayout from '../use-layout';
 import useScale, { withScale } from '../use-scale';
 import useTheme from '../use-theme';
 
@@ -15,7 +14,6 @@ export type SideBarLinkProp = Props & NativeAttrs;
 
 const SidebarLink: React.FC<PropsWithChildren<SideBarLinkProp>> = ({ children, icon, href, ...props }) => {
   const theme = useTheme();
-  const layout = useLayout();
   const pathname = usePathname();
   const { SCALES } = useScale();
 
