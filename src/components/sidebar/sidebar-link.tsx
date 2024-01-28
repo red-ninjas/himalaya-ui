@@ -30,7 +30,7 @@ const SidebarLink: React.FC<PropsWithChildren<SideBarLinkProp>> = ({ children, i
           .sidebar-link-title {
           }
           .sidebar-link .sidebar-link-icon {
-            margin-right: 6px;
+            margin-right: 12px;
             color: ${theme.palette.accents_3};
             transition: all 200ms ease;
             display: inline-flex;

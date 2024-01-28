@@ -26,12 +26,12 @@ export const palette: UIThemesPalette = Object.assign(
 export const expressiveness: UIThemesExpressiveness = {
   linkStyle: 'none',
   linkHoverStyle: 'none',
-  dropdownBoxShadow: '0 0 0 1px ' + palette.border,
+  dropdownBoxShadow: '0 4px 4px 0 rgba(0, 0, 0, 0.02)',
   scrollerStart: 'rgba(255, 255, 255, 1)',
   scrollerEnd: 'rgba(255, 255, 255, 0)',
-  shadowSmall: '0 0 0 1px ' + palette.border,
-  shadowMedium: '0 0 0 1px ' + palette.border,
-  shadowLarge: '0 0 0 1px ' + palette.border,
+  shadowSmall: '0 5px 10px rgba(0, 0, 0, 0.12)',
+  shadowMedium: '0 8px 30px rgba(0, 0, 0, 0.12)',
+  shadowLarge: '0 30px 60px rgba(0, 0, 0, 0.12)',
   portalOpacity: 0.75,
 };
 
