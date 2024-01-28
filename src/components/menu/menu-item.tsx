@@ -1,11 +1,10 @@
 import { PropsWithChildren } from 'react';
+import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';
 import useTheme from '../use-theme';
-import { MenuItemProps } from './index';
-import ButtonIcon from '../button/button-icon';
-import useClasses from 'components/use-classes';
+import { MenuItemPropsNative } from './index';
 
-function MenuItemComponent({ children, icon, ...other }: PropsWithChildren<MenuItemProps>) {
+function MenuItemComponent({ children, icon, ...other }: PropsWithChildren<MenuItemPropsNative>) {
   const theme = useTheme();
   const { SCALES } = useScale();
   return (

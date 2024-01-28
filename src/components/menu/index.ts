@@ -8,7 +8,10 @@ export type MenuProps = {
   placement?: Placement | undefined;
 };
 
-export type MenuItemProps = { icon?: React.ReactNode };
+type MenuItemProps = { icon?: React.ReactNode };
+
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof MenuItemProps>;
+export type MenuItemPropsNative = MenuItemProps & NativeAttrs;
 
 export type MenuComponentType = typeof Menu & {
   Item: typeof MenuItem;

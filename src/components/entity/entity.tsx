@@ -50,7 +50,7 @@ function EntityComponent({
           {actions && <span className="entity-actions">{actions}</span>}
           {items && (
             <span className="entity-menu">
-              <Menu placement="bottomEnd" trigger={<MoreHorizontal />}>
+              <Menu placement="bottomEnd" content={<MoreHorizontal />}>
                 {items}
               </Menu>
             </span>

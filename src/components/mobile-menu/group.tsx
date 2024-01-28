@@ -1,8 +1,7 @@
 'use client';
-import { addColorAlpha } from '../utils/color';
 import { useRouter } from 'next/navigation';
 import React, { MouseEventHandler, PropsWithChildren, ReactNode, useRef, useState } from 'react';
-import { ChevronDown, ChevronRight } from '../icons';
+import { ChevronDown } from '../icons';
 import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';
 import useTheme from '../use-theme';

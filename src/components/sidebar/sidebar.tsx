@@ -9,7 +9,10 @@ export interface SidebarProps {
   header?: React.ReactNode;
 }
 
-const Sidebar: React.FC<PropsWithChildren<SidebarProps>> = ({ children, ...props }) => {
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof SidebarProps>;
+export type SidebarPropsNative = SidebarProps & NativeAttrs;
+
+const Sidebar: React.FC<PropsWithChildren<SidebarPropsNative>> = ({ children, header, ...props }) => {
   const layout = useLayout();
   const pathname = usePathname();
   const boxRef = useRef<HTMLDivElement>(null);
@@ -27,14 +30,13 @@ const Sidebar: React.FC<PropsWithChildren<SidebarProps>> = ({ children, ...props
   }, [boxRef.current]);
 
   return (
-    <div ref={boxRef} className="sides box">
-      {props.header}
+    <div ref={boxRef} {...props} className="sidebar-inner">
+      {header}
       {children}
       <style jsx>{`
-        .sides {
+        .sidebar-inner {
           width: 100%;
-        }
-        .box {
+
           overflow-y: auto;
           overflow-x: hidden;
           height: 100%;
@@ -45,7 +47,7 @@ const Sidebar: React.FC<PropsWithChildren<SidebarProps>> = ({ children, ...props
           gap: ${layout.gap};
           padding: ${SCALES.pt(1)} ${SCALES.pr(0)} ${SCALES.pb(1)} ${SCALES.pl(0)};
         }
-        .box::-webkit-scrollbar {
+        .sidebar-inner::-webkit-scrollbar {
           width: 0;
           background-color: transparent;
         }
