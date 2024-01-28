@@ -1,6 +1,8 @@
 'use client';
-import useTheme from '../use-theme';
 import React from 'react';
+import { useScale } from '../use-scale/scale-context';
+import withScale from '../use-scale/with-scale';
+import useTheme from '../use-theme';
 
 export interface SideItemProps {
   title: string;
@@ -9,6 +11,7 @@ export interface SideItemProps {
 
 const SidebarGroup: React.FC<React.PropsWithChildren<SideItemProps>> = ({ children, ...props }) => {
   const theme = useTheme();
+  const { SCALES } = useScale();
 
   return (
     <div className="item">
@@ -23,6 +26,7 @@ const SidebarGroup: React.FC<React.PropsWithChildren<SideItemProps>> = ({ childr
           color: ${theme.palette.accents_4};
           text-transform: uppercase;
           letter-spacing: 1.3px;
+          padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
         }
 
         .active {
@@ -47,4 +51,4 @@ const SidebarGroup: React.FC<React.PropsWithChildren<SideItemProps>> = ({ childr
   );
 };
 
-export default SidebarGroup;
+export default withScale(SidebarGroup);

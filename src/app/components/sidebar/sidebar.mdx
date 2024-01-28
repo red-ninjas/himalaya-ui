@@ -1,22 +1,24 @@
-import { Layout, Playground, Attributes , MockPage} from 'lib/components'
-import { SidebarLayout, Sidebar, SidebarSwitcher, Page, Button, ContentLayout, Text} from 'components'
+import { Layout, Playground, Attributes, MockPage } from 'lib/components';
+import { SidebarLayout, Sidebar, SidebarSwitcher, Page, Button, ContentLayout, Text } from 'components';
+import { Home } from 'components/icons';
 
 export const meta = {
   title: 'Sidebar',
   group: 'Layout',
-}
+};
 
 # Sidebar
+
 Display a sidebar
 
 <Playground
   title="General"
   desc="Display a basic sidebar with group titles and links."
-  scope={{ Sidebar}}
+  scope={{ Sidebar, Home }}
   code={`
 <Sidebar >
   <Sidebar.Group title="Group 1">
-    <Sidebar.Item href="/page1">Link 1</Sidebar.Link>
+    <Sidebar.Item icon={ <Home size={16} /> } href="/page1">Link 1</Sidebar.Link>
     <Sidebar.Item href="/page2">Link 2</Sidebar.Link>
   </Sidebar.Group>
 </Sidebar>
@@ -26,7 +28,7 @@ Display a sidebar
 <Playground
   title="SidebarLayout"
   desc="Create a layout with a sidebar and content."
-  scope={{ Page, MockPage, Button, Sidebar, SidebarLayout, ContentLayout , Text}}
+  scope={{ Page, MockPage, Button, Sidebar, SidebarLayout, ContentLayout, Text }}
   code={`
 () => {
   const Child = () => (
@@ -78,31 +80,27 @@ Display a sidebar
 `}
 />
 
-
-
 <Attributes edit="/app/components/sidebar.mdx">
 <Attributes.Title>Sidebar.Props</Attributes.Title>
 
-| Attribute  | Description    | Type               | Accepted values          | Default |
-| ---------- | -------------- | ------------------ | ------------------------ | ------- |
-| **header** | Header content | `React.ReactNode`  | -                        | -       |
-| ...        | native props   | `HTMLAttributes`   | `'id', 'className', ...` | -       |
+| Attribute  | Description    | Type              | Accepted values          | Default |
+| ---------- | -------------- | ----------------- | ------------------------ | ------- |
+| **header** | Header content | `React.ReactNode` | -                        | -       |
+| ...        | native props   | `HTMLAttributes`  | `'id', 'className', ...` | -       |
 
 <Attributes.Title>SidebarGroup.Props</Attributes.Title>
 
-| Attribute   | Description                   | Type      | Accepted values | Default |
-| ----------- | ----------------------------- | --------- | --------------- | ------- |
-| **title**   | The title of the sidebar group | `string`  | -               | -       |
-| **isActive**| Whether the group is active   | `boolean` | -               | -       |
-| ...         | native props                   | `HTMLAttributes` | `'id', 'className', ...` | - |
-
+| Attribute    | Description                    | Type             | Accepted values          | Default |
+| ------------ | ------------------------------ | ---------------- | ------------------------ | ------- |
+| **title**    | The title of the sidebar group | `string`         | -                        | -       |
+| **isActive** | Whether the group is active    | `boolean`        | -                        | -       |
+| ...          | native props                   | `HTMLAttributes` | `'id', 'className', ...` | -       |
 
 <Attributes.Title>SidebarLink.Props</Attributes.Title>
 
-| Attribute | Description         | Type | Accepted values | Default |
-| --------- | ------------------- | ---- | --------------- | ------- |
-| **href**  | The URL to link to | `string` | -           | -       |
-| ...       | native props        | `HTMLAttributes` | `'id', 'className', ...` | - |
-
+| Attribute | Description        | Type             | Accepted values          | Default |
+| --------- | ------------------ | ---------------- | ------------------------ | ------- |
+| **href**  | The URL to link to | `string`         | -                        | -       |
+| ...       | native props       | `HTMLAttributes` | `'id', 'className', ...` | -       |
 
 </Attributes>
