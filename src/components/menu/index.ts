@@ -8,7 +8,7 @@ export type MenuProps = {
   placement?: Placement | undefined;
 };
 
-export type MenuItemProps = {};
+export type MenuItemProps = { icon?: React.ReactNode };
 
 export type MenuComponentType = typeof Menu & {
   Item: typeof MenuItem;

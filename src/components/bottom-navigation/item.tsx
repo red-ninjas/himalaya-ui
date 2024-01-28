@@ -57,12 +57,6 @@ const BottomNavigationItem: React.FC<PropsWithChildren<BottomNavigationItemProps
           box-shadow: none;
         }
 
-        .navigation-item {
-          display: inline-flex;
-          position: relative;
-          height: auto;
-        }
-
         .bottom-menu-item {
           position: relative;
           box-sizing: border-box;

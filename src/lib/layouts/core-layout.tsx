@@ -2,7 +2,6 @@
 
 import { MDXProvider } from '@mdx-js/react/lib';
 import {
-  AnimatedCursor,
   Divider,
   Header,
   MobileMenu,
@@ -66,7 +65,6 @@ export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <RoutingIndicator>
       <SearchProvider>
-        <AnimatedCursor></AnimatedCursor>
         <Search searchFunction={doSearch} placeholder="Search in documentation." />
         <MobileMenuProvider>
           <QuickBarProvider>

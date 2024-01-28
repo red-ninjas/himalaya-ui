@@ -19,7 +19,6 @@ const NavigationSubItem: React.FC<PropsWithChildren<NavigationSubItemProps>> = (
       props.onClick();
     }
   };
-  // const rgba = `rgba(${hexToRgb(theme.palette.accents_2)}, 0.5)`
 
   return (
     <>
@@ -30,7 +29,6 @@ const NavigationSubItem: React.FC<PropsWithChildren<NavigationSubItemProps>> = (
               {props.icon && <span className="icon-holder">{props.icon}</span>}
               <span>{props.title}</span>
             </div>
-
             {props.desc && <div className="description">{props.desc}</div>}
           </a>
         </Link>

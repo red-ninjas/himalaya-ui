@@ -15,14 +15,17 @@ const MobileNavigationSubGroup: React.FC<PropsWithChildren<MobileNavigationSubGr
 
   const childs = (childElements: ReactNode) => {
     return (
-      <>
-        {title && <h4 className="sub-group">{title}</h4>}
+      <div className="sub-group">
+        {title && <h4 className="sub-group-title">{title}</h4>}
         <div className="sub-group-inner">{childElements}</div>
         <style jsx>{`
           .sub-group {
+            padding: ${SCALES.pt(0)} ${SCALES.pr(0.55)} ${SCALES.pb(0)} ${SCALES.pl(0.55)};
+          }
+          .sub-group-title {
             color: ${theme.palette.accents_5};
-            margin-bottom: ${SCALES.pt(0.875)};
-            margin-top: ${SCALES.pt(0.875)};
+            margin-bottom: ${SCALES.pt(0.5)};
+            margin-top: ${SCALES.pt(0.5)};
             font-size: ${SCALES.pt(0.75)};
             text-transform: uppercase;
             font-weight: normal;
@@ -30,13 +33,17 @@ const MobileNavigationSubGroup: React.FC<PropsWithChildren<MobileNavigationSubGr
           .sub-group-inner {
             border-left: 1px solid ${theme.palette.border};
             margin: ${SCALES.pt(0)} ${SCALES.pr(0.6)} ${SCALES.pb(0)} ${SCALES.pl(0.6)};
+            padding-left: ${SCALES.pl(0.55)};
+          }
+          :global(.sub-group-inner > .item) {
+            border-bottom: 0 !important;
           }
         `}</style>
-      </>
+      </div>
     );
   };
 
-  return <>{childs(children)}</>;
+  return childs(children);
 };
 MobileNavigationSubGroup.displayName = 'HimalayaNavigationItem';
 

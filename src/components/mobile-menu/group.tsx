@@ -24,29 +24,34 @@ const MobileNavigationGroup: React.FC<PropsWithChildren<MobileNavigationGroupPro
   const [, subGroup] = pickChild(children, MobileNavigationSubGroup);
 
   const btnClass = useClasses({
-    'menu-item': true,
+    'mobile-navigation-item': true,
     'has-chevron': !!children,
   });
 
   const childs = (childElements: ReactNode) => {
     return (
       <div className={useClasses({ 'child-grid': true, 'grid-show': isExpanded })}>
-        <div>{childElements}</div>
+        <div className="child-elements">{childElements}</div>
         <style jsx>{`
+          .child-elements {
+            padding: ${SCALES.pt(0.25)} ${SCALES.pr(0.25)} ${SCALES.pb(0.25)} ${SCALES.pl(0.25)};
+          }
           .child-grid {
-            background-color: ${addColorAlpha(theme.palette.accents_0, 0.3)};
-            padding: ${SCALES.pt(0)} ${SCALES.pr(0.55)} ${SCALES.pb(0)} ${SCALES.pl(0.875)};
-
-            transition: height 200ms ease;
-            overflow: hidden;
             visibility: hidden;
             height: 0;
+            overflow-y: hidden;
+            will-change: height;
+            transition: height 0.2s ease;
           }
           .sub-child-grid {
             display: grid;
             height: auto;
             margin-left: ${SCALES.pr(1.5)};
             grid-template-rows: repeat(1, 1fr);
+          }
+
+          :global(.child-grid > .item:last-child) {
+            border: 0;
           }
 
           .grid-show {
@@ -77,12 +82,14 @@ const MobileNavigationGroup: React.FC<PropsWithChildren<MobileNavigationGroupPro
     >
       <div className="navigation-group">
         <a className={btnClass} ref={ref} onClick={e => handleGroupClick(e)}>
+          <span>{title}</span>
           {!!children && (
             <span className="chevron-right">
-              <span className={useClasses({ chevron: true })}>{isExpanded ? <ChevronDown size={14} /> : <ChevronRight size={14} />}</span>
+              <span className={useClasses({ chevron: true, 'chevron-expanded': isExpanded })}>
+                <ChevronDown size={16} />
+              </span>
             </span>
           )}
-          <span>{title}</span>
         </a>
         {childs(children)}
       </div>
@@ -103,6 +110,12 @@ const MobileNavigationGroup: React.FC<PropsWithChildren<MobileNavigationGroupPro
           display: flex;
           justify-content: center;
           align-items: center;
+          font-weight: bold;
+          transform: rotate(0deg);
+          transition: transform 0.2s ease;
+        }
+        .chevron-expanded {
+          transform: rotate(180deg);
         }
 
         .chevron-right {
@@ -114,7 +127,7 @@ const MobileNavigationGroup: React.FC<PropsWithChildren<MobileNavigationGroupPro
           align-items: center;
         }
 
-        .menu-item {
+        .mobile-navigation-item {
           position: relative;
           box-sizing: border-box;
           cursor: pointer;
@@ -128,11 +141,13 @@ const MobileNavigationGroup: React.FC<PropsWithChildren<MobileNavigationGroupPro
           display: flex;
           align-items: center;
           user-select: none;
-          font-size: ${SCALES.font(1)};
+          font-size: ${SCALES.font(0.9)};
           line-height: normal;
           width: ${SCALES.width(1, 'auto')};
           height: ${SCALES.height(1, 'auto')};
-          padding: ${SCALES.pt(0.875)} ${SCALES.pr(0.55)} ${SCALES.pb(0.875)} ${SCALES.pl(0.55)};
+
+          padding: ${SCALES.pt(0.7)} ${SCALES.pr(0.85)} ${SCALES.pb(0.7)} ${SCALES.pl(0.85)};
+
           margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
           z-index: 1;
 
@@ -154,9 +169,11 @@ const MobileNavigationGroup: React.FC<PropsWithChildren<MobileNavigationGroupPro
 
         .has-chevron {
           padding-right: ${SCALES.pr(1.3)};
+          color: ${theme.palette.foreground};
+          justify-content: space-between;
         }
 
-        .menu-item:after {
+        .mobile-navigation-item:after {
           position: absolute;
           content: '';
           bottom: -1px;
@@ -173,7 +190,7 @@ const MobileNavigationGroup: React.FC<PropsWithChildren<MobileNavigationGroupPro
           opacity: 0;
         }
 
-        :global(.menu-item) span.label {
+        :global(.mobile-navigation-item) span.label {
           z-index: 1;
           padding: 8px 12px;
         }
