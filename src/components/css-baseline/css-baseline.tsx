@@ -103,6 +103,8 @@ const CssBaseline: React.FC = () => {
         -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
         -webkit-box-align: center;
         align-items: center;
+        color: ${theme.palette.link};
+        text-decoration: ${theme.expressiveness.linkStyle};
       }
 
       a:hover {
