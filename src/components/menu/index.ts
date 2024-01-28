@@ -4,7 +4,7 @@ import Menu from './menu';
 import MenuItem from './menu-item';
 
 export type MenuProps = {
-  trigger: ReactElement | string;
+  content: ReactElement | string;
   placement?: Placement | undefined;
 };
 
