@@ -15,7 +15,6 @@ import { DrawerPlacement } from '../drawer/helper';
 import { isNumber } from 'lodash';
 
 export interface SidebarLayoutProps {
-  width?: string | number;
   hasBorder?: boolean;
   hideOnMobile?: boolean;
   placement?: DrawerPlacement;
@@ -51,7 +50,6 @@ const useRefDimensions = (ref: React.RefObject<HTMLDivElement>) => {
 
 const SidebarLayout: React.FC<React.PropsWithChildren<SidebarLayoutProps>> = ({
   children,
-  width,
   hasBorder = true,
   placement = 'right',
   hideOnMobile = true,
@@ -69,7 +67,8 @@ const SidebarLayout: React.FC<React.PropsWithChildren<SidebarLayoutProps>> = ({
   const height = useRefDimensions(ref);
   const { SCALES } = useScale();
   const isActive = (isMobile && !hideOnMobile) || !isMobile;
-  const sideBarWidth = width ? (isNumber(width) ? width + 'px' : width) : '230px';
+  const sideBarWidth = SCALES.width(1, '320px');
+
   return (
     <>
       {isMobile && (
