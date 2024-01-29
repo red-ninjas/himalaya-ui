@@ -18,6 +18,7 @@ export interface SidebarLayoutProps {
   hasBorder?: boolean;
   hideOnMobile?: boolean;
   placement?: DrawerPlacement;
+  backgroundColor?: string;
 }
 
 const useRefDimensions = (ref: React.RefObject<HTMLDivElement>) => {
@@ -53,6 +54,7 @@ const SidebarLayout: React.FC<React.PropsWithChildren<SidebarLayoutProps>> = ({
   hasBorder = true,
   placement = 'right',
   hideOnMobile = true,
+  backgroundColor,
 }) => {
   const [content, sidebar] = pickChild(children, Sidebar);
   const [contentExtra, sidebarWithoutTypes] = pickChild(content, SidebarWithoutTypes);
@@ -70,7 +72,14 @@ const SidebarLayout: React.FC<React.PropsWithChildren<SidebarLayoutProps>> = ({
   return (
     <>
       {isMobile && (
-        <Drawer width={SCALES.width(1, '85%')} visible={isEnabled} wrapClassName={'sidebar-drawer'} onClose={() => setIsEnabled(false)} placement={placement}>
+        <Drawer
+          padding={0}
+          width={SCALES.width(1, '85%')}
+          visible={isEnabled}
+          wrapClassName={'sidebar-drawer'}
+          onClose={() => setIsEnabled(false)}
+          placement={placement}
+        >
           <div className="sidebar-content">
             <InnerScroll width={'100%'} height={'100%'} type="vertical">
               {sidebar}
@@ -159,6 +168,7 @@ const SidebarLayout: React.FC<React.PropsWithChildren<SidebarLayoutProps>> = ({
             width: 100%;
             position: relative;
             padding: ${SCALES.pt(0)} ${SCALES.pr(1)} ${SCALES.pb(0)} ${SCALES.pl(1)};
+            background: ${backgroundColor ? backgroundColor : 'transparent'};
           }
 
           .border-right {
