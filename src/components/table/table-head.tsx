@@ -58,6 +58,10 @@ const TableHead = <TableDataItem extends TableDataItemBase>(props: TableHeadProp
           font-size: inherit;
         }
 
+        :global(tbody tr:last-child td) {
+          border-bottom: 0 !important;
+        }
+
         th {
           padding: ${layout.gapHalf} ${layout.gapQuarter};
           font-size: calc(0.8 * var(--table-font-size));
