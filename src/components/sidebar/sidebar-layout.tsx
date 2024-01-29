@@ -12,9 +12,10 @@ import useScale, { withScale } from '../use-scale';
 import Drawer from '../drawer';
 import { InnerScroll } from '../scroll';
 import { DrawerPlacement } from '../drawer/helper';
+import { isNumber } from 'lodash';
 
 export interface SidebarLayoutProps {
-  width?: number;
+  width?: string | number;
   hasBorder?: boolean;
   hideOnMobile?: boolean;
   placement?: DrawerPlacement;
@@ -68,7 +69,7 @@ const SidebarLayout: React.FC<React.PropsWithChildren<SidebarLayoutProps>> = ({
   const height = useRefDimensions(ref);
   const { SCALES } = useScale();
   const isActive = (isMobile && !hideOnMobile) || !isMobile;
-  const sideBarWidth = width ? width : `230px`;
+  const sideBarWidth = width ? (isNumber(width) ? width + 'px' : width) : '230px';
   return (
     <>
       {isMobile && (
@@ -154,6 +155,7 @@ const SidebarLayout: React.FC<React.PropsWithChildren<SidebarLayoutProps>> = ({
             overflow: hidden;
             border-right: ${hasBorder ? '1px solid ' + theme.palette.border : '0px solid transparent'};
             padding: 0;
+            background: ${backgroundColor ? backgroundColor : 'transparent'};
           }
 
           :global(.sidebar-drawer) {
@@ -168,7 +170,6 @@ const SidebarLayout: React.FC<React.PropsWithChildren<SidebarLayoutProps>> = ({
             width: 100%;
             position: relative;
             padding: ${SCALES.pt(0)} ${SCALES.pr(1)} ${SCALES.pb(0)} ${SCALES.pl(1)};
-            background: ${backgroundColor ? backgroundColor : 'transparent'};
           }
 
           .border-right {
