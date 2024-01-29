@@ -1,18 +1,17 @@
 'use client';
-import { pickChild } from '../utils/collections';
 import React, { createRef, useEffect, useState } from 'react';
-import { Sidebar } from './types';
+import { pickChild } from '../utils/collections';
 import { default as SidebarWithoutTypes } from './sidebar';
+import { Sidebar } from './types';
 
+import Drawer from '../drawer';
+import { DrawerPlacement } from '../drawer/helper';
+import { InnerScroll } from '../scroll';
+import { useConfigs } from '../use-context';
 import useLayout from '../use-layout';
+import useScale, { withScale } from '../use-scale';
 import useSidebar from '../use-sidebar';
 import useTheme from '../use-theme';
-import { useConfigs } from '../use-context';
-import useScale, { withScale } from '../use-scale';
-import Drawer from '../drawer';
-import { InnerScroll } from '../scroll';
-import { DrawerPlacement } from '../drawer/helper';
-import { isNumber } from 'lodash';
 
 export interface SidebarLayoutProps {
   hasBorder?: boolean;
