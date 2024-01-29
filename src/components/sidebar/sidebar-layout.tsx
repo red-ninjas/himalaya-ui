@@ -11,11 +11,13 @@ import { useConfigs } from '../use-context';
 import useScale, { withScale } from '../use-scale';
 import Drawer from '../drawer';
 import { InnerScroll } from '../scroll';
+import { DrawerPlacement } from '../drawer/helper';
 
 export interface SidebarLayoutProps {
   width?: number;
   hasBorder?: boolean;
   hideOnMobile?: boolean;
+  placement?: DrawerPlacement;
 }
 
 const useRefDimensions = (ref: React.RefObject<HTMLDivElement>) => {
@@ -45,7 +47,13 @@ const useRefDimensions = (ref: React.RefObject<HTMLDivElement>) => {
   return height;
 };
 
-const SidebarLayout: React.FC<React.PropsWithChildren<SidebarLayoutProps>> = ({ children, width, hasBorder = true, hideOnMobile = true }) => {
+const SidebarLayout: React.FC<React.PropsWithChildren<SidebarLayoutProps>> = ({
+  children,
+  width,
+  hasBorder = true,
+  placement = 'right',
+  hideOnMobile = true,
+}) => {
   const [content, sidebar] = pickChild(children, Sidebar);
   const [contentExtra, sidebarWithoutTypes] = pickChild(content, SidebarWithoutTypes);
 
@@ -62,7 +70,7 @@ const SidebarLayout: React.FC<React.PropsWithChildren<SidebarLayoutProps>> = ({ 
   return (
     <>
       {isMobile && (
-        <Drawer width={SCALES.width(1, '85%')} visible={isEnabled} wrapClassName={'sidebar-drawer'} onClose={() => setIsEnabled(false)} placement="right">
+        <Drawer width={SCALES.width(1, '85%')} visible={isEnabled} wrapClassName={'sidebar-drawer'} onClose={() => setIsEnabled(false)} placement={placement}>
           <div className="sidebar-content">
             <InnerScroll width={'100%'} height={'100%'} type="vertical">
               {sidebar}
