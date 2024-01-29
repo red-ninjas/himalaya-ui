@@ -19,6 +19,7 @@ interface Props<TableDataItem extends TableDataItemBase> {
   onChange?: TableOnChange<TableDataItem>;
   className?: string;
   rowClassName?: TableRowClassNameHandler<TableDataItem>;
+  hasBorder?: boolean;
 }
 
 type NativeAttrs = Omit<React.TableHTMLAttributes<any>, keyof Props<any>>;
@@ -31,6 +32,7 @@ function TableComponent<TableDataItem extends TableDataItemBase>(tableProps: Rea
     data: customData,
     initialData = [],
     hover = true,
+    hasBorder = true,
     emptyText = '',
     onRow,
     onCell,
@@ -82,7 +84,7 @@ function TableComponent<TableDataItem extends TableDataItemBase>(tableProps: Rea
   return (
     <TableContext.Provider value={contextValue}>
       <table ref={ref} className={className} {...props}>
-        <TableHead columns={columns} width={width} />
+        <TableHead columns={columns} width={width} hasBorder={hasBorder} />
         <TableBody<TableDataItem> data={data} hover={hover} emptyText={emptyText} onRow={onRow} onCell={onCell} rowClassName={rowClassName} />
         {children}
 

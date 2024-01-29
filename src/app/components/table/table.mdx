@@ -1,10 +1,10 @@
-import { Layout, Playground, PlaygroundTitle, Attributes } from 'lib/components'
-import { Table, Spacer, Code, Text, Button } from 'components'
+import { Layout, Playground, PlaygroundTitle, Attributes } from 'lib/components';
+import { Table, Spacer, Code, Text, Button } from 'components';
 
 export const meta = {
   title: 'Table',
   group: 'Data Display',
-}
+};
 
 # Table
 
@@ -138,7 +138,7 @@ Display tabular data in format.
     )
   }
   return (
-    <Table data={data} onChange={value => setData(value)}>
+    <Table data={data}  onChange={value => setData(value)}>
       <Table.Column prop="property" label="property" />
       <Table.Column prop="description" label="description" />
       <Table.Column prop="operation" label="operation" width={150} render={renderAction} />
@@ -159,7 +159,7 @@ Display tabular data in format.
     { property: <Text b>bold</Text>, description: 'Bold style', type: <Code>boolean</Code>, default: <Code>true</Code> },
   ]
   return (
-    <Table data={data}>
+    <Table hasBorder={false} data={data}>
       <Table.Column prop="property" label="property" />
       <Table.Column prop="description" label="description" />
       <Table.Column prop="type">
@@ -174,23 +174,18 @@ Display tabular data in format.
 `}
 />
 
-<PlaygroundTitle
-  title="TypeScript Example"
-  desc="Get a better experience in TS by specifying a generic type."
-/>
+<PlaygroundTitle title="TypeScript Example" desc="Get a better experience in TS by specifying a generic type." />
 
 ```tsx
 type User = {
-  name: string
-  role: string
-  records: Array<{ date: string }>
-}
+  name: string;
+  role: string;
+  records: Array<{ date: string }>;
+};
 const renderHandler: TableColumnRender<User> = (value, rowData, index) => {
-  return <div>{rowData.date}</div>
-}
-const data: Array<User> = [
-  { name: 'witt', role: 'admin', records: [{ date: '2021-05-01' }] },
-]
+  return <div>{rowData.date}</div>;
+};
+const data: Array<User> = [{ name: 'witt', role: 'admin', records: [{ date: '2021-05-01' }] }];
 
 const MyComponent = () => (
   <Table<User> data={data}>
@@ -198,7 +193,7 @@ const MyComponent = () => (
     <Table.Column<User> prop="role" label="role" />
     <Table.Column<User> prop="records" label="records" render={renderHandler} />
   </Table>
-)
+);
 ```
 
 <Attributes edit="/app/components/table.mdx">
@@ -214,6 +209,7 @@ const MyComponent = () => (
 | **onCell**       | callback cell's content by click             | [TableOnCellClick](#tableoncellclick)                 | -                  | -       |
 | **onChange**     | data change event                            | `(data: T) => void`                                   | -                  | -       |
 | **rowClassName** | set className to each row                    | [TableRowClassNameHandler](#tablerowclassnamehandler) | -                  | -       |
+| **hasBorder**    | Header has border                            | `boolean`                                             | -                  | `true`  |
 | ...              | native props                                 | `TableHTMLAttributes`                                 | `'id', 'name' ...` | -       |
 
 <Attributes.Title>Table.Column.Props</Attributes.Title>
@@ -229,33 +225,25 @@ const MyComponent = () => (
 <Attributes.Title>TableOnRowClick</Attributes.Title>
 
 ```ts
-type TableOnRowClick<T> = (rowData: T, rowIndex: number) => void
+type TableOnRowClick<T> = (rowData: T, rowIndex: number) => void;
 ```
 
 <Attributes.Title>TableOnCellClick</Attributes.Title>
 
 ```ts
-type TableOnCellClick<T> = (
-  value: T[keyof T],
-  rowIndex: number,
-  columnIndex: number,
-) => void
+type TableOnCellClick<T> = (value: T[keyof T], rowIndex: number, columnIndex: number) => void;
 ```
 
 <Attributes.Title>TableRowClassNameHandler</Attributes.Title>
 
 ```ts
-type TableRowClassNameHandler<T> = (rowData: T, rowIndex: number) => string
+type TableRowClassNameHandler<T> = (rowData: T, rowIndex: number) => string;
 ```
 
 <Attributes.Title>TableColumnRender</Attributes.Title>
 
 ```ts
-type TableColumnRender<T extends Record> = (
-  value: T[keyof T],
-  rowData: T,
-  rowIndex: number,
-) => JSX.Element | void
+type TableColumnRender<T extends Record> = (value: T[keyof T], rowData: T, rowIndex: number) => JSX.Element | void;
 ```
 
 </Attributes>

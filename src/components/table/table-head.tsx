@@ -1,13 +1,15 @@
 'use client';
 import React, { useMemo } from 'react';
+import useLayout from '../use-layout';
 import useTheme from '../use-theme';
 import { TableAbstractColumn, TableDataItemBase } from './table-types';
-import useLayout from '../use-layout';
+import useClasses from '../use-classes';
 
 interface Props<TableDataItem extends TableDataItemBase> {
   width: number;
   columns: Array<TableAbstractColumn<TableDataItem>>;
   className?: string;
+  hasBorder?: boolean;
 }
 
 type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props<any>>;
@@ -29,7 +31,7 @@ const makeColgroup = <TableDataItem extends TableDataItemBase>(width: number, co
   );
 };
 
-const TableHead = <TableDataItem extends TableDataItemBase>(props: TableHeadProps<TableDataItem>) => {
+const TableHead = <TableDataItem extends TableDataItemBase>({ hasBorder = true, ...props }: TableHeadProps<TableDataItem>) => {
   const theme = useTheme();
   const layout = useLayout();
   const { columns, width } = props as TableHeadProps<TableDataItem>;
@@ -45,7 +47,7 @@ const TableHead = <TableDataItem extends TableDataItemBase>(props: TableHeadProp
       <thead>
         <tr>
           {columns.map((column, index) => (
-            <th key={`table-th-${String(column.prop)}-${index}`} className={column.className}>
+            <th key={`table-th-${String(column.prop)}-${index}`} className={useClasses(column.className, { 'has-border': hasBorder })}>
               <div className="thead-box">{column.label}</div>
             </th>
           ))}
@@ -72,11 +74,14 @@ const TableHead = <TableDataItem extends TableDataItemBase>(props: TableHeadProp
           color: ${theme.palette.accents_5};
           background: transparent;
           border-bottom: 1px solid ${theme.palette.border};
-          border-top: 1px solid ${theme.palette.border};
           border-radius: 0;
         }
 
-        th:nth-child(1) {
+        th.has-border {
+          border-top: 1px solid ${theme.palette.border};
+        }
+
+        th.has-border:nth-child(1) {
           border-bottom: 1px solid ${theme.palette.border};
           border-left: 1px solid ${theme.palette.border};
           border-top: 1px solid ${theme.palette.border};
@@ -84,7 +89,7 @@ const TableHead = <TableDataItem extends TableDataItemBase>(props: TableHeadProp
           border-bottom-left-radius: ${theme.style.radius};
         }
 
-        th:last-child {
+        th.has-border:last-child {
           border-bottom: 1px solid ${theme.palette.border};
           border-right: 1px solid ${theme.palette.border};
           border-top: 1px solid ${theme.palette.border};
