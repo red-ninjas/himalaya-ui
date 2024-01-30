@@ -70,13 +70,7 @@ const SkeletonComponent: React.FC<React.PropsWithChildren<SkeletonProps>> = ({
           width: 100%;
           z-index: 2;
         }
-        @media (prefers-reduced-motion: reduce) {
-          .skeleton,
-          .skeleton:before {
-            -webkit-animation: none;
-            animation: none;
-          }
-        }
+
         .skeleton.stop,
         .skeleton.stop:before {
           -webkit-animation: none;
