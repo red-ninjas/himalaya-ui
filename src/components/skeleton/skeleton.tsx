@@ -13,7 +13,6 @@ interface Props {
   show?: boolean;
   minHeight?: number;
   animated?: boolean;
-  height?: number;
 }
 
 type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
@@ -28,7 +27,6 @@ const SkeletonComponent: React.FC<React.PropsWithChildren<SkeletonProps>> = ({
   minHeight = 24,
   className = '',
   animated = true,
-  height,
   ...props
 }: React.PropsWithChildren<SkeletonProps>) => {
   const Component = component;
