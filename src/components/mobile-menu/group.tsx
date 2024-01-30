@@ -33,7 +33,7 @@ const MobileNavigationGroup: React.FC<PropsWithChildren<MobileNavigationGroupPro
         <div className="child-elements">{childElements}</div>
         <style jsx>{`
           .child-elements {
-            padding: ${SCALES.pt(0.25)} ${SCALES.pr(0.25)} ${SCALES.pb(0.25)} ${SCALES.pl(0.25)};
+            padding: ${SCALES.pt(0.25)} ${SCALES.pr(0)} ${SCALES.pb(0.25)} ${SCALES.pl(0)};
           }
           .child-grid {
             visibility: hidden;
@@ -169,6 +169,8 @@ const MobileNavigationGroup: React.FC<PropsWithChildren<MobileNavigationGroupPro
         .has-chevron {
           padding-right: ${SCALES.pr(1.3)};
           color: ${theme.palette.foreground};
+          font-weight: 600;
+          font-size: ${SCALES.font(1)};
           justify-content: space-between;
         }
 

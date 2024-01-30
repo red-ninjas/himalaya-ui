@@ -13,7 +13,7 @@ const HybridLink: React.FC<HybridLinkProps> = ({ href = '#', children, ...props 
   if (isRelativeUrl) {
     return (
       <NextLink href={href} passHref legacyBehavior>
-        <Link color block {...props}>
+        <Link underline style={{}} color {...props}>
           {children}
         </Link>
       </NextLink>
@@ -21,7 +21,7 @@ const HybridLink: React.FC<HybridLinkProps> = ({ href = '#', children, ...props 
   }
 
   return (
-    <Link href={href} target="_blank" color icon={!isHomePage} rel="noreferrer nofollow" {...props}>
+    <Link href={href} target="_blank" color underline icon={!isHomePage} rel="noreferrer nofollow" {...props}>
       {children}
     </Link>
   );

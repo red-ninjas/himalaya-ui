@@ -20,7 +20,7 @@ const MobileNavigationSubGroup: React.FC<PropsWithChildren<MobileNavigationSubGr
         <div className="sub-group-inner">{childElements}</div>
         <style jsx>{`
           .sub-group {
-            padding: ${SCALES.pt(0)} ${SCALES.pr(0.55)} ${SCALES.pb(0)} ${SCALES.pl(0.55)};
+            padding: ${SCALES.pt(0)} ${SCALES.pr(0.8)} ${SCALES.pb(0)} ${SCALES.pl(0.8)};
           }
           .sub-group-title {
             color: ${theme.palette.accents_5};

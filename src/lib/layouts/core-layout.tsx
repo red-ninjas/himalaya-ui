@@ -167,21 +167,20 @@ export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
             color: ${theme.palette.warning.value};
           }
           span.maybe-class-name {
-            color: ${theme.palette.tertiary.value};
+            color: ${theme.palette.code};
           }
           span.token.string {
-            color: ${theme.palette.accents_5};
+            color: ${theme.palette.success.value};
           }
           span.token.comment {
             color: ${theme.palette.accents_3};
           }
           span.keyword {
-            color: ${theme.palette.primary.value};
+            color: ${theme.palette.tertiary.value};
           }
           span.plain-text {
             color: ${theme.palette.accents_3};
           }
-
           .logo {
             padding-bottom: 6px;
             color: ${theme.palette.foreground};

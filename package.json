@@ -1,6 +1,6 @@
 {
   "name": "@himalaya-ui/core",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "main": "dist/bundle/index.js",
   "module": "dist/bundle/esm/index.js",
   "types": "dist/bundle/esm/index.d.ts",
@@ -69,7 +69,7 @@
     "@babel/preset-env": "^7.22.20",
     "@babel/preset-react": "^7.22.15",
     "@babel/preset-typescript": "^7.23.0",
-    "@fontsource-variable/inter": "^5.0.3",
+    "@fontsource-variable/instrument-sans": "^5.0.3",
     "@jest/globals": "^29.7.0",
     "@mapbox/rehype-prism": "^0.8.0",
     "@mdx-js/loader": "^2.3.0",
@@ -179,6 +179,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.23.1",
+    "@fontsource-variable/roboto-mono": "^5.0.17",
     "@splidejs/splide": "^4.1.4",
     "axios": "^1.6.2",
     "fancy-canvas": "^2.1.0",

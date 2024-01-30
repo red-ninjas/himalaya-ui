@@ -66,7 +66,7 @@ const SidebarLayout: React.FC<React.PropsWithChildren<SidebarLayoutProps>> = ({
   const height = useRefDimensions(ref);
   const { SCALES } = useScale();
   const isActive = (isMobile && !hideOnMobile) || !isMobile;
-  const sideBarWidth = SCALES.width(1, '320px');
+  const sideBarWidth = SCALES.width(1, '285px');
 
   return (
     <>

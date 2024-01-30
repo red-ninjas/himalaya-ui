@@ -48,16 +48,11 @@ const LinkComponent = React.forwardRef<HTMLAnchorElement, React.PropsWithChildre
             height: ${SCALES.height(1, 'auto')};
             margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
             padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
+            text-decoration: ${decoration};
           }
           .block {
             padding: ${SCALES.pt(0.125)} ${SCALES.pr(0.25)} ${SCALES.pb(0.125)} ${SCALES.pl(0.25)};
             margin: ${SCALES.mt(0)} ${SCALES.mr(-0.125)} ${SCALES.mb(0)} ${SCALES.ml(-0.125)};
-          }
-
-          .link:hover,
-          .link:active,
-          .link:focus {
-            text-decoration: ${decoration};
           }
 
           .link:hover {

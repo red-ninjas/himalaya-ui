@@ -151,42 +151,42 @@ const CssBaseline: React.FC = () => {
       }
 
       h1 {
-        font-size: 2.5rem;
-        line-height: 3.5rem;
-        letter-spacing: -0.058125rem;
+        font-size: 2.1875rem;
+        line-height: 2.5rem;
+        letter-spacing: 0;
         font-weight: 600;
       }
 
       h2 {
-        font-size: 2rem;
-        line-height: 2.5rem;
-        letter-spacing: -0.049375rem;
+        font-size: 1.6875rem;
+        line-height: 1.875rem;
+        letter-spacing: 0;
         font-weight: 600;
       }
 
       h3 {
-        font-size: 1.5rem;
-        line-height: 2rem;
-        letter-spacing: -0.029375rem;
+        font-size: 1.1875rem;
+        line-height: 1.4375rem;
+        letter-spacing: 0;
         font-weight: 600;
       }
 
       h4 {
-        font-size: 1.25rem;
-        line-height: 1.5rem;
-        letter-spacing: -0.020625rem;
+        font-size: 1.0625rem;
+        line-height: 1.25rem;
+        letter-spacing: 0;
         font-weight: 600;
       }
 
       h5 {
-        font-size: 1rem;
-        line-height: 1.5rem;
+        font-size: 0.95rem;
+        line-height: 1.2rem;
         font-weight: 600;
       }
 
       h6 {
-        font-size: 0.87rem;
-        line-height: 1.25rem;
+        font-size: 0.75rem;
+        line-height: 1rem;
         font-weight: 600;
       }
 
@@ -213,6 +213,7 @@ const CssBaseline: React.FC = () => {
         font-family: ${theme.font.mono};
         font-size: 0.9em;
         white-space: pre-wrap;
+        font-weight: normal;
       }
 
       code:before,
@@ -235,7 +236,7 @@ const CssBaseline: React.FC = () => {
       }
 
       pre code {
-        color: ${theme.palette.foreground};
+        color: ${theme.palette.code};
         font-size: 1em;
         line-height: 1.25em;
         white-space: pre;

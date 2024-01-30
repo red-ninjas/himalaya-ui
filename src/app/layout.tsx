@@ -1,4 +1,6 @@
-import '@fontsource-variable/inter';
+import '@fontsource-variable/instrument-sans';
+import '@fontsource-variable/roboto-mono';
+
 import { Analytics } from '@vercel/analytics/react';
 import { Providers } from '../lib/providers';
 

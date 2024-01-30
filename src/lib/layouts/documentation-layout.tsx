@@ -105,7 +105,7 @@ export default function DocumentationLayout({ children }) {
 
         .markdown p,
         .markdown small {
-          color: ${theme.palette.accents_5};
+          color: ${theme.palette.paragraph};
         }
       `}</style>
     </ContentLayout>

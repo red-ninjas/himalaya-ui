@@ -13,7 +13,7 @@ export default function Index() {
     <>
       <div className="hero">
         <div className="hero-inner">
-          <Hero style={{ maxWidth: 1020 }} scrollToId="services">
+          <Hero scrollToId="services">
             <Hero.Tag>HIMALAYA UI</Hero.Tag>
             <Hero.Title>
               Scaling Heights of Design Excellence: Your UI Journey <span style={{ textDecoration: 'underline', fontWeight: 300 }}>Begins Here!</span>
@@ -36,9 +36,7 @@ export default function Index() {
             </Hero.Actions>
           </Hero>
         </div>
-        <div className="hero-bg">
-          <Background></Background>
-        </div>
+        <div className="hero-bg"></div>
       </div>
 
       <div id="services">
@@ -121,6 +119,7 @@ export default function Index() {
           width: 100%;
           top: 0;
           height: 100%;
+          background: ${theme.type == 'dark' ? '#141415' : theme.palette.accents_darker};
         }
       `}</style>
     </>

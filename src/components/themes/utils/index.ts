@@ -38,25 +38,32 @@ export interface GenerateColorProps {
   link?: string;
   code?: string;
   selection?: string;
+  paragraph?: string;
+  codeBg?: string;
 }
 
 export const generateColors = (newConfig?: GenerateColorProps): UIThemesColors => {
   return {
-    primary: generateColor(newConfig?.primary || '#0f8cc0'),
-    secondary: generateColor(newConfig?.secondary || '#444'),
-    tertiary: generateColor(newConfig?.tertiary || '#fb0065'),
-    success: generateColor(newConfig?.success || '#61c3ab'),
-    error: generateColor(newConfig?.error || '#eb5757'),
-    warning: generateColor(newConfig?.warning || '#ffc107'),
-    link: generateColor(newConfig?.link || '#0f9ed9'),
-    code: newConfig?.code || '#0f8cc0',
-    selection: newConfig?.selection || '#f81ce5',
+    primary: generateColor(newConfig?.primary || '#6e56cf'),
+    secondary: generateColor(newConfig?.secondary || '#232225'),
+    tertiary: generateColor(newConfig?.tertiary || '#89DDFF'),
+    success: generateColor(newConfig?.success || '#C3E88D'),
+    error: generateColor(newConfig?.error || '#F07178'),
+    warning: generateColor(newConfig?.warning || '#FFCB6B'),
+    link: generateColor(newConfig?.link || '#baa7ff'),
+    code: newConfig?.code || '#EEFFFF',
+    codeBg: newConfig?.code || '#232225',
+    selection: newConfig?.selection || '#0437A2',
+    paragraph: newConfig?.paragraph || '#B5B2BC',
   };
 };
 
 export const generateAccents = (background: string, foreground: string): UIThemesAccents => {
   const generateColor = generateSteppedColors(background, foreground);
+
+  const color = new Color(background);
   return {
+    accents_darker: color.shade(0.075).hex,
     accents_0: generateColor[1],
     accents_1: generateColor[3],
     accents_2: generateColor[5],

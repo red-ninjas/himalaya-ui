@@ -24,7 +24,7 @@ const CodeComponent: React.FC<React.PropsWithChildren<CodeProps>> = ({
   const { background, border } = useMemo(() => {
     return {
       border: theme.palette.border,
-      background: 'transparent',
+      background: theme.palette.codeBg,
     };
   }, [theme.palette]);
 
@@ -44,12 +44,13 @@ const CodeComponent: React.FC<React.PropsWithChildren<CodeProps>> = ({
         .pre {
           max-width: 100%;
           border: 1px solid ${border};
-          font-size: ${SCALES.font(0.875)};
+          font-size: ${SCALES.font(0.925)};
           width: ${SCALES.width(1, 'initial')};
           height: ${SCALES.height(1, 'auto')};
           margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
           border-radius: ${theme.style.radius};
           background-color: ${background};
+          position: relative;
         }
         pre {
           max-width: 100%;
@@ -58,6 +59,7 @@ const CodeComponent: React.FC<React.PropsWithChildren<CodeProps>> = ({
           margin: 0;
           line-height: 1.5em;
           padding: ${SCALES.pt(1.1)} ${SCALES.pr(1)} ${SCALES.pb(1.1)} ${SCALES.pl(1)};
+          position: relative;
         }
         .dark {
           color: white;
@@ -73,20 +75,26 @@ const CodeComponent: React.FC<React.PropsWithChildren<CodeProps>> = ({
           justify-content: space-between;
           border-radius: ${theme.style.radius};
           background-color: transparent;
+          position: absolute;
+          top: 0;
+          left: 0;
+          z-index: 2;
         }
         .name {
-          border: 1px solid ${theme.palette.border};
-          background-color: ${theme.palette.accents_0};
+          background-color: ${theme.palette.codeBg};
           color: ${theme.palette.accents_5};
           height: auto;
           line-height: 1.35em;
-          display: inline-flex;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+          display: inline-block;
           align-items: center;
+          text-align: center;
           font-size: ${SCALES.font(0.8125)};
           padding: ${SCALES.font(0.32)} ${SCALES.font(0.5)} ${SCALES.font(0.32)} ${SCALES.font(0.5)};
-          width: auto;
-          border-top-left-radius: calc(${theme.style.radius} - 1px);
-          border-bottom-right-radius: ${theme.style.radius};
+          width: 100%;
+
+          border-top-left-radius: ${theme.style.radius};
+          border-top-right-radius: ${theme.style.radius};
         }
       `}</style>
     </div>

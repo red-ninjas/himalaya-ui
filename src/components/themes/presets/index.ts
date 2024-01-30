@@ -14,6 +14,7 @@ export enum GradientPositionsEnum {
 
 export type GradientPositions = GradientPositionsEnum | number;
 export interface UIThemesAccents {
+  accents_darker: string;
   accents_0: string;
   accents_1: string;
   foreground: string;
@@ -37,7 +38,9 @@ export interface UIThemesColors {
   warning: ColorVariable;
   link: ColorVariable;
   code: string;
+  paragraph: string;
   selection: string;
+  codeBg: string;
 }
 
 export interface UIThemesCore {
