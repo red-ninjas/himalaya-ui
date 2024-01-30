@@ -1,12 +1,11 @@
 'use client';
 
 import React from 'react';
-import useTheme from '../use-theme';
-import { useScale, withScale } from '../use-scale';
 import useClasses from '../use-classes';
+import { useScale, withScale } from '../use-scale';
+import useTheme from '../use-theme';
 
 interface Props {
-  width?: number;
   squared?: boolean;
   rounded?: boolean;
   component?: keyof React.JSX.IntrinsicElements;
@@ -23,7 +22,6 @@ export type SkeletonProps = Props & NativeAttrs;
 const SkeletonComponent: React.FC<React.PropsWithChildren<SkeletonProps>> = ({
   component = 'span' as keyof React.JSX.IntrinsicElements,
   children,
-  width,
   squared = false,
   rounded = false,
   show = false,
@@ -43,8 +41,8 @@ const SkeletonComponent: React.FC<React.PropsWithChildren<SkeletonProps>> = ({
       {children}
       <style jsx>{`
         .skeleton {
-          width: ${SCALES.width(width ?? 1, 'initial')};
-          height: ${SCALES.height(height ?? 1, 'initial')};
+          width: ${SCALES.width(1, 'initial')};
+          height: ${SCALES.height(1, 'initial')};
           display: block;
           min-height: ${minHeight}px;
           position: relative;
