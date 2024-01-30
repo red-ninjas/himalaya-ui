@@ -35,7 +35,7 @@ const TableColumn = <TableDataItem extends TableDataItemBase>(columnProps: React
       className,
       renderHandler,
     });
-  }, [children, label, safeProp, width, className]);
+  }, [children, label, safeProp, width, className, renderHandler]);
 
   useEffect(() => {
     return () => {
