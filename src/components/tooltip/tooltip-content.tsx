@@ -84,6 +84,7 @@ const TooltipContent: React.FC<React.PropsWithChildren<Props>> = ({ children, pa
             box-shadow: ${hasShadow ? theme.expressiveness.shadowMedium : 'none'};
             width: ${SCALES.width(1, 'auto')};
             height: ${SCALES.height(1, 'auto')};
+            border: 1px solid ${theme.palette.border};
           }
 
           .tooltip-content.transcluent-popover {
