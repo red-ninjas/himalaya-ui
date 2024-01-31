@@ -36,10 +36,9 @@ const Sidebar: React.FC<PropsWithChildren<SidebarPropsNative>> = ({ children, he
       <style jsx>{`
         .sidebar-inner {
           width: 100%;
-
           overflow-y: auto;
           overflow-x: hidden;
-          height: 100%;
+          height: auto;
           box-sizing: border-box;
           display: flex;
           flex-direction: column;
