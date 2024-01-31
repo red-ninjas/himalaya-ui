@@ -3,7 +3,7 @@
 import { Button, FadeInEffect, Footer, FooterBottom, FooterNavigation, Hero, Link, PageLayout, Section, Text, useTheme } from 'components';
 import { Code } from 'components/icons';
 import { capitalize } from 'components/utils/collections';
-import { Background, Facts, Partners, Portfolio, RunningSlogan, Services } from 'lib/components';
+import { Facts, Partners, Portfolio, RunningSlogan, Services } from 'lib/components';
 import { BrandLogo } from 'lib/components/icons';
 import metaData from '../lib/data/metadata.json';
 
