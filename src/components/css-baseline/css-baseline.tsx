@@ -210,6 +210,7 @@ const CssBaseline: React.FC = () => {
 
       code {
         color: ${theme.palette.code};
+        background-color: ${theme.palette.codeBg};
         font-family: ${theme.font.mono};
         font-size: 0.9em;
         white-space: pre-wrap;

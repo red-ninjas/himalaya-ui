@@ -57,11 +57,7 @@ const InnerScrollComponent: React.FC<React.PropsWithChildren<InnerScrollProps>> 
       {...props}
     >
       {children}
-      <style jsx>{`
-        .inner-scroll {
-          scrollbar-color: ${theme.palette.accents_1} ${theme.palette.accents_2};
-          scrollbar-width: var(--page-scrollbar-width, 6px);
-        }
+      <style jsx global>{`
         .inner-scroll::-webkit-scrollbar-track {
           border-radius: ${theme.style.radius};
           cursor: pointer;

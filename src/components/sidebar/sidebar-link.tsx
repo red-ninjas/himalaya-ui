@@ -61,12 +61,12 @@ const SidebarLink: React.FC<PropsWithChildren<SideBarLinkProp>> = ({ children, i
           }
 
           .sidebar-link.active {
-            background: ${activeBackground || theme.palette.secondary.value};
+            background: ${activeBackground || theme.palette.secondary.light};
           }
 
           .sidebar-link.active .sidebar-link-title,
           .sidebar-link.active .sidebar-link-icon {
-            color: ${activeColor || theme.palette.primary.contrast};
+            color: ${activeColor || theme.palette.secondary.contrast};
           }
         `}</style>
       </a>

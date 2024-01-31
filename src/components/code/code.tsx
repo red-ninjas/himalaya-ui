@@ -75,9 +75,7 @@ const CodeComponent: React.FC<React.PropsWithChildren<CodeProps>> = ({
           justify-content: space-between;
           border-radius: ${theme.style.radius};
           background-color: transparent;
-          position: absolute;
-          top: 0;
-          left: 0;
+
           z-index: 2;
         }
         .name {
