@@ -17,7 +17,10 @@ export interface HeaderProps {
   transcluent?: boolean;
 }
 
-const HeaderComponent: React.FC<HeaderProps> = ({ children, transcluent = true }) => {
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof HeaderProps>;
+export type HeaderPropsNative = HeaderProps & NativeAttrs;
+
+const HeaderComponent: React.FC<HeaderPropsNative> = ({ children, transcluent = true, ...props }) => {
   const theme = useTheme();
   const layout = useLayout();
   const { SCALES } = useScale();
@@ -55,6 +58,7 @@ const HeaderComponent: React.FC<HeaderProps> = ({ children, transcluent = true }
           'header-outer': true,
           transcluent: transcluent,
         })}
+        {...props}
       >
         <ContentLayout paddingTop={0} paddingBottom={0}>
           <div className="navigation">
