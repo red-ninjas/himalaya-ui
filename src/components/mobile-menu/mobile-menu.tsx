@@ -9,7 +9,10 @@ import { useMobileMenu } from '../use-mobile-menu/mobile-menu-context';
 import useScale, { withScale } from '../use-scale';
 import useTheme from '../use-theme';
 
-const MobileMenu: React.FC<PropsWithChildren<MobileMenuProps>> = ({ children, direction = 'left', animationTime = 300 }) => {
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof MobileMenuProps>;
+export type MobileMenuPropsNative = MobileMenuProps & NativeAttrs;
+
+const MobileMenu: React.FC<PropsWithChildren<MobileMenuPropsNative>> = ({ children, direction = 'left', animationTime = 300, ...props }) => {
   const { SCALES } = useScale();
   const theme = useTheme();
 
@@ -33,6 +36,7 @@ const MobileMenu: React.FC<PropsWithChildren<MobileMenuProps>> = ({ children, di
         wrapClassName={'mobilemenu-drawer-nav'}
         onClose={() => setIsEnabled(false)}
         placement={direction}
+        {...props}
       >
         <div className="mobilemenu-nav-content">
           <InnerScroll width={'100%'} height={'100%'} type="vertical">
