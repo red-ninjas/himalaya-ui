@@ -12,6 +12,8 @@ export type TableColumnProps<TableDataItem extends TableDataItemBase> = {
   render?: TableColumnRender<TableDataItem>;
 };
 
+const defaultRenderHandler = () => {};
+
 const TableColumn = <TableDataItem extends TableDataItemBase>(columnProps: React.PropsWithChildren<TableColumnProps<TableDataItem>>) => {
   const {
     children,
@@ -19,7 +21,7 @@ const TableColumn = <TableDataItem extends TableDataItemBase>(columnProps: React
     label,
     width,
     className = '',
-    render: renderHandler = () => {},
+    render: renderHandler = defaultRenderHandler,
   } = columnProps as React.PropsWithChildren<TableColumnProps<TableDataItem>>;
   const { updateColumn, deleteColumn } = useTableContext<TableDataItem>();
   const safeProp = `${String(prop)}`.trim();
