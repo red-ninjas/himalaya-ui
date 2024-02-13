@@ -101,12 +101,12 @@ const CarouselComponent: React.FC<React.PropsWithChildren<SplideProps>> = ({
           <div className="splide__arrows">
             <button className="splide__arrow splide__arrow--prev" type="button">
               <div className="splide__arrow__inner">
-                <ArrowRight></ArrowRight>
+                <ArrowLeft />
               </div>
             </button>
             <button className="splide__arrow splide__arrow--next" type="button">
               <div className="splide__arrow__inner">
-                <ArrowLeft></ArrowLeft>
+                <ArrowRight />
               </div>
             </button>
           </div>
