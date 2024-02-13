@@ -170,8 +170,12 @@ const CarouseStyles: React.FC<
         }
 
         .splide__arrow--prev {
-          left: auto;
+          right: auto;
+          left: 0;
+        }
+        .splide__arrow--next {
           right: 0;
+          left: auto;
         }
 
         .splide__arrow__inner {
