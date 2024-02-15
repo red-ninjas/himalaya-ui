@@ -1,6 +1,5 @@
 'use client';
 
-import { ArrowLeft, ArrowRight } from '../icons';
 import { Splide as SplideCore } from '@splidejs/splide';
 import React, { useEffect, useLayoutEffect } from 'react';
 import { SliderOptions, SplideProps } from '.';
@@ -12,6 +11,7 @@ import { CarouselTrack } from './carousel-track';
 import { EVENTS } from './constants/events';
 import { classNames, merge } from './utils';
 import { omit } from 'lodash';
+import { CarouselButtons } from './carousel-buttons';
 
 const classOverride = {
   arrows: 'carousel_arrows',
@@ -34,7 +34,7 @@ const CarouselComponent: React.FC<React.PropsWithChildren<SplideProps>> = ({
 }) => {
   const { SCALES } = useScale();
   const splideRef = React.createRef<HTMLDivElement>();
-  const [, slides] = pickChild(children, CarouselItem);
+  const [buttons, slides] = pickChild(children, CarouselItem);
   let splide: SplideCore | undefined = undefined;
 
   const cleanUp = () => {
@@ -98,18 +98,8 @@ const CarouselComponent: React.FC<React.PropsWithChildren<SplideProps>> = ({
       <div className={classNames('splide', className)} ref={splideRef} {...htmlOps}>
         <div className="splide-inner">
           <CarouselTrack>{slides}</CarouselTrack>
-          <div className="splide__arrows">
-            <button className="splide__arrow splide__arrow--prev" type="button">
-              <div className="splide__arrow__inner">
-                <ArrowLeft />
-              </div>
-            </button>
-            <button className="splide__arrow splide__arrow--next" type="button">
-              <div className="splide__arrow__inner">
-                <ArrowRight />
-              </div>
-            </button>
-          </div>
+
+          <CarouselButtons>{buttons}</CarouselButtons>
         </div>
         <ul className="splide__pagination"></ul>
       </div>
