@@ -1,11 +1,11 @@
-import { Layout, Playground, Attributes } from 'lib/components'
-import { Carousel, CarouselItem } from 'components'
-import { Striked, RedNinjas } from 'lib/components/icons'
+import { Layout, Playground, Attributes } from 'lib/components';
+import { Carousel, CarouselItem } from 'components';
+import { Striked, RedNinjas } from 'lib/components/icons';
 
 export const meta = {
   title: 'Carousel',
   group: 'General',
-}
+};
 
 # Carousel
 
@@ -65,10 +65,12 @@ The `Carousel` UI component is a powerful tool for adding interactive sliders to
 <Attributes edit="/app/components/count-up.mdx">
 <Attributes.Title>Carousel.Props</Attributes.Title>
 
-| Attribute | Description           | Type             | Accepted values | Default |
-| --------- | --------------------- | ---------------- | --------------- | ------- |
-| options?  | Options for carousel. | `object`         | -               | -       |
-| ...       | native props          | `HTMLAttributes` | -               | -       |
+| Attribute | Description                         | Type             | Accepted values | Default |
+| --------- | ----------------------------------- | ---------------- | --------------- | ------- |
+| prevIcon? | Custom SVG Icon for previous button | `ReactNode`      | -               | -       |
+| nextIcon? | Custom SVG Icon for next button.    | `ReactNode`      | -               | -       |
+| options?  | Options for carousel.               | `object`         | -               | -       |
+| ...       | native props                        | `HTMLAttributes` | -               | -       |
 
 <Attributes.Title>Carousel.Options</Attributes.Title>
 
