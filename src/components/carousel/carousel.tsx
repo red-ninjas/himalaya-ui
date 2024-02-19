@@ -30,8 +30,6 @@ const CarouselComponent: React.FC<React.PropsWithChildren<SplideProps>> = ({
   transition,
   className,
   arrowSize = 38,
-  nextIcon,
-  prevIcon,
   ...props
 }) => {
   const { SCALES } = useScale();
@@ -39,6 +37,8 @@ const CarouselComponent: React.FC<React.PropsWithChildren<SplideProps>> = ({
   const [, slides] = pickChild(children, CarouselItem);
   let splide: SplideCore | undefined = undefined;
 
+  const {prevIcon, nextIcon} = options;
+  
   const cleanUp = () => {
     if (splide) {
       splide.destroy();

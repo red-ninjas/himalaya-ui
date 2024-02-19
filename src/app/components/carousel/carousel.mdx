@@ -1,6 +1,5 @@
 import { Layout, Playground, Attributes } from 'lib/components';
 import { Carousel, CarouselItem } from 'components';
-import { Striked, RedNinjas } from 'lib/components/icons';
 
 export const meta = {
   title: 'Carousel',
@@ -14,7 +13,7 @@ The `Carousel` UI component is a powerful tool for adding interactive sliders to
 <Playground
   title="Carousel example"
   desc="Example of Carousel"
-  scope={{ Carousel, CarouselItem, Striked, RedNinjas }}
+  scope={{ Carousel, CarouselItem }}
   code={`
 <Carousel
   options={{
@@ -67,8 +66,6 @@ The `Carousel` UI component is a powerful tool for adding interactive sliders to
 
 | Attribute | Description                         | Type             | Accepted values | Default |
 | --------- | ----------------------------------- | ---------------- | --------------- | ------- |
-| prevIcon? | Custom SVG Icon for previous button | `ReactNode`      | -               | -       |
-| nextIcon? | Custom SVG Icon for next button.    | `ReactNode`      | -               | -       |
 | options?  | Options for carousel.               | `object`         | -               | -       |
 | ...       | native props                        | `HTMLAttributes` | -               | -       |
 
@@ -97,6 +94,8 @@ The `Carousel` UI component is a powerful tool for adding interactive sliders to
 | gap?                 | The gap between slides. The CSS format is acceptable.                                                | `number` / `string`                           | -                                          | -                                            |
 | padding?             | Sets padding left/right or top/bottom of the carousel. The CSS format is acceptable.                 | `number` / `string`                           | -                                          | -                                            |
 | arrows?              | Determines whether to create/find arrows or not.                                                     | `boolean`                                     | `true` / `false`                           | `true`                                       |
+| prevIcon?            | Custom SVG Icon for previous button                                                                  | `ReactNode`                                   | -                                          | -                                            |
+| nextIcon?            | Custom SVG Icon for next button.                                                                     | `ReactNode`                                   | -                                          | -                                            |
 | pagination?          | Determines whether to create pagination (indicator dots) or not.                                     | `boolean`                                     | `true` / `false`                           | `true`                                       |
 | paginationKeyboard?  | Determines whether to enable keyboard shortcuts for pagination when it contains focus.               | `boolean`                                     | `true` / `false`                           | `true`                                       |
 | paginationDirection? | Explicitly sets the pagination direction.                                                            | `string`                                      | `ltr` / `rtl` / `ttb`                      | -                                            |
