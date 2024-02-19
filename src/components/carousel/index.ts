@@ -1,12 +1,15 @@
 import { EventMap, Splide } from '@splidejs/splide';
 
 import { ComponentConstructor, Options } from '@splidejs/splide';
-import { DOMAttributes, HTMLAttributes } from 'react';
+import { DOMAttributes, HTMLAttributes, ReactNode } from 'react';
 
 import { default as Carousel } from './carousel';
 export { CarouselItem } from './carousel-item';
 
-export type SliderOptions = Omit<Options, 'classes'>;
+export type SliderOptions = Omit<Options, 'classes'> & {
+  prevIcon?: ReactNode; 
+  nextIcon?: ReactNode;
+};;
 export type SplideEventHandlerMap = {
   onMounted: 'mounted';
   onReady: 'ready';
