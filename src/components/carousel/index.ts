@@ -7,9 +7,9 @@ import { default as Carousel } from './carousel';
 export { CarouselItem } from './carousel-item';
 
 export type SliderOptions = Omit<Options, 'classes'> & {
-  prevIcon?: ReactNode; 
+  prevIcon?: ReactNode;
   nextIcon?: ReactNode;
-};;
+};
 export type SplideEventHandlerMap = {
   onMounted: 'mounted';
   onReady: 'ready';

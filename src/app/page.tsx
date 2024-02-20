@@ -11,33 +11,28 @@ export default function Index() {
   const theme = useTheme();
   return (
     <>
-      <div className="hero-outside">
-        <div className="hero-outside-inner">
-          <Hero scrollToId="services">
-            <Hero.Tag>HIMALAYA UI</Hero.Tag>
-            <Hero.Title>
-              Scaling Heights of Design Excellence: Your UI Journey <span style={{ textDecoration: 'underline', fontWeight: 300 }}>Begins Here!</span>
-            </Hero.Title>
-            <Hero.Desc>
-              Elevate your Next.js web development with our open-source UI library, offering a comprehensive suite of customizable components for building
-              modern and user-friendly interfaces.
-            </Hero.Desc>
-            <Hero.Actions>
-              <Link href={'/guide/introduction'}>
-                <Button type="primary" auto icon={<Code></Code>} scale={1.3}>
-                  Documentation
-                </Button>
-              </Link>
-              <Link href={'/guide/installation'}>
-                <Button type="secondary" scale={1.3}>
-                  Installation
-                </Button>
-              </Link>
-            </Hero.Actions>
-          </Hero>
-        </div>
-        <div className="hero-bg"></div>
-      </div>
+      <Hero scrollToId="services" style={{ background: theme.type == 'dark' ? '#141415' : theme.palette.accents_darker }}>
+        <Hero.Tag>HIMALAYA UI</Hero.Tag>
+        <Hero.Title>
+          Scaling Heights of Design Excellence: Your UI Journey <span style={{ textDecoration: 'underline', fontWeight: 300 }}>Begins Here!</span>
+        </Hero.Title>
+        <Hero.Desc>
+          Elevate your Next.js web development with our open-source UI library, offering a comprehensive suite of customizable components for building modern
+          and user-friendly interfaces.
+        </Hero.Desc>
+        <Hero.Actions>
+          <Link href={'/guide/introduction'}>
+            <Button type="primary" auto icon={<Code></Code>} scale={1.3}>
+              Documentation
+            </Button>
+          </Link>
+          <Link href={'/guide/installation'}>
+            <Button type="secondary" scale={1.3}>
+              Installation
+            </Button>
+          </Link>
+        </Hero.Actions>
+      </Hero>
 
       <div id="services">
         <Section>
@@ -105,21 +100,6 @@ export default function Index() {
           flex-direction: column;
           align-items: center;
           padding: 180px 0px;
-        }
-
-        .hero-outside {
-          position: relative;
-        }
-        .hero-outside-inner {
-          position: relative;
-          z-index: 2;
-        }
-        .hero-bg {
-          position: absolute;
-          width: 100%;
-          top: 0;
-          height: 100%;
-          background: ${theme.type == 'dark' ? '#141415' : theme.palette.accents_darker};
         }
       `}</style>
     </>

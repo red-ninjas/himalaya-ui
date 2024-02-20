@@ -37,8 +37,8 @@ const CarouselComponent: React.FC<React.PropsWithChildren<SplideProps>> = ({
   const [, slides] = pickChild(children, CarouselItem);
   let splide: SplideCore | undefined = undefined;
 
-  const {prevIcon, nextIcon} = options;
-  
+  const { prevIcon, nextIcon } = options;
+
   const cleanUp = () => {
     if (splide) {
       splide.destroy();
@@ -102,14 +102,10 @@ const CarouselComponent: React.FC<React.PropsWithChildren<SplideProps>> = ({
           <CarouselTrack>{slides}</CarouselTrack>
           <div className="splide__arrows">
             <button className="splide__arrow splide__arrow--prev" type="button">
-              <div className="splide__arrow__inner">
-                {prevIcon ? prevIcon : <ArrowLeft />}
-              </div>
+              <div className="splide__arrow__inner">{prevIcon ? prevIcon : <ArrowLeft />}</div>
             </button>
             <button className="splide__arrow splide__arrow--next" type="button">
-              <div className="splide__arrow__inner">
-                {nextIcon ? nextIcon :<ArrowRight />}
-              </div>
+              <div className="splide__arrow__inner">{nextIcon ? nextIcon : <ArrowRight />}</div>
             </button>
           </div>
         </div>
