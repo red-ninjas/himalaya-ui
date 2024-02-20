@@ -11,8 +11,8 @@ export default function Index() {
   const theme = useTheme();
   return (
     <>
-      <div className="hero">
-        <div className="hero-inner">
+      <div className="hero-outside">
+        <div className="hero-outside-inner">
           <Hero scrollToId="services">
             <Hero.Tag>HIMALAYA UI</Hero.Tag>
             <Hero.Title>
@@ -107,10 +107,10 @@ export default function Index() {
           padding: 180px 0px;
         }
 
-        .hero {
+        .hero-outside {
           position: relative;
         }
-        .hero-inner {
+        .hero-outside-inner {
           position: relative;
           z-index: 2;
         }

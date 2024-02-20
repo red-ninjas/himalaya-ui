@@ -36,7 +36,7 @@ const Hero: React.FC<PropsWithChildren<HeroPropsNative>> = ({ children, withDown
 
   return (
     <>
-      <header {...props} className="hero full-height valign bord-thin-bottom" ref={heroRef}>
+      <div {...props} className="hero" ref={heroRef}>
         <ContentLayout>
           <div className="hero-inner">{children}</div>
         </ContentLayout>
@@ -47,7 +47,7 @@ const Hero: React.FC<PropsWithChildren<HeroPropsNative>> = ({ children, withDown
             </div>
           </div>
         )}
-      </header>
+      </div>
 
       <style jsx>{`
         body {
@@ -57,7 +57,6 @@ const Hero: React.FC<PropsWithChildren<HeroPropsNative>> = ({ children, withDown
           align-items: center;
           position: relative;
           display: flex;
-          border-bottom: 1px solid ${theme.palette.border};
           min-height: calc(${SCALES.height(0, '100vh')} - ${withDownArrow ? 50 : 0}px);
           padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
           margin: ${SCALES.mt(0)} ${SCALES.mr(0, 'auto')} ${SCALES.mb(0)} ${SCALES.ml(0, 'auto')};
