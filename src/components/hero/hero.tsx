@@ -12,7 +12,7 @@ const Hero: React.FC<PropsWithChildren<HeroPropsNative>> = ({ children, withDown
   const theme = useTheme();
   const layout = useLayout();
   const { SCALES } = useScale();
-  const heroRef = useRef<HTMLElement | null>(null);
+  const heroRef = useRef<HTMLDivElement | null>(null);
 
   const handleArrowSmoothScroll = () => {
     if (scrollToId) {
