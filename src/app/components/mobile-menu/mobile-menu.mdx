@@ -1,5 +1,6 @@
 import { Layout, Playground, Attributes } from 'lib/components'
 import { MobileMenu, MobileMenuButton, Mobile, MobileMenuProvider } from 'components'
+import { SwipeProvider } from 'components/swipe';
 
 export const meta = {
   title: 'Mobile Menu',
@@ -11,58 +12,63 @@ export const meta = {
 Create mobile-friendly navigation menus with ease using the `MobileMenu` UI component. 
 
 <Playground
-  scope={{ MobileMenu, MobileMenuButton, MobileMenuProvider }}
+  scope={{ MobileMenu, MobileMenuButton, MobileMenuProvider, SwipeProvider }}
   title={'Mobile Menu example'}
   desc={'Example of a mobile menu'}
   code={`
   () => {
      return (
-    <MobileMenuProvider>
-      <MobileMenuButton notHiding={true}></MobileMenuButton>
-      <MobileMenu>
-        <MobileMenuButton></MobileMenuButton>
-        <MobileMenu.Item title="Home" url="/" />
-        <MobileMenu.Item title="About Us" url="/" />
-      </MobileMenu>
-    </MobileMenuProvider>
+    <SwipeProvider>
+      <MobileMenuProvider>
+        <MobileMenuButton notHiding={true}></MobileMenuButton>
+        <MobileMenu>
+          <MobileMenuButton></MobileMenuButton>
+          <MobileMenu.Item title="Home" url="/" />
+          <MobileMenu.Item title="About Us" url="/" />
+        </MobileMenu>
+      </MobileMenuProvider>
+    </SwipeProvider>
     );
   };
   `}
 />
 
 <Playground
-  scope={{ MobileMenu, MobileMenuProvider, MobileMenuButton }}
+  scope={{ MobileMenu, MobileMenuProvider, MobileMenuButton, SwipeProvider }}
   title={'Mobile Menu with Navigation group example'}
   desc={'Example of mobile menu with navigation groups'}
   code={`
     () => {
      return (
-        <MobileMenuProvider>
-          <MobileMenuButton notHiding={true}></MobileMenuButton>
-            <MobileMenu>
-              <MobileMenu.Item title="Home" url="/" />
-              <MobileMenu.Group expanded title="Group 1">
-                <MobileMenu.Item title="Item" url="/" />
-                <MobileMenu.Item title="Item 2" url="/" />
-                <MobileMenu.Group expanded title="Inner Group 1">
-                  <MobileMenu.Item title="Inner Item 1" url="/" />
-                  <MobileMenu.Item title="Inner Item 2" url="/" />
+        <SwipeProvider>
+          <MobileMenuProvider>
+            <MobileMenuButton notHiding={true}></MobileMenuButton>
+              <MobileMenu>
+                <MobileMenu.Item title="Home" url="/" />
+                <MobileMenu.Group expanded title="Group 1">
+                  <MobileMenu.Item title="Item" url="/" />
+                  <MobileMenu.Item title="Item 2" url="/" />
+                  <MobileMenu.Group expanded title="Inner Group 1">
+                    <MobileMenu.Item title="Inner Item 1" url="/" />
+                    <MobileMenu.Item title="Inner Item 2" url="/" />
+                  </MobileMenu.Group>
                 </MobileMenu.Group>
-              </MobileMenu.Group>
-          </MobileMenu>
-        </MobileMenuProvider>
+              </MobileMenu>
+           </MobileMenuProvider>
+        </SwipeProvider>
    );
     };
   `}
 />
 
 <Playground
-  scope={{ MobileMenu, MobileMenuProvider, MobileMenuButton }}
+  scope={{ MobileMenu, MobileMenuProvider, MobileMenuButton, SwipeProvider }}
   title={'Mobile Menu with subgroup example'}
   desc={'Example of mobile menu with navigation subgroup'}
   code={`
     () => {
      return (
+    <SwipeProvider>
      <MobileMenuProvider>
         <MobileMenuButton notHiding={true}></MobileMenuButton>
         <MobileMenu>
@@ -81,7 +87,9 @@ Create mobile-friendly navigation menus with ease using the `MobileMenu` UI comp
             </MobileMenu.SubGroup>
           </MobileMenu.Group>
       </MobileMenu>
-     </MobileMenuProvider>);
+     </MobileMenuProvider>
+    </SwipeProvider> 
+     );
     };
   `}
 />
