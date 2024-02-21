@@ -39,7 +39,6 @@ const ConfigProvider: React.FC<React.PropsWithChildren<NativeConfigProps>> = ({
   themeType = 'dark',
   detectTheme = false,
   themes = [],
-  ...props
 }: React.PropsWithChildren<NativeConfigProps>) => {
   const [scrollHeight, setScrollHeight] = useState<number>(0);
   const mediaQuery = useMediaQuery('xs', { match: 'down' });
