@@ -23,9 +23,6 @@ export interface ConfigProviderContextParams {
   updateSidebarScrollHeight?: (height: number) => void;
   setTheme: (type: string) => void;
   isMobile?: boolean;
-  swipeToRight?: SwipeEventData | undefined;
-  swipedToLeft?: SwipeEventData | undefined;
-  onSwiping?: SwipeEventData | undefined;
   themes?: Array<UIThemes>;
   themeType?: string | 'dark' | 'light';
   toasts: Array<Toast>;
@@ -43,9 +40,6 @@ export const defaultConfigs: ConfigProviderContextParams = {
   updateSidebarScrollHeight: () => {},
   setTheme: () => {},
   isMobile: false,
-  swipeToRight: undefined,
-  swipedToLeft: undefined,
-  onSwiping: undefined,
   themeType: 'dark',
   toasts: [],
   toastLayout: defaultToastLayout,

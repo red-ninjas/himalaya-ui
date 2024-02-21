@@ -120,10 +120,18 @@ const ConfigProvider: React.FC<React.PropsWithChildren<NativeConfigProps>> = ({
       <ConfigContext.Provider value={config}>
         <ThemeProvider themes={themes} themeType={_themeType}>
           <CssBaseline />
-          {children}
+          <div className="ui-app">{children}</div>
           <ToastContainer />
         </ThemeProvider>
       </ConfigContext.Provider>
+      <style global jsx>{`
+        .ui-app {
+          width: 100%;
+          height: 100vh;
+          overflow: hidden;
+          position: relative;
+        }
+      `}</style>
     </LayoutProvider>
   );
 };
