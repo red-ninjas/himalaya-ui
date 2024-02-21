@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import { SwipeableDirectionCallbacks, SwipeCallback, TapCallback } from 'react-swipeable';
-import { ConfigurationOptions, HandledEvents, SwipeEventData } from 'react-swipeable/es/types';
+import { ConfigurationOptions, SwipeEventData } from 'react-swipeable/es/types';
 
 export type SwipeContextProps = Partial<
   SwipeableDirectionCallbacks & {
@@ -19,12 +19,12 @@ export type SwipeContextProps = Partial<
 >;
 
 export const defaultConfigs: SwipeContextProps = {
-  onSwipeStart: (event: SwipeEventData) => {},
-  onSwiped: (event: SwipeEventData) => {},
-  onSwiping: (event: SwipeEventData) => {},
-  onTap: ({ event }: { event: HandledEvents }) => {},
-  onTouchStartOrOnMouseDown: ({ event }: { event: HandledEvents }) => {},
-  onTouchEndOrOnMouseUp: ({ event }: { event: HandledEvents }) => {},
+  onSwipeStart: () => {},
+  onSwiped: () => {},
+  onSwiping: () => {},
+  onTap: () => {},
+  onTouchStartOrOnMouseDown: () => {},
+  onTouchEndOrOnMouseUp: () => {},
 };
 
 export const SwipeContext = React.createContext<SwipeContextProps>(defaultConfigs);
