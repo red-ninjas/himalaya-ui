@@ -77,12 +77,12 @@ export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
 
                       <NextLink passHref legacyBehavior href={'/'}>
                         <a className="logo">
-                          <BrandLogo size={35}></BrandLogo>{' '}
+                          <BrandLogo size={40}></BrandLogo>{' '}
                         </a>
                       </NextLink>
                       <NextLink passHref legacyBehavior href={'/'}>
                         <a className="brand">
-                          <BrandTitle size={65}></BrandTitle>
+                          <BrandTitle size={18}></BrandTitle>
                         </a>
                       </NextLink>
                     </Header.Left>

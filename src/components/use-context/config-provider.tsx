@@ -32,12 +32,16 @@ export function detectTheme(fallBackTheme: string = 'dark') {
   return typeof window !== 'undefined' ? window.localStorage.getItem(THEME_COOKIE_NAME) || fallBackTheme : fallBackTheme;
 }
 
-const ConfigProvider: React.FC<React.PropsWithChildren<ConfigProps>> = ({
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof ConfigProps>;
+export type NativeConfigProps = ConfigProps & NativeAttrs;
+
+const ConfigProvider: React.FC<React.PropsWithChildren<NativeConfigProps>> = ({
   children,
   themeType = 'dark',
   detectTheme = false,
   themes = [],
-}: React.PropsWithChildren<ConfigProps>) => {
+  ...props
+}: React.PropsWithChildren<NativeConfigProps>) => {
   const [scrollHeight, setScrollHeight] = useState<number>(0);
   const mediaQuery = useMediaQuery('xs', { match: 'down' });
   const [isMobile, setIsMobile] = useState<boolean>();
@@ -94,6 +98,7 @@ const ConfigProvider: React.FC<React.PropsWithChildren<ConfigProps>> = ({
     setCustomTheme(mergedTheme);
     setCustomTheme && setCustomTheme(mergedTheme);
   };
+
   const handlers = useSwipeable({
     trackMouse: true,
     onSwipedRight: setSwipeToRight,
@@ -129,7 +134,7 @@ const ConfigProvider: React.FC<React.PropsWithChildren<ConfigProps>> = ({
       <ConfigContext.Provider value={config}>
         <ThemeProvider themes={themes} themeType={_themeType}>
           <CssBaseline />
-          <div className="ui-app" {...handlers}>
+          <div className="ui-app" {...handlers} {...props}>
             {children}
           </div>
           <ToastContainer />
@@ -139,7 +144,6 @@ const ConfigProvider: React.FC<React.PropsWithChildren<ConfigProps>> = ({
         .ui-app {
           width: 100%;
           height: 100vh;
-          overflow: hidden;
           position: relative;
         }
       `}</style>

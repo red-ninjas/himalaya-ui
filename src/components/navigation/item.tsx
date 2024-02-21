@@ -176,7 +176,7 @@ const NavigationItem: React.FC<PropsWithChildren<NavigationItemProps>> = ({
           display: flex;
           align-items: center;
           user-select: none;
-          font-size: ${SCALES.font(0.875)};
+          font-size: ${SCALES.font(0.9)};
           line-height: normal;
           font-weight: 500;
           width: ${SCALES.width(1, 'auto')};
