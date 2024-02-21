@@ -5,7 +5,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { SwipeEventData, useSwipeable } from 'react-swipeable';
 import CssBaseline from '../css-baseline';
 import Themes, { UIThemes } from '../themes';
-import { LayoutProvider } from '../use-layout';
+import { LayoutProvider } from '../layout';
 import useMediaQuery from '../use-media-query';
 import {
   ConfigContext,
