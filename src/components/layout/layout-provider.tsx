@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
-import { LayoutContext, LayoutPropsContext } from './layout-context';
-import { defaultBreakpoints } from './shared';
+import { LayoutContext, LayoutPropsContext } from '../use-layout/layout-context';
+import { defaultBreakpoints } from '../use-layout/shared';
 
 const LayoutProvider: React.FC<React.PropsWithChildren<LayoutPropsContext>> = ({
   children,

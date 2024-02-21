@@ -1,8 +1,9 @@
 'use client';
 
-import { ConfigProvider, LayoutProvider } from 'components';
+import { ConfigProvider } from 'components';
 import React from 'react';
 import { CoreLayout } from './layouts/core-layout';
+import { LayoutProvider } from 'components';
 
 export function Providers({ children, defaultTheme }: { children: React.ReactNode; defaultTheme: string }) {
   return (
