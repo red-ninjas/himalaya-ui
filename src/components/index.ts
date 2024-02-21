@@ -217,7 +217,7 @@ export { default as QuickBar, QuickBarLayout, QuickAction } from './quick-bar';
 export type { QuickBarProps, QuickBarLayoutProps } from './quick-bar';
 
 export { default as ConfigProvider } from './config';
-export { useConfigs } from './use-context';
+export { useConfigs } from './use-config';
 export { NextStyleRegistry } from './next';
 
 export type { ConfigProps } from './config';

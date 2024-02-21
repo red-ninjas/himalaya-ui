@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { QuickBarContext } from './quickbar-context';
 import { QuickBarProviderProps } from '.';
-import { useConfigs } from '../use-context';
+import { useConfigs } from '../use-config';
 
 const QuickBarProvider: React.FC<React.PropsWithChildren<QuickBarProviderProps>> = ({ children, hideOnMobile = true }) => {
   const { isMobile } = useConfigs();

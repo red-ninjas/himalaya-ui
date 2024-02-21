@@ -6,7 +6,7 @@ import { addColorAlpha } from '../utils/color';
 import useClasses from '../use-classes';
 import { pickChild } from '../utils/collections';
 import BottomNavigationItem from './item';
-import { useConfigs } from '../use-context/config-context';
+import { useConfigs } from '../use-config/config-context';
 
 export interface BottomNavigationProps {
   transcluent?: boolean;

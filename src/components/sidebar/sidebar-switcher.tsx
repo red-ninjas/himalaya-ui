@@ -1,7 +1,7 @@
 'use client';
 import MenuIcon from '../icons/menu';
 import Button from '../button';
-import { useConfigs } from '../use-context/config-context';
+import { useConfigs } from '../use-config/config-context';
 import useSidebar from '../use-sidebar';
 import useLayout from '../use-layout';
 

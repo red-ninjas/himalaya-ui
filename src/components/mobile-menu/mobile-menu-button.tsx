@@ -4,7 +4,7 @@ import React from 'react';
 import MenuIcon from '../icons/menu';
 import { MobileMenuButtonProps } from './index';
 import Button, { ButtonProps } from '../button';
-import { useConfigs } from '../use-context';
+import { useConfigs } from '../use-config';
 import { useMobileMenu } from '../use-mobile-menu/mobile-menu-context';
 import { ScaleProps, withScale } from '../use-scale';
 

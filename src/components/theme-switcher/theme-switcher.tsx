@@ -4,7 +4,7 @@ import React from 'react';
 import Button from '../button';
 import MoonIcon from '../icons/moon';
 import SunIcon from '../icons/sun';
-import { useConfigs } from '../use-context/config-context';
+import { useConfigs } from '../use-config/config-context';
 import { withScale } from '../use-scale';
 
 const ThemeSwitcherComponent: React.FC<unknown> = () => {
