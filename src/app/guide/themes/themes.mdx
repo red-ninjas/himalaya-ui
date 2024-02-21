@@ -19,7 +19,7 @@ To switch in the default themes you only need to set the value of `themeType`, y
 
 ```jsx
 // NAME:src/app.js
-import { ConfigProvider } from '@himalaya-ui/core/use-context';
+import { ConfigProvider } from '@himalaya-ui/core/config';
 import NextStyleRegistry from '@himalaya-ui/core/next/registry';
 
 const App = () => {
@@ -51,7 +51,7 @@ To detect a default theme you only need to set the value of `detectTheme` to `tr
 
 ```jsx
 // NAME: app/page.js
-import { ConfigProvider } from '@himalaya-ui/core/use-context';
+import { ConfigProvider } from '@himalaya-ui/core/config';
 import NextStyleRegistry from '@himalaya-ui/core/next/registry';
 
 const App = () => {
@@ -76,7 +76,7 @@ and all the components will change automatically.
 
 ```jsx
 import { Themes } from '@himalaya-ui/core';
-import { ConfigProvider } from '@himalaya-ui/core/use-context';
+import { ConfigProvider } from '@himalaya-ui/core/config';
 import NextStyleRegistry from '@himalaya-ui/core/next/registry';
 
 const myTheme1 = Themes.createFromLight({
