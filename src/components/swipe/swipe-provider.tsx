@@ -4,7 +4,7 @@ import { SwipeContext } from '../use-swipe/swipe-context';
 
 import { SwipeEventData, useSwipeable } from 'react-swipeable';
 
-const SwipeProvider: React.FC<React.PropsWithChildren> = ({ children }: React.PropsWithChildren<{}>) => {
+const SwipeProvider: React.FC<React.PropsWithChildren> = ({ children, ...props }: React.PropsWithChildren<React.HTMLAttributes<HTMLDivElement>>) => {
   const [swiped, setOnSwiping] = useState<SwipeEventData | undefined>(undefined);
   const [swipedToLeft, setSwipedLeft] = useState<SwipeEventData | undefined>(undefined);
   const [swipedToRight, setSwipeToRight] = useState<SwipeEventData | undefined>(undefined);
@@ -16,9 +16,17 @@ const SwipeProvider: React.FC<React.PropsWithChildren> = ({ children }: React.Pr
   });
 
   return (
-    <>
-      <SwipeContext.Provider value={{ ...handlers, swiped, swipedToLeft, swipedToRight }}>{children}</SwipeContext.Provider>
-    </>
+    <div {...handlers} className="swiper-portal" {...props}>
+      <SwipeContext.Provider value={{ swiped, swipedToLeft, swipedToRight }}>{children}</SwipeContext.Provider>
+
+      <style jsx>{`
+        .swiper-portal {
+          width: 100%;
+          height: 100vh;
+          position: relative;
+        }
+      `}</style>
+    </div>
   );
 };
 

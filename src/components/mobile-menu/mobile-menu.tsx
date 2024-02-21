@@ -1,12 +1,11 @@
 'use client';
 
-import React, { PropsWithChildren, useEffect } from 'react';
+import React, { PropsWithChildren } from 'react';
 import { MobileMenuProps } from '.';
 import Drawer from '../drawer';
 import { InnerScroll } from '../scroll';
 import { useMobileMenu } from '../use-mobile-menu/mobile-menu-context';
 import useScale, { withScale } from '../use-scale';
-import useSwipe from '../use-swipe';
 import useTheme from '../use-theme';
 
 type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof MobileMenuProps>;
@@ -16,15 +15,7 @@ const MobileMenu: React.FC<PropsWithChildren<MobileMenuPropsNative>> = ({ childr
   const { SCALES } = useScale();
   const theme = useTheme();
 
-  const { swipedToRight, swipedToLeft, onSwiping } = useSwipe();
-
   const { isEnabled, setIsEnabled } = useMobileMenu();
-
-  useEffect(() => {}, [swipedToRight]);
-
-  useEffect(() => {}, [swipedToLeft]);
-
-  useEffect(() => {}, [onSwiping]);
 
   return (
     <>

@@ -3,9 +3,8 @@
 import { parseCookies, setCookie } from 'nookies';
 import React, { useEffect, useMemo, useState } from 'react';
 import CssBaseline from '../css-baseline';
-import Themes, { UIThemes } from '../themes';
 import { LayoutProvider } from '../layout';
-import useMediaQuery from '../use-media-query';
+import Themes, { UIThemes } from '../themes';
 import {
   ConfigContext,
   ConfigProviderContextParams,
@@ -14,13 +13,14 @@ import {
   UpdateToastsLayoutFunction,
   defaultToastLayout,
 } from '../use-config/config-context';
+import useMediaQuery from '../use-media-query';
 
 import { CUSTOM_THEME_TYPE, THEME_COOKIE_NAME } from '../constants';
+import ThemeProvider from '../use-config/theme-provider';
 import useCurrentState from '../use-current-state';
 import useTheme from '../use-theme';
 import ToastContainer from '../use-toasts/toast-container';
 import { DeepPartial } from '../utils/types';
-import ThemeProvider from '../use-config/theme-provider';
 export interface ConfigProps {
   themeType?: string | 'dark' | 'light';
   detectTheme?: boolean;
@@ -119,18 +119,10 @@ const ConfigProvider: React.FC<React.PropsWithChildren<NativeConfigProps>> = ({
       <ConfigContext.Provider value={config}>
         <ThemeProvider themes={themes} themeType={_themeType}>
           <CssBaseline />
-          <div className="ui-app">{children}</div>
+          {children}
           <ToastContainer />
         </ThemeProvider>
       </ConfigContext.Provider>
-      <style global jsx>{`
-        .ui-app {
-          width: 100%;
-          height: 100vh;
-          overflow: hidden;
-          position: relative;
-        }
-      `}</style>
     </LayoutProvider>
   );
 };
