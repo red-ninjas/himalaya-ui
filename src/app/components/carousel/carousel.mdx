@@ -1,5 +1,5 @@
 import { Layout, Playground, Attributes } from 'lib/components';
-import { Carousel, CarouselItem } from 'components';
+import Carousel from 'components/carousel';
 
 export const meta = {
   title: 'Carousel',
@@ -13,7 +13,7 @@ The `Carousel` UI component is a powerful tool for adding interactive sliders to
 <Playground
   title="Carousel example"
   desc="Example of Carousel"
-  scope={{ Carousel, CarouselItem }}
+  scope={{ Carousel}}
   code={`
 <Carousel
   options={{
@@ -42,21 +42,21 @@ The `Carousel` UI component is a powerful tool for adding interactive sliders to
       },
     },
   }}>
-  <CarouselItem>
+  <Carousel.Item>
     1
-  </CarouselItem>
-  <CarouselItem>
+  </Carousel.Item>
+  <Carousel.Item>
     2
-  </CarouselItem>
-  <CarouselItem>
+  </Carousel.Item>
+  <Carousel.Item>
     3
-  </CarouselItem>
-  <CarouselItem>
+  </Carousel.Item>
+  <Carousel.Item>
     4
-  </CarouselItem>
-  <CarouselItem>
+  </Carousel.Item>
+  <Carousel.Item>
     5
-  </CarouselItem>
+  </Carousel.Item>
 </Carousel>
 `}
 />

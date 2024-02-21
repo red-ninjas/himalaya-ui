@@ -1,5 +1,6 @@
-import { Carousel, CarouselItem, ContentLayout, FadeInEffect, Text, useTheme } from 'components';
+import { ContentLayout, FadeInEffect, Text, useTheme } from 'components';
 import { RedNinjas, Striked } from './icons';
+import Carousel from 'components/carousel';
 
 export default function Partners() {
   const theme = useTheme();
@@ -39,16 +40,16 @@ export default function Partners() {
               },
             }}
           >
-            <CarouselItem>
+            <Carousel.Item>
               <a href="https://striked.gg" rel="noreferrer" target="_blank" className="partner">
                 <Striked></Striked>
               </a>
-            </CarouselItem>
-            <CarouselItem>
+            </Carousel.Item>
+            <Carousel.Item>
               <a href="https://redninjas.dev" rel="noreferrer" target="_blank" className="partner">
                 <RedNinjas></RedNinjas>
               </a>
-            </CarouselItem>
+            </Carousel.Item>
           </Carousel>
         </ContentLayout>
 

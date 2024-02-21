@@ -245,8 +245,6 @@ export { ThemeSwitcher } from './theme-switcher';
 export { default as Hero } from './hero';
 export { default as GradientWord } from './gradient-word';
 
-export { default as Carousel, CarouselItem } from './carousel';
-
 export { default as AnimatedCursor } from './animated-cursor';
 export type { AnimatedCursorProps } from './animated-cursor';
 

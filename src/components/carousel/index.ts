@@ -4,6 +4,7 @@ import { ComponentConstructor, Options } from '@splidejs/splide';
 import { DOMAttributes, HTMLAttributes, ReactNode } from 'react';
 
 import { default as Carousel } from './carousel';
+import { CarouselItem } from './carousel-item';
 export { CarouselItem } from './carousel-item';
 
 export type SliderOptions = Omit<Options, 'classes'> & {
@@ -57,4 +58,10 @@ export type SplideEventHandlers = {
   ) => ReturnType<EventMap[SplideEventHandlerMap[K]]>;
 };
 
-export default Carousel;
+export type CarouselComponentType = typeof Carousel & {
+  Item: typeof CarouselItem;
+};
+
+(Carousel as CarouselComponentType).Item = CarouselItem;
+
+export default Carousel as CarouselComponentType;
