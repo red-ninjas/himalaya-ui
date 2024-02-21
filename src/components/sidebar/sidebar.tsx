@@ -1,7 +1,7 @@
 'use client';
 import { usePathname } from 'next/navigation';
 import React, { PropsWithChildren, useEffect, useRef } from 'react';
-import { useConfigs } from '../use-context/config-context';
+import { useConfigs } from '../use-config/config-context';
 import useLayout from '../use-layout';
 import useScale, { withScale } from '../use-scale';
 

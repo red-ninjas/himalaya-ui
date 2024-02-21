@@ -3,7 +3,7 @@
 import { pickChild } from '../utils/collections';
 import React from 'react';
 import Header from './header';
-import { useConfigs } from '../use-context/config-context';
+import { useConfigs } from '../use-config/config-context';
 import useClasses from '../use-classes';
 import useLayout from '../use-layout';
 

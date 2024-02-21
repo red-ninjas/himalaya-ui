@@ -216,10 +216,11 @@ export type { SearchProps, SearchResult, SearchResultGroup, SearchResults, Searc
 export { default as QuickBar, QuickBarLayout, QuickAction } from './quick-bar';
 export type { QuickBarProps, QuickBarLayoutProps } from './quick-bar';
 
-export { default as ConfigProvider, useConfigs } from './use-context';
+export { default as ConfigProvider } from './config';
+export { useConfigs } from './use-config';
 export { NextStyleRegistry } from './next';
 
-export type { ConfigProps } from './use-context';
+export type { ConfigProps } from './config';
 
 export { default as SearchProvider } from './use-search/search-provider';
 

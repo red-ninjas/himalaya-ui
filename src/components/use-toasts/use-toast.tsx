@@ -1,7 +1,7 @@
 'use client';
 
 import React, { CSSProperties, useEffect } from 'react';
-import { useConfigs, defaultToastLayout } from '../use-context';
+import { useConfigs, defaultToastLayout } from '../use-config';
 import { ToastPlacement } from '../use-toasts/helpers';
 import { getId } from '../utils/collections';
 import type { NormalTypes } from '../utils/prop-types';

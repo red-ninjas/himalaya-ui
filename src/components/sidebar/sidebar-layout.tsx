@@ -7,7 +7,7 @@ import { Sidebar } from './types';
 import Drawer from '../drawer';
 import { DrawerPlacement } from '../drawer/helper';
 import { InnerScroll } from '../scroll';
-import { useConfigs } from '../use-context';
+import { useConfigs } from '../use-config';
 import useLayout from '../use-layout';
 import useScale, { withScale } from '../use-scale';
 import useSidebar from '../use-sidebar';

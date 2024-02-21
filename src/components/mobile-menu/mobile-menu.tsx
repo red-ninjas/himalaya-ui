@@ -4,7 +4,7 @@ import React, { PropsWithChildren, useEffect } from 'react';
 import { MobileMenuProps } from '.';
 import Drawer from '../drawer';
 import { InnerScroll } from '../scroll';
-import { useConfigs } from '../use-context/config-context';
+import { useConfigs } from '../use-config/config-context';
 import { useMobileMenu } from '../use-mobile-menu/mobile-menu-context';
 import useScale, { withScale } from '../use-scale';
 import useTheme from '../use-theme';

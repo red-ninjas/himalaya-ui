@@ -1,7 +1,7 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import useTheme from '../use-theme';
-import { useConfigs } from '../use-context/config-context';
+import { useConfigs } from '../use-config/config-context';
 import useLayout from '../use-layout';
 
 const DEFAULT_OPACITY = 0.75;

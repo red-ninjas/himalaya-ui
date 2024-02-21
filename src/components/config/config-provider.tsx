@@ -14,14 +14,14 @@ import {
   UpdateToastsIDFunction,
   UpdateToastsLayoutFunction,
   defaultToastLayout,
-} from './config-context';
+} from 'components/use-config/config-context';
 
 import { CUSTOM_THEME_TYPE, THEME_COOKIE_NAME } from '../constants';
 import useCurrentState from '../use-current-state';
 import useTheme from '../use-theme';
 import ToastContainer from '../use-toasts/toast-container';
 import { DeepPartial } from '../utils/types';
-import ThemeProvider from './theme-provider';
+import ThemeProvider from 'components/use-config/theme-provider';
 export interface ConfigProps {
   themeType?: string | 'dark' | 'light';
   detectTheme?: boolean;
