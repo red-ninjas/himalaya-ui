@@ -9,6 +9,12 @@ import { TextColor } from './shared';
 
 export type TextTypes = NormalTypes;
 interface Props {
+  xs?: number;
+  sm?: number;
+  md?: number;
+  lg?: number;
+  xl?: number;
+  lineHeight?: number;
   h1?: boolean;
   h2?: boolean;
   h3?: boolean;
@@ -60,6 +66,7 @@ const TextComponent: React.FC<React.PropsWithChildren<TextProps>> = ({
   blockquote = false,
   children,
   className = '',
+  lineHeight,
   ...props
 }: React.PropsWithChildren<TextProps>) => {
   const elements: ElementMap = { h1, h2, h3, h4, h5, h6, p, blockquote };
@@ -91,7 +98,7 @@ const TextComponent: React.FC<React.PropsWithChildren<TextProps>> = ({
   }, [renderableChildElements, children]);
 
   return (
-    <TextChild className={className} tag={tag} {...props}>
+    <TextChild lineHeight={lineHeight} className={className} tag={tag} {...props}>
       {modifers}
     </TextChild>
   );

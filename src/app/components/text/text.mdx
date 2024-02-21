@@ -87,6 +87,19 @@ The `Text` component allows you to display text with standardized typographic st
   <Text font="14px">Font Size: 14px;</Text>
   <Text font="1rem">Font Size: 1rem;</Text>
   <Text scale={1.25} mb={0}>Font Size Scale: 1.25;</Text>
+  <Text scale={2} mb={0}>Font Size Scale: 2;</Text>
+</>
+`}
+/>
+
+<Playground
+  title="Responsive sizes"
+  scope={{ Text }}
+  code={`
+<>
+  <Text xs={0.5} sm={1} md={2} lg={3} xl={5} font="12px" >Font Size: 12px;</Text>
+  <Text xs={0.5} sm={1} md={2}  xl={5} font="1rem">Font Size: 1rem;</Text>
+  <Text xs={0.5} sm={1} md={2} lg={3} xl={5}>Font Size;</Text>
 </>
 `}
 />
@@ -138,22 +151,27 @@ The `Text` component allows you to display text with standardized typographic st
 <Attributes edit="/app/components/text.mdx">
 <Attributes.Title>Text.Props</Attributes.Title>
 
-| Attribute      | Description    | Type             | Accepted values          | Default   |
-| -------------- | -------------- | ---------------- | ------------------------ | --------- |
-| **p**          | component name | `boolean`        | -                        | `true`    |
-| **h1 - h6**    | component name | `boolean`        | -                        | `false`   |
-| **small**      | component name | `boolean`        | -                        | `false`   |
-| **span**       | component name | `boolean`        | -                        | `false`   |
-| **del**        | component name | `boolean`        | -                        | `false`   |
-| **i**          | component name | `boolean`        | -                        | `false`   |
-| **em**         | component name | `boolean`        | -                        | `false`   |
-| **b**          | component name | `boolean`        | -                        | `false`   |
-| **blockquote** | component name | `boolean`        | -                        | `false`   |
-| **stroke**     | stroke the text | `number`        | -                         | -   |
-| **color**     | color of text | `TextColor`        | [TextColor](#textcolor)                              | -   |
-| **gradientDegress**     | degress of gradient | `GradientPositions`        | [GradientPositions](#gradientpositions)                         |  `right`   |
-| **type**       | text type      | `TextTypes`      | [TextTypes](#texttypes)  | `default` |
-| ...            | native props   | `HTMLAttributes` | `'id', 'className', ...` | -         |
+| Attribute           | Description                                                | Type                | Accepted values                         | Default   |
+| ------------------- | ---------------------------------------------------------- | ------------------- | --------------------------------------- | --------- |
+| **p**               | component name                                             | `boolean`           | -                                       | `true`    |
+| **xs**              | scale of font size, for `xs` breakpoints and wider screens | `number`            | `number`                                | -         |
+| **sm**              | scale of font size, for `sm` breakpoints and wider screens | `number`            | `number`                                | -         |
+| **md**              | scale of font size, for `md` breakpoints and wider screens | `number`            | `number`                                | -         |
+| **lg**              | scale of font size, for `lg` breakpoints and wider screens | `number`            | `number`                                | -         |
+| **xl**              | scale of font size, for `xl` breakpoints and wider screens | `number`            | `number`                                | -         |
+| **h1 - h6**         | component name                                             | `boolean`           | -                                       | `false`   |
+| **small**           | component name                                             | `boolean`           | -                                       | `false`   |
+| **span**            | component name                                             | `boolean`           | -                                       | `false`   |
+| **del**             | component name                                             | `boolean`           | -                                       | `false`   |
+| **i**               | component name                                             | `boolean`           | -                                       | `false`   |
+| **em**              | component name                                             | `boolean`           | -                                       | `false`   |
+| **b**               | component name                                             | `boolean`           | -                                       | `false`   |
+| **blockquote**      | component name                                             | `boolean`           | -                                       | `false`   |
+| **stroke**          | stroke the text                                            | `number`            | -                                       | -         |
+| **color**           | color of text                                              | `TextColor`         | [TextColor](#textcolor)                 | -         |
+| **gradientDegress** | degress of gradient                                        | `GradientPositions` | [GradientPositions](#gradientpositions) | `right`   |
+| **type**            | text type                                                  | `TextTypes`         | [TextTypes](#texttypes)                 | `default` |
+| ...                 | native props                                               | `HTMLAttributes`    | `'id', 'className', ...`                | -         |
 
 
 <Attributes.Title>TextColor</Attributes.Title>

@@ -6,6 +6,7 @@ import useScale from '../use-scale';
 import useTheme from '../use-theme';
 import { NormalTypes } from '../utils/prop-types';
 import { TextColor } from './shared';
+import { useLayout } from '../use-layout/layout-context';
 
 export interface Props {
   tag: keyof React.JSX.IntrinsicElements;
@@ -14,6 +15,12 @@ export interface Props {
   className?: string;
   color?: TextColor;
   gradientDegress?: GradientPositions;
+  xs?: number;
+  lineHeight?: number;
+  sm?: number;
+  md?: number;
+  lg?: number;
+  xl?: number;
 }
 
 const getTypeColor = (type: NormalTypes, palette: UIThemesPalette) => {
@@ -41,10 +48,18 @@ const TextChild: React.FC<React.PropsWithChildren<TextChildProps>> = ({
   color,
   gradientDegress = GradientPositionsEnum.right,
   type = 'default' as NormalTypes,
+  lineHeight,
+  xs,
+  md,
+  sm,
+  xl,
+  lg,
   ...props
 }: React.PropsWithChildren<TextChildProps>) => {
   const Component = tag;
   const theme = useTheme();
+  const layoutRoot = useLayout();
+
   const { SCALES, getScaleProps } = useScale();
   const font = getScaleProps('font');
   const mx = getScaleProps(['margin', 'marginLeft', 'marginRight', 'mx', 'ml', 'mr']);
@@ -82,6 +97,12 @@ const TextChild: React.FC<React.PropsWithChildren<TextChildProps>> = ({
       { value: px, className: 'px' },
       { value: py, className: 'py' },
       { value: font, className: 'font' },
+      { value: xs, className: 'xs' },
+      { value: md, className: 'md' },
+      { value: sm, className: 'sm' },
+      { value: xl, className: 'xl' },
+      { value: lg, className: 'lg' },
+      { value: lineHeight, className: 'line-height' },
       { value: stroke, className: 'stroke' },
     ];
     const scaleClassNames = keys.reduce((pre, next) => {
@@ -89,7 +110,7 @@ const TextChild: React.FC<React.PropsWithChildren<TextChildProps>> = ({
       return `${pre} ${next.className}`;
     }, '');
     return `${scaleClassNames} ${className}`.trim();
-  }, [mx, my, px, py, font, className, stroke]);
+  }, [mx, my, px, py, font, className, stroke, xs, md, sm, xl, lg, lineHeight]);
 
   return (
     <Component className={classNames} {...props}>
@@ -99,29 +120,70 @@ const TextChild: React.FC<React.PropsWithChildren<TextChildProps>> = ({
           color: transparent;
           -webkit-text-stroke: ${Number(stroke) ? stroke + 'px' : stroke} ${theme.palette.foreground};
         }
-        ${tag} {
-          ${defaultColor}
-          width: ${SCALES.width(1, 'auto')};
-          height: ${SCALES.height(1, 'auto')};
-        }
+
         .font {
           font-size: ${SCALES.font(1, 'inherit')};
+          --font-size: ${SCALES.font(1, 'inherit')};
         }
+
         .mx {
           margin-left: ${SCALES.ml(0, 'revert')};
           margin-right: ${SCALES.mr(0, 'revert')};
         }
+
         .my {
           margin-top: ${SCALES.mt(0, 'revert')};
           margin-bottom: ${SCALES.mb(0, 'revert')};
         }
+
         .px {
           padding-left: ${SCALES.pl(0, 'revert')};
           padding-right: ${SCALES.pr(0, 'revert')};
         }
+
         .py {
           padding-top: ${SCALES.pt(0, 'revert')};
           padding-bottom: ${SCALES.pb(0, 'revert')};
+        }
+
+        .xs {
+          --font-size: calc(${xs} * ${SCALES.font(1, theme.font.baseSize + 'px')});
+          font-size: var(--font-size);
+        }
+
+        @media only screen and (min-width: ${layoutRoot.breakpoints.sm.min}) {
+          .sm {
+            --font-size: calc(${sm} * ${SCALES.font(1, theme.font.baseSize + 'px')});
+            font-size: var(--font-size);
+          }
+        }
+        @media only screen and (min-width: ${layoutRoot.breakpoints.md.min}) {
+          .md {
+            --font-size: calc(${md} * ${SCALES.font(1, theme.font.baseSize + 'px')});
+            font-size: var(--font-size);
+          }
+        }
+        @media only screen and (min-width: ${layoutRoot.breakpoints.lg.min}) {
+          .lg {
+            --font-size: calc(${lg} * ${SCALES.font(1, theme.font.baseSize + 'px')});
+            font-size: var(--font-size);
+          }
+        }
+        @media only screen and (min-width: ${layoutRoot.breakpoints.xl.min}) {
+          .xl {
+            --font-size: calc(${xl} * ${SCALES.font(1, theme.font.baseSize + 'px')});
+            font-size: var(--font-size);
+          }
+        }
+
+        .line-height {
+          line-height: calc(var(--font-size) * ${lineHeight});
+        }
+
+        ${tag} {
+          ${defaultColor}
+          width: ${SCALES.width(1, 'auto')};
+          height: ${SCALES.height(1, 'auto')};
         }
       `}</style>
     </Component>
