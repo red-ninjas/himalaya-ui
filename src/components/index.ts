@@ -163,7 +163,7 @@ export { Sidebar } from './sidebar';
 export { default as SidebarLayout } from './sidebar/sidebar-layout';
 export type { SidebarProps } from './sidebar';
 
-export { default as useLayout, LayoutProvider, defaultBreakpoints } from './use-layout';
+export { default as useLayout, defaultBreakpoints } from './use-layout';
 export type { BreakpointsItem, LayoutProps } from './use-layout';
 
 export { default as useMobileMenu, MobileMenuProvider } from './use-mobile-menu';
@@ -226,7 +226,7 @@ export { default as SearchProvider } from './use-search/search-provider';
 export { InnerScroll } from './scroll';
 export type { InnerScrollProps } from './scroll';
 
-export { ContentLayout, PageLayout, ScrollableLayout, GradientContent } from './layout';
+export { ContentLayout, PageLayout, ScrollableLayout, GradientContent, LayoutProvider } from './layout';
 export type { ContentLayoutProps } from './layout';
 export type { GradientContentProps } from './layout';
 export { default as RoutingIndicator } from './routing-indicator';
