@@ -1,6 +1,6 @@
 'use client';
 
-import { Button, ContentLayout, FadeInEffect, Footer, FooterBottom, FooterNavigation, Hero, Link, PageLayout, Section, Text, useTheme } from 'components';
+import { Button, FadeInEffect, Footer, FooterBottom, FooterNavigation, Hero, Link, PageLayout, Section, Text, useTheme } from 'components';
 import { Code } from 'components/icons';
 import { capitalize } from 'components/utils/collections';
 import { Facts, Partners, Portfolio, RunningSlogan, Services } from 'lib/components';
