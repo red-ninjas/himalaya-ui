@@ -13,13 +13,14 @@ As a basic option, there are three themes available, `light` and `dark`.
 
 To switch in the default themes you only need to set the value of `themeType`, you can follow the steps below:
 
-1. Make sure `ConfigProvider` and `CssBaseline` are already on the root component.
+1. Make sure `ConfigProvider` and `NextStyleRegistry` are already registered.
 
 2. Update the value of `themeType`, and the theme of all components will follow automatically.
 
 ```jsx
 // NAME:src/app.js
-import { StyledJsxRegistry, ConfigProvider } from '@himalaya-ui/core';
+import { ConfigProvider } from '@himalaya-ui/core/use-context';
+import NextStyleRegistry from '@himalaya-ui/core/next/registry';
 
 const App = () => {
   const [themeType, setThemeType] = useState('light');
@@ -27,11 +28,11 @@ const App = () => {
     setThemeType(last => (last === 'dark' ? 'light' : 'dark'));
   };
   return (
-    <StyledJsxRegistry>
+    <NextStyleRegistry>
       <ConfigProvider themeType={themeType}>
         <YourComponent onClick={switchThemes} />
       </ConfigProvider>
-    </StyledJsxRegistry>
+    </NextStyleRegistry>
   );
 };
 ```
@@ -40,7 +41,7 @@ const App = () => {
 
 To detect a default theme you only need to set the value of `detectTheme` to `true`, you can follow the steps below:
 
-1. Make sure `ConfigProvider` and `CssBaseline` are already on the root component.
+1. Make sure `ConfigProvider` and `NextStyleRegistry` are already on the root component.
 
 2. Set the `detectTheme` to `true`
 
@@ -49,8 +50,9 @@ To detect a default theme you only need to set the value of `detectTheme` to `tr
 4. To get detetcTheme running under SSR u need to use `cookies` from `next/headers` to read the cookie server sided and forward it to `currenTheme`
 
 ```jsx
-// NAME:src/app.js
-import { StyledJsxRegistry, ConfigProvider } from '@himalaya-ui/core';
+// NAME: app/page.js
+import { ConfigProvider } from '@himalaya-ui/core/use-context';
+import NextStyleRegistry from '@himalaya-ui/core/next/registry';
 
 const App = () => {
   const [themeType, setThemeType] = useState('light');
@@ -58,11 +60,11 @@ const App = () => {
     setThemeType(last => (last === 'dark' ? 'light' : 'dark'));
   };
   return (
-    <StyledJsxRegistry>
+    <NextStyleRegistry>
       <ConfigProvider detectTheme={true}>
         <YourComponent onClick={switchThemes} />
       </ConfigProvider>
-    </StyledJsxRegistry>
+    </NextStyleRegistry>
   );
 };
 ```
@@ -73,7 +75,9 @@ Customizing a theme is very simple in Himalaya, you just need to provide a new t
 and all the components will change automatically.
 
 ```jsx
-import { StyledJsxRegistry, ConfigProvider, Themes } from '@himalaya-ui/core';
+import { Themes } from '@himalaya-ui/core';
+import { ConfigProvider } from '@himalaya-ui/core/use-context';
+import NextStyleRegistry from '@himalaya-ui/core/next/registry';
 
 const myTheme1 = Themes.createFromLight({
   type: 'coolTheme',
@@ -83,11 +87,11 @@ const myTheme1 = Themes.createFromLight({
 });
 
 const App = () => (
-  <StyledJsxRegistry>
+  <NextStyleRegistry>
     <ConfigProvider themes={[myTheme1]} themeType="coolTheme">
       <YourAppComponent onClick={switchThemes} />
     </ConfigProvider>
-  </StyledJsxRegistry>
+  </NextStyleRegistry>
 );
 ```
 

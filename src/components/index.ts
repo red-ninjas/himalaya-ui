@@ -216,7 +216,8 @@ export type { SearchProps, SearchResult, SearchResultGroup, SearchResults, Searc
 export { default as QuickBar, QuickBarLayout, QuickAction } from './quick-bar';
 export type { QuickBarProps, QuickBarLayoutProps } from './quick-bar';
 
-export { default as ConfigProvider, StyledJsxRegistry, useConfigs } from './use-context';
+export { default as ConfigProvider, useConfigs } from './use-context';
+export { NextStyleRegistry } from './next';
 
 export type { ConfigProps } from './use-context';
 
@@ -239,11 +240,9 @@ export type { UserProfileMenuProps } from './user-profile-menu';
 export { UspCell, type HomeCellProps } from './usp-cell';
 
 export { ThemeSwitcher } from './theme-switcher';
+
 export { default as Hero } from './hero';
 export { default as GradientWord } from './gradient-word';
-
-export { default as Chart } from './chart';
-export type * from './chart';
 
 export { default as Carousel, CarouselItem } from './carousel';
 

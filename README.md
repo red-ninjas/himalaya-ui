@@ -44,14 +44,15 @@ yarn test
 Here's a simple example of how to use Himalaya UI within your Next.js 13 and React application:
 
 ```jsx
-import { ConfigProvider, StyledJsxRegistry } from '@himalaya-ui/core'
+import { ConfigProvider } from '@himalaya-ui/core/use-context';
+import NextStyleRegistry from '@himalaya-ui/core/next/registry';
 
 export default () => (
-  <StyledJsxRegistry>  <!-- base styles, ssr injector -->
-    <ConfigProvider> <!-- ui provider -->
-      <AppComponent /> <!-- your application -->
+   <NextStyleRegistry>
+    <ConfigProvider>
+      <AppComponent />
     </ConfigProvider>
-  </StyledJsxRegistry>
+  </NextStyleRegistry>
 )
 ```
 

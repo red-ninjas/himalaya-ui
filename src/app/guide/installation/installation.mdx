@@ -34,16 +34,15 @@ Also, Himalaya is based on the component library of framework React, which means
 
 ```jsx
 // NAME: /src/app.js
-import { ConfigProvider, StyledJsxRegistry } from '@himalaya-ui/core';
+import { ConfigProvider } from '@himalaya-ui/core'
+import NextStyleRegistry from '@himalaya-ui/core/next/registry';
 
 export default () => (
-  <StyledJsxRegistry>
-    // --> base styles, ssr injector
+  <NextStyleRegistry>
     <ConfigProvider>
-      // --> ui provider
-      <AppComponent /> // --> your application
+      <AppComponent />
     </ConfigProvider>
-  </StyledJsxRegistry>
+  </NextStyleRegistry>
 );
 ```
 
@@ -65,24 +64,24 @@ const Home = () => (
 
 ## Next.js project
 
-[Next.js](https://nextjs.org/) is a React server-side rendering framework. Using Himalya on framework Next.js requires custom `layout.jsx` files,
-Once the project has been initialized, add the `/app/layout.jsx` file to the `/app` folder and add the following content:
+[Next.js](https://nextjs.org/) is a React server-side rendering framework. Using Himalya on framework Next.js requires to register the NextStyleRegistry in a app router client component.
 
 ```jsx
-// NAME:pages/_app.jsx
-import { ConfigProvider, StyledJsxRegistry } from '@himalaya-ui/core';
+// NAME:app/page.jsx
+import { ConfigProvider } from '@himalaya-ui/core/use-context';
+import NextStyleRegistry from '@himalaya-ui/core/next/registry';
 
-const App = ({ Component, pageProps }) => {
+const Page = ({ Component, pageProps }) => {
   return (
-    <StyledJsxRegistry>
+    <NextStyleRegistry>
       <ConfigProvider>
         <Component {...pageProps} />
       </ConfigProvider>
-    </StyledJsxRegistry>
+    </NextStyleRegistry>
   );
 };
 
-export default App;
+export default Page;
 ```
 
 If you need server-side rendering in Next.js project,
