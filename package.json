@@ -180,6 +180,7 @@
   "dependencies": {
     "@babel/runtime": "^7.23.1",
     "@fontsource-variable/roboto-mono": "^5.0.17",
+    "@release-it/conventional-changelog": "^8.0.1",
     "@splidejs/splide": "^4.1.4",
     "axios": "^1.6.2",
     "fancy-canvas": "^2.1.0",
