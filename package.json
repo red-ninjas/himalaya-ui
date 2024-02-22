@@ -187,6 +187,7 @@
     "moment": "^2.29.4",
     "nookies": "^2.5.2",
     "react-swipeable": ">=7.0.1",
+    "release-it": "^17.1.1",
     "use-elapsed-time": "^3.0.4"
   }
 }
