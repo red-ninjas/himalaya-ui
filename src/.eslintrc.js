@@ -37,5 +37,6 @@ module.exports = {
     'react-hooks/rules-of-hooks': 1,
     '@typescript-eslint/no-explicit-any': 1,
     'react/no-unknown-property': ['error', { ignore: ['jsx', 'global'] }],
+    'prettier/prettier': ['error', { endOfLine: 'auto' }],
   },
 };
