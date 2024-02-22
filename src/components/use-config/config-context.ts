@@ -1,8 +1,6 @@
 'use client';
 import { Toast, ToastLayout } from '../use-toasts';
-import { UIThemes } from '../themes';
 import React from 'react';
-import { DeepPartial } from '../utils/types';
 
 export type UpdateToastsFunction = (fn: (toasts: Array<Toast>) => Array<Toast>) => any;
 export type UpdateToastsLayoutFunction = (fn: (layout: Required<ToastLayout>) => Required<ToastLayout>) => any;
