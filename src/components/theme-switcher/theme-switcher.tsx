@@ -4,11 +4,12 @@ import React from 'react';
 import Button from '../button';
 import MoonIcon from '../icons/moon';
 import SunIcon from '../icons/sun';
+import useAllThemes from '../use-all-themes';
 import { useConfigs } from '../use-config/config-context';
 import { withScale } from '../use-scale';
 
 const ThemeSwitcherComponent: React.FC<unknown> = () => {
-  const { themeType, setTheme } = useConfigs();
+  const { themeType, setTheme } = useAllThemes();
 
   const icon = themeType === 'dark' ? <SunIcon /> : <MoonIcon />;
   const switchThemeOnClick = () => {

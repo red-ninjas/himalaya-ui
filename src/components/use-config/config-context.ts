@@ -20,34 +20,25 @@ export const defaultToastLayout: Required<ToastLayout> = {
 export interface ConfigProviderContextParams {
   sidebarScrollHeight?: number;
   updateSidebarScrollHeight?: (height: number) => void;
-  setTheme: (type: string) => void;
   isMobile?: boolean;
-  themes?: Array<UIThemes>;
-  themeType?: string | 'dark' | 'light';
   toasts: Array<Toast>;
   updateToasts: UpdateToastsFunction;
   toastLayout: Required<ToastLayout>;
   updateToastLayout: UpdateToastsLayoutFunction;
   lastUpdateToastId: string | null;
   updateLastToastId: UpdateToastsIDFunction;
-  customTheme: DeepPartial<UIThemes>;
-  updateCustomTheme: (theme: DeepPartial<UIThemes>) => void;
 }
 
 export const defaultConfigs: ConfigProviderContextParams = {
   sidebarScrollHeight: 0,
   updateSidebarScrollHeight: () => {},
-  setTheme: () => {},
   isMobile: false,
-  themeType: 'dark',
   toasts: [],
   toastLayout: defaultToastLayout,
   updateToastLayout: t => t,
   updateToasts: t => t,
   lastUpdateToastId: null,
   updateLastToastId: () => null,
-  customTheme: {},
-  updateCustomTheme: () => {},
 };
 
 export const ConfigContext = React.createContext<ConfigProviderContextParams>(defaultConfigs);
