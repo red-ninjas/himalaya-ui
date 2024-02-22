@@ -2,8 +2,6 @@
     "git": {
       "commitMessage": "chore: release v${version}",
       "tagName": "v${version}",
-      "requireCleanWorkingDir": false,
-      "addUntrackedFiles": false
     },
     "npm": {
       "publish": false
