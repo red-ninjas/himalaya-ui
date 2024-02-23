@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import { IconPropsNative } from './';
-const Dribble = ({ size = 24, color, style, ...props }: IconPropsNative) => {
+const Dribbble = ({ size = 24, color, style, ...props }: IconPropsNative) => {
   return (
     <svg
       fill="none"
@@ -22,4 +22,4 @@ const Dribble = ({ size = 24, color, style, ...props }: IconPropsNative) => {
     </svg>
   );
 };
-export default Dribble;
+export default Dribbble;
