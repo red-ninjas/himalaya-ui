@@ -128,6 +128,7 @@ export { default as DollarSign } from './dollarSign';
 export { default as Download } from './download';
 export { default as DownloadCloud } from './downloadCloud';
 export { default as Drag } from './drag';
+export { default as Dribbble } from './dribbble';
 export { default as Droplet } from './droplet';
 export { default as Edge } from './edge';
 export { default as EdgeConfig } from './edgeConfig';
