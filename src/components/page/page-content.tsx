@@ -23,8 +23,8 @@ const PageContentComponent: React.FC<React.PropsWithChildren<PageContentProps>> 
       <style jsx>{`
         main {
           font-size: ${SCALES.font(1)};
-          width: ${SCALES.width(1, '100%')};
-          height: ${SCALES.height(1, '100%')};
+          width: ${SCALES.w(1, '100%')};
+          height: ${SCALES.h(1, '100%')};
           padding: ${SCALES.pt(3.125)} ${SCALES.pr(0)} ${SCALES.pb(3.125)} ${SCALES.pl(0)};
           margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
         }

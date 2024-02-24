@@ -1,5 +1,12 @@
-import { GetAllScalePropsFunction, GetScalePropsFunction, ScaleProps, ScalePropKeys, DynamicLayoutPipe } from './scale-context';
 import { isCSSNumberValue } from '../utils/collections';
+import {
+  DynamicLayoutPipe,
+  GetAllScalePropsFunction,
+  GetScalePropsFunction,
+  ScaleNumberOrStringOrBreakpoint,
+  ScalePropKeys,
+  ScaleProps,
+} from './scale-context';
 
 export const generateGetScaleProps = <P>(props: P & ScaleProps): GetScalePropsFunction => {
   const getScaleProps: GetScalePropsFunction = keyOrKeys => {
@@ -8,7 +15,11 @@ export const generateGetScaleProps = <P>(props: P & ScaleProps): GetScalePropsFu
     for (const key of keyOrKeys) {
       const currentValue = props[key];
       if (typeof currentValue !== 'undefined') {
-        value = currentValue;
+        if (typeof currentValue === 'object' && 'xs' in currentValue) {
+          value = currentValue.xs;
+        } else {
+          value = currentValue;
+        }
       }
     }
     return value;
@@ -22,7 +33,7 @@ export const reduceScaleCoefficient = (scale: number) => {
 };
 
 export const makeScaleHandler =
-  (attrValue: string | number | undefined, scale: number, unit: string): DynamicLayoutPipe =>
+  (attrValue: ScaleNumberOrStringOrBreakpoint | undefined, scale: number, unit: string): DynamicLayoutPipe =>
   (scale1x, defaultValue) => {
     // 0 means disable scale and the default value is 0
     if (scale1x === 0) {
@@ -35,10 +46,18 @@ export const makeScaleHandler =
       return `calc(${factor} * ${unit})`;
     }
 
-    if (!isCSSNumberValue(attrValue)) return `${attrValue}`;
-    const customFactor = factor * Number(attrValue);
-    return `calc(${customFactor} * ${unit})`;
+    if (typeof attrValue === 'object' && 'xs' in attrValue) {
+      const xsValue = attrValue.xs;
+      if (!isCSSNumberValue(xsValue)) return `${xsValue}`;
+      const customFactor = factor * Number(xsValue);
+      return `calc(${customFactor} * ${unit})`;
+    } else {
+      if (!isCSSNumberValue(attrValue)) return `${attrValue}`;
+      const customFactor = factor * Number(attrValue);
+      return `calc(${customFactor} * ${unit})`;
+    }
   };
+
 export const generateGetAllScaleProps = <P>(props: P & ScaleProps): GetAllScalePropsFunction => {
   const getAllScaleProps: GetAllScalePropsFunction = () => {
     const scaleProps: ScaleProps = {};

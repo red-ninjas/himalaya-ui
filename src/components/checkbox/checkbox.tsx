@@ -104,8 +104,8 @@ const CheckboxComponent: React.FC<CheckboxProps> = ({
           cursor: ${isDisabled ? 'not-allowed' : 'pointer'};
           opacity: ${isDisabled ? 0.75 : 1};
           line-height: var(--checkbox-size);
-          width: ${SCALES.width(1, 'auto')};
-          height: ${SCALES.height(1, 'var(--checkbox-size)')};
+          width: ${SCALES.w(1, 'auto')};
+          height: ${SCALES.h(1, 'var(--checkbox-size)')};
           padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
           margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
         }

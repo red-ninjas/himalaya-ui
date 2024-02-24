@@ -48,4 +48,5 @@ export interface LayoutProps {
   breakpoints: UIThemesBreakpoints;
   radius: string;
   unit: string;
+  sectionSpace: string;
 }

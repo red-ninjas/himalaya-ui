@@ -45,8 +45,8 @@ const CodeComponent: React.FC<React.PropsWithChildren<CodeProps>> = ({
           max-width: 100%;
           border: 1px solid ${border};
           font-size: ${SCALES.font(0.925)};
-          width: ${SCALES.width(1, 'initial')};
-          height: ${SCALES.height(1, 'auto')};
+          width: ${SCALES.w(1, 'initial')};
+          height: ${SCALES.h(1, 'auto')};
           margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
           border-radius: ${theme.style.radius};
           background-color: ${background};

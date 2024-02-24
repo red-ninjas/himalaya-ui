@@ -6,7 +6,7 @@ import { TableAbstractColumn, TableDataItemBase } from './table-types';
 import useClasses from '../use-classes';
 
 interface Props<TableDataItem extends TableDataItemBase> {
-  width: number;
+  w: number;
   columns: Array<TableAbstractColumn<TableDataItem>>;
   className?: string;
   hasBorder?: boolean;
@@ -15,17 +15,17 @@ interface Props<TableDataItem extends TableDataItemBase> {
 type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props<any>>;
 export type TableHeadProps<TableDataItem extends TableDataItemBase> = Props<TableDataItem> & NativeAttrs;
 
-const makeColgroup = <TableDataItem extends TableDataItemBase>(width: number, columns: Array<TableAbstractColumn<TableDataItem>>) => {
-  const unsetWidthCount = columns.filter(c => !c.width).length;
+const makeColgroup = <TableDataItem extends TableDataItemBase>(w: number, columns: Array<TableAbstractColumn<TableDataItem>>) => {
+  const unsetWidthCount = columns.filter(c => !c.w).length;
   const customWidthTotal = columns.reduce((pre, current) => {
-    return current.width ? pre + current.width : pre;
+    return current.w ? pre + current.w : pre;
   }, 0);
-  const averageWidth = (width - customWidthTotal) / unsetWidthCount;
+  const averageWidth = (w - customWidthTotal) / unsetWidthCount;
   if (averageWidth <= 0) return <colgroup />;
   return (
     <colgroup>
       {columns.map((column, index) => (
-        <col key={`colgroup-${index}`} width={column.width || averageWidth} />
+        <col key={`colgroup-${index}`} width={column.w || averageWidth} />
       ))}
     </colgroup>
   );
@@ -34,12 +34,12 @@ const makeColgroup = <TableDataItem extends TableDataItemBase>(width: number, co
 const TableHead = <TableDataItem extends TableDataItemBase>({ hasBorder = true, ...props }: TableHeadProps<TableDataItem>) => {
   const theme = useTheme();
   const layout = useLayout();
-  const { columns, width } = props as TableHeadProps<TableDataItem>;
-  const isScalableWidth = useMemo(() => columns.find(item => !!item.width), [columns]);
+  const { columns, w } = props as TableHeadProps<TableDataItem>;
+  const isScalableWidth = useMemo(() => columns.find(item => !!item.w), [columns]);
   const colgroup = useMemo(() => {
     if (!isScalableWidth) return <colgroup />;
-    return makeColgroup(width, columns);
-  }, [isScalableWidth, width]);
+    return makeColgroup(w, columns);
+  }, [isScalableWidth, w]);
 
   return (
     <>

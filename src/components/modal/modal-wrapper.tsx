@@ -75,7 +75,7 @@ const ModalWrapper: React.FC<React.PropsWithChildren<ModalWrapperProps>> = ({
               transform 0.35s cubic-bezier(0.4, 0, 0.2, 1) 0s;
             width: 100%;
             font-size: ${SCALES.font(1)};
-            height: ${SCALES.height(1, 'auto')};
+            height: ${SCALES.h(1, 'auto')};
             --modal-wrapper-padding-left: ${SCALES.pl(1.3125)};
             --modal-wrapper-padding-right: ${SCALES.pr(1.3125)};
             padding: ${SCALES.pt(1.3125)} var(--modal-wrapper-padding-right) ${SCALES.pb(1.3125)} var(--modal-wrapper-padding-left);

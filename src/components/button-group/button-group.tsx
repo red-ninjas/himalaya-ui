@@ -72,8 +72,8 @@ const ButtonGroupComponent: React.FC<React.PropsWithChildren<ButtonGroupProps>> 
             border: 1px solid ${border};
             background-color: transparent;
             overflow: hidden;
-            width: ${SCALES.width(1, 'auto')};
-            height: ${SCALES.height(1, 'min-content')};
+            width: ${SCALES.w(1, 'auto')};
+            height: ${SCALES.h(1, 'min-content')};
             margin: ${SCALES.mt(0.313)} ${SCALES.mr(0.313)} ${SCALES.mb(0.313)} ${SCALES.ml(0.313)};
             padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
           }

@@ -17,7 +17,19 @@ The `Section` UI component offers a versatile container for organizing and struc
   code={`
   <Section>
     <Text>Section</Text>
-  </Section>
+</Section>
+  `}
+/>
+
+
+<Playground
+  scope={{ Section, Text }}
+  title={'Section example responsive'}
+  desc={'Example of a section responsive'}
+  code={`
+  <Section p={{ xs: 2, md: 4, xl: 6 }}>
+    <Text>Section</Text>
+</Section>
   `}
 />
 

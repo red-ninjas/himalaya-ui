@@ -143,9 +143,9 @@ const InputComponent = React.forwardRef<HTMLInputElement, React.PropsWithChildre
             display: inline-block;
             box-sizing: border-box;
             -webkit-box-align: center;
-            --input-height: ${SCALES.height(2.25)};
+            --input-height: ${SCALES.h(2.25)};
             font-size: ${SCALES.font(0.875)};
-            width: ${SCALES.width(1, 'initial')};
+            width: ${SCALES.w(1, 'initial')};
             padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
             margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
           }
@@ -153,7 +153,7 @@ const InputComponent = React.forwardRef<HTMLInputElement, React.PropsWithChildre
           .input-container {
             display: inline-flex;
             align-items: center;
-            width: ${SCALES.width(1, 'initial')};
+            width: ${SCALES.w(1, 'initial')};
             height: var(--input-height);
           }
 

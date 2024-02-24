@@ -7,7 +7,7 @@ import { TableColumnRender, TableDataItemBase } from './table-types';
 export type TableColumnProps<TableDataItem extends TableDataItemBase> = {
   prop: keyof TableDataItem;
   label?: string;
-  width?: number;
+  w?: number;
   className?: string;
   render?: TableColumnRender<TableDataItem>;
 };
@@ -19,7 +19,7 @@ const TableColumn = <TableDataItem extends TableDataItemBase>(columnProps: React
     children,
     prop,
     label,
-    width,
+    w,
     className = '',
     render: renderHandler = defaultRenderHandler,
   } = columnProps as React.PropsWithChildren<TableColumnProps<TableDataItem>>;
@@ -33,11 +33,11 @@ const TableColumn = <TableDataItem extends TableDataItemBase>(columnProps: React
     updateColumn({
       label: children || label,
       prop: safeProp,
-      width,
+      w,
       className,
       renderHandler,
     });
-  }, [children, label, safeProp, width, className, renderHandler]);
+  }, [children, label, safeProp, w, className, renderHandler]);
 
   useEffect(() => {
     return () => {

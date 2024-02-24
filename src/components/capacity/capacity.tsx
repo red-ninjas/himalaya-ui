@@ -37,8 +37,8 @@ const CapacityComponent: React.FC<CapacityProps> = ({ value = 0, limit = 100, co
       <span />
       <style jsx>{`
         .capacity {
-          width: ${SCALES.width(3.125)};
-          height: ${SCALES.height(0.625)};
+          width: ${SCALES.w(3.125)};
+          height: ${SCALES.h(0.625)};
           border-radius: ${theme.style.radius};
           overflow: hidden;
           background-color: ${theme.palette.accents_2};

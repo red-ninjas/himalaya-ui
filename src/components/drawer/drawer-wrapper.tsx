@@ -96,13 +96,13 @@ const DrawerWrapper: React.FC<React.PropsWithChildren<DrawerWrapperProps>> = ({
           }
           .top,
           .bottom {
-            width: ${SCALES.width(1, '100%')};
-            height: ${SCALES.height(1, 'auto')};
+            width: ${SCALES.w(1, '100%')};
+            height: ${SCALES.h(1, 'auto')};
           }
           .left,
           .right {
-            width: ${SCALES.width(1, 'auto')};
-            height: ${SCALES.height(1, '100%')};
+            width: ${SCALES.w(1, 'auto')};
+            height: ${SCALES.h(1, '100%')};
           }
           .top {
             bottom: auto;

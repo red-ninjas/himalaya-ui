@@ -8,7 +8,7 @@ export type TableAbstractColumn<TableDataItem extends TableDataItemBase> = {
   prop: keyof TableDataItem;
   label: React.ReactNode | string;
   className: string;
-  width?: number;
+  w?: number;
   renderHandler: TableColumnRender<TableDataItem>;
 };
 

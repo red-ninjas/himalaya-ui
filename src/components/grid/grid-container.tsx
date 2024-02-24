@@ -31,7 +31,7 @@ const GridContainerComponent: React.FC<React.PropsWithChildren<GridContainerProp
       display: flex;
       flex-wrap: ${wrap};
       box-sizing: border-box;
-      width: ${SCALES.width(1, 'var(--grid-container-width)')};
+      width: ${SCALES.w(1, 'var(--grid-container-width)')};
       margin: ${SCALES.mt(0, 'var(--grid-container-margin)')} ${SCALES.mr(0, 'var(--grid-container-margin)')} ${SCALES.mb(0, 'var(--grid-container-margin)')}
         ${SCALES.ml(0, 'var(--grid-container-margin)')};
     }

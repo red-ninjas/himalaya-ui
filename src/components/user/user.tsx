@@ -47,8 +47,8 @@ const UserComponent: React.FC<React.PropsWithChildren<UserProps>> = ({
           max-width: 100%;
           --user-font-size: ${SCALES.font(1)};
           font-size: var(--user-font-size);
-          width: ${SCALES.width(1, 'max-content')};
-          height: ${SCALES.height(1, 'auto')};
+          width: ${SCALES.w(1, 'max-content')};
+          height: ${SCALES.h(1, 'auto')};
           padding: ${SCALES.pt(0)} ${SCALES.pr(0.5)} ${SCALES.pb(0)} ${SCALES.pl(0.5)};
           margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
         }

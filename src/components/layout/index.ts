@@ -17,5 +17,5 @@ export interface ContentLayoutProps {
 export interface GradientContentProps {
   gradient?: string;
   img?: string;
-  gradientheight?: string;
+  maxHeight?: string;
 }

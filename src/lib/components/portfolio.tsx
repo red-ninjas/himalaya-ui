@@ -5,14 +5,14 @@ export function PortfolioItem({
   title = '',
   desc = '',
   url,
-  width,
-  height,
+  w,
+  h,
 }: {
   image?: string;
   title: string;
   desc: string;
-  width: number;
-  height: number;
+  w: number;
+  h: number;
   url?: string;
 }) {
   const theme = useTheme();
@@ -21,7 +21,7 @@ export function PortfolioItem({
       <div className="portfolio">
         {image && (
           <div className="portfolio-image">
-            <ResponsiveImage alt={title} src={image} width={width} height={height} draggable={false} />
+            <ResponsiveImage alt={title} src={image} w={w} h={h} draggable={false} />
           </div>
         )}
         <FadeInEffect translateY="4rem">
@@ -83,12 +83,12 @@ export default function Portfolio() {
             </Hero.Tag>
           </FadeInEffect>
           <FadeInEffect translateY="4rem">
-            <Text margin={0} marginTop={'12px'} h4 font={'clamp(24px, 3.1vw, 48px)'} style={{ fontWeight: '700', lineHeight: '1.2' }}>
+            <Text m={0} mt={'12px'} h4 font={'clamp(24px, 3.1vw, 48px)'} style={{ fontWeight: '700', lineHeight: '1.2' }}>
               Diverse, dynamic, and innovative: Explore real projects made with Himalaya.
             </Text>
           </FadeInEffect>
           <FadeInEffect translateY="4rem">
-            <Text margin={0} marginTop={'24px'} p font={'clamp(14px, 1.2vw, 16px)'} style={{ color: theme.palette.accents_6, fontWeight: 400 }}>
+            <Text m={0} mt={'24px'} font={'clamp(14px, 1.2vw, 16px)'} style={{ color: theme.palette.accents_6, fontWeight: 400 }}>
               Our UI library stands out with over 3 fully functional demo projects, offering real-world application scenarios, and a rich repository of 100+
               examples showcasing its extensive capabilities for diverse design and development needs.
             </Text>
@@ -100,15 +100,15 @@ export default function Portfolio() {
           <div className="portfolio-list">
             <PortfolioItem
               image="https://picsum.photos/id/2/578/578"
-              width={578}
-              height={578}
+              w={578}
+              h={578}
               title="TurtleTrade"
               desc="TurtleTrade is your free gateway to stock market success, providing cutting-edge forecasting and analysis tools for informed investment decisions."
             />
             <PortfolioItem
               image="https://picsum.photos/id/2/578/750"
-              width={578}
-              height={750}
+              w={578}
+              h={750}
               title="Striked"
               desc="Striked is the ultimate social network connecting gamers and game developers, where gaming's pulse beats through a vibrant community of shared passion and innovation."
             />
@@ -118,14 +118,14 @@ export default function Portfolio() {
           <div className="portfolio-list">
             <PortfolioItem
               image="https://picsum.photos/id/2/578/750"
-              width={578}
-              height={750}
+              w={578}
+              h={750}
               title="RedNinjas"
               desc="At RedNinjas, we're the digital agency that thrives on crafting innovative products across diverse industries, fueled by a passion for creativity and excellence."
             />
             <PortfolioItem
-              width={578}
-              height={578}
+              w={578}
+              h={578}
               image="/images/himalaya-preview.png"
               title="Himalaya"
               url="https://github.com/red-ninjas/himalaya-ui"

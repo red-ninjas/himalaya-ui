@@ -57,7 +57,7 @@ Display tabular data in format.
 
 <Playground
   title="width"
-  desc="Specifies the `width` of all or part of the columns."
+  desc="Specifies the `w` of all or part of the columns."
   scope={{ Table, Code, Text }}
   code={`
 () => {
@@ -68,7 +68,7 @@ Display tabular data in format.
   ]
   return (
     <Table data={data}>
-      <Table.Column prop="property" label="property" width={50} />
+      <Table.Column prop="property" label="property" w={50} />
       <Table.Column prop="description" label="description" />
       <Table.Column prop="type" label="type" />
       <Table.Column prop="default" label="default" />
@@ -102,7 +102,7 @@ Display tabular data in format.
   <Table data={data} onChange={value => setData(value)}>
     <Table.Column prop="property" label="property" />
     <Table.Column prop="description" label="description" />
-    <Table.Column prop="operation" label="operation" width={150} render={renderAction} />
+    <Table.Column prop="operation" label="operation" w={150} render={renderAction} />
   </Table>
   )
 }
@@ -141,7 +141,7 @@ Display tabular data in format.
     <Table data={data}  onChange={value => setData(value)}>
       <Table.Column prop="property" label="property" />
       <Table.Column prop="description" label="description" />
-      <Table.Column prop="operation" label="operation" width={150} render={renderAction} />
+      <Table.Column prop="operation" label="operation" w={150} render={renderAction} />
     </Table>
   )
 }
@@ -218,7 +218,7 @@ const MyComponent = () => (
 | ------------------ | -------------------------------------- | --------------------------------------- | --------------- | ------- |
 | **prop**(required) | table-column's prop                    | `string`                                | -               | -       |
 | **label**          | table-column's label                   | `string`                                | -               | -       |
-| **width**          | width number (px)                      | `number`                                | -               | -       |
+| **w**              | width number (px)                      | `number`                                | -               | -       |
 | **className**      | set className to each column           | `string`                                | -               | -       |
 | **render**         | render returns elements in all columns | [TableColumnRender](#tablecolumnrender) | -               | -       |
 

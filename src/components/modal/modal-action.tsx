@@ -59,7 +59,7 @@ const ModalActionComponent = React.forwardRef<HTMLButtonElement, React.PropsWith
         -webkit-box-pack: center;
         justify-content: center;
         flex: 1;
-        height: ${SCALES.height(3.5625)};
+        height: ${SCALES.h(3.5625)};
         border-radius: 0;
         min-width: 0;
       }

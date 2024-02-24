@@ -24,7 +24,7 @@ const QuickBarComponent: React.FC<PropsWithChildren<QuickBarProps>> = ({ childre
           flex-direction: column;
           align-items: center;
           gap: 6px;
-          height: ${SCALES.height(1, 'auto')};
+          height: ${SCALES.h(1, 'auto')};
           margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
           padding: ${SCALES.pt(0.75)} ${SCALES.pr(0.75)} ${SCALES.pb(0.75)} ${SCALES.pl(0.75)};
         }

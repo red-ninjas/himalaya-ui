@@ -102,7 +102,7 @@ const GridBasicItem: React.FC<React.PropsWithChildren<GridBasicItemProps>> = ({
       <style jsx>{`
         .item {
           font-size: ${SCALES.font(1, 'inherit')};
-          height: ${SCALES.height(1, 'auto')};
+          height: ${SCALES.h(1, 'auto')};
         }
         .justify {
           justify-content: ${justify};

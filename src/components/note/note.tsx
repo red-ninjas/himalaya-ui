@@ -88,8 +88,8 @@ export const NoteComponent: React.FC<React.PropsWithChildren<NoteProps>> = ({
           background-color: ${bgColor};
           border-radius: ${theme.style.radius};
           font-size: ${SCALES.font(0.875)};
-          width: ${SCALES.width(1, 'auto')};
-          height: ${SCALES.height(1, 'auto')};
+          width: ${SCALES.w(1, 'auto')};
+          height: ${SCALES.h(1, 'auto')};
           padding: ${SCALES.pt(0.5)} ${SCALES.pr(0.8)} ${SCALES.pb(0.5)} ${SCALES.pl(0.8)};
           margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
           display: flex;

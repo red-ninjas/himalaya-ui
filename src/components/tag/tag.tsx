@@ -89,10 +89,10 @@ const TagComponent: React.FC<React.PropsWithChildren<TagProps>> = ({
           color: ${color};
           box-sizing: border-box;
           line-height: 1em;
-          border-radius: ${SCALES.height(0.3125)};
+          border-radius: ${SCALES.h(0.3125)};
           font-size: ${SCALES.font(0.875)};
-          width: ${SCALES.width(1, 'auto')};
-          height: ${SCALES.height(1.75)};
+          width: ${SCALES.w(1, 'auto')};
+          height: ${SCALES.h(1.75)};
           padding: ${SCALES.pt(0.375)} ${SCALES.pr(0.375)} ${SCALES.pb(0.375)} ${SCALES.pl(0.375)};
           margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
         }

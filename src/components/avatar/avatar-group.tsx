@@ -25,8 +25,8 @@ const AvatarGroupComponent: React.FC<React.PropsWithChildren<AvatarGroupProps>> 
         .avatar-group {
           display: flex;
           align-items: center;
-          width: ${SCALES.width(1, 'max-content')};
-          height: ${SCALES.height(1, 'auto')};
+          width: ${SCALES.w(1, 'max-content')};
+          height: ${SCALES.h(1, 'auto')};
           padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
           margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
         }

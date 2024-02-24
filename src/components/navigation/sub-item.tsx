@@ -22,7 +22,7 @@ const NavigationSubItem: React.FC<PropsWithChildren<NavigationSubItemProps>> = (
 
   return (
     <>
-      <Popover.Item padding="6px">
+      <Popover.Item p="6px">
         <Link legacyBehavior passHref href={url || ''}>
           <a onClick={e => handleClick(e)} className="sub-item">
             <div className="icon-with-title">

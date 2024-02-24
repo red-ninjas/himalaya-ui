@@ -10,7 +10,7 @@ import { AutoCompleteContext, AutoCompleteConfig } from './auto-complete-context
 import { NormalTypes } from '../utils/prop-types';
 import { pickChild } from '../utils/collections';
 import useCurrentState from '../utils/use-current-state';
-import useScale, { withScale } from '../use-scale';
+import useScale, { ScaleNumberOrString, ScaleNumberOrStringOrBreakpoint, withScale } from '../use-scale';
 import LoadingSpinner from '../loading-spinner';
 
 export type AutoCompleteTypes = NormalTypes;
@@ -57,9 +57,16 @@ const childrenToOptionsNode = (options: Array<AutoCompleteOption>) =>
 
 // When the search is not set, the "clearable" icon can be displayed in the original location.
 // When the search is seted, at least one element should exist to avoid re-render.
-const getSearchIcon = (searching?: boolean, scale: string | number = 1) => {
+const getSearchIcon = (searching?: boolean, scale: ScaleNumberOrStringOrBreakpoint = 1) => {
+  let newScale: ScaleNumberOrString = 1;
+  if (typeof scale === 'object' && 'xs' in scale) {
+    newScale = scale.xs;
+  } else {
+    newScale = scale;
+  }
+
   if (searching === undefined) return null;
-  return searching ? <LoadingSpinner scale={+scale / 2} /> : <span />;
+  return searching ? <LoadingSpinner scale={+newScale / 2} /> : <span />;
 };
 
 const AutoCompleteComponent = React.forwardRef<HTMLInputElement, React.PropsWithChildren<AutoCompleteProps>>(
@@ -181,8 +188,8 @@ const AutoCompleteComponent = React.forwardRef<HTMLInputElement, React.PropsWith
             onFocus={() => toggleFocusHandler(true)}
             onBlur={() => toggleFocusHandler(false)}
             clearable={showClearIcon}
-            width={SCALES.width(1, 'initial')}
-            height={SCALES.height(2.25)}
+            w={SCALES.w(1, 'initial')}
+            h={SCALES.h(2.25)}
             iconRight={getSearchIcon(searching, getScaleProps('scale'))}
             {...inputProps}
           />
@@ -198,8 +205,8 @@ const AutoCompleteComponent = React.forwardRef<HTMLInputElement, React.PropsWith
 
           <style jsx>{`
             .auto-complete {
-              width: ${SCALES.width(1, 'max-content')};
-              height: ${SCALES.height(1, 'auto')};
+              width: ${SCALES.w(1, 'max-content')};
+              height: ${SCALES.h(1, 'auto')};
               padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
               margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
             }

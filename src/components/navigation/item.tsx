@@ -179,8 +179,8 @@ const NavigationItem: React.FC<PropsWithChildren<NavigationItemProps>> = ({
           font-size: ${SCALES.font(0.9)};
           line-height: normal;
           font-weight: 500;
-          width: ${SCALES.width(1, 'auto')};
-          height: ${SCALES.height(1, 'auto')};
+          width: ${SCALES.w(1, 'auto')};
+          height: ${SCALES.h(1, 'auto')};
           padding: ${SCALES.pt(0.875)} ${SCALES.pr(0.55)} ${SCALES.pb(0.875)} ${SCALES.pl(0.55)};
           margin: ${SCALES.mt(0)} ${SCALES.mr(0.2)} ${SCALES.mb(0)} ${SCALES.ml(0.2)};
           z-index: 1;

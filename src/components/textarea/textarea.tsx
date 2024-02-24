@@ -106,8 +106,8 @@ const TextareaComponent = React.forwardRef<HTMLTextAreaElement, React.PropsWithC
             min-width: 12.5rem;
             max-width: 95vw;
             --textarea-font-size: ${SCALES.font(0.875)};
-            --textarea-height: ${SCALES.height(1, 'auto')};
-            width: ${SCALES.width(1, 'initial')};
+            --textarea-height: ${SCALES.h(1, 'auto')};
+            width: ${SCALES.w(1, 'initial')};
             height: var(--textarea-height);
             margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
           }

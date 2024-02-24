@@ -39,9 +39,9 @@ const CardFooterComponent: React.FC<React.PropsWithChildren<CardFooterProps>> = 
           border-top: 1px solid ${theme.palette.border};
           border-bottom-left-radius: ${theme.style.radius};
           border-bottom-right-radius: ${theme.style.radius};
-          min-height: ${SCALES.height(3.3)};
-          width: ${SCALES.width(1, 'auto')};
-          height: ${SCALES.height(1, 'auto')};
+          min-height: ${SCALES.h(3.3)};
+          width: ${SCALES.w(1, 'auto')};
+          height: ${SCALES.h(1, 'auto')};
           margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
         }
 

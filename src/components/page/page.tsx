@@ -99,8 +99,8 @@ const PageComponent: React.FC<React.PropsWithChildren<PageProps>> = ({
           box-sizing: border-box;
           position: relative;
           font-size: ${SCALES.font(1)};
-          width: ${SCALES.width(1, 'calc(100% - 100pt)')};
-          height: ${SCALES.height(1, 'auto')};
+          width: ${SCALES.w(1, 'calc(100% - 100pt)')};
+          height: ${SCALES.h(1, 'auto')};
           padding: ${SCALES.pt(0)} ${SCALES.pr(1.34)} ${SCALES.pb(0)} ${SCALES.pl(1.34)};
           margin: ${SCALES.mt(0)} ${SCALES.mr(0, 'auto')} ${SCALES.mb(0)} ${SCALES.ml(0, 'auto')};
         }

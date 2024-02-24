@@ -31,8 +31,8 @@ const ImageComponent: React.FC<ImageProps> = ({
   ...props
 }: ImageProps) => {
   const { SCALES, getScaleProps } = useScale();
-  const width = getScaleProps(['width', 'w']);
-  const height = getScaleProps(['height', 'h']);
+  const width = getScaleProps(['w']);
+  const height = getScaleProps(['h']);
   const showAnimation = !disableSkeleton && width && height;
 
   const theme = useTheme();
@@ -85,8 +85,8 @@ const ImageComponent: React.FC<ImageProps> = ({
           border-radius: ${radius === undefined ? theme.style.radius : radius};
           overflow: hidden;
           max-width: 100%;
-          width: ${SCALES.width(1, 'auto')};
-          height: ${SCALES.height(1, 'auto')};
+          width: ${SCALES.w(1, 'auto')};
+          height: ${SCALES.h(1, 'auto')};
           margin: ${SCALES.mt(0)} ${SCALES.mr(0, 'auto')} ${SCALES.mb(0)} ${SCALES.ml(0, 'auto')};
           padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
         }

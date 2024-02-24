@@ -84,7 +84,7 @@ function TableComponent<TableDataItem extends TableDataItemBase>(tableProps: Rea
   return (
     <TableContext.Provider value={contextValue}>
       <table ref={ref} className={className} {...props}>
-        <TableHead columns={columns} width={width} hasBorder={hasBorder} />
+        <TableHead columns={columns} w={width} hasBorder={hasBorder} />
         <TableBody<TableDataItem> data={data} hover={hover} emptyText={emptyText} onRow={onRow} onCell={onCell} rowClassName={rowClassName} />
         {children}
 
@@ -94,8 +94,8 @@ function TableComponent<TableDataItem extends TableDataItemBase>(tableProps: Rea
             border-spacing: 0;
             --table-font-size: ${SCALES.font(1)};
             font-size: var(--table-font-size);
-            width: ${SCALES.width(1, '100%')};
-            height: ${SCALES.height(1, 'auto')};
+            width: ${SCALES.w(1, '100%')};
+            height: ${SCALES.h(1, 'auto')};
             padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
             margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
           }

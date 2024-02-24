@@ -145,7 +145,7 @@ AutoComplete control of input field.
   desc="You can replace the default waiting text with any components."
   scope={{ AutoComplete }}
   code={`
-<AutoComplete searching placeholder="Enter here" width="100%">
+<AutoComplete searching placeholder="Enter here" w="100%">
   <AutoComplete.Searching>
     <span style={{ color: 'red' }}>waiting...</span>
   </AutoComplete.Searching>
@@ -171,7 +171,7 @@ AutoComplete control of input field.
     setOptions(relatedOptions)
   }
   return (
-    <AutoComplete placeholder="Enter here" width="100%" options={options} onSearch={searchHandler}>
+    <AutoComplete placeholder="Enter here" w="100%" options={options} onSearch={searchHandler}>
       <AutoComplete.Empty>
         <span>no options...</span>
       </AutoComplete.Empty>
@@ -212,7 +212,7 @@ AutoComplete control of input field.
   }
   return (
     <AutoComplete placeholder="Enter here"
-      width="100%"
+      w="100%"
       options={options}
       onSearch={searchHandler} />
   )

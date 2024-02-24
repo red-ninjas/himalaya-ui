@@ -107,7 +107,7 @@ const ButtonComponent = React.forwardRef<HTMLButtonElement, React.PropsWithChild
           .btn {
             box-sizing: border-box;
             display: inline-block;
-            line-height: ${SCALES.height(2.5)};
+            line-height: ${SCALES.h(2.5)};
             border-radius: ${theme.style.radius};
             font-weight: 500;
             font-size: ${SCALES.font(0.875)};
@@ -131,12 +131,12 @@ const ButtonComponent = React.forwardRef<HTMLButtonElement, React.PropsWithChild
             pointer-events: ${events};
             box-shadow: ${shadow ? theme.expressiveness.shadowSmall : 'none'};
             --ui-button-icon-padding: ${SCALES.pl(0.727)};
-            --ui-button-height: ${SCALES.height(2.5)};
+            --ui-button-height: ${SCALES.h(2.5)};
             --ui-button-color: ${color};
             --ui-button-bg: ${bg};
-            min-width: ${auto ? 'min-content' : SCALES.width(10.5)};
+            min-width: ${auto ? 'min-content' : SCALES.w(10.5)};
             width: ${auto ? 'auto' : 'initial'};
-            height: ${SCALES.height(2.5)};
+            height: ${SCALES.h(2.5)};
             padding: ${SCALES.pt(0)} ${paddingRight} ${SCALES.pb(0)} ${paddingLeft};
             margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
             transition-property: border-color, background, color, transform, box-shadow;

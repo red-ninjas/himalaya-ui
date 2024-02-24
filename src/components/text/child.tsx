@@ -62,10 +62,10 @@ const TextChild: React.FC<React.PropsWithChildren<TextChildProps>> = ({
 
   const { SCALES, getScaleProps } = useScale();
   const font = getScaleProps('font');
-  const mx = getScaleProps(['margin', 'marginLeft', 'marginRight', 'mx', 'ml', 'mr']);
-  const my = getScaleProps(['margin', 'marginTop', 'marginBottom', 'my', 'mt', 'mb']);
-  const px = getScaleProps(['padding', 'paddingLeft', 'paddingRight', 'pl', 'pr', 'px']);
-  const py = getScaleProps(['padding', 'paddingTop', 'paddingBottom', 'pt', 'pb', 'py']);
+  const mx = getScaleProps(['m', 'ml', 'mr', 'mx', 'ml', 'mr']);
+  const my = getScaleProps(['m', 'mt', 'mb', 'my', 'mt', 'mb']);
+  const px = getScaleProps(['p', 'pl', 'pr', 'pl', 'pr', 'px']);
+  const py = getScaleProps(['p', 'pt', 'pb', 'pt', 'pb', 'py']);
 
   const defaultColor = useMemo(() => {
     if (color && typeof color === 'string') {
@@ -182,8 +182,8 @@ const TextChild: React.FC<React.PropsWithChildren<TextChildProps>> = ({
 
         ${tag} {
           ${defaultColor}
-          width: ${SCALES.width(1, 'auto')};
-          height: ${SCALES.height(1, 'auto')};
+          width: ${SCALES.w(1, 'auto')};
+          height: ${SCALES.h(1, 'auto')};
         }
       `}</style>
     </Component>

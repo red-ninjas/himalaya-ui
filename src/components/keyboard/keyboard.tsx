@@ -45,8 +45,8 @@ const KeyboardComponent: React.FC<React.PropsWithChildren<KeyboardProps>> = ({
           border-radius: ${theme.style.radius};
           border: 1px solid ${theme.palette.accents_2};
           font-size: ${SCALES.font(0.875)};
-          width: ${SCALES.width(1, 'fit-content')};
-          height: ${SCALES.height(1, 'auto')};
+          width: ${SCALES.w(1, 'fit-content')};
+          height: ${SCALES.h(1, 'auto')};
           min-width: 2em;
           min-height: 2em;
           padding: ${SCALES.pt(0)} ${SCALES.pr(0.34)} ${SCALES.pb(0)} ${SCALES.pl(0.34)};

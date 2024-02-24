@@ -21,7 +21,7 @@ const MobileMenu: React.FC<PropsWithChildren<MobileMenuPropsNative>> = ({ childr
     <>
       <Drawer
         transitionTime={animationTime}
-        width={SCALES.width(1, '80%')}
+        w={SCALES.w(1, '80%')}
         radius={0}
         visible={isEnabled}
         wrapClassName={'mobilemenu-drawer-nav'}
@@ -30,7 +30,7 @@ const MobileMenu: React.FC<PropsWithChildren<MobileMenuPropsNative>> = ({ childr
         {...props}
       >
         <div className="mobilemenu-nav-content">
-          <InnerScroll width={'100%'} height={'100%'} type="vertical">
+          <InnerScroll w={'100%'} h={'100%'} type="vertical">
             {children}
           </InnerScroll>
         </div>

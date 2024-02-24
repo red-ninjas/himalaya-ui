@@ -19,6 +19,7 @@ const LayoutProvider: React.FC<React.PropsWithChildren<LayoutPropsContext>> = ({
   radius = '6px',
   unit = '16px',
   pageWidthWithMargin = '950pt',
+  sectionSpace = '160px',
 }) => {
   return (
     <LayoutContext.Provider
@@ -37,6 +38,7 @@ const LayoutProvider: React.FC<React.PropsWithChildren<LayoutPropsContext>> = ({
         radius,
         unit,
         pageWidthWithMargin,
+        sectionSpace,
       }}
     >
       {children}

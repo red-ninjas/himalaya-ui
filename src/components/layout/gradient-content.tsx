@@ -9,7 +9,7 @@ import { GradientContentProps } from '.';
 type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof GradientContentProps>;
 export type CardContentProps = GradientContentProps & NativeAttrs;
 
-const GradientContentComponent: React.FC<React.PropsWithChildren<CardContentProps>> = ({ children, gradientheight = '50vh', ...props }) => {
+const GradientContentComponent: React.FC<React.PropsWithChildren<CardContentProps>> = ({ children, maxHeight = '50vh', ...props }) => {
   const theme = useTheme();
   const { SCALES } = useScale();
   const rgba = `rgba(${hexToRgb(theme.palette.accents_1)}, 0.5)`;
@@ -24,8 +24,8 @@ const GradientContentComponent: React.FC<React.PropsWithChildren<CardContentProp
       </div>
       <style jsx>{`
         .gradient-content {
-          width: ${SCALES.width(0, '100%')};
-          height: ${SCALES.height(0, '100%')};
+          width: ${SCALES.w(0, '100%')};
+          height: ${SCALES.h(0, '100%')};
 
           margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
           position: relative;
@@ -43,7 +43,7 @@ const GradientContentComponent: React.FC<React.PropsWithChildren<CardContentProp
           background: ${props.gradient || defaultGradient};
           width: 100%;
           z-index: 0;
-          max-height: ${gradientheight};
+          max-height: ${maxHeight};
           left: 0;
           top: 0;
           height: 100%;

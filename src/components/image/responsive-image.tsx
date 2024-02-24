@@ -3,7 +3,7 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import useTheme from '../use-theme';
 import ImageSkeleton from './image.skeleton';
 import { transformDataSource } from './helpers';
-import useScale, { withScale } from '../use-scale';
+import useScale, { extractNumberFromScaleProp, withScale } from '../use-scale';
 import NextImage from 'next/image';
 import useClasses from '../use-classes';
 
@@ -31,10 +31,10 @@ const ResponsiveImageComponent: React.FC<ImageProps> = ({
   ...props
 }: ImageProps) => {
   const { SCALES, getScaleProps } = useScale();
-  const w = getScaleProps(['width', 'w']) || 0;
-  const h = getScaleProps(['height', 'h']) || 0;
-  const width = typeof w === 'string' ? parseFloat(w) : w;
-  const height = typeof h === 'string' ? parseFloat(h) : h;
+  const w = getScaleProps(['w']) || 0;
+  const h = getScaleProps(['h']) || 0;
+  const width = extractNumberFromScaleProp(w);
+  const height = extractNumberFromScaleProp(h);
   const showAnimation = !disableSkeleton && width && height;
 
   const theme = useTheme();

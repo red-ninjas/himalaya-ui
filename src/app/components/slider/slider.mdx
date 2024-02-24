@@ -50,7 +50,7 @@ Display the current value and an inputable range.
   desc="Different granularity."
   scope={{ Slider }}
   code={`
-<Slider step={10} showMarkers width="75%" />
+<Slider step={10} showMarkers w="75%" />
 `}
 />
 
@@ -60,9 +60,9 @@ Display the current value and an inputable range.
   scope={{ Slider, Spacer }}
   code={`
 <>
-  <Slider step={5} max={50} min={10} initialValue={25} showMarkers width="75%" />
+  <Slider step={5} max={50} min={10} initialValue={25} showMarkers w="75%" />
   <Spacer />
-  <Slider step={0.2} max={1} min={0.2} initialValue={0.4} showMarkers width="75%" />
+  <Slider step={0.2} max={1} min={0.2} initialValue={0.4} showMarkers w="75%" />
 </>
 `}
 />
@@ -78,7 +78,7 @@ Display the current value and an inputable range.
     console.log(val)
     setValue(val)
   }
-  return <Slider value={value} onChange={handler} width="75%" />
+  return <Slider value={value} onChange={handler} w="75%" />
 }
 `}
 />

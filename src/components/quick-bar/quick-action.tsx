@@ -29,7 +29,7 @@ export const QuickBar: React.FC<PropsWithChildren<QuickActionProps>> = ({
   const isLinkActive = href ? (href ? (exactMatch ? pathname == href : pathname.startsWith(href)) : false) : false;
 
   return (
-    <Tooltip placement="right" text={tooltip} padding={0.3} font="12px" type="dark" leaveDelay={0} enterDelay={0}>
+    <Tooltip placement="right" text={tooltip} p={0.3} font="12px" type="dark" leaveDelay={0} enterDelay={0}>
       <Link href={href || ''} passHref legacyBehavior>
         <a
           target={target}
@@ -40,8 +40,8 @@ export const QuickBar: React.FC<PropsWithChildren<QuickActionProps>> = ({
           {children}
           <style jsx>{`
             .quick-action {
-              width: ${SCALES.height(1, '40px')};
-              height: ${SCALES.width(1, '40px')};
+              width: ${SCALES.h(1, '40px')};
+              height: ${SCALES.w(1, '40px')};
               border-radius: ${radius === undefined ? theme.style.radius : radius + 'px'};
               background: ${colors.bgColor};
               display: flex;

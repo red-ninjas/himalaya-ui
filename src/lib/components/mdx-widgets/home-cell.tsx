@@ -18,11 +18,11 @@ const HomeCell: React.FC<HomeCellProps> = ({ url, title, desc, icon }) => {
       <Link style={{ width: '100%', height: '100%' }}>
         <div className="feature shine-effect">
           <div className="feature__icon">{icon}</div>
-          <Text h4 marginTop={'8px'} marginBottom={'24px'} font={1.5}>
+          <Text h4 mt={'8px'} mb={'24px'} font={1.5}>
             {title}
           </Text>
 
-          <Text color={theme.palette.accents_6} p margin={0} font={1} className="feature-desc">
+          <Text color={theme.palette.accents_6} m={0} font={1} className="feature-desc">
             {desc}
           </Text>
 

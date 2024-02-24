@@ -90,8 +90,8 @@ const SnippetComponent: React.FC<React.PropsWithChildren<SnippetProps>> = ({
           --snippet-font-size: ${SCALES.font(0.8125)};
           --snippet-padding-top: ${SCALES.pt(0.667)};
           font-size: var(--snippet-font-size);
-          width: ${SCALES.width(1, 'initial')};
-          height: ${SCALES.height(1, 'auto')};
+          width: ${SCALES.w(1, 'initial')};
+          height: ${SCALES.h(1, 'auto')};
           padding: ${SCALES.pt(0.667)} ${SCALES.pr(2.667)} ${SCALES.pb(0.667)} ${SCALES.pl(0.667)};
           margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
         }

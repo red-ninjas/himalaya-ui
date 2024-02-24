@@ -60,7 +60,7 @@ const HeaderComponent: React.FC<HeaderPropsNative> = ({ children, transcluent = 
         })}
         {...props}
       >
-        <ContentLayout paddingTop={0} paddingBottom={0}>
+        <ContentLayout pt={0} pb={0}>
           <div className="navigation">
             <div className="left-controls">
               <div className="left-controls-inner">{leftHeaderControl}</div>
@@ -98,7 +98,7 @@ const HeaderComponent: React.FC<HeaderPropsNative> = ({ children, transcluent = 
           height: 100%;
           user-select: none;
           padding: 0;
-          height: ${SCALES.height(1, '60px')};
+          height: ${SCALES.h(1, '60px')};
           gap: 12px;
         }
 

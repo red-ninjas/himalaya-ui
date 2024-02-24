@@ -24,7 +24,7 @@ Retrieve multi-line user input.
   desc="Disable interactive textarea."
   scope={{ Textarea }}
   code={`
-<Textarea width="100%" disabled placeholder="Now is the optimal workflow for frontend teams. All-in-one: Static and JAMstack deployment, Serverless Functions, and Global CDN." />
+<Textarea w="100%" disabled placeholder="Now is the optimal workflow for frontend teams. All-in-one: Static and JAMstack deployment, Serverless Functions, and Global CDN." />
 `}
 />
 
@@ -34,13 +34,13 @@ Retrieve multi-line user input.
   scope={{ Textarea, Spacer }}
   code={`
 <>
-  <Textarea type="success" height="65px" value="Success" />
+  <Textarea type="success" h="65px" value="Success" />
   <Spacer w={.5} inline />
-  <Textarea type="secondary" height="65px" value="Secondary" />
+  <Textarea type="secondary" h="65px" value="Secondary" />
   <Spacer h={.5} />
-  <Textarea type="warning" height="65px" value="Warning" />
+  <Textarea type="warning" h="65px" value="Warning" />
   <Spacer w={.5} inline />
-  <Textarea type="error" height="65px" value="Error" />
+  <Textarea type="error" h="65px" value="Error" />
 </>
 `}
 />
@@ -57,7 +57,7 @@ Retrieve multi-line user input.
     console.log(e.target.value)
   }
   return (
-    <Textarea width="100%"
+    <Textarea w="100%"
      value={value}
      onChange={handler}
      placeholder="Now is the optimal workflow for frontend teams. All-in-one: Static and JAMstack deployment, Serverless Functions, and Global CDN." />
@@ -79,7 +79,7 @@ Retrieve multi-line user input.
   const { setState, reset, bindings } = useInput('Now is the optimal workflow for frontend teams. All-in-one: Static and JAMstack deployment, Serverless Functions, and Global CDN.')
   return (
     <>
-      <Textarea width="100%" {...bindings}/>
+      <Textarea w="100%" {...bindings}/>
       <Spacer h={.5} />
       <Button auto type="secondary" scale={1/3} onClick={() => setState(Math.random().toString(32))}>set value</Button>
       <Spacer h={.5} />

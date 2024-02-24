@@ -220,9 +220,9 @@ const SelectComponent = React.forwardRef<SelectRef, React.PropsWithChildren<Sele
 
               background-color: ${disabled ? theme.palette.accents_1 : theme.palette.background};
               --select-font-size: ${SCALES.font(0.875)};
-              --select-height: ${SCALES.height(2.25)};
+              --select-height: ${SCALES.h(2.25)};
               min-width: 11.5em;
-              width: ${SCALES.width(1, 'initial')};
+              width: ${SCALES.w(1, 'initial')};
               height: var(--select-height);
               padding: ${SCALES.pt(0)} ${SCALES.pr(0.334)} ${SCALES.pb(0)} ${SCALES.pl(0.667)};
               margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};

@@ -86,8 +86,8 @@ const ProgressComponent: React.FC<ProgressProps> = ({
           position: relative;
           background-color: ${theme.palette.accents_2};
           border-radius: ${radius !== undefined ? radius : theme.style.radius};
-          width: ${SCALES.width(1, '100%')};
-          height: ${SCALES.height(0.625)};
+          width: ${SCALES.w(1, '100%')};
+          height: ${SCALES.h(0.625)};
           padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
           margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
         }

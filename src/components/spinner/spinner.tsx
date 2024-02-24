@@ -114,8 +114,8 @@ const SpinnerComponent: React.FC<SpinnerProps> = ({ className = '', ...props }: 
         .spinner {
           display: block;
           box-sizing: border-box;
-          width: ${SCALES.width(1.25)};
-          height: ${SCALES.height(1.25)};
+          width: ${SCALES.w(1.25)};
+          height: ${SCALES.h(1.25)};
           padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
           margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
         }

@@ -66,21 +66,14 @@ const SidebarLayout: React.FC<React.PropsWithChildren<SidebarLayoutProps>> = ({
   const height = useRefDimensions(ref);
   const { SCALES } = useScale();
   const isActive = (isMobile && !hideOnMobile) || !isMobile;
-  const sideBarWidth = SCALES.width(1, '285px');
+  const sideBarWidth = SCALES.w(1, '285px');
 
   return (
     <>
       {isMobile && (
-        <Drawer
-          padding={0}
-          width={SCALES.width(1, '85%')}
-          visible={isEnabled}
-          wrapClassName={'sidebar-drawer'}
-          onClose={() => setIsEnabled(false)}
-          placement={placement}
-        >
+        <Drawer p={0} w={SCALES.w(1, '85%')} visible={isEnabled} wrapClassName={'sidebar-drawer'} onClose={() => setIsEnabled(false)} placement={placement}>
           <div className="sidebar-content">
-            <InnerScroll width={'100%'} height={'100%'} type="vertical">
+            <InnerScroll w={'100%'} h={'100%'} type="vertical">
               {sidebar}
               {sidebarWithoutTypes}
             </InnerScroll>

@@ -30,9 +30,9 @@ const QuickBarLayout: React.FC<React.PropsWithChildren<QuickBarLayoutProps>> = (
           width: 100%;
           height: 100%;
           position: relative;
-          --quickbar-width: ${SCALES.width(1, '60px')};
+          --quickbar-width: ${SCALES.w(1, '60px')};
           --quickbar-transition: ${animationTime}ms;
-          --quickbar-position: -${SCALES.width(1, '60px')};
+          --quickbar-position: -${SCALES.w(1, '60px')};
           --quickbar-position-content: 0;
         }
 

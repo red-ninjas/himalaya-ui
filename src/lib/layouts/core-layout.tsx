@@ -124,11 +124,11 @@ export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
                 </MobileMenu>
                 <MDXProvider components={MdxComponents}>{children}</MDXProvider>
               </ScrollableLayout>
-              <QuickBar height={'100%'} width={'100%'}>
+              <QuickBar h={'100%'} w={'100%'}>
                 <QuickAction type="lite" href="/" radius={50} tooltip="Home">
                   <Home size={20} />
                 </QuickAction>
-                <Divider width={'100%'}></Divider>
+                <Divider w={'100%'}></Divider>
                 <QuickAction type="lite" radius={50} href="/guide" exactMatch={false} tooltip="Guide">
                   <Code size={20} />
                 </QuickAction>
@@ -138,7 +138,7 @@ export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
                 <QuickAction type="lite" radius={50} href="/hooks" exactMatch={false} tooltip="Hooks">
                   <Anchor size={20} />
                 </QuickAction>
-                <Divider width={'100%'}></Divider>
+                <Divider w={'100%'}></Divider>
 
                 <QuickAction href="https://github.com/red-ninjas/himalaya-ui" target="_blank" type="lite" radius={50} tooltip="On Github">
                   <Github size={20} />

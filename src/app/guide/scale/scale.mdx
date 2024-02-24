@@ -26,7 +26,7 @@ As the example, the `Button` component has an equal reduction in all space occup
 Himalya renders the specified volume components **realistically** by dynamically calculating the component size.
 This ensures that the layout and typography are always the same as expected.
 
-<Display width="500px" caption="Render Button component at 0.5 scaling">
+<Display w="500px" caption="Render Button component at 0.5 scaling">
   <GridDemo>
     <Button scale={0.5}>Scale 0.5</Button>
     <Button>Default</Button>
@@ -44,13 +44,13 @@ This ensures that the layout and typography are always the same as expected.
 For any component, the scalable props include width, height, outer margin, inner margin, font, etc.
 You can define each scalable property individually, a scale number or CSS string.
 
-<Display width="500px">
+<Display w="500px">
   <GridDemo>
-    <Button font={1.5} width="300px">Full Button</Button>
+    <Button font={1.5} w="300px">Full Button</Button>
   </GridDemo>
 
 ```jsx
-<Button width="300px" font={1.5}>
+<Button w="300px" font={1.5}>
   Full Button
 </Button>
 ```
@@ -106,19 +106,19 @@ Below is a reference to all available props and aliases，
 | ----------------------- | -------------------------- | -------------- | ------- |
 | **scale**               | scale value                | number         | -       |
 | **unit**                | scale unit                 | string         | `16px`  |
-| **width / w**           | component width            | string, number | 'auto'  |
-| **height / h**          | component height           | string, number | 'auto'  |
+| **w**           | component width            | string, number | 'auto'  |
+| **h**          | component height           | string, number | 'auto'  |
 | **font**                | font size                  | string, number | -       |
-| **margin**              | all margin size            | string, number | `0`     |
-| **marginLeft / ml**     |                            | string, number | -       |
-| **marginRight / mr**    |                            | string, number | -       |
-| **marginTop / mt**      |                            | string, number | -       |
-| **marginBottom / mb**   |                            | string, number | -       |
-| **padding**             | all padding size           | string, number | `0`     |
-| **paddingLeft / pl**    |                            | string, number | -       |
-| **paddingRight / pr**   |                            | string, number | -       |
-| **paddingTop / pt**     |                            | string, number | -       |
-| **paddingBottom / pb**  |                            | string, number | -       |
+| **m**              | all margin size            | string, number | `0`     |
+| **ml**     |                            | string, number | -       |
+| **mr**    |                            | string, number | -       |
+| **mt**      |                            | string, number | -       |
+| **mb**   |                            | string, number | -       |
+| **p**             | all padding size           | string, number | `0`     |
+| **pl**    |                            | string, number | -       |
+| **pr**   |                            | string, number | -       |
+| **pt**     |                            | string, number | -       |
+| **pb**  |                            | string, number | -       |
 | **mx**&nbsp;(`ml & mr`) | horizontal axis of margin  | string, number | -       |
 | **my**&nbsp;(`mt & mb`) | vertical axis of margin    | string, number | -       |
 | **px**&nbsp;(`pl & pr`) | horizontal axis of padding | string, number | -       |

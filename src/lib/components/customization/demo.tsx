@@ -41,12 +41,12 @@ const Demo: React.FC<React.PropsWithChildren<unknown>> = () => {
         <Text h3 font="13px" type="secondary">
           {'Basic Components'}
         </Text>
-        <Select width="90%" placeholder="Choose one" initialValue="1">
+        <Select w="90%" placeholder="Choose one" initialValue="1">
           <Select.Option value="1">Option 1</Select.Option>
           <Select.Option value="2">Option 2</Select.Option>
         </Select>
         <Spacer h={1} />
-        <Grid.Container width="100%">
+        <Grid.Container w="100%">
           <Grid xs={8}>
             <Button disabled auto>
               Action

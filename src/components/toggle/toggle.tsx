@@ -89,8 +89,8 @@ const ToggleComponent: React.FC<ToggleProps> = ({
           position: relative;
           cursor: ${disabled ? 'not-allowed' : 'pointer'};
           --toggle-font-size: ${SCALES.font(1)};
-          --toggle-height: ${SCALES.height(0.875)};
-          width: ${SCALES.width(1.75)};
+          --toggle-height: ${SCALES.h(0.875)};
+          width: ${SCALES.w(1.75)};
           height: var(--toggle-height);
           padding: ${SCALES.pt(0.1875)} ${SCALES.pr(0)} ${SCALES.pb(0.1875)} ${SCALES.pl(0)};
           margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};

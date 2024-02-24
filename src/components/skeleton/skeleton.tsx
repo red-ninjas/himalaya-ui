@@ -39,8 +39,8 @@ const SkeletonComponent: React.FC<React.PropsWithChildren<SkeletonProps>> = ({
       {children}
       <style jsx>{`
         .skeleton {
-          width: ${SCALES.width(1, 'initial')};
-          height: ${SCALES.height(1, 'initial')};
+          width: ${SCALES.w(1, 'initial')};
+          height: ${SCALES.h(1, 'initial')};
           display: block;
           min-height: ${minHeight}px;
           position: relative;

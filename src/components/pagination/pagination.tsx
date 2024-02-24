@@ -82,8 +82,8 @@ const PaginationComponent: React.FC<React.PropsWithChildren<PaginationProps>> = 
           font-feature-settings: 'tnum';
           --pagination-size: ${SCALES.font(2)};
           font-size: ${SCALES.font(0.875)};
-          width: ${SCALES.width(1, 'auto')};
-          height: ${SCALES.height(1, 'auto')};
+          width: ${SCALES.w(1, 'auto')};
+          height: ${SCALES.h(1, 'auto')};
           padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
           margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
         }

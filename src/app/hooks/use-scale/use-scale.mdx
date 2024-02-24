@@ -34,7 +34,7 @@ import { withScale, useScale } from '@himalaya-ui/core'
 
 const MyComponent = () => {
   const { SCALES } = useScale()
-  return <div style={{ width: SCALES.width(1.25) }}>Scale Component</div>
+  return <div style={{ width: SCALES.w(1.25) }}>Scale Component</div>
 }
 
 export default withScale(MyComponent)
@@ -44,14 +44,14 @@ export default withScale(MyComponent)
 You just need to set `useScale` within the component to get the `SCALES`, and then add the bindings for the `SCALES` for each style.
 
 The default unit of Scale is `16px`, when we need to set the default width to `20px`, Obviously `20px` is 1.25 times more than `16px`,
-so we get `SCALES.width(1.25)`.
+so we get `SCALES.w(1.25)`.
 
 The components of the above example should be used as follows:
 
 ```tsx
-<MyComponent width={0.5} />
-<MyComponent width="10px" />
-<MyComponent width="auto" />
+<MyComponent w={0.5} />
+<MyComponent w="10px" />
+<MyComponent w="auto" />
 <MyComponent unit="10rem" />
 ```
 
@@ -68,7 +68,7 @@ For a simple component, the following example can be used to illustrate:
 ```tsx
 const MyComponent = () => {
   const { SCALES } = useScale()
-  return <div style={{ width: SCALES.width(1, 'auto') }}>Fixed Component</div>
+  return <div style={{ width: SCALES.w(1, 'auto') }}>Fixed Component</div>
 }
 
 export default withScale(MyComponent)
@@ -77,7 +77,7 @@ export default withScale(MyComponent)
 When we use this component, the width cannot be scaled by a multiple anymore:
 
 ```tsx
-<MyComponent width={0.1} />
+<MyComponent w={0.1} />
 
 // -> The width is still "auto"
 // -> "auto" cannot be calculated mathematically
@@ -86,7 +86,7 @@ When we use this component, the width cannot be scaled by a multiple anymore:
 When we enter specific values to override, it still works well:
 
 ```tsx
-<MyComponent width="100px" />
+<MyComponent w="100px" />
 
 // -> The width is "100px"
 ```
@@ -101,30 +101,28 @@ Note, however, that the value obtained from the `useScale` function is computed,
 const MyComponent = () => {
   const { SCALES } = useScale()
 
-  console.log(SCALES.width(1))
+  console.log(SCALES.w(1))
 
   return null
 }
 
-<MyComponent width={2} />  // output -> 'calc(2 * 16px)'
+<MyComponent w={2} />  // output -> 'calc(2 * 16px)'
 <MyComponent />            // output -> '16px'
 ```
 
-The value obtained from `SCALES.width` is not exactly equal to the user input (`width=`),
+The value obtained from `SCALES.w` is not exactly equal to the user input (`w=`),
 because we want to make sure that the component works even if the user does nothing.
 So, if you need to get the **native value** of the user input, use a separate function to get:
 
 ```ts
 const MyComponent = () => {
   const { getScaleProps } = useScale()
-
-  console.log(getScaleProps('width'))
-
+  console.log(getScaleProps('w'))
   return null
 }
 
-<MyComponent width={2} />     // output -> 2
-<MyComponent width="20px" />  // output -> '20px'
+<MyComponent w={2} />     // output -> 2
+<MyComponent w="20px" />  // output -> '20px'
 <MyComponent />               // output -> undefined
 ```
 

@@ -9,7 +9,7 @@ const ScrollableLayout: React.FC<React.PropsWithChildren<ScrollableLayoutProps>>
 
   return (
     <div className="scroll-area">
-      <InnerScroll onScroll={onScroll} width={'100%'} height={'100%'} type="vertical">
+      <InnerScroll onScroll={onScroll} w={'100%'} h={'100%'} type="vertical">
         {children}
       </InnerScroll>
       <style jsx>{`

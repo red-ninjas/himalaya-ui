@@ -77,7 +77,7 @@ const DrawerComponent: React.FC<React.PropsWithChildren<DrawerProps>> = ({
       onClick={closeFromBackdrop}
       onContentClick={onContentClick}
       visible={visible}
-      width="100%"
+      w="100%"
       {...bindings}
     >
       <DrawerWrapper leaveTime={transitionTime} enterTime={transitionTime} radius={radius} visible={visible} className={wrapClassName} {...props}>

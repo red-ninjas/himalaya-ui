@@ -21,7 +21,6 @@ interface Props {
   h4?: boolean;
   h5?: boolean;
   h6?: boolean;
-  p?: boolean;
   b?: boolean;
   small?: boolean;
   i?: boolean;
@@ -56,7 +55,6 @@ const TextComponent: React.FC<React.PropsWithChildren<TextProps>> = ({
   h4 = false,
   h5 = false,
   h6 = false,
-  p = false,
   b = false,
   small = false,
   i = false,
@@ -69,7 +67,7 @@ const TextComponent: React.FC<React.PropsWithChildren<TextProps>> = ({
   lineHeight,
   ...props
 }: React.PropsWithChildren<TextProps>) => {
-  const elements: ElementMap = { h1, h2, h3, h4, h5, h6, p, blockquote };
+  const elements: ElementMap = { h1, h2, h3, h4, h5, h6, blockquote };
   const inlineElements: ElementMap = { span, small, b, em, i, del };
   const names = Object.keys(elements).filter((name: keyof React.JSX.IntrinsicElements) => elements[name]) as TextRenderableElements;
   const inlineNames = Object.keys(inlineElements).filter((name: keyof React.JSX.IntrinsicElements) => inlineElements[name]) as TextRenderableElements;

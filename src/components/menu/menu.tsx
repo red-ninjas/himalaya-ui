@@ -10,7 +10,7 @@ function MenuComponent({ content = 'Menu', placement = 'bottomStart', children, 
   const { SCALES } = useScale();
   return (
     <>
-      <Popover padding={0} {...other} placement={placement} content={<div className="menu-items">{menuItems}</div>}>
+      <Popover p={0} {...other} placement={placement} content={<div className="menu-items">{menuItems}</div>}>
         <div className="content">{content}</div>
       </Popover>
       <style jsx>{`
@@ -22,7 +22,7 @@ function MenuComponent({ content = 'Menu', placement = 'bottomStart', children, 
         }
 
         .menu-items {
-          min-width: ${SCALES.width(8.75)};
+          min-width: ${SCALES.w(8.75)};
           padding: ${SCALES.pt(0.5)} ${SCALES.pr(0.35)} ${SCALES.pb(0.5)} ${SCALES.pl(0.35)};
           display: flex;
           flex-direction: column;

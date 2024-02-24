@@ -37,8 +37,8 @@ const FieldsetFooterComponent: React.FC<React.PropsWithChildren<FieldsetFooterPr
           padding: ${layout.gapHalf} ${layout.gap};
           box-sizing: border-box;
           font-size: ${SCALES.font(0.875)};
-          width: ${SCALES.width(1, 'auto')};
-          height: ${SCALES.height(2.875)};
+          width: ${SCALES.w(1, 'auto')};
+          height: ${SCALES.h(2.875)};
           padding: ${SCALES.pt(0.625)} ${SCALES.pr(1.31)} ${SCALES.pb(0.625)} ${SCALES.pl(1.31)};
           margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
         }

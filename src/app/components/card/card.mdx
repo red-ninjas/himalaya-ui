@@ -52,7 +52,7 @@ A common container component.
     <Grid.Container gap={1.5}>
       {types.map(type => (
         <Grid xs={8} key={type}>
-          <Card type={type} width="100%">
+          <Card type={type} w="100%">
             <Text h4 my={0} style={{ textTransform: 'uppercase' }}>{type}</Text>
             <Text>{type}</Text>
           </Card>
@@ -70,7 +70,7 @@ A common container component.
   code={`
 <Grid.Container gap={1.5}>
   <Grid xs={12} justify="center">
-    <Card width="100%">
+    <Card w="100%">
       <Text h4 my={0}>Himalaya UI React</Text>
       <Text>Modern and minimalist React UI library.</Text>
       <Card.Footer>
@@ -79,7 +79,7 @@ A common container component.
     </Card>
   </Grid>
   <Grid xs={12} justify="center">
-    <Card width="100%" type="dark">
+    <Card w="100%" type="dark">
       <Text h4 my={0}>Himalaya UI React</Text>
       <Text>Modern and minimalist React UI library.</Text>
       <Card.Footer>
@@ -95,9 +95,9 @@ A common container component.
   title="With Image"
   scope={{ Card, Link, Spacer, Text, Image }}
   code={`
-<Card width="400px">
+<Card w="400px">
   <Image src="https://user-images.githubusercontent.com/11304944/76085431-fd036480-5fec-11ea-8412-9e581425344a.png"
-   height="200px" width="400px" draggable={false} />
+   h="200px" w="400px" draggable={false} />
   <Text h4 mb={0}>Himalaya React</Text>
   <Text type="secondary" small>Modern and minimalist React UI library.</Text>
   <Card.Footer>
@@ -112,7 +112,7 @@ A common container component.
   desc="Show different types of content using `Divider`"
   scope={{ Card, Text, Divider, Code }}
   code={`
-<Card width="400px">
+<Card w="400px">
   <Card.Content>
     <Text b my={0}>Description</Text>
   </Card.Content>

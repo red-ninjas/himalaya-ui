@@ -17,7 +17,7 @@ const FooterBottom: React.FC<PropsWithChildren<FooterProps>> = ({ children }) =>
   return (
     <>
       <div className="footer-bottom">
-        <ContentLayout paddingTop={0} paddingBottom={0}>
+        <ContentLayout pt={0} pb={0}>
           <div className="footer-bottom-inner">{footerBottomBlock}</div>
         </ContentLayout>
       </div>

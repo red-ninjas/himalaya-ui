@@ -17,6 +17,7 @@ export interface LayoutPropsContext {
   breakpoints?: UIThemesBreakpoints;
   radius?: string;
   unit?: string;
+  sectionSpace?: string;
 }
 
 export const defaultConfigs: LayoutProps = {
@@ -34,6 +35,7 @@ export const defaultConfigs: LayoutProps = {
   breakpoints: defaultBreakpoints,
   radius: '6px',
   unit: '16px',
+  sectionSpace: '160px',
 };
 
 export const LayoutContext = React.createContext<LayoutProps>(defaultConfigs);

@@ -19,7 +19,7 @@ const UspCell: React.FC<HomeCellProps> = ({ url, title, desc, icon }) => {
     <>
       <NextLink href={url} passHref legacyBehavior>
         <Link>
-          <Card padding="5px" shadow width="100%" height={'100%'}>
+          <Card p="5px" shadow w="100%" h={'100%'}>
             <h4 className="feature_title">
               <div className="feature_icon">{icon}</div>
               {title}

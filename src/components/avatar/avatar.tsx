@@ -48,8 +48,8 @@ const AvatarComponent: React.FC<AvatarProps> = ({ src, stacked = false, text = '
           vertical-align: top;
           background-color: ${theme.palette.background};
           box-sizing: border-box;
-          width: ${SCALES.width(1.75) || SCALES.height(1.75)};
-          height: ${SCALES.height(1.75) || SCALES.width(1.75)};
+          width: ${SCALES.w(1.75) || SCALES.h(1.75)};
+          height: ${SCALES.h(1.75) || SCALES.w(1.75)};
           padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
           margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${marginLeft};
         }

@@ -36,8 +36,8 @@ const DisplayComponent: React.FC<React.PropsWithChildren<DisplayProps>> = ({
           display: block;
           max-width: 100%;
           font-size: ${SCALES.font(0.875)};
-          width: ${SCALES.width(1, '100%')};
-          height: ${SCALES.height(1, 'auto')};
+          width: ${SCALES.w(1, '100%')};
+          height: ${SCALES.h(1, 'auto')};
           padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
           margin: ${SCALES.mt(2.5)} ${SCALES.mr(0, 'auto')} ${SCALES.mb(2.5)} ${SCALES.ml(0, 'auto')};
         }
@@ -47,7 +47,7 @@ const DisplayComponent: React.FC<React.PropsWithChildren<DisplayProps>> = ({
           margin: 0 auto;
           border-radius: 4px;
           overflow: hidden;
-          width: ${SCALES.width(1, 'max-content')};
+          width: ${SCALES.w(1, 'max-content')};
           box-shadow: ${showShadow ? theme.expressiveness.shadowLarge : 'none'};
           max-width: 100%;
           width: 100%;

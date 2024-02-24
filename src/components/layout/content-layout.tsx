@@ -24,7 +24,7 @@ const ContentLayoutComponent: React.FC<React.PropsWithChildren<CardContentProps>
           box-sizing: border-box;
           width: 100%;
           flex-direction: column;
-          padding: ${SCALES.pt(1)} ${SCALES.pr(1)} ${SCALES.pb(1)} ${SCALES.pl(1)};
+          padding: ${SCALES.pt(0, layout.pageMargin)} ${SCALES.pr(0, layout.pageMargin)} ${SCALES.pb(0, layout.pageMargin)} ${SCALES.pl(0, layout.pageMargin)};
         }
       `}</style>
     </div>

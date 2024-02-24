@@ -95,7 +95,7 @@ function EntityFormComponent({
             box-sizing: content-box;
             align-items: center;
             justify-content: center;
-            min-height: ${SCALES.height(2)};
+            min-height: ${SCALES.h(2)};
             padding-top: ${SCALES.pt(1)};
 
             .entity-form-spacer {

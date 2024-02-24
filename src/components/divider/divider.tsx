@@ -60,8 +60,8 @@ const DividerComponent: React.FC<React.PropsWithChildren<DividerProps>> = ({
           background-color: ${color};
           position: relative;
           font-size: ${SCALES.font(1)};
-          width: ${SCALES.width(1, 'auto')};
-          height: ${SCALES.height(0.0625)};
+          width: ${SCALES.w(1, 'auto')};
+          height: ${SCALES.h(0.0625)};
           padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
           margin: ${SCALES.mt(0.5)} ${SCALES.mr(0)} ${SCALES.mb(0.5)} ${SCALES.ml(0)};
         }

@@ -82,8 +82,8 @@ const TooltipContent: React.FC<React.PropsWithChildren<Props>> = ({ children, pa
             padding: 0;
             z-index: 1000;
             box-shadow: ${hasShadow ? theme.expressiveness.shadowMedium : 'none'};
-            width: ${SCALES.width(1, 'auto')};
-            height: ${SCALES.height(1, 'auto')};
+            width: ${SCALES.w(1, 'auto')};
+            height: ${SCALES.h(1, 'auto')};
             border: 1px solid ${theme.palette.border};
           }
 

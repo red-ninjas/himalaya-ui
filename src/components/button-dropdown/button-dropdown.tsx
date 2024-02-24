@@ -86,14 +86,14 @@ const ButtonDropdownComponent: React.FC<React.PropsWithChildren<ButtonDropdownPr
                   className="dropdown-icon"
                   style={{
                     color: colors.color,
-                    height: SCALES.height(2.5),
-                    width: SCALES.height(2.5),
+                    height: SCALES.h(2.5),
+                    width: SCALES.h(2.5),
                   }}
                 >
                   {icon}
                 </span>
               ) : (
-                <ButtonDropdownIcon color={colors.color} height={SCALES.height(2.5)} />
+                <ButtonDropdownIcon color={colors.color} height={SCALES.h(2.5)} />
               )}
             </div>
           </summary>
@@ -106,8 +106,8 @@ const ButtonDropdownComponent: React.FC<React.PropsWithChildren<ButtonDropdownPr
             box-sizing: border-box;
             border: 1px solid ${theme.palette.border};
             border-radius: ${theme.style.radius};
-            --ui-dropdown-height: ${SCALES.height(2.5)};
-            --ui-dropdown-min-width: ${auto ? 'min-content' : SCALES.width(10.5)};
+            --ui-dropdown-height: ${SCALES.h(2.5)};
+            --ui-dropdown-min-width: ${auto ? 'min-content' : SCALES.w(10.5)};
             --ui-dropdown-padding: ${SCALES.pt(0)} ${paddingRight} ${SCALES.pb(0)} ${paddingLeft};
             --ui-dropdown-font-size: ${SCALES.font(0.875)};
           }
@@ -124,7 +124,7 @@ const ButtonDropdownComponent: React.FC<React.PropsWithChildren<ButtonDropdownPr
           }
 
           .dropdown-box {
-            height: ${SCALES.height(2.5)};
+            height: ${SCALES.h(2.5)};
             display: flex;
             justify-content: center;
             align-items: center;
@@ -138,7 +138,7 @@ const ButtonDropdownComponent: React.FC<React.PropsWithChildren<ButtonDropdownPr
             outline: none;
             color: ${colors.color};
             background-color: ${bgColor};
-            height: ${SCALES.height(2.5)};
+            height: ${SCALES.h(2.5)};
             border-left: 1px solid ${colors.borderLeftColor};
             cursor: ${disabled || loading ? 'not-allowed' : 'pointer'};
             display: flex;

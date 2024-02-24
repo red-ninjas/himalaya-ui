@@ -35,7 +35,7 @@ export default function DocumentationLayout({ children }) {
     .value();
 
   return (
-    <ContentLayout padding={0}>
+    <ContentLayout p={0}>
       <MobilePage>
         <MobileMenuProvider direction="right">
           <FixedHeader onDesktop={false} onMobile={true}>

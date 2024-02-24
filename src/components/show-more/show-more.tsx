@@ -104,7 +104,7 @@ const ShowMore: React.FC<PropsWithChildren<ShowMoreProps>> = ({ children, expand
 
           .show-more-line {
             width: 100%;
-            height: ${SCALES.height(0.08)};
+            height: ${SCALES.h(0.08)};
             background-color: ${theme.palette.border};
           }
 

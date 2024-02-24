@@ -73,7 +73,7 @@ const SelectOptionComponent: React.FC<React.PropsWithChildren<SelectOptionProps>
 
   return (
     <div className={classes} onClick={clickHandler} {...props}>
-      <Ellipsis height={SCALES.height(2.25)}>{children}</Ellipsis>
+      <Ellipsis height={SCALES.h(2.25)}>{children}</Ellipsis>
       <style jsx>{`
         .option {
           display: flex;
@@ -92,8 +92,8 @@ const SelectOptionComponent: React.FC<React.PropsWithChildren<SelectOptionProps>
             border-color 0.2s ease 0s;
           --select-font-size: ${SCALES.font(0.75)};
           font-size: var(--select-font-size);
-          width: ${SCALES.width(1, '100%')};
-          height: ${SCALES.height(2.25)};
+          width: ${SCALES.w(1, '100%')};
+          height: ${SCALES.h(2.25)};
           padding: ${SCALES.pt(0)} ${SCALES.pr(0.667)} ${SCALES.pb(0)} ${SCALES.pl(0.667)};
           margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
         }
@@ -107,8 +107,8 @@ const SelectOptionComponent: React.FC<React.PropsWithChildren<SelectOptionProps>
           line-height: 0;
           overflow: hidden;
           border-top: 1px solid ${theme.palette.border};
-          width: ${SCALES.width(1, '100%')};
-          height: ${SCALES.height(1, 0)};
+          width: ${SCALES.w(1, '100%')};
+          height: ${SCALES.h(1, 0)};
           padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
           margin: ${SCALES.mt(0.5)} ${SCALES.mr(0)} ${SCALES.mb(0.5)} ${SCALES.ml(0)};
         }
@@ -119,7 +119,7 @@ const SelectOptionComponent: React.FC<React.PropsWithChildren<SelectOptionProps>
           text-transform: capitalize;
           cursor: default;
           font-size: ${SCALES.font(0.875)};
-          width: ${SCALES.width(1, '100%')};
+          width: ${SCALES.w(1, '100%')};
           font-weight: 500;
         }
       `}</style>

@@ -19,8 +19,8 @@ const SpacerComponent: React.FC<SpacerProps> = ({ inline = false, className = ''
       <style jsx>{`
         span {
           display: ${inline ? 'inline-block' : 'block'};
-          width: ${SCALES.width(1)};
-          height: ${SCALES.height(1)};
+          width: ${SCALES.w(1)};
+          height: ${SCALES.h(1)};
           padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
           margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
         }

@@ -4,11 +4,11 @@ import useTheme from '../use-theme';
 import CssTransition from './css-transition';
 import useCurrentState from '../utils/use-current-state';
 import useClasses from '../use-classes';
+import useScale, { withScale } from '../use-scale';
 
 interface Props {
   onClick?: (event: MouseEvent<HTMLElement>) => void;
   visible?: boolean;
-  width?: string;
   onContentClick?: (event: MouseEvent<HTMLElement>) => void;
   backdropClassName?: string;
   positionClassName?: string;
@@ -25,7 +25,6 @@ const Backdrop: React.FC<React.PropsWithChildren<BackdropProps>> = React.memo(
     children,
     onClick = () => {},
     visible = false,
-    width,
     background = 'black',
     onContentClick = () => {},
     backdropClassName = '',
@@ -34,6 +33,7 @@ const Backdrop: React.FC<React.PropsWithChildren<BackdropProps>> = React.memo(
     transitionTime = 150,
     ...props
   }: React.PropsWithChildren<BackdropProps>) => {
+    const { SCALES } = useScale();
     const theme = useTheme();
     const [, setIsContentMouseDown, IsContentMouseDownRef] = useCurrentState(false);
     const clickHandler = (event: MouseEvent<HTMLElement>) => {
@@ -73,7 +73,7 @@ const Backdrop: React.FC<React.PropsWithChildren<BackdropProps>> = React.memo(
               z-index: 1001;
               outline: none;
               max-width: 90%;
-              width: ${width};
+              width: ${SCALES.w(1, '100%')};
               margin: 20px auto;
               vertical-align: middle;
               display: inline-block;
@@ -119,4 +119,4 @@ const Backdrop: React.FC<React.PropsWithChildren<BackdropProps>> = React.memo(
 );
 
 Backdrop.displayName = 'HimalayaBackdrop';
-export default Backdrop;
+export default withScale(Backdrop);

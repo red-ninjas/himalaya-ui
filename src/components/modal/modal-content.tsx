@@ -27,8 +27,8 @@ const ModalContentComponent: React.FC<React.PropsWithChildren<ModalContentProps>
           position: relative;
           text-align: left;
           font-size: ${SCALES.font(1)};
-          width: ${SCALES.width(1, 'auto')};
-          height: ${SCALES.height(1, 'auto')};
+          width: ${SCALES.w(1, 'auto')};
+          height: ${SCALES.h(1, 'auto')};
           padding: ${SCALES.pt(1.3125)} ${SCALES.pr(1.3125)} ${SCALES.pb(0.6625)} ${SCALES.pl(1.3125)};
           margin: ${SCALES.mt(0)} ${SCALES.mr(0, 'calc(var(--modal-wrapper-padding-right) * -1)')} ${SCALES.mb(0)}
             ${SCALES.ml(0, 'calc(var(--modal-wrapper-padding-left) * -1)')};

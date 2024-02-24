@@ -34,7 +34,7 @@ const AutoCompleteItemComponent: React.FC<React.PropsWithChildren<AutoCompleteIt
 
   return (
     <div className={classes} onClick={selectHandler}>
-      {isLabelOnly ? <Ellipsis height={SCALES.height(2)}>{children}</Ellipsis> : children}
+      {isLabelOnly ? <Ellipsis height={SCALES.h(2)}>{children}</Ellipsis> : children}
       <style jsx>{`
         .item {
           display: flex;
@@ -51,8 +51,8 @@ const AutoCompleteItemComponent: React.FC<React.PropsWithChildren<AutoCompleteIt
             background 0.2s ease 0s,
             border-color 0.2s ease 0s;
           font-size: ${SCALES.font(0.875)};
-          width: ${SCALES.width(1, 'auto')};
-          height: ${isLabelOnly ? SCALES.height(2.5) : SCALES.height(1, 'auto')};
+          width: ${SCALES.w(1, 'auto')};
+          height: ${isLabelOnly ? SCALES.h(2.5) : SCALES.h(1, 'auto')};
           padding: ${SCALES.pt(0)} ${SCALES.pr(0.75)} ${SCALES.pb(0)} ${SCALES.pl(0.75)};
           margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
         }

@@ -20,13 +20,13 @@ export function FactItem({ amount = 0, title = '' }: { amount?: number; title: s
       <div className="fact" ref={ref}>
         <CountUp start={0} end={amount} easing="linear" isCounting={isPlaying}>
           {({ value }) => (
-            <Text margin={0} font={'72px'} style={{ fontWeight: '500' }}>
+            <Text m={0} font={'72px'} style={{ fontWeight: '500' }}>
               {value}+
             </Text>
           )}
         </CountUp>
 
-        <Text margin={0} font={'21px'} style={{ color: theme.palette.accents_4 }}>
+        <Text m={0} font={'21px'} style={{ color: theme.palette.accents_4 }}>
           {title}
         </Text>
         <style jsx>{`
@@ -75,7 +75,7 @@ export default function Facts() {
             </Hero.Tag>
           </FadeInEffect>
           <FadeInEffect translateY="4rem">
-            <Text margin={0} marginTop={'12px'} h4 font={'clamp(24px, 3.1vw, 48px)'} style={{ fontWeight: '700', lineHeight: '1.2' }}>
+            <Text m={0} mt={'12px'} h4 font={'clamp(24px, 3.1vw, 48px)'} style={{ fontWeight: '700', lineHeight: '1.2' }}>
               We take pride in elegantly solving complex problems and releasing outstanding products for free to the market.
             </Text>
           </FadeInEffect>

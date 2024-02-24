@@ -55,8 +55,8 @@ const PopoverItemComponent: React.FC<React.PropsWithChildren<PopoverItemProps>> 
               background-color 150ms linear;
             line-height: 1.25em;
             font-size: ${SCALES.font(0.875)};
-            width: ${SCALES.width(1, 'auto')};
-            height: ${SCALES.height(1, 'auto')};
+            width: ${SCALES.w(1, 'auto')};
+            height: ${SCALES.h(1, 'auto')};
             margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
             padding: ${SCALES.pt(0.5)} ${SCALES.pr(0.75)} ${SCALES.pb(0.5)} ${SCALES.pl(0.75)};
             cursor: ${hasHandler ? 'pointer' : 'default'};
@@ -70,9 +70,9 @@ const PopoverItemComponent: React.FC<React.PropsWithChildren<PopoverItemProps>> 
             line-height: 0;
             padding: 0;
             background-color: ${theme.palette.border};
-            height: ${SCALES.height(0.0625)};
+            height: ${SCALES.h(0.0625)};
             margin: ${SCALES.mt(0.35)} ${SCALES.mr(0)} ${SCALES.mb(0.35)} ${SCALES.ml(0)};
-            width: ${SCALES.width(1, '100%')};
+            width: ${SCALES.w(1, '100%')};
           }
 
           .item.title {

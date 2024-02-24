@@ -25,7 +25,7 @@ const RoutingIndicator: React.FC<PropsWithChildren<{}>> = ({ children }) => {
           active: isActive,
         })}
       >
-        <Progress height={'5px'} type="success" radius={0} indeterminate={true}></Progress>
+        <Progress h={'5px'} type="success" radius={0} indeterminate={true}></Progress>
       </div>
 
       <style jsx>{`
