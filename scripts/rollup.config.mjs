@@ -5,6 +5,11 @@ import babel from '@rollup/plugin-babel';
 import fs from 'fs-extra';
 import path from 'path';
 
+import { dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
+
 const root = path.join(__dirname, '../src');
 const componentsPath = path.join(root, 'components');
 const bundlePath = path.join(root, '../dist/bundle');
