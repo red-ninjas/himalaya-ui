@@ -10,10 +10,10 @@ export type CardContentProps = ContentLayoutProps & NativeAttrs;
 
 const ContentLayoutComponent: React.FC<React.PropsWithChildren<CardContentProps>> = ({ maxWidth, children, ...props }) => {
   const layout = useLayout();
-  const { SCALES } = useScale();
+  const { RESPONSIVE } = useScale();
 
   return (
-    <div className="content-layout" {...props}>
+    <div className="content-layout padding" {...props}>
       {children}
       <style jsx>{`
         .content-layout {
@@ -24,8 +24,9 @@ const ContentLayoutComponent: React.FC<React.PropsWithChildren<CardContentProps>
           box-sizing: border-box;
           width: 100%;
           flex-direction: column;
-          padding: ${SCALES.pt(0, layout.pageMargin)} ${SCALES.pr(0, layout.pageMargin)} ${SCALES.pb(0, layout.pageMargin)} ${SCALES.pl(0, layout.pageMargin)};
         }
+
+        ${RESPONSIVE.padding(0, value => `font-size: ${value};`, layout.pageMargin)}
       `}</style>
     </div>
   );

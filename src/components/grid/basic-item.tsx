@@ -62,7 +62,6 @@ const GridBasicItem: React.FC<React.PropsWithChildren<GridBasicItemProps>> = ({
   alignContent,
   children,
   className = '',
-  ...props
 }: React.PropsWithChildren<GridBasicItemProps>) => {
   const layoutRoot = useLayout();
   const { RESPONSIVE } = useScale();
