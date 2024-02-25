@@ -2,11 +2,11 @@
 
 import React, { useMemo } from 'react';
 import { GradientPositions, GradientPositionsEnum, UIThemesPalette } from '../themes/presets';
+import useClasses from '../use-classes';
 import useScale from '../use-scale';
 import useTheme from '../use-theme';
 import { NormalTypes } from '../utils/prop-types';
 import { TextColor } from './shared';
-import useClasses from '../use-classes';
 
 export interface Props {
   tag: keyof React.JSX.IntrinsicElements;
@@ -53,7 +53,7 @@ const TextChild: React.FC<React.PropsWithChildren<TextChildProps>> = ({
   const Component = tag;
   const theme = useTheme();
 
-  const { SCALES, getScaleProps, RESPONSIVE } = useScale();
+  const { getScaleProps, RESPONSIVE } = useScale();
   const font = getScaleProps('font');
   const lineHeight = getScaleProps('lineHeight');
 
