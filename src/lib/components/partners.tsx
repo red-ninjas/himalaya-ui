@@ -1,4 +1,4 @@
-import { ContentLayout, FadeInEffect, Text, useTheme } from 'components';
+import { PageWidth, FadeInEffect, Text, useTheme } from 'components';
 import { RedNinjas, Striked } from './icons';
 import Carousel from 'components/carousel';
 
@@ -10,7 +10,7 @@ export default function Partners() {
         <Text mb={1.2} small style={{ color: theme.palette.accents_4, textTransform: 'uppercase' }}>
           With heavy support from
         </Text>
-        <ContentLayout>
+        <PageWidth>
           <Carousel
             options={{
               perPage: 6,
@@ -51,7 +51,7 @@ export default function Partners() {
               </a>
             </Carousel.Item>
           </Carousel>
-        </ContentLayout>
+        </PageWidth>
 
         <style jsx>{`
           .carousel {

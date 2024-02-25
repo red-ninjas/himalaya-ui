@@ -6,7 +6,7 @@ import { FooterProps } from '.';
 import FooterBottomBlock from './footer-bottom-block';
 import { pickChild } from '../utils/collections';
 import useTheme from '../use-theme';
-import { ContentLayout } from '../layout';
+import PageWidth from '../page-width';
 
 const FooterBottom: React.FC<PropsWithChildren<FooterProps>> = ({ children }) => {
   const [, footerBottomBlock] = pickChild(children, FooterBottomBlock);
@@ -17,9 +17,9 @@ const FooterBottom: React.FC<PropsWithChildren<FooterProps>> = ({ children }) =>
   return (
     <>
       <div className="footer-bottom">
-        <ContentLayout pt={0} pb={0}>
+        <PageWidth pt={0} pb={0}>
           <div className="footer-bottom-inner">{footerBottomBlock}</div>
-        </ContentLayout>
+        </PageWidth>
       </div>
       <style jsx>{`
         .footer-bottom {

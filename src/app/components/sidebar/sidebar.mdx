@@ -1,5 +1,5 @@
 import { Layout, Playground, Attributes, MockPage } from 'lib/components';
-import { SidebarLayout, Sidebar, SidebarSwitcher, Page, Button, ContentLayout, Text } from 'components';
+import { SidebarLayout, Sidebar, SidebarSwitcher, Page, Button, PageWidth, Text } from 'components';
 import { Home } from 'components/icons';
 
 export const meta = {
@@ -28,7 +28,7 @@ Display a sidebar
 <Playground
   title="SidebarLayout"
   desc="Create a layout with a sidebar and content."
-  scope={{ Page, MockPage, Button, Sidebar, SidebarLayout, ContentLayout, Text }}
+  scope={{ Page, MockPage, Button, Sidebar, SidebarLayout, PageWidth, Text }}
   code={`
 () => {
   const Child = () => (
@@ -44,7 +44,7 @@ Display a sidebar
       <Sidebar.Item href="#">Link 4</Sidebar.Link>
     </Sidebar.Group>
   </Sidebar>
-  <ContentLayout>
+  <PageWidth>
    <Text h4>
     Fast Web sites:
     </Text>
@@ -54,7 +54,7 @@ Display a sidebar
     <Text b>
     A brief description of the changes between the early versions of HTTP, to the modern HTTP/2, the emergent HTTP/3 and beyond.
     </Text>
-  </ContentLayout>
+  </PageWidth>
 </SidebarLayout>
     </>
   )

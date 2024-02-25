@@ -2,7 +2,7 @@
 
 import { PropsWithChildren, useRef } from 'react';
 import { ArrowDown } from '../icons';
-import { ContentLayout } from '../layout';
+import PageWidth from '../page-width';
 import useLayout from '../use-layout';
 import { useScale, withScale } from '../use-scale';
 import useTheme from '../use-theme';
@@ -37,9 +37,9 @@ const Hero: React.FC<PropsWithChildren<HeroPropsNative>> = ({ children, withDown
   return (
     <>
       <div {...props} className="hero" ref={heroRef}>
-        <ContentLayout>
+        <PageWidth>
           <div className="hero-inner">{children}</div>
-        </ContentLayout>
+        </PageWidth>
         {withDownArrow && (
           <div className="arrow-down main-bg">
             <div className="shine-effect arrow-down-inner" onClick={handleArrowSmoothScroll}>

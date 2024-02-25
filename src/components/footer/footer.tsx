@@ -6,7 +6,7 @@ import { FooterProps } from '.';
 import { pickChild } from '../utils/collections';
 import FooterBlock from './footer-block';
 import FooterBottom from './footer-bottom';
-import { ContentLayout } from '../layout';
+import PageWidth from '../page-width';
 import useTheme from '../use-theme';
 
 const Footer: React.FC<PropsWithChildren<FooterProps>> = ({ children }) => {
@@ -18,9 +18,9 @@ const Footer: React.FC<PropsWithChildren<FooterProps>> = ({ children }) => {
   return (
     <>
       <footer className="footer">
-        <ContentLayout pt={SCALES.pt(2)} pb={SCALES.pb(2)}>
+        <PageWidth pt={SCALES.pt(2)} pb={SCALES.pb(2)}>
           <div className="blocks">{footerBlock}</div>
-        </ContentLayout>
+        </PageWidth>
         {footerBottom}
       </footer>
 

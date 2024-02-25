@@ -1,4 +1,4 @@
-import { Button, ContentLayout, FadeInEffect, Grid, Hero, Link, ResponsiveImage, Text, useTheme } from 'components';
+import { Button, PageWidth, FadeInEffect, Grid, Hero, Link, ResponsiveImage, Text, useTheme } from 'components';
 
 export function PortfolioItem({
   image,
@@ -74,7 +74,7 @@ export function PortfolioItem({
 export default function Portfolio() {
   const theme = useTheme();
   return (
-    <ContentLayout>
+    <PageWidth>
       <FadeInEffect transition={1000} translateY="4rem">
         <div className="header">
           <FadeInEffect translateY="4rem">
@@ -159,6 +159,6 @@ export default function Portfolio() {
           width: 100%;
         }
       `}</style>
-    </ContentLayout>
+    </PageWidth>
   );
 }

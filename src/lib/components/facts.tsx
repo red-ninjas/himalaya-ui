@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ContentLayout, CountUp, FadeInEffect, Grid, Hero, Text, useTheme } from 'components';
+import { PageWidth, CountUp, FadeInEffect, Grid, Hero, Text, useTheme } from 'components';
 import useVisible from 'components/utils/use-visibile';
 import { GITHUB_CONTRIBUTORS_URL } from 'lib/constants';
 import { useEffect, useRef, useState } from 'react';
@@ -66,7 +66,7 @@ export default function Facts() {
   }, []);
 
   return (
-    <ContentLayout>
+    <PageWidth>
       <FadeInEffect translateY="4rem">
         <div className="header" ref={ref}>
           <FadeInEffect translateY="4rem">
@@ -111,6 +111,6 @@ export default function Facts() {
           }
         `}</style>
       </FadeInEffect>
-    </ContentLayout>
+    </PageWidth>
   );
 }

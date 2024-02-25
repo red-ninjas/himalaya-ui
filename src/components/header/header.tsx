@@ -2,7 +2,7 @@
 
 import useClasses from '../use-classes';
 import React, { ReactNode, useEffect, useState } from 'react';
-import ContentLayout from '../layout/content-layout';
+import PageWidth from '../page-width';
 import useScale, { withScale } from '../use-scale';
 import useTheme from '../use-theme';
 import { pickChild } from '../utils/collections';
@@ -60,7 +60,7 @@ const HeaderComponent: React.FC<HeaderPropsNative> = ({ children, transcluent = 
         })}
         {...props}
       >
-        <ContentLayout pt={0} pb={0}>
+        <PageWidth pt={0} pb={0}>
           <div className="navigation">
             <div className="left-controls">
               <div className="left-controls-inner">{leftHeaderControl}</div>
@@ -74,7 +74,7 @@ const HeaderComponent: React.FC<HeaderPropsNative> = ({ children, transcluent = 
               <div className="right-controls-inner">{rightHeaderControl}</div>
             </div>
           </div>
-        </ContentLayout>
+        </PageWidth>
       </nav>
       <style jsx>{`
         .header-outer {

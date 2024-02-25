@@ -227,8 +227,11 @@ export { default as SearchProvider } from './use-search/search-provider';
 export { InnerScroll } from './scroll';
 export type { InnerScrollProps } from './scroll';
 
-export { ContentLayout, PageLayout, ScrollableLayout, GradientContent, LayoutProvider } from './layout';
-export type { ContentLayoutProps } from './layout';
+export { PageLayout, ScrollableLayout, GradientContent, LayoutProvider } from './layout';
+
+export { default as PageWidth } from './page-width';
+export type { PageWidthProps } from './page-width';
+
 export type { GradientContentProps } from './layout';
 export { default as RoutingIndicator } from './routing-indicator';
 export type { ScrollableLayoutProps } from './layout';

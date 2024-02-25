@@ -1,7 +1,7 @@
 'use client';
 
 import {
-  ContentLayout,
+  PageWidth,
   FixedHeader,
   FooterBottom,
   Header,
@@ -35,7 +35,7 @@ export default function DocumentationLayout({ children }) {
     .value();
 
   return (
-    <ContentLayout p={0}>
+    <PageWidth p={0}>
       <MobilePage>
         <MobileMenuProvider direction="right">
           <FixedHeader onDesktop={false} onMobile={true}>
@@ -62,9 +62,9 @@ export default function DocumentationLayout({ children }) {
                   </Sidebar.Group>
                 ))}
               </Sidebar>
-              <ContentLayout>
+              <PageWidth>
                 <div className="markdown">{children}</div>
-              </ContentLayout>
+              </PageWidth>
               <FooterBottom>
                 <FooterBottom.Block></FooterBottom.Block>
                 <FooterBottom.Block justify="flex-end">
@@ -108,6 +108,6 @@ export default function DocumentationLayout({ children }) {
           color: ${theme.palette.paragraph};
         }
       `}</style>
-    </ContentLayout>
+    </PageWidth>
   );
 }

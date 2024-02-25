@@ -3,7 +3,7 @@ import useScale, { withScale } from '../use-scale';
 import { hexToRgb } from '../utils/color';
 import React from 'react';
 import useTheme from '../use-theme';
-import ContentLayout from './content-layout';
+import PageWidth from '../page-width';
 import { GradientContentProps } from '.';
 
 type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof GradientContentProps>;
@@ -19,7 +19,7 @@ const GradientContentComponent: React.FC<React.PropsWithChildren<CardContentProp
       <div className="gradient-content">
         <div className="bg-gradient">{props.img}</div>
         <div className="gradient-space">
-          <ContentLayout>{children}</ContentLayout>
+          <PageWidth>{children}</PageWidth>
         </div>
       </div>
       <style jsx>{`

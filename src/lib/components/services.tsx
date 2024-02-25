@@ -2,12 +2,12 @@ import { Activity } from 'components/icons';
 import FeatherIcon from 'components/icons/feather';
 import GitHubIcon from 'components/icons/github';
 import PackageIcon from 'components/icons/package';
-import { Button, ContentLayout, FadeInEffect, Grid, Hero, Text, useTheme } from 'components';
+import { Button, PageWidth, FadeInEffect, Grid, Hero, Text, useTheme } from 'components';
 import { HomeCell } from '.';
 export default function Services() {
   const theme = useTheme();
   return (
-    <ContentLayout>
+    <PageWidth>
       <FadeInEffect translateY="4rem">
         <div className="header">
           <FadeInEffect translateY="4rem">
@@ -92,6 +92,6 @@ export default function Services() {
           }
         `}</style>
       </FadeInEffect>
-    </ContentLayout>
+    </PageWidth>
   );
 }
