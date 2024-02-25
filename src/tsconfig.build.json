@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "baseUrl": "../src",
+    "baseUrl": "./",
     "outDir": "../dist/bundle",
     "paths": {
       "*": [
@@ -14,7 +14,7 @@
       ]
     },
     "typeRoots": [
-      "../src/typings",
+      "./typings",
       "node_modules/@types"
     ],
     "types": [
@@ -58,12 +58,14 @@
     ]
   },
   "files": [
-    "../src/components/index.ts",
-    "../src/components/constants/index.ts",
+    "./components/index.ts",
+    "./components/constants/index.ts",
+    "./components/carousel/index.ts",
+    "./components/chart/index.ts"
   ],
   "exclude": [
     "node_modules",
-    "../src/lib",
+    "./lib",
     "lib",
     "es"
   ]
