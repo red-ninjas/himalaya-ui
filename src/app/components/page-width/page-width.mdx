@@ -26,7 +26,7 @@ Displays the content in the maximal page width given by the ui provider
     <>
       <Button onClick={() => setVisible(true)} auto>Show Page</Button>
       <MockPage visible={visible} onClose={() => setVisible(false)}>
-        <PageWidth px={{ xs: 5, md: 11 }}><Child /></PageWidth>
+        <PageWidth p={{ xs: 5, md: 11 }}><Child /></PageWidth>
       </MockPage>
     </>
   )

@@ -1,6 +1,6 @@
 'use client';
 
-import { MDXProvider } from '@mdx-js/react/lib';
+import { MDXProvider } from '@mdx-js/react';
 import {
   Divider,
   Header,
@@ -29,7 +29,6 @@ import { usePathname } from 'next/navigation';
 import React, { useState } from 'react';
 import { Seeds } from '../data';
 import metaData from '../data/metadata.json';
-import { MdxComponents } from '../mdx-components';
 export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
   const theme = useTheme();
   const layout = useLayout();
@@ -122,7 +121,7 @@ export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
                     </MobileMenu.Group>
                   ))}
                 </MobileMenu>
-                <MDXProvider components={MdxComponents}>{children}</MDXProvider>
+                {children}
               </ScrollableLayout>
               <QuickBar h={'100%'} w={'100%'}>
                 <QuickAction type="lite" href="/" radius={50} tooltip="Home">

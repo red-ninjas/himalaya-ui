@@ -52,6 +52,7 @@
     "next-env.d.ts",
     "next.config.mjs",
     ".eslintrc.js",
+    "mdx-components.tsx",
     "**/*.js",
     "**/*.ts",
     "**/*.mjs",

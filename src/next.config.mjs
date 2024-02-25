@@ -10,7 +10,7 @@ import remarkMdx from 'remark-mdx';
 const withMDX = createMDX({
   extension: /\.(md|mdx)?$/,
   options: {
-    providerImportSource: '@mdx-js/react',
+    // providerImportSource: '@mdx-js/react',
     remarkPlugins: [remarkMdx, remarkGfm],
     rehypePlugins: [mapBox, joinLine],
   },
@@ -42,6 +42,7 @@ const nextConfig = {
   compiler: {
     styledComponents: true,
   },
+
   async redirects() {
     return [
       {
@@ -78,4 +79,4 @@ const nextConfig = {
   },
 };
 
-export default withBundleAnalyzer(withMDX(nextConfig));
+export default withMDX(withBundleAnalyzer(nextConfig));
