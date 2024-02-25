@@ -10,33 +10,10 @@ const CssBaseline: React.FC = () => {
 
   return (
     <style jsx global>{`
-      html,
       body {
         background-color: ${theme.palette.background};
         color: ${theme.palette.foreground};
 
-        --develop-start-gradient: oklch(59.59% 0.24 255.09156059071347);
-        --develop-end-gradient: oklch(81.58% 0.189 190.74037768509325);
-        --develop-line-end: oklch(65.84% 0.203 242.5318349103755);
-        --develop-text: oklch(57.49% 0.249 257.84);
-        --preview-start-gradient: oklch(49.07% 0.272 300.45);
-        --preview-end-gradient: oklch(64.53% 0.292 2.47);
-        --preview-line-end: oklch(51.39% 0.267 318.36);
-        --preview-text: oklch(59.93% 0.274 352.55);
-        --ship-start-gradient: oklch(67.3% 0.266 25.039656026515278);
-        --ship-end-gradient: oklch(85.82% 0.201 91.19);
-        --ship-line-end: oklch(85.82% 0.201 91.19);
-        --ship-text: oklch(68.79% 0.25 27.76);
-      }
-
-      html {
-        --ui-icon-background: ${theme.palette.background};
-        --ui-icon-foreground: ${theme.palette.foreground};
-
-        font-size: ${theme.font.baseSize + 'px'};
-      }
-
-      body {
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         text-rendering: optimizeLegibility;
@@ -47,11 +24,10 @@ const CssBaseline: React.FC = () => {
         position: relative;
         overflow-x: hidden;
         font-family: ${theme.font.sans};
-        font-size: 1rem;
-      }
+        font-size: ${theme.font.baseSize + 'px'};
 
-      #__next {
-        overflow-x: hidden;
+        --ui-icon-background: ${theme.palette.background};
+        --ui-icon-foreground: ${theme.palette.foreground};
       }
 
       *,
@@ -64,9 +40,7 @@ const CssBaseline: React.FC = () => {
 
       p,
       small {
-        font-weight: 400;
         color: inherit;
-        letter-spacing: -0.005625em;
         font-family: ${theme.font.sans};
       }
 
@@ -105,10 +79,10 @@ const CssBaseline: React.FC = () => {
         align-items: center;
         color: ${theme.palette.link.value};
         text-decoration: ${theme.expressiveness.linkStyle};
-      }
 
-      a:hover {
-        text-decoration: ${theme.expressiveness.linkHoverStyle};
+        &:hover {
+          text-decoration: ${theme.expressiveness.linkHoverStyle};
+        }
       }
 
       ul,
@@ -219,7 +193,7 @@ const CssBaseline: React.FC = () => {
 
       code:before,
       code:after {
-        content: '\`';
+        content: '${`\``}';
       }
 
       pre {
