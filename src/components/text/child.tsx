@@ -6,7 +6,7 @@ import useScale from '../use-scale';
 import useTheme from '../use-theme';
 import { NormalTypes } from '../utils/prop-types';
 import { TextColor } from './shared';
-import { useLayout } from '../use-layout/layout-context';
+import useClasses from '../use-classes';
 
 export interface Props {
   tag: keyof React.JSX.IntrinsicElements;
@@ -48,20 +48,15 @@ const TextChild: React.FC<React.PropsWithChildren<TextChildProps>> = ({
   color,
   gradientDegress = GradientPositionsEnum.right,
   type = 'default' as NormalTypes,
-  lineHeight,
-  xs,
-  md,
-  sm,
-  xl,
-  lg,
   ...props
 }: React.PropsWithChildren<TextChildProps>) => {
   const Component = tag;
   const theme = useTheme();
-  const layoutRoot = useLayout();
 
-  const { SCALES, getScaleProps } = useScale();
+  const { SCALES, getScaleProps, RESPONSIVE } = useScale();
   const font = getScaleProps('font');
+  const lineHeight = getScaleProps('lineHeight');
+
   const mx = getScaleProps(['m', 'ml', 'mr', 'mx', 'ml', 'mr']);
   const my = getScaleProps(['m', 'mt', 'mb', 'my', 'mt', 'mb']);
   const px = getScaleProps(['p', 'pl', 'pr', 'pl', 'pr', 'px']);
@@ -97,12 +92,7 @@ const TextChild: React.FC<React.PropsWithChildren<TextChildProps>> = ({
       { value: px, className: 'px' },
       { value: py, className: 'py' },
       { value: font, className: 'font' },
-      { value: xs, className: 'xs' },
-      { value: md, className: 'md' },
-      { value: sm, className: 'sm' },
-      { value: xl, className: 'xl' },
-      { value: lg, className: 'lg' },
-      { value: lineHeight, className: 'line-height' },
+      { value: lineHeight, className: 'lineHeight' },
       { value: stroke, className: 'stroke' },
     ];
     const scaleClassNames = keys.reduce((pre, next) => {
@@ -110,81 +100,38 @@ const TextChild: React.FC<React.PropsWithChildren<TextChildProps>> = ({
       return `${pre} ${next.className}`;
     }, '');
     return `${scaleClassNames} ${className}`.trim();
-  }, [mx, my, px, py, font, className, stroke, xs, md, sm, xl, lg, lineHeight]);
+  }, [mx, my, px, py, font, className, stroke, lineHeight]);
 
   return (
-    <Component className={classNames} {...props}>
+    <Component className={useClasses(classNames, 'width height')} {...props}>
       {children}
       <style jsx>{`
         .stroke {
           color: transparent;
-          -webkit-text-stroke: ${Number(stroke) ? stroke + 'px' : stroke} ${theme.palette.foreground};
-        }
-
-        .font {
-          font-size: ${SCALES.font(1, 'inherit')};
-          --font-size: ${SCALES.font(1, 'inherit')};
-        }
-
-        .mx {
-          margin-left: ${SCALES.ml(0, 'revert')};
-          margin-right: ${SCALES.mr(0, 'revert')};
-        }
-
-        .my {
-          margin-top: ${SCALES.mt(0, 'revert')};
-          margin-bottom: ${SCALES.mb(0, 'revert')};
-        }
-
-        .px {
-          padding-left: ${SCALES.pl(0, 'revert')};
-          padding-right: ${SCALES.pr(0, 'revert')};
-        }
-
-        .py {
-          padding-top: ${SCALES.pt(0, 'revert')};
-          padding-bottom: ${SCALES.pb(0, 'revert')};
-        }
-
-        .xs {
-          --font-size: calc(${xs} * ${SCALES.font(1, theme.font.baseSize + 'px')});
-          font-size: var(--font-size);
-        }
-
-        @media only screen and (min-width: ${layoutRoot.breakpoints.sm.min}) {
-          .sm {
-            --font-size: calc(${sm} * ${SCALES.font(1, theme.font.baseSize + 'px')});
-            font-size: var(--font-size);
-          }
-        }
-        @media only screen and (min-width: ${layoutRoot.breakpoints.md.min}) {
-          .md {
-            --font-size: calc(${md} * ${SCALES.font(1, theme.font.baseSize + 'px')});
-            font-size: var(--font-size);
-          }
-        }
-        @media only screen and (min-width: ${layoutRoot.breakpoints.lg.min}) {
-          .lg {
-            --font-size: calc(${lg} * ${SCALES.font(1, theme.font.baseSize + 'px')});
-            font-size: var(--font-size);
-          }
-        }
-        @media only screen and (min-width: ${layoutRoot.breakpoints.xl.min}) {
-          .xl {
-            --font-size: calc(${xl} * ${SCALES.font(1, theme.font.baseSize + 'px')});
-            font-size: var(--font-size);
-          }
-        }
-
-        .line-height {
-          line-height: calc(var(--font-size) * ${lineHeight});
+          -webkit-text-stroke: ${Number(stroke) ? stroke + 'px' : stroke} ${defaultColor !== 'inherit' ? theme.palette.foreground : defaultColor};
         }
 
         ${tag} {
           ${defaultColor}
-          width: ${SCALES.w(1, 'auto')};
-          height: ${SCALES.h(1, 'auto')};
         }
+
+        ${RESPONSIVE.ml(0, value => `margin-left: ${value};`, 'revert', 'mx')}
+        ${RESPONSIVE.mr(0, value => `margin-right: ${value};`, 'revert', 'mx')}
+
+        ${RESPONSIVE.mt(0, value => `margin-top: ${value};`, 'revert', 'my')}
+        ${RESPONSIVE.mb(0, value => `margin-bottom: ${value};`, 'revert', 'my')}
+
+        ${RESPONSIVE.pl(0, value => `padding-left: ${value};`, 'revert', 'px')}
+        ${RESPONSIVE.pr(0, value => `padding-right: ${value};`, 'revert', 'px')}
+
+        ${RESPONSIVE.pt(0, value => `padding-top: ${value};`, 'revert', 'py')}
+        ${RESPONSIVE.pb(0, value => `padding-bottom: ${value};`, 'revert', 'py')}
+
+        ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto')}
+        ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto')}
+
+        ${RESPONSIVE.font(1, value => `font-size: ${value}; --font-size: ${value};`, 'inherit')}
+        ${RESPONSIVE.lineHeight(1, value => `line-height: ${value};`, 'inherit')}
       `}</style>
     </Component>
   );

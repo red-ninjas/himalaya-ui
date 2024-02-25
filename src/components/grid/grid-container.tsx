@@ -1,13 +1,14 @@
 'use client';
 import React, { useMemo } from 'react';
+import css from 'styled-jsx/css';
+import useClasses from '../use-classes';
+import useScale, { ScaleResponsiveParameter, extractNumberFromScaleProp, withScale } from '../use-scale';
 import GridBasicItem, { GridBasicItemProps } from './basic-item';
 import { GridWrap } from './grid-types';
-import css from 'styled-jsx/css';
-import useScale, { withScale } from '../use-scale';
-import useClasses from '../use-classes';
 
 interface Props {
-  gap?: number;
+  gap?: ScaleResponsiveParameter<number>;
+  order?: ScaleResponsiveParameter<number>;
   wrap?: GridWrap;
   className?: string;
 }
@@ -22,7 +23,8 @@ const GridContainerComponent: React.FC<React.PropsWithChildren<GridContainerProp
   ...props
 }: React.PropsWithChildren<GridContainerProps>) => {
   const { unit, SCALES } = useScale();
-  const gapUnit = useMemo(() => `calc(${gap} * ${unit} * 1/3)`, [gap, unit]);
+  const defaultGap = extractNumberFromScaleProp(gap);
+  const gapUnit = useMemo(() => `calc(${defaultGap} * ${unit} * 1/3)`, [defaultGap, unit]);
   const { className: resolveClassName, styles } = css.resolve`
     div {
       --grid-gap-unit: ${gapUnit};

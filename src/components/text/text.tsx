@@ -9,12 +9,6 @@ import { TextColor } from './shared';
 
 export type TextTypes = NormalTypes;
 interface Props {
-  xs?: number;
-  sm?: number;
-  md?: number;
-  lg?: number;
-  xl?: number;
-  lineHeight?: number;
   h1?: boolean;
   h2?: boolean;
   h3?: boolean;
@@ -64,23 +58,12 @@ const TextComponent: React.FC<React.PropsWithChildren<TextProps>> = ({
   blockquote = false,
   children,
   className = '',
-  lineHeight,
   ...props
 }: React.PropsWithChildren<TextProps>) => {
   const elements: ElementMap = { h1, h2, h3, h4, h5, h6, blockquote };
   const inlineElements: ElementMap = { span, small, b, em, i, del };
   const names = Object.keys(elements).filter((name: keyof React.JSX.IntrinsicElements) => elements[name]) as TextRenderableElements;
   const inlineNames = Object.keys(inlineElements).filter((name: keyof React.JSX.IntrinsicElements) => inlineElements[name]) as TextRenderableElements;
-
-  /**
-   *  Render element "p" only if no element is found.
-   *  If there is only one modifier, just rendered one modifier element
-   *  e.g.
-   *    <Text /> => <p />
-   *    <Text em /> => <em />
-   *    <Text p em /> => <p><em>children</em></p>
-   *
-   */
 
   const tag = useMemo(() => {
     if (names[0]) return names[0];
@@ -96,7 +79,7 @@ const TextComponent: React.FC<React.PropsWithChildren<TextProps>> = ({
   }, [renderableChildElements, children]);
 
   return (
-    <TextChild lineHeight={lineHeight} className={className} tag={tag} {...props}>
+    <TextChild className={className} tag={tag} {...props}>
       {modifers}
     </TextChild>
   );

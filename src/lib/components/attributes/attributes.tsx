@@ -32,7 +32,7 @@ const Attributes: React.FC<React.PropsWithChildren<AttributesProps>> = React.mem
     <>
       {apiTitles}
       <Divider font="12px" mt="80px">
-        <Text p b type="secondary" style={{ userSelect: 'none' }}>
+        <Text b type="secondary" style={{ userSelect: 'none' }}>
           {'Contributors'}
         </Text>
       </Divider>

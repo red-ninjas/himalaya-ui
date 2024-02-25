@@ -2,16 +2,16 @@
 
 import React, { CSSProperties, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react';
 import Input from '../input';
-import AutoCompleteItem, { AutoCompleteItemProps } from './auto-complete-item';
-import AutoCompleteDropdown from './auto-complete-dropdown';
-import AutoCompleteSearching from './auto-complete-searching';
-import AutoCompleteEmpty from './auto-complete-empty';
-import { AutoCompleteContext, AutoCompleteConfig } from './auto-complete-context';
-import { NormalTypes } from '../utils/prop-types';
-import { pickChild } from '../utils/collections';
-import useCurrentState from '../utils/use-current-state';
-import useScale, { ScaleNumberOrString, ScaleNumberOrStringOrBreakpoint, withScale } from '../use-scale';
 import LoadingSpinner from '../loading-spinner';
+import useScale, { ScaleResponsiveParameter, withScale } from '../use-scale';
+import { pickChild } from '../utils/collections';
+import { NormalTypes } from '../utils/prop-types';
+import useCurrentState from '../utils/use-current-state';
+import { AutoCompleteConfig, AutoCompleteContext } from './auto-complete-context';
+import AutoCompleteDropdown from './auto-complete-dropdown';
+import AutoCompleteEmpty from './auto-complete-empty';
+import AutoCompleteItem, { AutoCompleteItemProps } from './auto-complete-item';
+import AutoCompleteSearching from './auto-complete-searching';
 
 export type AutoCompleteTypes = NormalTypes;
 
@@ -57,8 +57,8 @@ const childrenToOptionsNode = (options: Array<AutoCompleteOption>) =>
 
 // When the search is not set, the "clearable" icon can be displayed in the original location.
 // When the search is seted, at least one element should exist to avoid re-render.
-const getSearchIcon = (searching?: boolean, scale: ScaleNumberOrStringOrBreakpoint = 1) => {
-  let newScale: ScaleNumberOrString = 1;
+const getSearchIcon = (searching?: boolean, scale: ScaleResponsiveParameter = 1) => {
+  let newScale: number | string = 1;
   if (typeof scale === 'object' && 'xs' in scale) {
     newScale = scale.xs;
   } else {

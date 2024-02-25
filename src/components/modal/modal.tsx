@@ -1,16 +1,16 @@
 'use client';
 import React, { MouseEvent, useEffect, useMemo, useState } from 'react';
 import { createPortal } from 'react-dom';
-import usePortal from '../utils/use-portal';
-import ModalWrapper from './modal-wrapper';
-import ModalAction from './modal-action';
-import ModalActions from './modal-actions';
 import Backdrop from '../shared/backdrop';
-import { ModalConfig, ModalContext } from './modal-context';
+import useKeyboard, { KeyCode } from '../use-keyboard';
+import { withScale } from '../use-scale';
 import { pickChild } from '../utils/collections';
 import useBodyScroll from '../utils/use-body-scroll';
-import useScale, { withScale } from '../use-scale';
-import useKeyboard, { KeyCode } from '../use-keyboard';
+import usePortal from '../utils/use-portal';
+import ModalAction from './modal-action';
+import ModalActions from './modal-actions';
+import { ModalConfig, ModalContext } from './modal-context';
+import ModalWrapper from './modal-wrapper';
 
 interface Props {
   disableBackdropClick?: boolean;
@@ -40,7 +40,6 @@ const ModalComponent: React.FC<React.PropsWithChildren<ModalProps>> = ({
   layerClassName = '',
 }: React.PropsWithChildren<ModalProps>) => {
   const portal = usePortal('modal');
-  const { SCALES } = useScale();
   const [, setBodyHidden] = useBodyScroll(null, { delayReset: 300 });
   const [visible, setVisible] = useState<boolean>(false);
   const [withoutActionsChildren, ActionsChildren] = pickChild(children, ModalAction);

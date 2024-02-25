@@ -19,9 +19,23 @@ and very small size. Of course, it still supports dynamic props and custom break
   scope={{ Grid, Card }}
   code={`
 <Grid.Container gap={2} justify="center" h="100px">
+  <Grid xs={6}><Card  shadow w="100%" /></Grid>
   <Grid xs={6}><Card shadow w="100%" /></Grid>
   <Grid xs={6}><Card shadow w="100%" /></Grid>
-  <Grid xs={6}><Card shadow w="100%" /></Grid>
+</Grid.Container>
+`}
+/>
+
+<Playground
+  desc="Order container"
+  scope={{ Grid, Card }}
+  code={`
+<Grid.Container gap={2} justify="center" h="100px">
+  <Grid xs={6} justify="center" order={{ xs: 4, sm: 1, md: 2, xl: 3 }}>
+        <Card shadow w="100%"><span>1</span></Card>
+  </Grid>
+  <Grid xs={6} justify="center" order={2}><Card shadow w="100%">2</Card></Grid>
+  <Grid xs={6} justify="center" order={1}><Card shadow w="100%">3</Card></Grid>
 </Grid.Container>
 `}
 />

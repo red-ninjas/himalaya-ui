@@ -14,6 +14,7 @@ interface Props {
   hoverable?: boolean;
   shadow?: boolean;
   className?: string;
+  borderSize?: number;
   type?: CardTypes;
 }
 
@@ -25,6 +26,7 @@ const CardComponent: React.FC<React.PropsWithChildren<CardProps>> = ({
   hoverable = false,
   className = '',
   shadow = false,
+  borderSize = 1,
   type = 'default' as CardTypes,
   ...props
 }: CardProps) => {
@@ -59,6 +61,7 @@ const CardComponent: React.FC<React.PropsWithChildren<CardProps>> = ({
           height: ${SCALES.h(1, 'auto')};
           padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
           margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
+          border: ${borderSize}px solid ${theme.palette.border};
         }
 
         .card:hover {

@@ -1,8 +1,8 @@
 'use client';
 
 import React from 'react';
-import useScale, { withScale } from '../use-scale';
 import useLayout from '../use-layout';
+import useScale, { withScale } from '../use-scale';
 
 interface SectionProps {
   className?: string;
@@ -12,17 +12,20 @@ type NativeAttrs = Omit<React.HTMLAttributes<HTMLElement>, keyof SectionProps>;
 export type SectionComponentProps = SectionProps & NativeAttrs;
 
 const SectionComponent: React.FC<SectionComponentProps> = ({ className = '', children, ...props }) => {
-  const { SCALES } = useScale();
+  const { RESPONSIVE } = useScale();
   const { sectionSpace } = useLayout();
+
   return (
-    <section className={`inner-section ${className}`} {...props}>
+    <section className={`${className} padding margin width`} {...props}>
       {children}
+
       <style jsx>{`
-        .inner-section {
-          width: ${SCALES.w(1, '100%')};
-          padding: ${SCALES.pt(0, sectionSpace)} ${SCALES.pr(0)} ${SCALES.pb(0, sectionSpace)} ${SCALES.pl(0)};
-          margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
-        }
+        ${RESPONSIVE.padding(0, value => `padding: ${value};`, {
+          top: sectionSpace,
+          bottom: sectionSpace,
+        })}
+        ${RESPONSIVE.margin(0, value => `margin: ${value};`)}
+        ${RESPONSIVE.w(1, value => `width: ${value};`, '100%')}
       `}</style>
     </section>
   );

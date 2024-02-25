@@ -3,7 +3,7 @@
 import React from 'react';
 import useClasses from '../use-classes';
 import useLayout from '../use-layout';
-import { DynamicScales, makeScaleHandler, ScaleProps } from '../use-scale';
+import { DynamicScales, makeScaleHandler, makeScaleHandler4X, ScaleProps } from '../use-scale';
 
 type PropsOf<E extends keyof JSX.IntrinsicElements | React.JSXElementConstructor<any>> = JSX.LibraryManagedAttributes<E, React.ComponentPropsWithRef<E>>;
 
@@ -24,7 +24,7 @@ export const Box: BoxComponent = React.forwardRef(
   <E extends React.ElementType = typeof defaultElement>({ as, children, className, ...restProps }: BoxProps<E>, ref: typeof restProps.ref | null) => {
     const Element = as || defaultElement;
     const layout = useLayout();
-    const { pl, pr, pt, pb, mt, mr, mb, ml, px, py, mx, my, font, w, h, m, p, unit = layout.unit, scale = 1, ...innerProps } = restProps;
+    const { pl, pr, pt, pb, mt, mr, mb, ml, px, py, mx, my, font, w, h, m, lineHeight, p, unit = layout.unit, scale = 1, ...innerProps } = restProps;
 
     const SCALES: DynamicScales = {
       pt: makeScaleHandler(pt ?? py ?? p, scale, unit),
@@ -42,6 +42,9 @@ export const Box: BoxComponent = React.forwardRef(
       w: makeScaleHandler(w ?? w, scale, unit),
       h: makeScaleHandler(h ?? h, scale, unit),
       font: makeScaleHandler(font, scale, unit),
+      padding: makeScaleHandler4X(pl ?? px ?? p, pr ?? px ?? p, pt ?? py ?? p, pb ?? py ?? p, scale, unit),
+      margin: makeScaleHandler4X(ml ?? mx ?? m, mr ?? mx ?? m, mt ?? my ?? m, mb ?? my ?? m, scale, unit),
+      lineHeight: makeScaleHandler(lineHeight ?? lineHeight, scale, unit),
     };
 
     return (
@@ -49,7 +52,7 @@ export const Box: BoxComponent = React.forwardRef(
         {children}
         <style jsx>{`
           .box {
-            line-height: ${SCALES.h(1)};
+            line-height: ${SCALES.lineHeight(1)};
             font-size: ${SCALES.font(1)};
             width: ${SCALES.w(0, 'auto')};
             height: ${SCALES.h(0, 'auto')};

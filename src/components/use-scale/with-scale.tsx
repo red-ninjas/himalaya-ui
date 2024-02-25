@@ -2,7 +2,14 @@
 
 import React, { forwardRef } from 'react';
 import { ScaleConfig, ScaleContext, ScaleProps } from './scale-context';
-import { generateGetAllScaleProps, generateGetScaleProps, makeScaleHandler } from './utils';
+import {
+  generateGetAllScaleProps,
+  generateGetScaleProps,
+  makeScaleHandler,
+  makeScaleHandler4X,
+  makeScaleHandlerResponsive,
+  makeScaleHandlerResponsive4X,
+} from './utils';
 import useLayout from '../use-layout';
 
 export type ContentScaleProps = {
@@ -12,7 +19,7 @@ export type ContentScaleProps = {
 const withScale = <T, P = {}>(Render: React.ComponentType<P & { ref?: React.Ref<T> }>) => {
   const ScaleFC = forwardRef<T, P & ContentScaleProps>(({ children, ...props }, ref) => {
     const layout = useLayout();
-    const { pl, pr, pt, pb, mt, mr, mb, ml, px, py, mx, my, font, w, h, m, p, unit = layout.unit, scale = 1, ...innerProps } = props;
+    const { pl, pr, pt, pb, mt, mr, mb, ml, px, py, mx, my, font, w, h, m, p, lineHeight, unit = layout.unit, scale = 1, ...innerProps } = props;
 
     const value: ScaleConfig = {
       unit: unit,
@@ -32,6 +39,34 @@ const withScale = <T, P = {}>(Render: React.ComponentType<P & { ref?: React.Ref<
         w: makeScaleHandler(w ?? w, scale, unit),
         h: makeScaleHandler(h ?? h, scale, unit),
         font: makeScaleHandler(font, scale, unit),
+        lineHeight: makeScaleHandler(lineHeight, scale, unit),
+        padding: makeScaleHandler4X(pl ?? px ?? p, pr ?? px ?? p, pt ?? py ?? p, pb ?? py ?? p, scale, unit),
+        margin: makeScaleHandler4X(ml ?? mx ?? m, mr ?? mx ?? m, mt ?? my ?? m, mb ?? my ?? m, scale, unit),
+      },
+      RESPONSIVE: {
+        pt: makeScaleHandlerResponsive(pt ?? py ?? p, scale, unit, layout.breakpoints, 'padding'),
+        pr: makeScaleHandlerResponsive(pr ?? px ?? p, scale, unit, layout.breakpoints, 'padding'),
+        pb: makeScaleHandlerResponsive(pb ?? py ?? p, scale, unit, layout.breakpoints, 'padding'),
+        pl: makeScaleHandlerResponsive(pl ?? px ?? p, scale, unit, layout.breakpoints, 'padding'),
+
+        padding: makeScaleHandlerResponsive4X(pl ?? px ?? p, pr ?? px ?? p, pt ?? py ?? p, pb ?? py ?? p, scale, unit, layout.breakpoints, 'padding'),
+        margin: makeScaleHandlerResponsive4X(ml ?? mx ?? m, mr ?? mx ?? m, mt ?? my ?? m, mb ?? my ?? m, scale, unit, layout.breakpoints, 'margin'),
+
+        px: makeScaleHandlerResponsive(px ?? pl ?? pr ?? p, scale, unit, layout.breakpoints, 'padding'),
+        py: makeScaleHandlerResponsive(py ?? pt ?? pb ?? p, scale, unit, layout.breakpoints, 'padding'),
+
+        mt: makeScaleHandlerResponsive(mt ?? my ?? m, scale, unit, layout.breakpoints, 'margin'),
+        mr: makeScaleHandlerResponsive(mr ?? mx ?? m, scale, unit, layout.breakpoints, 'margin'),
+        mb: makeScaleHandlerResponsive(mb ?? my ?? m, scale, unit, layout.breakpoints, 'margin'),
+        ml: makeScaleHandlerResponsive(ml ?? mx ?? m, scale, unit, layout.breakpoints, 'margin'),
+
+        mx: makeScaleHandlerResponsive(mx ?? ml ?? mr ?? m, scale, unit, layout.breakpoints, 'margin'),
+        my: makeScaleHandlerResponsive(my ?? mt ?? mb ?? m, scale, unit, layout.breakpoints, 'margin'),
+
+        w: makeScaleHandlerResponsive(w ?? w, scale, unit, layout.breakpoints, 'width'),
+        h: makeScaleHandlerResponsive(h ?? h, scale, unit, layout.breakpoints, 'height'),
+        font: makeScaleHandlerResponsive(font, scale, unit, layout.breakpoints, 'font'),
+        lineHeight: makeScaleHandlerResponsive(lineHeight, scale, unit, layout.breakpoints, 'lineHeight'),
       },
       getScaleProps: generateGetScaleProps(props),
       getAllScaleProps: generateGetAllScaleProps(props),

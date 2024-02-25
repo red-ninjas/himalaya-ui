@@ -1,9 +1,9 @@
 'use client';
 import React, { useMemo } from 'react';
-import { GridJustify, GridDirection, GridAlignItems, GridAlignContent } from './grid-types';
-import useScale from '../use-scale';
 import useClasses from '../use-classes';
 import useLayout from '../use-layout';
+import useScale, { ScaleResponsiveParameter, responsiveCss } from '../use-scale';
+import { GridAlignContent, GridAlignItems, GridDirection, GridJustify } from './grid-types';
 
 export type GridBreakpointsValue = number | boolean;
 export interface GridBasicComponentProps {
@@ -12,11 +12,12 @@ export interface GridBasicComponentProps {
   md?: GridBreakpointsValue;
   lg?: GridBreakpointsValue;
   xl?: GridBreakpointsValue;
-  justify?: GridJustify;
-  direction?: GridDirection;
-  alignItems?: GridAlignItems;
-  alignContent?: GridAlignContent;
+  justify?: ScaleResponsiveParameter<GridJustify>;
+  direction?: ScaleResponsiveParameter<GridDirection>;
+  alignItems?: ScaleResponsiveParameter<GridAlignItems>;
+  alignContent?: ScaleResponsiveParameter<GridAlignContent>;
   className?: string;
+  order?: ScaleResponsiveParameter<number>;
 }
 
 type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof GridBasicComponentProps>;
@@ -55,6 +56,7 @@ const GridBasicItem: React.FC<React.PropsWithChildren<GridBasicItemProps>> = ({
   lg = false as GridBreakpointsValue,
   xl = false as GridBreakpointsValue,
   justify,
+  order,
   direction,
   alignItems,
   alignContent,
@@ -63,13 +65,15 @@ const GridBasicItem: React.FC<React.PropsWithChildren<GridBasicItemProps>> = ({
   ...props
 }: React.PropsWithChildren<GridBasicItemProps>) => {
   const layoutRoot = useLayout();
-  const { SCALES } = useScale();
+  const { RESPONSIVE } = useScale();
+
   const classes = useMemo(() => {
     const aligns: { [key: string]: any } = {
       justify,
       direction,
       alignItems,
       alignContent,
+      order,
       xs,
       sm,
       md,
@@ -77,11 +81,13 @@ const GridBasicItem: React.FC<React.PropsWithChildren<GridBasicItemProps>> = ({
       xl,
     };
     const classString = Object.keys(aligns).reduce((pre, name) => {
-      if (aligns[name] !== undefined && aligns[name] !== false) return `${pre} ${name}`;
+      if (aligns[name] !== undefined && aligns[name] !== false) {
+        return `${pre} ${name}`;
+      }
       return pre;
     }, '');
     return classString.trim();
-  }, [justify, direction, alignItems, alignContent, xs, sm, md, lg, xl]);
+  }, [justify, order, direction, alignItems, alignContent, xs, sm, md, lg, xl]);
 
   const layout = useMemo<{
     [key in ['xs', 'sm', 'md', 'lg', 'xl'][number]]: ItemLayoutValue;
@@ -97,64 +103,60 @@ const GridBasicItem: React.FC<React.PropsWithChildren<GridBasicItemProps>> = ({
   );
 
   return (
-    <div className={useClasses('item', classes, className)} {...props}>
+    <div className={useClasses('item height font', classes, className)}>
       {children}
-      <style jsx>{`
-        .item {
-          font-size: ${SCALES.font(1, 'inherit')};
-          height: ${SCALES.h(1, 'auto')};
-        }
-        .justify {
-          justify-content: ${justify};
-        }
-        .direction {
-          flex-direction: ${direction};
-        }
-        .alignContent {
-          align-content: ${alignContent};
-        }
-        .alignItems {
-          align-items: ${alignItems};
-        }
-        .xs {
-          flex-grow: ${layout.xs.grow};
-          max-width: ${layout.xs.width};
-          flex-basis: ${layout.xs.basis};
-          ${layout.xs.display}
-        }
-        @media only screen and (min-width: ${layoutRoot.breakpoints.sm.min}) {
-          .sm {
-            flex-grow: ${layout.sm.grow};
-            max-width: ${layout.sm.width};
-            flex-basis: ${layout.sm.basis};
-            ${layout.sm.display}
+      <style jsx>
+        {`
+          .xs {
+            flex-grow: ${layout.xs.grow};
+            max-width: ${layout.xs.width};
+            flex-basis: ${layout.xs.basis};
+            ${layout.xs.display}
           }
-        }
-        @media only screen and (min-width: ${layoutRoot.breakpoints.md.min}) {
-          .md {
-            flex-grow: ${layout.md.grow};
-            max-width: ${layout.md.width};
-            flex-basis: ${layout.md.basis};
-            ${layout.md.display}
+
+          @media only screen and (min-width: ${layoutRoot.breakpoints.sm.min}) {
+            .sm {
+              flex-grow: ${layout.sm.grow};
+              max-width: ${layout.sm.width};
+              flex-basis: ${layout.sm.basis};
+              ${layout.sm.display}
+            }
           }
-        }
-        @media only screen and (min-width: ${layoutRoot.breakpoints.lg.min}) {
-          .lg {
-            flex-grow: ${layout.lg.grow};
-            max-width: ${layout.lg.width};
-            flex-basis: ${layout.lg.basis};
-            ${layout.lg.display}
+          @media only screen and (min-width: ${layoutRoot.breakpoints.md.min}) {
+            .md {
+              flex-grow: ${layout.md.grow};
+              max-width: ${layout.md.width};
+              flex-basis: ${layout.md.basis};
+              ${layout.md.display}
+            }
           }
-        }
-        @media only screen and (min-width: ${layoutRoot.breakpoints.xl.min}) {
-          .xl {
-            flex-grow: ${layout.xl.grow};
-            max-width: ${layout.xl.width};
-            flex-basis: ${layout.xl.basis};
-            ${layout.xl.display}
+          @media only screen and (min-width: ${layoutRoot.breakpoints.lg.min}) {
+            .lg {
+              flex-grow: ${layout.lg.grow};
+              max-width: ${layout.lg.width};
+              flex-basis: ${layout.lg.basis};
+              ${layout.lg.display}
+            }
           }
-        }
-      `}</style>
+          @media only screen and (min-width: ${layoutRoot.breakpoints.xl.min}) {
+            .xl {
+              flex-grow: ${layout.xl.grow};
+              max-width: ${layout.xl.width};
+              flex-basis: ${layout.xl.basis};
+              ${layout.xl.display}
+            }
+          }
+
+          ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto')}
+          ${RESPONSIVE.font(1, value => `font-size: ${value};`, 'inherit')}
+
+          ${responsiveCss(order, 'order', layoutRoot.breakpoints, value => `order: ${value};`)}
+          ${responsiveCss(justify, 'justify', layoutRoot.breakpoints, value => `justify-content: ${value};`)}
+          ${responsiveCss(direction, 'direction', layoutRoot.breakpoints, value => `flex-direction: ${value};`)}
+          ${responsiveCss(alignContent, 'alignContent', layoutRoot.breakpoints, value => `align-content: ${value};`)}
+          ${responsiveCss(alignItems, 'alignItems', layoutRoot.breakpoints, value => `align-items: ${value};`)}
+        `}
+      </style>
     </div>
   );
 };

@@ -16,20 +16,20 @@ The `Text` component allows you to display text with standardized typographic st
   desc="You can use the Text component to create headings, such as h1 to h6. This helps in maintaining a consistent visual hierarchy for your content."
   scope={{ Text }}
   code={`
-<Text  h1>Start your Himalaya journey.</Text>
+<Text h1>Start your Himalaya journey.</Text>
 `}
 />
 
 <Playground
   title="Paragraph"
-  desc="By applying the p and b attributes to a Text component, you can structure and emphasize text within paragraphs. This is especially useful for formatting and highlighting specific information."
+  desc="All text components are by default a paragraphs, you can structure and emphasize text within paragraphs. This is especially useful for formatting and highlighting specific information."
   scope={{ Text }}
   code={`
 <>
-  <Text p>
+  <Text>
    Caching is very important for fast Web sites. This article describes different methods of caching and how to use HTTP Headers to control them.
   </Text>
-  <Text p b>
+  <Text b>
    A brief description of the changes between the early versions of HTTP, to the modern HTTP/2, the emergent HTTP/3 and beyond.
   </Text>
 </>
@@ -91,15 +91,40 @@ The `Text` component allows you to display text with standardized typographic st
 </>
 `}
 />
+<Playground
+  title="Line heights"
+  scope={{ Text }}
+  code={`
+<>
+  <Text font="12px" lineHeight="14px" mt={0}>lineHeight: 14px;</Text>
+  <Text font="12px" lineHeight="2" mt={0}>lineHeight: 2;</Text>
+  <Text font="12px" lineHeight="3" mt={0}>lineHeight: 3;</Text>
+  <Text font="12px" lineHeight="4" mt={0}>lineHeight: 4;</Text>
+  <Text font="12px" lineHeight={{ xs: 1, sm: 2, md: 3, xl: 4 }} mt={0}>lineHeight: Responsive;</Text>
+</>
+`}
+/>
 
 <Playground
   title="Responsive sizes"
   scope={{ Text }}
   code={`
 <>
-  <Text xs={0.5} sm={1} md={2} lg={3} xl={5} font="12px" >Font Size: 12px;</Text>
-  <Text xs={0.5} sm={1} md={2}  xl={5} font="1rem">Font Size: 1rem;</Text>
-  <Text xs={0.5} sm={1} md={2} lg={3} xl={5}>Font Size;</Text>
+  <Text lineHeight={1} font={{ xs: 1, sm: 2, md: 3, xl: 4 }}>Font Size: Responsive</Text>
+</>
+`}
+/>
+
+<Playground
+  title="Paddings & Margins"
+  scope={{ Text }}
+  code={`
+<>
+  <Text p={{ xs: 1, sm: 2, md: 3, xl: 4 }}>Padding Responsive</Text>
+  <Text mx={{ xs: 1, sm: 2, md: 3, xl: 4 }}>Margin X-Axis Responsive</Text>
+  <Text m={1}>Margin 1</Text>
+  <Text p={1}>Padding 1</Text>
+  <Text mx={1}>Margin X-Axis</Text>
 </>
 `}
 />
@@ -138,7 +163,7 @@ The `Text` component allows you to display text with standardized typographic st
   scope={{ Text }}
   code={`
 <>
-  <Text p mt={0}>
+  <Text mt={0}>
    Specifies origins that are allowed to see values of attributes retrieved via features of the Resource Timing API, which would otherwise be reported as zero due to cross-origin restrictions.
   </Text>
 
@@ -153,12 +178,6 @@ The `Text` component allows you to display text with standardized typographic st
 
 | Attribute           | Description                                                | Type                | Accepted values                         | Default   |
 | ------------------- | ---------------------------------------------------------- | ------------------- | --------------------------------------- | --------- |
-| **p**               | component name                                             | `boolean`           | -                                       | `true`    |
-| **xs**              | scale of font size, for `xs` breakpoints and wider screens | `number`            | `number`                                | -         |
-| **sm**              | scale of font size, for `sm` breakpoints and wider screens | `number`            | `number`                                | -         |
-| **md**              | scale of font size, for `md` breakpoints and wider screens | `number`            | `number`                                | -         |
-| **lg**              | scale of font size, for `lg` breakpoints and wider screens | `number`            | `number`                                | -         |
-| **xl**              | scale of font size, for `xl` breakpoints and wider screens | `number`            | `number`                                | -         |
 | **h1 - h6**         | component name                                             | `boolean`           | -                                       | `false`   |
 | **small**           | component name                                             | `boolean`           | -                                       | `false`   |
 | **span**            | component name                                             | `boolean`           | -                                       | `false`   |
@@ -172,7 +191,6 @@ The `Text` component allows you to display text with standardized typographic st
 | **gradientDegress** | degress of gradient                                        | `GradientPositions` | [GradientPositions](#gradientpositions) | `right`   |
 | **type**            | text type                                                  | `TextTypes`         | [TextTypes](#texttypes)                 | `default` |
 | ...                 | native props                                               | `HTMLAttributes`    | `'id', 'className', ...`                | -         |
-
 
 <Attributes.Title>TextColor</Attributes.Title>
 

@@ -2,13 +2,14 @@ export interface BreakpointsItem {
   min: string;
   max: string;
 }
-export interface UIThemesBreakpoints {
+export type UIThemesBreakpoints = {
   xs: BreakpointsItem;
   sm: BreakpointsItem;
   md: BreakpointsItem;
   lg: BreakpointsItem;
   xl: BreakpointsItem;
-}
+};
+export type UIThemesBreakpointsKeys = keyof UIThemesBreakpoints;
 
 export const defaultBreakpoints: UIThemesBreakpoints = {
   xs: {

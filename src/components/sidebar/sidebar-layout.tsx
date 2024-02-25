@@ -90,7 +90,7 @@ const SidebarLayout: React.FC<React.PropsWithChildren<SidebarLayoutProps>> = ({
                 height: height === undefined ? '100%' : `calc(100% - ${height}px)`,
               }}
             >
-              <InnerScroll transparentBg={true} width={'100%'} height={'100%'} type="vertical">
+              <InnerScroll transparentBg={true} w={'100%'} h={'100%'} type="vertical">
                 {sidebar}
                 {sidebarWithoutTypes}
               </InnerScroll>
