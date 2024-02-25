@@ -1,0 +1,35 @@
+import { PageWidth, Button } from 'components'
+import { Layout, Playground, Attributes, MockPage } from 'lib/components'
+
+export const meta = {
+  title: 'Page width',
+  group: 'Layout',
+}
+
+# Page width
+
+Displays the content in the maximal page width given by the ui provider
+
+<Playground
+  desc="The content will be displayed in the center."
+  scope={{ PageWidth, MockPage, Button }}
+  code={`
+() => {
+  const Child = () => (
+    <>
+      <h2>Hello, Everyone.</h2>
+      <p>This is a simulated page, you can click anywhere to close it.</p>
+    </>
+  )
+  const [visible, setVisible] = React.useState(false)
+  return (
+    <>
+      <Button onClick={() => setVisible(true)} auto>Show Page</Button>
+      <MockPage visible={visible} onClose={() => setVisible(false)}>
+        <PageWidth px={{ xs: 5, md: 11 }}><Child /></PageWidth>
+      </MockPage>
+    </>
+  )
+}
+`}
+/>

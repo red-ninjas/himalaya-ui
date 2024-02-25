@@ -41,14 +41,6 @@ Display text that requires attention or provides additional information.
 />
 
 <Playground
-  title="hidden label"
-  scope={{ Note }}
-  code={`
-<Note icon={false}>Just a quick note!</Note>
-`}
-/>
-
-<Playground
   title="custom label"
   scope={{ Note }}
   code={`
@@ -61,9 +53,9 @@ Display text that requires attention or provides additional information.
   scope={{ Note }}
   code={`
 <>
-  <Note  filled>This note uses a custom label.</Note>
+  <Note filled>This note uses a custom label.</Note>
   <br/>
-  <Note label={false} filled>Just a quick note!</Note>
+  <Note label={undefined} filled>Just a quick note!</Note>
   <br/>
   <Note type="success"   filled>This note details a success.</Note>
   <br/>
@@ -82,7 +74,7 @@ Display text that requires attention or provides additional information.
 | Attribute  | Description  | Type                         | Accepted values          | Default   |
 | ---------- | ------------ | ---------------------------- | ------------------------ | --------- |
 | **type**   | note type    | `NoteTypes`                  | [NoteTypes](#nodetypes)  | `default` |
-| **icon**   | show icon    | `React.ReactNode or boolean` | -                        | `true`    |
+| **icon**   | show icon    | `React.ReactNode` | -                        | -   |
 | **filled** | fill color   | `boolean`                    | -                        | `false`   |
 | ...        | native props | `HTMLAttributes`             | `'id', 'className', ...` | -         |
 
