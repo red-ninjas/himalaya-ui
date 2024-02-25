@@ -1,6 +1,6 @@
 {
   "name": "@himalaya-ui/core",
-  "version": "1.1.7",
+  "version": "1.1.8",
   "main": "dist/bundle/index.js",
   "module": "dist/bundle/index.js",
   "types": "dist/bundle/index.d.ts",
@@ -32,7 +32,7 @@
     "build:after": "node scripts/move-built-in.mjs",
     "build:types": "ttsc -p ./scripts & ttsc -p ./scripts --outDir ./dist/bundle",
     "build:bundle": "node scripts/build-bundle.mjs",
-    "build": "yarn build:rollup && yarn build:babel && yarn build:types && yarn build:after && yarn build:bundle",
+    "build": "yarn build:types && yarn build:after && yarn build:bundle",
     "release": "yarn build && yarn build:bundle && cd dist/bundle && yarn build:bundle && yarn publish --access public --non-interactive",
     "prepare": "husky install",
     "icons:update": "ts-node -P scripts/icons scripts/icons/icons-update.ts",

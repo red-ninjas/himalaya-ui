@@ -22,7 +22,7 @@
       "dom-not-standarted"
     ],
     "declaration": true,
-    "emitDeclarationOnly": true,
+    "emitDeclarationOnly": false,
     "strictNullChecks": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
@@ -51,6 +51,9 @@
         "exclude": [
           "**/node_modules/**"
         ]
+      },
+      {
+        "name": "next"
       }
     ]
   },
