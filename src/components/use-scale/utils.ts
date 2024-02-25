@@ -80,7 +80,7 @@ export const makeScaleHandlerResponsive4X =
     );
 
     let responsiveContent: string = ``;
-    for (let [key, value] of Object.entries(t)) {
+    for (const [key, value] of Object.entries(t)) {
       if (key == 'xs') {
         responsiveContent += css`
           .${renderClassName ?? className} {
@@ -199,7 +199,7 @@ export const getResponsiveValues = (
       result.xs = `calc(${factor} * ${unit})`;
     }
   } else if (typeof attrValue === 'object' && attrValue !== undefined) {
-    for (let [key, value] of Object.entries(attrValue)) {
+    for (const [key, value] of Object.entries(attrValue)) {
       if (key === 'xs') {
         if (typeof value === 'undefined') {
           if (typeof defaultValue !== 'undefined') {
@@ -247,7 +247,7 @@ export const makeScaleHandlerResponsive =
     let responsiveContent: string = ``;
     const values = getResponsiveValues(attrValue, scale, unit, scale1x, defaultValue);
 
-    for (let [key, value] of Object.entries(values)) {
+    for (const [key, value] of Object.entries(values)) {
       if (key == 'xs') {
         responsiveContent += css`
           .${renderClassName ?? className} {
@@ -285,7 +285,7 @@ export const generateGetAllScaleProps = <P>(props: P & ScaleProps): GetAllScaleP
 export const responsiveCss = (property, className, breakpoints: UIThemesBreakpoints, reflect: (value: any, responsive: string) => string): string => {
   let responsiveContent: string = ``;
   if (typeof property === 'object' && 'xs' in property) {
-    for (let key in property) {
+    for (const key in property) {
       const value = property[key];
       if (key == 'xs' && value !== undefined && value !== null) {
         responsiveContent += css`
