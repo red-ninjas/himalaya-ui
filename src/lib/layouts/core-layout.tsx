@@ -106,20 +106,6 @@ export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
                     </Header.Right>
                   </Header>
                 </FixedHeader>
-                <MobileMenu>
-                  <MobileMenu.Item url="/" title="Home" />
-                  {metaData.map((df, index) => (
-                    <MobileMenu.Group key={index} title={capitalize(df.name)} expanded={index < 1}>
-                      {df.children.map((child, childIndex) => (
-                        <MobileMenu.SubGroup key={childIndex} title={capitalize(child.name)}>
-                          {child.children.map((item, itemIndex) => (
-                            <MobileMenu.Item key={itemIndex} url={item.url} title={item.name} />
-                          ))}
-                        </MobileMenu.SubGroup>
-                      ))}
-                    </MobileMenu.Group>
-                  ))}
-                </MobileMenu>
                 {children}
               </ScrollableLayout>
               <QuickBar h={'100%'} w={'100%'}>
@@ -144,6 +130,20 @@ export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
               </QuickBar>
             </QuickBarLayout>
           </QuickBarProvider>
+          <MobileMenu>
+            <MobileMenu.Item url="/" title="Home" />
+            {metaData.map((df, index) => (
+              <MobileMenu.Group key={index} title={capitalize(df.name)} expanded={index < 1}>
+                {df.children.map((child, childIndex) => (
+                  <MobileMenu.SubGroup key={childIndex} title={capitalize(child.name)}>
+                    {child.children.map((item, itemIndex) => (
+                      <MobileMenu.Item key={itemIndex} url={item.url} title={item.name} />
+                    ))}
+                  </MobileMenu.SubGroup>
+                ))}
+              </MobileMenu.Group>
+            ))}
+          </MobileMenu>
         </MobileMenuProvider>
         <style global jsx>{`
           .tag {

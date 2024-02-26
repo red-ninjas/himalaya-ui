@@ -1,6 +1,6 @@
 'use client';
 import React, { MouseEvent, useEffect, useState } from 'react';
-import { withScale } from '../use-scale';
+import useScale, { withScale } from '../use-scale';
 import usePortal from '../utils/use-portal';
 import useBodyScroll from '../utils/use-body-scroll';
 import useKeyboard, { KeyCode } from '../use-keyboard';
@@ -41,6 +41,7 @@ const DrawerComponent: React.FC<React.PropsWithChildren<DrawerProps>> = ({
   const portal = usePortal('drawer');
   const [visible, setVisible] = useState<boolean>(false);
   const [, setBodyHidden] = useBodyScroll(null, { delayReset: 300 });
+  const { SCALES } = useScale();
 
   const closeDrawer = () => {
     onClose && onClose();
@@ -77,7 +78,7 @@ const DrawerComponent: React.FC<React.PropsWithChildren<DrawerProps>> = ({
       onClick={closeFromBackdrop}
       onContentClick={onContentClick}
       visible={visible}
-      w="100%"
+      w={SCALES.w(1, '80%')}
       {...bindings}
     >
       <DrawerWrapper leaveTime={transitionTime} enterTime={transitionTime} radius={radius} visible={visible} className={wrapClassName} {...props}>
