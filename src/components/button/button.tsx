@@ -1,15 +1,15 @@
 'use client';
 
-import React, { useRef, useState, MouseEvent, useMemo, useImperativeHandle } from 'react';
+import React, { MouseEvent, useImperativeHandle, useMemo, useRef, useState } from 'react';
+import { useButtonGroupContext } from '../button-group/button-group-context';
+import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';
 import useTheme from '../use-theme';
-import ButtonDrip from './button.drip';
-import ButtonLoading from './button-loading';
 import { ButtonTypes } from '../utils/prop-types';
-import { filterPropsWithGroup, getButtonChildrenWithIcon } from './utils';
-import { useButtonGroupContext } from '../button-group/button-group-context';
+import ButtonLoading from './button-loading';
+import ButtonDrip from './button.drip';
 import { getButtonActivatedColors, getButtonColors, getButtonCursor, getButtonDripColor, getButtonHoverColors } from './styles';
-import useClasses from '../use-classes';
+import { filterPropsWithGroup, getButtonChildrenWithIcon } from './utils';
 
 export interface bProps {
   type?: ButtonTypes;
@@ -32,7 +32,7 @@ export type ButtonProps = bProps & NativeAttrs;
 const ButtonComponent = React.forwardRef<HTMLButtonElement, React.PropsWithChildren<ButtonProps>>(
   (btnProps: ButtonProps, ref: React.Ref<HTMLButtonElement | null>) => {
     const theme = useTheme();
-    const { SCALES } = useScale();
+    const { SCALES, RESPONSIVE } = useScale();
     const buttonRef = useRef<HTMLButtonElement>(null);
     useImperativeHandle(ref, () => buttonRef.current);
 
@@ -96,10 +96,16 @@ const ButtonComponent = React.forwardRef<HTMLButtonElement, React.PropsWithChild
         }),
       [auto, children, icon, iconRight],
     );
-    const [paddingLeft, paddingRight] = [auto ? SCALES.pl(1.15) : SCALES.pl(1.375), auto ? SCALES.pr(1.15) : SCALES.pr(1.375)];
 
     return (
-      <button ref={buttonRef} type={htmlType} className={useClasses('btn', className)} disabled={disabled} onClick={clickHandler} {...props}>
+      <button
+        ref={buttonRef}
+        type={htmlType}
+        className={useClasses('btn padding margin height font', className)}
+        disabled={disabled}
+        onClick={clickHandler}
+        {...props}
+      >
         {loading && <ButtonLoading color={color} />}
         {childrenWithIcon}
         {dripShow && <ButtonDrip x={dripX} y={dripY} color={dripColor} onCompleted={dripCompletedHandle} />}
@@ -137,12 +143,18 @@ const ButtonComponent = React.forwardRef<HTMLButtonElement, React.PropsWithChild
             min-width: ${auto ? 'min-content' : SCALES.w(10.5)};
             width: ${auto ? 'auto' : 'initial'};
             height: ${SCALES.h(2.5)};
-            padding: ${SCALES.pt(0)} ${paddingRight} ${SCALES.pb(0)} ${paddingLeft};
-            margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
+
             transition-property: border-color, background, color, transform, box-shadow;
             transition-duration: 0.15s;
             transition-timing-function: ease;
           }
+
+          ${RESPONSIVE.padding(
+            { left: auto ? 1.15 : 1.375, right: auto ? 1.15 : 1.375, top: 0, bottom: 0 },
+            value => `padding: ${value.top} ${value.right} ${value.bottom}  ${value.left};`,
+          )}
+          ${RESPONSIVE.margin(0, value => `margin:  ${value.top} ${value.right} ${value.bottom}  ${value.left};`)}
+          ${RESPONSIVE.font(0.875, value => `font-size: ${value};`)}
 
           .btn:hover:not([disabled]) {
             color: ${hover.color};
