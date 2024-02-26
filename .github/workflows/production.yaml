@@ -26,6 +26,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   deploy:
+    needs: versioning
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -38,18 +39,19 @@ jobs:
       - name: Deploy Project Artifacts to Vercel
         run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
   release-npm:
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@v4
-        # Setup .npmrc file to publish to npm
-        - uses: actions/setup-node@v3
-          with:
-            registry-url: 'https://registry.npmjs.org'
-        - name: Install Deps
-          run: yarn install
-        - name: Build
-          run: yarn build
-        - name: Release
-          run: cd dist/bundle && yarn publish --access public --non-interactive
-          env:
-            NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+    needs: versioning
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      # Setup .npmrc file to publish to npm
+      - uses: actions/setup-node@v3
+        with:
+          registry-url: 'https://registry.npmjs.org'
+      - name: Install Deps
+        run: yarn install
+      - name: Build
+        run: yarn build
+      - name: Release
+        run: cd dist/bundle && yarn publish --access public --non-interactive
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
