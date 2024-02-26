@@ -3,7 +3,8 @@
 import React, { MouseEvent, useImperativeHandle, useMemo, useRef, useState } from 'react';
 import { useButtonGroupContext } from '../button-group/button-group-context';
 import useClasses from '../use-classes';
-import useScale, { withScale } from '../use-scale';
+import useLayout from '../use-layout';
+import useScale, { ScaleResponsiveParameter, responsiveCss, withScale } from '../use-scale';
 import useTheme from '../use-theme';
 import { ButtonTypes } from '../utils/prop-types';
 import ButtonLoading from './button-loading';
@@ -16,7 +17,7 @@ export interface bProps {
   ghost?: boolean;
   loading?: boolean;
   shadow?: boolean;
-  auto?: boolean;
+  auto?: ScaleResponsiveParameter<boolean>;
   effect?: boolean;
   disabled?: boolean;
   htmlType?: React.ButtonHTMLAttributes<any>['type'];
@@ -32,6 +33,7 @@ export type ButtonProps = bProps & NativeAttrs;
 const ButtonComponent = React.forwardRef<HTMLButtonElement, React.PropsWithChildren<ButtonProps>>(
   (btnProps: ButtonProps, ref: React.Ref<HTMLButtonElement | null>) => {
     const theme = useTheme();
+    const layoutRoot = useLayout();
     const { SCALES, RESPONSIVE } = useScale();
     const buttonRef = useRef<HTMLButtonElement>(null);
     useImperativeHandle(ref, () => buttonRef.current);
@@ -90,7 +92,7 @@ const ButtonComponent = React.forwardRef<HTMLButtonElement, React.PropsWithChild
 
     const childrenWithIcon = useMemo(
       () =>
-        getButtonChildrenWithIcon(auto, children, {
+        getButtonChildrenWithIcon(layoutRoot.breakpoints, auto, children, {
           icon,
           iconRight,
         }),
@@ -101,7 +103,7 @@ const ButtonComponent = React.forwardRef<HTMLButtonElement, React.PropsWithChild
       <button
         ref={buttonRef}
         type={htmlType}
-        className={useClasses('btn padding margin height font', className)}
+        className={useClasses('btn padding margin height font auto', className)}
         disabled={disabled}
         onClick={clickHandler}
         {...props}
@@ -140,21 +142,13 @@ const ButtonComponent = React.forwardRef<HTMLButtonElement, React.PropsWithChild
             --ui-button-height: ${SCALES.h(2.5)};
             --ui-button-color: ${color};
             --ui-button-bg: ${bg};
-            min-width: ${auto ? 'min-content' : SCALES.w(10.5)};
-            width: ${auto ? 'auto' : 'initial'};
+
             height: ${SCALES.h(2.5)};
 
             transition-property: border-color, background, color, transform, box-shadow;
             transition-duration: 0.15s;
             transition-timing-function: ease;
           }
-
-          ${RESPONSIVE.padding(
-            { left: auto ? 1.15 : 1.375, right: auto ? 1.15 : 1.375, top: 0, bottom: 0 },
-            value => `padding: ${value.top} ${value.right} ${value.bottom}  ${value.left};`,
-          )}
-          ${RESPONSIVE.margin(0, value => `margin:  ${value.top} ${value.right} ${value.bottom}  ${value.left};`)}
-          ${RESPONSIVE.font(0.875, value => `font-size: ${value};`)}
 
           .btn:hover:not([disabled]) {
             color: ${hover.color};
@@ -193,6 +187,21 @@ const ButtonComponent = React.forwardRef<HTMLButtonElement, React.PropsWithChild
           .btn :global(.text div) {
             margin: 0;
           }
+
+          ${responsiveCss(
+            auto,
+            'auto',
+            layoutRoot.breakpoints,
+            value => `min-width: ${value ? 'min-content' : SCALES.w(10.5)}; width: ${value ? 'auto' : 'initial'};`,
+          )}
+
+          ${RESPONSIVE.padding(
+            { left: auto ? 1.15 : 1.375, right: auto ? 1.15 : 1.375, top: 0, bottom: 0 },
+            value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
+          )}
+
+          ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`)}
+          ${RESPONSIVE.font(0.875, value => `font-size: ${value};`)}
         `}</style>
       </button>
     );

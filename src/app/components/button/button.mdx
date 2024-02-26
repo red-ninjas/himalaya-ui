@@ -19,7 +19,7 @@ The `Button` UI component is a versatile element for triggering various operatio
   desc="The basic button includes an animation effect, enhancing its visual appeal."
   scope={{ Button }}
   code={`
-<Button>Action</Button>
+<Button mt={{ xs: 2.625, md: 5.75 }}>Action</Button>
 `}
 />
 
@@ -104,7 +104,7 @@ The `Button` UI component is a versatile element for triggering various operatio
   <Grid><Button auto p={0}>NoPadding</Button></Grid>
   <Grid><Button auto font={0.25}>Small Font</Button></Grid>
   <Grid><Button auto pl={0} ml="25px">Offset</Button></Grid>
-  <Grid xs={12}><Button w="100%">Full Width</Button></Grid>
+  <Grid xs={12}><Button w="100%" auto={{ xs: false, md: true, lg: false }}>Full Width</Button></Grid>
   <Grid xs={12}>
     <Button auto w="30%" mx="5px">proportion</Button>
     <Button auto w="30%" mx="5px">proportion</Button>
