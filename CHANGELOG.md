@@ -1,5 +1,12 @@
 
 
+## [1.3.1](https://github.com/red-ninjas/himalaya-ui/compare/v1.3.0...v1.3.1) (2024-02-26)
+
+
+### Bug Fixes
+
+* add dependency to versioning job ([ebfdb31](https://github.com/red-ninjas/himalaya-ui/commit/ebfdb31a679488b40e804ef6de2f7c7ced134af9))
+
 # 1.3.0 (2024-02-26)
 
 
