@@ -3,7 +3,7 @@
 import React from 'react';
 import useClasses from '../use-classes';
 import useLayout from '../use-layout';
-import useScale, { DynamicScales, makeScaleHandler, makeScaleHandler4X, responsiveCss, ScaleProps, ScaleResponsiveParameter, withScale } from '../use-scale';
+import useScale, { responsiveCss, ScaleProps, ScaleResponsiveParameter, withScale } from '../use-scale';
 
 type PropsOf<E extends keyof JSX.IntrinsicElements | React.JSXElementConstructor<any>> = JSX.LibraryManagedAttributes<E, React.ComponentPropsWithRef<E>>;
 
