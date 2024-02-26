@@ -61,7 +61,8 @@
     "./components/index.ts",
     "./components/constants/index.ts",
     "./components/carousel/index.ts",
-    "./components/chart/index.ts"
+    "./components/chart/index.ts",
+    "./components/swipe/index.ts"
   ],
   "exclude": [
     "node_modules",
