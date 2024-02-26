@@ -28,6 +28,7 @@ module.exports = {
   ignorePatterns: ['**/*.test.js', '**/*.test.ts', '**/*.test.tsx', '.eslintrc.js'],
   rules: {
     indent: 0,
+    'react-hooks/exhaustive-deps': 0,
     '@typescript-eslint/indent': 0,
     '@typescript-eslint/member-delimiter-style': 0,
     'react/react-in-jsx-scope': 0,

@@ -13,7 +13,7 @@ interface Props {
   className?: string;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
 export type CapacityProps = Props & NativeAttrs;
 
 const getColor = (val: number, palette: UIThemesPalette): string => {

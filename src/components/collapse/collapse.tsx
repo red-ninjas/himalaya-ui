@@ -19,7 +19,7 @@ interface Props {
   index?: number;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
 export type CollapseProps = Props & NativeAttrs;
 
 const CollapseComponent: React.FC<React.PropsWithChildren<CollapseProps>> = ({

@@ -22,7 +22,7 @@ interface Props {
   transitionTime?: number;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
 export type DrawerProps = Props & NativeAttrs;
 
 const DrawerComponent: React.FC<React.PropsWithChildren<DrawerProps>> = ({

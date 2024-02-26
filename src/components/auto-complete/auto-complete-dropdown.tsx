@@ -13,7 +13,7 @@ interface Props {
   getPopupContainer?: () => HTMLElement | null;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
 export type AutoCompleteDropdownProps = Props & NativeAttrs;
 
 const AutoCompleteDropdown: React.FC<React.PropsWithChildren<AutoCompleteDropdownProps>> = ({
@@ -23,6 +23,7 @@ const AutoCompleteDropdown: React.FC<React.PropsWithChildren<AutoCompleteDropdow
   dropdownStyle = {},
   disableMatchWidth,
   getPopupContainer,
+  ...props
 }: React.PropsWithChildren<AutoCompleteDropdownProps>) => {
   const theme = useTheme();
   const { ref } = useAutoCompleteContext();
@@ -39,7 +40,7 @@ const AutoCompleteDropdown: React.FC<React.PropsWithChildren<AutoCompleteDropdow
 
   return (
     <Dropdown parent={ref} visible={visible} disableMatchWidth={disableMatchWidth} getPopupContainer={getPopupContainer}>
-      <div className={classes} style={dropdownStyle} onClick={clickHandler}>
+      <div {...props} className={classes} style={dropdownStyle} onClick={clickHandler}>
         {children}
         <style jsx>{`
           .auto-complete-dropdown {

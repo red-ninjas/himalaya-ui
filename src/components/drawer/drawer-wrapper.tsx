@@ -16,7 +16,8 @@ interface Props {
   enterTime?: number;
 }
 
-export type DrawerWrapperProps = Props;
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
+export type DrawerWrapperProps = Props & NativeAttrs;
 
 const DrawerWrapper: React.FC<React.PropsWithChildren<DrawerWrapperProps>> = ({
   className = '',

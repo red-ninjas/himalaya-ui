@@ -24,7 +24,7 @@ interface Props {
   activeStyle?: CSSProperties;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
 export type TabsProps = Props & NativeAttrs;
 
 const TabsComponent: React.FC<React.PropsWithChildren<TabsProps>> = ({

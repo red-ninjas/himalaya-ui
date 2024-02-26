@@ -8,7 +8,7 @@ interface Props {
   className?: string;
 }
 
-type NativeAttrs = Omit<React.AnchorHTMLAttributes<any>, keyof Props>;
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
 export type UserLinkProps = Props & NativeAttrs;
 
 const UserLink = React.forwardRef<HTMLAnchorElement, React.PropsWithChildren<UserLinkProps>>(

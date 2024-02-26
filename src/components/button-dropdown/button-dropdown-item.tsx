@@ -15,7 +15,7 @@ interface Props {
   className?: string;
 }
 
-type NativeAttrs = Omit<React.ButtonHTMLAttributes<any>, keyof Props>;
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLButtonElement>, keyof Props>;
 export type ButtonDropdownItemProps = Props & NativeAttrs;
 
 const ButtonDropdownItem: React.FC<React.PropsWithChildren<ButtonDropdownItemProps>> = ({
