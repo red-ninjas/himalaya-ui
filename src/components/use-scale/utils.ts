@@ -7,6 +7,7 @@ import {
   DynamicLayoutPipe4X,
   DynamicLayoutResponsivePipe,
   DynamicLayoutResponsivePipe4X,
+  DynamicScale4X,
   GetAllScalePropsFunction,
   GetScalePropsFunction,
   ScalePropKeys,
@@ -80,21 +81,53 @@ export const makeScaleHandlerResponsive4X =
     );
 
     let responsiveContent: string = ``;
-    for (const [key, value] of Object.entries(t)) {
-      if (key == 'xs') {
-        responsiveContent += css`
-          .${renderClassName ?? className} {
-            ${render(value + ' ' + r[key] + ' ' + b[key] + ' ' + l[key], 'xs')}
-          }
-        `;
-      } else {
-        responsiveContent += css`
-          @media only screen and (min-width: ${breakpoints[key].min}) {
+    const lastKnowValues: DynamicScale4X<string | number> = {
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+    };
+    for (const [key] of Object.entries(breakpoints)) {
+      if (t[key] || b[key] || r[key] || l[key]) {
+        if (key == 'xs') {
+          responsiveContent += css`
             .${renderClassName ?? className} {
-              ${render(value + ' ' + r[key] + ' ' + b[key] + ' ' + l[key], 'xs')}
+              ${render({ top: t[key], left: l[key], bottom: b[key], right: r[key] }, key)}
             }
-          }
-        `;
+          `;
+        } else {
+          responsiveContent += css`
+            @media only screen and (min-width: ${breakpoints[key].min}) {
+              .${renderClassName ?? className} {
+                ${render(
+                  {
+                    top: t[key] ?? lastKnowValues.top,
+                    left: l[key] ?? lastKnowValues.left,
+                    bottom: b[key] ?? lastKnowValues.bottom,
+                    right: r[key] ?? lastKnowValues.right,
+                  },
+                  key,
+                )}
+              }
+            }
+          `;
+        }
+
+        if (t[key] !== undefined) {
+          lastKnowValues.top = t[key];
+        }
+
+        if (r[key] !== undefined) {
+          lastKnowValues.right = r[key];
+        }
+
+        if (b[key] !== undefined) {
+          lastKnowValues.bottom = b[key];
+        }
+
+        if (l[key] !== undefined) {
+          lastKnowValues.left = l[key];
+        }
       }
     }
 

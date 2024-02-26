@@ -48,6 +48,8 @@ export interface DynamicScale4XOptional<T> {
   top?: T;
   bottom?: T;
 }
+export type IRenderFunction4XResponsive = (values: DynamicScale4X<string | number>, responiveType: string) => string;
+
 export type DynamicLayoutPipe = (scale1x: number, defaultValue?: string | number) => string;
 export type DynamicLayoutPipe4X = (scale1x: DynamicScale4X<number>, defaultValue?: DynamicScale4X<string | number>) => string;
 export type IRenderFunction = (value: string | number, responiveType: string) => string;
@@ -55,7 +57,7 @@ export type DynamicLayoutResponsivePipe = (scale1x: number, render: IRenderFunct
 
 export type DynamicLayoutResponsivePipe4X = (
   scale1x: DynamicScale4X<number> | number,
-  render: IRenderFunction,
+  render: IRenderFunction4XResponsive,
   defaultValue?: DynamicScale4XOptional<string | number> | string | number,
   className?: string,
 ) => string | undefined;

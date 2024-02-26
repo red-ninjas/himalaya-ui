@@ -23,7 +23,7 @@ const PageWidthComponent: React.FC<React.PropsWithChildren<PageWidthProps>> = ({
           flex-direction: column;
         }
 
-        ${RESPONSIVE.padding(0, value => `padding: ${value};`, layout.pageMargin)}
+        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom}  ${value.left};`, layout.pageMargin)}
       `}</style>
     </div>
   );
