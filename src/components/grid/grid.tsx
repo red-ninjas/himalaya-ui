@@ -12,16 +12,16 @@ interface Props {
 export type GridProps = Props & GridBasicItemProps;
 
 const GridComponent: React.FC<React.PropsWithChildren<GridProps>> = ({ children, className = '', ...props }: React.PropsWithChildren<GridProps>) => {
-  const { SCALES } = useScale();
+  const { RESPONSIVE } = useScale();
   const { className: resolveClassName, styles } = css.resolve`
     div {
-      margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
       box-sizing: border-box;
-      padding: ${SCALES.pt(0, 'var(--grid-gap-unit)')} ${SCALES.pr(0, 'var(--grid-gap-unit)')} ${SCALES.pb(0, 'var(--grid-gap-unit)')}
-        ${SCALES.pl(0, 'var(--grid-gap-unit)')};
     }
+
+    ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom}  ${value.left};`, 'var(--grid-gap-unit)')}
+    ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom}  ${value.left};`)}
   `;
-  const classes = useClasses(resolveClassName, className);
+  const classes = useClasses('padding margin', resolveClassName, className);
 
   return (
     <GridBasicItem className={classes} {...props}>
