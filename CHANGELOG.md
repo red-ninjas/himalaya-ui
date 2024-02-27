@@ -1,5 +1,12 @@
 
 
+## [1.3.2](https://github.com/red-ninjas/himalaya-ui/compare/v1.3.1...v1.3.2) (2024-02-27)
+
+
+### Bug Fixes
+
+* remove font-size from mobile menu group ([b4f3550](https://github.com/red-ninjas/himalaya-ui/commit/b4f3550322eefc0a9e247ba2598e8254e871960b))
+
 ## [1.3.1](https://github.com/red-ninjas/himalaya-ui/compare/v1.3.0...v1.3.1) (2024-02-26)
 
 
