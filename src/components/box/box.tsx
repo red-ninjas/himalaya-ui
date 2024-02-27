@@ -2,7 +2,6 @@
 
 import React from 'react';
 import useClasses from '../use-classes';
-import useLayout from '../use-layout';
 import useScale, { withScale, ScaleResponsiveParameter, ScaleProps } from '../use-scale';
 
 type PropsOf<E extends keyof JSX.IntrinsicElements | React.JSXElementConstructor<any>> = JSX.LibraryManagedAttributes<E, React.ComponentPropsWithRef<E>>;
@@ -26,8 +25,7 @@ export type BoxComponent = {
 
 export const Box = React.forwardRef(({ as, children, className, visible, ...restProps }: BoxProps<typeof defaultElement>, ref: typeof restProps.ref | null) => {
   const Element = as || defaultElement;
-  const layout = useLayout();
-  const { pl, pr, pt, pb, mt, mr, mb, ml, px, py, mx, my, font, w, h, m, lineHeight, p, unit = layout.unit, scale = 1, ...innerProps } = restProps;
+  const { ...innerProps } = restProps;
 
   const { RESPONSIVE } = useScale();
 
