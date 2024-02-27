@@ -1,5 +1,12 @@
 
 
+# [1.5.0](https://github.com/red-ninjas/himalaya-ui/compare/v1.4.0...v1.5.0) (2024-02-27)
+
+
+### Features
+
+* **tabs:** Make Tab.Item Responsive ([6f2e290](https://github.com/red-ninjas/himalaya-ui/commit/6f2e290f5db77f4401ddd6bd84dbfa273df902d0))
+
 # [1.4.0](https://github.com/red-ninjas/himalaya-ui/compare/v1.3.6...v1.4.0) (2024-02-27)
 
 
