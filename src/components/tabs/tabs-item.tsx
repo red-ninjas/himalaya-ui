@@ -21,7 +21,7 @@ const TabsItemComponent: React.FC<React.PropsWithChildren<TabsItemProps>> = ({
   disabled = false,
   ...props
 }: React.PropsWithChildren<TabsItemProps>) => {
-  const { SCALES } = useScale();
+  const { SCALES, RESPONSIVE } = useScale();
   const { register, currentValue } = useTabsContext();
   const isActive = useMemo(() => currentValue === value, [currentValue, value]);
 
@@ -30,7 +30,7 @@ const TabsItemComponent: React.FC<React.PropsWithChildren<TabsItemProps>> = ({
     const ref = useRef<HTMLDivElement | null>(null);
     const { currentValue } = useTabsContext();
     const active = currentValue === value;
-    const classes = useClasses('tab', {
+    const classes = useClasses('tab padding margin font width height', {
       active,
       disabled,
       [activeClassName!]: active,
@@ -66,15 +66,7 @@ const TabsItemComponent: React.FC<React.PropsWithChildren<TabsItemProps>> = ({
             user-select: none;
             display: flex;
             align-items: center;
-            font-size: ${SCALES.font(0.875)};
             line-height: normal;
-            width: ${SCALES.w(1, 'auto')};
-            height: ${SCALES.h(1, 'auto')};
-            padding: ${SCALES.pt(0.875)} ${SCALES.pr(0.55)} ${SCALES.pb(0.875)} ${SCALES.pl(0.55)};
-            margin: ${SCALES.mt(0)} ${SCALES.mr(0.2)} ${SCALES.mb(0)} ${SCALES.ml(0.2)};
-            z-index: 1;
-            --tabs-item-hover-left: calc(-1 * ${SCALES.pl(0.28)});
-            --tabs-item-hover-right: calc(-1 * ${SCALES.pr(0.28)});
           }
           .tab:hover {
             color: ${theme.palette.foreground};
@@ -127,6 +119,24 @@ const TabsItemComponent: React.FC<React.PropsWithChildren<TabsItemProps>> = ({
           .hide-border.active {
             font-weight: 500;
           }
+
+          ${RESPONSIVE.padding(
+            0.875,
+            value =>
+              `padding: ${value.top} ${value.right} ${value.bottom} ${value.left}; --tabs-item-hover-left: calc(-1 * ${value.left}); --tabs-item-hover-right: calc(-1 * ${value.right});`,
+          )}
+          ${RESPONSIVE.margin(
+            {
+              top: 0,
+              left: 0.2,
+              right: 0.2,
+              bottom: 0,
+            },
+            value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left}; `,
+          )}
+          ${RESPONSIVE.font(0.875, value => `font-size: ${value};`)}
+          ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto')}
+          ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto')}
         `}</style>
       </div>
     );
