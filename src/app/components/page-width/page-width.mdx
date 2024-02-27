@@ -6,9 +6,9 @@ export const meta = {
   group: 'Layout',
 }
 
-# Page width
+# PageWidth (formerly `ContentLayout`)
 
-Displays the content in the maximal page width given by the ui provider
+Displays the content with maximum page width given by the ui provider with equal margins from left and right.
 
 <Playground
   desc="The content will be displayed in the center."
@@ -33,3 +33,12 @@ Displays the content in the maximal page width given by the ui provider
 }
 `}
 />
+
+<Attributes edit="/app/components/note.mdx">
+<Attributes.Title>PageWidth.PageWidthProps</Attributes.Title>
+
+| Attribute  | Description  | Type                         | Accepted values          | Default   |
+| ---------- | ------------ | ---------------------------- | ------------------------ | --------- |
+| ...        | native props | `HTMLDivAttributes`             | `'id', 'className', ...` | -         |
+
+</Attributes>
