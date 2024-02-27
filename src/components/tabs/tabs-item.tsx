@@ -19,6 +19,7 @@ const TabsItemComponent: React.FC<React.PropsWithChildren<TabsItemProps>> = ({
   value,
   label,
   disabled = false,
+  ...props
 }: React.PropsWithChildren<TabsItemProps>) => {
   const { SCALES } = useScale();
   const { register, currentValue } = useTabsContext();
@@ -41,7 +42,16 @@ const TabsItemComponent: React.FC<React.PropsWithChildren<TabsItemProps>> = ({
     };
 
     return (
-      <div ref={ref} className={classes} role="button" key={value} onMouseOver={onMouseOver} onClick={clickHandler} style={active ? activeStyle : {}}>
+      <div
+        ref={ref}
+        {...props}
+        className={classes}
+        role="button"
+        key={value}
+        onMouseOver={onMouseOver}
+        onClick={clickHandler}
+        style={active ? activeStyle : {}}
+      >
         {label}
         <style jsx>{`
           .tab {
