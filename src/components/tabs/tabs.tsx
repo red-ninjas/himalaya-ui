@@ -47,7 +47,7 @@ const TabsComponent: React.FC<React.PropsWithChildren<TabsProps>> = ({
   ...props
 }: React.PropsWithChildren<TabsProps>) => {
   const theme = useTheme();
-  const { SCALES, RESPONSIVE } = useScale();
+  const { RESPONSIVE } = useScale();
   const [tabs, setTabs] = useState<Array<TabsHeaderItem>>([]);
   const [selfValue, setSelfValue] = useState<string | undefined>(userCustomInitialValue);
   const ref = useRef<HTMLDivElement | null>(null);
