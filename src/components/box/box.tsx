@@ -3,7 +3,7 @@
 import React from 'react';
 import useClasses from '../use-classes';
 import useLayout from '../use-layout';
-import useScale, { withScale, ScaleProps } from '../use-scale';
+import useScale, { withScale, ScaleResponsiveParameter, ScaleProps } from '../use-scale';
 
 type PropsOf<E extends keyof JSX.IntrinsicElements | React.JSXElementConstructor<any>> = JSX.LibraryManagedAttributes<E, React.ComponentPropsWithRef<E>>;
 
@@ -11,7 +11,9 @@ export interface BoxOwnProps<E extends React.ElementType = React.ElementType> {
   as?: E;
 }
 
-export type BoxProps<E extends React.ElementType> = BoxOwnProps<E> & Omit<PropsOf<E>, keyof (BoxOwnProps & ScaleProps)> & ScaleProps;
+export type BoxProps<E extends React.ElementType> = BoxOwnProps<E> &
+  Omit<PropsOf<E>, keyof (BoxOwnProps & ScaleProps)> &
+  ScaleProps & { visible?: ScaleResponsiveParameter<string> };
 
 const defaultElement = 'div';
 
@@ -20,7 +22,7 @@ export type BoxComponent = {
   displayName?: string;
 };
 
-export const Box = React.forwardRef(({ as, children, className, ...restProps }: BoxProps<typeof defaultElement>, ref: typeof restProps.ref | null) => {
+export const Box = React.forwardRef(({ as, children, className, visible, ...restProps }: BoxProps<typeof defaultElement>, ref: typeof restProps.ref | null) => {
   const Element = as || defaultElement;
   const layout = useLayout();
   const { pl, pr, pt, pb, mt, mr, mb, ml, px, py, mx, my, font, w, h, m, lineHeight, p, unit = layout.unit, scale = 1, ...innerProps } = restProps;
@@ -31,6 +33,9 @@ export const Box = React.forwardRef(({ as, children, className, ...restProps }: 
     <Element className={useClasses('box font lineHeight width height padding margin', className)} ref={ref} {...innerProps}>
       {children}
       <style jsx>{`
+        .box {
+          visibility: ${visible};
+        }
         ${RESPONSIVE.font(1, value => `font-size: ${value};`)}
         ${RESPONSIVE.lineHeight(1, value => `line-height: ${value};`)}
         ${RESPONSIVE.w(0, value => `width: ${value};`, 'auto')}
