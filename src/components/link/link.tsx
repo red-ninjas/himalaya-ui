@@ -24,10 +24,13 @@ const LinkComponent = React.forwardRef<HTMLAnchorElement, React.PropsWithChildre
     ref: React.Ref<HTMLAnchorElement>,
   ) => {
     const theme = useTheme();
-    const { SCALES } = useScale();
+    const { RESPONSIVE } = useScale();
     const linkColor = color || block ? theme.palette.link.value : 'inherit';
     const hoverColor = color || block ? theme.palette.link.light : 'inherit';
-    const classes = useClasses('link', { block }, className, { underline: underline === true, 'underline-hover': underline === 'hover' });
+    const classes = useClasses('link margin padding width height font', { block }, className, {
+      underline: underline === true,
+      'underline-hover': underline === 'hover',
+    });
 
     return (
       <a className={classes} href={href} {...props} ref={ref}>
@@ -42,13 +45,9 @@ const LinkComponent = React.forwardRef<HTMLAnchorElement, React.PropsWithChildre
             text-decoration: none;
             border-radius: ${block ? theme.style.radius : 0};
             transition: color 200ms ease 0ms;
-            font-size: ${SCALES.font(1, 'inherit')};
-            width: ${SCALES.w(1, 'fit-content')};
-            height: ${SCALES.h(1, 'auto')};
-            margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
-            padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
             text-decoration: none;
           }
+
           .underline {
             text-decoration: underline;
           }
@@ -58,15 +57,39 @@ const LinkComponent = React.forwardRef<HTMLAnchorElement, React.PropsWithChildre
               text-decoration: underline;
             }
           }
-          .block {
-            padding: ${SCALES.pt(0.125)} ${SCALES.pr(0.25)} ${SCALES.pb(0.125)} ${SCALES.pl(0.25)};
-            margin: ${SCALES.mt(0)} ${SCALES.mr(-0.125)} ${SCALES.mb(0)} ${SCALES.ml(-0.125)};
-          }
 
           .link:hover {
             background-color: ${block ? addColorAlpha(theme.palette.link.light, 0.1) : 'unset'};
             color: ${hoverColor};
           }
+
+          ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`)}
+          ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`)}
+          ${RESPONSIVE.padding(
+            {
+              top: 0.125,
+              bottom: 0.125,
+              left: 0.25,
+              right: 0.25,
+            },
+            value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
+            undefined,
+            'block',
+          )}
+          ${RESPONSIVE.margin(
+            {
+              top: 0,
+              bottom: 0,
+              left: -0.125,
+              right: -0.125,
+            },
+            value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
+            undefined,
+            'block',
+          )}
+          ${RESPONSIVE.w(1, value => `width: ${value};`, 'fit-content')}
+          ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto')}
+          ${RESPONSIVE.font(1, value => `font-size: ${value};`, 'inherit')}
         `}</style>
       </a>
     );
