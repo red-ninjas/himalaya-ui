@@ -19,6 +19,7 @@ const TabsItemComponent: React.FC<React.PropsWithChildren<TabsItemProps>> = ({
   value,
   label,
   disabled = false,
+  style,
   ...props
 }: React.PropsWithChildren<TabsItemProps>) => {
   const { RESPONSIVE } = useScale();
@@ -50,7 +51,7 @@ const TabsItemComponent: React.FC<React.PropsWithChildren<TabsItemProps>> = ({
         key={value}
         onMouseOver={onMouseOver}
         onClick={clickHandler}
-        style={active ? activeStyle : {}}
+        style={active ? { ...style, ...activeStyle } : style}
       >
         {label}
         <style jsx>{`
