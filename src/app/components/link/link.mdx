@@ -49,7 +49,9 @@ Hyperlinks between pages.
   <Text><Link href="#">HTTP is stateless, but not sessionless.</Link></Text>
   <Text><Link href="#" color>HTTP is stateless, but not sessionless.</Link></Text>
   <Text><Link href="#" underline>HTTP is stateless, but not sessionless.</Link></Text>
+  <Text><Link href="#" underline="hover">HTTP is stateless, but not sessionless.</Link></Text>
   <Text><Link href="#" color underline>HTTP is stateless, but not sessionless.</Link></Text>
+  <Text><Link href="#" color underline="hover">HTTP is stateless, but not sessionless.</Link></Text>
 </>
 `}
 />
@@ -86,7 +88,7 @@ Hyperlinks between pages.
 | **href**      | link url                    | `string`                         | -                      | -       |
 | **color**     | display color for link      | `boolean`                        | -                      | `false` |
 | **icon**      | show icon                   | `boolean`                        | -                      | `false` |
-| **underline** | display underline           | `boolean`                        | -                      | `false` |
+| **underline** | display underline           | `boolean or 'hover'`             | -                      | `false` |
 | **block**     | display as a separate block | `boolean`                        | -                      | `false` |
 | **ref**       | forwardRef                  | `Ref<HTMLAnchorElement or null>` | -                      | -       |
 | ...           | native props                | `AnchorHTMLAttributes`           | `'rel', 'target', ...` | -       |

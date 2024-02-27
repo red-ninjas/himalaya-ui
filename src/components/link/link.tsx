@@ -10,7 +10,7 @@ export interface Props {
   href?: string;
   color?: boolean;
   icon?: boolean;
-  underline?: boolean;
+  underline?: boolean | 'hover';
   block?: boolean;
   className?: string;
 }
@@ -27,8 +27,7 @@ const LinkComponent = React.forwardRef<HTMLAnchorElement, React.PropsWithChildre
     const { SCALES } = useScale();
     const linkColor = color || block ? theme.palette.link.value : 'inherit';
     const hoverColor = color || block ? theme.palette.link.light : 'inherit';
-    const decoration = underline ? 'underline' : 'none';
-    const classes = useClasses('link', { block }, className);
+    const classes = useClasses('link', { block }, className, { underline: underline === true, 'underline-hover': underline === 'hover' });
 
     return (
       <a className={classes} href={href} {...props} ref={ref}>
@@ -48,7 +47,16 @@ const LinkComponent = React.forwardRef<HTMLAnchorElement, React.PropsWithChildre
             height: ${SCALES.h(1, 'auto')};
             margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
             padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
-            text-decoration: ${decoration};
+            text-decoration: none;
+          }
+          .underline {
+            text-decoration: underline;
+          }
+          .underline-hover {
+            text-decoration: none;
+            &:hover {
+              text-decoration: underline;
+            }
           }
           .block {
             padding: ${SCALES.pt(0.125)} ${SCALES.pr(0.25)} ${SCALES.pb(0.125)} ${SCALES.pl(0.25)};
