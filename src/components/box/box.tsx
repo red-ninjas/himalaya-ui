@@ -3,7 +3,7 @@
 import React from 'react';
 import useClasses from '../use-classes';
 import useLayout from '../use-layout';
-import { DynamicScales, makeScaleHandler, makeScaleHandler4X, ScaleProps } from '../use-scale';
+import useScale, { withScale, ScaleProps } from '../use-scale';
 
 type PropsOf<E extends keyof JSX.IntrinsicElements | React.JSXElementConstructor<any>> = JSX.LibraryManagedAttributes<E, React.ComponentPropsWithRef<E>>;
 
@@ -20,51 +20,28 @@ export type BoxComponent = {
   displayName?: string;
 };
 
-export const Box: BoxComponent = React.forwardRef(
-  <E extends React.ElementType = typeof defaultElement>({ as, children, className, ...restProps }: BoxProps<E>, ref: typeof restProps.ref | null) => {
-    const Element = as || defaultElement;
-    const layout = useLayout();
-    const { pl, pr, pt, pb, mt, mr, mb, ml, px, py, mx, my, font, w, h, m, lineHeight, p, unit = layout.unit, scale = 1, ...innerProps } = restProps;
+export const Box = React.forwardRef(({ as, children, className, ...restProps }: BoxProps<typeof defaultElement>, ref: typeof restProps.ref | null) => {
+  const Element = as || defaultElement;
+  const layout = useLayout();
+  const { pl, pr, pt, pb, mt, mr, mb, ml, px, py, mx, my, font, w, h, m, lineHeight, p, unit = layout.unit, scale = 1, ...innerProps } = restProps;
 
-    const SCALES: DynamicScales = {
-      pt: makeScaleHandler(pt ?? py ?? p, scale, unit),
-      pr: makeScaleHandler(pr ?? px ?? p, scale, unit),
-      pb: makeScaleHandler(pb ?? py ?? p, scale, unit),
-      pl: makeScaleHandler(pl ?? px ?? p, scale, unit),
-      px: makeScaleHandler(px ?? pl ?? pr ?? p, scale, unit),
-      py: makeScaleHandler(py ?? pt ?? pb ?? p, scale, unit),
-      mt: makeScaleHandler(mt ?? my ?? m, scale, unit),
-      mr: makeScaleHandler(mr ?? mx ?? m, scale, unit),
-      mb: makeScaleHandler(mb ?? my ?? m, scale, unit),
-      ml: makeScaleHandler(ml ?? mx ?? m, scale, unit),
-      mx: makeScaleHandler(mx ?? ml ?? mr ?? m, scale, unit),
-      my: makeScaleHandler(my ?? mt ?? mb ?? m, scale, unit),
-      w: makeScaleHandler(w ?? w, scale, unit),
-      h: makeScaleHandler(h ?? h, scale, unit),
-      font: makeScaleHandler(font, scale, unit),
-      padding: makeScaleHandler4X(pl ?? px ?? p, pr ?? px ?? p, pt ?? py ?? p, pb ?? py ?? p, scale, unit),
-      margin: makeScaleHandler4X(ml ?? mx ?? m, mr ?? mx ?? m, mt ?? my ?? m, mb ?? my ?? m, scale, unit),
-      lineHeight: makeScaleHandler(lineHeight ?? lineHeight, scale, unit),
-    };
+  const { RESPONSIVE } = useScale();
 
-    return (
-      <Element className={useClasses('box', className)} ref={ref} {...innerProps}>
-        {children}
-        <style jsx>{`
-          .box {
-            line-height: ${SCALES.lineHeight(1)};
-            font-size: ${SCALES.font(1)};
-            width: ${SCALES.w(0, 'auto')};
-            height: ${SCALES.h(0, 'auto')};
-            padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
-            margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
-          }
-        `}</style>
-      </Element>
-    );
-  },
-);
+  return (
+    <Element className={useClasses('box font lineHeight width height padding margin', className)} ref={ref} {...innerProps}>
+      {children}
+      <style jsx>{`
+        ${RESPONSIVE.font(1, value => `font-size: ${value};`)}
+        ${RESPONSIVE.lineHeight(1, value => `line-height: ${value};`)}
+        ${RESPONSIVE.w(0, value => `width: ${value};`, 'auto')}
+        ${RESPONSIVE.h(0, value => `height: ${value};`, 'auto')}
+        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`)}
+        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`)}
+      `}</style>
+    </Element>
+  );
+});
 
 Box.displayName = 'HimalayaBox';
 
-export default Box;
+export default withScale(Box);
