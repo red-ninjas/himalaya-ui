@@ -1,5 +1,12 @@
 
 
+# [1.4.0](https://github.com/red-ninjas/himalaya-ui/compare/v1.3.6...v1.4.0) (2024-02-27)
+
+
+### Features
+
+* **tabs:** Make Tab.Item styleable ([4910a2f](https://github.com/red-ninjas/himalaya-ui/commit/4910a2fcc920e06904c9a7eacaf9245be7546173))
+
 ## [1.3.6](https://github.com/red-ninjas/himalaya-ui/compare/v1.3.4...v1.3.6) (2024-02-27)
 
 ## [1.3.4](https://github.com/red-ninjas/himalaya-ui/compare/v1.3.3...v1.3.4) (2024-02-27)
