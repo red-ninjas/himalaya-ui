@@ -41,6 +41,19 @@ and very small size. Of course, it still supports dynamic props and custom break
 />
 
 <Playground
+  desc="Row gap and gap"
+  scope={{ Grid, Card }}
+  code={`
+<Grid.Container gap={2} rowGap={4} justify="center">
+  <Grid xs={12} justify="center"><Card shadow w="100%">2</Card></Grid>
+  <Grid xs={12} justify="center"><Card shadow w="100%">3</Card></Grid>
+  <Grid xs={12} justify="center"><Card shadow w="100%">3</Card></Grid>
+  <Grid xs={12} justify="center"><Card shadow w="100%">3</Card></Grid>
+</Grid.Container>
+`}
+/>
+
+<Playground
   title="Fluid layout"
   desc="Containers for wrapping and scaling."
   scope={{ Grid, Card }}
@@ -157,7 +170,8 @@ const App = () => {
 
 | Attribute | Description              | Type               | Accepted values           | Default |
 | --------- | ------------------------ | ------------------ | ------------------------- | ------- |
-| **gap**   | spacing of children      | `number` / `float` | -                         | 0       |
+| **gap**   | spacing of children  xAxis    | `number` / `float` | -                         | 0       |
+| **rowGap**   | spacing of children  yAxis    | `number` / `float` | -                         | 0       |
 | **wrap**  | CSS "flex-wrap" property | `Wrap`             | [Wrap](#wrap)             | `wrap`  |
 | ...       | Grid props               | `Grid.Props`       | [Grid.Props](#grid.props) | -       |
 

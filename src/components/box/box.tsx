@@ -36,8 +36,8 @@ export const Box: BoxComponent = React.forwardRef(
       <Element className={useClasses('box padding margin width height font lineHeight hide show', className)} ref={ref} {...innerProps}>
         {children}
         <style jsx>{`
-          ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom}  ${value.left};`)}
-          ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom}  ${value.left};`)}
+          ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`)}
+          ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`)}
           ${RESPONSIVE.w(0, value => `width: ${value};`, 'auto')}
           ${RESPONSIVE.h(0, value => `height: ${value};`, 'auto')}
           ${RESPONSIVE.font(1, value => `font-size: ${value};`, 'inherit')}

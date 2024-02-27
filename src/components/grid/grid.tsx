@@ -18,7 +18,12 @@ const GridComponent: React.FC<React.PropsWithChildren<GridProps>> = ({ children,
       box-sizing: border-box;
     }
 
-    ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom}  ${value.left};`, 'var(--grid-gap-unit)')}
+    ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom}  ${value.left};`, {
+      top: 'var(--grid-row-gap-unit)',
+      left: 'var(--grid-gap-unit)',
+      right: 'var(--grid-gap-unit)',
+      bottom: 'var(--grid-row-gap-unit)',
+    })}
     ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom}  ${value.left};`)}
   `;
   const classes = useClasses('padding margin', resolveClassName, className);
