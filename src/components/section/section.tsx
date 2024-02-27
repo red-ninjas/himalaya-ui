@@ -20,11 +20,11 @@ const SectionComponent: React.FC<SectionComponentProps> = ({ className = '', chi
       {children}
 
       <style jsx>{`
-        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom}  ${value.left};`, {
+        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, {
           top: sectionSpace,
           bottom: sectionSpace,
         })}
-        ${RESPONSIVE.margin(0, value => `margin:  ${value.top} ${value.right} ${value.bottom}  ${value.left};`)}
+        ${RESPONSIVE.margin(0, value => `margin:  ${value.top} ${value.right} ${value.bottom} ${value.left};`)}
         ${RESPONSIVE.w(1, value => `width: ${value};`, '100%')}
       `}</style>
     </section>

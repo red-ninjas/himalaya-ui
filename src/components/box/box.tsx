@@ -9,6 +9,8 @@ type PropsOf<E extends keyof JSX.IntrinsicElements | React.JSXElementConstructor
 
 export interface BoxOwnProps<E extends React.ElementType = React.ElementType> {
   as?: E;
+  hide?: ScaleResponsiveParameter<boolean>;
+  show?: ScaleResponsiveParameter<boolean>;
 }
 
 export type BoxProps<E extends React.ElementType> = BoxOwnProps<E> &

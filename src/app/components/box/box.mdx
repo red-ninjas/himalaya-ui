@@ -43,6 +43,17 @@ The `Box` UI component is a versatile and scalable element that can adapt to var
 `}
 />
 
+<Playground
+  title="Responsive hide / show"
+  desc="The `Box` component is highly scalable. You can use props to adjust its appearance, size, and styling, making it suitable for different parts of your application."
+  scope={{ Box }}
+  code={`
+<Box hide={{ xs: true, md: false, xl: true }}>
+    I am responsive hiding
+</Box>
+`}
+/>
+
 <Attributes edit="/app/components/box.mdx">
 <Attributes.Title>Box.Props</Attributes.Title>
 

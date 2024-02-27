@@ -170,7 +170,6 @@ const MobileNavigationGroup: React.FC<PropsWithChildren<MobileNavigationGroupPro
           padding-right: ${SCALES.pr(1.3)};
           color: ${theme.palette.foreground};
           font-weight: 600;
-          font-size: ${SCALES.font(1)};
           justify-content: space-between;
         }
 
