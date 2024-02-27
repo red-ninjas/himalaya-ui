@@ -10,12 +10,14 @@ interface Props {
   controls: boolean;
   autoplay?: boolean;
   muted?: boolean;
+  loop?: boolean;
+  poster?: string;
 }
 
 type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
 export type VideoProps = Props & NativeAttrs;
 
-const Video: React.FC<VideoProps> = ({ src, width, height, controls, autoplay = false, muted = false }) => {
+const Video: React.FC<VideoProps> = ({ src, width, height, controls, poster, loop = false, autoplay = false, muted = false }) => {
   const theme = useTheme();
 
   const [isPlaying, setIsPlaying] = useState(autoplay);
@@ -81,6 +83,8 @@ const Video: React.FC<VideoProps> = ({ src, width, height, controls, autoplay = 
           muted={muted}
           width={width}
           height={height}
+          loop={loop}
+          poster={poster}
           onClick={() => {
             if (!controls) {
               if (isPlaying) {
