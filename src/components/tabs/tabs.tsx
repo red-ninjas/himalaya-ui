@@ -17,6 +17,7 @@ interface Props {
   onChange?: (val: string) => void;
   className?: string;
   leftSpace?: CSSProperties['marginLeft'];
+  gap?: CSSProperties['gap'];
   hoverHeightRatio?: number;
   hoverWidthRatio?: number;
   align?: CSSProperties['justifyContent'];
@@ -36,6 +37,7 @@ const TabsComponent: React.FC<React.PropsWithChildren<TabsProps>> = ({
   onChange,
   className = '',
   leftSpace = '12px' as CSSProperties['marginLeft'],
+  gap = '0px' as CSSProperties['gap'],
   highlight = true,
   hoverHeightRatio = 0.7,
   hoverWidthRatio = 1.15,
@@ -45,7 +47,7 @@ const TabsComponent: React.FC<React.PropsWithChildren<TabsProps>> = ({
   ...props
 }: React.PropsWithChildren<TabsProps>) => {
   const theme = useTheme();
-  const { SCALES } = useScale();
+  const { SCALES, RESPONSIVE } = useScale();
   const [tabs, setTabs] = useState<Array<TabsHeaderItem>>([]);
   const [selfValue, setSelfValue] = useState<string | undefined>(userCustomInitialValue);
   const ref = useRef<HTMLDivElement | null>(null);
@@ -72,8 +74,9 @@ const TabsComponent: React.FC<React.PropsWithChildren<TabsProps>> = ({
       currentValue: selfValue,
       inGroup: true,
       leftSpace,
+      gap,
     }),
-    [selfValue, leftSpace],
+    [selfValue, leftSpace, gap],
   );
 
   useEffect(() => {
@@ -95,7 +98,7 @@ const TabsComponent: React.FC<React.PropsWithChildren<TabsProps>> = ({
 
   return (
     <TabsContext.Provider value={initialValue}>
-      <div className={useClasses('tabs', className)} {...props}>
+      <div className={useClasses('tabs padding margin font width height', className)} {...props}>
         <header ref={ref} onMouseLeave={() => setDisplayHighlight(false)}>
           <Highlight rect={rect} visible={displayHighlight} hoverHeightRatio={hoverHeightRatio} hoverWidthRatio={hoverWidthRatio} />
           <div className={useClasses('scroll-container', { 'hide-divider': hideDivider })}>
@@ -113,13 +116,6 @@ const TabsComponent: React.FC<React.PropsWithChildren<TabsProps>> = ({
         </header>
         <div className="content">{children}</div>
         <style jsx>{`
-          .tabs {
-            font-size: ${SCALES.font(1)};
-            width: ${SCALES.w(1, 'initial')};
-            height: ${SCALES.h(1, 'auto')};
-            padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
-            margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
-          }
           header {
             display: flex;
             flex-wrap: nowrap;
@@ -139,6 +135,7 @@ const TabsComponent: React.FC<React.PropsWithChildren<TabsProps>> = ({
             justify-content: ${align};
             border-bottom: 1px solid ${theme.palette.border};
             padding-left: ${leftSpace};
+            gap: ${gap};
           }
           header::-webkit-scrollbar {
             display: none;
@@ -149,6 +146,12 @@ const TabsComponent: React.FC<React.PropsWithChildren<TabsProps>> = ({
           .content {
             padding-top: 0.625rem;
           }
+
+          ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`)}
+          ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`)}
+          ${RESPONSIVE.font(1, value => `font-size: ${value};`)}
+          ${RESPONSIVE.w(1, value => `width: ${value};`, 'initial')}
+          ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto')}
         `}</style>
       </div>
     </TabsContext.Provider>

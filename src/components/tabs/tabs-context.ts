@@ -21,6 +21,7 @@ export interface TabsConfig {
   currentValue?: string;
   inGroup: boolean;
   leftSpace?: CSSProperties['marginLeft'];
+  gap?: CSSProperties['gap'];
 }
 
 const defaultContext = {
