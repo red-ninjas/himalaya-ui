@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "buildCommand": "yarn docs:build",
-  "installCommand": "yarn install",
-  "devCommand": "yarn dev",
+  "buildCommand": "npm run docs:build",
+  "installCommand": "npm run install",
+  "devCommand": "npm run dev",
   "outputDirectory": "src/.next",
   "framework": "nextjs"
 }

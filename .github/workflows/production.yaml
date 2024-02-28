@@ -16,7 +16,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
       - name: Install dependencies
-        run: yarn install
+        run: npm run install
       - name: Setup Git user
         run: |
           git config user.name "${GITHUB_ACTOR}"
@@ -50,10 +50,10 @@ jobs:
         with:
           registry-url: 'https://registry.npmjs.org'
       - name: Install Deps
-        run: yarn install
+        run: npm run install
       - name: Build
-        run: yarn build
+        run: npm run build
       - name: Release
-        run: cd dist/bundle && yarn publish --access public --non-interactive
+        run: cd dist/bundle && npm run publish --access public --non-interactive
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

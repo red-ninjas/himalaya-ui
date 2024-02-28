@@ -16,20 +16,20 @@
     "access": "public"
   },
   "scripts": {
-    "dev": "yarn docs:collect && next dev ./src",
+    "dev": "npm run docs:collect && next dev ./src",
     "docs:start": "next start src",
     "docs:collect": "node scripts/collect-meta.mjs",
-    "docs:build": "yarn docs:collect && cross-env NODE_ENV=production next build ./src && yarn docs:sitemap",
+    "docs:build": "npm run docs:collect && cross-env NODE_ENV=production next build ./src && npm run docs:sitemap",
     "docs:sitemap": "node scripts/sitemap.js",
     "prettier": "prettier --write src",
     "lint": "next lint ./src",
     "test": "jest --config .jest.config.js --no-cache --passWithNoTests",
     "test:update": "jest --config .jest.config.js --no-cache --update-snapshot",
-    "test:coverage": "yarn test --coverage",
+    "test:coverage": "npm run test --coverage",
     "build:bundle": "node scripts/build-bundle.mjs",
     "build:esm": "ttsc -p ./src/tsconfig.build.json --outDir ./dist/bundle",
-    "build": "yarn build:esm &&  yarn build:bundle",
-    "release": "yarn build && yarn build:bundle && cd dist/bundle && yarn build:bundle && yarn publish --access public --non-interactive",
+    "build": "npm run build:esm &&  npm run build:bundle",
+    "release": "npm run build && npm run build:bundle && cd dist/bundle && npm run build:bundle && npm run publish --access public --non-interactive",
     "prepare": "husky install",
     "icons:update": "ts-node -P scripts/icons scripts/icons/icons-update.ts",
     "icons:generate": "ts-node -P scripts/icons scripts/icons/icons-generate.ts"
@@ -140,7 +140,6 @@
     "remark-gfm": "^4.0.0",
     "remark-mdx": "^3.0.1",
     "rollup": "^4.12.0",
-    "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-local-resolve": "^1.0.7",
     "rxjs": "^7.8.1",
     "sass": "^1.69.0",
@@ -161,8 +160,7 @@
     "typescript": "^5.2.2",
     "typescript-transform-paths": "^3.4.6",
     "usehooks-ts": "^2.9.1",
-    "webpack": "^5.89.0",
-    "yarn": "^1.22.19"
+    "webpack": "^5.89.0"
   },
   "peerDependencies": {
     "next": ">=13.5.6",
@@ -183,6 +181,5 @@
     "react-swipeable": ">=7.0.1",
     "release-it": "^17.1.1",
     "use-elapsed-time": "^3.0.4"
-  },
-  "packageManager": "yarn@4.1.0"
+  }
 }
