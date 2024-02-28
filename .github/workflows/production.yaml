@@ -16,7 +16,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
       - name: Install dependencies
-        run: npm run install
+        run: npm install
       - name: Setup Git user
         run: |
           git config user.name "${GITHUB_ACTOR}"
@@ -50,7 +50,7 @@ jobs:
         with:
           registry-url: 'https://registry.npmjs.org'
       - name: Install Deps
-        run: npm run install
+        run: npm install
       - name: Build
         run: npm run build
       - name: Release

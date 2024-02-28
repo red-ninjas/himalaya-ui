@@ -1,7 +1,7 @@
 {
   "version": 2,
   "buildCommand": "npm run docs:build",
-  "installCommand": "npm run install",
+  "installCommand": "npm install",
   "devCommand": "npm run dev",
   "outputDirectory": "src/.next",
   "framework": "nextjs"
