@@ -183,5 +183,6 @@
     "react-swipeable": ">=7.0.1",
     "release-it": "^17.1.1",
     "use-elapsed-time": "^3.0.4"
-  }
+  },
+  "packageManager": "yarn@4.1.0"
 }

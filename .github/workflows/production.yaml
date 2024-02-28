@@ -23,10 +23,8 @@ jobs:
           git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
       - name: Show Git Status
         run: git status
-      - name: Show Git Diff
-        run: git diff
-      # - name: Release with release-it
-        # run: npx release-it
+      - name: Release with release-it
+        run: npx release-it
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   deploy:
