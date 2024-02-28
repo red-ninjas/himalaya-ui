@@ -1,5 +1,23 @@
 
 
+# [1.6.0](https://github.com/red-ninjas/himalaya-ui/compare/v1.5.0...v1.6.0) (2024-02-28)
+
+
+### Bug Fixes
+
+* release-it untracked yarn.lock file ([7c73603](https://github.com/red-ninjas/himalaya-ui/commit/7c73603263b2b847cfe09c96252aecfe2252b798))
+* remove clean directory from release-it ([aba8784](https://github.com/red-ninjas/himalaya-ui/commit/aba8784e4a4a992fdb65640d1587bc24a69fe310))
+* remove CleanWorkingDir from release-it ([1f9502d](https://github.com/red-ninjas/himalaya-ui/commit/1f9502de72976da9ae2c2fe11523765cb0c75e91))
+* remove deprecated rollup-plugin-babel ([02c0138](https://github.com/red-ninjas/himalaya-ui/commit/02c01383c7e014bec7105d235e4d6662d17c5a89))
+
+
+### Features
+
+* **grid:** Add rowGap to grid component ([cc17ad2](https://github.com/red-ninjas/himalaya-ui/commit/cc17ad28e6d5976ea4593b1f362bf72fc49ecd21))
+* **grid:** Add rowGap to grid component ([303fc2f](https://github.com/red-ninjas/himalaya-ui/commit/303fc2fd4166e957fbaf7a8110a163ab4a920ca2))
+* **link:** Add underline as hover ([ad81978](https://github.com/red-ninjas/himalaya-ui/commit/ad81978db761f0b20df6961b603e7aefb9a94c11))
+* **link:** Make Link Responsive ([ccf7e12](https://github.com/red-ninjas/himalaya-ui/commit/ccf7e12b09d95f576adb5af5d973f804e2210dc3))
+
 # [1.5.0](https://github.com/red-ninjas/himalaya-ui/compare/v1.4.0...v1.5.0) (2024-02-27)
 
 
