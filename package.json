@@ -161,8 +161,7 @@
     "typescript": "^5.2.2",
     "typescript-transform-paths": "^3.4.6",
     "usehooks-ts": "^2.9.1",
-    "webpack": "^5.89.0",
-    "npm run": "^1.22.19"
+    "webpack": "^5.89.0"
   },
   "peerDependencies": {
     "next": ">=13.5.6",
@@ -183,6 +182,5 @@
     "react-swipeable": ">=7.0.1",
     "release-it": "^17.1.1",
     "use-elapsed-time": "^3.0.4"
-  },
-  "packageManager": "yarn@4.1.0"
+  }
 }
