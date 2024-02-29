@@ -14,6 +14,7 @@ export type BreakpointInterface<T = number | string> = {
 export type ScaleResponsiveParameter<T = number | string> = T | BreakpointInterface<T>;
 
 export type ScaleProps = {
+  r?: ScaleResponsiveParameter;
   p?: ScaleResponsiveParameter;
   m?: ScaleResponsiveParameter;
   w?: ScaleResponsiveParameter;

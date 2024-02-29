@@ -9,6 +9,7 @@ export type UpdateToastsLayoutFunction = (fn: (layout: Required<ToastLayout>) =>
 export type UpdateToastsIDFunction = (fn: () => string | null) => any;
 
 export const defaultToastLayout: Required<ToastLayout> = {
+  r: '6px',
   padding: '12px 16px',
   margin: '8px 0',
   width: '420px',
