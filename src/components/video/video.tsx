@@ -2,11 +2,10 @@
 import React, { useRef, useState } from 'react';
 import { PlayFill, PauseFill, Minimize, Maximize, Volume2, VolumeX } from '../icons';
 import useTheme from '../use-theme';
+import useScale, { withScale } from '../use-scale';
 
 interface Props {
   src: string;
-  width: number;
-  height: number;
   controls: boolean;
   autoplay?: boolean;
   muted?: boolean;
@@ -17,8 +16,9 @@ interface Props {
 type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
 export type VideoProps = Props & NativeAttrs;
 
-const Video: React.FC<VideoProps> = ({ src, width, height, controls, poster, loop = false, autoplay = false, muted = false }) => {
+const Video: React.FC<VideoProps> = ({ src, controls, poster, loop = false, autoplay = false, muted = false }) => {
   const theme = useTheme();
+  const { SCALES } = useScale();
 
   const [isPlaying, setIsPlaying] = useState(autoplay);
   const [isMuted, setIsMuted] = useState(muted);
@@ -81,8 +81,8 @@ const Video: React.FC<VideoProps> = ({ src, width, height, controls, poster, loo
           onPause={() => setIsPlaying(false)}
           autoPlay={autoplay}
           muted={muted}
-          width={width}
-          height={height}
+          width={SCALES.w(1, '100%')}
+          height={SCALES.h(1, 'auto')}
           loop={loop}
           poster={poster}
           onClick={() => {
@@ -129,8 +129,8 @@ const Video: React.FC<VideoProps> = ({ src, width, height, controls, poster, loo
           position: relative;
           max-width: 100%;
           margin: 0 auto;
-          width: ${width};
-          height: ${height};
+          width: ${SCALES.w(1, '100%')};
+          height: ${SCALES.h(1, 'auto')};
         }
         .video-player video {
           width: 100%;
@@ -150,7 +150,7 @@ const Video: React.FC<VideoProps> = ({ src, width, height, controls, poster, loo
           align-items: center;
           justify-content: center;
           padding: 0 8px;
-          border-radius: 6px;
+          border-radius: ${SCALES.r(1)};
           width: 85%;
           transform: translate3d(0, 6px, 0);
           transition: all 0.2s cubic-bezier(0.25, 0.57, 0.45, 0.94);
@@ -202,4 +202,4 @@ const Video: React.FC<VideoProps> = ({ src, width, height, controls, poster, loo
 };
 
 Video.displayName = 'HimalayaVideo';
-export default Video;
+export default withScale(Video);
