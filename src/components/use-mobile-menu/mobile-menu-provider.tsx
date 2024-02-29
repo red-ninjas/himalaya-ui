@@ -5,8 +5,9 @@ import useClasses from '../use-classes';
 import { MobileMenuProviderProps } from '.';
 import { usePathname } from 'next/navigation';
 
-const MobileMenuProvider: React.FC<React.PropsWithChildren<MobileMenuProviderProps>> = ({ children, contentAnimationTime = 300, direction = 'left' }) => {
+const MobileMenuProvider: React.FC<React.PropsWithChildren<MobileMenuProviderProps>> = ({ children, contentAnimationTime = 300 }) => {
   const [isEnabled, setIsEnabled] = useState<boolean>(false);
+  const [isDirection, setDirection] = useState<'left' | 'right'>('left');
   const pathname = usePathname();
 
   useEffect(() => {
@@ -17,6 +18,8 @@ const MobileMenuProvider: React.FC<React.PropsWithChildren<MobileMenuProviderPro
       value={{
         isEnabled,
         setIsEnabled,
+        direction: isDirection,
+        setDirection,
       }}
     >
       <div
@@ -31,7 +34,7 @@ const MobileMenuProvider: React.FC<React.PropsWithChildren<MobileMenuProviderPro
         .mobile-menu-container {
           width: 100%;
           height: 100%;
-          transform-origin: ${direction} top;
+          transform-origin: ${isDirection === 'left' ? 'right' : 'left'} top;
           transition: transform ${contentAnimationTime}ms ease-out;
         }
         .mobile-menu-active {

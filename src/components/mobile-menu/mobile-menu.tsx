@@ -1,6 +1,6 @@
 'use client';
 
-import React, { PropsWithChildren } from 'react';
+import React, { PropsWithChildren, useEffect } from 'react';
 import { MobileMenuProps } from '.';
 import Drawer from '../drawer';
 import { InnerScroll } from '../scroll';
@@ -15,7 +15,11 @@ const MobileMenu: React.FC<PropsWithChildren<MobileMenuPropsNative>> = ({ childr
   const { SCALES } = useScale();
   const theme = useTheme();
 
-  const { isEnabled, setIsEnabled } = useMobileMenu();
+  const { isEnabled, setIsEnabled, setDirection } = useMobileMenu();
+
+  useEffect(() => {
+    setDirection(direction);
+  }, [direction]);
 
   return (
     <>
@@ -25,7 +29,9 @@ const MobileMenu: React.FC<PropsWithChildren<MobileMenuPropsNative>> = ({ childr
         radius={0}
         visible={isEnabled}
         wrapClassName={'mobilemenu-drawer-nav'}
-        onClose={() => setIsEnabled(false)}
+        onClose={() => {
+          setIsEnabled(false);
+        }}
         placement={direction}
         {...props}
       >

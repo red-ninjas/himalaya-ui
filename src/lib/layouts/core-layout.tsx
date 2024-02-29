@@ -64,7 +64,7 @@ export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
     <RoutingIndicator>
       <SearchProvider>
         <Search searchFunction={doSearch} placeholder="Search in documentation." />
-        <MobileMenuProvider direction="right">
+        <MobileMenuProvider>
           <QuickBarProvider>
             <QuickBarLayout>
               <ScrollableLayout onScroll={event => setIsHidden(event.scrollTop >= 200)}>
