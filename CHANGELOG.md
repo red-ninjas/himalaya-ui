@@ -1,5 +1,12 @@
 
 
+# [1.9.0](https://github.com/red-ninjas/himalaya-ui/compare/v1.8.2...v1.9.0) (2024-02-29)
+
+
+### Features
+
+* **video:** Add scale provider to video ([6732ff7](https://github.com/red-ninjas/himalaya-ui/commit/6732ff7ef1c0e56c106eed8314b897da49fdc157))
+
 ## [1.8.2](https://github.com/red-ninjas/himalaya-ui/compare/v1.8.1...v1.8.2) (2024-02-29)
 
 ## [1.8.1](https://github.com/red-ninjas/himalaya-ui/compare/v1.8.0...v1.8.1) (2024-02-29)
