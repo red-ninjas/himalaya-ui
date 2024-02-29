@@ -1,5 +1,12 @@
 
 
+# [1.7.0](https://github.com/red-ninjas/himalaya-ui/compare/v1.6.2...v1.7.0) (2024-02-29)
+
+
+### Features
+
+* **clipboard:** replace deprecated execCommand with Clipboard API ([c6536a4](https://github.com/red-ninjas/himalaya-ui/commit/c6536a41f3ada71c8d2f2bd281251d9c2e346908))
+
 ## [1.6.2](https://github.com/red-ninjas/himalaya-ui/compare/v1.6.1...v1.6.2) (2024-02-28)
 
 ## [1.6.1](https://github.com/red-ninjas/himalaya-ui/compare/v1.6.0...v1.6.1) (2024-02-28)
