@@ -31,13 +31,12 @@ const MobileMenuProvider: React.FC<React.PropsWithChildren<MobileMenuProviderPro
         .mobile-menu-container {
           width: 100%;
           height: 100%;
-          transform-origin: ${direction == 'left' ? 'right' : 'left'} top;
+          transform-origin: ${direction} top;
           transition: transform ${contentAnimationTime}ms ease-out;
         }
         .mobile-menu-active {
           transition: all ${contentAnimationTime}ms ease-in;
           transform: scale(0.95);
-          transform-origin: ${direction == 'left' ? 'right' : 'left'} top;
         }
       `}</style>
     </MobileMenuContext.Provider>

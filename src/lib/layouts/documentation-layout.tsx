@@ -37,7 +37,7 @@ export default function DocumentationLayout({ children }) {
   return (
     <PageWidth p={0}>
       <MobilePage>
-        <MobileMenuProvider direction="right">
+        <MobileMenuProvider direction="left">
           <FixedHeader onDesktop={false} onMobile={true}>
             <Header>
               <Header.Left>
