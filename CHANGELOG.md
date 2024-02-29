@@ -1,5 +1,7 @@
 
 
+## [1.8.2](https://github.com/red-ninjas/himalaya-ui/compare/v1.8.1...v1.8.2) (2024-02-29)
+
 ## [1.8.1](https://github.com/red-ninjas/himalaya-ui/compare/v1.8.0...v1.8.1) (2024-02-29)
 
 # [1.8.0](https://github.com/red-ninjas/himalaya-ui/compare/v1.7.0...v1.8.0) (2024-02-29)
