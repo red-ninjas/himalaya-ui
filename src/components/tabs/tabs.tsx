@@ -102,9 +102,9 @@ const TabsComponent: React.FC<React.PropsWithChildren<TabsProps>> = ({
         <header ref={ref} onMouseLeave={() => setDisplayHighlight(false)}>
           <Highlight rect={rect} visible={displayHighlight} hoverHeightRatio={hoverHeightRatio} hoverWidthRatio={hoverWidthRatio} />
           <div className={useClasses('scroll-container', { 'hide-divider': hideDivider })}>
-            {tabs.map(({ cell: Cell, value }) => (
+            {tabs.map(({ cell: Cell, value }, index) => (
               <Cell
-                key={value}
+                key={'list-prop-' + index + value}
                 onClick={clickHandler}
                 onMouseOver={tabItemMouseOverHandler}
                 activeClassName={activeClassName}
