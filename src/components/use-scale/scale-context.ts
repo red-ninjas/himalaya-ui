@@ -62,7 +62,7 @@ export type DynamicLayoutResponsivePipe4X = (
   className?: string,
 ) => string | undefined;
 
-export type ScaleInputKeys = 'pl' | 'pr' | 'pt' | 'pb' | 'px' | 'py' | 'ml' | 'mr' | 'mt' | 'mb' | 'mx' | 'my' | 'w' | 'h' | 'font' | 'lineHeight';
+export type ScaleInputKeys = 'pl' | 'pr' | 'pt' | 'pb' | 'px' | 'py' | 'r' | 'ml' | 'mr' | 'mt' | 'mb' | 'mx' | 'my' | 'w' | 'h' | 'font' | 'lineHeight';
 
 export type DynamicScalesExtra = {
   padding: DynamicLayoutPipe4X;
@@ -106,6 +106,7 @@ const defaultContext: ScaleConfig = {
   getScaleProps: () => undefined,
   getAllScaleProps: () => ({}),
   SCALES: {
+    r: defaultDynamicLayoutPipe,
     pl: defaultDynamicLayoutPipe,
     pr: defaultDynamicLayoutPipe,
     pb: defaultDynamicLayoutPipe,
@@ -126,6 +127,7 @@ const defaultContext: ScaleConfig = {
     padding: defaultDynamicLayoutPipe4x,
   },
   RESPONSIVE: {
+    r: defaultDynamicResponsiveLayoutPipe,
     pl: defaultDynamicResponsiveLayoutPipe,
     pr: defaultDynamicResponsiveLayoutPipe,
     pb: defaultDynamicResponsiveLayoutPipe,

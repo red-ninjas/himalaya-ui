@@ -84,7 +84,7 @@ const ToggleListItemComponent: React.FC<PropsWithChildren<ToggleProps>> = ({
           overflow: hidden;
           font-size: ${SCALES.font(0.9)};
           min-height: ${SCALES.h(1.5)};
-          border-radius: ${theme.style.radius};
+          border-radius: ${SCALES.r(1, theme.style.radius)};
           gap: ${SCALES.font(0.25)};
           padding: ${SCALES.pt(0.25)} ${SCALES.pr(1)} ${SCALES.pb(0.25)} ${SCALES.pl(1)};
           --ui-button-height: ${SCALES.h(2.5)};

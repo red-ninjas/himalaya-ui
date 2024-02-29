@@ -3,6 +3,7 @@ import React from 'react';
 import useTheme from '../use-theme';
 import Grid from '../grid';
 import SelectClearIcon from './select-icon-clear';
+import useScale, { withScale } from '../use-scale';
 
 interface Props {
   disabled: boolean;
@@ -11,6 +12,7 @@ interface Props {
 
 const SelectMultipleValue: React.FC<React.PropsWithChildren<Props>> = ({ disabled, onClear, children }) => {
   const theme = useTheme();
+  const { SCALES } = useScale();
 
   return (
     <Grid>
@@ -27,7 +29,7 @@ const SelectMultipleValue: React.FC<React.PropsWithChildren<Props>> = ({ disable
           padding: 0 0.5em;
           font-size: var(--select-font-size);
           height: calc(var(--select-font-size) * 2);
-          border-radius: ${theme.style.radius};
+          border-radius: ${SCALES.r(1, theme.style.radius)};
           background-color: ${theme.palette.accents_2};
           color: ${disabled ? theme.palette.accents_4 : theme.palette.accents_6};
         }
@@ -46,4 +48,4 @@ const SelectMultipleValue: React.FC<React.PropsWithChildren<Props>> = ({ disable
 };
 
 SelectMultipleValue.displayName = 'HimalayaSelectMultipleValue';
-export default SelectMultipleValue;
+export default withScale(SelectMultipleValue);

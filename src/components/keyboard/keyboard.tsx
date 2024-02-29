@@ -42,7 +42,7 @@ const KeyboardComponent: React.FC<React.PropsWithChildren<KeyboardProps>> = ({
           color: ${theme.palette.accents_5};
           background-color: ${theme.palette.accents_1};
           font-family: ${theme.font.sans};
-          border-radius: ${theme.style.radius};
+          border-radius: ${SCALES.r(1, theme.style.radius)};
           border: 1px solid ${theme.palette.accents_2};
           font-size: ${SCALES.font(0.875)};
           width: ${SCALES.w(1, 'fit-content')};

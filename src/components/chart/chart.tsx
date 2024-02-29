@@ -332,7 +332,7 @@ const ChartComponent: React.FC<React.PropsWithChildren<ChartProps>> = ({
           width: 100%;
           background: transparent;
           border: 1px solid ${theme.palette.border};
-          border-radius: ${theme.style.radius};
+          border-radius: ${SCALES.r(1, theme.style.radius)};
         }
         .chart-inner {
           padding: ${SCALES.pt(0.475)} ${SCALES.pr(0.875)} ${SCALES.pb(0.475)} ${SCALES.pl(0.875)};

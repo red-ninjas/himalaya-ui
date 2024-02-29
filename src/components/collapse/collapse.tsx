@@ -86,7 +86,7 @@ const CollapseComponent: React.FC<React.PropsWithChildren<CollapseProps>> = ({
         .shadow {
           box-shadow: ${theme.expressiveness.shadowSmall};
           border: none;
-          border-radius: ${theme.style.radius};
+          border-radius: ${SCALES.r(1, theme.style.radius)};
           padding: ${layout.gap};
         }
 

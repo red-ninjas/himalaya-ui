@@ -17,7 +17,7 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(({ toast, layout }) => {
   const coreLayout = useLayout();
   const { color, bgColor } = useMemo(() => getColors(theme.palette, toast.type), [theme.palette, toast.type]);
   const isReactNode = typeof toast.text !== 'string';
-  const { padding, margin, maxHeight, maxWidth, width, placement } = layout;
+  const { padding, margin, r, maxHeight, maxWidth, width, placement } = layout;
   const { enter, leave } = useMemo(() => getTranslateByPlacement(placement), [placement]);
 
   return (
@@ -44,7 +44,7 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(({ toast, layout }) => {
             background-color: ${bgColor};
             color: ${color};
             border: 0;
-            border-radius: ${theme.style.radius};
+            border-radius: ${r ?? theme.style.radius};
             opacity: 1;
             box-shadow: ${theme.expressiveness.shadowSmall};
             transition: all 350ms cubic-bezier(0.1, 0.2, 0.1, 1);

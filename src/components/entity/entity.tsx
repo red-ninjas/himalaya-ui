@@ -81,7 +81,7 @@ function EntityComponent({
             }
           }
           border: 1px solid ${theme.palette.border};
-          border-radius: ${theme.style.radius};
+          border-radius: ${SCALES.r(1, theme.style.radius)};
         }
 
         .entity-thumbnail {

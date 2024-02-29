@@ -14,6 +14,7 @@ export interface ToastAction {
 export type ToastTypes = NormalTypes;
 export type ToastLayout = {
   padding?: CSSProperties['padding'];
+  r?: CSSProperties['borderRadius'];
   margin?: CSSProperties['margin'];
   width?: CSSProperties['width'];
   maxWidth?: CSSProperties['maxWidth'];

@@ -78,7 +78,7 @@ const TooltipContent: React.FC<React.PropsWithChildren<Props>> = ({ children, pa
             transform: ${rect.transform};
             background-color: var(--tooltip-content-bg);
             color: ${colors.color};
-            border-radius: ${theme.style.radius};
+            border-radius: ${SCALES.r(1, theme.style.radius)};
             padding: 0;
             z-index: 1000;
             box-shadow: ${hasShadow ? theme.expressiveness.shadowMedium : 'none'};

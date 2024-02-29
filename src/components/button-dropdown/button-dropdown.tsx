@@ -105,7 +105,7 @@ const ButtonDropdownComponent: React.FC<React.PropsWithChildren<ButtonDropdownPr
             position: relative;
             box-sizing: border-box;
             border: 1px solid ${theme.palette.border};
-            border-radius: ${theme.style.radius};
+            border-radius: ${SCALES.r(1, theme.style.radius)};
             --ui-dropdown-height: ${SCALES.h(2.5)};
             --ui-dropdown-min-width: ${auto ? 'min-content' : SCALES.w(10.5)};
             --ui-dropdown-padding: ${SCALES.pt(0)} ${paddingRight} ${SCALES.pb(0)} ${paddingLeft};
@@ -162,7 +162,7 @@ const ButtonDropdownComponent: React.FC<React.PropsWithChildren<ButtonDropdownPr
             left: 0;
             z-index: 90;
             width: 100%;
-            border-radius: ${theme.style.radius};
+            border-radius: ${SCALES.r(1, theme.style.radius)};
             box-shadow: ${theme.expressiveness.shadowLarge};
             transform: translateY(${layout.gapHalf});
             background-color: ${theme.palette.background};

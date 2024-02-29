@@ -164,7 +164,7 @@ const InputComponent = React.forwardRef<HTMLInputElement, React.PropsWithChildre
             height: 100%;
             flex: 1;
             user-select: none;
-            border-radius: ${theme.style.radius};
+            border-radius: ${SCALES.r(1, theme.style.radius)};
             border: 1px solid ${borderColor};
             transition:
               border 0.2s ease 0s,

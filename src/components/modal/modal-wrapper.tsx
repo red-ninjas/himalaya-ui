@@ -65,7 +65,7 @@ const ModalWrapper: React.FC<React.PropsWithChildren<ModalWrapperProps>> = ({
             box-sizing: border-box;
             background-color: ${theme.palette.background};
             color: ${theme.palette.foreground};
-            border-radius: ${theme.style.radius};
+            border-radius: ${SCALES.r(1, theme.style.radius)};
             box-shadow: ${theme.expressiveness.shadowLarge};
             opacity: 0;
             outline: none;

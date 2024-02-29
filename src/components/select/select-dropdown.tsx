@@ -4,6 +4,7 @@ import useTheme from '../use-theme';
 import { useSelectContext } from './select-context';
 import Dropdown from '../shared/dropdown';
 import useClasses from '../use-classes';
+import useScale, { withScale } from '../use-scale';
 
 interface Props {
   visible: boolean;
@@ -13,7 +14,7 @@ interface Props {
   getPopupContainer?: () => HTMLElement | null;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
 export type SelectDropdownProps = Props & NativeAttrs;
 
 const SelectDropdown = React.forwardRef<HTMLDivElement | null, React.PropsWithChildren<SelectDropdownProps>>(
@@ -22,6 +23,7 @@ const SelectDropdown = React.forwardRef<HTMLDivElement | null, React.PropsWithCh
     dropdownRef,
   ) => {
     const theme = useTheme();
+    const { SCALES } = useScale();
     const internalDropdownRef = useRef<HTMLDivElement | null>(null);
     const { ref } = useSelectContext();
     const classes = useClasses('select-dropdown', className);
@@ -34,7 +36,7 @@ const SelectDropdown = React.forwardRef<HTMLDivElement | null, React.PropsWithCh
           {children}
           <style jsx>{`
             .select-dropdown {
-              border-radius: ${theme.style.radius};
+              border-radius: ${SCALES.r(1, theme.style.radius)};
               box-shadow: ${theme.expressiveness.shadowLarge};
               background-color: ${theme.palette.background};
               max-height: 17em;
@@ -51,4 +53,4 @@ const SelectDropdown = React.forwardRef<HTMLDivElement | null, React.PropsWithCh
 );
 
 SelectDropdown.displayName = 'HimalayaSelectDropdown';
-export default SelectDropdown;
+export default withScale(SelectDropdown);

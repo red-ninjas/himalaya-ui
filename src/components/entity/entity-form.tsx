@@ -63,7 +63,7 @@ function EntityFormComponent({
           box-sizing: border-box;
           padding: ${SCALES.pt(1)} ${SCALES.pr(1)} ${SCALES.pb(1)} ${SCALES.pl(1)};
           border: 1px solid ${theme.palette.accents_2};
-          border-radius: ${theme.style.radius};
+          border-radius: ${SCALES.r(1, theme.style.radius)};
 
           .entity-body-text {
             font-weight: 600;

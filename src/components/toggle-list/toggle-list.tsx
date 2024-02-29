@@ -51,7 +51,7 @@ const ToggleListComponent: React.FC<PropsWithChildren<ToggleListProps>> = ({
       </div>
       <style jsx>{`
         .toggle-list {
-          border-radius: ${theme.style.radius};
+          border-radius: ${SCALES.r(1, theme.style.radius)};
           background: ${theme.palette.accents_0};
           width: ${SCALES.w(1, 'auto')};
           height: ${SCALES.h(1, 'auto')};

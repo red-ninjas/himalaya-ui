@@ -126,7 +126,7 @@ const ImageBrowserComponent = React.forwardRef<HTMLDivElement, React.PropsWithCh
             background-color: transparent;
             box-shadow: ${theme.expressiveness.shadowLarge};
             max-width: 100%;
-            border-radius: ${theme.style.radius};
+            border-radius: ${SCALES.r(1, theme.style.radius)};
             overflow: hidden;
             font-size: ${SCALES.font(1)};
             width: ${SCALES.w(1, 'max-content')};

@@ -82,7 +82,7 @@ const FieldsetComponent: React.FC<React.PropsWithChildren<FieldsetProps>> = ({
         .fieldset {
           background-color: ${theme.palette.background};
           border: 1px solid ${theme.palette.border};
-          border-radius: ${theme.style.radius};
+          border-radius: ${SCALES.r(1, theme.style.radius)};
           overflow: hidden;
           display: ${hidden ? 'none' : 'block'};
           font-size: ${SCALES.font(1)};

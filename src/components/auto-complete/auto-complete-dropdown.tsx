@@ -4,6 +4,7 @@ import useTheme from '../use-theme';
 import { useAutoCompleteContext } from './auto-complete-context';
 import Dropdown from '../shared/dropdown';
 import useClasses from '../use-classes';
+import useScale, { withScale } from '../use-scale';
 
 interface Props {
   visible: boolean;
@@ -32,6 +33,8 @@ const AutoCompleteDropdown: React.FC<React.PropsWithChildren<AutoCompleteDropdow
   }, [children, visible]);
   const classes = useClasses('auto-complete-dropdown', className);
 
+  const { SCALES } = useScale();
+
   const clickHandler = (event: React.MouseEvent<HTMLDivElement>) => {
     event.preventDefault();
     event.stopPropagation();
@@ -44,7 +47,7 @@ const AutoCompleteDropdown: React.FC<React.PropsWithChildren<AutoCompleteDropdow
         {children}
         <style jsx>{`
           .auto-complete-dropdown {
-            border-radius: ${theme.style.radius};
+            border-radius: ${SCALES.r(1, theme.style.radius)};
             box-shadow: ${isEmpty ? 'none' : theme.expressiveness.shadowLarge};
             background-color: ${theme.palette.background};
             overflow-y: auto;
@@ -58,4 +61,4 @@ const AutoCompleteDropdown: React.FC<React.PropsWithChildren<AutoCompleteDropdow
 };
 
 AutoCompleteDropdown.displayName = 'HimalayaAutoCompleteDropdown';
-export default AutoCompleteDropdown;
+export default withScale(AutoCompleteDropdown);

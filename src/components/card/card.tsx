@@ -51,7 +51,7 @@ const CardComponent: React.FC<React.PropsWithChildren<CardProps>> = ({
         .card {
           background: ${theme.palette.background};
           transition: all 0.2s ease;
-          border-radius: ${theme.style.radius};
+          border-radius: ${SCALES.r(1, theme.style.radius)};
           box-shadow: ${shadow ? theme.expressiveness.shadowSmall : 'none'};
           box-sizing: border-box;
           color: ${color};

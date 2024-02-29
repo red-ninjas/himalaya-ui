@@ -48,7 +48,7 @@ const CodeComponent: React.FC<React.PropsWithChildren<CodeProps>> = ({
           width: ${SCALES.w(1, 'initial')};
           height: ${SCALES.h(1, 'auto')};
           margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
-          border-radius: ${theme.style.radius};
+          border-radius: ${SCALES.r(1, theme.style.radius)};
           background-color: ${background};
           position: relative;
         }
@@ -73,7 +73,7 @@ const CodeComponent: React.FC<React.PropsWithChildren<CodeProps>> = ({
           width: 100%;
           display: flex;
           justify-content: space-between;
-          border-radius: ${theme.style.radius};
+          border-radius: ${SCALES.r(1, theme.style.radius)};
           background-color: transparent;
 
           z-index: 2;

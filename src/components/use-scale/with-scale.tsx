@@ -1,6 +1,7 @@
 'use client';
 
 import React, { forwardRef } from 'react';
+import useLayout from '../use-layout';
 import { ScaleConfig, ScaleContext, ScaleProps } from './scale-context';
 import {
   generateGetAllScaleProps,
@@ -10,7 +11,6 @@ import {
   makeScaleHandlerResponsive,
   makeScaleHandlerResponsive4X,
 } from './utils';
-import useLayout from '../use-layout';
 
 export type ContentScaleProps = {
   children?: React.ReactNode | (() => React.ReactNode) | string | undefined | null | number;
@@ -19,12 +19,13 @@ export type ContentScaleProps = {
 const withScale = <T, P = {}>(Render: React.ComponentType<P & { ref?: React.Ref<T> }>) => {
   const ScaleFC = forwardRef<T, P & ContentScaleProps>(({ children, ...props }, ref) => {
     const layout = useLayout();
-    const { pl, pr, pt, pb, mt, mr, mb, ml, px, py, mx, my, font, w, h, m, p, lineHeight, unit = layout.unit, scale = 1, ...innerProps } = props;
+    const { r, pl, pr, pt, pb, mt, mr, mb, ml, px, py, mx, my, font, w, h, m, p, lineHeight, unit = layout.unit, scale = 1, ...innerProps } = props;
 
     const value: ScaleConfig = {
       unit: unit,
       SCALES: {
         pt: makeScaleHandler(pt ?? py ?? p, scale, unit),
+        r: makeScaleHandler(r, scale, unit),
         pr: makeScaleHandler(pr ?? px ?? p, scale, unit),
         pb: makeScaleHandler(pb ?? py ?? p, scale, unit),
         pl: makeScaleHandler(pl ?? px ?? p, scale, unit),
@@ -44,6 +45,7 @@ const withScale = <T, P = {}>(Render: React.ComponentType<P & { ref?: React.Ref<
         margin: makeScaleHandler4X(ml ?? mx ?? m, mr ?? mx ?? m, mt ?? my ?? m, mb ?? my ?? m, scale, unit),
       },
       RESPONSIVE: {
+        r: makeScaleHandlerResponsive(r, scale, unit, layout.breakpoints, 'radius'),
         pt: makeScaleHandlerResponsive(pt ?? py ?? p, scale, unit, layout.breakpoints, 'padding'),
         pr: makeScaleHandlerResponsive(pr ?? px ?? p, scale, unit, layout.breakpoints, 'padding'),
         pb: makeScaleHandlerResponsive(pb ?? py ?? p, scale, unit, layout.breakpoints, 'padding'),

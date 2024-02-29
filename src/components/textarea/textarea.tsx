@@ -97,7 +97,7 @@ const TextareaComponent = React.forwardRef<HTMLTextAreaElement, React.PropsWithC
             display: inline-flex;
             box-sizing: border-box;
             user-select: none;
-            border-radius: ${theme.style.radius};
+            border-radius: ${SCALES.r(1, theme.style.radius)};
             border: 1px solid ${borderColor};
             color: ${color};
             transition:
