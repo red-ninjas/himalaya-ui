@@ -1,5 +1,13 @@
 
 
+# [1.8.0](https://github.com/red-ninjas/himalaya-ui/compare/v1.7.0...v1.8.0) (2024-02-29)
+
+
+### Features
+
+* **components:** Add radius to Scale Provider (r) ([859f05e](https://github.com/red-ninjas/himalaya-ui/commit/859f05e0e0ffc0d2420e32db4a6623a4a3e9f3a0))
+* **components:** Add radius to Scale Provider (r) ([ea0ca76](https://github.com/red-ninjas/himalaya-ui/commit/ea0ca761566f43c0c9e2be3d13f82438e1bc5054))
+
 # [1.7.0](https://github.com/red-ninjas/himalaya-ui/compare/v1.6.2...v1.7.0) (2024-02-29)
 
 
