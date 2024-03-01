@@ -1,0 +1,26 @@
+'use client';
+import React from 'react';
+import { IconPropsNative } from '.';
+const Angular = ({ size = 24, color, style, ...props }: IconPropsNative) => {
+  return (
+    <svg
+      fill="none"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="1.5"
+      shapeRendering="geometricPrecision"
+      viewBox="0 0 24 24"
+      fillRule="evenodd"
+      {...props}
+      height={size}
+      width={size}
+      style={{ ...style, color: color }}
+    >
+      <path d="M5.428 17.245l6.076 3.471a1 1 0 0 0 .992 0l6.076 -3.471a1 1 0 0 0 .495 -.734l1.323 -9.704a1 1 0 0 0 -.658 -1.078l-7.4 -2.612a1 1 0 0 0 -.665 0l-7.399 2.613a1 1 0 0 0 -.658 1.078l1.323 9.704a1 1 0 0 0 .495 .734z" />
+      <path d="M9 15l3 -8l3 8" />
+      <path d="M10 13h4" />
+    </svg>
+  );
+};
+export default Angular;

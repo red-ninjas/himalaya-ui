@@ -82,7 +82,7 @@ const NavigationItem: React.FC<PropsWithChildren<NavigationItemProps>> = ({ url 
         .sub-item {
           color: ${theme.palette.accents_5};
           font-weight: 500;
-          font-size: ${SCALES.pt(0.85)};
+          font-size: ${SCALES.font(0.85)};
           display: inline-flex;
           flex-direction: column;
           align-items: flex-start;
