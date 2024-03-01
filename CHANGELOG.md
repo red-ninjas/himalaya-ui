@@ -1,5 +1,17 @@
 
 
+# [1.10.0](https://github.com/red-ninjas/himalaya-ui/compare/v1.9.0...v1.10.0) (2024-03-01)
+
+
+### Bug Fixes
+
+* menu item font ([3972585](https://github.com/red-ninjas/himalaya-ui/commit/3972585a9ecfd271f7111cf08969284dd6244906))
+
+
+### Features
+
+* **icons:** add new social icons ([2737dab](https://github.com/red-ninjas/himalaya-ui/commit/2737dab59686145ddc6f87193629a7251a14720a))
+
 # [1.9.0](https://github.com/red-ninjas/himalaya-ui/compare/v1.8.2...v1.9.0) (2024-02-29)
 
 
