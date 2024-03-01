@@ -101,8 +101,8 @@ export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
                       </Navigation>
                     </Header.Center>
                     <Header.Right>
-                      <SearchButton></SearchButton>
-                      <ThemeSwitcher></ThemeSwitcher>
+                      <SearchButton title="Command + K to Search" />
+                      <ThemeSwitcher />
                     </Header.Right>
                   </Header>
                 </FixedHeader>

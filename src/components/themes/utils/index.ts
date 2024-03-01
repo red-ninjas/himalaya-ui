@@ -47,7 +47,7 @@ export const generateColors = (newConfig?: GenerateColorProps): UIThemesColors =
     primary: generateColor(newConfig?.primary || '#6e56cf'),
     secondary: generateColor(newConfig?.secondary || '#232225'),
     tertiary: generateColor(newConfig?.tertiary || '#89DDFF'),
-    success: generateColor(newConfig?.success || '#C3E88D'),
+    success: generateColor(newConfig?.success || '#32CD32'),
     error: generateColor(newConfig?.error || '#F07178'),
     warning: generateColor(newConfig?.warning || '#FFCB6B'),
     link: generateColor(newConfig?.link || '#baa7ff'),
