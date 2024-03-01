@@ -9,9 +9,9 @@
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/red-ninjas/himalaya-ui/graphs/commit-activity)
 [![License](https://img.shields.io/github/license/red-ninjas/himalaya-ui)](https://github.com/red-ninjas/himalaya-ui/blob/master/LICENSE)
 
-### 🏠 [Homepage](https://himalaya-ui.com)
-### ✨ [Demo](https://github.com/red-ninjas/landing-page)
-### 📘 [Documentation](https://himalaya-ui.com)
+#### 🏠 [Homepage](https://himalaya-ui.com)
+#### ✨ [Demo](https://github.com/red-ninjas/landing-page)
+#### 📘 [Documentation](https://himalaya-ui.com)
 
 
 ## Prerequisites
@@ -74,6 +74,12 @@ export default () => (
 ## 🤝 Contributing
 
 We welcome contributions, issues, and feature requests from the community! Please visit our [issues page](https://github.com/red-ninjas/himalaya-ui/issues) to report problems or make suggestions. You can also find our [contributing guide](https://github.com/red-ninjas/himalaya-ui/blob/master/CONTRIBUTING.md) for more information.
+
+## Showcase
+Explore projects powered by Himalaya UI: 
+-  **RedNinjas Landing Page** A dynamic website showcasing the capabilities of Himalaya UI.
+[🔗 View Repository](https://github.com/red-ninjas/landing-page) | [🌐 Visit Live Site](https://redninjas.dev/)
+
 
 ## Show Your Support
 
