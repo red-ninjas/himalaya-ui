@@ -65,7 +65,7 @@ const CollapseComponent: React.FC<React.PropsWithChildren<CollapseProps>> = ({
     <div className={classes} {...props}>
       <div className="view" role="button" onClick={clickHandler}>
         <div className="title">
-          <h3>{title}</h3> <CollapseIcon active={visible} />
+          <span>{title}</span> <CollapseIcon active={visible} />
         </div>
         {subtitle && <div className="subtitle">{subtitle}</div>}
       </div>
@@ -100,11 +100,9 @@ const CollapseComponent: React.FC<React.PropsWithChildren<CollapseProps>> = ({
           justify-content: space-between;
           align-items: center;
           color: ${theme.palette.foreground};
-        }
-
-        .title h3 {
+          font-weight: bold;
           margin: 0;
-          font-size: 1.5em;
+          font-size: ${SCALES.font(1.25)};
         }
 
         .subtitle {
