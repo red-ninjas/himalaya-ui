@@ -1,5 +1,12 @@
 
 
+## [1.10.3](https://github.com/red-ninjas/himalaya-ui/compare/v1.10.2...v1.10.3) (2024-03-02)
+
+
+### Bug Fixes
+
+* **collapse:** Remove h3 tag ([d3bc701](https://github.com/red-ninjas/himalaya-ui/commit/d3bc7017bbb3e31441090d6a99d1bf1e8b848d4e))
+
 ## [1.10.2](https://github.com/red-ninjas/himalaya-ui/compare/v1.10.1...v1.10.2) (2024-03-01)
 
 ## [1.10.1](https://github.com/red-ninjas/himalaya-ui/compare/v1.10.0...v1.10.1) (2024-03-01)
