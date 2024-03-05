@@ -1,5 +1,12 @@
 
 
+## [1.10.5](https://github.com/red-ninjas/himalaya-ui/compare/v1.10.4...v1.10.5) (2024-03-05)
+
+
+### Bug Fixes
+
+* remove key prop from tab item ([904d454](https://github.com/red-ninjas/himalaya-ui/commit/904d4542682d9f1c6289c0c04cb6cd4d46263862))
+
 ## [1.10.4](https://github.com/red-ninjas/himalaya-ui/compare/v1.10.3...v1.10.4) (2024-03-05)
 
 
