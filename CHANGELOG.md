@@ -1,5 +1,12 @@
 
 
+## [1.10.4](https://github.com/red-ninjas/himalaya-ui/compare/v1.10.3...v1.10.4) (2024-03-05)
+
+
+### Bug Fixes
+
+* update default hoverWidthRatio ([7b015a9](https://github.com/red-ninjas/himalaya-ui/commit/7b015a9568f84bf3ca2e424d0a441663ebfb0754))
+
 ## [1.10.3](https://github.com/red-ninjas/himalaya-ui/compare/v1.10.2...v1.10.3) (2024-03-02)
 
 
