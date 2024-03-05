@@ -31,10 +31,12 @@ Effortlessly create navigation menus, including sub-menus and child items, using
 <Attributes edit="/app/components/navigation.mdx">
 <Attributes.Title>Navigation.Props</Attributes.Title>
 
-| Attribute    | Description               | Type             | Accepted values          | Default |
-| ------------ | ------------------------- | ---------------- | ------------------------ | ------- |
-| hideOnMobile | hide navigation on mobile | `boolean`        | -                        | `true`  |
-| ...          | native props              | `HTMLAttributes` | `'id', 'className', ...` | -       |
+| Attribute         | Description                            | Type             | Accepted values          | Default |
+| ----------------- | -------------------------------------- | ---------------- | ------------------------ | ------- |
+| hideOnMobile      | Hide navigation on mobile devices      | `boolean`        | `true`, `false`          | `true`  |
+| hoverHeightRatio  | Height ratio for hover effect          | `number`         | Any numeric value        | `0.7`   |
+| hoverWidthRatio   | Width ratio for hover effect           | `number`         | Any numeric value        | `1.05`  |
+| ...               | Native props                           | `HTMLAttributes` | `'id', 'className', ...` | -       |
 
 <Attributes.Title>Navigation.Item.Props</Attributes.Title>
 
