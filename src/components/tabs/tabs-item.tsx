@@ -48,7 +48,6 @@ const TabsItemComponent: React.FC<React.PropsWithChildren<TabsItemProps>> = ({
         {...props}
         className={classes}
         role="button"
-        key={value}
         onMouseOver={onMouseOver}
         onClick={clickHandler}
         style={active ? { ...style, ...activeStyle } : style}
