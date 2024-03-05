@@ -29,7 +29,7 @@ export type NavigationPropsExternal = NavigationProps & NativeAttrs;
 const NavigationComponent: React.FC<PropsWithChildren<NavigationPropsExternal>> = ({
   children,
   hoverHeightRatio = 0.7,
-  hoverWidthRatio = 1.15,
+  hoverWidthRatio = 1.05,
   hideOnMobile = true,
   ...props
 }) => {
