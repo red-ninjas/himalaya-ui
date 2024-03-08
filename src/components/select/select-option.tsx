@@ -116,7 +116,6 @@ const SelectOptionComponent: React.FC<React.PropsWithChildren<SelectOptionProps>
         .label {
           color: ${theme.palette.accents_7};
           border-bottom: 1px solid ${theme.palette.border};
-          text-transform: capitalize;
           cursor: default;
           font-size: ${SCALES.font(0.875)};
           width: ${SCALES.w(1, '100%')};
