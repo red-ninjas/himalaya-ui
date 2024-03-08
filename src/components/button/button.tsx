@@ -131,18 +131,28 @@ const ButtonComponent = React.forwardRef<HTMLButtonElement, React.PropsWithChild
               color 200ms ease 0ms;
             position: relative;
             overflow: hidden;
-            color: ${color};
-            background-color: ${bg};
-            border: 1px solid ${border};
+
             cursor: ${cursor};
             pointer-events: ${events};
             box-shadow: ${shadow ? theme.expressiveness.shadowSmall : 'none'};
+
             --ui-button-icon-padding: ${SCALES.pl(0.727)};
             --ui-button-height: ${SCALES.h(2.5)};
             --ui-button-color: ${color};
             --ui-button-bg: ${bg};
+            --ui-button-border: ${border};
+            --ui-button-hover-color: ${hover.color};
+            --ui-button-hover-bg: ${hover.bg};
+            --ui-button-hover-border-color: ${hover.border};
+            --ui-button-activated-color: ${activated.color};
+            --ui-button-activated-bg: ${activated.bg};
+            --ui-button-activated-border-color: ${activated.border};
 
             height: ${SCALES.h(2.5)};
+
+            color: var(--ui-button-color);
+            background-color: var(--ui-button-bg);
+            border: 1px solid var(--ui-button-border);
 
             transition-property: border-color, background, color, transform, box-shadow;
             transition-duration: 0.15s;
@@ -150,10 +160,11 @@ const ButtonComponent = React.forwardRef<HTMLButtonElement, React.PropsWithChild
           }
 
           .btn:hover:not([disabled]) {
-            color: ${hover.color};
-            --ui-button-color: ${hover.color};
-            background-color: ${hover.bg};
-            border-color: ${hover.border};
+            color: var(--ui-button-hover-color);
+            --ui-button-color: var(--ui-button-hover-color);
+            background-color: var(--ui-button-hover-bg);
+            border-color: var(--ui-button-hover-border-color);
+
             cursor: ${cursor};
             pointer-events: ${events};
             box-shadow: ${shadow ? theme.expressiveness.shadowMedium : 'none'};
@@ -161,10 +172,11 @@ const ButtonComponent = React.forwardRef<HTMLButtonElement, React.PropsWithChild
           }
 
           .btn:focus {
-            color: ${activated.color};
-            --ui-button-color: ${activated.color};
-            background-color: ${activated.bg};
-            border-color: ${activated.border};
+            color: var(--ui-button-activated-color);
+            --ui-button-color: var(--ui-button-activated-color);
+            background-color: var(--ui-button-activated-bg);
+            border-color: var(--ui-button-activated-border-color);
+
             cursor: ${cursor};
             pointer-events: ${events};
             box-shadow: ${shadow ? theme.expressiveness.shadowMedium : 'none'};
@@ -188,16 +200,16 @@ const ButtonComponent = React.forwardRef<HTMLButtonElement, React.PropsWithChild
           }
 
           ${responsiveCss(
-            auto,
-            'auto',
-            layoutRoot.breakpoints,
-            value => `min-width: ${value ? 'min-content' : SCALES.w(10.5)}; width: ${value ? 'auto' : 'initial'};`,
-          )}
+          auto,
+          'auto',
+          layoutRoot.breakpoints,
+          value => `min-width: ${value ? 'min-content' : SCALES.w(10.5)}; width: ${value ? 'auto' : 'initial'};`,
+        )}
 
           ${RESPONSIVE.padding(
-            { left: auto ? 1.15 : 1.375, right: auto ? 1.15 : 1.375, top: 0, bottom: 0 },
-            value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
-          )}
+          { left: auto ? 1.15 : 1.375, right: auto ? 1.15 : 1.375, top: 0, bottom: 0 },
+          value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
+        )}
 
           ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`)}
           ${RESPONSIVE.font(0.875, value => `font-size: ${value};`)}
