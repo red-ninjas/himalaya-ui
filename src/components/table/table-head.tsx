@@ -101,6 +101,7 @@ const TableHead = <TableDataItem extends TableDataItemBase>({ hasBorder = true, 
           display: flex;
           align-items: center;
           -webkit-box-align: center;
+          text-transform: uppercase;
           line-height: calc(1.4 * var(--table-font-size));
         }
       `}</style>
