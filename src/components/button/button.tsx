@@ -121,7 +121,6 @@ const ButtonComponent = React.forwardRef<HTMLButtonElement, React.PropsWithChild
             font-size: ${SCALES.font(0.875)};
             user-select: none;
             outline: none;
-            text-transform: capitalize;
             justify-content: center;
             text-align: center;
             white-space: nowrap;
