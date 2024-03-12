@@ -126,7 +126,6 @@ const TabsComponent: React.FC<React.PropsWithChildren<TabsProps>> = ({
             position: relative;
           }
           .scroll-container {
-            width: 100%;
             height: 100%;
             flex: 1;
             display: flex;
