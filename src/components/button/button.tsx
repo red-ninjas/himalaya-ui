@@ -200,16 +200,16 @@ const ButtonComponent = React.forwardRef<HTMLButtonElement, React.PropsWithChild
           }
 
           ${responsiveCss(
-          auto,
-          'auto',
-          layoutRoot.breakpoints,
-          value => `min-width: ${value ? 'min-content' : SCALES.w(10.5)}; width: ${value ? 'auto' : 'initial'};`,
-        )}
+            auto,
+            'auto',
+            layoutRoot.breakpoints,
+            value => `min-width: ${value ? 'min-content' : SCALES.w(10.5)}; width: ${value ? 'auto' : 'initial'};`,
+          )}
 
           ${RESPONSIVE.padding(
-          { left: auto ? 1.15 : 1.375, right: auto ? 1.15 : 1.375, top: 0, bottom: 0 },
-          value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
-        )}
+            { left: auto ? 1.15 : 1.375, right: auto ? 1.15 : 1.375, top: 0, bottom: 0 },
+            value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
+          )}
 
           ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`)}
           ${RESPONSIVE.font(0.875, value => `font-size: ${value};`)}

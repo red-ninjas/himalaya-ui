@@ -14,14 +14,17 @@ import { ReactiveDomReact } from '../utils/layouts';
 import { useNavigation } from './navigation-context';
 import NavigationSubItem from './sub-item';
 
-export interface NavigationItemProps extends INavigationItem {
+interface NavigationItemProps extends INavigationItem {
   exactMatch?: boolean;
   columns?: number;
   transcluent?: boolean;
   onClick?: () => void;
 }
 
-const NavigationItem: React.FC<PropsWithChildren<NavigationItemProps>> = ({
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLAnchorElement>, keyof NavigationItemProps>;
+export type NavigationPropsExternal = NavigationItemProps & NativeAttrs;
+
+const NavigationItem: React.FC<PropsWithChildren<NavigationPropsExternal>> = ({
   children,
   exactMatch = true,
   url = '/',
@@ -29,6 +32,7 @@ const NavigationItem: React.FC<PropsWithChildren<NavigationItemProps>> = ({
   transcluent = true,
   onClick,
   title,
+  ...props
 }) => {
   const theme = useTheme();
   const { onMouseOver } = useNavigation();
@@ -105,7 +109,7 @@ const NavigationItem: React.FC<PropsWithChildren<NavigationItemProps>> = ({
             content={childs}
           >
             <Link passHref legacyBehavior href={url || ''}>
-              <a className={btnClass} ref={ref} onClick={handleClick}>
+              <a className={btnClass} {...props} ref={ref} onClick={handleClick}>
                 <span>{title}</span>
                 <span className="chevron-outer">
                   <span className={useClasses({ chevron: true, rotated: isPopoverVisibile })}>
@@ -117,7 +121,7 @@ const NavigationItem: React.FC<PropsWithChildren<NavigationItemProps>> = ({
           </Popover>
         ) : (
           <Link passHref legacyBehavior href={url || ''}>
-            <a className={btnClass} ref={ref} onClick={handleClick}>
+            <a className={btnClass} {...props} ref={ref} onClick={handleClick}>
               <span>{title}</span>
             </a>
           </Link>
