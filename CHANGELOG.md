@@ -1,5 +1,13 @@
 
 
+# [1.11.0](https://github.com/red-ninjas/himalaya-ui/compare/v1.10.8...v1.11.0) (2024-03-14)
+
+
+### Features
+
+* **Navigation:** Make item styleable ([74560bd](https://github.com/red-ninjas/himalaya-ui/commit/74560bd3156bc084cb63ed7dac7457b2017a2a76))
+* **Navigation:** Make item styleable ([8d729bb](https://github.com/red-ninjas/himalaya-ui/commit/8d729bbd9fe3d602fd6100e76f406ca7bcb4d5d4))
+
 ## [1.10.8](https://github.com/red-ninjas/himalaya-ui/compare/v1.10.7...v1.10.8) (2024-03-12)
 
 ## [1.10.7](https://github.com/red-ninjas/himalaya-ui/compare/v1.10.6...v1.10.7) (2024-03-08)
