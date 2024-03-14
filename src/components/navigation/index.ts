@@ -20,5 +20,5 @@ export type NavigationComponentType = typeof Navigation & {
 };
 (Navigation as NavigationComponentType).Item = NavigationItem as NavigationItemComponentType;
 
-export type { NavigationItemProps } from './item';
+export type { NavigationPropsExternal } from './item';
 export default Navigation as NavigationComponentType;

@@ -7,11 +7,11 @@ import useScale, { withScale } from '../use-scale';
 import useTheme from '../use-theme';
 import { INavigationItem } from './index';
 
-export interface NavigationItemProps extends INavigationItem {
+export interface MobileNavigationItemProps extends INavigationItem {
   onClick?: () => void;
 }
 
-const NavigationItem: React.FC<PropsWithChildren<NavigationItemProps>> = ({ url = '/', ...props }) => {
+const NavigationItem: React.FC<PropsWithChildren<MobileNavigationItemProps>> = ({ url = '/', ...props }) => {
   const theme = useTheme();
   const { SCALES } = useScale();
   const pathname = usePathname();
