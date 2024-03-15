@@ -1,5 +1,12 @@
 
 
+## [1.11.1](https://github.com/red-ninjas/himalaya-ui/compare/v1.11.0...v1.11.1) (2024-03-15)
+
+
+### Bug Fixes
+
+* navigation styles ([d2763aa](https://github.com/red-ninjas/himalaya-ui/commit/d2763aa97d39035442a95483afbbc4c2ee2c3d44))
+
 # [1.11.0](https://github.com/red-ninjas/himalaya-ui/compare/v1.10.8...v1.11.0) (2024-03-14)
 
 
