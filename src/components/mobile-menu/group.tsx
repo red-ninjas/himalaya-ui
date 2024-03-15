@@ -9,11 +9,13 @@ import { pickChild } from '../utils/collections';
 import { INavigationItem } from './index';
 import MobileNavigationSubGroup from './subgroup';
 
-export interface MobileNavigationGroupProps extends INavigationItem {
+export interface Props extends INavigationItem {
   expanded?: boolean;
 }
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLAnchorElement>, keyof Props>;
+export type MobileNavigationGroupProps = Props & NativeAttrs;
 
-const MobileNavigationGroup: React.FC<PropsWithChildren<MobileNavigationGroupProps>> = ({ children, title, url, expanded = true }) => {
+const MobileNavigationGroup: React.FC<PropsWithChildren<MobileNavigationGroupProps>> = ({ children, title, url, expanded = true, ...props }) => {
   const theme = useTheme();
   const { SCALES } = useScale();
   const router = useRouter();
@@ -80,7 +82,7 @@ const MobileNavigationGroup: React.FC<PropsWithChildren<MobileNavigationGroupPro
       })}
     >
       <div className="navigation-group">
-        <a className={btnClass} ref={ref} onClick={e => handleGroupClick(e)}>
+        <a {...props} className={`${btnClass} ${props.className || ''}`} ref={ref} onClick={e => handleGroupClick(e)}>
           <span>{title}</span>
           {!!children && (
             <span className="chevron-right">
@@ -168,8 +170,6 @@ const MobileNavigationGroup: React.FC<PropsWithChildren<MobileNavigationGroupPro
 
         .has-chevron {
           padding-right: ${SCALES.pr(1.3)};
-          color: ${theme.palette.foreground};
-          font-weight: 600;
           justify-content: space-between;
         }
 

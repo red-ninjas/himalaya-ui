@@ -109,7 +109,7 @@ const NavigationItem: React.FC<PropsWithChildren<NavigationPropsExternal>> = ({
             content={childs}
           >
             <Link passHref legacyBehavior href={url || ''}>
-              <a className={btnClass} {...props} ref={ref} onClick={handleClick}>
+              <a {...props} className={`${btnClass} ${props.className || ''}`} ref={ref} onClick={handleClick}>
                 <span>{title}</span>
                 <span className="chevron-outer">
                   <span className={useClasses({ chevron: true, rotated: isPopoverVisibile })}>
@@ -121,7 +121,7 @@ const NavigationItem: React.FC<PropsWithChildren<NavigationPropsExternal>> = ({
           </Popover>
         ) : (
           <Link passHref legacyBehavior href={url || ''}>
-            <a className={btnClass} {...props} ref={ref} onClick={handleClick}>
+            <a {...props} className={`${btnClass} ${props.className || ''}`} ref={ref} onClick={handleClick}>
               <span>{title}</span>
             </a>
           </Link>
