@@ -142,7 +142,8 @@ const MobileNavigationGroup: React.FC<PropsWithChildren<MobileNavigationGroupPro
           display: flex;
           align-items: center;
           user-select: none;
-          font-size: ${SCALES.font(0.9)};
+          font-size: ${SCALES.font(0.85)};
+          font-weight: 500;
           line-height: normal;
           width: ${SCALES.w(1, 'auto')};
           height: ${SCALES.h(1, 'auto')};
