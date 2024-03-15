@@ -87,7 +87,7 @@ const MobileNavigationGroup: React.FC<PropsWithChildren<MobileNavigationGroupPro
           {!!children && (
             <span className="chevron-right">
               <span className={useClasses({ chevron: true, 'chevron-expanded': isExpanded })}>
-                <ChevronDown size={16} />
+                <ChevronDown size={SCALES.font(1)} />
               </span>
             </span>
           )}
