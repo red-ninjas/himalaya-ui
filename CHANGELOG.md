@@ -1,5 +1,12 @@
 
 
+## [1.11.2](https://github.com/red-ninjas/himalaya-ui/compare/v1.11.1...v1.11.2) (2024-03-15)
+
+
+### Bug Fixes
+
+* mobile navigation group styles ([06d70e5](https://github.com/red-ninjas/himalaya-ui/commit/06d70e5d11735b1c2260b1d802271f773e8ef7f1))
+
 ## [1.11.1](https://github.com/red-ninjas/himalaya-ui/compare/v1.11.0...v1.11.1) (2024-03-15)
 
 
