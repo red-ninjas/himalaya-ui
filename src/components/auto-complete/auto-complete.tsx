@@ -38,6 +38,7 @@ interface Props {
   disableFreeSolo?: boolean;
   className?: string;
   getPopupContainer?: () => HTMLElement | null;
+  hasBorder?: boolean;
 }
 
 type NativeAttrs = Omit<React.InputHTMLAttributes<any>, keyof Props>;
@@ -89,6 +90,7 @@ const AutoCompleteComponent = React.forwardRef<HTMLInputElement, React.PropsWith
       disableFreeSolo = false,
       getPopupContainer,
       className = '',
+      hasBorder = false,
       ...props
     }: React.PropsWithChildren<AutoCompleteProps>,
     userRef: React.Ref<HTMLInputElement | null>,
@@ -176,6 +178,7 @@ const AutoCompleteComponent = React.forwardRef<HTMLInputElement, React.PropsWith
       disabled,
       className,
       value: state,
+      hasBorder,
     };
 
     return (
