@@ -7,7 +7,6 @@ import { InnerScroll } from '../scroll';
 import { useMobileMenu } from '../use-mobile-menu/mobile-menu-context';
 import useScale, { withScale } from '../use-scale';
 import useTheme from '../use-theme';
-import { usePathname } from 'next/navigation';
 
 type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof MobileMenuProps>;
 export type MobileMenuPropsNative = MobileMenuProps & NativeAttrs;
@@ -15,17 +14,12 @@ export type MobileMenuPropsNative = MobileMenuProps & NativeAttrs;
 const MobileMenu: React.FC<PropsWithChildren<MobileMenuPropsNative>> = ({ children, direction = 'left', animationTime = 300, ...props }) => {
   const { SCALES } = useScale();
   const theme = useTheme();
-  const pathname = usePathname();
 
   const { isEnabled, setIsEnabled, setDirection } = useMobileMenu();
 
   useEffect(() => {
     setDirection(direction);
   }, [direction]);
-
-  useEffect(() => {
-    setIsEnabled(false);
-  }, [pathname]);
 
   return (
     <>

@@ -21,6 +21,8 @@ import useCurrentState from '../use-current-state';
 import useTheme from '../use-theme';
 import ToastContainer from '../use-toasts/toast-container';
 import { DeepPartial } from '../utils/types';
+import { RouteChangeProvider } from 'nextjs13-router-events';
+
 export interface ConfigProps {
   themeType?: string | 'dark' | 'light';
   detectTheme?: boolean;
@@ -115,15 +117,17 @@ const ConfigProvider: React.FC<React.PropsWithChildren<NativeConfigProps>> = ({
   );
 
   return (
-    <LayoutProvider>
-      <ConfigContext.Provider value={config}>
-        <ThemeProvider themes={themes} themeType={_themeType}>
-          <CssBaseline />
-          {children}
-          <ToastContainer />
-        </ThemeProvider>
-      </ConfigContext.Provider>
-    </LayoutProvider>
+    <RouteChangeProvider>
+      <LayoutProvider>
+        <ConfigContext.Provider value={config}>
+          <ThemeProvider themes={themes} themeType={_themeType}>
+            <CssBaseline />
+            {children}
+            <ToastContainer />
+          </ThemeProvider>
+        </ConfigContext.Provider>
+      </LayoutProvider>
+    </RouteChangeProvider>
   );
 };
 ConfigProvider.displayName = 'HimalayaConfigProvider';
