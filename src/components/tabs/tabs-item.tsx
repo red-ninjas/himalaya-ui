@@ -81,7 +81,7 @@ const TabsItemComponent: React.FC<React.PropsWithChildren<TabsItemProps>> = ({
             height: 2px;
             border-radius: 4px;
             transform: scaleX(0.75);
-            background-color: ${theme.palette.foreground};
+            background-color: ${theme.palette.primary.value};
             transition:
               opacity,
               transform 200ms ease-in;
