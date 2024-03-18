@@ -45,6 +45,7 @@ const InputComponent = React.forwardRef<HTMLInputElement, React.PropsWithChildre
       placeholder = '',
       children,
       disabled = false,
+      hasBorder = true,
       ...props
     }: React.PropsWithChildren<InputProps>,
     ref: React.Ref<HTMLInputElement | null>,
@@ -165,7 +166,9 @@ const InputComponent = React.forwardRef<HTMLInputElement, React.PropsWithChildre
             flex: 1;
             user-select: none;
             border-radius: ${SCALES.r(1, theme.style.radius)};
-            border: 1px solid ${borderColor};
+            border-color: ${borderColor};
+            border-width: ${hasBorder ? '1px' : '0'};
+            border-style: solid;
             transition:
               border 0.2s ease 0s,
               color 0.2s ease 0s;
