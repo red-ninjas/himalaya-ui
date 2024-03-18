@@ -1,40 +1,32 @@
 'use client';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import React, { MouseEventHandler, PropsWithChildren } from 'react';
+import React, { PropsWithChildren } from 'react';
 import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';
 import useTheme from '../use-theme';
 import { INavigationItem } from './index';
 
-export interface MobileNavigationItemProps extends INavigationItem {
-  onClick?: () => void;
-}
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLAnchorElement>, keyof INavigationItem>;
+export type MobileNavigationItemProps = INavigationItem & NativeAttrs;
 
-const NavigationItem: React.FC<PropsWithChildren<MobileNavigationItemProps>> = ({ url = '/', ...props }) => {
+const NavigationItem: React.FC<PropsWithChildren<MobileNavigationItemProps>> = ({ url = '/', icon, title, ...props }) => {
   const theme = useTheme();
   const { SCALES } = useScale();
   const pathname = usePathname();
-
-  const handleClick: MouseEventHandler<HTMLAnchorElement> = e => {
-    if (props.onClick) {
-      e.preventDefault();
-      props.onClick();
-    }
-  };
 
   return (
     <div className="item">
       <Link legacyBehavior passHref href={url || ''}>
         <a
-          onClick={handleClick}
+          {...props}
           className={useClasses('sub-item', {
             'is-active': pathname == url,
           })}
         >
           <div className="icon-with-title">
-            {props.icon && <span className="icon-holder">{props.icon}</span>}
-            <span className="icon-title">{props.title}</span>
+            {icon && <span className="icon-holder">{icon}</span>}
+            <span className="icon-title">{title}</span>
           </div>
         </a>
       </Link>
