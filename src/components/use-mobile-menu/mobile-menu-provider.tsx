@@ -1,18 +1,23 @@
 'use client';
-import React, { useEffect, useState } from 'react';
-import { MobileMenuContext } from './mobile-menu-context';
-import useClasses from '../use-classes';
+import { useRouteChange } from 'nextjs13-router-events';
+import React, { useState } from 'react';
 import { MobileMenuProviderProps } from '.';
-import { usePathname } from 'next/navigation';
+import useClasses from '../use-classes';
+import { MobileMenuContext } from './mobile-menu-context';
 
 const MobileMenuProvider: React.FC<React.PropsWithChildren<MobileMenuProviderProps>> = ({ children, contentAnimationTime = 300 }) => {
   const [isEnabled, setIsEnabled] = useState<boolean>(false);
   const [isDirection, setDirection] = useState<'left' | 'right'>('left');
-  const pathname = usePathname();
 
-  useEffect(() => {
-    setIsEnabled(false);
-  }, [pathname]);
+  useRouteChange({
+    onRouteChangeStart: () => {
+      setIsEnabled(false);
+    },
+    onRouteChangeComplete: () => {
+      setIsEnabled(false);
+    },
+  });
+
   return (
     <MobileMenuContext.Provider
       value={{
