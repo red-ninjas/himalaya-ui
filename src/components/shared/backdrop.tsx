@@ -33,7 +33,7 @@ const Backdrop: React.FC<React.PropsWithChildren<BackdropProps>> = React.memo(
     transitionTime = 150,
     ...props
   }: React.PropsWithChildren<BackdropProps>) => {
-    const { SCALES } = useScale();
+    const { RESPONSIVE } = useScale();
     const theme = useTheme();
     const [, setIsContentMouseDown, IsContentMouseDownRef] = useCurrentState(false);
     const clickHandler = (event: MouseEvent<HTMLElement>) => {
@@ -52,7 +52,7 @@ const Backdrop: React.FC<React.PropsWithChildren<BackdropProps>> = React.memo(
       <CssTransition name="backdrop-wrapper" visible={visible} clearTime={300}>
         <div className={useClasses('backdrop', backdropClassName)} onClick={clickHandler} onMouseUp={mouseUpHandler} {...props}>
           <div className={useClasses('layer', layerClassName)} />
-          <div onClick={onContentClick} className={useClasses('position', positionClassName)} onMouseDown={() => setIsContentMouseDown(true)}>
+          <div onClick={onContentClick} className={useClasses('position width', positionClassName)} onMouseDown={() => setIsContentMouseDown(true)}>
             {children}
           </div>
           <style jsx>{`
@@ -72,8 +72,6 @@ const Backdrop: React.FC<React.PropsWithChildren<BackdropProps>> = React.memo(
               position: relative;
               z-index: 1001;
               outline: none;
-              max-width: 90%;
-              width: ${SCALES.w(1, '100%')};
               margin: 20px auto;
               vertical-align: middle;
               display: inline-block;
@@ -111,6 +109,8 @@ const Backdrop: React.FC<React.PropsWithChildren<BackdropProps>> = React.memo(
             .backdrop-wrapper-leave-active .layer {
               opacity: 0;
             }
+
+            ${RESPONSIVE.w(1, value => `width: ${value};`, 28)}
           `}</style>
         </div>
       </CssTransition>
@@ -119,4 +119,4 @@ const Backdrop: React.FC<React.PropsWithChildren<BackdropProps>> = React.memo(
 );
 
 Backdrop.displayName = 'HimalayaBackdrop';
-export default withScale(Backdrop);
+export default Backdrop;

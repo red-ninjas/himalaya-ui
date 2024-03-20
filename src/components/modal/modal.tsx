@@ -3,7 +3,7 @@ import React, { MouseEvent, useEffect, useMemo, useState } from 'react';
 import { createPortal } from 'react-dom';
 import Backdrop from '../shared/backdrop';
 import useKeyboard, { KeyCode } from '../use-keyboard';
-import { withScale } from '../use-scale';
+import useScale, { ScaleResponsiveParameter, withScale } from '../use-scale';
 import { pickChild } from '../utils/collections';
 import useBodyScroll from '../utils/use-body-scroll';
 import usePortal from '../utils/use-portal';
@@ -40,6 +40,7 @@ const ModalComponent: React.FC<React.PropsWithChildren<ModalProps>> = ({
   layerClassName = '',
 }: React.PropsWithChildren<ModalProps>) => {
   const portal = usePortal('modal');
+
   const [, setBodyHidden] = useBodyScroll(null, { delayReset: 300 });
   const [visible, setVisible] = useState<boolean>(false);
   const [withoutActionsChildren, ActionsChildren] = pickChild(children, ModalAction);
@@ -85,7 +86,6 @@ const ModalComponent: React.FC<React.PropsWithChildren<ModalProps>> = ({
         onClick={closeFromBackdrop}
         onContentClick={onContentClick}
         visible={visible}
-        w={26}
         positionClassName={positionClassName}
         backdropClassName={backdropClassName}
         layerClassName={layerClassName}
