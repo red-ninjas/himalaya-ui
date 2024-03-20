@@ -54,7 +54,7 @@ const ShowMore: React.FC<PropsWithChildren<ShowMoreProps>> = ({
 }) => {
   const theme = useTheme();
   const [iconRotated, setIconRotated] = useState(false);
-  const { SCALES } = useScale();
+  const { SCALES, RESPONSIVE } = useScale();
 
   const ref = React.createRef<HTMLDivElement>();
   const dimensions = useRefDimensions(ref);
@@ -73,7 +73,7 @@ const ShowMore: React.FC<PropsWithChildren<ShowMoreProps>> = ({
         toggleIconRotation();
       }}
     >
-      <div className="show-more-bar">
+      <div className="show-more-bar margin padding">
         {showLines && <div className="show-more-line" />}
 
         <Button
@@ -113,7 +113,7 @@ const ShowMore: React.FC<PropsWithChildren<ShowMoreProps>> = ({
             align-items: center;
             cursor: pointer;
             width: 100%;
-            flex-wrap: no-wrap;
+            flex-wrap: nowrap;
           }
 
           .show-more-line {
@@ -129,6 +129,9 @@ const ShowMore: React.FC<PropsWithChildren<ShowMoreProps>> = ({
             width: 100%;
             display: block;
           }
+
+          ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`)}
+          ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`)}
         }
 
         .show-more :global(.chevon-icon) {
