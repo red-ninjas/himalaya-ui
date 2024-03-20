@@ -1,5 +1,13 @@
 
 
+## [1.11.8](https://github.com/red-ninjas/himalaya-ui/compare/v1.11.6...v1.11.8) (2024-03-19)
+
+
+### Bug Fixes
+
+* Navigation ([4b18c74](https://github.com/red-ninjas/himalaya-ui/commit/4b18c74d021c3ac43c925849c6d4ffda05379086))
+* update lock file ([8132056](https://github.com/red-ninjas/himalaya-ui/commit/813205646598ab647c08918f1acc0b16abf4aa62))
+
 ## [1.11.6](https://github.com/red-ninjas/himalaya-ui/compare/v1.11.5...v1.11.6) (2024-03-18)
 
 ## [1.11.5](https://github.com/red-ninjas/himalaya-ui/compare/v1.11.4...v1.11.5) (2024-03-18)
