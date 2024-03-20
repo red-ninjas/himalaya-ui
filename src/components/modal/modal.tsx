@@ -3,7 +3,7 @@ import React, { MouseEvent, useEffect, useMemo, useState } from 'react';
 import { createPortal } from 'react-dom';
 import Backdrop from '../shared/backdrop';
 import useKeyboard, { KeyCode } from '../use-keyboard';
-import useScale, { ScaleResponsiveParameter, withScale } from '../use-scale';
+import { withScale } from '../use-scale';
 import { pickChild } from '../utils/collections';
 import useBodyScroll from '../utils/use-body-scroll';
 import usePortal from '../utils/use-portal';

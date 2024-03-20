@@ -1,10 +1,10 @@
 'use client';
 import React, { MouseEvent } from 'react';
-import useTheme from '../use-theme';
-import CssTransition from './css-transition';
-import useCurrentState from '../utils/use-current-state';
 import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';
+import useTheme from '../use-theme';
+import useCurrentState from '../utils/use-current-state';
+import CssTransition from './css-transition';
 
 interface Props {
   onClick?: (event: MouseEvent<HTMLElement>) => void;
@@ -110,7 +110,7 @@ const Backdrop: React.FC<React.PropsWithChildren<BackdropProps>> = React.memo(
               opacity: 0;
             }
 
-            ${RESPONSIVE.w(1, value => `width: ${value};`, 28)}
+            ${RESPONSIVE.w(1, value => `width: ${value};`, '450px')}
           `}</style>
         </div>
       </CssTransition>
