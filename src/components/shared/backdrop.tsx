@@ -1,7 +1,7 @@
 'use client';
 import React, { MouseEvent } from 'react';
 import useClasses from '../use-classes';
-import useScale, { withScale } from '../use-scale';
+import useScale from '../use-scale';
 import useTheme from '../use-theme';
 import useCurrentState from '../utils/use-current-state';
 import CssTransition from './css-transition';
