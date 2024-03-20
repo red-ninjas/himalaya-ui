@@ -1,5 +1,14 @@
 
 
+## [1.11.12](https://github.com/red-ninjas/himalaya-ui/compare/v1.11.11...v1.11.12) (2024-03-20)
+
+
+### Bug Fixes
+
+* **Drawer:** Fix drawer width ([3a40319](https://github.com/red-ninjas/himalaya-ui/commit/3a403192eab9262919c31e7f7940f4cac4a74817))
+* **Drawer:** Fix drawer width ([92ce66c](https://github.com/red-ninjas/himalaya-ui/commit/92ce66c4fb30f84cca490b0548039e9ab61f6876))
+* **modal:** Fix modal weight ([fd9e1ce](https://github.com/red-ninjas/himalaya-ui/commit/fd9e1ce45d0e0c9fcc77da898cf87a8aa71b17d1))
+
 ## [1.11.11](https://github.com/red-ninjas/himalaya-ui/compare/v1.11.10...v1.11.11) (2024-03-20)
 
 ## [1.11.10](https://github.com/red-ninjas/himalaya-ui/compare/v1.11.9...v1.11.10) (2024-03-20)
