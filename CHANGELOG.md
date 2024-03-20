@@ -1,5 +1,12 @@
 
 
+# [1.12.0](https://github.com/red-ninjas/himalaya-ui/compare/v1.11.12...v1.12.0) (2024-03-20)
+
+
+### Features
+
+* **showMore:** Make showMore Responsive ([343196a](https://github.com/red-ninjas/himalaya-ui/commit/343196a4c2fe3d45089924b5205b8590d79bec93))
+
 ## [1.11.12](https://github.com/red-ninjas/himalaya-ui/compare/v1.11.11...v1.11.12) (2024-03-20)
 
 
