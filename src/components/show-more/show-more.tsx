@@ -9,6 +9,9 @@ import useTheme from '../use-theme';
 interface Props {
   expanded: boolean;
   onClick: () => void;
+  showLines?: boolean;
+  showMoreTitle?: string;
+  showLessTitle?: string;
 }
 
 const useRefDimensions = (ref: React.RefObject<HTMLDivElement>) => {
@@ -40,7 +43,14 @@ const useRefDimensions = (ref: React.RefObject<HTMLDivElement>) => {
 type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
 export type ShowMoreProps = Props & NativeAttrs;
 
-const ShowMore: React.FC<PropsWithChildren<ShowMoreProps>> = ({ children, expanded, onClick }) => {
+const ShowMore: React.FC<PropsWithChildren<ShowMoreProps>> = ({
+  children,
+  expanded,
+  onClick,
+  showLines = true,
+  showMoreTitle = 'Show more',
+  showLessTitle = 'Show less',
+}) => {
   const theme = useTheme();
   const [iconRotated, setIconRotated] = useState(false);
   const { SCALES } = useScale();
@@ -52,6 +62,8 @@ const ShowMore: React.FC<PropsWithChildren<ShowMoreProps>> = ({ children, expand
     setIconRotated(!iconRotated);
   };
 
+  const buttonTitle = expanded ? showLessTitle : showMoreTitle;
+
   return (
     <div
       className={`show-more ${expanded ? 'expanded' : 'collapsed'}`}
@@ -61,7 +73,7 @@ const ShowMore: React.FC<PropsWithChildren<ShowMoreProps>> = ({ children, expand
       }}
     >
       <div className="show-more-bar">
-        <div className="show-more-line" />
+        {showLines && <div className="show-more-line" />}
 
         <Button
           type="secondary"
@@ -75,10 +87,10 @@ const ShowMore: React.FC<PropsWithChildren<ShowMoreProps>> = ({ children, expand
           }
           auto
         >
-          {expanded ? 'Show less' : 'Show more'}
+          {buttonTitle}
         </Button>
 
-        <div className="show-more-line" />
+        {showLines && <div className="show-more-line" />}
       </div>
       <div className="show-more-content">
         <div className="inner-height" ref={ref}>
