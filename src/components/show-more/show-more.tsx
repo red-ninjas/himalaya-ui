@@ -50,6 +50,7 @@ const ShowMore: React.FC<PropsWithChildren<ShowMoreProps>> = ({
   showLines = true,
   showMoreTitle = 'Show more',
   showLessTitle = 'Show less',
+  ...props
 }) => {
   const theme = useTheme();
   const [iconRotated, setIconRotated] = useState(false);
@@ -86,6 +87,7 @@ const ShowMore: React.FC<PropsWithChildren<ShowMoreProps>> = ({
             />
           }
           auto
+          {...props}
         >
           {buttonTitle}
         </Button>
