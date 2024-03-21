@@ -1,5 +1,12 @@
 
 
+# [1.13.0](https://github.com/red-ninjas/himalaya-ui/compare/v1.12.1...v1.13.0) (2024-03-21)
+
+
+### Features
+
+* **MobileMenu:** close menu before navigation ([3a20ef7](https://github.com/red-ninjas/himalaya-ui/commit/3a20ef7ea7b70e7f1294847d58df81220ddee9d4))
+
 ## [1.12.1](https://github.com/red-ninjas/himalaya-ui/compare/v1.12.0...v1.12.1) (2024-03-21)
 
 # [1.12.0](https://github.com/red-ninjas/himalaya-ui/compare/v1.11.12...v1.12.0) (2024-03-20)
