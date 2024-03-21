@@ -49,7 +49,7 @@ const MobileMenu: React.FC<PropsWithChildren<MobileMenuPropsNative>> = ({ childr
         :global(.mobilemenu-nav-content) {
           text-align: left;
           height: 100%;
-          positon: relative;
+          position: relative;
           overflow: hidden;
           width: 100%;
         }

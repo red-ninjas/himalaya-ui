@@ -121,7 +121,7 @@ const SidebarLayout: React.FC<React.PropsWithChildren<SidebarLayoutProps>> = ({
           :global(.sidebar-content) {
             text-align: left;
             height: 100%;
-            positon: relative;
+            position: relative;
             overflow: hidden;
             width: 100%;
           }
