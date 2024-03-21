@@ -6,6 +6,7 @@ import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';
 import useTheme from '../use-theme';
 import { INavigationItem } from './index';
+import { useMobileMenu } from '../use-mobile-menu/mobile-menu-context';
 
 type NativeAttrs = Omit<React.HTMLAttributes<HTMLAnchorElement>, keyof INavigationItem>;
 export type MobileNavigationItemProps = INavigationItem & NativeAttrs;
@@ -14,6 +15,11 @@ const NavigationItem: React.FC<PropsWithChildren<MobileNavigationItemProps>> = (
   const theme = useTheme();
   const { SCALES } = useScale();
   const pathname = usePathname();
+  const { setIsEnabled } = useMobileMenu();
+
+  const handleInstantCloseMenu = () => {
+    setIsEnabled(false);
+  };
 
   return (
     <Link legacyBehavior href={url || ''}>
@@ -22,6 +28,7 @@ const NavigationItem: React.FC<PropsWithChildren<MobileNavigationItemProps>> = (
         className={useClasses('item', {
           'is-active': pathname == url,
         })}
+        onClick={handleInstantCloseMenu}
       >
         <div className="icon-with-title">
           {icon && <span className="icon-holder">{icon}</span>}
