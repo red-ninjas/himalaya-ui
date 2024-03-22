@@ -2,12 +2,19 @@ import { generateColors } from '../utils';
 import { UIThemes, UIThemesExpressiveness, UIThemesPalette } from './index';
 import { defaultFont, defaultStyles } from './shared';
 const colors = generateColors({
-  background: '#ffffff',
-  border: '#dedede',
-  foreground: '#211F26',
-  secondary: '#21201c',
-  primary: '#5A45FF',
-  paragraph: '#211F26',
+  background: '#fafafa',
+  border: '#e6e6e6',
+  foreground: '#171717',
+  secondary: '#7d7d7d',
+  primary: '#0062d1',
+  tertiary: '#763da9',
+  paragraph: '#666666',
+  warning: '#ff990a',
+  error: '#da2f35',
+  success: '#398e4a',
+  link: '#3291ff',
+  code: '#f75f8f',
+  codeBg: '#ffffff',
 });
 export const palette: UIThemesPalette = Object.assign(
   {

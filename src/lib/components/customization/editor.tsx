@@ -4,18 +4,7 @@ import { UIThemesExpressiveness, UIThemesPalette } from 'components/themes';
 import EditorColorItem from './editor-color-item';
 import EditorInputItem from './editor-input-item';
 
-const basicColors: Array<keyof UIThemesPalette> = [
-  'accents_1',
-  'accents_2',
-  'accents_3',
-  'accents_4',
-  'accents_5',
-  'accents_6',
-  'accents_7',
-  'accents_8',
-  'foreground',
-  'background',
-];
+const basicColors: Array<keyof UIThemesPalette> = ['foreground', 'background'];
 const statusColors: Array<keyof UIThemesPalette> = ['success', 'error', 'warning', 'primary', 'tertiary', 'secondary'];
 const otherColors: Array<keyof UIThemesPalette> = ['primary', 'tertiary', 'secondary', 'link', 'border', 'code'];
 const expressiveness: Array<keyof UIThemesExpressiveness> = ['linkStyle', 'linkHoverStyle', 'dropdownBoxShadow', 'shadowSmall', 'shadowMedium', 'shadowLarge'];

@@ -147,12 +147,6 @@ export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
           </MobileMenu>
         </MobileMenuProvider>
         <style global jsx>{`
-          .tag {
-            color: ${theme.palette.background.accents.accents_5};
-          }
-          .punctuation {
-            color: ${theme.palette.background.accents.accents_5};
-          }
           .attr-name {
             color: ${theme.palette.background.accents.accents_6};
           }
@@ -162,23 +156,38 @@ export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
           .language-javascript {
             color: ${theme.palette.background.accents.accents_4};
           }
-          span.class-name {
+          .class-name {
             color: ${theme.palette.warning.value};
           }
-          span.maybe-class-name {
+          .maybe-class-name {
             color: ${theme.palette.code.value};
           }
-          span.token.string {
+          .token.string {
             color: ${theme.palette.success.value};
           }
-          span.token.comment {
+          .token.comment {
             color: ${theme.palette.background.accents.accents_3};
           }
-          span.keyword {
+          .keyword {
+            color: ${theme.palette.code.value};
+          }
+          .attr-name {
             color: ${theme.palette.tertiary.value};
           }
-          span.plain-text {
-            color: ${theme.palette.background.accents.accents_3};
+          .punctuation {
+            color: ${theme.palette.foreground.accents.accents_3};
+          }
+          .property-access {
+            color: ${theme.palette.primary.darker};
+          }
+          .imports {
+            color: ${theme.palette.tertiary.value};
+          }
+          .plain-text {
+            color: ${theme.palette.background.accents.accents_6};
+          }
+          .tag {
+            color: ${theme.palette.primary.value};
           }
           .logo {
             padding-bottom: 6px;

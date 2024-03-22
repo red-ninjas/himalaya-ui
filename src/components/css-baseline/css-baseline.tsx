@@ -211,7 +211,7 @@ const CssBaseline: React.FC = () => {
       }
 
       pre code {
-        color: ${theme.palette.code.value};
+        color: ${theme.palette.primary.value};
         font-size: 1em;
         line-height: 1.25em;
         white-space: pre;

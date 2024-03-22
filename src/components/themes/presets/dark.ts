@@ -2,7 +2,21 @@ import { generateColors } from '../utils';
 import { UIThemes, UIThemesExpressiveness, UIThemesPalette } from './index';
 import { defaultFont, defaultStyles } from './shared';
 
-const colors = generateColors({ codeBg: '#232225', border: '#2b292d', background: '#121113', foreground: '#eeeef0' });
+const colors = generateColors({
+  background: '#000000',
+  border: '#242424',
+  foreground: '#ededed',
+  secondary: '#7d7d7d',
+  primary: '#0062d1',
+  tertiary: '#763da9',
+  paragraph: '#a1a1a1',
+  warning: '#ff990a',
+  error: '#d93036',
+  success: '#398e4a',
+  link: '#0070f3',
+  code: '#d73a49',
+  codeBg: '#0a0a0a',
+});
 export const palette: UIThemesPalette = Object.assign(
   {
     gradient_1: {
