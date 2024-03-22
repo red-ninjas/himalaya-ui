@@ -39,25 +39,6 @@ const getColorItem = (type: string, palette: UIThemesPalette, copy: (text: strin
   const isSingleColor = obj => {
     return typeof obj === 'string';
   };
-
-  const SingleColorComponent = ({ name, palette }: { name: string; palette: string }) => (
-    <div className="color" style={{ color: getColor(palette), background: palette }}>
-      <Grid.Container justify="space-between" style={{ height: '4.5rem' }}>
-        <Grid.Container alignItems="center" sm={8} xs={16}>
-          <span className="usage" onClick={() => copy(`theme.palette.${name}`)}>
-            theme.palette.{name}
-          </span>
-        </Grid.Container>
-
-        <Grid.Container alignItems="center" justify="flex-end" sm={8} xs>
-          <span className="value" onClick={() => copy(palette as string)}>
-            {palette as string}
-          </span>
-        </Grid.Container>
-      </Grid.Container>
-    </div>
-  );
-
   const GradientColorComponent = ({ name, palette }: { name: string; palette: Gradient }) => (
     <div
       className="color"
@@ -92,33 +73,34 @@ const getColorItem = (type: string, palette: UIThemesPalette, copy: (text: strin
   const ColorVariantComponent = ({ palette, name }: { name: string; palette: ColorVariable }) => {
     const keys = Object.keys(palette);
     return (
-      <>
+      <Grid.Container gap={2}>
         {keys.map((key, index) => (
-          <div key={index}>
-            <div className="color" style={{ color: getColor(palette[key]), background: palette[key] }}>
-              <Grid.Container justify="space-between" style={{ height: '4.5rem' }}>
-                <Grid.Container alignItems="center" sm={8} xs={16}>
-                  <span className="usage" onClick={() => copy(`theme.palette.${name}.${key}`)}>
-                    theme.palette.{name}.{key}
-                  </span>
-                </Grid.Container>
+          <Grid xs={24} lg={12} key={index}>
+            {isSingleColor(palette[key]) && (
+              <div className="color" style={{ color: getColor(palette[key]), background: palette[key], width: '100%' }}>
+                <Grid.Container justify="space-between" style={{ height: '4.5rem' }}>
+                  <Grid.Container alignItems="center" sm={8} xs={16}>
+                    <span className="usage" onClick={() => copy(`theme.palette.${name}.${key}`)}>
+                      theme.palette.{name}.{key}
+                    </span>
+                  </Grid.Container>
 
-                <Grid.Container alignItems="center" justify="flex-end" sm={8} xs>
-                  <span className="value" onClick={() => copy(palette[key] as string)}>
-                    {palette[key] as string}
-                  </span>
+                  <Grid.Container alignItems="center" justify="flex-end" sm={8} xs>
+                    <span className="value" onClick={() => copy(palette[key] as string)}>
+                      {palette[key] as string}
+                    </span>
+                  </Grid.Container>
                 </Grid.Container>
-              </Grid.Container>
-            </div>
-          </div>
+              </div>
+            )}
+          </Grid>
         ))}
-      </>
+      </Grid.Container>
     );
   };
 
   return (keys as Array<keyof UIThemesPalette>).map((key, index) => (
     <div className="color-stack" key={`color-item-${index}`}>
-      {isSingleColor(palette[key]) && <SingleColorComponent key={`color-item-${index}`} name={key} palette={palette[key] as string}></SingleColorComponent>}
       {isGradient(palette[key]) && <GradientColorComponent key={`color-item-${index}`} name={key} palette={palette[key] as Gradient}></GradientColorComponent>}
       {isColorVariable(palette[key]) && (
         <ColorVariantComponent key={`color-item-${index}`} name={key} palette={palette[key] as ColorVariable}></ColorVariantComponent>

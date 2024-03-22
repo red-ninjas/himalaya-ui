@@ -4,18 +4,16 @@ export type ColorEnum = {
   [key in keyof UIThemesPalette]?: string;
 };
 
-const normal: ColorEnum = {
-  background: 'Background',
-  accents_0: 'Accent 0',
-  accents_1: 'Accent 1',
-  accents_2: 'Accent 2',
-  accents_3: 'Accent 3',
-  accents_4: 'Accent 4',
-  accents_5: 'Accent 5',
-  accents_6: 'Accent 6',
-  accents_7: 'Accent 7',
-  accents_8: 'Accent 8',
-  foreground: 'Foreground',
+const background: ColorEnum = {
+  background: 'Value',
+};
+
+const foreground: ColorEnum = {
+  foreground: 'value',
+};
+
+const border: ColorEnum = {
+  border: 'value',
 };
 
 const error: ColorEnum = {
@@ -46,6 +44,10 @@ const link: ColorEnum = {
   link: 'Value',
 };
 
+const code: ColorEnum = {
+  code: 'Value',
+};
+
 const gradient: ColorEnum = {
   gradient_1: 'Gradient 1',
   gradient_2: 'Gradient 2',
@@ -53,7 +55,9 @@ const gradient: ColorEnum = {
 };
 
 const colorsData: { [key: string]: ColorEnum } = {
-  normal,
+  background,
+  foreground,
+  border,
   success,
   warning,
   error,
@@ -62,6 +66,7 @@ const colorsData: { [key: string]: ColorEnum } = {
   tertiary,
   gradient,
   link,
+  code,
 };
 
 export const getColorData = (type: string): ColorEnum => {
