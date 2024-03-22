@@ -12,7 +12,7 @@ export interface Props {
   themes?: Array<UIThemes>;
 }
 
-const ThemeProvider: React.FC<PropsWithChildren<Props>> = ({ children, themeType, themes = [] }) => {
+const ThemeProvider: React.FC<PropsWithChildren<Props>> = ({ children, themeType, themes }) => {
   const { themes: themesFromConfig } = useConfigs();
 
   const currentThemes = themes ?? themesFromConfig;

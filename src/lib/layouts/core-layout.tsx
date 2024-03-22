@@ -28,7 +28,6 @@ import { usePathname } from 'next/navigation';
 import React, { useState } from 'react';
 import { Seeds } from '../data';
 import metaData from '../data/metadata.json';
-import { ThemeProvider } from 'components/use-config';
 export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
   const theme = useTheme();
   const layout = useLayout();
