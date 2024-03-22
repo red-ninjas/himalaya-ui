@@ -1,5 +1,17 @@
 
 
+# [1.14.0](https://github.com/red-ninjas/himalaya-ui/compare/v1.13.1...v1.14.0) (2024-03-22)
+
+
+### Bug Fixes
+
+* **docs:** change colors in docs ([c78eebb](https://github.com/red-ninjas/himalaya-ui/commit/c78eebba6c884978b900444130d047b3ae361458))
+
+
+### Features
+
+* **components:** change styling system ([0b97f32](https://github.com/red-ninjas/himalaya-ui/commit/0b97f32d6f3ce9e939d1532063cee88384f2ed29))
+
 ## [1.13.1](https://github.com/red-ninjas/himalaya-ui/compare/v1.13.0...v1.13.1) (2024-03-21)
 
 # [1.13.0](https://github.com/red-ninjas/himalaya-ui/compare/v1.12.1...v1.13.0) (2024-03-21)
