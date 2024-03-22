@@ -120,7 +120,7 @@ const ConfigProvider: React.FC<React.PropsWithChildren<NativeConfigProps>> = ({
     <RouteChangeProvider>
       <LayoutProvider>
         <ConfigContext.Provider value={config}>
-          <ThemeProvider themeType={_themeType}>
+          <ThemeProvider themes={config.themes} themeType={_themeType}>
             <CssBaseline />
             {children}
             <ToastContainer />
