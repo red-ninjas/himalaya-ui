@@ -13,18 +13,19 @@ export interface Props {
 }
 
 const ThemeProvider: React.FC<PropsWithChildren<Props>> = ({ children, themeType, themes }) => {
-  const { themes: themesFromConfig } = useConfigs();
+  const { themes: themesFromConfig, themeType: themeTypeFromConfig } = useConfigs();
 
   const currentThemes = themes ?? themesFromConfig;
+  const configThemeType = themeType ?? themeTypeFromConfig;
   const [allThemes, setAllThemes] = useState<AllThemesConfig>({
     themes: currentThemes && currentThemes.length > 0 ? currentThemes : Themes.getPresets(),
   });
 
   const currentTheme = useMemo<UIThemes>(() => {
-    const theme = allThemes.themes.find(item => item.type === themeType);
+    const theme = allThemes.themes.find(item => item.type === configThemeType);
     if (theme) return theme;
     return Themes.getPresetStaticTheme();
-  }, [allThemes, themeType]);
+  }, [allThemes, configThemeType]);
 
   useEffect(() => {
     if (!currentThemes?.length) return;
