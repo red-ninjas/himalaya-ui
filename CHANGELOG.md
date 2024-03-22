@@ -1,5 +1,12 @@
 
 
+## [1.14.1](https://github.com/red-ninjas/himalaya-ui/compare/v1.14.0...v1.14.1) (2024-03-22)
+
+
+### Bug Fixes
+
+* **themeProvider:** Make it overrideable ([1bbac2a](https://github.com/red-ninjas/himalaya-ui/commit/1bbac2a8d18efb2be123682f3dda1b0ae1daa0ed))
+
 # [1.14.0](https://github.com/red-ninjas/himalaya-ui/compare/v1.13.1...v1.14.0) (2024-03-22)
 
 
