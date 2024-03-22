@@ -39,11 +39,11 @@ const KeyboardComponent: React.FC<React.PropsWithChildren<KeyboardProps>> = ({
           line-height: 2em;
           text-align: center;
           display: inline-block;
-          color: ${theme.palette.accents_5};
-          background-color: ${theme.palette.accents_1};
+          color: ${theme.palette.background.accents.accents_5};
+          background-color: ${theme.palette.background.accents.accents_1};
           font-family: ${theme.font.sans};
           border-radius: ${SCALES.r(1, theme.style.radius)};
-          border: 1px solid ${theme.palette.accents_2};
+          border: 1px solid ${theme.palette.background.accents.accents_2};
           font-size: ${SCALES.font(0.875)};
           width: ${SCALES.w(1, 'fit-content')};
           height: ${SCALES.h(1, 'auto')};

@@ -8,7 +8,7 @@ export type SelectColor = {
 export const getColors = (palette: UIThemesPalette, status?: NormalTypes): SelectColor => {
   const colors: { [key in NormalTypes]: SelectColor } = {
     default: {
-      bg: palette.accents_8,
+      bg: palette.background.accents.accents_8,
     },
     secondary: {
       bg: palette.secondary.value,

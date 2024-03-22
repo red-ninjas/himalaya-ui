@@ -90,9 +90,10 @@ const ToggleListItemComponent: React.FC<PropsWithChildren<ToggleProps>> = ({
           --ui-button-height: ${SCALES.h(2.5)};
           --ui-button-icon-padding: ${SCALES.pl(0.45)};
           min-width: min-content;
+          cursor: pointer;
         }
         .toggle-list-item.active {
-          background: ${theme.palette.background};
+          background: ${theme.palette.background.value};
         }
 
         .has-icon .name {

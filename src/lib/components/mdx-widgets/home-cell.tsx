@@ -22,7 +22,7 @@ const HomeCell: React.FC<HomeCellProps> = ({ url, title, desc, icon }) => {
             {title}
           </Text>
 
-          <Text color={theme.palette.accents_6} m={0} font={1} className="feature-desc">
+          <Text color={theme.palette.background.accents.accents_6} m={0} font={1} className="feature-desc">
             {desc}
           </Text>
 
@@ -32,7 +32,7 @@ const HomeCell: React.FC<HomeCellProps> = ({ url, title, desc, icon }) => {
           .feature {
             width: 100%;
             padding: 40px 40px;
-            border: 1px solid ${theme.palette.border};
+            border: 1px solid ${theme.palette.border.value};
             height: 100%;
             border-radius: 10px;
             display: flex;
@@ -43,9 +43,9 @@ const HomeCell: React.FC<HomeCellProps> = ({ url, title, desc, icon }) => {
             height: 40px;
             width: 40px;
             border-radius: 2rem;
-            background: ${theme.palette.accents_0};
-            border: 1px solid ${theme.palette.border};
-            color: ${theme.palette.accents_5};
+            background: ${theme.palette.background.accents.accents_0};
+            border: 1px solid ${theme.palette.border.value};
+            color: ${theme.palette.background.accents.accents_5};
             display: flex;
             align-items: center;
             justify-content: center;
@@ -53,7 +53,7 @@ const HomeCell: React.FC<HomeCellProps> = ({ url, title, desc, icon }) => {
             padding: 8px;
           }
           :global(.feature-desc) {
-            color: ${theme.palette.accents_6} !important;
+            color: ${theme.palette.background.accents.accents_6} !important;
           }
         `}</style>
       </Link>

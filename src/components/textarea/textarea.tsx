@@ -1,10 +1,11 @@
 'use client';
-import React, { useRef, useImperativeHandle, useEffect, useMemo, useState } from 'react';
-import useTheme from '../use-theme';
-import { NormalTypes, tuple } from '../utils/prop-types';
+import React, { useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react';
 import { getColors } from '../input/styles';
-import useScale, { withScale } from '../use-scale';
 import useClasses from '../use-classes';
+import useScale, { withScale } from '../use-scale';
+import useTheme from '../use-theme';
+import { addColorAlpha } from '../utils/color';
+import { NormalTypes, tuple } from '../utils/prop-types';
 
 const resizeTypes = tuple('none', 'both', 'horizontal', 'vertical', 'initial', 'inherit');
 export type TextareaResizes = (typeof resizeTypes)[number];
@@ -101,6 +102,7 @@ const TextareaComponent = React.forwardRef<HTMLTextAreaElement, React.PropsWithC
             border: 1px solid ${borderColor};
             color: ${color};
             transition:
+              box-shadow 200ms ease 0s;
               border 0.2s ease 0s,
               color 0.2s ease 0s;
             min-width: 12.5rem;
@@ -113,10 +115,11 @@ const TextareaComponent = React.forwardRef<HTMLTextAreaElement, React.PropsWithC
           }
           .wrapper.hover {
             border-color: ${hoverBorder};
+            box-shadow: 0 0 0 4px ${addColorAlpha(hoverBorder, 0.2)};
           }
           .wrapper.disabled {
-            background-color: ${theme.palette.accents_1};
-            border-color: ${theme.palette.border};
+            background-color: ${theme.palette.background.accents.accents_1};
+            border-color: ${theme.palette.border.value};
             cursor: not-allowed;
           }
           textarea {
@@ -139,7 +142,7 @@ const TextareaComponent = React.forwardRef<HTMLTextAreaElement, React.PropsWithC
           textarea:-webkit-autofill:hover,
           textarea:-webkit-autofill:active,
           textarea:-webkit-autofill:focus {
-            -webkit-box-shadow: 0 0 0 30px ${theme.palette.background} inset !important;
+            -webkit-box-shadow: 0 0 0 30px ${theme.palette.background.value} inset !important;
           }
         `}</style>
       </div>

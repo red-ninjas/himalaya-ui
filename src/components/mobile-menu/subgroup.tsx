@@ -23,7 +23,7 @@ const MobileNavigationSubGroup: React.FC<PropsWithChildren<MobileNavigationSubGr
             padding: ${SCALES.pt(0)} ${SCALES.pr(0.8)} ${SCALES.pb(0)} ${SCALES.pl(0.8)};
           }
           .sub-group-title {
-            color: ${theme.palette.accents_5};
+            color: ${theme.palette.background.accents.accents_5};
             margin-bottom: ${SCALES.pt(0.5)};
             margin-top: ${SCALES.pt(0.5)};
             font-size: ${SCALES.pt(0.75)};
@@ -31,7 +31,7 @@ const MobileNavigationSubGroup: React.FC<PropsWithChildren<MobileNavigationSubGr
             font-weight: normal;
           }
           .sub-group-inner {
-            border-left: 1px solid ${theme.palette.border};
+            border-left: 1px solid ${theme.palette.border.value};
             margin: ${SCALES.pt(0)} ${SCALES.pr(0.6)} ${SCALES.pb(0)} ${SCALES.pl(0.6)};
             padding-left: ${SCALES.pl(0.55)};
           }

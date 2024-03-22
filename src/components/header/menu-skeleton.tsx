@@ -37,7 +37,7 @@ const MenuSkeleton: React.FC<unknown> = () => {
           left: 0;
           right: 0;
           height: var(${isMobile ? '--page-nav-height-mobile' : '--page-nav-height'}, 60px);
-          border-bottom: 1px solid ${theme.palette.border};
+          border-bottom: 1px solid ${theme.palette.border.value};
           z-index: 999;
           display: flex;
           align-item: center;
@@ -54,7 +54,7 @@ const MenuSkeleton: React.FC<unknown> = () => {
         }
 
         .skeleton-item {
-          background-color: ${theme.palette.accents_2};
+          background-color: ${theme.palette.background.accents.accents_2};
           opacity: ${opacity};
           margin: 0 ${layout.gap};
           padding: ${layout.gap} 0;

@@ -33,7 +33,7 @@ const getColors = (type: TagTypes, palette: UIThemesPalette, invert: boolean) =>
       color: palette.primary.value,
     },
     default: {
-      color: palette.foreground,
+      color: palette.foreground.value,
     },
     success: {
       color: palette.success.value,
@@ -48,19 +48,19 @@ const getColors = (type: TagTypes, palette: UIThemesPalette, invert: boolean) =>
       color: palette.secondary.value,
     },
     dark: {
-      color: palette.foreground,
-      bgColor: palette.background,
+      color: palette.foreground.value,
+      bgColor: palette.background.value,
     },
     lite: {
-      color: palette.foreground,
-      bgColor: palette.accents_2,
+      color: palette.foreground.value,
+      bgColor: palette.background.accents.accents_2,
     },
   };
   const hideBorder = invert || type === 'lite';
 
   const cardStyle = {
     ...colors[type],
-    bgColor: colors[type].bgColor || palette.background,
+    bgColor: colors[type].bgColor || palette.background.value,
     borderColor: hideBorder ? 'transparent' : colors[type].color,
   };
 

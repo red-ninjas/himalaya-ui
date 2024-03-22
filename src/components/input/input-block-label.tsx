@@ -14,7 +14,7 @@ const InputBlockLabelComponent: React.FC<React.PropsWithChildren<InputBlockLabel
         label {
           display: block;
           font-weight: normal;
-          color: ${theme.palette.accents_6};
+          color: ${theme.palette.background.accents.accents_6};
           padding: 0 0 0 1px;
           margin-bottom: 0.5em;
           font-size: 1em;

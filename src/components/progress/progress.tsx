@@ -29,7 +29,7 @@ export type ProgressProps = Props & NativeAttrs;
 
 const getCurrentColor = (ratio: number, palette: UIThemesPalette, type: ProgressTypes, colors: ProgressColors = {}): string => {
   const defaultColors: { [key in ProgressTypes]: string } = {
-    default: palette.foreground,
+    default: palette.foreground.value,
     success: palette.success.value,
     secondary: palette.secondary.value,
     primary: palette.primary.value,
@@ -84,7 +84,7 @@ const ProgressComponent: React.FC<ProgressProps> = ({
 
         .progress {
           position: relative;
-          background-color: ${theme.palette.accents_2};
+          background-color: ${theme.palette.background.accents.accents_2};
           border-radius: ${radius !== undefined ? radius : theme.style.radius};
           width: ${SCALES.w(1, '100%')};
           height: ${SCALES.h(0.625)};

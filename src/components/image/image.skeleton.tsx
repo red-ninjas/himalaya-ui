@@ -23,10 +23,10 @@ const ImageSkeleton: React.FC<ImageSkeletonProps> = React.memo(({ opacity = 0.5,
           height: 100%;
           background-image: linear-gradient(
             270deg,
-            ${theme.palette.accents_1},
-            ${theme.palette.accents_2},
-            ${theme.palette.accents_2},
-            ${theme.palette.accents_1}
+            ${theme.palette.background.accents.accents_1},
+            ${theme.palette.background.accents.accents_2},
+            ${theme.palette.background.accents.accents_2},
+            ${theme.palette.background.accents.accents_1}
           );
           background-size: 400% 100%;
           animation: loading 3s ease-in-out infinite;

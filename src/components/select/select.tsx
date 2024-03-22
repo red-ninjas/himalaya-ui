@@ -1,20 +1,21 @@
 'use client';
 import React, { CSSProperties, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react';
-import { NormalTypes } from '../utils/prop-types';
-import useTheme from '../use-theme';
-import useCurrentState from '../utils/use-current-state';
-import { pickChildByProps } from '../utils/collections';
-import SelectIcon from './select-icon';
-import SelectDropdown from './select-dropdown';
-import SelectMultipleValue from './select-multiple-value';
 import Grid from '../grid';
-import { SelectContext, SelectConfig } from './select-context';
-import { getColors } from './styles';
 import Ellipsis from '../shared/ellipsis';
-import SelectInput from './select-input';
-import useScale, { withScale } from '../use-scale';
 import useClasses from '../use-classes';
 import useLayout from '../use-layout';
+import useScale, { withScale } from '../use-scale';
+import useTheme from '../use-theme';
+import { pickChildByProps } from '../utils/collections';
+import { addColorAlpha } from '../utils/color';
+import { NormalTypes } from '../utils/prop-types';
+import useCurrentState from '../utils/use-current-state';
+import { SelectConfig, SelectContext } from './select-context';
+import SelectDropdown from './select-dropdown';
+import SelectIcon from './select-icon';
+import SelectInput from './select-input';
+import SelectMultipleValue from './select-multiple-value';
+import { getColors } from './styles';
 
 export type SelectRef = {
   focus: () => void;
@@ -152,7 +153,7 @@ const SelectComponent = React.forwardRef<SelectRef, React.PropsWithChildren<Sele
         if (!React.isValidElement(child)) {
           return null;
         }
-        const el = React.cloneElement(child as any, { preventAllEvents: true });
+        const el = React.cloneElement(child as any, { preventAllEvents: true, hasCheckmark: false });
         if (!multiple) return el;
         return (
           <SelectMultipleValue disabled={disabled} onClear={clearable ? () => updateValue(child.props.value) : null}>
@@ -212,12 +213,12 @@ const SelectComponent = React.forwardRef<SelectRef, React.PropsWithChildren<Sele
               max-width: 90vw;
               overflow: hidden;
               transition:
-                border 150ms ease-in 0s,
+                border 200ms ease-in 0s,
                 color 200ms ease-out 0s,
                 box-shadow 200ms ease 0s;
               border: 1px solid ${border};
               border-radius: ${SCALES.r(1, theme.style.radius)};
-              background-color: ${disabled ? theme.palette.accents_1 : theme.palette.background};
+              background-color: ${disabled ? theme.palette.background.accents.accents_1 : theme.palette.background.value};
               --select-font-size: ${SCALES.font(0.875)};
               --select-height: ${SCALES.h(2.25)};
               min-width: 11.5em;
@@ -235,12 +236,13 @@ const SelectComponent = React.forwardRef<SelectRef, React.PropsWithChildren<Sele
 
             .select.active,
             .select:hover {
-              border-color: ${disabled ? theme.palette.border : borderActive};
+              border-color: ${borderActive};
+              box-shadow: 0 0 0 4px ${addColorAlpha(borderActive, 0.2)};
             }
 
             .select.active.icon,
             .select:hover .icon {
-              color: ${disabled ? theme.palette.accents_5 : borderActive};
+              color: ${disabled ? theme.palette.background.accents.accents_5 : borderActive};
             }
 
             .value {
@@ -252,7 +254,7 @@ const SelectComponent = React.forwardRef<SelectRef, React.PropsWithChildren<Sele
               padding: 0;
               margin-right: 1.25em;
               font-size: var(--select-font-size);
-              color: ${disabled ? theme.palette.accents_4 : theme.palette.foreground};
+              color: ${disabled ? theme.palette.background.accents.accents_4 : theme.palette.foreground.value};
               width: calc(100% - 1.25em);
             }
 

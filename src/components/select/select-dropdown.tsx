@@ -5,6 +5,7 @@ import { useSelectContext } from './select-context';
 import Dropdown from '../shared/dropdown';
 import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';
+import { hexToRgb } from '../utils/color';
 
 interface Props {
   visible: boolean;
@@ -38,12 +39,14 @@ const SelectDropdown = React.forwardRef<HTMLDivElement | null, React.PropsWithCh
             .select-dropdown {
               border-radius: ${SCALES.r(1, theme.style.radius)};
               box-shadow: ${theme.expressiveness.shadowLarge};
-              background-color: ${theme.palette.background};
+              background-color: ${theme.palette.background.value};
               max-height: 17em;
               overflow-y: auto;
+              margin-top: 6px;
               overflow-anchor: none;
               padding: 0.38em 0;
               scroll-behavior: smooth;
+              box-shadow: 0 0 0 1px rgba(${hexToRgb(theme.palette.background.accents.accents_1)}, 1);
             }
           `}</style>
         </div>

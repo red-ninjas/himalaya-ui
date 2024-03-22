@@ -95,8 +95,8 @@ const FieldsetGroupComponent: React.FC<React.PropsWithChildren<FieldsetGroupProp
             line-height: 2.7em;
             text-align: center;
             user-select: none;
-            color: ${theme.palette.accents_3};
-            background-color: ${theme.palette.accents_1};
+            color: ${theme.palette.background.accents.accents_3};
+            background-color: ${theme.palette.background.accents.accents_1};
             font-size: 0.875em;
             white-space: nowrap;
             text-transform: capitalize;
@@ -107,15 +107,15 @@ const FieldsetGroupComponent: React.FC<React.PropsWithChildren<FieldsetGroupProp
             overflow: hidden;
             transition: all 0.2s ease 0s;
             border-radius: 0;
-            border: 1px solid ${theme.palette.border};
+            border: 1px solid ${theme.palette.border.value};
             text-decoration: none;
             outline: none;
           }
 
           button.active {
             border-bottom-color: transparent;
-            background-color: ${theme.palette.background};
-            color: ${theme.palette.foreground};
+            background-color: ${theme.palette.background.value};
+            color: ${theme.palette.foreground.value};
             cursor: default;
           }
 

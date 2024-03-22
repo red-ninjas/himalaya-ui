@@ -143,7 +143,7 @@ const Video: React.FC<VideoProps> = ({ src, controls, poster, loop = false, auto
         .controls {
           position: absolute;
           bottom: 5%;
-          background-color: ${theme.palette.background};
+          background-color: ${theme.palette.background.value};
           height: 56px;
           display: flex;
           opacity: 0;
@@ -161,7 +161,7 @@ const Video: React.FC<VideoProps> = ({ src, controls, poster, loop = false, auto
           display: flex;
         }
         .controls .progress-bar {
-          background-color: ${theme.palette.accents_6};
+          background-color: ${theme.palette.background.accents.accents_6};
           height: 4px;
           cursor: pointer;
           width: 100%;
@@ -174,7 +174,7 @@ const Video: React.FC<VideoProps> = ({ src, controls, poster, loop = false, auto
         }
         .controls button,
         .controls span {
-          color: ${theme.palette.foreground};
+          color: ${theme.palette.foreground.value};
           font-size: 16px;
           margin-right: 10px;
           border: none;

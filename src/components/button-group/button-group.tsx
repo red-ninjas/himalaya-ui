@@ -21,17 +21,17 @@ export type ButtonGroupProps = Props & NativeAttrs;
 
 const getGroupBorderColors = (palette: UIThemesPalette, type = 'default' as ButtonTypes, disabled = false): string => {
   if (disabled) {
-    return palette.border;
+    return palette.border.value;
   }
   const colors: { [key in ButtonTypes]?: string } = {
     primary: palette.primary.darker,
     tertiary: palette.tertiary.darker,
-    default: palette.accents_7,
+    default: palette.border.value,
     success: palette.success.darker,
     secondary: palette.secondary.darker,
     error: palette.error.darker,
     warning: palette.warning.darker,
-    abort: palette.border,
+    abort: palette.border.value,
   };
   return colors[type] as string;
 };

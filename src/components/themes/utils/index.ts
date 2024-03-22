@@ -25,10 +25,13 @@ export const generateColor = (value: string): ColorVariable => {
     lighter: lighter.hex,
     dark: dark.hex,
     darker: darker.hex,
+    accents: generateAccents(value, contrast.hex),
   };
 };
 
 export interface GenerateColorProps {
+  background?: string;
+  foreground?: string;
   secondary?: string;
   error?: string;
   success?: string;
@@ -37,13 +40,15 @@ export interface GenerateColorProps {
   tertiary?: string;
   link?: string;
   code?: string;
-  selection?: string;
   paragraph?: string;
   codeBg?: string;
+  border?: string;
 }
 
 export const generateColors = (newConfig?: GenerateColorProps): UIThemesColors => {
   return {
+    background: generateColor(newConfig?.background || '#000000'),
+    foreground: generateColor(newConfig?.foreground || '#ffffff'),
     primary: generateColor(newConfig?.primary || '#6e56cf'),
     secondary: generateColor(newConfig?.secondary || '#232225'),
     tertiary: generateColor(newConfig?.tertiary || '#89DDFF'),
@@ -51,10 +56,10 @@ export const generateColors = (newConfig?: GenerateColorProps): UIThemesColors =
     error: generateColor(newConfig?.error || '#F07178'),
     warning: generateColor(newConfig?.warning || '#FFCB6B'),
     link: generateColor(newConfig?.link || '#baa7ff'),
-    code: newConfig?.code || '#EEFFFF',
-    codeBg: newConfig?.code || '#232225',
-    selection: newConfig?.selection || '#0437A2',
-    paragraph: newConfig?.paragraph || '#B5B2BC',
+    code: generateColor(newConfig?.code || '#6e56cf'),
+    codeBg: generateColor(newConfig?.codeBg || '#ffffff'),
+    paragraph: generateColor(newConfig?.paragraph || '#B5B2BC'),
+    border: generateColor(newConfig?.border || '#333333'),
   };
 };
 
@@ -73,9 +78,5 @@ export const generateAccents = (background: string, foreground: string): UITheme
     accents_6: generateColor[13],
     accents_7: generateColor[14],
     accents_8: generateColor[16],
-    border: generateColor[1],
-    highlite: generateColor[1],
-    background: background,
-    foreground: foreground,
   };
 };

@@ -36,7 +36,7 @@ const Playground: React.FC<PlaygroundProps> = React.memo(({ title: inputTitle, c
           .playground {
             width: 100%;
             border-radius: ${theme.style.radius};
-            border: 1px solid ${theme.palette.border};
+            border: 1px solid ${theme.palette.border.value};
           }
         `}</style>
       </div>

@@ -10,12 +10,12 @@ export type CardStyles = {
 export const getStyles = (type: CardTypes, palette: UIThemesPalette, isShadow?: boolean): CardStyles => {
   const colors: { [key in CardTypes]: Omit<CardStyles, 'borderColor'> } = {
     default: {
-      color: palette.foreground,
-      bgColor: palette.background,
+      color: palette.foreground.value,
+      bgColor: palette.background.value,
     },
     dark: {
-      color: palette.background,
-      bgColor: palette.foreground,
+      color: palette.background.value,
+      bgColor: palette.foreground.value,
     },
     secondary: {
       color: palette.secondary.contrast,
@@ -38,8 +38,8 @@ export const getStyles = (type: CardTypes, palette: UIThemesPalette, isShadow?: 
       bgColor: palette.error.value,
     },
     lite: {
-      color: palette.foreground,
-      bgColor: palette.background,
+      color: palette.foreground.value,
+      bgColor: palette.background.value,
     },
     alert: {
       color: 'white',
@@ -53,6 +53,6 @@ export const getStyles = (type: CardTypes, palette: UIThemesPalette, isShadow?: 
   const showBorder = type === 'default' && !isShadow;
   return {
     ...colors[type],
-    borderColor: showBorder ? palette.border : 'transparent',
+    borderColor: showBorder ? palette.border.value : 'transparent',
   };
 };

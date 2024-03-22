@@ -40,7 +40,7 @@ const BreadcrumbsComponent: React.FC<React.PropsWithChildren<BreadcrumbsProps>> 
       <style jsx>{`
         nav {
           line-height: inherit;
-          color: ${theme.palette.accents_4};
+          color: ${theme.palette.background.accents.accents_4};
           box-sizing: border-box;
           display: flex;
           align-items: center;
@@ -56,7 +56,7 @@ const BreadcrumbsComponent: React.FC<React.PropsWithChildren<BreadcrumbsProps>> 
         }
 
         nav > :global(span:last-of-type) {
-          color: ${theme.palette.accents_6};
+          color: ${theme.palette.background.accents.accents_6};
         }
 
         nav > :global(.separator:last-child) {

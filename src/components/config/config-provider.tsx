@@ -15,13 +15,13 @@ import {
 } from '../use-config/config-context';
 import useMediaQuery from '../use-media-query';
 
+import { RouteChangeProvider } from 'nextjs13-router-events';
 import { CUSTOM_THEME_TYPE, THEME_COOKIE_NAME } from '../constants';
 import ThemeProvider from '../use-config/theme-provider';
 import useCurrentState from '../use-current-state';
 import useTheme from '../use-theme';
 import ToastContainer from '../use-toasts/toast-container';
 import { DeepPartial } from '../utils/types';
-import { RouteChangeProvider } from 'nextjs13-router-events';
 
 export interface ConfigProps {
   themeType?: string | 'dark' | 'light';
@@ -120,7 +120,7 @@ const ConfigProvider: React.FC<React.PropsWithChildren<NativeConfigProps>> = ({
     <RouteChangeProvider>
       <LayoutProvider>
         <ConfigContext.Provider value={config}>
-          <ThemeProvider themes={themes} themeType={_themeType}>
+          <ThemeProvider themeType={_themeType}>
             <CssBaseline />
             {children}
             <ToastContainer />

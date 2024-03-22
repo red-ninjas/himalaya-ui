@@ -1,25 +1,24 @@
-import { Layout, Playground, Attributes } from 'lib/components'
-import { Button, Spacer, Grid, Code } from 'components'
-import Settings from 'components/icons/settings'
-import UserX from 'components/icons/userX'
-import Power from 'components/icons/power'
+import { Layout, Playground, Attributes } from 'lib/components';
+import { Button, Spacer, Grid, Code } from 'components';
+import Settings from 'components/icons/settings';
+import UserX from 'components/icons/userX';
+import Power from 'components/icons/power';
 
 export const meta = {
   title: 'Button',
   group: 'General',
-}
+};
 
 # Button
 
 The `Button` UI component is a versatile element for triggering various operations within your application. It offers a range of features and states to suit your needs:
-
 
 <Playground
   title="Basic"
   desc="The basic button includes an animation effect, enhancing its visual appeal."
   scope={{ Button }}
   code={`
-<Button mt={{ xs: 2.625, md: 5.75 }}>Action</Button>
+<Button>Action</Button>
 `}
 />
 
@@ -159,15 +158,7 @@ The `Button` UI component is a versatile element for triggering various operatio
 <Attributes.Title>ButtonTypes</Attributes.Title>
 
 ```ts
-type ButtonTypes =
-  | 'default'
-  | 'primary'
-  | 'tertiary'
-  | 'secondary'
-  | 'success'
-  | 'warning'
-  | 'error'
-  | 'abort'
+type ButtonTypes = 'default' | 'primary' | 'tertiary' | 'secondary' | 'success' | 'warning' | 'error' | 'abort';
 ```
 
 </Attributes>

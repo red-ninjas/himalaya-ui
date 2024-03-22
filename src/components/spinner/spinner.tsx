@@ -18,7 +18,7 @@ const getSpans = (theme: UIThemes) => {
     <span key={`spinner-${index}`}>
       <style jsx>{`
         span {
-          background-color: ${theme.palette.foreground};
+          background-color: ${theme.palette.foreground.value};
           position: absolute;
           top: -3.9%;
           width: 24%;

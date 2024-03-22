@@ -5,6 +5,7 @@ import Themes from '../themes';
 import { UIThemes } from '../themes/presets';
 import { ThemeContext } from '../use-theme/theme-context';
 import { AllThemesConfig, AllThemesContext } from '../use-all-themes/all-themes-context';
+import { useConfigs } from '.';
 
 export interface Props {
   themeType?: string;
@@ -12,8 +13,11 @@ export interface Props {
 }
 
 const ThemeProvider: React.FC<PropsWithChildren<Props>> = ({ children, themeType, themes = [] }) => {
+  const { themes: themesFromConfig } = useConfigs();
+
+  const currentThemes = themes ?? themesFromConfig;
   const [allThemes, setAllThemes] = useState<AllThemesConfig>({
-    themes: themes && themes.length > 0 ? themes : Themes.getPresets(),
+    themes: currentThemes && currentThemes.length > 0 ? currentThemes : Themes.getPresets(),
   });
 
   const currentTheme = useMemo<UIThemes>(() => {
@@ -23,9 +27,9 @@ const ThemeProvider: React.FC<PropsWithChildren<Props>> = ({ children, themeType
   }, [allThemes, themeType]);
 
   useEffect(() => {
-    if (!themes?.length) return;
-    setAllThemes({ themes });
-  }, [themes]);
+    if (!currentThemes?.length) return;
+    setAllThemes({ themes: currentThemes });
+  }, [currentThemes]);
 
   return (
     <AllThemesContext.Provider value={allThemes}>

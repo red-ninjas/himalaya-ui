@@ -30,8 +30,8 @@ const SelectMultipleValue: React.FC<React.PropsWithChildren<Props>> = ({ disable
           font-size: var(--select-font-size);
           height: calc(var(--select-font-size) * 2);
           border-radius: ${SCALES.r(1, theme.style.radius)};
-          background-color: ${theme.palette.accents_2};
-          color: ${disabled ? theme.palette.accents_4 : theme.palette.accents_6};
+          background-color: ${theme.palette.background.accents.accents_0};
+          color: ${disabled ? theme.palette.background.accents.accents_4 : theme.palette.foreground.value};
         }
 
         .item > :global(div:not(.clear-icon)),

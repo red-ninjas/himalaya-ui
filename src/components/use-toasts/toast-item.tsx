@@ -40,7 +40,7 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(({ toast, layout }) => {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            color: ${theme.palette.foreground};
+            color: ${theme.palette.foreground.value};
             background-color: ${bgColor};
             color: ${color};
             border: 0;

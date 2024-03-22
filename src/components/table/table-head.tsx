@@ -71,28 +71,28 @@ const TableHead = <TableDataItem extends TableDataItemBase>({ hasBorder = true, 
           text-align: left;
           letter-spacing: 0;
           vertical-align: middle;
-          color: ${theme.palette.accents_5};
+          color: ${theme.palette.background.accents.accents_5};
           background: transparent;
-          border-bottom: 1px solid ${theme.palette.border};
+          border-bottom: 1px solid ${theme.palette.border.value};
           border-radius: 0;
         }
 
         th.has-border {
-          border-top: 1px solid ${theme.palette.border};
+          border-top: 1px solid ${theme.palette.border.value};
         }
 
         th.has-border:nth-child(1) {
-          border-bottom: 1px solid ${theme.palette.border};
-          border-left: 1px solid ${theme.palette.border};
-          border-top: 1px solid ${theme.palette.border};
+          border-bottom: 1px solid ${theme.palette.border.value};
+          border-left: 1px solid ${theme.palette.border.value};
+          border-top: 1px solid ${theme.palette.border.value};
           border-top-left-radius: ${theme.style.radius};
           border-bottom-left-radius: ${theme.style.radius};
         }
 
         th.has-border:last-child {
-          border-bottom: 1px solid ${theme.palette.border};
-          border-right: 1px solid ${theme.palette.border};
-          border-top: 1px solid ${theme.palette.border};
+          border-bottom: 1px solid ${theme.palette.border.value};
+          border-right: 1px solid ${theme.palette.border.value};
+          border-top: 1px solid ${theme.palette.border.value};
           border-top-right-radius: ${theme.style.radius};
           border-bottom-right-radius: ${theme.style.radius};
         }

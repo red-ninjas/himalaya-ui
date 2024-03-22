@@ -84,16 +84,16 @@ const TooltipContent: React.FC<React.PropsWithChildren<Props>> = ({ children, pa
             box-shadow: ${hasShadow ? theme.expressiveness.shadowMedium : 'none'};
             width: ${SCALES.w(1, 'auto')};
             height: ${SCALES.h(1, 'auto')};
-            border: 1px solid ${theme.palette.border};
+            border: 1px solid ${theme.palette.border.value};
           }
 
           .tooltip-content.transcluent-popover {
             backdrop-filter: blur(6px);
-            background-color: ${addColorAlpha(theme.palette.background, 0.6)} !important;
+            background-color: ${addColorAlpha(theme.palette.background.value, 0.6)} !important;
             box-shadow:
-              0 50px 100px -20px ${addColorAlpha(theme.palette.background, 0.12)},
-              0 30px 60px -30px ${addColorAlpha(theme.palette.background, 0.15)} !important;
-            border: 1px solid ${theme.palette.border};
+              0 50px 100px -20px ${addColorAlpha(theme.palette.background.value, 0.12)},
+              0 30px 60px -30px ${addColorAlpha(theme.palette.background.value, 0.15)} !important;
+            border: 1px solid ${theme.palette.border.value};
           }
 
           .inner {

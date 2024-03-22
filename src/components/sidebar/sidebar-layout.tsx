@@ -144,7 +144,7 @@ const SidebarLayout: React.FC<React.PropsWithChildren<SidebarLayoutProps>> = ({
             width: ${sideBarWidth};
             z-index: 100;
             overflow: hidden;
-            border-right: ${hasBorder ? '1px solid ' + theme.palette.border : '0px solid transparent'};
+            border-right: ${hasBorder ? '1px solid ' + theme.palette.border.value : '0px solid transparent'};
             padding: 0;
             background: ${backgroundColor ? backgroundColor : 'transparent'};
           }
@@ -167,7 +167,7 @@ const SidebarLayout: React.FC<React.PropsWithChildren<SidebarLayoutProps>> = ({
             position: fixed;
             height: 100%;
             width: 0.5px;
-            background: ${hasBorder ? theme.palette.border : 'transparent'};
+            background: ${hasBorder ? theme.palette.border.value : 'transparent'};
           }
 
           @media only screen and (max-width: ${layout.breakpoints.xs.max}) {

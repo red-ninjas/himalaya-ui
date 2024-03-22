@@ -17,7 +17,7 @@ export type DotProps = Props & NativeAttrs;
 
 const getColor = (type: DotTypes, theme: UIThemes): string => {
   const colors: { [key in DotTypes]?: string } = {
-    default: theme.palette.accents_2,
+    default: theme.palette.background.accents.accents_2,
     success: theme.palette.success.value,
     warning: theme.palette.warning.value,
     error: theme.palette.error.value,

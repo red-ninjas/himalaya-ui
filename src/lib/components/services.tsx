@@ -21,7 +21,7 @@ export default function Services() {
             </Text>
           </FadeInEffect>
           <FadeInEffect translateY="4rem">
-            <Text m={0} mt={'24px'} font={'clamp(14px, 1.2vw, 16px)'} style={{ color: theme.palette.accents_6, fontWeight: 400 }}>
+            <Text m={0} mt={'24px'} font={'clamp(14px, 1.2vw, 16px)'} style={{ color: theme.palette.background.accents.accents_6, fontWeight: 400 }}>
               Unlock unparalleled scalability and performance with our high-scalable UI components, designed to meet the demands of your most ambitious
               projects.
             </Text>

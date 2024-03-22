@@ -80,8 +80,8 @@ const FieldsetComponent: React.FC<React.PropsWithChildren<FieldsetProps>> = ({
       {FooterChildren && FooterChildren}
       <style jsx>{`
         .fieldset {
-          background-color: ${theme.palette.background};
-          border: 1px solid ${theme.palette.border};
+          background-color: ${theme.palette.background.value};
+          border: 1px solid ${theme.palette.border.value};
           border-radius: ${SCALES.r(1, theme.style.radius)};
           overflow: hidden;
           display: ${hidden ? 'none' : 'block'};

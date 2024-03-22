@@ -8,6 +8,17 @@ export const hexToRgb = (color: string): [number, number, number] => {
   return [Number.parseInt(values[1], 16), Number.parseInt(values[2], 16), Number.parseInt(values[3], 16)];
 };
 
+export const hexToRgbFallBack = (color: string): string => {
+  const fullReg = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+  const full = color.replace(fullReg, (_, r, g, b) => `${r}${r}${g}${g}${b}${b}`);
+  const values = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(full);
+  if (!values) {
+    return color;
+  }
+
+  return `${Number.parseInt(values[1], 16)}, ${Number.parseInt(values[2], 16)}, ${Number.parseInt(values[3], 16)}`;
+};
+
 export const colorToRgbValues = (color: string) => {
   if (color.charAt(0) === '#') return hexToRgb(color);
 

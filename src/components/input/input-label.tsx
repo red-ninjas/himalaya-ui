@@ -23,13 +23,13 @@ const InputLabel: React.FC<React.PropsWithChildren<InputLabel>> = ({ children, i
           pointer-events: none;
           margin: 0;
           padding: 0 ${layout.gapHalf};
-          color: ${theme.palette.accents_4};
-          background-color: ${theme.palette.accents_1};
+          color: ${theme.palette.background.accents.accents_4};
+          background-color: ${theme.palette.background.accents.accents_1};
           border-top-left-radius: ${theme.style.radius};
           border-bottom-left-radius: ${theme.style.radius};
-          border-top: 1px solid ${theme.palette.border};
-          border-left: 1px solid ${theme.palette.border};
-          border-bottom: 1px solid ${theme.palette.border};
+          border-top: 1px solid ${theme.palette.border.value};
+          border-left: 1px solid ${theme.palette.border.value};
+          border-bottom: 1px solid ${theme.palette.border.value};
           font-size: inherit;
           line-height: 1;
         }
@@ -40,7 +40,7 @@ const InputLabel: React.FC<React.PropsWithChildren<InputLabel>> = ({ children, i
           border-top-right-radius: ${theme.style.radius};
           border-bottom-right-radius: ${theme.style.radius};
           border-left: 0;
-          border-right: 1px solid ${theme.palette.border};
+          border-right: 1px solid ${theme.palette.border.value};
         }
       `}</style>
     </span>

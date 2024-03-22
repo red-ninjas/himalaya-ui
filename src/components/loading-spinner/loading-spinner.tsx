@@ -20,7 +20,7 @@ export type LoadingSpinnerProps = Props & NativeAttrs;
 
 const getIconBgColor = (type: LoadingSpinnerTypes, palette: UIThemesPalette, color?: string) => {
   const colors: { [key in LoadingSpinnerTypes]: string } = {
-    default: palette.accents_6,
+    default: palette.background.accents.accents_6,
     secondary: palette.secondary.value,
     primary: palette.primary.value,
     tertiary: palette.tertiary.value,
@@ -68,7 +68,7 @@ const LoadingSpinnerComponent: React.FC<React.PropsWithChildren<LoadingSpinnerPr
 
         label {
           margin-right: 0.5em;
-          color: ${theme.palette.accents_5};
+          color: ${theme.palette.background.accents.accents_5};
           line-height: 1;
         }
 

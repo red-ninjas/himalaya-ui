@@ -1,11 +1,11 @@
 'use client';
 
 import React, { useMemo } from 'react';
+import { UIThemesPalette } from '../themes/presets';
+import useClasses from '../use-classes';
+import useScale, { withScale } from '../use-scale';
 import useTheme from '../use-theme';
 import { NormalTypes } from '../utils/prop-types';
-import { UIThemesPalette } from '../themes/presets';
-import useScale, { withScale } from '../use-scale';
-import useClasses from '../use-classes';
 
 export type BadgeTypes = NormalTypes;
 
@@ -20,7 +20,7 @@ export type BadgeProps = Props & NativeAttrs;
 
 const getBgColor = (type: NormalTypes, palette: UIThemesPalette) => {
   const colors: { [key in NormalTypes]: string } = {
-    default: palette.foreground,
+    default: palette.foreground.value,
     success: palette.success.value,
     secondary: palette.secondary.value,
     primary: palette.primary.value,
@@ -42,9 +42,9 @@ const BadgeComponent: React.FC<React.PropsWithChildren<BadgeProps>> = ({
   const { SCALES } = useScale();
   const bg = useMemo(() => getBgColor(type, theme.palette), [type, theme.palette]);
   const color = useMemo(() => {
-    if (!type || type === 'default') return theme.palette.background;
+    if (!type || type === 'default') return theme.palette.background.value;
     return 'white';
-  }, [type, theme.palette.background]);
+  }, [type, theme.palette.background.value]);
   const classes = useClasses('badge', { dot }, className);
 
   return (

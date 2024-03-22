@@ -36,11 +36,11 @@ const NavigationSubItem: React.FC<PropsWithChildren<NavigationSubItemProps>> = (
       <style jsx>{`
         .description {
           font-weight: 14px;
-          color: ${theme.palette.accents_5};
+          color: ${theme.palette.background.accents.accents_5};
           overflow-wrap: anywhere;
         }
         .sub-item {
-          color: ${theme.palette.foreground};
+          color: ${theme.palette.foreground.value};
           font-weight: 500;
           min-width: 120px;
           padding: 6px 12px;
@@ -62,7 +62,7 @@ const NavigationSubItem: React.FC<PropsWithChildren<NavigationSubItemProps>> = (
           width: 100%;
         }
         .sub-item:hover {
-          background: ${addColorAlpha(theme.palette.accents_2, 0.5)};
+          background: ${addColorAlpha(theme.palette.background.accents.accents_2, 0.5)};
           border-radius: 5px;
         }
         .icon-with-title {

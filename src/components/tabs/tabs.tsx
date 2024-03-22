@@ -132,7 +132,7 @@ const TabsComponent: React.FC<React.PropsWithChildren<TabsProps>> = ({
             flex-wrap: nowrap;
             align-items: center;
             justify-content: ${align};
-            border-bottom: 1px solid ${theme.palette.border};
+            border-bottom: 1px solid ${theme.palette.border.value};
             padding-left: ${leftSpace};
             gap: ${gap};
           }

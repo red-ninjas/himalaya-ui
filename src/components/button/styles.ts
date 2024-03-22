@@ -12,33 +12,33 @@ export interface ButtonColorGroup {
 export const getButtonGhostColors = (palette: UIThemesPalette, type: ButtonTypes): ButtonColorGroup | null => {
   const colors: { [key in ButtonTypes]?: ButtonColorGroup } = {
     secondary: {
-      bg: palette.background,
+      bg: palette.background.value,
       border: palette.secondary.value,
       color: palette.secondary.value,
     },
 
     success: {
-      bg: palette.background,
+      bg: palette.background.value,
       border: palette.success.value,
       color: palette.success.value,
     },
     tertiary: {
-      bg: palette.background,
+      bg: palette.background.value,
       border: palette.tertiary.value,
       color: palette.tertiary.value,
     },
     primary: {
-      bg: palette.background,
+      bg: palette.background.value,
       border: palette.primary.value,
       color: palette.primary.value,
     },
     warning: {
-      bg: palette.background,
+      bg: palette.background.value,
       border: palette.warning.value,
       color: palette.warning.value,
     },
     error: {
-      bg: palette.background,
+      bg: palette.background.value,
       border: palette.error.value,
       color: palette.error.value,
     },
@@ -51,9 +51,9 @@ export const getButtonColors = (palette: UIThemesPalette, props: ButtonProps): B
   const { type, disabled, ghost } = props;
   const colors: { [key in ButtonTypes]?: ButtonColorGroup } = {
     default: {
-      bg: palette.background,
-      border: palette.border,
-      color: palette.accents_5,
+      bg: palette.background.value,
+      border: palette.border.value,
+      color: palette.foreground.value,
     },
     secondary: {
       bg: palette.secondary.value,
@@ -88,14 +88,14 @@ export const getButtonColors = (palette: UIThemesPalette, props: ButtonProps): B
     abort: {
       bg: 'transparent',
       border: 'transparent',
-      color: palette.accents_5,
+      color: palette.background.accents.accents_5,
     },
   };
   if (disabled)
     return {
-      bg: palette.accents_1,
-      border: palette.border,
-      color: palette.accents_3,
+      bg: palette.background.accents.accents_1,
+      border: palette.border.value,
+      color: palette.background.accents.accents_3,
     };
 
   const defaultColor = colors.default as ButtonColorGroup;
@@ -111,30 +111,29 @@ export const getButtonGhostHoverColors = (palette: UIThemesPalette, type: Button
       border: palette.secondary.light,
       color: palette.secondary.contrast,
     },
-
     success: {
       bg: palette.success.value,
-      border: palette.background,
+      border: palette.background.value,
       color: 'white',
     },
     warning: {
       bg: palette.warning.value,
-      border: palette.background,
+      border: palette.background.value,
       color: palette.warning.contrast,
     },
     error: {
       bg: palette.error.value,
-      border: palette.background,
+      border: palette.background.value,
       color: palette.error.contrast,
     },
     primary: {
       bg: palette.primary.value,
-      border: palette.background,
+      border: palette.background.value,
       color: palette.primary.contrast,
     },
     tertiary: {
       bg: palette.tertiary.value,
-      border: palette.background,
+      border: palette.background.value,
       color: palette.tertiary.contrast,
     },
   };
@@ -150,9 +149,9 @@ export const getButtonHoverColors = (palette: UIThemesPalette, props: ButtonProp
     };
   } = {
     default: {
-      bg: palette.background,
-      border: palette.foreground,
-      color: palette.foreground,
+      bg: palette.background.accents.accents_0,
+      border: palette.border.dark,
+      color: palette.foreground.value,
     },
     secondary: {
       bg: palette.secondary.light,
@@ -185,15 +184,15 @@ export const getButtonHoverColors = (palette: UIThemesPalette, props: ButtonProp
       color: palette.error.contrast,
     },
     abort: {
-      bg: palette.accents_0,
-      border: palette.accents_0,
-      color: palette.accents_5,
+      bg: palette.background.accents.accents_0,
+      border: palette.background.accents.accents_0,
+      color: palette.background.accents.accents_5,
     },
   };
   if (disabled)
     return {
-      bg: palette.accents_1,
-      border: palette.border,
+      bg: palette.background.accents.accents_1,
+      border: palette.border.value,
       color: '#ccc',
     };
   if (loading)
@@ -219,9 +218,9 @@ export const getButtonActivatedColors = (palette: UIThemesPalette, props: Button
     };
   } = {
     default: {
-      bg: palette.accents_7,
-      border: palette.foreground,
-      color: palette.background,
+      bg: palette.background.accents.accents_1,
+      border: palette.border.darker,
+      color: palette.foreground.value,
     },
 
     secondary: {
@@ -259,15 +258,15 @@ export const getButtonActivatedColors = (palette: UIThemesPalette, props: Button
       color: palette.error.contrast,
     },
     abort: {
-      bg: palette.accents_0,
-      border: palette.accents_0,
-      color: palette.accents_5,
+      bg: palette.background.accents.accents_0,
+      border: palette.background.accents.accents_0,
+      color: palette.background.accents.accents_5,
     },
   };
   if (disabled)
     return {
-      bg: palette.accents_1,
-      border: palette.border,
+      bg: palette.background.accents.accents_1,
+      border: palette.border.value,
       color: '#ccc',
     };
   if (loading)
@@ -308,5 +307,5 @@ export const getButtonCursor = (disabled: boolean, loading: boolean): ButtonCurs
 };
 
 export const getButtonDripColor = (palette: UIThemesPalette) => {
-  return addColorAlpha(palette.accents_2, 0.65);
+  return addColorAlpha(palette.background.accents.accents_2, 0.65);
 };

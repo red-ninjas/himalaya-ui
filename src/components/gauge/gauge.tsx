@@ -25,7 +25,7 @@ export type GaugeProps = Props & NativeAttrs;
 
 const getCurrentColor = (ratio: number, palette: UIThemesPalette, type: GaugeTypes, colors: GaugeColors = {}): string => {
   const defaultColors: { [key in GaugeTypes]: string } = {
-    default: palette.foreground,
+    default: palette.foreground.value,
     success: palette.success.value,
     secondary: palette.secondary.value,
     primary: palette.primary.value,
@@ -71,7 +71,7 @@ const GaugeComponent: React.FC<GaugeProps> = ({
           cy={radius}
           r={radius - strokeWidth / 2}
           fill="none"
-          stroke={theme.palette.accents_1}
+          stroke={theme.palette.background.accents.accents_1}
           strokeWidth={strokeWidth}
           strokeDasharray={dashArray}
         />

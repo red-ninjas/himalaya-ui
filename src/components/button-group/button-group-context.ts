@@ -15,5 +15,4 @@ const defaultContext = {
 };
 
 export const ButtonGroupContext = React.createContext<ButtonGroupConfig>(defaultContext);
-
 export const useButtonGroupContext = (): ButtonGroupConfig => React.useContext<ButtonGroupConfig>(ButtonGroupContext);

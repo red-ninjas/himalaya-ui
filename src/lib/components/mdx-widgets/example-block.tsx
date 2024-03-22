@@ -13,12 +13,12 @@ const getBackground = (theme: UIThemes, plain: number | boolean) => {
   if (typeof plain !== 'number') return theme.palette.primary.value;
 
   const colors = [
-    theme.palette.accents_1,
-    theme.palette.accents_2,
-    theme.palette.accents_3,
-    theme.palette.accents_4,
-    theme.palette.accents_5,
-    theme.palette.accents_6,
+    theme.palette.background.accents.accents_1,
+    theme.palette.background.accents.accents_2,
+    theme.palette.background.accents.accents_3,
+    theme.palette.background.accents.accents_4,
+    theme.palette.background.accents.accents_5,
+    theme.palette.background.accents.accents_6,
   ];
   return colors[plain - 1] || theme.palette.primary.value;
 };
@@ -38,7 +38,7 @@ const ExampleBlock: React.FC<React.PropsWithChildren<ExampleBlockProps>> = React
             background: ${bg};
             padding: ${layout.gapHalf};
             border-radius: ${theme.style.radius};
-            color: ${theme.palette.background};
+            color: ${theme.palette.background.value};
             font-size: 0.75rem;
           }
         `}</style>

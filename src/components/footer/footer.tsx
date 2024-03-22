@@ -29,7 +29,7 @@ const Footer: React.FC<PropsWithChildren<FooterProps>> = ({ children }) => {
           display: flex;
           flex-direction: column;
           flex-wrap: wrap;
-          border-top: 1px solid ${theme.palette.border};
+          border-top: 1px solid ${theme.palette.border.value};
         }
         .blocks {
           display: flex;

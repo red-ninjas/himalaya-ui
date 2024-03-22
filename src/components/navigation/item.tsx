@@ -175,7 +175,7 @@ const NavigationItem: React.FC<PropsWithChildren<NavigationPropsExternal>> = ({
           gap: 3px;
           white-space: nowrap;
           background-color: transparent;
-          color: ${theme.palette.accents_5};
+          color: ${theme.palette.background.accents.accents_5};
           user-select: none;
           display: flex;
           align-items: center;
@@ -205,7 +205,7 @@ const NavigationItem: React.FC<PropsWithChildren<NavigationPropsExternal>> = ({
           height: 2px;
           border-radius: 4px;
           transform: scaleX(0.75);
-          background-color: ${theme.palette.foreground};
+          background-color: ${theme.palette.foreground.value};
           transition:
             opacity,
             transform 200ms ease-in;
@@ -218,7 +218,7 @@ const NavigationItem: React.FC<PropsWithChildren<NavigationPropsExternal>> = ({
         }
 
         .backdrop {
-          background: ${theme.palette.accents_2};
+          background: ${theme.palette.background.accents.accents_2};
           position: absolute;
           border-radius: 5px;
           width: 100%;
@@ -229,19 +229,19 @@ const NavigationItem: React.FC<PropsWithChildren<NavigationPropsExternal>> = ({
         }
 
         .menu-item:hover {
-          color: ${theme.palette.foreground};
+          color: ${theme.palette.foreground.value};
         }
 
         .menu-item.active {
-          color: ${theme.palette.foreground};
+          color: ${theme.palette.foreground.value};
           font-weight: 600;
         }
         .menu-item.is-hover {
-          color: ${theme.palette.background} !important;
+          color: ${theme.palette.background.value} !important;
         }
 
         .menu-item.chevron-active {
-          color: ${theme.palette.foreground};
+          color: ${theme.palette.foreground.value};
         }
 
         :global(.tooltip-content.menu-popover-item > .inner) {

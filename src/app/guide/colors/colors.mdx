@@ -1,11 +1,11 @@
-import { Code, Display } from 'components'
-import { Layout, Colors } from 'lib/components'
+import { Code, Display } from 'components';
+import { Layout, Colors } from 'lib/components';
 
 export const meta = {
   title: 'Colors',
   group: 'Customization',
   index: 20,
-}
+};
 
 # Colors
 
@@ -19,13 +19,13 @@ If you want to customize your colors, please read [use-theme](/hooks/use-theme) 
 <Display w="90%" caption={<span>Get palette from <Code>useTheme</Code>.</span>}>
 
 ```jsx
-import { useTheme } from '@himalaya-ui/core'
+import { useTheme } from '@himalaya-ui/core';
 
 const myComponent = () => {
-  const { palette } = useTheme()
+  const { palette } = useTheme();
 
-  return <p style={{ color: palette.accents_1 }}>myComponent</p>
-}
+  return <p style={{ color: palette.background.accents.accents_1 }}>myComponent</p>;
+};
 ```
 
 </Display>

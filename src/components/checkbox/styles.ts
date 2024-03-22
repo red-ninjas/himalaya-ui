@@ -9,32 +9,32 @@ export type CheckboxColor = {
 export const getColors = (palette: UIThemesPalette, status?: NormalTypes): CheckboxColor => {
   const colors: { [key in NormalTypes]: CheckboxColor } = {
     default: {
-      fill: palette.foreground,
-      bg: palette.background,
+      fill: palette.foreground.value,
+      bg: palette.background.value,
     },
     secondary: {
-      fill: palette.foreground,
-      bg: palette.background,
+      fill: palette.foreground.value,
+      bg: palette.background.value,
     },
     success: {
       fill: palette.success.value,
-      bg: palette.background,
+      bg: palette.background.value,
     },
     warning: {
       fill: palette.warning.value,
-      bg: palette.background,
+      bg: palette.background.value,
     },
     error: {
       fill: palette.error.value,
-      bg: palette.background,
+      bg: palette.background.value,
     },
     primary: {
       fill: palette.primary.value,
-      bg: palette.background,
+      bg: palette.background.value,
     },
     tertiary: {
       fill: palette.tertiary.value,
-      bg: palette.background,
+      bg: palette.background.value,
     },
   };
 

@@ -28,6 +28,7 @@ import { usePathname } from 'next/navigation';
 import React, { useState } from 'react';
 import { Seeds } from '../data';
 import metaData from '../data/metadata.json';
+import { ThemeProvider } from 'components/use-config';
 export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
   const theme = useTheme();
   const layout = useLayout();
@@ -147,48 +148,48 @@ export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
         </MobileMenuProvider>
         <style global jsx>{`
           .tag {
-            color: ${theme.palette.accents_5};
+            color: ${theme.palette.background.accents.accents_5};
           }
           .punctuation {
-            color: ${theme.palette.accents_5};
+            color: ${theme.palette.background.accents.accents_5};
           }
           .attr-name {
-            color: ${theme.palette.accents_6};
+            color: ${theme.palette.background.accents.accents_6};
           }
           .attr-value {
-            color: ${theme.palette.accents_4};
+            color: ${theme.palette.background.accents.accents_4};
           }
           .language-javascript {
-            color: ${theme.palette.accents_4};
+            color: ${theme.palette.background.accents.accents_4};
           }
           span.class-name {
             color: ${theme.palette.warning.value};
           }
           span.maybe-class-name {
-            color: ${theme.palette.code};
+            color: ${theme.palette.code.value};
           }
           span.token.string {
             color: ${theme.palette.success.value};
           }
           span.token.comment {
-            color: ${theme.palette.accents_3};
+            color: ${theme.palette.background.accents.accents_3};
           }
           span.keyword {
             color: ${theme.palette.tertiary.value};
           }
           span.plain-text {
-            color: ${theme.palette.accents_3};
+            color: ${theme.palette.background.accents.accents_3};
           }
           .logo {
             padding-bottom: 6px;
-            color: ${theme.palette.foreground};
+            color: ${theme.palette.foreground.value};
           }
 
           .logo,
           .brand {
             display: inline-flex;
             align-items: center;
-            color: ${theme.palette.foreground};
+            color: ${theme.palette.foreground.value};
           }
 
           .brand {

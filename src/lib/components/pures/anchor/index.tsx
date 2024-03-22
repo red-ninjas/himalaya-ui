@@ -66,7 +66,7 @@ const VirtualAnchor: React.FC<React.PropsWithChildren<Props>> = ({ children, pur
           width: 0.8em;
           height: 0.8em;
           margin-top: 1px;
-          color: ${theme.palette.accents_5};
+          color: ${theme.palette.background.accents.accents_5};
         }
 
         .parent:hover > .icon {

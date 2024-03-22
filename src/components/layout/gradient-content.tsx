@@ -12,8 +12,8 @@ export type CardContentProps = GradientContentProps & NativeAttrs;
 const GradientContentComponent: React.FC<React.PropsWithChildren<CardContentProps>> = ({ children, maxHeight = '50vh', ...props }) => {
   const theme = useTheme();
   const { SCALES } = useScale();
-  const rgba = `rgba(${hexToRgb(theme.palette.accents_1)}, 0.5)`;
-  const defaultGradient = `linear-gradient(to bottom, ${rgba}, ${theme.palette.background})`;
+  const rgba = `rgba(${hexToRgb(theme.palette.background.accents.accents_1)}, 0.5)`;
+  const defaultGradient = `linear-gradient(to bottom, ${rgba}, ${theme.palette.background.value})`;
   return (
     <div className="gradient-layout" {...props}>
       <div className="gradient-content">
@@ -31,7 +31,7 @@ const GradientContentComponent: React.FC<React.PropsWithChildren<CardContentProp
           position: relative;
         }
         .gradient-layout {
-          background: ${theme.palette.background};
+          background: ${theme.palette.background.value};
           height: 100%;
           padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
         }

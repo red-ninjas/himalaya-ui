@@ -65,7 +65,7 @@ const Editor: React.FC<Props> = ({ code }) => {
           overflow: hidden;
           border-bottom-left-radius: ${theme.style.radius};
           border-bottom-right-radius: ${theme.style.radius};
-          background-color: ${theme.palette.accents_0};
+          background-color: ${theme.palette.background.accents.accents_0};
         }
 
         details summary::-webkit-details-marker {
@@ -74,8 +74,8 @@ const Editor: React.FC<Props> = ({ code }) => {
 
         summary {
           box-sizing: border-box;
-          border-top: 1px solid ${theme.palette.border};
-          color: ${theme.palette.accents_5};
+          border-top: 1px solid ${theme.palette.border.value};
+          color: ${theme.palette.background.accents.accents_5};
           width: 100%;
           list-style: none;
           user-select: none;
@@ -108,11 +108,11 @@ const Editor: React.FC<Props> = ({ code }) => {
           box-sizing: border-box;
           white-space: pre;
           font-family: ${theme.font.mono};
-          color: ${theme.palette.foreground};
-          background-color: ${theme.palette.background};
+          color: ${theme.palette.foreground.value};
+          background-color: ${theme.palette.background.value};
           font-size: 1em;
           overflow: hidden;
-          border-top: 1px solid ${theme.palette.border};
+          border-top: 1px solid ${theme.palette.border.value};
           padding: ${layout.gapHalf};
         }
 
@@ -129,12 +129,12 @@ const Editor: React.FC<Props> = ({ code }) => {
         .copy {
           display: inline-flex;
           align-items: center;
-          color: ${theme.palette.accents_4};
+          color: ${theme.palette.background.accents.accents_4};
           transition: color 0.2s ease;
         }
 
         .copy:hover {
-          color: ${theme.palette.accents_6};
+          color: ${theme.palette.background.accents.accents_6};
         }
       `}</style>
     </div>

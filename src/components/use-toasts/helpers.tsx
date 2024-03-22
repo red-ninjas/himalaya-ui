@@ -25,7 +25,7 @@ export const makeToastActions = (actions: Toast['actions'], cancelHandle: () => 
 
 export const getColors = (palette: UIThemesPalette, type?: NormalTypes) => {
   const colors: { [key in NormalTypes]: string } = {
-    default: palette.background,
+    default: palette.background.value,
     secondary: palette.secondary.value,
     success: palette.success.value,
     warning: palette.warning.value,
@@ -37,7 +37,7 @@ export const getColors = (palette: UIThemesPalette, type?: NormalTypes) => {
   if (isDefault)
     return {
       bgColor: colors.default,
-      color: palette.foreground,
+      color: palette.foreground.value,
     };
   /**
    * Prevent main color change in special types.

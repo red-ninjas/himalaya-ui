@@ -31,7 +31,7 @@ const SidebarLink: React.FC<PropsWithChildren<SideBarLinkProp>> = ({ children, i
           }
           .sidebar-link .sidebar-link-icon {
             margin-right: 12px;
-            color: ${theme.palette.accents_3};
+            color: ${theme.palette.background.accents.accents_3};
             transition: all 200ms ease;
             display: inline-flex;
           }
@@ -40,7 +40,7 @@ const SidebarLink: React.FC<PropsWithChildren<SideBarLinkProp>> = ({ children, i
             display: flex;
             align-items: baseline;
             font-size: ${SCALES.font(0.85)};
-            color: ${theme.palette.accents_5};
+            color: ${theme.palette.background.accents.accents_5};
             margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
             padding: ${SCALES.pt(0.6)} 0 ${SCALES.pb(0.6)} 0;
 
@@ -53,20 +53,20 @@ const SidebarLink: React.FC<PropsWithChildren<SideBarLinkProp>> = ({ children, i
           }
 
           .sidebar-link:hover {
-            color: ${theme.palette.foreground};
+            color: ${theme.palette.foreground.value};
           }
 
           .sidebar-link:hover .sidebar-link-icon {
-            color: ${theme.palette.foreground};
+            color: ${theme.palette.foreground.value};
           }
 
           .sidebar-link.active {
-            background: ${activeBackground || theme.palette.secondary.light};
+            background: ${activeBackground || theme.palette.foreground.accents.accents_8};
           }
 
           .sidebar-link.active .sidebar-link-title,
           .sidebar-link.active .sidebar-link-icon {
-            color: ${activeColor || theme.palette.secondary.contrast};
+            color: ${activeColor || theme.palette.background.contrast};
           }
         `}</style>
       </a>

@@ -1,14 +1,15 @@
 'use client';
 import React, { useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react';
+import useClasses from '../use-classes';
+import useScale, { withScale } from '../use-scale';
 import useTheme from '../use-theme';
-import InputLabel from './input-label';
+import { addColorAlpha } from '../utils/color';
 import InputBlockLabel from './input-block-label';
 import InputIcon from './input-icon';
 import InputClearIcon from './input-icon-clear';
+import InputLabel from './input-label';
+import { InputTypes, Props } from './input-props';
 import { getColors } from './styles';
-import { Props, InputTypes } from './input-props';
-import useScale, { withScale } from '../use-scale';
-import useClasses from '../use-classes';
 
 type NativeAttrs = Omit<React.InputHTMLAttributes<any>, keyof Props>;
 export type InputProps = Props & NativeAttrs;
@@ -165,13 +166,15 @@ const InputComponent = React.forwardRef<HTMLInputElement, React.PropsWithChildre
             height: 100%;
             flex: 1;
             user-select: none;
+            border: 0;
             border-radius: ${SCALES.r(1, theme.style.radius)};
             border-color: ${borderColor};
             border-width: ${hasBorder ? '1px' : '0'};
             border-style: solid;
             transition:
-              border 0.2s ease 0s,
-              color 0.2s ease 0s;
+              border 200ms ease 0s,
+              color 200ms ease 0s;
+              box-shadow 200ms ease 0s;
           }
 
           .input-wrapper.left-label {
@@ -185,8 +188,8 @@ const InputComponent = React.forwardRef<HTMLInputElement, React.PropsWithChildre
           }
 
           .input-wrapper.disabled {
-            background-color: ${theme.palette.accents_1};
-            border-color: ${theme.palette.border};
+            background-color: ${theme.palette.background.accents.accents_1};
+            border-color: ${theme.palette.border.value};
             cursor: not-allowed;
           }
 
@@ -196,6 +199,7 @@ const InputComponent = React.forwardRef<HTMLInputElement, React.PropsWithChildre
 
           .input-wrapper.hover {
             border-color: ${hoverBorder};
+            box-shadow: ${hasBorder ? `0 0 0 4px ${addColorAlpha(hoverBorder, 0.2)}` : `none`};
           }
 
           input {
@@ -225,7 +229,7 @@ const InputComponent = React.forwardRef<HTMLInputElement, React.PropsWithChildre
           ::-moz-placeholder,
           :-ms-input-placeholder,
           ::-webkit-input-placeholder {
-            color: ${theme.palette.accents_3};
+            color: ${theme.palette.background.accents.accents_3};
           }
 
           ::-ms-reveal {
@@ -236,7 +240,7 @@ const InputComponent = React.forwardRef<HTMLInputElement, React.PropsWithChildre
           input:-webkit-autofill:hover,
           input:-webkit-autofill:active,
           input:-webkit-autofill:focus {
-            -webkit-box-shadow: 0 0 0 30px ${theme.palette.background} inset !important;
+            -webkit-box-shadow: 0 0 0 30px ${theme.palette.background.value} inset !important;
             -webkit-text-fill-color: ${color} !important;
           }
         `}</style>

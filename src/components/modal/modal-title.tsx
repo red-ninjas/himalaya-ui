@@ -35,7 +35,7 @@ const ModalTitleComponent: React.FC<React.PropsWithChildren<ModalTitleProps>> = 
           word-break: break-word;
           text-transform: capitalize;
           font-size: ${SCALES.font(1.5)};
-          color: ${theme.palette.foreground};
+          color: ${theme.palette.foreground.value};
           width: ${SCALES.w(1, 'auto')};
           height: ${SCALES.h(1, 'auto')};
           padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};

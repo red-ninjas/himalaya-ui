@@ -17,7 +17,6 @@ export interface UIThemesAccents {
   accents_darker: string;
   accents_0: string;
   accents_1: string;
-  foreground: string;
   accents_2: string;
   accents_3: string;
   accents_4: string;
@@ -25,22 +24,21 @@ export interface UIThemesAccents {
   accents_6: string;
   accents_7: string;
   accents_8: string;
-  border: string;
-  background: string;
-  highlite: string;
 }
 export interface UIThemesColors {
-  primary: ColorVariable;
+  background: ColorVariable;
+  foreground: ColorVariable;
   secondary: ColorVariable;
   tertiary: ColorVariable;
   success: ColorVariable;
   error: ColorVariable;
+  primary: ColorVariable;
   warning: ColorVariable;
   link: ColorVariable;
-  code: string;
-  paragraph: string;
-  selection: string;
-  codeBg: string;
+  code: ColorVariable;
+  paragraph: ColorVariable;
+  codeBg: ColorVariable;
+  border: ColorVariable;
 }
 
 export interface UIThemesCore {
@@ -48,7 +46,7 @@ export interface UIThemesCore {
   gradient_2: Gradient;
   gradient_3: Gradient;
 }
-export type UIThemesPalette = UIThemesCore & UIThemesColors & UIThemesAccents;
+export type UIThemesPalette = UIThemesCore & UIThemesColors;
 
 export interface UIThemesExpressiveness {
   linkStyle: string;

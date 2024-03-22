@@ -36,7 +36,7 @@ const CardFooterComponent: React.FC<React.PropsWithChildren<CardFooterProps>> = 
           color: inherit;
           background-color: inherit;
           font-size: ${SCALES.font(0.875)};
-          border-top: 1px solid ${theme.palette.border};
+          border-top: 1px solid ${theme.palette.border.value};
           border-bottom-left-radius: ${theme.style.radius};
           border-bottom-right-radius: ${theme.style.radius};
           min-height: ${SCALES.h(3.3)};

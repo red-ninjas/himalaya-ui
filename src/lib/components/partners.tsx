@@ -7,7 +7,7 @@ export default function Partners() {
   return (
     <FadeInEffect translateY="4rem">
       <div className="carousel">
-        <Text mb={1.2} small style={{ color: theme.palette.accents_4, textTransform: 'uppercase' }}>
+        <Text mb={1.2} small style={{ color: theme.palette.background.accents.accents_4, textTransform: 'uppercase' }}>
           With heavy support from
         </Text>
         <PageWidth>
@@ -67,7 +67,7 @@ export default function Partners() {
             align-items: center;
             justify-items: center;
             font-size: clamp(24px, 21vw, 36px);
-            color: ${theme.palette.accents_6};
+            color: ${theme.palette.background.accents.accents_6};
             width: 100%;
             height: 100%;
           }
@@ -77,7 +77,7 @@ export default function Partners() {
           }
 
           :global(a.partner:hover) {
-            color: ${theme.palette.foreground};
+            color: ${theme.palette.foreground.value};
           }
         `}</style>
       </div>

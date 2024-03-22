@@ -136,8 +136,8 @@ const MobileNavigationGroup: React.FC<PropsWithChildren<MobileNavigationGroupPro
           gap: 3px;
           white-space: nowrap;
           background-color: transparent;
-          color: ${theme.palette.accents_5};
-          border-bottom: 1px solid ${theme.palette.border};
+          color: ${theme.palette.background.accents.accents_5};
+          border-bottom: 1px solid ${theme.palette.border.value};
           user-select: none;
           display: flex;
           align-items: center;
@@ -184,7 +184,7 @@ const MobileNavigationGroup: React.FC<PropsWithChildren<MobileNavigationGroupPro
           height: 2px;
           border-radius: 4px;
           transform: scaleX(0.75);
-          background-color: ${theme.palette.foreground};
+          background-color: ${theme.palette.foreground.value};
           transition:
             opacity,
             transform 200ms ease-in;
@@ -197,7 +197,7 @@ const MobileNavigationGroup: React.FC<PropsWithChildren<MobileNavigationGroupPro
         }
 
         .backdrop {
-          background: ${theme.palette.accents_2};
+          background: ${theme.palette.background.accents.accents_2};
           position: absolute;
           border-radius: 5px;
           width: 100%;

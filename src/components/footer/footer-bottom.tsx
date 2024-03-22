@@ -23,7 +23,7 @@ const FooterBottom: React.FC<PropsWithChildren<FooterProps>> = ({ children }) =>
       </div>
       <style jsx>{`
         .footer-bottom {
-          border-top: 1px solid ${theme.palette.border};
+          border-top: 1px solid ${theme.palette.border.value};
           padding: ${SCALES.pt(0.75)} ${SCALES.pr(0)} ${SCALES.pb(0.75)} ${SCALES.pl(0)};
           margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
         }

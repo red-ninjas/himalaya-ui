@@ -6,7 +6,7 @@ import { addColorAlpha } from 'components/utils/color';
 
 const GridDemo: React.FC<React.PropsWithChildren<unknown>> = ({ children }) => {
   const theme = useTheme();
-  const bgColor = addColorAlpha(theme.palette.accents_2, 0.5);
+  const bgColor = addColorAlpha(theme.palette.background.accents.accents_2, 0.5);
   return (
     <div className="grid-demo">
       {children}

@@ -117,7 +117,7 @@ const ToggleComponent: React.FC<ToggleProps> = ({
           transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
           position: relative;
           border: 1px solid transparent;
-          background-color: ${theme.palette.accents_2};
+          background-color: ${theme.palette.background.accents.accents_2};
           padding: 0;
         }
 
@@ -133,21 +133,21 @@ const ToggleComponent: React.FC<ToggleProps> = ({
             rgba(0, 0, 0, 0.1) 0 1px 3px 0;
           transition: left 280ms cubic-bezier(0, 0, 0.2, 1);
           border-radius: 50%;
-          background-color: ${theme.palette.background};
+          background-color: ${theme.palette.background.value};
         }
 
         .disabled {
-          border-color: ${theme.palette.border};
-          background-color: ${theme.palette.accents_1};
+          border-color: ${theme.palette.border.value};
+          background-color: ${theme.palette.background.accents.accents_1};
         }
 
         .disabled > .inner {
-          background-color: ${theme.palette.accents_2};
+          background-color: ${theme.palette.background.accents.accents_2};
         }
 
         .disabled.checked {
-          border-color: ${theme.palette.accents_4};
-          background-color: ${theme.palette.accents_4};
+          border-color: ${theme.palette.background.accents.accents_4};
+          background-color: ${theme.palette.background.accents.accents_4};
         }
 
         .checked {

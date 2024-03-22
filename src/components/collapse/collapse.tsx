@@ -74,8 +74,8 @@ const CollapseComponent: React.FC<React.PropsWithChildren<CollapseProps>> = ({
       </Expand>
       <style jsx>{`
         .collapse {
-          border-top: 1px solid ${theme.palette.border};
-          border-bottom: 1px solid ${theme.palette.border};
+          border-top: 1px solid ${theme.palette.border.value};
+          border-bottom: 1px solid ${theme.palette.border.value};
           font-size: ${SCALES.font(1)};
           width: ${SCALES.w(1, 'auto')};
           height: ${SCALES.h(1, 'auto')};
@@ -99,14 +99,14 @@ const CollapseComponent: React.FC<React.PropsWithChildren<CollapseProps>> = ({
           display: flex;
           justify-content: space-between;
           align-items: center;
-          color: ${theme.palette.foreground};
+          color: ${theme.palette.foreground.value};
           font-weight: bold;
           margin: 0;
           font-size: ${SCALES.font(1.25)};
         }
 
         .subtitle {
-          color: ${theme.palette.accents_5};
+          color: ${theme.palette.background.accents.accents_5};
           margin: 0;
         }
 

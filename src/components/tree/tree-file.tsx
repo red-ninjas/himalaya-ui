@@ -67,7 +67,7 @@ const TreeFile: React.FC<React.PropsWithChildren<TreeFileProps>> = ({
           transform: translateY(-50%);
           width: 1px;
           height: 100%;
-          background-color: ${theme.palette.accents_2};
+          background-color: ${theme.palette.background.accents.accents_2};
           margin-left: -1px;
         }
 
@@ -81,7 +81,7 @@ const TreeFile: React.FC<React.PropsWithChildren<TreeFileProps>> = ({
 
         .name {
           transition: opacity 100ms ease 0ms;
-          color: ${theme.palette.accents_8};
+          color: ${theme.palette.background.accents.accents_8};
           white-space: nowrap;
           font-size: 0.875rem;
         }
@@ -90,7 +90,7 @@ const TreeFile: React.FC<React.PropsWithChildren<TreeFileProps>> = ({
           font-size: 0.75rem;
           align-self: baseline;
           padding-left: 4px;
-          color: ${theme.palette.accents_5};
+          color: ${theme.palette.background.accents.accents_5};
         }
 
         .name:hover {

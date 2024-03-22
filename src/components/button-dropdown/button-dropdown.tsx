@@ -67,7 +67,7 @@ const ButtonDropdownComponent: React.FC<React.PropsWithChildren<ButtonDropdownPr
     loading,
   };
   const bgColor = useMemo(() => {
-    if (disabled || loading) return theme.palette.accents_1;
+    if (disabled || loading) return theme.palette.background.accents.accents_1;
     return visible ? colors.hoverBgColor : colors.bgColor;
   }, [visible, colors, theme.palette]);
   const [paddingLeft, paddingRight] = [auto ? SCALES.pl(1.15) : SCALES.pl(1.375), auto ? SCALES.pr(1.15) : SCALES.pr(1.375)];
@@ -104,7 +104,7 @@ const ButtonDropdownComponent: React.FC<React.PropsWithChildren<ButtonDropdownPr
             display: inline-flex;
             position: relative;
             box-sizing: border-box;
-            border: 1px solid ${theme.palette.border};
+            border: 1px solid ${theme.palette.border.value};
             border-radius: ${SCALES.r(1, theme.style.radius)};
             --ui-dropdown-height: ${SCALES.h(2.5)};
             --ui-dropdown-min-width: ${auto ? 'min-content' : SCALES.w(10.5)};
@@ -165,7 +165,7 @@ const ButtonDropdownComponent: React.FC<React.PropsWithChildren<ButtonDropdownPr
             border-radius: ${SCALES.r(1, theme.style.radius)};
             box-shadow: ${theme.expressiveness.shadowLarge};
             transform: translateY(${layout.gapHalf});
-            background-color: ${theme.palette.background};
+            background-color: ${theme.palette.background.value};
           }
 
           .content > :global(button:first-of-type) {

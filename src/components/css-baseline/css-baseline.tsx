@@ -11,8 +11,8 @@ const CssBaseline: React.FC = () => {
   return (
     <style jsx global>{`
       body {
-        background-color: ${theme.palette.background};
-        color: ${theme.palette.foreground};
+        background-color: ${theme.palette.background.value};
+        color: ${theme.palette.foreground.value};
 
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
@@ -26,8 +26,8 @@ const CssBaseline: React.FC = () => {
         font-family: ${theme.font.sans};
         font-size: ${theme.font.baseSize + 'px'};
 
-        --ui-icon-background: ${theme.palette.background};
-        --ui-icon-foreground: ${theme.palette.foreground};
+        --ui-icon-background: ${theme.palette.background.value};
+        --ui-icon-foreground: ${theme.palette.foreground.value};
       }
 
       *,
@@ -90,7 +90,7 @@ const CssBaseline: React.FC = () => {
         padding: 0;
         list-style-type: none;
         margin: ${layout.gapHalf} ${layout.gapHalf} ${layout.gapHalf} ${layout.gap};
-        color: ${theme.palette.foreground};
+        color: ${theme.palette.foreground.value};
         position: relative;
       }
 
@@ -107,7 +107,7 @@ const CssBaseline: React.FC = () => {
       ul li:before {
         content: '–';
         display: inline-block;
-        color: ${theme.palette.accents_4};
+        color: ${theme.palette.background.accents.accents_4};
         position: absolute;
         margin-left: -0.9375em;
       }
@@ -183,8 +183,8 @@ const CssBaseline: React.FC = () => {
       }
 
       code {
-        color: ${theme.palette.code};
-        background-color: ${theme.palette.codeBg};
+        color: ${theme.palette.code.value};
+        background-color: ${theme.palette.codeBg.value};
         font-family: ${theme.font.mono};
         font-size: 0.9em;
         white-space: pre-wrap;
@@ -199,7 +199,7 @@ const CssBaseline: React.FC = () => {
       pre {
         padding: calc(${layout.gap} * 0.9) ${layout.gap};
         margin: ${layout.gap} 0;
-        border: 1px solid ${theme.palette.border};
+        border: 1px solid ${theme.palette.border.value};
         border-radius: ${theme.style.radius};
         font-family: ${theme.font.mono};
         white-space: pre;
@@ -211,7 +211,7 @@ const CssBaseline: React.FC = () => {
       }
 
       pre code {
-        color: ${theme.palette.code};
+        color: ${theme.palette.code.value};
         font-size: 1em;
         line-height: 1.25em;
         white-space: pre;
@@ -234,11 +234,11 @@ const CssBaseline: React.FC = () => {
       }
 
       hr {
-        border-color: ${theme.palette.border};
+        border-color: ${theme.palette.border.value};
       }
 
       details {
-        background-color: ${theme.palette.accents_1};
+        background-color: ${theme.palette.background.accents.accents_1};
         border: none;
       }
 
@@ -274,11 +274,11 @@ const CssBaseline: React.FC = () => {
 
       blockquote {
         padding: calc(0.667 * ${layout.gap}) ${layout.gap};
-        color: ${theme.palette.accents_5};
-        background-color: ${theme.palette.accents_0};
+        color: ${theme.palette.background.accents.accents_5};
+        background-color: ${theme.palette.background.accents.accents_0};
         border-radius: ${theme.style.radius};
         margin: 1.5em 0;
-        border: 1px solid ${theme.palette.border};
+        border: 1px solid ${theme.palette.border.value};
       }
 
       blockquote :global(*:first-child) {
@@ -287,11 +287,6 @@ const CssBaseline: React.FC = () => {
 
       blockquote :global(*:last-child) {
         margin-bottom: 0;
-      }
-
-      ::selection {
-        background-color: ${theme.palette.selection};
-        color: ${theme.palette.foreground};
       }
 
       .shine-effect {
@@ -309,8 +304,8 @@ const CssBaseline: React.FC = () => {
           to right,
           transparent 20%,
           transparent 40%,
-          ${theme.palette.accents_3} 50%,
-          ${theme.palette.accents_3} 55%,
+          ${theme.palette.background.accents.accents_3} 50%,
+          ${theme.palette.background.accents.accents_3} 55%,
           transparent 70%,
           transparent 100%
         );

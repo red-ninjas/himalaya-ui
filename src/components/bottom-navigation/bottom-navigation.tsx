@@ -37,7 +37,7 @@ const BottomNavigation: React.FC<React.PropsWithChildren<BottomNavigationProps>>
           bottom: 0;
           left: 0;
           width: 100%;
-          background-color: ${theme.palette.background};
+          background-color: ${theme.palette.background.value};
           display: flex;
           justify-content: space-around;
           padding: 10px 0;
@@ -46,7 +46,7 @@ const BottomNavigation: React.FC<React.PropsWithChildren<BottomNavigationProps>>
         }
         .transcluent {
           backdrop-filter: saturate(180%) blur(5px);
-          background-color: ${addColorAlpha(theme.palette.background, 0.8)};
+          background-color: ${addColorAlpha(theme.palette.background.value, 0.8)};
         }
       `}</style>
     </div>

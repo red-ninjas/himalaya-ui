@@ -35,8 +35,7 @@ const QuickBarComponent: React.FC<PropsWithChildren<QuickBarProps>> = ({ childre
           top: 0;
           height: 100%;
           position: fixed;
-          background: ${theme.palette.accents_darker};
-          border-right: 1px solid ${theme.palette.border};
+          border-right: 1px solid ${theme.palette.border.value};
           transition: all var(--quickbar-transition) ease;
           transform: translateX(var(--quickbar-position, 0));
         }

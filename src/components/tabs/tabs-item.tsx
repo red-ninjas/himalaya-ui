@@ -62,14 +62,14 @@ const TabsItemComponent: React.FC<React.PropsWithChildren<TabsItemProps>> = ({
             text-transform: capitalize;
             white-space: nowrap;
             background-color: transparent;
-            color: ${theme.palette.accents_5};
+            color: ${theme.palette.background.accents.accents_5};
             user-select: none;
             display: flex;
             align-items: center;
             line-height: normal;
           }
           .tab:hover {
-            color: ${theme.palette.foreground};
+            color: ${theme.palette.foreground.value};
           }
           .tab:after {
             position: absolute;
@@ -99,10 +99,10 @@ const TabsItemComponent: React.FC<React.PropsWithChildren<TabsItemProps>> = ({
             margin-left: 0;
           }
           .active {
-            color: ${theme.palette.foreground};
+            color: ${theme.palette.foreground.value};
           }
           .disabled {
-            color: ${theme.palette.accents_3};
+            color: ${theme.palette.background.accents.accents_3};
             cursor: not-allowed;
           }
           .hide-border:before {

@@ -6,6 +6,7 @@ import useWarning from '../utils/use-warning';
 import Ellipsis from '../shared/ellipsis';
 import useScale, { withScale } from '../use-scale';
 import useClasses from '../use-classes';
+import Check from '../icons/check';
 
 interface Props {
   value?: string;
@@ -14,6 +15,7 @@ interface Props {
   divider?: boolean;
   label?: boolean;
   preventAllEvents?: boolean;
+  hasCheckmark?: boolean;
 }
 
 type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
@@ -27,6 +29,7 @@ const SelectOptionComponent: React.FC<React.PropsWithChildren<SelectOptionProps>
   divider = false,
   label = false,
   preventAllEvents = false,
+  hasCheckmark = true,
   ...props
 }: React.PropsWithChildren<SelectOptionProps>) => {
   const theme = useTheme();
@@ -48,19 +51,19 @@ const SelectOptionComponent: React.FC<React.PropsWithChildren<SelectOptionProps>
   }, [identValue, value]);
 
   const bgColor = useMemo(() => {
-    if (isDisabled) return theme.palette.accents_1;
-    return selected ? theme.palette.accents_2 : theme.palette.background;
-  }, [selected, isDisabled, theme.palette]);
+    if (isDisabled) return theme.palette.background.accents.accents_1;
+    return theme.palette.background.value;
+  }, [isDisabled, theme.palette]);
 
   const hoverBgColor = useMemo(() => {
-    if (isDisabled || isLabel || selected) return bgColor;
-    return theme.palette.accents_1;
-  }, [selected, isDisabled, theme.palette, isLabel, bgColor]);
+    if (isDisabled || isLabel) return bgColor;
+    return theme.palette.background.accents.accents_0;
+  }, [isDisabled, theme.palette, isLabel, bgColor]);
 
   const color = useMemo(() => {
-    if (isDisabled) return theme.palette.accents_4;
-    return selected ? theme.palette.foreground : theme.palette.accents_5;
-  }, [selected, isDisabled, theme.palette]);
+    if (isDisabled) return theme.palette.background.accents.accents_4;
+    return theme.palette.foreground.value;
+  }, [isDisabled, theme.palette]);
 
   const clickHandler = (event: React.MouseEvent<HTMLDivElement>) => {
     if (preventAllEvents) return;
@@ -73,8 +76,23 @@ const SelectOptionComponent: React.FC<React.PropsWithChildren<SelectOptionProps>
 
   return (
     <div className={classes} onClick={clickHandler} {...props}>
-      <Ellipsis height={SCALES.h(2.25)}>{children}</Ellipsis>
+      <div className="option-input">
+        <Ellipsis height={SCALES.h(2.25)}>{children}</Ellipsis>
+        {selected && hasCheckmark && (
+          <div className="option-check">
+            <Check size={SCALES.h(1)}></Check>
+          </div>
+        )}
+      </div>
       <style jsx>{`
+        .option-input {
+          display: flex;
+          max-width: 100%;
+          box-sizing: border-box;
+          align-items: center;
+          place-content: space-between;
+          width: 100%;
+        }
         .option {
           display: flex;
           max-width: 100%;
@@ -90,7 +108,7 @@ const SelectOptionComponent: React.FC<React.PropsWithChildren<SelectOptionProps>
           transition:
             background 0.2s ease 0s,
             border-color 0.2s ease 0s;
-          --select-font-size: ${SCALES.font(0.75)};
+          --select-font-size: ${SCALES.font(0.875)};
           font-size: var(--select-font-size);
           width: ${SCALES.w(1, '100%')};
           height: ${SCALES.h(2.25)};
@@ -100,13 +118,13 @@ const SelectOptionComponent: React.FC<React.PropsWithChildren<SelectOptionProps>
 
         .option:hover {
           background-color: ${hoverBgColor};
-          color: ${theme.palette.accents_7};
+          color: ${theme.palette.foreground.value};
         }
 
         .divider {
           line-height: 0;
           overflow: hidden;
-          border-top: 1px solid ${theme.palette.border};
+          border-top: 1px solid ${theme.palette.border.value};
           width: ${SCALES.w(1, '100%')};
           height: ${SCALES.h(1, 0)};
           padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
@@ -114,8 +132,8 @@ const SelectOptionComponent: React.FC<React.PropsWithChildren<SelectOptionProps>
         }
 
         .label {
-          color: ${theme.palette.accents_7};
-          border-bottom: 1px solid ${theme.palette.border};
+          color: ${theme.palette.background.accents.accents_7};
+          border-bottom: 1px solid ${theme.palette.border.value};
           cursor: default;
           font-size: ${SCALES.font(0.875)};
           width: ${SCALES.w(1, '100%')};

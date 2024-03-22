@@ -41,15 +41,15 @@ const getStatusColor = (type: NoteTypes, filled: boolean, theme: UIThemes) => {
 
   if (!filled)
     return {
-      color: statusColor || theme.palette.foreground,
-      borderColor: borderColorsType || theme.palette.border,
-      bgColor: theme.palette.background,
+      color: statusColor || theme.palette.foreground.value,
+      borderColor: borderColorsType || theme.palette.border.value,
+      bgColor: theme.palette.background.value,
     };
-  const filledColor = statusColor ? 'white' : theme.palette.background;
+  const filledColor = statusColor ? 'white' : theme.palette.background.value;
   return {
     color: filledColor,
-    borderColor: borderColorsType || theme.palette.foreground,
-    bgColor: statusColor || theme.palette.foreground,
+    borderColor: borderColorsType || theme.palette.foreground.value,
+    bgColor: statusColor || theme.palette.foreground.value,
   };
 };
 

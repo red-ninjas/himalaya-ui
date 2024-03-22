@@ -10,49 +10,49 @@ export type SnippetStyles = {
 export const getStyles = (type: SnippetTypes, palette: UIThemesPalette, fill?: boolean) => {
   const styles: { [key in SnippetTypes]: SnippetStyles } = {
     default: {
-      color: palette.foreground,
-      border: palette.border,
-      bgColor: palette.background,
+      color: palette.foreground.value,
+      border: palette.border.value,
+      bgColor: palette.background.value,
     },
     success: {
       color: palette.success.value,
       border: palette.success.value,
-      bgColor: palette.background,
+      bgColor: palette.background.value,
     },
     warning: {
       color: palette.warning.value,
       border: palette.warning.value,
-      bgColor: palette.background,
+      bgColor: palette.background.value,
     },
     error: {
       color: palette.error.value,
       border: palette.error.value,
-      bgColor: palette.background,
+      bgColor: palette.background.value,
     },
     secondary: {
       color: palette.secondary.value,
       border: palette.secondary.value,
-      bgColor: palette.background,
+      bgColor: palette.background.value,
     },
     primary: {
       color: palette.primary.value,
       border: palette.primary.value,
-      bgColor: palette.background,
+      bgColor: palette.background.value,
     },
     tertiary: {
       color: palette.tertiary.value,
       border: palette.tertiary.value,
-      bgColor: palette.background,
+      bgColor: palette.background.value,
     },
     lite: {
-      color: palette.foreground,
-      border: palette.border,
-      bgColor: palette.accents_1,
+      color: palette.foreground.value,
+      border: palette.border.value,
+      bgColor: palette.background.accents.accents_1,
     },
     dark: {
-      color: palette.background,
-      border: palette.foreground,
-      bgColor: palette.foreground,
+      color: palette.background.value,
+      border: palette.foreground.value,
+      bgColor: palette.foreground.value,
     },
   };
 

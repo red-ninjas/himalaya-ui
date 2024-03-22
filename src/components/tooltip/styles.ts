@@ -8,17 +8,17 @@ export type TooltipColors = {
 
 export const getColors = (type: SnippetTypes, palette: UIThemesPalette): TooltipColors => {
   const colors: { [key in SnippetTypes]: string } = {
-    default: palette.background,
+    default: palette.background.value,
     success: palette.success.value,
     warning: palette.warning.value,
     error: palette.error.value,
     secondary: palette.secondary.value,
     primary: palette.primary.value,
     tertiary: palette.tertiary.value,
-    dark: palette.foreground,
-    lite: palette.background,
+    dark: palette.foreground.value,
+    lite: palette.background.value,
   };
-  const color = type === 'lite' || type === 'default' ? palette.foreground : palette.background;
+  const color = type === 'lite' || type === 'default' ? palette.foreground.value : palette.background.value;
 
   return {
     color,

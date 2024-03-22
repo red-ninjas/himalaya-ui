@@ -108,7 +108,7 @@ const TextChild: React.FC<React.PropsWithChildren<TextChildProps>> = ({
       <style jsx>{`
         .stroke {
           color: transparent;
-          -webkit-text-stroke: ${Number(stroke) ? stroke + 'px' : stroke} ${defaultColor !== 'inherit' ? theme.palette.foreground : defaultColor};
+          -webkit-text-stroke: ${Number(stroke) ? stroke + 'px' : stroke} ${defaultColor !== 'inherit' ? theme.palette.foreground.value : defaultColor};
         }
 
         ${tag} {

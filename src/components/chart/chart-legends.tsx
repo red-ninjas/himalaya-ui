@@ -21,7 +21,7 @@ const ChartLegends: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({ ...props
     series &&
     series.length > 0 && (
       <div {...props} className="chart-legends">
-        <Text pr={1.5} small style={{ color: theme.palette.accents_3 }}>
+        <Text pr={1.5} small style={{ color: theme.palette.background.accents.accents_3 }}>
           Legend
         </Text>
         <Checkbox.Group scale={0.75} className="legends" onChange={onVisibleChanged} value={series.filter(df => df.visible).map(df => df.key)}>
@@ -37,7 +37,7 @@ const ChartLegends: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({ ...props
             display: flex;
             flex-wrap: wrap;
             align-items: center;
-            background: ${theme.palette.accents_0};
+            background: ${theme.palette.background.accents.accents_0};
             border-radius: 0 0 ${theme.style.radius} ${theme.style.radius};
             padding: ${SCALES.pt(0.475)} ${SCALES.pr(0.875)} ${SCALES.pb(0.475)} ${SCALES.pl(0.875)};
             margin: ${SCALES.mt(1)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};

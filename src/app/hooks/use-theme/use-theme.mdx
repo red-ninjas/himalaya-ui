@@ -1,11 +1,11 @@
-import { Layout, Playground, Attributes } from 'lib/components'
-import { Button, useTheme, useLayout } from 'components'
+import { Layout, Playground, Attributes } from 'lib/components';
+import { Button, useTheme, useLayout } from 'components';
 
 export const meta = {
   title: 'useTheme',
   group: 'Development',
   index: 100,
-}
+};
 
 # useTheme
 
@@ -31,11 +31,11 @@ switching themes in the upper right corner of the website, the color of the comp
         width: '200px',
         height: '50px',
         borderRadius: theme.style.radius,
-        background: theme.palette.accents_2
+        background: theme.palette.background.accents.accents_2
       }}
     >
       <span style={{
-          color: theme.palette.accents_7,
+          color: theme.palette.background.accents.accents_7,
           pl: layout.gapQuarter
         }}
       >My first component.</span>
@@ -49,23 +49,23 @@ switching themes in the upper right corner of the website, the color of the comp
 <Attributes.Title>useTheme</Attributes.Title>
 
 ```ts
-const theme: UIThemes = useTheme()
+const theme: UIThemes = useTheme();
 
 export type UIThemes = {
-  type: string
-  font: UIThemesFont
-  palette: UIThemesPalette
-  breakpoints: UIThemesBreakpoints
-  expressiveness: UIThemesExpressiveness
-}
+  type: string;
+  font: UIThemesFont;
+  palette: UIThemesPalette;
+  breakpoints: UIThemesBreakpoints;
+  expressiveness: UIThemesExpressiveness;
+};
 ```
 
 <Attributes.Title>Get preset types</Attributes.Title>
 
 ```ts
-import { UIThemes, UIThemesFont, UIThemesPalette, UIThemesExpressiveness } from '@himalaya-ui/core'
+import { UIThemes, UIThemesFont, UIThemesPalette, UIThemesExpressiveness } from '@himalaya-ui/core';
 
-const myFontTheme: UIThemesFont = {}
+const myFontTheme: UIThemesFont = {};
 ```
 
 </Attributes>

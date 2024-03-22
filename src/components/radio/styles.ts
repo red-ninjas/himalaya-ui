@@ -10,9 +10,9 @@ export type RadioColor = {
 export const getColors = (palette: UIThemesPalette, status?: NormalTypes): RadioColor => {
   const colors: { [key in NormalTypes]: RadioColor } = {
     default: {
-      label: palette.foreground,
-      border: palette.border,
-      bg: palette.foreground,
+      label: palette.foreground.value,
+      border: palette.border.value,
+      bg: palette.foreground.value,
     },
     secondary: {
       label: palette.secondary.value,
