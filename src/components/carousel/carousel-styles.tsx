@@ -15,7 +15,7 @@ const CarouseStyles: React.FC<
       {children}
       <style jsx>{`
         .carousel-wrapper {
-          --carousel-pagination-item-bg: ${theme.palette.foreground.value};
+          --carousel-pagination-item-bg: ${theme.palette.foreground.hex_1000};
           --carousel-arrow-bg: ${theme.palette.background.hex_500};
           --carousel-arrow-bg-color: ${theme.palette.background.hex_200};
           --carousel-arrow-hover: ${theme.palette.background.hex_300};

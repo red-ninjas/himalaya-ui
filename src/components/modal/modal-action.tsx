@@ -40,11 +40,11 @@ const ModalActionComponent = React.forwardRef<HTMLButtonElement, React.PropsWith
     };
 
     const color = useMemo(() => {
-      return passive ? theme.palette.background.hex_400 : theme.palette.foreground.value;
+      return passive ? theme.palette.background.hex_400 : theme.palette.foreground.hex_1000;
     }, [theme.palette, passive, disabled]);
 
     const bgColor = useMemo(() => {
-      return disabled ? theme.palette.background.hex_800 : theme.palette.background.value;
+      return disabled ? theme.palette.background.hex_800 : theme.palette.background.hex_1000;
     }, [theme.palette, disabled]);
 
     const { className: resolveClassName, styles } = css.resolve`
@@ -52,7 +52,7 @@ const ModalActionComponent = React.forwardRef<HTMLButtonElement, React.PropsWith
         font-size: ${SCALES.font(0.75)};
         border: none;
         color: ${color};
-        background-color: ${theme.palette.background.value};
+        background-color: ${theme.palette.background.hex_1000};
         display: flex;
         -webkit-box-align: center;
         align-items: center;
@@ -65,7 +65,7 @@ const ModalActionComponent = React.forwardRef<HTMLButtonElement, React.PropsWith
       }
       button.btn:hover,
       button.btn:focus {
-        color: ${disabled ? color : theme.palette.foreground.value};
+        color: ${disabled ? color : theme.palette.foreground.hex_1000};
         background-color: ${disabled ? bgColor : theme.palette.background.hex_800};
       }
     `;

@@ -17,9 +17,9 @@ type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
 export type CapacityProps = Props & NativeAttrs;
 
 const getColor = (val: number, palette: UIThemesPalette): string => {
-  if (val < 33) return palette.success.value;
-  if (val < 66) return palette.warning.value;
-  return palette.error.value;
+  if (val < 33) return palette.success.hex_1000;
+  if (val < 66) return palette.warning.hex_1000;
+  return palette.error.hex_1000;
 };
 
 const CapacityComponent: React.FC<CapacityProps> = ({ value = 0, limit = 100, color: userColor = '', className = '', ...props }: CapacityProps) => {

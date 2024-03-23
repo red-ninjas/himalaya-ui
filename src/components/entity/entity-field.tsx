@@ -48,7 +48,7 @@ function EntityFieldComponent({
           .desc {
             margin-top: 0px;
             margin-bottom: 0px;
-            color: ${theme.palette.background.hex_400};
+            color: var(--theme-color-background-400);
           }
 
           display: flex;

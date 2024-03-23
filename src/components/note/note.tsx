@@ -20,12 +20,12 @@ export type NoteProps = Props & NativeAttrs;
 
 const getStatusColor = (type: NoteTypes, filled: boolean, theme: UIThemes) => {
   const colors: { [key in NoteTypes]?: string } = {
-    primary: theme.palette.primary.value,
-    tertiary: theme.palette.tertiary.value,
-    secondary: theme.palette.secondary.value,
-    success: theme.palette.success.value,
-    warning: theme.palette.warning.value,
-    error: theme.palette.error.value,
+    primary: theme.palette.primary.hex_1000,
+    tertiary: theme.palette.tertiary.hex_1000,
+    secondary: theme.palette.secondary.hex_1000,
+    success: theme.palette.success.hex_1000,
+    warning: theme.palette.warning.hex_1000,
+    error: theme.palette.error.hex_1000,
   };
   const statusColor = colors[type];
 
@@ -41,15 +41,15 @@ const getStatusColor = (type: NoteTypes, filled: boolean, theme: UIThemes) => {
 
   if (!filled)
     return {
-      color: statusColor || theme.palette.foreground.value,
-      borderColor: borderColorsType || theme.palette.border.value,
-      bgColor: theme.palette.background.value,
+      color: statusColor || theme.palette.foreground.hex_1000,
+      borderColor: borderColorsType || theme.palette.border.hex_1000,
+      bgColor: theme.palette.background.hex_1000,
     };
-  const filledColor = statusColor ? 'white' : theme.palette.background.value;
+  const filledColor = statusColor ? 'white' : theme.palette.background.hex_1000;
   return {
     color: filledColor,
-    borderColor: borderColorsType || theme.palette.foreground.value,
-    bgColor: statusColor || theme.palette.foreground.value,
+    borderColor: borderColorsType || theme.palette.foreground.hex_1000,
+    bgColor: statusColor || theme.palette.foreground.hex_1000,
   };
 };
 

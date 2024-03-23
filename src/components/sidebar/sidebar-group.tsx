@@ -30,7 +30,7 @@ const SidebarGroup: React.FC<React.PropsWithChildren<SideItemProps>> = ({ childr
         }
 
         .active {
-          color: ${theme.palette.foreground.value};
+          color: ${theme.palette.foreground.hex_1000};
         }
 
         .item {

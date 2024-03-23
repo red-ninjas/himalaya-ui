@@ -19,7 +19,7 @@ export type DividerProps = Props & NativeAttrs;
 
 const getColor = (type: DividerTypes, palette: UIThemesPalette) => {
   const colors: { [key in DividerTypes]: string } = {
-    default: palette.border.value,
+    default: palette.border.hex_1000,
     lite: palette.background.hex_800,
     success: palette.success.hex_900,
     primary: palette.primary.hex_900,
@@ -27,7 +27,7 @@ const getColor = (type: DividerTypes, palette: UIThemesPalette) => {
     warning: palette.warning.hex_900,
     error: palette.error.hex_900,
     secondary: palette.secondary.hex_900,
-    dark: palette.foreground.value,
+    dark: palette.foreground.hex_1000,
   };
   return colors[type];
 };
@@ -49,7 +49,7 @@ const DividerComponent: React.FC<React.PropsWithChildren<DividerProps>> = ({
     return 'end';
   }, [align]);
   const alignClasses = useClasses('text', alignClassName);
-  const textColor = type === 'default' ? theme.palette.foreground.value : color;
+  const textColor = type === 'default' ? theme.palette.foreground.hex_1000 : color;
 
   return (
     <div role="separator" className={classes} {...props}>
@@ -79,7 +79,7 @@ const DividerComponent: React.FC<React.PropsWithChildren<DividerProps>> = ({
           font-size: inherit;
           font-weight: bold;
           text-transform: capitalize;
-          background-color: ${theme.palette.background.value};
+          background-color: ${theme.palette.background.hex_1000};
           color: ${textColor};
           z-index: 10;
         }

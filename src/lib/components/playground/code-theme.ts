@@ -5,7 +5,7 @@ import { UIThemes } from 'components/themes/presets';
 
 const makeCodeTheme = (theme: UIThemes): PrismTheme => ({
   plain: {
-    backgroundColor: theme.palette.background.value,
+    backgroundColor: theme.palette.background.hex_1000,
     color: theme.palette.background.hex_500,
     fontWeight: '400',
     fontStyle: 'normal',
@@ -33,7 +33,7 @@ const makeCodeTheme = (theme: UIThemes): PrismTheme => ({
     {
       types: ['property', 'function'],
       style: {
-        color: theme.palette.success.value,
+        color: theme.palette.success.hex_1000,
       },
     },
     {
@@ -45,7 +45,7 @@ const makeCodeTheme = (theme: UIThemes): PrismTheme => ({
     {
       types: ['attr-name'],
       style: {
-        color: theme.palette.warning.value,
+        color: theme.palette.warning.hex_1000,
       },
     },
     {
@@ -66,7 +66,7 @@ const makeCodeTheme = (theme: UIThemes): PrismTheme => ({
         'variable',
       ],
       style: {
-        color: theme.palette.tertiary.value,
+        color: theme.palette.tertiary.hex_1000,
       },
     },
     {
@@ -78,7 +78,7 @@ const makeCodeTheme = (theme: UIThemes): PrismTheme => ({
     {
       types: ['language-javascript', 'script'],
       style: {
-        color: theme.palette.primary.value,
+        color: theme.palette.primary.hex_1000,
       },
     },
     {

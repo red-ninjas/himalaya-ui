@@ -40,7 +40,7 @@ const SidebarLink: React.FC<PropsWithChildren<SideBarLinkProp>> = ({ children, i
             display: flex;
             align-items: baseline;
             font-size: ${SCALES.font(0.85)};
-            color: ${theme.palette.background.hex_400};
+            color: var(--theme-color-background-400);
             margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
             padding: ${SCALES.pt(0.6)} 0 ${SCALES.pb(0.6)} 0;
 
@@ -53,11 +53,11 @@ const SidebarLink: React.FC<PropsWithChildren<SideBarLinkProp>> = ({ children, i
           }
 
           .sidebar-link:hover {
-            color: ${theme.palette.foreground.value};
+            color: ${theme.palette.foreground.hex_1000};
           }
 
           .sidebar-link:hover .sidebar-link-icon {
-            color: ${theme.palette.foreground.value};
+            color: ${theme.palette.foreground.hex_1000};
           }
 
           .sidebar-link.active {

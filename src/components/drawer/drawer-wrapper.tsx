@@ -79,8 +79,8 @@ const DrawerWrapper: React.FC<React.PropsWithChildren<DrawerWrapperProps>> = ({
             display: flex;
             flex-direction: column;
             box-sizing: border-box;
-            background-color: ${theme.palette.background.value};
-            color: ${theme.palette.foreground.value};
+            background-color: ${theme.palette.background.hex_1000};
+            color: ${theme.palette.foreground.hex_1000};
             border-radius: calc(${radius} * ${theme.style.radius});
             box-shadow: ${theme.expressiveness.shadowLarge};
             opacity: 0;

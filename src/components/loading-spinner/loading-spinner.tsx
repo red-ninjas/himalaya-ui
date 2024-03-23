@@ -21,12 +21,12 @@ export type LoadingSpinnerProps = Props & NativeAttrs;
 const getIconBgColor = (type: LoadingSpinnerTypes, palette: UIThemesPalette, color?: string) => {
   const colors: { [key in LoadingSpinnerTypes]: string } = {
     default: palette.background.hex_300,
-    secondary: palette.secondary.value,
-    primary: palette.primary.value,
-    tertiary: palette.tertiary.value,
-    success: palette.success.value,
-    warning: palette.warning.value,
-    error: palette.error.value,
+    secondary: palette.secondary.hex_1000,
+    primary: palette.primary.hex_1000,
+    tertiary: palette.tertiary.hex_1000,
+    success: palette.success.hex_1000,
+    warning: palette.warning.hex_1000,
+    error: palette.error.hex_1000,
   };
 
   return color ? color : colors[type];
@@ -68,7 +68,7 @@ const LoadingSpinnerComponent: React.FC<React.PropsWithChildren<LoadingSpinnerPr
 
         label {
           margin-right: 0.5em;
-          color: ${theme.palette.background.hex_400};
+          color: var(--theme-color-background-400);
           line-height: 1;
         }
 

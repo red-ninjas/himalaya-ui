@@ -11,13 +11,13 @@ export type QuickBarColors = {
 export const getColors = (type: SnippetTypes, palette: UIThemesPalette): QuickBarColors => {
   const colors: Record<QuickActionTypes, string> = {
     default: palette.background.hex_700,
-    secondary: palette.secondary.value,
-    tertiary: palette.tertiary.value,
-    primary: palette.primary.value,
-    success: palette.success.value,
-    warning: palette.warning.value,
-    error: palette.error.value,
-    dark: palette.foreground.value,
+    secondary: palette.secondary.hex_1000,
+    tertiary: palette.tertiary.hex_1000,
+    primary: palette.primary.hex_1000,
+    success: palette.success.hex_1000,
+    warning: palette.warning.hex_1000,
+    error: palette.error.hex_1000,
+    dark: palette.foreground.hex_1000,
     lite: 'transparent',
   };
 
@@ -30,7 +30,7 @@ export const getColors = (type: SnippetTypes, palette: UIThemesPalette): QuickBa
     warning: palette.warning.hex_900,
     error: palette.error.hex_900,
     dark: palette.background.hex_200,
-    lite: palette.foreground.value,
+    lite: palette.foreground.hex_1000,
   };
 
   const textColors: Record<QuickActionTypes, string> = {
@@ -41,7 +41,7 @@ export const getColors = (type: SnippetTypes, palette: UIThemesPalette): QuickBa
     success: palette.success.hex_800,
     warning: palette.warning.hex_800,
     error: palette.error.hex_800,
-    dark: palette.background.value,
+    dark: palette.background.hex_1000,
     lite: palette.secondary.hex_800,
   };
 
@@ -53,8 +53,8 @@ export const getColors = (type: SnippetTypes, palette: UIThemesPalette): QuickBa
     success: palette.success.contrast,
     warning: palette.warning.contrast,
     error: palette.error.contrast,
-    dark: palette.foreground.value,
-    lite: palette.background.value,
+    dark: palette.foreground.hex_1000,
+    lite: palette.background.hex_1000,
   };
 
   return {

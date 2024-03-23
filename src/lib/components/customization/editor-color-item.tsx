@@ -65,9 +65,9 @@ const EditorColorItem: React.FC<React.PropsWithChildren<Props>> = ({ keyName }) 
             line-height: 2rem;
             display: inline-flex;
             align-items: center;
-            border: 1px solid ${theme.palette.border.value};
+            border: 1px solid ${theme.palette.border.hex_1000};
             border-radius: ${theme.style.radius};
-            color: ${theme.palette.background.hex_400};
+            color: var(--theme-color-background-400);
             margin-right: 0.75rem;
             margin-bottom: 0.5rem;
             cursor: pointer;

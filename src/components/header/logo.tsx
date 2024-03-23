@@ -52,8 +52,8 @@ const Logo: React.FC<PropsWithChildren<LogoProps>> = ({
           width: 100%;
           height: ${size ? size + 'px' : '100%'};
           width: ${size ? size + 'px' : '100%'};
-          background: ${logoBackground || theme.palette.background.value};
-          border: 1px solid ${theme.palette.border.value};
+          background: ${logoBackground || theme.palette.background.hex_1000};
+          border: 1px solid ${theme.palette.border.hex_1000};
           border-radius: 50%;
           overflow: hidden;
           display: inline-flex;

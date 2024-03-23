@@ -1,10 +1,10 @@
-import { Layout, Playground, Attributes } from 'lib/components'
-import { Capacity, Spacer, useTheme } from 'components'
+import { Layout, Playground, Attributes } from 'lib/components';
+import { Capacity, Spacer, useTheme } from 'components';
 
 export const meta = {
   title: 'Capacity',
   group: 'Data Display',
-}
+};
 
 # Capacity
 
@@ -28,7 +28,7 @@ Display an capacity indicator.
   code={`
 () => {
   const theme = useTheme()
-  return <Capacity value={75} color={theme.palette.primary.value} />
+  return <Capacity value={75} color={theme.palette.primary.hex_1000} />
 }
 `}
 />

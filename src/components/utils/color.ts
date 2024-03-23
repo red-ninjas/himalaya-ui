@@ -20,7 +20,7 @@ export const isColorVariable = obj => {
   if (typeof obj === 'string') {
     return false;
   }
-  return obj && 'value' in obj && 'contrast' in obj;
+  return obj && 'hex_1000' in obj && 'contrast' in obj;
 };
 
 export const isSingleColor = obj => {

@@ -10,39 +10,39 @@ export type RadioColor = {
 export const getColors = (palette: UIThemesPalette, status?: NormalTypes): RadioColor => {
   const colors: { [key in NormalTypes]: RadioColor } = {
     default: {
-      label: palette.foreground.value,
-      border: palette.border.value,
-      bg: palette.foreground.value,
+      label: palette.foreground.hex_1000,
+      border: palette.border.hex_1000,
+      bg: palette.foreground.hex_1000,
     },
     secondary: {
-      label: palette.secondary.value,
-      border: palette.secondary.value,
-      bg: palette.secondary.value,
+      label: palette.secondary.hex_1000,
+      border: palette.secondary.hex_1000,
+      bg: palette.secondary.hex_1000,
     },
     success: {
-      label: palette.success.value,
-      border: palette.success.value,
-      bg: palette.success.value,
+      label: palette.success.hex_1000,
+      border: palette.success.hex_1000,
+      bg: palette.success.hex_1000,
     },
     primary: {
-      label: palette.primary.value,
-      border: palette.primary.value,
-      bg: palette.primary.value,
+      label: palette.primary.hex_1000,
+      border: palette.primary.hex_1000,
+      bg: palette.primary.hex_1000,
     },
     tertiary: {
-      label: palette.tertiary.value,
-      border: palette.tertiary.value,
-      bg: palette.tertiary.value,
+      label: palette.tertiary.hex_1000,
+      border: palette.tertiary.hex_1000,
+      bg: palette.tertiary.hex_1000,
     },
     warning: {
-      label: palette.warning.value,
-      border: palette.warning.value,
-      bg: palette.warning.value,
+      label: palette.warning.hex_1000,
+      border: palette.warning.hex_1000,
+      bg: palette.warning.hex_1000,
     },
     error: {
-      label: palette.error.value,
-      border: palette.error.value,
-      bg: palette.error.value,
+      label: palette.error.hex_1000,
+      border: palette.error.hex_1000,
+      bg: palette.error.hex_1000,
     },
   };
 

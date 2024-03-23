@@ -41,7 +41,7 @@ const NavigationItem: React.FC<PropsWithChildren<MobileNavigationItemProps>> = (
             box-sizing: border-box;
             justify-content: flex-start;
             align-items: center;
-            color: ${theme.palette.background.hex_400};
+            color: var(--theme-color-background-400);
             transition:
               color,
               background-color 150ms linear;
@@ -65,7 +65,7 @@ const NavigationItem: React.FC<PropsWithChildren<MobileNavigationItemProps>> = (
           }
 
           .is-active {
-            color: ${theme.palette.foreground.value};
+            color: ${theme.palette.foreground.hex_1000};
             font-weight: bold;
           }
 

@@ -11,8 +11,8 @@ const CssBaseline: React.FC = () => {
   return (
     <style jsx global>{`
       body {
-        background-color: ${theme.palette.background.value};
-        color: ${theme.palette.foreground.value};
+        background-color: ${theme.palette.background.hex_1000};
+        color: ${theme.palette.foreground.hex_1000};
 
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
@@ -26,8 +26,8 @@ const CssBaseline: React.FC = () => {
         font-family: ${theme.font.sans};
         font-size: ${theme.font.baseSize + 'px'};
 
-        --ui-icon-background: ${theme.palette.background.value};
-        --ui-icon-foreground: ${theme.palette.foreground.value};
+        --ui-icon-background: ${theme.palette.background.hex_1000};
+        --ui-icon-foreground: ${theme.palette.foreground.hex_1000};
       }
 
       *,
@@ -77,7 +77,7 @@ const CssBaseline: React.FC = () => {
         -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
         -webkit-box-align: center;
         align-items: center;
-        color: ${theme.palette.link.value};
+        color: ${theme.palette.link.hex_1000};
         text-decoration: ${theme.expressiveness.linkStyle};
 
         &:hover {
@@ -90,7 +90,7 @@ const CssBaseline: React.FC = () => {
         padding: 0;
         list-style-type: none;
         margin: ${layout.gapHalf} ${layout.gapHalf} ${layout.gapHalf} ${layout.gap};
-        color: ${theme.palette.foreground.value};
+        color: ${theme.palette.foreground.hex_1000};
         position: relative;
       }
 
@@ -183,8 +183,8 @@ const CssBaseline: React.FC = () => {
       }
 
       code {
-        color: ${theme.palette.code.value};
-        background-color: ${theme.palette.codeBg.value};
+        color: ${theme.palette.code.hex_1000};
+        background-color: ${theme.palette.codeBg.hex_1000};
         font-family: ${theme.font.mono};
         font-size: 0.9em;
         white-space: pre-wrap;
@@ -199,7 +199,7 @@ const CssBaseline: React.FC = () => {
       pre {
         padding: calc(${layout.gap} * 0.9) ${layout.gap};
         margin: ${layout.gap} 0;
-        border: 1px solid ${theme.palette.border.value};
+        border: 1px solid ${theme.palette.border.hex_1000};
         border-radius: ${theme.style.radius};
         font-family: ${theme.font.mono};
         white-space: pre;
@@ -211,7 +211,7 @@ const CssBaseline: React.FC = () => {
       }
 
       pre code {
-        color: ${theme.palette.primary.value};
+        color: ${theme.palette.primary.hex_1000};
         font-size: 1em;
         line-height: 1.25em;
         white-space: pre;
@@ -234,7 +234,7 @@ const CssBaseline: React.FC = () => {
       }
 
       hr {
-        border-color: ${theme.palette.border.value};
+        border-color: ${theme.palette.border.hex_1000};
       }
 
       details {
@@ -274,11 +274,11 @@ const CssBaseline: React.FC = () => {
 
       blockquote {
         padding: calc(0.667 * ${layout.gap}) ${layout.gap};
-        color: ${theme.palette.background.hex_400};
+        color: var(--theme-color-background-400);
         background-color: ${theme.palette.background.hex_900};
         border-radius: ${theme.style.radius};
         margin: 1.5em 0;
-        border: 1px solid ${theme.palette.border.value};
+        border: 1px solid ${theme.palette.border.hex_1000};
       }
 
       blockquote :global(*:first-child) {

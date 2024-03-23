@@ -10,7 +10,7 @@ export type ExampleBlockProps = {
 };
 
 const getBackground = (theme: UIThemes, plain: number | boolean) => {
-  if (typeof plain !== 'number') return theme.palette.primary.value;
+  if (typeof plain !== 'number') return theme.palette.primary.hex_1000;
 
   const colors = [
     theme.palette.background.hex_800,
@@ -20,7 +20,7 @@ const getBackground = (theme: UIThemes, plain: number | boolean) => {
     theme.palette.background.hex_400,
     theme.palette.background.hex_300,
   ];
-  return colors[plain - 1] || theme.palette.primary.value;
+  return colors[plain - 1] || theme.palette.primary.hex_1000;
 };
 
 const ExampleBlock: React.FC<React.PropsWithChildren<ExampleBlockProps>> = React.memo(
@@ -38,7 +38,7 @@ const ExampleBlock: React.FC<React.PropsWithChildren<ExampleBlockProps>> = React
             background: ${bg};
             padding: ${layout.gapHalf};
             border-radius: ${theme.style.radius};
-            color: ${theme.palette.background.value};
+            color: ${theme.palette.background.hex_1000};
             font-size: 0.75rem;
           }
         `}</style>

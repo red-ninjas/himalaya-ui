@@ -107,15 +107,15 @@ const FieldsetGroupComponent: React.FC<React.PropsWithChildren<FieldsetGroupProp
             overflow: hidden;
             transition: all 0.2s ease 0s;
             border-radius: 0;
-            border: 1px solid ${theme.palette.border.value};
+            border: 1px solid ${theme.palette.border.hex_1000};
             text-decoration: none;
             outline: none;
           }
 
           button.active {
             border-bottom-color: transparent;
-            background-color: ${theme.palette.background.value};
-            color: ${theme.palette.foreground.value};
+            background-color: ${theme.palette.background.hex_1000};
+            color: ${theme.palette.foreground.hex_1000};
             cursor: default;
           }
 

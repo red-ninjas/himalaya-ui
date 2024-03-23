@@ -34,7 +34,7 @@ const EditorInputItem: React.FC<React.PropsWithChildren<Props>> = ({ groupName, 
           line-height: 2rem;
           display: inline-flex;
           align-items: center;
-          color: ${theme.palette.background.hex_400};
+          color: var(--theme-color-background-400);
           margin-right: 0.75rem;
           margin-bottom: 0.5rem;
           cursor: pointer;

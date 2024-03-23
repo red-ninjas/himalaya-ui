@@ -17,8 +17,8 @@ export type PaginationItemProps = Props & NativeAttrs;
 const PaginationItem: React.FC<React.PropsWithChildren<PaginationItemProps>> = ({ active, children, disabled, onClick, ...props }) => {
   const theme = useTheme();
   const [hover, activeHover] = useMemo(
-    () => [addColorAlpha(theme.palette.primary.value, 0.1), addColorAlpha(theme.palette.primary.value, 0.8)],
-    [theme.palette.primary.value],
+    () => [addColorAlpha(theme.palette.primary.hex_1000, 0.1), addColorAlpha(theme.palette.primary.hex_1000, 0.8)],
+    [theme.palette.primary.hex_1000],
   );
   const classes = useClasses({
     active,
@@ -57,9 +57,9 @@ const PaginationItem: React.FC<React.PropsWithChildren<PaginationItemProps>> = (
           min-width: var(--pagination-size);
           font-size: inherit;
           cursor: pointer;
-          color: ${theme.palette.primary.value};
+          color: ${theme.palette.primary.hex_1000};
           border-radius: ${theme.style.radius};
-          background-color: ${theme.palette.background.value};
+          background-color: ${theme.palette.background.hex_1000};
           transition: all linear 200ms 0ms;
         }
 
@@ -69,8 +69,8 @@ const PaginationItem: React.FC<React.PropsWithChildren<PaginationItemProps>> = (
 
         .active {
           font-weight: bold;
-          background-color: ${theme.palette.primary.value};
-          color: ${theme.palette.background.value};
+          background-color: ${theme.palette.primary.hex_1000};
+          color: ${theme.palette.background.hex_1000};
           box-shadow: ${theme.expressiveness.shadowSmall};
         }
 

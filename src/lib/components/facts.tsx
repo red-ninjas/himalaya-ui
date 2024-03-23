@@ -70,7 +70,7 @@ export default function Facts() {
       <FadeInEffect translateY="4rem">
         <div className="header" ref={ref}>
           <FadeInEffect translateY="4rem">
-            <Hero.Tag background={theme.palette.primary.value} textColor={theme.palette.primary.contrast}>
+            <Hero.Tag background={theme.palette.primary.hex_1000} textColor={theme.palette.primary.contrast}>
               Our facts
             </Hero.Tag>
           </FadeInEffect>

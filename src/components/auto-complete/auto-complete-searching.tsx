@@ -32,8 +32,8 @@ const AutoCompleteSearchComponent: React.FC<React.PropsWithChildren<AutoComplete
           white-space: pre;
           padding: ${layout.gapHalf};
           line-height: 1;
-          background-color: ${theme.palette.background.value};
-          color: ${theme.palette.background.hex_400};
+          background-color: ${theme.palette.background.hex_1000};
+          color: var(--theme-color-background-400);
           user-select: none;
           border: 0;
           border-radius: ${SCALES.r(1, theme.style.radius)};

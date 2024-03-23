@@ -133,11 +133,11 @@ const ToggleComponent: React.FC<ToggleProps> = ({
             rgba(0, 0, 0, 0.1) 0 1px 3px 0;
           transition: left 280ms cubic-bezier(0, 0, 0.2, 1);
           border-radius: 50%;
-          background-color: ${theme.palette.background.value};
+          background-color: ${theme.palette.background.hex_1000};
         }
 
         .disabled {
-          border-color: ${theme.palette.border.value};
+          border-color: ${theme.palette.border.hex_1000};
           background-color: ${theme.palette.background.hex_800};
         }
 

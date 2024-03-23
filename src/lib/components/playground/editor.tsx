@@ -74,8 +74,8 @@ const Editor: React.FC<Props> = ({ code }) => {
 
         summary {
           box-sizing: border-box;
-          border-top: 1px solid ${theme.palette.border.value};
-          color: ${theme.palette.background.hex_400};
+          border-top: 1px solid ${theme.palette.border.hex_1000};
+          color: var(--theme-color-background-400);
           width: 100%;
           list-style: none;
           user-select: none;
@@ -108,11 +108,11 @@ const Editor: React.FC<Props> = ({ code }) => {
           box-sizing: border-box;
           white-space: pre;
           font-family: ${theme.font.mono};
-          color: ${theme.palette.foreground.value};
-          background-color: ${theme.palette.background.value};
+          color: ${theme.palette.foreground.hex_1000};
+          background-color: ${theme.palette.background.hex_1000};
           font-size: 1em;
           overflow: hidden;
-          border-top: 1px solid ${theme.palette.border.value};
+          border-top: 1px solid ${theme.palette.border.hex_1000};
           padding: ${layout.gapHalf};
         }
 

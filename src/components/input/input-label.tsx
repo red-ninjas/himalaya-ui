@@ -27,9 +27,9 @@ const InputLabel: React.FC<React.PropsWithChildren<InputLabel>> = ({ children, i
           background-color: ${theme.palette.background.hex_800};
           border-top-left-radius: ${theme.style.radius};
           border-bottom-left-radius: ${theme.style.radius};
-          border-top: 1px solid ${theme.palette.border.value};
-          border-left: 1px solid ${theme.palette.border.value};
-          border-bottom: 1px solid ${theme.palette.border.value};
+          border-top: 1px solid ${theme.palette.border.hex_1000};
+          border-left: 1px solid ${theme.palette.border.hex_1000};
+          border-bottom: 1px solid ${theme.palette.border.hex_1000};
           font-size: inherit;
           line-height: 1;
         }
@@ -40,7 +40,7 @@ const InputLabel: React.FC<React.PropsWithChildren<InputLabel>> = ({ children, i
           border-top-right-radius: ${theme.style.radius};
           border-bottom-right-radius: ${theme.style.radius};
           border-left: 0;
-          border-right: 1px solid ${theme.palette.border.value};
+          border-right: 1px solid ${theme.palette.border.hex_1000};
         }
       `}</style>
     </span>

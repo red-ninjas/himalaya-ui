@@ -40,7 +40,7 @@ const ChartArea = forwardRef(
     }));
 
     const getPropertes = (): AreaSeriesPartialOptions => {
-      const currentColor = color ? color : theme.palette.primary.value;
+      const currentColor = color ? color : theme.palette.primary.hex_1000;
       return {
         title: showTitle ? title : undefined,
         visible: visible,
@@ -85,7 +85,7 @@ const ChartArea = forwardRef(
         serie.applyOptions(getPropertes());
       }
       // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [side, color, title, data, showTitle, visible, lineType, priceLineVisible, lastValueVisible, priceFormatter, theme.palette.primary.value]);
+    }, [side, color, title, data, showTitle, visible, lineType, priceLineVisible, lastValueVisible, priceFormatter, theme.palette.primary.hex_1000]);
 
     useEffect(() => {
       if (serie) {

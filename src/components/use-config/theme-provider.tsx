@@ -46,15 +46,15 @@ const ThemeProvider: React.FC<PropsWithChildren<Props>> = ({ children, themeType
 
     for (const colorKey of Object.keys(value)) {
       vars += css`
-      --theme-color-${key}-${colorKey}: ${value[colorKey]};
+      --theme-color-${key}-${colorKey.replace('hex_', '')}: ${value[colorKey]};
       `;
 
       vars += css`
-      --theme-color-${key}-${colorKey}-rgb: ${hexToRgb(value[colorKey])};
+      --theme-color-${key}-${colorKey.replace('hex_', '')}-rgb: ${hexToRgb(value[colorKey])};
       `;
 
       colorClassesTemp += css`
-        --theme-color-${colorKey}: var(--theme-color-${key}-${colorKey});
+        --theme-color-${colorKey.replace('hex_', '')}: var(--theme-color-${key}-${colorKey});
       `;
     }
     colorClasses += css`

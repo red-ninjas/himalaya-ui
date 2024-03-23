@@ -78,7 +78,7 @@ export default function Portfolio() {
       <FadeInEffect transition={1000} translateY="4rem">
         <div className="header">
           <FadeInEffect translateY="4rem">
-            <Hero.Tag background={theme.palette.primary.value} textColor={theme.palette.primary.contrast}>
+            <Hero.Tag background={theme.palette.primary.hex_1000} textColor={theme.palette.primary.contrast}>
               Projects
             </Hero.Tag>
           </FadeInEffect>

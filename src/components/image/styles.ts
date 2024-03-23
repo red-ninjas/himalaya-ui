@@ -11,17 +11,17 @@ export type BrowserColors = {
 export const getBrowserColors = (invert: boolean, palette: UIThemesPalette): BrowserColors => {
   return invert
     ? {
-        color: palette.background.value,
-        barBgColor: palette.foreground.value,
+        color: palette.background.hex_1000,
+        barBgColor: palette.foreground.hex_1000,
         inputBgColor: palette.background.hex_100,
         borderColor: palette.background.hex_200,
         titleColor: palette.background.hex_700,
       }
     : {
-        color: palette.foreground.value,
-        barBgColor: palette.background.value,
+        color: palette.foreground.hex_1000,
+        barBgColor: palette.background.hex_1000,
         inputBgColor: palette.background.hex_800,
-        borderColor: palette.border.value,
+        borderColor: palette.border.hex_1000,
         titleColor: palette.background.hex_400,
       };
 };

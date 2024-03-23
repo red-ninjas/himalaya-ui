@@ -119,7 +119,7 @@ const TextareaComponent = React.forwardRef<HTMLTextAreaElement, React.PropsWithC
           }
           .wrapper.disabled {
             background-color: ${theme.palette.background.hex_800};
-            border-color: ${theme.palette.border.value};
+            border-color: ${theme.palette.border.hex_1000};
             cursor: not-allowed;
           }
           textarea {
@@ -142,7 +142,7 @@ const TextareaComponent = React.forwardRef<HTMLTextAreaElement, React.PropsWithC
           textarea:-webkit-autofill:hover,
           textarea:-webkit-autofill:active,
           textarea:-webkit-autofill:focus {
-            -webkit-box-shadow: 0 0 0 30px ${theme.palette.background.value} inset !important;
+            -webkit-box-shadow: 0 0 0 30px ${theme.palette.background.hex_1000} inset !important;
           }
         `}</style>
       </div>

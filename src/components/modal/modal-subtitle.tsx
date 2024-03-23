@@ -30,7 +30,7 @@ const ModalSubtitleComponent: React.FC<React.PropsWithChildren<ModalSubtitleProp
           text-align: center;
           word-break: break-word;
           text-transform: uppercase;
-          color: ${theme.palette.background.hex_400};
+          color: var(--theme-color-background-400);
           font-size: ${SCALES.font(0.875)};
           line-height: 1.5em;
           width: ${SCALES.w(1, 'auto')};

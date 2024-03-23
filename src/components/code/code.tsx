@@ -23,8 +23,8 @@ const CodeComponent: React.FC<React.PropsWithChildren<CodeProps>> = ({
   const theme = useTheme();
   const { background, border } = useMemo(() => {
     return {
-      border: theme.palette.border.value,
-      background: theme.palette.codeBg.value,
+      border: theme.palette.border.hex_1000,
+      background: theme.palette.codeBg.hex_1000,
     };
   }, [theme.palette]);
 
@@ -79,8 +79,8 @@ const CodeComponent: React.FC<React.PropsWithChildren<CodeProps>> = ({
           z-index: 2;
         }
         .name {
-          background-color: ${theme.palette.codeBg.value};
-          color: ${theme.palette.background.hex_400};
+          background-color: ${theme.palette.codeBg.hex_1000};
+          color: var(--theme-color-background-400);
           height: auto;
           line-height: 1.35em;
           border-bottom: 1px solid rgba(255, 255, 255, 0.1);

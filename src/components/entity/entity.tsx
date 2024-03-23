@@ -80,7 +80,7 @@ function EntityComponent({
               opacity: 0.6;
             }
           }
-          border: 1px solid ${theme.palette.border.value};
+          border: 1px solid ${theme.palette.border.hex_1000};
           border-radius: ${SCALES.r(1, theme.style.radius)};
         }
 
@@ -158,7 +158,7 @@ function EntityComponent({
             flex-wrap: wrap;
           }
           .entity-wrapper :global(.field-wrapper) {
-            border-bottom: 1px solid ${theme.palette.border.value};
+            border-bottom: 1px solid ${theme.palette.border.hex_1000};
             padding-bottom: 12px;
           }
         }

@@ -40,7 +40,7 @@ const SearchItem: React.FC<SearchItemProps> = ({ data, onMouseOver, onSelect, on
             background-color: transparent;
           }
           .container:focus {
-            color: ${theme.palette.foreground.value};
+            color: ${theme.palette.foreground.hex_1000};
           }
           .container :global(.value) {
           }

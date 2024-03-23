@@ -26,12 +26,12 @@ export interface Props {
 const getTypeColor = (type: NormalTypes, palette: UIThemesPalette) => {
   const colors: { [key in NormalTypes]: string } = {
     default: 'inherit',
-    secondary: palette.secondary.value,
-    success: palette.success.value,
-    warning: palette.warning.value,
-    error: palette.error.value,
-    primary: palette.primary.value,
-    tertiary: palette.tertiary.value,
+    secondary: palette.secondary.hex_1000,
+    success: palette.success.hex_1000,
+    warning: palette.warning.hex_1000,
+    error: palette.error.hex_1000,
+    primary: palette.primary.hex_1000,
+    tertiary: palette.tertiary.hex_1000,
   };
 
   return colors[type] || colors.default;
@@ -108,7 +108,7 @@ const TextChild: React.FC<React.PropsWithChildren<TextChildProps>> = ({
       <style jsx>{`
         .stroke {
           color: transparent;
-          -webkit-text-stroke: ${Number(stroke) ? stroke + 'px' : stroke} ${defaultColor !== 'inherit' ? theme.palette.foreground.value : defaultColor};
+          -webkit-text-stroke: ${Number(stroke) ? stroke + 'px' : stroke} ${defaultColor !== 'inherit' ? theme.palette.foreground.hex_1000 : defaultColor};
         }
 
         ${tag} {

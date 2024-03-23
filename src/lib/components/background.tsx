@@ -13,10 +13,10 @@ export default function Background() {
             <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
           </defs>
           <g className="parallax">
-            <use href="#gentle-wave" x="48" y="0" fill={addColorAlpha(theme.palette.primary.value, 0.7)} />
-            <use href="#gentle-wave" x="48" y="3" fill={addColorAlpha(theme.palette.tertiary.value, 0.5)} />
-            <use href="#gentle-wave" x="48" y="5" fill={addColorAlpha(theme.palette.success.value, 0.3)} />
-            <use href="#gentle-wave" x="48" y="7" fill={addColorAlpha(theme.palette.warning.value, 0.4)} />
+            <use href="#gentle-wave" x="48" y="0" fill={addColorAlpha(theme.palette.primary.hex_1000, 0.7)} />
+            <use href="#gentle-wave" x="48" y="3" fill={addColorAlpha(theme.palette.tertiary.hex_1000, 0.5)} />
+            <use href="#gentle-wave" x="48" y="5" fill={addColorAlpha(theme.palette.success.hex_1000, 0.3)} />
+            <use href="#gentle-wave" x="48" y="7" fill={addColorAlpha(theme.palette.warning.hex_1000, 0.4)} />
           </g>
         </svg>
       </div>

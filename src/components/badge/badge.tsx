@@ -20,13 +20,13 @@ export type BadgeProps = Props & NativeAttrs;
 
 const getBgColor = (type: NormalTypes, palette: UIThemesPalette) => {
   const colors: { [key in NormalTypes]: string } = {
-    default: palette.foreground.value,
-    success: palette.success.value,
-    secondary: palette.secondary.value,
-    primary: palette.primary.value,
-    tertiary: palette.tertiary.value,
-    warning: palette.warning.value,
-    error: palette.error.value,
+    default: palette.foreground.hex_1000,
+    success: palette.success.hex_1000,
+    secondary: palette.secondary.hex_1000,
+    primary: palette.primary.hex_1000,
+    tertiary: palette.tertiary.hex_1000,
+    warning: palette.warning.hex_1000,
+    error: palette.error.hex_1000,
   };
   return colors[type];
 };
@@ -42,9 +42,9 @@ const BadgeComponent: React.FC<React.PropsWithChildren<BadgeProps>> = ({
   const { SCALES } = useScale();
   const bg = useMemo(() => getBgColor(type, theme.palette), [type, theme.palette]);
   const color = useMemo(() => {
-    if (!type || type === 'default') return theme.palette.background.value;
+    if (!type || type === 'default') return theme.palette.background.hex_1000;
     return 'white';
-  }, [type, theme.palette.background.value]);
+  }, [type, theme.palette.background.hex_1000]);
   const classes = useClasses('badge', { dot }, className);
 
   return (

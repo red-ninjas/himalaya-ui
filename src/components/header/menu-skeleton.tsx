@@ -37,7 +37,7 @@ const MenuSkeleton: React.FC<unknown> = () => {
           left: 0;
           right: 0;
           height: var(${isMobile ? '--page-nav-height-mobile' : '--page-nav-height'}, 60px);
-          border-bottom: 1px solid ${theme.palette.border.value};
+          border-bottom: 1px solid ${theme.palette.border.hex_1000};
           z-index: 999;
           display: flex;
           align-item: center;

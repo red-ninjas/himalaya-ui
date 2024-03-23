@@ -189,7 +189,7 @@ const InputComponent = React.forwardRef<HTMLInputElement, React.PropsWithChildre
 
           .input-wrapper.disabled {
             background-color: ${theme.palette.background.hex_800};
-            border-color: ${theme.palette.border.value};
+            border-color: ${theme.palette.border.hex_1000};
             cursor: not-allowed;
           }
 
@@ -240,7 +240,7 @@ const InputComponent = React.forwardRef<HTMLInputElement, React.PropsWithChildre
           input:-webkit-autofill:hover,
           input:-webkit-autofill:active,
           input:-webkit-autofill:focus {
-            -webkit-box-shadow: 0 0 0 30px ${theme.palette.background.value} inset !important;
+            -webkit-box-shadow: 0 0 0 30px ${theme.palette.background.hex_1000} inset !important;
             -webkit-text-fill-color: ${color} !important;
           }
         `}</style>

@@ -104,7 +104,7 @@ const TreeFolder: React.FC<React.PropsWithChildren<TreeFolderProps>> = ({
           width: 0.875rem;
           height: 0.875rem;
           z-index: 10;
-          background-color: ${theme.palette.background.value};
+          background-color: ${theme.palette.background.hex_1000};
         }
 
         .icon {
@@ -131,7 +131,7 @@ const TreeFolder: React.FC<React.PropsWithChildren<TreeFolderProps>> = ({
           font-size: 0.75rem;
           align-self: baseline;
           padding-left: 4px;
-          color: ${theme.palette.background.hex_400};
+          color: var(--theme-color-background-400);
         }
 
         .name:hover {

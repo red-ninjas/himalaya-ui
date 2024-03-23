@@ -49,7 +49,7 @@ const PopoverItemComponent: React.FC<React.PropsWithChildren<PopoverItemProps>> 
             box-sizing: border-box;
             justify-content: flex-start;
             align-items: center;
-            color: ${theme.palette.background.hex_400};
+            color: var(--theme-color-background-400);
             transition:
               color,
               background-color 150ms linear;
@@ -63,13 +63,13 @@ const PopoverItemComponent: React.FC<React.PropsWithChildren<PopoverItemProps>> 
           }
 
           .item:hover {
-            color: ${theme.palette.foreground.value};
+            color: ${theme.palette.foreground.hex_1000};
           }
 
           .item.line {
             line-height: 0;
             padding: 0;
-            background-color: ${theme.palette.border.value};
+            background-color: ${theme.palette.border.hex_1000};
             height: ${SCALES.h(0.0625)};
             margin: ${SCALES.mt(0.35)} ${SCALES.mr(0)} ${SCALES.mb(0.35)} ${SCALES.ml(0)};
             width: ${SCALES.w(1, '100%')};
@@ -78,7 +78,7 @@ const PopoverItemComponent: React.FC<React.PropsWithChildren<PopoverItemProps>> 
           .item.title {
             font-weight: 500;
             font-size: ${SCALES.font(0.925)};
-            color: ${theme.palette.foreground.value};
+            color: ${theme.palette.foreground.hex_1000};
           }
         `}</style>
       </div>

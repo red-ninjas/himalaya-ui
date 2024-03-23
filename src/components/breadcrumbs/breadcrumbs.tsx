@@ -52,7 +52,7 @@ const BreadcrumbsComponent: React.FC<React.PropsWithChildren<BreadcrumbsProps>> 
         }
 
         nav :global(.link:hover) {
-          color: ${theme.palette.link.value};
+          color: ${theme.palette.link.hex_1000};
         }
 
         nav > :global(span:last-of-type) {

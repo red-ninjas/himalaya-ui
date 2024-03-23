@@ -2,8 +2,14 @@ import { generateColors } from '../utils';
 import { UIThemes, UIThemesExpressiveness, UIThemesPalette } from './index';
 import { defaultFont, defaultStyles } from './shared';
 const colors = generateColors({
-  background: '#fafafa',
-  border: '#e6e6e6',
+  background: {
+    color: '#fafafa',
+    reversed: true,
+  },
+  border: {
+    color: '#e6e6e6',
+    reversed: true,
+  },
   foreground: '#171717',
   secondary: '#7d7d7d',
   primary: '#0062d1',

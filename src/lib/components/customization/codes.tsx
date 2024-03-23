@@ -97,8 +97,8 @@ const CustomizationCodes: React.FC<unknown> = () => {
           width: 80%;
           margin: 0 auto;
           display: inline-block;
-          background: ${theme.palette.foreground.value};
-          color: ${theme.palette.background.value};
+          background: ${theme.palette.foreground.hex_1000};
+          color: ${theme.palette.background.hex_1000};
           font-size: 1rem;
           line-height: 1rem;
           padding: ${layout.gap} 0;
@@ -109,7 +109,7 @@ const CustomizationCodes: React.FC<unknown> = () => {
         .codes {
           width: 80%;
           margin: 0 auto;
-          border: 1px solid ${theme.palette.border.value};
+          border: 1px solid ${theme.palette.border.hex_1000};
           border-radius: ${theme.style.radius};
           overflow: hidden;
           padding: calc(0.6 * ${layout.gap}) ${layout.gap};

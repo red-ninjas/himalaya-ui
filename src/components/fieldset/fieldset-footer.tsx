@@ -26,7 +26,7 @@ const FieldsetFooterComponent: React.FC<React.PropsWithChildren<FieldsetFooterPr
       <style jsx>{`
         footer {
           background-color: ${theme.palette.background.hex_800};
-          border-top: 1px solid ${theme.palette.border.value};
+          border-top: 1px solid ${theme.palette.border.hex_1000};
           border-bottom-left-radius: ${theme.style.radius};
           border-bottom-right-radius: ${theme.style.radius};
           display: flex;

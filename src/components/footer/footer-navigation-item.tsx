@@ -27,11 +27,11 @@ const FooterNavigationItem: React.FC<PropsWithChildren<FooterNavigationItemProps
           .footer-link {
             font-weight: normal;
             font-size: 14px;
-            color: ${theme.palette.background.hex_400};
+            color: var(--theme-color-background-400);
             line-height: normal;
           }
           .footer-link:hover {
-            color: ${theme.palette.foreground.value};
+            color: ${theme.palette.foreground.hex_1000};
           }
         `}
       </style>

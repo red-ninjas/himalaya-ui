@@ -21,7 +21,7 @@ const HeroDesc: React.FC<PropsWithChildren<HeroCoreProps>> = ({ Tag = 'h2', chil
           display: inline-block;
           padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
           margin: ${SCALES.mt(0, 'auto')} ${SCALES.mr(0, 'auto')} ${SCALES.mb(0, 'auto')} ${SCALES.ml(0, 'auto')};
-          color: ${theme.palette.background.hex_400};
+          color: var(--theme-color-background-400);
         }
       `}</style>
     </Tag>

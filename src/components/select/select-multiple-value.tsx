@@ -31,7 +31,7 @@ const SelectMultipleValue: React.FC<React.PropsWithChildren<Props>> = ({ disable
           height: calc(var(--select-font-size) * 2);
           border-radius: ${SCALES.r(1, theme.style.radius)};
           background-color: ${theme.palette.background.hex_900};
-          color: ${disabled ? theme.palette.background.hex_500 : theme.palette.foreground.value};
+          color: ${disabled ? theme.palette.background.hex_500 : theme.palette.foreground.hex_1000};
         }
 
         .item > :global(div:not(.clear-icon)),

@@ -156,22 +156,22 @@ export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
             color: ${theme.palette.background.hex_500};
           }
           .class-name {
-            color: ${theme.palette.warning.value};
+            color: ${theme.palette.warning.hex_1000};
           }
           .maybe-class-name {
-            color: ${theme.palette.code.value};
+            color: ${theme.palette.code.hex_1000};
           }
           .token.string {
-            color: ${theme.palette.success.value};
+            color: ${theme.palette.success.hex_1000};
           }
           .token.comment {
             color: ${theme.palette.background.hex_600};
           }
           .keyword {
-            color: ${theme.palette.code.value};
+            color: ${theme.palette.code.hex_1000};
           }
           .attr-name {
-            color: ${theme.palette.tertiary.value};
+            color: ${theme.palette.tertiary.hex_1000};
           }
           .punctuation {
             color: ${theme.palette.foreground.hex_600};
@@ -180,24 +180,24 @@ export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
             color: ${theme.palette.primary.hex_1100};
           }
           .imports {
-            color: ${theme.palette.tertiary.value};
+            color: ${theme.palette.tertiary.hex_1000};
           }
           .plain-text {
             color: ${theme.palette.background.hex_300};
           }
           .tag {
-            color: ${theme.palette.primary.value};
+            color: ${theme.palette.primary.hex_1000};
           }
           .logo {
             padding-bottom: 6px;
-            color: ${theme.palette.foreground.value};
+            color: ${theme.palette.foreground.hex_1000};
           }
 
           .logo,
           .brand {
             display: inline-flex;
             align-items: center;
-            color: ${theme.palette.foreground.value};
+            color: ${theme.palette.foreground.hex_1000};
           }
 
           .brand {

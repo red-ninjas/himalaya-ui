@@ -25,7 +25,7 @@ const LinkComponent = React.forwardRef<HTMLAnchorElement, React.PropsWithChildre
   ) => {
     const theme = useTheme();
     const { RESPONSIVE } = useScale();
-    const linkColor = color || block ? theme.palette.link.value : 'inherit';
+    const linkColor = color || block ? theme.palette.link.hex_1000 : 'inherit';
     const hoverColor = color || block ? theme.palette.link.hex_900 : 'inherit';
     const classes = useClasses('link margin padding width height font', { block }, className, {
       underline: underline === true,

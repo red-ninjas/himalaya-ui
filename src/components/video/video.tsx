@@ -143,7 +143,7 @@ const Video: React.FC<VideoProps> = ({ src, controls, poster, loop = false, auto
         .controls {
           position: absolute;
           bottom: 5%;
-          background-color: ${theme.palette.background.value};
+          background-color: ${theme.palette.background.hex_1000};
           height: 56px;
           display: flex;
           opacity: 0;
@@ -174,7 +174,7 @@ const Video: React.FC<VideoProps> = ({ src, controls, poster, loop = false, auto
         }
         .controls button,
         .controls span {
-          color: ${theme.palette.foreground.value};
+          color: ${theme.palette.foreground.hex_1000};
           font-size: 16px;
           margin-right: 10px;
           border: none;

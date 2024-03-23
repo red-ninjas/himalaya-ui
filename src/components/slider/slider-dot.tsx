@@ -34,8 +34,8 @@ const SliderDot = React.forwardRef<HTMLDivElement, React.PropsWithChildren<Slide
             font-weight: 700;
             font-size: calc(var(--slider-font-size) * 0.75);
             z-index: 100;
-            background-color: ${theme.palette.primary.value};
-            color: ${theme.palette.background.value};
+            background-color: ${theme.palette.primary.hex_1000};
+            color: ${theme.palette.background.hex_1000};
             text-align: center;
             padding: 0 calc(0.57 * var(--slider-font-size));
           }

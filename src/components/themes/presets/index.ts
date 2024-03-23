@@ -27,7 +27,7 @@ export interface UIThemesAccents {
   hex_1100: string;
   hex_1200: string;
 }
-export interface UIThemesColors {
+export type UIThemesColors = {
   background: ColorVariable;
   foreground: ColorVariable;
   secondary: ColorVariable;
@@ -41,7 +41,8 @@ export interface UIThemesColors {
   paragraph: ColorVariable;
   codeBg: ColorVariable;
   border: ColorVariable;
-}
+};
+export type UIThemesColorKeys = keyof UIThemesColors;
 
 export interface UIThemesCore {
   gradient_1: Gradient;

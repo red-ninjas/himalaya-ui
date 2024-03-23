@@ -38,7 +38,7 @@ const ChartBar = forwardRef(
     }));
 
     const getPropertes = (): HistogramSeriesPartialOptions => {
-      const currentColor = color ? color : theme.palette.primary.value;
+      const currentColor = color ? color : theme.palette.primary.hex_1000;
       return {
         title: showTitle ? title : undefined,
         visible: visible,

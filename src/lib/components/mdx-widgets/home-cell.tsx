@@ -32,7 +32,7 @@ const HomeCell: React.FC<HomeCellProps> = ({ url, title, desc, icon }) => {
           .feature {
             width: 100%;
             padding: 40px 40px;
-            border: 1px solid ${theme.palette.border.value};
+            border: 1px solid ${theme.palette.border.hex_1000};
             height: 100%;
             border-radius: 10px;
             display: flex;
@@ -44,8 +44,8 @@ const HomeCell: React.FC<HomeCellProps> = ({ url, title, desc, icon }) => {
             width: 40px;
             border-radius: 2rem;
             background: ${theme.palette.background.hex_900};
-            border: 1px solid ${theme.palette.border.value};
-            color: ${theme.palette.background.hex_400};
+            border: 1px solid ${theme.palette.border.hex_1000};
+            color: var(--theme-color-background-400);
             display: flex;
             align-items: center;
             justify-content: center;

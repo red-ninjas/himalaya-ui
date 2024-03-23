@@ -27,32 +27,32 @@ const getColors = (type: TagTypes, palette: UIThemesPalette, invert: boolean) =>
     [key in TagTypes]: Pick<TagColors, 'color'> & Partial<TagColors>;
   } = {
     tertiary: {
-      color: palette.tertiary.value,
+      color: palette.tertiary.hex_1000,
     },
     primary: {
-      color: palette.primary.value,
+      color: palette.primary.hex_1000,
     },
     default: {
-      color: palette.foreground.value,
+      color: palette.foreground.hex_1000,
     },
     success: {
-      color: palette.success.value,
+      color: palette.success.hex_1000,
     },
     warning: {
-      color: palette.warning.value,
+      color: palette.warning.hex_1000,
     },
     error: {
-      color: palette.error.value,
+      color: palette.error.hex_1000,
     },
     secondary: {
-      color: palette.secondary.value,
+      color: palette.secondary.hex_1000,
     },
     dark: {
-      color: palette.foreground.value,
-      bgColor: palette.background.value,
+      color: palette.foreground.hex_1000,
+      bgColor: palette.background.hex_1000,
     },
     lite: {
-      color: palette.foreground.value,
+      color: palette.foreground.hex_1000,
       bgColor: palette.background.hex_700,
     },
   };
@@ -60,7 +60,7 @@ const getColors = (type: TagTypes, palette: UIThemesPalette, invert: boolean) =>
 
   const cardStyle = {
     ...colors[type],
-    bgColor: colors[type].bgColor || palette.background.value,
+    bgColor: colors[type].bgColor || palette.background.hex_1000,
     borderColor: hideBorder ? 'transparent' : colors[type].color,
   };
 

@@ -8,25 +8,25 @@ export type SelectColor = {
 export const getColors = (palette: UIThemesPalette, status?: NormalTypes): SelectColor => {
   const colors: { [key in NormalTypes]: SelectColor } = {
     default: {
-      bg: palette.foreground.value,
+      bg: palette.foreground.hex_1000,
     },
     secondary: {
-      bg: palette.secondary.value,
+      bg: palette.secondary.hex_1000,
     },
     success: {
-      bg: palette.success.value,
+      bg: palette.success.hex_1000,
     },
     warning: {
-      bg: palette.warning.value,
+      bg: palette.warning.hex_1000,
     },
     error: {
-      bg: palette.error.value,
+      bg: palette.error.hex_1000,
     },
     primary: {
-      bg: palette.primary.value,
+      bg: palette.primary.hex_1000,
     },
     tertiary: {
-      bg: palette.tertiary.value,
+      bg: palette.tertiary.hex_1000,
     },
   };
 

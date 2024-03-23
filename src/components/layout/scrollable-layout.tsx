@@ -17,7 +17,7 @@ const ScrollableLayout: React.FC<React.PropsWithChildren<ScrollableLayoutProps>>
           width: 100%;
           height: 100%;
           position: relative;
-          background: ${background || theme.palette.background.value};
+          background: ${background || theme.palette.background.hex_1000};
           overflow: hidden;
         }
       `}</style>

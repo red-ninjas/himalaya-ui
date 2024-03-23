@@ -1,11 +1,11 @@
-import { Layout, Playground, Attributes } from 'lib/components'
-import { Progress, Spacer, useTheme, Button } from 'components'
-import { useState } from 'react'
+import { Layout, Playground, Attributes } from 'lib/components';
+import { Progress, Spacer, useTheme, Button } from 'components';
+import { useState } from 'react';
 
 export const meta = {
   title: 'Progress',
   group: 'Feedback',
-}
+};
 
 # Progress
 
@@ -36,9 +36,9 @@ Display progress relative to a limit or related to a task.
   const theme = useTheme()
   const [value, setValue] = useState(20)
   const colors = {
-    20: theme.palette.error.value,
-    40: theme.palette.warning.value,
-    60: theme.palette.success.value,
+    20: theme.palette.error.hex_1000,
+    40: theme.palette.warning.hex_1000,
+    60: theme.palette.success.hex_1000,
     80: '#000',
   }
   return (
@@ -87,7 +87,7 @@ Display progress relative to a limit or related to a task.
 <Attributes.Title>ProgressTypes</Attributes.Title>
 
 ```ts
-type ProgressTypes = 'default' | 'secondary' | 'success' | 'warning' | 'error'
+type ProgressTypes = 'default' | 'secondary' | 'success' | 'warning' | 'error';
 ```
 
 </Attributes>

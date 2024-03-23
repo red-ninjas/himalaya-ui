@@ -3,19 +3,58 @@ import { UIThemes, UIThemesExpressiveness, UIThemesPalette } from './index';
 import { defaultFont, defaultStyles } from './shared';
 
 const colors = generateColors({
-  background: '#000000',
-  border: '#242424',
-  foreground: '#ededed',
-  secondary: '#7d7d7d',
-  primary: '#0062d1',
-  tertiary: '#763da9',
-  paragraph: '#a1a1a1',
-  warning: '#ff990a',
-  error: '#d93036',
-  success: '#398e4a',
-  link: '#0070f3',
-  code: '#d73a49',
-  codeBg: '#0a0a0a',
+  background: {
+    color: '#000000',
+    reversed: false,
+  },
+  border: {
+    color: '#242424',
+    reversed: false,
+  },
+  foreground: {
+    color: '#ededed',
+    reversed: true,
+  },
+  secondary: {
+    color: '#7d7d7d',
+    reversed: true,
+  },
+  primary: {
+    color: '#0062d1',
+    reversed: true,
+  },
+  tertiary: {
+    color: '#763da9',
+    reversed: true,
+  },
+  paragraph: {
+    color: '#a1a1a1',
+    reversed: true,
+  },
+  warning: {
+    color: '#ff990a',
+    reversed: true,
+  },
+  error: {
+    color: '#d93036',
+    reversed: true,
+  },
+  success: {
+    color: '#398e4a',
+    reversed: true,
+  },
+  link: {
+    color: '#0070f3',
+    reversed: true,
+  },
+  code: {
+    color: '#d73a49',
+    reversed: true,
+  },
+  codeBg: {
+    color: '#0a0a0a',
+    reversed: true,
+  },
 });
 export const palette: UIThemesPalette = Object.assign(
   {

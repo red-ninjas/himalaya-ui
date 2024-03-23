@@ -90,7 +90,7 @@ const ChartComponent: React.FC<React.PropsWithChildren<ChartProps>> = ({
   const defaultOptions: DeepPartial<ChartOptions> = {
     layout: {
       background: { type: ColorType.Solid, color: 'transparent' },
-      textColor: theme.palette.foreground.value,
+      textColor: theme.palette.foreground.hex_1000,
     },
     height: height,
     timeScale: {
@@ -160,7 +160,7 @@ const ChartComponent: React.FC<React.PropsWithChildren<ChartProps>> = ({
         const options = api.options();
 
         const price = data && data['value'] !== undefined ? data['value'] : data ? data['close'] : '';
-        const color = data && data['color'] !== undefined ? data['color'] : data ? theme.palette.primary.value : '';
+        const color = data && data['color'] !== undefined ? data['color'] : data ? theme.palette.primary.hex_1000 : '';
 
         const fmt = options.priceFormat as PriceFormatCustom;
         const formatter = fmt.formatter;
@@ -279,7 +279,7 @@ const ChartComponent: React.FC<React.PropsWithChildren<ChartProps>> = ({
     if (chart !== undefined) {
       chart?.applyOptions({
         layout: {
-          textColor: theme.palette.foreground.value,
+          textColor: theme.palette.foreground.hex_1000,
         },
         grid: {
           vertLines: {
@@ -300,7 +300,7 @@ const ChartComponent: React.FC<React.PropsWithChildren<ChartProps>> = ({
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [theme.type, theme.palette.foreground.value, hasSides]);
+  }, [theme.type, theme.palette.foreground.hex_1000, hasSides]);
 
   useEffect(() => {
     _setViewMode(viewMode);
@@ -331,7 +331,7 @@ const ChartComponent: React.FC<React.PropsWithChildren<ChartProps>> = ({
           position: relative;
           width: 100%;
           background: transparent;
-          border: 1px solid ${theme.palette.border.value};
+          border: 1px solid ${theme.palette.border.hex_1000};
           border-radius: ${SCALES.r(1, theme.style.radius)};
         }
         .chart-inner {
@@ -354,13 +354,13 @@ const ChartComponent: React.FC<React.PropsWithChildren<ChartProps>> = ({
           left: 12px;
           pointer-events: none;
           border: 1px solid;
-          border-color: ${theme.palette.border.value};
+          border-color: ${theme.palette.border.hex_1000};
           border-radius: 6px;
           font-family: -apple-system, BlinkMacSystemFont, 'Trebuchet MS', Roboto, Ubuntu, sans-serif;
           -webkit-font-smoothing: antialiased;
           -moz-osx-font-smoothing: grayscale;
-          color: ${theme.palette.foreground.value};
-          background: ${theme.palette.background.value};
+          color: ${theme.palette.foreground.hex_1000};
+          background: ${theme.palette.background.hex_1000};
           font-size: calc(1 * 12px);
           padding: calc(0.65 * 12px) calc(0.9 * 12px) calc(0.65 * 12px) calc(0.9 * 12px);
         }
@@ -371,7 +371,7 @@ const ChartComponent: React.FC<React.PropsWithChildren<ChartProps>> = ({
         }
 
         :global(.series-checkbox .text) {
-          color: ${theme.palette.background.hex_400};
+          color: var(--theme-color-background-400);
         }
       `}</style>
     </ChartContext.Provider>

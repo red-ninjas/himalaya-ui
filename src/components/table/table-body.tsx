@@ -45,8 +45,8 @@ const TableBody = <TableDataItem extends TableDataItemBase>({ data, hover, empty
         }
 
         tr :global(td) {
-          border-bottom: 1px solid ${theme.palette.border.value};
-          color: ${theme.palette.foreground.value};
+          border-bottom: 1px solid ${theme.palette.border.hex_1000};
+          color: ${theme.palette.foreground.hex_1000};
           font-size: calc(0.875 * var(--table-font-size));
           text-align: left;
         }

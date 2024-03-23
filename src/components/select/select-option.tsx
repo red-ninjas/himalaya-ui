@@ -52,7 +52,7 @@ const SelectOptionComponent: React.FC<React.PropsWithChildren<SelectOptionProps>
 
   const bgColor = useMemo(() => {
     if (isDisabled) return theme.palette.background.hex_800;
-    return theme.palette.background.value;
+    return theme.palette.background.hex_1000;
   }, [isDisabled, theme.palette]);
 
   const hoverBgColor = useMemo(() => {
@@ -62,7 +62,7 @@ const SelectOptionComponent: React.FC<React.PropsWithChildren<SelectOptionProps>
 
   const color = useMemo(() => {
     if (isDisabled) return theme.palette.background.hex_500;
-    return theme.palette.foreground.value;
+    return theme.palette.foreground.hex_1000;
   }, [isDisabled, theme.palette]);
 
   const clickHandler = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -118,13 +118,13 @@ const SelectOptionComponent: React.FC<React.PropsWithChildren<SelectOptionProps>
 
         .option:hover {
           background-color: ${hoverBgColor};
-          color: ${theme.palette.foreground.value};
+          color: ${theme.palette.foreground.hex_1000};
         }
 
         .divider {
           line-height: 0;
           overflow: hidden;
-          border-top: 1px solid ${theme.palette.border.value};
+          border-top: 1px solid ${theme.palette.border.hex_1000};
           width: ${SCALES.w(1, '100%')};
           height: ${SCALES.h(1, 0)};
           padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
@@ -133,7 +133,7 @@ const SelectOptionComponent: React.FC<React.PropsWithChildren<SelectOptionProps>
 
         .label {
           color: ${theme.palette.background.hex_200};
-          border-bottom: 1px solid ${theme.palette.border.value};
+          border-bottom: 1px solid ${theme.palette.border.hex_1000};
           cursor: default;
           font-size: ${SCALES.font(0.875)};
           width: ${SCALES.w(1, '100%')};

@@ -92,7 +92,7 @@ export default function Index() {
 
       <style jsx>{`
         .logo-footer {
-          color: ${theme.palette.foreground.value};
+          color: ${theme.palette.foreground.hex_1000};
         }
 
         section {

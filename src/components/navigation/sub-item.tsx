@@ -36,11 +36,11 @@ const NavigationSubItem: React.FC<PropsWithChildren<NavigationSubItemProps>> = (
       <style jsx>{`
         .description {
           font-weight: 14px;
-          color: ${theme.palette.background.hex_400};
+          color: var(--theme-color-background-400);
           overflow-wrap: anywhere;
         }
         .sub-item {
-          color: ${theme.palette.foreground.value};
+          color: ${theme.palette.foreground.hex_1000};
           font-weight: 500;
           min-width: 120px;
           padding: 6px 12px;

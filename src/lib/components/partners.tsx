@@ -77,7 +77,7 @@ export default function Partners() {
           }
 
           :global(a.partner:hover) {
-            color: ${theme.palette.foreground.value};
+            color: ${theme.palette.foreground.hex_1000};
           }
         `}</style>
       </div>

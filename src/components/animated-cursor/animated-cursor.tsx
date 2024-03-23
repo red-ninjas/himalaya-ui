@@ -63,12 +63,12 @@ const CursorCore: React.FC<AnimatedCursorProps> = ({
   const endY = useRef(0);
   const theme = useTheme();
 
-  let currentColor = theme.palette.tertiary.value;
-  let currentBackgroundColor = theme.palette.foreground.value;
+  let currentColor = theme.palette.tertiary.hex_1000;
+  let currentBackgroundColor = theme.palette.foreground.hex_1000;
 
   if (color === undefined) {
-    currentColor = addColorAlpha(theme.palette.primary.value, 1.0);
-    currentBackgroundColor = addColorAlpha(theme.palette.primary.value, options.outerAlpha);
+    currentColor = addColorAlpha(theme.palette.primary.hex_1000, 1.0);
+    currentBackgroundColor = addColorAlpha(theme.palette.primary.hex_1000, options.outerAlpha);
   } else {
     currentColor = addColorAlpha(color, 1.0);
     currentBackgroundColor = addColorAlpha(color, options.outerAlpha);

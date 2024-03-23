@@ -90,7 +90,7 @@ const TreeFile: React.FC<React.PropsWithChildren<TreeFileProps>> = ({
           font-size: 0.75rem;
           align-self: baseline;
           padding-left: 4px;
-          color: ${theme.palette.background.hex_400};
+          color: var(--theme-color-background-400);
         }
 
         .name:hover {

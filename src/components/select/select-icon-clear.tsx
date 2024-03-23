@@ -45,7 +45,7 @@ const SelectIconClear: React.FC<Props> = ({ onClick }) => {
         }
 
         .clear-icon:hover {
-          color: ${theme.palette.foreground.value};
+          color: ${theme.palette.foreground.hex_1000};
         }
 
         svg {

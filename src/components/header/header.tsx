@@ -78,11 +78,11 @@ const HeaderComponent: React.FC<HeaderPropsNative> = ({ children, transcluent = 
       </nav>
       <style jsx>{`
         .header-outer {
-          border-bottom: 1px solid ${theme.palette.border.value};
+          border-bottom: 1px solid ${theme.palette.border.hex_1000};
         }
         .transcluent {
           backdrop-filter: saturate(180%) blur(5px);
-          background-color: ${addColorAlpha(theme.palette.background.value, 0.8)};
+          background-color: ${addColorAlpha(theme.palette.background.hex_1000, 0.8)};
         }
         .header-inner {
           display: flex;

@@ -39,7 +39,7 @@ const KeyboardComponent: React.FC<React.PropsWithChildren<KeyboardProps>> = ({
           line-height: 2em;
           text-align: center;
           display: inline-block;
-          color: ${theme.palette.background.hex_400};
+          color: var(--theme-color-background-400);
           background-color: ${theme.palette.background.hex_800};
           font-family: ${theme.font.sans};
           border-radius: ${SCALES.r(1, theme.style.radius)};

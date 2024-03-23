@@ -74,7 +74,7 @@ const Hero: React.FC<PropsWithChildren<HeroPropsNative>> = ({ children, withDown
           height: 100px;
           cursor: pointer;
           text-align: center;
-          border: 1px solid ${theme.palette.border.value};
+          border: 1px solid ${theme.palette.border.hex_1000};
           border-radius: 50%;
           position: absolute;
           bottom: -50px;
@@ -82,7 +82,7 @@ const Hero: React.FC<PropsWithChildren<HeroPropsNative>> = ({ children, withDown
           display: flex;
           align-items: center;
           justify-content: center;
-          background-color: ${theme.palette.background.value};
+          background-color: ${theme.palette.background.hex_1000};
         }
         .arrow-down-inner {
           display: flex;

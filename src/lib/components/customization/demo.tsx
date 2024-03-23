@@ -69,7 +69,7 @@ const Demo: React.FC<React.PropsWithChildren<unknown>> = () => {
           margin-right: ${layout.gap};
           padding-right: ${layout.gapQuarter};
           position: relative;
-          border-right: 1px solid ${theme.palette.border.value};
+          border-right: 1px solid ${theme.palette.border.hex_1000};
           height: auto;
           transition: width 200ms ease;
         }
