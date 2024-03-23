@@ -24,7 +24,7 @@ const CodeComponent: React.FC<React.PropsWithChildren<CodeProps>> = ({
   const { background, border } = useMemo(() => {
     return {
       border: theme.palette.border.hex_1000,
-      background: theme.palette.codeBg.hex_1000,
+      background: 'var(--theme-color-background-1000)',
     };
   }, [theme.palette]);
 
@@ -79,7 +79,7 @@ const CodeComponent: React.FC<React.PropsWithChildren<CodeProps>> = ({
           z-index: 2;
         }
         .name {
-          background-color: ${theme.palette.codeBg.hex_1000};
+          background-color: var(--theme-color-background-800);
           color: var(--theme-color-background-400);
           height: auto;
           line-height: 1.35em;

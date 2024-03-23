@@ -188,8 +188,8 @@ const InputComponent = React.forwardRef<HTMLInputElement, React.PropsWithChildre
           }
 
           .input-wrapper.disabled {
-            background-color: ${theme.palette.background.hex_800};
-            border-color: ${theme.palette.border.hex_1000};
+            background-color: var(--theme-color-background-800);
+            border-color: var(--theme-color-border-1000);
             cursor: not-allowed;
           }
 
@@ -229,7 +229,7 @@ const InputComponent = React.forwardRef<HTMLInputElement, React.PropsWithChildre
           ::-moz-placeholder,
           :-ms-input-placeholder,
           ::-webkit-input-placeholder {
-            color: ${theme.palette.background.hex_600};
+            color: var(--theme-color-background-600);
           }
 
           ::-ms-reveal {
@@ -240,7 +240,7 @@ const InputComponent = React.forwardRef<HTMLInputElement, React.PropsWithChildre
           input:-webkit-autofill:hover,
           input:-webkit-autofill:active,
           input:-webkit-autofill:focus {
-            -webkit-box-shadow: 0 0 0 30px ${theme.palette.background.hex_1000} inset !important;
+            -webkit-box-shadow: 0 0 0 30px var(--theme-color-background-1000) inset !important;
             -webkit-text-fill-color: ${color} !important;
           }
         `}</style>

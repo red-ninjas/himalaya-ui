@@ -18,7 +18,7 @@ const MobilePage: React.FC<React.PropsWithChildren<{}>> = React.memo(({ children
             top: 0;
             left: 0;
             position: absolute;
-            background: ${theme.palette.background.hex_1000};
+            background: var(--theme-color-background-1000);
             z-index: 10;
           }
         }

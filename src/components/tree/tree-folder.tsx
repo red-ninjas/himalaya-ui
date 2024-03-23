@@ -92,7 +92,7 @@ const TreeFolder: React.FC<React.PropsWithChildren<TreeFolderProps>> = ({
           transform: translateY(-50%);
           width: 1px;
           height: 100%;
-          background-color: ${theme.palette.background.hex_700};
+          background-color: var(--theme-color-background-700);
           margin-left: -1px;
         }
 
@@ -104,7 +104,7 @@ const TreeFolder: React.FC<React.PropsWithChildren<TreeFolderProps>> = ({
           width: 0.875rem;
           height: 0.875rem;
           z-index: 10;
-          background-color: ${theme.palette.background.hex_1000};
+          background-color: var(--theme-color-background-1000);
         }
 
         .icon {
@@ -122,7 +122,7 @@ const TreeFolder: React.FC<React.PropsWithChildren<TreeFolderProps>> = ({
 
         .name {
           transition: opacity 100ms ease 0ms;
-          color: ${theme.palette.background.hex_100};
+          color: var(--theme-color-background-100);
           white-space: nowrap;
           font-size: 0.875rem;
         }

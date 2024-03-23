@@ -73,26 +73,26 @@ const TableHead = <TableDataItem extends TableDataItemBase>({ hasBorder = true, 
           vertical-align: middle;
           color: var(--theme-color-background-400);
           background: transparent;
-          border-bottom: 1px solid ${theme.palette.border.hex_1000};
+          border-bottom: 1px solid var(--theme-color-border-1000);
           border-radius: 0;
         }
 
         th.has-border {
-          border-top: 1px solid ${theme.palette.border.hex_1000};
+          border-top: 1px solid var(--theme-color-border-1000);
         }
 
         th.has-border:nth-child(1) {
-          border-bottom: 1px solid ${theme.palette.border.hex_1000};
-          border-left: 1px solid ${theme.palette.border.hex_1000};
-          border-top: 1px solid ${theme.palette.border.hex_1000};
+          border-bottom: 1px solid var(--theme-color-border-1000);
+          border-left: 1px solid var(--theme-color-border-1000);
+          border-top: 1px solid var(--theme-color-border-1000);
           border-top-left-radius: ${theme.style.radius};
           border-bottom-left-radius: ${theme.style.radius};
         }
 
         th.has-border:last-child {
-          border-bottom: 1px solid ${theme.palette.border.hex_1000};
-          border-right: 1px solid ${theme.palette.border.hex_1000};
-          border-top: 1px solid ${theme.palette.border.hex_1000};
+          border-bottom: 1px solid var(--theme-color-border-1000);
+          border-right: 1px solid var(--theme-color-border-1000);
+          border-top: 1px solid var(--theme-color-border-1000);
           border-top-right-radius: ${theme.style.radius};
           border-bottom-right-radius: ${theme.style.radius};
         }

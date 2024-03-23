@@ -62,7 +62,7 @@ function EntityFormComponent({
           position: relative;
           box-sizing: border-box;
           padding: ${SCALES.pt(1)} ${SCALES.pr(1)} ${SCALES.pb(1)} ${SCALES.pl(1)};
-          border: 1px solid ${theme.palette.background.hex_700};
+          border: 1px solid var(--theme-color-background-700);
           border-radius: ${SCALES.r(1, theme.style.radius)};
 
           .entity-body-text {
@@ -78,14 +78,14 @@ function EntityFormComponent({
             align-items: center;
             padding-bottom: ${SCALES.pb(1)};
             margin-bottom: ${SCALES.mb(1)};
-            border-bottom: 1px solid ${theme.palette.background.hex_600};
+            border-bottom: 1px solid var(--theme-color-background-600);
 
             .entity-title {
               self-align: 'flex-start';
               margin-top: 0;
               margin-bottom: 0;
               font-weight: 600;
-              color: ${theme.palette.background.hex_100};
+              color: var(--theme-color-background-100);
               flex: 1 1;
             }
           }
@@ -109,7 +109,7 @@ function EntityFormComponent({
 
           .separator {
             margin-top: ${SCALES.mt(1)};
-            border-top: 1px solid ${theme.palette.background.hex_600};
+            border-top: 1px solid var(--theme-color-background-600);
           }
         }
       `}</style>

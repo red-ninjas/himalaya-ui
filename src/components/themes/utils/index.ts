@@ -97,8 +97,6 @@ export const generateColors = (newConfig: GenerateColorProps): GenerateColorProp
     warning: generateColor('#FFCB6B'),
     link: generateColor('#baa7ff'),
     code: generateColor('#6e56cf'),
-    codeBg: generateColor('#ffffff'),
-    paragraph: generateColor('#B5B2BC'),
     border: generateColor('#333333'),
   };
   Object.keys(newConfig).map(oldKey => {
@@ -109,21 +107,4 @@ export const generateColors = (newConfig: GenerateColorProps): GenerateColorProp
   });
 
   return result;
-  /*
-  return {
-    background: generateColor(newConfig?.background || '#000000'),
-    foreground: generateColor(newConfig?.foreground || '#ffffff'),
-    primary: generateColor(newConfig?.primary || '#6e56cf'),
-    secondary: generateColor(newConfig?.secondary || '#232225'),
-    tertiary: generateColor(newConfig?.tertiary || '#89DDFF'),
-    success: generateColor(newConfig?.success || '#32CD32'),
-    error: generateColor(newConfig?.error || '#F07178'),
-    warning: generateColor(newConfig?.warning || '#FFCB6B'),
-    link: generateColor(newConfig?.link || '#baa7ff'),
-    code: generateColor(newConfig?.code || '#6e56cf'),
-    codeBg: generateColor(newConfig?.codeBg || '#ffffff'),
-    paragraph: generateColor(newConfig?.paragraph || '#B5B2BC'),
-    border: generateColor(newConfig?.border || '#333333'),
-  };
-  */
 };

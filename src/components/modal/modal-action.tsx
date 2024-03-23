@@ -40,7 +40,7 @@ const ModalActionComponent = React.forwardRef<HTMLButtonElement, React.PropsWith
     };
 
     const color = useMemo(() => {
-      return passive ? theme.palette.background.hex_400 : theme.palette.foreground.hex_1000;
+      return passive ? theme.palette.foreground.hex_700 : theme.palette.foreground.hex_1000;
     }, [theme.palette, passive, disabled]);
 
     const bgColor = useMemo(() => {
@@ -52,7 +52,7 @@ const ModalActionComponent = React.forwardRef<HTMLButtonElement, React.PropsWith
         font-size: ${SCALES.font(0.75)};
         border: none;
         color: ${color};
-        background-color: ${theme.palette.background.hex_1000};
+        background-color: var(--theme-color-background-1000);
         display: flex;
         -webkit-box-align: center;
         align-items: center;

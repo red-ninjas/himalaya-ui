@@ -105,7 +105,7 @@ export default function DocumentationLayout({ children }) {
 
         .markdown p,
         .markdown small {
-          color: ${theme.palette.paragraph.value};
+          color: var(--theme-color-foreground-800);
         }
       `}</style>
     </PageWidth>

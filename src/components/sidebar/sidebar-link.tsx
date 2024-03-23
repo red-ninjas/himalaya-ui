@@ -31,7 +31,7 @@ const SidebarLink: React.FC<PropsWithChildren<SideBarLinkProp>> = ({ children, i
           }
           .sidebar-link .sidebar-link-icon {
             margin-right: 12px;
-            color: ${theme.palette.background.hex_600};
+            color: var(--theme-color-background-600);
             transition: all 200ms ease;
             display: inline-flex;
           }
@@ -53,11 +53,11 @@ const SidebarLink: React.FC<PropsWithChildren<SideBarLinkProp>> = ({ children, i
           }
 
           .sidebar-link:hover {
-            color: ${theme.palette.foreground.hex_1000};
+            color: var(--theme-color-foreground-1000);
           }
 
           .sidebar-link:hover .sidebar-link-icon {
-            color: ${theme.palette.foreground.hex_1000};
+            color: var(--theme-color-foreground-1000);
           }
 
           .sidebar-link.active {

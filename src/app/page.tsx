@@ -81,7 +81,7 @@ export default function Index() {
           </div>
         </FooterBottom.Block>
         <FooterBottom.Block justify="flex-end">
-          <Text span font={'12px'} style={{ color: theme.palette.background.hex_400 }}>
+          <Text span font={'12px'} style={{ color: theme.palette.foreground.hex_700 }}>
             With support of{' '}
             <Link color href="https://redninjas.dev" target="_blank">
               RedNinjas LTD
@@ -92,7 +92,7 @@ export default function Index() {
 
       <style jsx>{`
         .logo-footer {
-          color: ${theme.palette.foreground.hex_1000};
+          color: var(--theme-color-foreground-1000);
         }
 
         section {

@@ -31,7 +31,7 @@ const MobileNavigationSubGroup: React.FC<PropsWithChildren<MobileNavigationSubGr
             font-weight: normal;
           }
           .sub-group-inner {
-            border-left: 1px solid ${theme.palette.border.hex_1000};
+            border-left: 1px solid var(--theme-color-border-1000);
             margin: ${SCALES.pt(0)} ${SCALES.pr(0.6)} ${SCALES.pb(0)} ${SCALES.pl(0.6)};
             padding-left: ${SCALES.pl(0.55)};
           }

@@ -65,7 +65,7 @@ const Editor: React.FC<Props> = ({ code }) => {
           overflow: hidden;
           border-bottom-left-radius: ${theme.style.radius};
           border-bottom-right-radius: ${theme.style.radius};
-          background-color: ${theme.palette.background.hex_900};
+          background-color: var(--theme-color-background-900);
         }
 
         details summary::-webkit-details-marker {
@@ -74,7 +74,7 @@ const Editor: React.FC<Props> = ({ code }) => {
 
         summary {
           box-sizing: border-box;
-          border-top: 1px solid ${theme.palette.border.hex_1000};
+          border-top: 1px solid var(--theme-color-border-1000);
           color: var(--theme-color-background-400);
           width: 100%;
           list-style: none;
@@ -108,11 +108,11 @@ const Editor: React.FC<Props> = ({ code }) => {
           box-sizing: border-box;
           white-space: pre;
           font-family: ${theme.font.mono};
-          color: ${theme.palette.foreground.hex_1000};
-          background-color: ${theme.palette.background.hex_1000};
+          color: var(--theme-color-foreground-hex_1000);
+          background-color: var(--theme-color-background-1000);
           font-size: 1em;
           overflow: hidden;
-          border-top: 1px solid ${theme.palette.border.hex_1000};
+          border-top: 1px solid var(--theme-color-border-1000);
           padding: ${layout.gapHalf};
         }
 
@@ -129,12 +129,12 @@ const Editor: React.FC<Props> = ({ code }) => {
         .copy {
           display: inline-flex;
           align-items: center;
-          color: ${theme.palette.background.hex_500};
+          color: var(--theme-color-background-500);
           transition: color 0.2s ease;
         }
 
         .copy:hover {
-          color: ${theme.palette.background.hex_300};
+          color: var(--theme-color-background-300);
         }
       `}</style>
     </div>

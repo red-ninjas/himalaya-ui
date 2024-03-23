@@ -47,7 +47,7 @@ const InputIconClear: React.FC<Props> = ({ onClick, disabled, visible }) => {
           transition: color 150ms ease 0s;
           margin: 0;
           padding: 0;
-          color: ${theme.palette.background.hex_600};
+          color: var(--theme-color-background-600);
           visibility: hidden;
           opacity: 0;
         }

@@ -73,14 +73,14 @@ function EntityComponent({
           background: ${addColorAlpha(theme.palette.background.hex_900, 0.15)};
 
           &.disabled {
-            background: ${theme.palette.background.hex_800};
+            background: var(--theme-color-background-800);
             cursor: not-allowed;
 
             .entity-wrapper {
               opacity: 0.6;
             }
           }
-          border: 1px solid ${theme.palette.border.hex_1000};
+          border: 1px solid var(--theme-color-border-1000);
           border-radius: ${SCALES.r(1, theme.style.radius)};
         }
 
@@ -158,7 +158,7 @@ function EntityComponent({
             flex-wrap: wrap;
           }
           .entity-wrapper :global(.field-wrapper) {
-            border-bottom: 1px solid ${theme.palette.border.hex_1000};
+            border-bottom: 1px solid var(--theme-color-border-1000);
             padding-bottom: 12px;
           }
         }

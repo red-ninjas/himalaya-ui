@@ -85,12 +85,12 @@ const BottomNavigationItem: React.FC<PropsWithChildren<BottomNavigationItemProps
         }
 
         .bottom-menu-item:hover {
-          color: ${theme.palette.foreground.hex_1000};
+          color: var(--theme-color-foreground-1000);
         }
 
         .bottom-menu-item.active {
-          color: ${theme.palette.foreground.hex_1000};
-          border-top: 3px solid ${theme.palette.foreground.hex_1000};
+          color: var(--theme-color-foreground-1000);
+          border-top: 3px solid var(--theme-color-foreground-1000);
           font-weight: 500;
         }
       `}</style>

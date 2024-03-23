@@ -24,7 +24,7 @@ function MenuItemComponent({ children, icon, ...other }: PropsWithChildren<MenuI
           border-radius: ${SCALES.r(1, theme.style.radius)};
 
           &:hover {
-            background: ${theme.palette.background.hex_900};
+            background: var(--theme-color-background-900);
           }
         }
       `}</style>

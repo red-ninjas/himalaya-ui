@@ -49,7 +49,7 @@ const AutoCompleteDropdown: React.FC<React.PropsWithChildren<AutoCompleteDropdow
           .auto-complete-dropdown {
             border-radius: ${SCALES.r(1, theme.style.radius)};
             box-shadow: ${isEmpty ? 'none' : theme.expressiveness.shadowLarge};
-            background-color: ${theme.palette.background.hex_1000};
+            background-color: var(--theme-color-background-1000);
             overflow-y: auto;
             max-height: 15rem;
             overflow-anchor: none;

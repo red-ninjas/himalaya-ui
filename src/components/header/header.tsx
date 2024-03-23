@@ -78,7 +78,7 @@ const HeaderComponent: React.FC<HeaderPropsNative> = ({ children, transcluent = 
       </nav>
       <style jsx>{`
         .header-outer {
-          border-bottom: 1px solid ${theme.palette.border.hex_1000};
+          border-bottom: 1px solid var(--theme-color-border-1000);
         }
         .transcluent {
           backdrop-filter: saturate(180%) blur(5px);

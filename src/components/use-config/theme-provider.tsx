@@ -12,9 +12,10 @@ import css from 'styled-jsx/css';
 export interface Props {
   themeType?: string;
   themes?: Array<UIThemes>;
+  inline?: boolean;
 }
 
-const ThemeProvider: React.FC<PropsWithChildren<Props>> = ({ children, themeType, themes }) => {
+const ThemeProvider: React.FC<PropsWithChildren<Props>> = ({ children, themeType, themes, inline = true }) => {
   const { themes: themesFromConfig, themeType: themeTypeFromConfig } = useConfigs();
 
   const currentThemes = themes ?? themesFromConfig;
@@ -43,7 +44,6 @@ const ThemeProvider: React.FC<PropsWithChildren<Props>> = ({ children, themeType
     const value = currentTheme.palette[key];
 
     let colorClassesTemp: string = ``;
-
     for (const colorKey of Object.keys(value)) {
       vars += css`
       --theme-color-${key}-${colorKey.replace('hex_', '')}: ${value[colorKey]};
@@ -65,17 +65,35 @@ const ThemeProvider: React.FC<PropsWithChildren<Props>> = ({ children, themeType
   }
 
   return (
-    <div className="theme">
-      <AllThemesContext.Provider value={allThemes}>
-        <ThemeContext.Provider value={currentTheme}>{children}</ThemeContext.Provider>
-      </AllThemesContext.Provider>
-      <style jsx>{`
-        .theme {
-          ${vars}
-          ${colorClasses}
-        }
-      `}</style>
-    </div>
+    <AllThemesContext.Provider value={allThemes}>
+      <ThemeContext.Provider value={currentTheme}>
+        {inline ? (
+          <div className="theme">
+            {children}
+            <style jsx>
+              {`
+                .theme {
+                  ${vars}
+                }
+              `}
+            </style>
+          </div>
+        ) : (
+          <>
+            {children}
+            <style jsx global>
+              {`
+                html {
+                  ${vars}
+                }
+
+                ${colorClasses}
+              `}
+            </style>
+          </>
+        )}
+      </ThemeContext.Provider>
+    </AllThemesContext.Provider>
   );
 };
 

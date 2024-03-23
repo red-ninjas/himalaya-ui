@@ -60,7 +60,7 @@ const MobileMenu: React.FC<PropsWithChildren<MobileMenuPropsNative>> = ({ childr
 
         .mobilemenu-nav-content .sub-group ~ .item {
           margin-left: 5px !important;
-          border-left: 1px solid ${theme.palette.border.hex_1000};
+          border-left: 1px solid var(--theme-color-border-1000);
         }
       `}</style>
     </>

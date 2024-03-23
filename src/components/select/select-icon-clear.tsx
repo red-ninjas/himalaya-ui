@@ -39,13 +39,13 @@ const SelectIconClear: React.FC<Props> = ({ onClick }) => {
           cursor: pointer;
           box-sizing: border-box;
           transition: color 150ms ease 0s;
-          color: ${theme.palette.background.hex_600};
+          color: var(--theme-color-background-600);
           visibility: visible;
           opacity: 1;
         }
 
         .clear-icon:hover {
-          color: ${theme.palette.foreground.hex_1000};
+          color: var(--theme-color-foreground-1000);
         }
 
         svg {

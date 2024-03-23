@@ -40,7 +40,7 @@ const NavigationSubItem: React.FC<PropsWithChildren<NavigationSubItemProps>> = (
           overflow-wrap: anywhere;
         }
         .sub-item {
-          color: ${theme.palette.foreground.hex_1000};
+          color: var(--theme-color-foreground-1000);
           font-weight: 500;
           min-width: 120px;
           padding: 6px 12px;

@@ -12,8 +12,8 @@ export const getColors = (palette: UIThemesPalette, status?: NormalTypes): Selec
   const colors: { [key in NormalTypes]: SelectColor } = {
     default: {
       border: palette.border.hex_1000,
-      borderActive: palette.border.hex_1200,
-      iconBorder: palette.background.hex_400,
+      borderActive: palette.border.hex_900,
+      iconBorder: palette.foreground.hex_700,
       placeholderColor: palette.background.hex_600,
     },
     secondary: {

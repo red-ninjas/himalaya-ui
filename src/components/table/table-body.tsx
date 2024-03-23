@@ -45,13 +45,13 @@ const TableBody = <TableDataItem extends TableDataItemBase>({ data, hover, empty
         }
 
         tr :global(td) {
-          border-bottom: 1px solid ${theme.palette.border.hex_1000};
-          color: ${theme.palette.foreground.hex_1000};
+          border-bottom: 1px solid var(--theme-color-border-1000);
+          color: var(--theme-color-foreground-1000);
           font-size: calc(0.875 * var(--table-font-size));
           text-align: left;
         }
         tr.hover:hover :global(td) {
-          border-bottom: 1px solid ${theme.palette.background.hex_800};
+          border-bottom: 1px solid var(--theme-color-background-800);
         }
         tr :global(.cell) {
           display: flex;

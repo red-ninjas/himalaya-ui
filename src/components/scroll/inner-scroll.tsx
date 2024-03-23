@@ -81,12 +81,12 @@ const InnerScrollComponent: React.FC<React.PropsWithChildren<InnerScrollProps>> 
         }
 
         .inner-scroll:hover::-webkit-scrollbar-thumb {
-          background: ${theme.palette.background.hex_700};
+          background: var(--theme-color-background-700);
         }
 
         .inner-scroll:hover::-webkit-scrollbar-corner,
         .inner-scroll:hover::-webkit-resizer {
-          background: ${theme.palette.background.hex_700};
+          background: var(--theme-color-background-700);
         }
 
         .inner-scroll:hover::-webkit-scrollbar-corner {

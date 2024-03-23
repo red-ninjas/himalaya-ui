@@ -69,7 +69,7 @@ const TabsItemComponent: React.FC<React.PropsWithChildren<TabsItemProps>> = ({
             line-height: normal;
           }
           .tab:hover {
-            color: ${theme.palette.foreground.hex_1000};
+            color: var(--theme-color-foreground-1000);
           }
           .tab:after {
             position: absolute;
@@ -81,7 +81,7 @@ const TabsItemComponent: React.FC<React.PropsWithChildren<TabsItemProps>> = ({
             height: 2px;
             border-radius: 4px;
             transform: scaleX(0.75);
-            background-color: ${theme.palette.primary.hex_1000};
+            background-color: var(--theme-color-primary-1000);
             transition:
               opacity,
               transform 200ms ease-in;
@@ -99,10 +99,10 @@ const TabsItemComponent: React.FC<React.PropsWithChildren<TabsItemProps>> = ({
             margin-left: 0;
           }
           .active {
-            color: ${theme.palette.foreground.hex_1000};
+            color: var(--theme-color-foreground-1000);
           }
           .disabled {
-            color: ${theme.palette.background.hex_600};
+            color: var(--theme-color-background-600);
             cursor: not-allowed;
           }
           .hide-border:before {

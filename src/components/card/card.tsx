@@ -49,7 +49,7 @@ const CardComponent: React.FC<React.PropsWithChildren<CardProps>> = ({
       {footerChildren}
       <style jsx>{`
         .card {
-          background: ${theme.palette.background.hex_1000};
+          background: var(--theme-color-background-1000);
           transition: all 0.2s ease;
           border-radius: ${SCALES.r(1, theme.style.radius)};
           box-shadow: ${shadow ? theme.expressiveness.shadowSmall : 'none'};
@@ -61,7 +61,7 @@ const CardComponent: React.FC<React.PropsWithChildren<CardProps>> = ({
           height: ${SCALES.h(1, 'auto')};
           padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
           margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
-          border: ${borderSize}px solid ${theme.palette.border.hex_1000};
+          border: ${borderSize}px solid var(--theme-color-border-1000);
         }
 
         .card:hover {

@@ -65,7 +65,7 @@ const EditorColorItem: React.FC<React.PropsWithChildren<Props>> = ({ keyName }) 
             line-height: 2rem;
             display: inline-flex;
             align-items: center;
-            border: 1px solid ${theme.palette.border.hex_1000};
+            border: 1px solid var(--theme-color-border-1000);
             border-radius: ${theme.style.radius};
             color: var(--theme-color-background-400);
             margin-right: 0.75rem;
@@ -85,7 +85,7 @@ const EditorColorItem: React.FC<React.PropsWithChildren<Props>> = ({ keyName }) 
           }
 
           .editor-item:hover {
-            color: ${theme.palette.background.hex_100};
+            color: var(--theme-color-background-100);
           }
 
           .editor-item:hover .dot {

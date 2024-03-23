@@ -14,13 +14,11 @@ const colors = generateColors({
   secondary: '#7d7d7d',
   primary: '#0062d1',
   tertiary: '#763da9',
-  paragraph: '#666666',
   warning: '#ff990a',
   error: '#da2f35',
   success: '#398e4a',
   link: '#3291ff',
   code: '#f75f8f',
-  codeBg: '#ffffff',
 });
 export const palette: UIThemesPalette = Object.assign(
   {

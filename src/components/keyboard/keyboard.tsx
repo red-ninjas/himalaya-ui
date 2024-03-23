@@ -40,10 +40,10 @@ const KeyboardComponent: React.FC<React.PropsWithChildren<KeyboardProps>> = ({
           text-align: center;
           display: inline-block;
           color: var(--theme-color-background-400);
-          background-color: ${theme.palette.background.hex_800};
+          background-color: var(--theme-color-background-800);
           font-family: ${theme.font.sans};
           border-radius: ${SCALES.r(1, theme.style.radius)};
-          border: 1px solid ${theme.palette.background.hex_700};
+          border: 1px solid var(--theme-color-background-700);
           font-size: ${SCALES.font(0.875)};
           width: ${SCALES.w(1, 'fit-content')};
           height: ${SCALES.h(1, 'auto')};

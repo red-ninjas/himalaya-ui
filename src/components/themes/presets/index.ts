@@ -38,8 +38,6 @@ export type UIThemesColors = {
   warning: ColorVariable;
   link: ColorVariable;
   code: ColorVariable;
-  paragraph: ColorVariable;
-  codeBg: ColorVariable;
   border: ColorVariable;
 };
 export type UIThemesColorKeys = keyof UIThemesColors;

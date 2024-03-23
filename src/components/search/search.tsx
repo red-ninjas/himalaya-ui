@@ -164,7 +164,7 @@ const Search: React.FC<SearchProps> = ({ searchFunction, visibile = false, place
       <style jsx>{`
         .title {
           width: 100%;
-          color: ${theme.palette.background.hex_1000};
+          color: var(--theme-color-background-1000);
           background-color: ${theme.palette.tertiary.hex_1000};
           display: flex;
           justify-content: flex-end;

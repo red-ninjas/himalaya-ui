@@ -53,7 +53,7 @@ const DescriptionComponent: React.FC<DescriptionProps> = ({
           font-size: 0.875em;
           margin: 0;
           line-height: 1.1em;
-          color: ${theme.palette.foreground.hex_1000};
+          color: var(--theme-color-foreground-1000);
           font-weight: 500;
         }
 

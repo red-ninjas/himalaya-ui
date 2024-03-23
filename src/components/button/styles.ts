@@ -88,7 +88,7 @@ export const getButtonColors = (palette: UIThemesPalette, props: ButtonProps): B
     abort: {
       bg: 'transparent',
       border: 'transparent',
-      color: palette.background.hex_400,
+      color: palette.foreground.hex_700,
     },
   };
   if (disabled)
@@ -150,7 +150,7 @@ export const getButtonHoverColors = (palette: UIThemesPalette, props: ButtonProp
   } = {
     default: {
       bg: palette.background.hex_900,
-      border: palette.border.hex_1200,
+      border: palette.border.hex_900,
       color: palette.foreground.hex_1000,
     },
     secondary: {
@@ -186,7 +186,7 @@ export const getButtonHoverColors = (palette: UIThemesPalette, props: ButtonProp
     abort: {
       bg: palette.background.hex_900,
       border: palette.background.hex_900,
-      color: palette.background.hex_400,
+      color: palette.foreground.hex_700,
     },
   };
   if (disabled)
@@ -219,7 +219,7 @@ export const getButtonActivatedColors = (palette: UIThemesPalette, props: Button
   } = {
     default: {
       bg: palette.background.hex_800,
-      border: palette.border.hex_1100,
+      border: palette.border.hex_800,
       color: palette.foreground.hex_1000,
     },
 
@@ -260,7 +260,7 @@ export const getButtonActivatedColors = (palette: UIThemesPalette, props: Button
     abort: {
       bg: palette.background.hex_900,
       border: palette.background.hex_900,
-      color: palette.background.hex_400,
+      color: palette.foreground.hex_700,
     },
   };
   if (disabled)

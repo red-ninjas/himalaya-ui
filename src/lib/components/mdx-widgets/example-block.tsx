@@ -17,7 +17,7 @@ const getBackground = (theme: UIThemes, plain: number | boolean) => {
     theme.palette.background.hex_700,
     theme.palette.background.hex_600,
     theme.palette.background.hex_500,
-    theme.palette.background.hex_400,
+    theme.palette.foreground.hex_700,
     theme.palette.background.hex_300,
   ];
   return colors[plain - 1] || theme.palette.primary.hex_1000;
@@ -38,7 +38,7 @@ const ExampleBlock: React.FC<React.PropsWithChildren<ExampleBlockProps>> = React
             background: ${bg};
             padding: ${layout.gapHalf};
             border-radius: ${theme.style.radius};
-            color: ${theme.palette.background.hex_1000};
+            color: var(--theme-color-background-1000);
             font-size: 0.75rem;
           }
         `}</style>

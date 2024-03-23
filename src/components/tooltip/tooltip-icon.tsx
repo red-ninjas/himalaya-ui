@@ -23,7 +23,7 @@ const TooltipIcon: React.FC<Props> = ({ placement }) => {
           height: 0;
           border-style: solid;
           border-width: 6px 6px 6px 0;
-          border-color: transparent ${theme.palette.border.hex_1000} transparent transparent;
+          border-color: transparent var(--theme-color-border-1000) transparent transparent;
           position: absolute;
           left: ${left};
           top: ${top};

@@ -93,7 +93,7 @@ const ToggleListItemComponent: React.FC<PropsWithChildren<ToggleProps>> = ({
           cursor: pointer;
         }
         .toggle-list-item.active {
-          background: ${theme.palette.background.hex_1000};
+          background: var(--theme-color-background-1000);
         }
 
         .has-icon .name {

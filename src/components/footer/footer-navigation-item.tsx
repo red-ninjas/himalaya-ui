@@ -31,7 +31,7 @@ const FooterNavigationItem: React.FC<PropsWithChildren<FooterNavigationItemProps
             line-height: normal;
           }
           .footer-link:hover {
-            color: ${theme.palette.foreground.hex_1000};
+            color: var(--theme-color-foreground-1000);
           }
         `}
       </style>

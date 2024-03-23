@@ -242,7 +242,7 @@ const SelectComponent = React.forwardRef<SelectRef, React.PropsWithChildren<Sele
 
             .select.active.icon,
             .select:hover .icon {
-              color: ${disabled ? theme.palette.background.hex_400 : borderActive};
+              color: ${disabled ? theme.palette.foreground.hex_700 : borderActive};
             }
 
             .value {

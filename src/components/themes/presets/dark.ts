@@ -27,10 +27,7 @@ const colors = generateColors({
     color: '#763da9',
     reversed: true,
   },
-  paragraph: {
-    color: '#a1a1a1',
-    reversed: true,
-  },
+
   warning: {
     color: '#ff990a',
     reversed: true,
@@ -49,10 +46,6 @@ const colors = generateColors({
   },
   code: {
     color: '#d73a49',
-    reversed: true,
-  },
-  codeBg: {
-    color: '#0a0a0a',
     reversed: true,
   },
 });

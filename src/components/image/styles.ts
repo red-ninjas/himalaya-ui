@@ -22,6 +22,6 @@ export const getBrowserColors = (invert: boolean, palette: UIThemesPalette): Bro
         barBgColor: palette.background.hex_1000,
         inputBgColor: palette.background.hex_800,
         borderColor: palette.border.hex_1000,
-        titleColor: palette.background.hex_400,
+        titleColor: palette.foreground.hex_700,
       };
 };

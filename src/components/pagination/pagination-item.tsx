@@ -57,9 +57,9 @@ const PaginationItem: React.FC<React.PropsWithChildren<PaginationItemProps>> = (
           min-width: var(--pagination-size);
           font-size: inherit;
           cursor: pointer;
-          color: ${theme.palette.primary.hex_1000};
+          color: var(--theme-color-primary-1000);
           border-radius: ${theme.style.radius};
-          background-color: ${theme.palette.background.hex_1000};
+          background-color: var(--theme-color-background-1000);
           transition: all linear 200ms 0ms;
         }
 
@@ -69,8 +69,8 @@ const PaginationItem: React.FC<React.PropsWithChildren<PaginationItemProps>> = (
 
         .active {
           font-weight: bold;
-          background-color: ${theme.palette.primary.hex_1000};
-          color: ${theme.palette.background.hex_1000};
+          background-color: var(--theme-color-primary-1000);
+          color: var(--theme-color-background-1000);
           box-shadow: ${theme.expressiveness.shadowSmall};
         }
 
@@ -80,12 +80,12 @@ const PaginationItem: React.FC<React.PropsWithChildren<PaginationItemProps>> = (
         }
 
         .disabled {
-          color: ${theme.palette.background.hex_500};
+          color: var(--theme-color-background-500);
           cursor: not-allowed;
         }
 
         .disabled:hover {
-          background-color: ${theme.palette.background.hex_700};
+          background-color: var(--theme-color-background-700);
         }
 
         button :global(svg) {

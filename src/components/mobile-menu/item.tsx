@@ -60,12 +60,12 @@ const NavigationItem: React.FC<PropsWithChildren<MobileNavigationItemProps>> = (
             width: 100%;
 
             &:hover {
-              background: ${theme.palette.background.hex_900};
+              background: var(--theme-color-background-900);
             }
           }
 
           .is-active {
-            color: ${theme.palette.foreground.hex_1000};
+            color: var(--theme-color-foreground-1000);
             font-weight: bold;
           }
 

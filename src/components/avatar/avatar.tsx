@@ -43,10 +43,10 @@ const AvatarComponent: React.FC<AvatarProps> = ({ src, stacked = false, text = '
           display: inline-block;
           position: relative;
           overflow: hidden;
-          border: 1px solid ${theme.palette.border.hex_1000};
+          border: 1px solid var(--theme-color-border-1000);
           border-radius: ${radius};
           vertical-align: top;
-          background-color: ${theme.palette.background.hex_1000};
+          background-color: var(--theme-color-background-1000);
           box-sizing: border-box;
           width: ${SCALES.w(1.75) || SCALES.h(1.75)};
           height: ${SCALES.h(1.75) || SCALES.w(1.75)};

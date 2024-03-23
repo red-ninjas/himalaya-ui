@@ -38,7 +38,7 @@ const AttributesTitle: React.FC<React.PropsWithChildren<AttributesTitleProps>> =
           align-items: center;
           padding-left: ${layout.gapQuarter};
           padding-right: ${layout.gapHalf};
-          background-color: ${theme.palette.background.hex_800};
+          background-color: var(--theme-color-background-800);
           border-radius: ${theme.style.radius};
           margin-bottom: 0;
         }
@@ -46,13 +46,13 @@ const AttributesTitle: React.FC<React.PropsWithChildren<AttributesTitleProps>> =
         h4 :global(small) {
           font-size: 0.65em;
           padding-left: 0.65rem;
-          color: ${theme.palette.background.hex_500};
+          color: var(--theme-color-background-500);
           align-self: flex-end;
           line-height: 1.6rem;
         }
 
         h4 :global(span) {
-          color: ${theme.palette.background.hex_300};
+          color: var(--theme-color-background-300);
         }
       `}</style>
     </>

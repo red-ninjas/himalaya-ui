@@ -121,11 +121,11 @@ const Colors: React.FC<Props> = ({ type }) => {
           user-select: none;
           border-radius: 4px;
           margin-top: 12px;
-          border: 2px solid ${theme.palette.border.hex_1000};
+          border: 2px solid var(--theme-color-border-1000);
         }
 
         .colors :global(.color.main) {
-          border: 2px solid ${theme.palette.primary.hex_1000};
+          border: 2px solid var(--theme-color-primary-1000);
         }
 
         .colors :global(.color h4) {

@@ -36,11 +36,11 @@ const SearchItem: React.FC<SearchItemProps> = ({ data, onMouseOver, onSelect, on
             transition: color 200ms ease;
             outline: none;
             border: 0;
-            color: ${theme.palette.background.hex_500};
+            color: var(--theme-color-background-500);
             background-color: transparent;
           }
           .container:focus {
-            color: ${theme.palette.foreground.hex_1000};
+            color: var(--theme-color-foreground-1000);
           }
           .container :global(.value) {
           }

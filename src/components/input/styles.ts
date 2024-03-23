@@ -12,7 +12,7 @@ export const getColors = (palette: UIThemesPalette, status?: NormalTypes): Input
     default: {
       color: palette.foreground.hex_1000,
       borderColor: palette.border.hex_1000,
-      hoverBorder: palette.border.hex_1200,
+      hoverBorder: palette.border.hex_900,
     },
     secondary: {
       color: palette.foreground.hex_1000,

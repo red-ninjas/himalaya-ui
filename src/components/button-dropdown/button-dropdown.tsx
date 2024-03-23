@@ -104,7 +104,7 @@ const ButtonDropdownComponent: React.FC<React.PropsWithChildren<ButtonDropdownPr
             display: inline-flex;
             position: relative;
             box-sizing: border-box;
-            border: 1px solid ${theme.palette.border.hex_1000};
+            border: 1px solid var(--theme-color-border-1000);
             border-radius: ${SCALES.r(1, theme.style.radius)};
             --ui-dropdown-height: ${SCALES.h(2.5)};
             --ui-dropdown-min-width: ${auto ? 'min-content' : SCALES.w(10.5)};
@@ -165,7 +165,7 @@ const ButtonDropdownComponent: React.FC<React.PropsWithChildren<ButtonDropdownPr
             border-radius: ${SCALES.r(1, theme.style.radius)};
             box-shadow: ${theme.expressiveness.shadowLarge};
             transform: translateY(${layout.gapHalf});
-            background-color: ${theme.palette.background.hex_1000};
+            background-color: var(--theme-color-background-1000);
           }
 
           .content > :global(button:first-of-type) {

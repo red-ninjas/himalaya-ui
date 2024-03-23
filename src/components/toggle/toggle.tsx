@@ -117,7 +117,7 @@ const ToggleComponent: React.FC<ToggleProps> = ({
           transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
           position: relative;
           border: 1px solid transparent;
-          background-color: ${theme.palette.background.hex_700};
+          background-color: var(--theme-color-background-700);
           padding: 0;
         }
 
@@ -133,21 +133,21 @@ const ToggleComponent: React.FC<ToggleProps> = ({
             rgba(0, 0, 0, 0.1) 0 1px 3px 0;
           transition: left 280ms cubic-bezier(0, 0, 0.2, 1);
           border-radius: 50%;
-          background-color: ${theme.palette.background.hex_1000};
+          background-color: var(--theme-color-background-1000);
         }
 
         .disabled {
-          border-color: ${theme.palette.border.hex_1000};
-          background-color: ${theme.palette.background.hex_800};
+          border-color: var(--theme-color-border-1000);
+          background-color: var(--theme-color-background-800);
         }
 
         .disabled > .inner {
-          background-color: ${theme.palette.background.hex_700};
+          background-color: var(--theme-color-background-700);
         }
 
         .disabled.checked {
-          border-color: ${theme.palette.background.hex_500};
-          background-color: ${theme.palette.background.hex_500};
+          border-color: var(--theme-color-background-500);
+          background-color: var(--theme-color-background-500);
         }
 
         .checked {

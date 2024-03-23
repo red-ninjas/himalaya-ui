@@ -37,7 +37,7 @@ const BottomNavigation: React.FC<React.PropsWithChildren<BottomNavigationProps>>
           bottom: 0;
           left: 0;
           width: 100%;
-          background-color: ${theme.palette.background.hex_1000};
+          background-color: var(--theme-color-background-1000);
           display: flex;
           justify-content: space-around;
           padding: 10px 0;

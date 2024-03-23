@@ -331,7 +331,7 @@ const ChartComponent: React.FC<React.PropsWithChildren<ChartProps>> = ({
           position: relative;
           width: 100%;
           background: transparent;
-          border: 1px solid ${theme.palette.border.hex_1000};
+          border: 1px solid var(--theme-color-border-1000);
           border-radius: ${SCALES.r(1, theme.style.radius)};
         }
         .chart-inner {
@@ -354,13 +354,13 @@ const ChartComponent: React.FC<React.PropsWithChildren<ChartProps>> = ({
           left: 12px;
           pointer-events: none;
           border: 1px solid;
-          border-color: ${theme.palette.border.hex_1000};
+          border-color: var(--theme-color-border-1000);
           border-radius: 6px;
           font-family: -apple-system, BlinkMacSystemFont, 'Trebuchet MS', Roboto, Ubuntu, sans-serif;
           -webkit-font-smoothing: antialiased;
           -moz-osx-font-smoothing: grayscale;
-          color: ${theme.palette.foreground.hex_1000};
-          background: ${theme.palette.background.hex_1000};
+          color: var(--theme-color-foreground-1000);
+          background: var(--theme-color-background-1000);
           font-size: calc(1 * 12px);
           padding: calc(0.65 * 12px) calc(0.9 * 12px) calc(0.65 * 12px) calc(0.9 * 12px);
         }

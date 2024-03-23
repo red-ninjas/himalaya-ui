@@ -12,7 +12,7 @@ type ButtonDropdownColors = {
 export const getColor = (palette: UIThemesPalette, type: NormalTypes | undefined, disabled: boolean = false) => {
   const colors: { [key in NormalTypes]: ButtonDropdownColors } = {
     default: {
-      color: palette.background.hex_400,
+      color: palette.foreground.hex_700,
       bgColor: palette.background.hex_1000,
       borderLeftColor: palette.border.hex_1000,
       hoverBgColor: palette.background.hex_800,
