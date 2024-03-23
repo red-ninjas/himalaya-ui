@@ -23,7 +23,7 @@ const MobileNavigationSubGroup: React.FC<PropsWithChildren<MobileNavigationSubGr
             padding: ${SCALES.pt(0)} ${SCALES.pr(0.8)} ${SCALES.pb(0)} ${SCALES.pl(0.8)};
           }
           .sub-group-title {
-            color: ${theme.palette.background.accents_5};
+            color: ${theme.palette.background.hex_400};
             margin-bottom: ${SCALES.pt(0.5)};
             margin-top: ${SCALES.pt(0.5)};
             font-size: ${SCALES.pt(0.75)};

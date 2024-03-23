@@ -33,7 +33,7 @@ const CheckboxIconComponent: React.FC<Props> = ({ fill, bg, disabled, checked })
         <svg viewBox="0 0 12 12" fill="none">
           <path
             d="M8.5 0.5H3.5C1.84315 0.5 0.5 1.84315 0.5 3.5V8.5C0.5 10.1569 1.84315 11.5 3.5 11.5H8.5C10.1569 11.5 11.5 10.1569 11.5 8.5V3.5C11.5 1.84315 10.1569 0.5 8.5 0.5Z"
-            stroke={theme.palette.background.accents_5}
+            stroke={theme.palette.background.hex_400}
           />
         </svg>
       )}

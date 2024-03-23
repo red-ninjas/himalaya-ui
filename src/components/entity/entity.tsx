@@ -70,10 +70,10 @@ function EntityComponent({
 
           padding: ${SCALES.pt(1)} ${SCALES.pr(1)} ${SCALES.pb(1)} ${SCALES.pl(1)};
           margin: ${SCALES.mt(1, 'auto')} ${SCALES.mr(1, 'auto')} ${SCALES.mb(1, 'auto')} ${SCALES.ml(1, 'auto')};
-          background: ${addColorAlpha(theme.palette.background.accents_0, 0.15)};
+          background: ${addColorAlpha(theme.palette.background.hex_900, 0.15)};
 
           &.disabled {
-            background: ${theme.palette.background.accents_1};
+            background: ${theme.palette.background.hex_800};
             cursor: not-allowed;
 
             .entity-wrapper {

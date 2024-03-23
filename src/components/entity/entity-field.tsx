@@ -48,7 +48,7 @@ function EntityFieldComponent({
           .desc {
             margin-top: 0px;
             margin-bottom: 0px;
-            color: ${theme.palette.background.accents_5};
+            color: ${theme.palette.background.hex_400};
           }
 
           display: flex;
@@ -58,7 +58,7 @@ function EntityFieldComponent({
           width: ${width};
 
           &.disabled * {
-            color: ${theme.palette.background.accents_4};
+            color: ${theme.palette.background.hex_500};
             pointer-events: none;
           }
 
@@ -80,7 +80,7 @@ function EntityFieldComponent({
               width: 24px !important;
               height: 24px !important;
               border-radius: 50%;
-              background: ${theme.palette.background.accents_8};
+              background: ${theme.palette.background.hex_100};
             }
           }
         }

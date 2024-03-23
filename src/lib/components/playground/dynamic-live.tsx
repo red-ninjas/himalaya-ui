@@ -46,7 +46,7 @@ const DynamicLive: React.FC<Props> = ({ code, scope }) => {
           margin-bottom: 0;
           border: 2px ${theme.palette.error.value} dotted;
           border-radius: 10px;
-          color: ${theme.palette.error.light};
+          color: ${theme.palette.error.hex_900};
           font-size: 13px;
         }
       `}</style>

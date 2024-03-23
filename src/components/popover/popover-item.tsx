@@ -49,7 +49,7 @@ const PopoverItemComponent: React.FC<React.PropsWithChildren<PopoverItemProps>> 
             box-sizing: border-box;
             justify-content: flex-start;
             align-items: center;
-            color: ${theme.palette.background.accents_5};
+            color: ${theme.palette.background.hex_400};
             transition:
               color,
               background-color 150ms linear;

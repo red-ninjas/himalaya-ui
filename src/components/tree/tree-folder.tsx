@@ -92,7 +92,7 @@ const TreeFolder: React.FC<React.PropsWithChildren<TreeFolderProps>> = ({
           transform: translateY(-50%);
           width: 1px;
           height: 100%;
-          background-color: ${theme.palette.background.accents_2};
+          background-color: ${theme.palette.background.hex_700};
           margin-left: -1px;
         }
 
@@ -122,7 +122,7 @@ const TreeFolder: React.FC<React.PropsWithChildren<TreeFolderProps>> = ({
 
         .name {
           transition: opacity 100ms ease 0ms;
-          color: ${theme.palette.background.accents_8};
+          color: ${theme.palette.background.hex_100};
           white-space: nowrap;
           font-size: 0.875rem;
         }
@@ -131,7 +131,7 @@ const TreeFolder: React.FC<React.PropsWithChildren<TreeFolderProps>> = ({
           font-size: 0.75rem;
           align-self: baseline;
           padding-left: 4px;
-          color: ${theme.palette.background.accents_5};
+          color: ${theme.palette.background.hex_400};
         }
 
         .name:hover {

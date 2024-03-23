@@ -95,8 +95,8 @@ const FieldsetGroupComponent: React.FC<React.PropsWithChildren<FieldsetGroupProp
             line-height: 2.7em;
             text-align: center;
             user-select: none;
-            color: ${theme.palette.background.accents_3};
-            background-color: ${theme.palette.background.accents_1};
+            color: ${theme.palette.background.hex_600};
+            background-color: ${theme.palette.background.hex_800};
             font-size: 0.875em;
             white-space: nowrap;
             text-transform: capitalize;

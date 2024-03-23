@@ -56,7 +56,7 @@ const Highlight: React.FC<HighlightProps> = ({
     <div ref={ref} className={useClasses('highlight', className)} {...props}>
       <style jsx>{`
         .highlight {
-          background: ${background === undefined ? theme.palette.background.accents_2 : background};
+          background: ${background === undefined ? theme.palette.background.hex_700 : background};
           position: absolute;
           border-radius: ${radius + 'px' || '5px'};
           width: ${position.width};

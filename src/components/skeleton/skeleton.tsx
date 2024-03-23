@@ -52,10 +52,10 @@ const SkeletonComponent: React.FC<React.PropsWithChildren<SkeletonProps>> = ({
         .skeleton:before {
           background-image: linear-gradient(
             270deg,
-            ${theme.palette.background.accents_1},
-            ${theme.palette.background.accents_2},
-            ${theme.palette.background.accents_2},
-            ${theme.palette.background.accents_1}
+            ${theme.palette.background.hex_800},
+            ${theme.palette.background.hex_700},
+            ${theme.palette.background.hex_700},
+            ${theme.palette.background.hex_800}
           );
           background-size: 400% 100%;
           -webkit-animation: loading 8s ease-in-out infinite;
@@ -75,7 +75,7 @@ const SkeletonComponent: React.FC<React.PropsWithChildren<SkeletonProps>> = ({
         .skeleton.stop:before {
           -webkit-animation: none;
           animation: none;
-          background: ${theme.palette.background.accents_2};
+          background: ${theme.palette.background.hex_700};
         }
         .skeleton.rounded,
         .skeleton.rounded:before {

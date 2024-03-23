@@ -121,7 +121,7 @@ const CustomizationCodes: React.FC<unknown> = () => {
           right: 1rem;
           top: 1rem;
           z-index: 2000;
-          color: ${theme.palette.background.accents_3};
+          color: ${theme.palette.background.hex_600};
           cursor: pointer;
           user-select: none;
           transition: color 200ms ease;
@@ -129,7 +129,7 @@ const CustomizationCodes: React.FC<unknown> = () => {
         }
 
         .copy:hover {
-          color: ${theme.palette.background.accents_6};
+          color: ${theme.palette.background.hex_300};
         }
 
         @media only screen and (max-width: ${layout.breakpointMobile}) {

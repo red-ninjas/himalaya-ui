@@ -61,11 +61,11 @@ const CodeComponent: React.FC<React.PropsWithChildren<CodeProps>> = ({
           padding: ${SCALES.pt(1.1)} ${SCALES.pr(1)} ${SCALES.pb(1.1)} ${SCALES.pl(1)};
           position: relative;
         }
-        .dark {
+        .hex_1200 {
           color: white;
           background: black;
         }
-        .dark code {
+        .hex_1200 code {
           color: white;
         }
         header {
@@ -80,7 +80,7 @@ const CodeComponent: React.FC<React.PropsWithChildren<CodeProps>> = ({
         }
         .name {
           background-color: ${theme.palette.codeBg.value};
-          color: ${theme.palette.background.accents_5};
+          color: ${theme.palette.background.hex_400};
           height: auto;
           line-height: 1.35em;
           border-bottom: 1px solid rgba(255, 255, 255, 0.1);

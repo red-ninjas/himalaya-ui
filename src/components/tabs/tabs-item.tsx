@@ -62,7 +62,7 @@ const TabsItemComponent: React.FC<React.PropsWithChildren<TabsItemProps>> = ({
             text-transform: capitalize;
             white-space: nowrap;
             background-color: transparent;
-            color: ${theme.palette.background.accents_5};
+            color: ${theme.palette.background.hex_400};
             user-select: none;
             display: flex;
             align-items: center;
@@ -102,7 +102,7 @@ const TabsItemComponent: React.FC<React.PropsWithChildren<TabsItemProps>> = ({
             color: ${theme.palette.foreground.value};
           }
           .disabled {
-            color: ${theme.palette.background.accents_3};
+            color: ${theme.palette.background.hex_600};
             cursor: not-allowed;
           }
           .hide-border:before {

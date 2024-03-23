@@ -122,7 +122,7 @@ const RadioComponent: React.FC<React.PropsWithChildren<RadioProps>> = ({
           display: flex;
           flex-direction: column;
           justify-content: flex-start;
-          color: ${isDisabled ? theme.palette.background.accents_4 : label};
+          color: ${isDisabled ? theme.palette.background.hex_500 : label};
           cursor: ${isDisabled ? 'not-allowed' : 'pointer'};
         }
         .name {
@@ -152,7 +152,7 @@ const RadioComponent: React.FC<React.PropsWithChildren<RadioProps>> = ({
           height: var(--radio-size);
           width: var(--radio-size);
           border-radius: 50%;
-          background-color: ${isDisabled ? theme.palette.background.accents_4 : bg};
+          background-color: ${isDisabled ? theme.palette.background.hex_500 : bg};
         }
         .active:before {
           transform: scale(0.875);

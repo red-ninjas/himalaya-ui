@@ -136,7 +136,7 @@ const MobileNavigationGroup: React.FC<PropsWithChildren<MobileNavigationGroupPro
           gap: 3px;
           white-space: nowrap;
           background-color: transparent;
-          color: ${theme.palette.background.accents_5};
+          color: ${theme.palette.background.hex_400};
           border-bottom: 1px solid ${theme.palette.border.value};
           user-select: none;
           display: flex;
@@ -197,7 +197,7 @@ const MobileNavigationGroup: React.FC<PropsWithChildren<MobileNavigationGroupPro
         }
 
         .backdrop {
-          background: ${theme.palette.background.accents_2};
+          background: ${theme.palette.background.hex_700};
           position: absolute;
           border-radius: 5px;
           width: 100%;

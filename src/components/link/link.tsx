@@ -26,7 +26,7 @@ const LinkComponent = React.forwardRef<HTMLAnchorElement, React.PropsWithChildre
     const theme = useTheme();
     const { RESPONSIVE } = useScale();
     const linkColor = color || block ? theme.palette.link.value : 'inherit';
-    const hoverColor = color || block ? theme.palette.link.light : 'inherit';
+    const hoverColor = color || block ? theme.palette.link.hex_900 : 'inherit';
     const classes = useClasses('link margin padding width height font', { block }, className, {
       underline: underline === true,
       'underline-hover': underline === 'hover',
@@ -59,7 +59,7 @@ const LinkComponent = React.forwardRef<HTMLAnchorElement, React.PropsWithChildre
           }
 
           .link:hover {
-            background-color: ${block ? addColorAlpha(theme.palette.link.light, 0.1) : 'unset'};
+            background-color: ${block ? addColorAlpha(theme.palette.link.hex_900, 0.1) : 'unset'};
             color: ${hoverColor};
           }
 

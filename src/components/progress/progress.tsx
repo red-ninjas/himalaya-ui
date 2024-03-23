@@ -84,7 +84,7 @@ const ProgressComponent: React.FC<ProgressProps> = ({
 
         .progress {
           position: relative;
-          background-color: ${theme.palette.background.accents_2};
+          background-color: ${theme.palette.background.hex_700};
           border-radius: ${radius !== undefined ? radius : theme.style.radius};
           width: ${SCALES.w(1, '100%')};
           height: ${SCALES.h(0.625)};

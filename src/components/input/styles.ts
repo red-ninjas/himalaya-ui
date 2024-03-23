@@ -12,36 +12,36 @@ export const getColors = (palette: UIThemesPalette, status?: NormalTypes): Input
     default: {
       color: palette.foreground.value,
       borderColor: palette.border.value,
-      hoverBorder: palette.border.dark,
+      hoverBorder: palette.border.hex_1200,
     },
     secondary: {
       color: palette.foreground.value,
-      borderColor: palette.secondary.light,
+      borderColor: palette.secondary.hex_900,
       hoverBorder: palette.secondary.value,
     },
     success: {
       color: palette.foreground.value,
-      borderColor: palette.success.light,
+      borderColor: palette.success.hex_900,
       hoverBorder: palette.success.value,
     },
     primary: {
       color: palette.foreground.value,
-      borderColor: palette.primary.light,
+      borderColor: palette.primary.hex_900,
       hoverBorder: palette.primary.value,
     },
     tertiary: {
       color: palette.foreground.value,
-      borderColor: palette.tertiary.light,
+      borderColor: palette.tertiary.hex_900,
       hoverBorder: palette.tertiary.value,
     },
     warning: {
       color: palette.foreground.value,
-      borderColor: palette.warning.light,
+      borderColor: palette.warning.hex_900,
       hoverBorder: palette.warning.value,
     },
     error: {
       color: palette.foreground.value,
-      borderColor: palette.error.light,
+      borderColor: palette.error.hex_900,
       hoverBorder: palette.error.value,
     },
   };

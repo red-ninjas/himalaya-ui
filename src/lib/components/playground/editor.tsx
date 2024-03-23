@@ -65,7 +65,7 @@ const Editor: React.FC<Props> = ({ code }) => {
           overflow: hidden;
           border-bottom-left-radius: ${theme.style.radius};
           border-bottom-right-radius: ${theme.style.radius};
-          background-color: ${theme.palette.background.accents_0};
+          background-color: ${theme.palette.background.hex_900};
         }
 
         details summary::-webkit-details-marker {
@@ -75,7 +75,7 @@ const Editor: React.FC<Props> = ({ code }) => {
         summary {
           box-sizing: border-box;
           border-top: 1px solid ${theme.palette.border.value};
-          color: ${theme.palette.background.accents_5};
+          color: ${theme.palette.background.hex_400};
           width: 100%;
           list-style: none;
           user-select: none;
@@ -129,12 +129,12 @@ const Editor: React.FC<Props> = ({ code }) => {
         .copy {
           display: inline-flex;
           align-items: center;
-          color: ${theme.palette.background.accents_4};
+          color: ${theme.palette.background.hex_500};
           transition: color 0.2s ease;
         }
 
         .copy:hover {
-          color: ${theme.palette.background.accents_6};
+          color: ${theme.palette.background.hex_300};
         }
       `}</style>
     </div>

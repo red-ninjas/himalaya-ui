@@ -5,6 +5,4 @@ export type ColorVariable = {
   contrast: string;
   dark: string;
   darker: string;
-  light: string;
-  lighter: string;
 } & UIThemesAccents;

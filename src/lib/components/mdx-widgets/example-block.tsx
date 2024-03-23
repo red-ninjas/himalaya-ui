@@ -13,12 +13,12 @@ const getBackground = (theme: UIThemes, plain: number | boolean) => {
   if (typeof plain !== 'number') return theme.palette.primary.value;
 
   const colors = [
-    theme.palette.background.accents_1,
-    theme.palette.background.accents_2,
-    theme.palette.background.accents_3,
-    theme.palette.background.accents_4,
-    theme.palette.background.accents_5,
-    theme.palette.background.accents_6,
+    theme.palette.background.hex_800,
+    theme.palette.background.hex_700,
+    theme.palette.background.hex_600,
+    theme.palette.background.hex_500,
+    theme.palette.background.hex_400,
+    theme.palette.background.hex_300,
   ];
   return colors[plain - 1] || theme.palette.primary.value;
 };

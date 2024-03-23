@@ -147,13 +147,13 @@ export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
         </MobileMenuProvider>
         <style global jsx>{`
           .attr-name {
-            color: ${theme.palette.background.accents_6};
+            color: ${theme.palette.background.hex_300};
           }
           .attr-value {
-            color: ${theme.palette.background.accents_4};
+            color: ${theme.palette.background.hex_500};
           }
           .language-javascript {
-            color: ${theme.palette.background.accents_4};
+            color: ${theme.palette.background.hex_500};
           }
           .class-name {
             color: ${theme.palette.warning.value};
@@ -165,7 +165,7 @@ export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
             color: ${theme.palette.success.value};
           }
           .token.comment {
-            color: ${theme.palette.background.accents_3};
+            color: ${theme.palette.background.hex_600};
           }
           .keyword {
             color: ${theme.palette.code.value};
@@ -174,16 +174,16 @@ export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
             color: ${theme.palette.tertiary.value};
           }
           .punctuation {
-            color: ${theme.palette.foreground.accents_3};
+            color: ${theme.palette.foreground.hex_600};
           }
           .property-access {
-            color: ${theme.palette.primary.darker};
+            color: ${theme.palette.primary.hex_1100};
           }
           .imports {
             color: ${theme.palette.tertiary.value};
           }
           .plain-text {
-            color: ${theme.palette.background.accents_6};
+            color: ${theme.palette.background.hex_300};
           }
           .tag {
             color: ${theme.palette.primary.value};

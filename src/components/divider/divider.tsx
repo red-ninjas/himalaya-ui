@@ -20,13 +20,13 @@ export type DividerProps = Props & NativeAttrs;
 const getColor = (type: DividerTypes, palette: UIThemesPalette) => {
   const colors: { [key in DividerTypes]: string } = {
     default: palette.border.value,
-    lite: palette.background.accents_1,
-    success: palette.success.light,
-    primary: palette.primary.light,
-    tertiary: palette.tertiary.light,
-    warning: palette.warning.light,
-    error: palette.error.light,
-    secondary: palette.secondary.light,
+    lite: palette.background.hex_800,
+    success: palette.success.hex_900,
+    primary: palette.primary.hex_900,
+    tertiary: palette.tertiary.hex_900,
+    warning: palette.warning.hex_900,
+    error: palette.error.hex_900,
+    secondary: palette.secondary.hex_900,
     dark: palette.foreground.value,
   };
   return colors[type];

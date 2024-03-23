@@ -65,7 +65,7 @@ const DisplayComponent: React.FC<React.PropsWithChildren<DisplayProps>> = ({
         .caption {
           font-size: inherit;
           line-height: 1.5em;
-          color: ${theme.palette.background.accents_5};
+          color: ${theme.palette.background.hex_400};
           margin: ${shadow ? '2.5em' : '1.3em'} auto 0;
           text-align: center;
           max-width: 85%;

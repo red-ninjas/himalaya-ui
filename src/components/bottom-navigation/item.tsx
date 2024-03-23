@@ -65,7 +65,7 @@ const BottomNavigationItem: React.FC<PropsWithChildren<BottomNavigationItemProps
           gap: 3px;
           white-space: nowrap;
           background-color: transparent;
-          color: ${theme.palette.background.accents_5};
+          color: ${theme.palette.background.hex_400};
           user-select: none;
           display: flex;
           align-items: center;

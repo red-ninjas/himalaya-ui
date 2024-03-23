@@ -53,7 +53,7 @@ const getColors = (type: TagTypes, palette: UIThemesPalette, invert: boolean) =>
     },
     lite: {
       color: palette.foreground.value,
-      bgColor: palette.background.accents_2,
+      bgColor: palette.background.hex_700,
     },
   };
   const hideBorder = invert || type === 'lite';

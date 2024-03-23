@@ -26,7 +26,7 @@ const TreeFileIcon: React.FC<TreeFileIconProps> = ({ color, width = 22, height =
       <path d="M13 2v7h7" />
       <style jsx>{`
         svg {
-          color: ${color || theme.palette.background.accents_8};
+          color: ${color || theme.palette.background.hex_100};
         }
       `}</style>
     </svg>

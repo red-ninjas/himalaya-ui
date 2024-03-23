@@ -175,7 +175,7 @@ const NavigationItem: React.FC<PropsWithChildren<NavigationPropsExternal>> = ({
           gap: 3px;
           white-space: nowrap;
           background-color: transparent;
-          color: ${theme.palette.background.accents_5};
+          color: ${theme.palette.background.hex_400};
           user-select: none;
           display: flex;
           align-items: center;
@@ -218,7 +218,7 @@ const NavigationItem: React.FC<PropsWithChildren<NavigationPropsExternal>> = ({
         }
 
         .backdrop {
-          background: ${theme.palette.background.accents_2};
+          background: ${theme.palette.background.hex_700};
           position: absolute;
           border-radius: 5px;
           width: 100%;

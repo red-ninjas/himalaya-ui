@@ -14,16 +14,18 @@ export enum GradientPositionsEnum {
 
 export type GradientPositions = GradientPositionsEnum | number;
 export interface UIThemesAccents {
-  accents_darker: string;
-  accents_0: string;
-  accents_1: string;
-  accents_2: string;
-  accents_3: string;
-  accents_4: string;
-  accents_5: string;
-  accents_6: string;
-  accents_7: string;
-  accents_8: string;
+  hex_100: string;
+  hex_200: string;
+  hex_300: string;
+  hex_400: string;
+  hex_500: string;
+  hex_600: string;
+  hex_700: string;
+  hex_800: string;
+  hex_900: string;
+  hex_1000: string;
+  hex_1100: string;
+  hex_1200: string;
 }
 export interface UIThemesColors {
   background: ColorVariable;

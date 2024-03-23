@@ -54,7 +54,7 @@ const IconsCell: React.FC<Props> = ({ component: Component, name, onClick }) => 
           text-align: center;
           overflow: hidden;
           text-overflow: ellipsis;
-          color: ${theme.palette.background.accents_3};
+          color: ${theme.palette.background.hex_600};
         }
 
         .icon-item:hover {

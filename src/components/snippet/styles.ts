@@ -47,7 +47,7 @@ export const getStyles = (type: SnippetTypes, palette: UIThemesPalette, fill?: b
     lite: {
       color: palette.foreground.value,
       border: palette.border.value,
-      bgColor: palette.background.accents_1,
+      bgColor: palette.background.hex_800,
     },
     dark: {
       color: palette.background.value,

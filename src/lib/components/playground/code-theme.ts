@@ -6,7 +6,7 @@ import { UIThemes } from 'components/themes/presets';
 const makeCodeTheme = (theme: UIThemes): PrismTheme => ({
   plain: {
     backgroundColor: theme.palette.background.value,
-    color: theme.palette.background.accents_4,
+    color: theme.palette.background.hex_500,
     fontWeight: '400',
     fontStyle: 'normal',
   },
@@ -14,7 +14,7 @@ const makeCodeTheme = (theme: UIThemes): PrismTheme => ({
     {
       types: ['comment', 'prolog', 'doctype', 'cdata', 'punctuation'],
       style: {
-        color: 'theme.palette.background.accents_3',
+        color: 'theme.palette.background.hex_600',
         opacity: 0.5,
       },
     },
@@ -27,7 +27,7 @@ const makeCodeTheme = (theme: UIThemes): PrismTheme => ({
     {
       types: ['tag', 'operator', 'number'],
       style: {
-        color: theme.palette.background.accents_6,
+        color: theme.palette.background.hex_300,
       },
     },
     {

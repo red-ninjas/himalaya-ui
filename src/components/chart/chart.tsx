@@ -371,7 +371,7 @@ const ChartComponent: React.FC<React.PropsWithChildren<ChartProps>> = ({
         }
 
         :global(.series-checkbox .text) {
-          color: ${theme.palette.background.accents_5};
+          color: ${theme.palette.background.hex_400};
         }
       `}</style>
     </ChartContext.Provider>

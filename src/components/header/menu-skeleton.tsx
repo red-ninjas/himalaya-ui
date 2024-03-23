@@ -54,7 +54,7 @@ const MenuSkeleton: React.FC<unknown> = () => {
         }
 
         .skeleton-item {
-          background-color: ${theme.palette.background.accents_2};
+          background-color: ${theme.palette.background.hex_700};
           opacity: ${opacity};
           margin: 0 ${layout.gap};
           padding: ${layout.gap} 0;

@@ -71,7 +71,7 @@ const GaugeComponent: React.FC<GaugeProps> = ({
           cy={radius}
           r={radius - strokeWidth / 2}
           fill="none"
-          stroke={theme.palette.background.accents_1}
+          stroke={theme.palette.background.hex_800}
           strokeWidth={strokeWidth}
           strokeDasharray={dashArray}
         />

@@ -29,7 +29,7 @@ const TreeStatusIcon: React.FC<TreeStatusIconProps> = ({ color, width = 12, heig
 
       <style jsx>{`
         svg {
-          color: ${color || theme.palette.background.accents_8};
+          color: ${color || theme.palette.background.hex_100};
         }
       `}</style>
     </svg>

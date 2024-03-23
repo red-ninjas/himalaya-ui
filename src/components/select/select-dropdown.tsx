@@ -46,7 +46,7 @@ const SelectDropdown = React.forwardRef<HTMLDivElement | null, React.PropsWithCh
               overflow-anchor: none;
               padding: 0.38em 0;
               scroll-behavior: smooth;
-              box-shadow: 0 0 0 1px rgba(${hexToRgb(theme.palette.background.accents_1)}, 1);
+              box-shadow: 0 0 0 1px rgba(${hexToRgb(theme.palette.background.hex_800)}, 1);
             }
           `}</style>
         </div>

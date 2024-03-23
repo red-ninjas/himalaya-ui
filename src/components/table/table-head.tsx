@@ -71,7 +71,7 @@ const TableHead = <TableDataItem extends TableDataItemBase>({ hasBorder = true, 
           text-align: left;
           letter-spacing: 0;
           vertical-align: middle;
-          color: ${theme.palette.background.accents_5};
+          color: ${theme.palette.background.hex_400};
           background: transparent;
           border-bottom: 1px solid ${theme.palette.border.value};
           border-radius: 0;

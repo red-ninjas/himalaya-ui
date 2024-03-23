@@ -25,7 +25,7 @@ const FieldsetFooterComponent: React.FC<React.PropsWithChildren<FieldsetFooterPr
       {children}
       <style jsx>{`
         footer {
-          background-color: ${theme.palette.background.accents_1};
+          background-color: ${theme.palette.background.hex_800};
           border-top: 1px solid ${theme.palette.border.value};
           border-bottom-left-radius: ${theme.style.radius};
           border-bottom-right-radius: ${theme.style.radius};
@@ -33,7 +33,7 @@ const FieldsetFooterComponent: React.FC<React.PropsWithChildren<FieldsetFooterPr
           justify-content: space-between;
           align-items: center;
           overflow: hidden;
-          color: ${theme.palette.background.accents_6};
+          color: ${theme.palette.background.hex_300};
           padding: ${layout.gapHalf} ${layout.gap};
           box-sizing: border-box;
           font-size: ${SCALES.font(0.875)};

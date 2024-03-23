@@ -11,22 +11,43 @@ export const generateSteppedColors = (background = '#ffffff', text = '#000000') 
 };
 
 export const generateColor = (value: string): ColorVariable => {
-  const color = new Color(value);
+  const color = new Color(value); // 8
   const contrast = color.contrast();
-  const light = color.tint(0.15);
-  const dark = color.shade(0.15);
-  const lighter = color.tint(0.3);
-  const darker = color.shade(0.3);
+  const light = color.tint(0.1);
+  const lighter = color.tint(0.2);
+  const lighter1 = color.tint(0.3);
+  const lighter2 = color.tint(0.4);
+  const lighter3 = color.tint(0.5);
+  const lighter4 = color.tint(0.6);
+  const lighter5 = color.tint(0.7);
+  const lighter6 = color.tint(0.8);
+  const lighter7 = color.tint(0.9);
+  const lighter8 = color.tint(1);
 
-  return {
+  const dark = color.shade(0.1);
+  const darker = color.shade(0.2);
+
+  const colorTable = {
     value,
     contrast: contrast.hex,
-    light: light.hex,
-    lighter: lighter.hex,
     dark: dark.hex,
     darker: darker.hex,
-    ...generateAccents(value, contrast.hex),
+    accents_0: lighter8.hex,
+    accents_1: lighter7.hex,
+    accents_2: lighter6.hex,
+    accents_3: lighter5.hex,
+    accents_4: lighter4.hex,
+    accents_5: lighter3.hex,
+    accents_6: lighter2.hex,
+    accents_7: lighter1.hex,
+    accents_8: lighter.hex,
+    accents_9: light.hex,
+    accents_10: value,
+    accents_11: dark.hex,
+    accents_12: darker.hex,
   };
+
+  return colorTable;
 };
 
 export interface GenerateColorProps {
@@ -60,23 +81,5 @@ export const generateColors = (newConfig?: GenerateColorProps): UIThemesColors =
     codeBg: generateColor(newConfig?.codeBg || '#ffffff'),
     paragraph: generateColor(newConfig?.paragraph || '#B5B2BC'),
     border: generateColor(newConfig?.border || '#333333'),
-  };
-};
-
-export const generateAccents = (background: string, foreground: string): UIThemesAccents => {
-  const generateColor = generateSteppedColors(background, foreground);
-
-  const color = new Color(background);
-  return {
-    accents_darker: color.shade(0.075).hex,
-    accents_0: generateColor[1],
-    accents_1: generateColor[3],
-    accents_2: generateColor[5],
-    accents_3: generateColor[7],
-    accents_4: generateColor[9],
-    accents_5: generateColor[11],
-    accents_6: generateColor[13],
-    accents_7: generateColor[14],
-    accents_8: generateColor[16],
   };
 };

@@ -33,7 +33,7 @@ const AutoCompleteSearchComponent: React.FC<React.PropsWithChildren<AutoComplete
           padding: ${layout.gapHalf};
           line-height: 1;
           background-color: ${theme.palette.background.value};
-          color: ${theme.palette.background.accents_5};
+          color: ${theme.palette.background.hex_400};
           user-select: none;
           border: 0;
           border-radius: ${SCALES.r(1, theme.style.radius)};

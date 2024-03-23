@@ -107,7 +107,7 @@ const CssBaseline: React.FC = () => {
       ul li:before {
         content: '–';
         display: inline-block;
-        color: ${theme.palette.background.accents_4};
+        color: ${theme.palette.background.hex_500};
         position: absolute;
         margin-left: -0.9375em;
       }
@@ -238,7 +238,7 @@ const CssBaseline: React.FC = () => {
       }
 
       details {
-        background-color: ${theme.palette.background.accents_1};
+        background-color: ${theme.palette.background.hex_800};
         border: none;
       }
 
@@ -274,8 +274,8 @@ const CssBaseline: React.FC = () => {
 
       blockquote {
         padding: calc(0.667 * ${layout.gap}) ${layout.gap};
-        color: ${theme.palette.background.accents_5};
-        background-color: ${theme.palette.background.accents_0};
+        color: ${theme.palette.background.hex_400};
+        background-color: ${theme.palette.background.hex_900};
         border-radius: ${theme.style.radius};
         margin: 1.5em 0;
         border: 1px solid ${theme.palette.border.value};
@@ -304,8 +304,8 @@ const CssBaseline: React.FC = () => {
           to right,
           transparent 20%,
           transparent 40%,
-          ${theme.palette.background.accents_3} 50%,
-          ${theme.palette.background.accents_3} 55%,
+          ${theme.palette.background.hex_600} 50%,
+          ${theme.palette.background.hex_600} 55%,
           transparent 70%,
           transparent 100%
         );

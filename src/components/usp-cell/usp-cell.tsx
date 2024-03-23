@@ -34,7 +34,7 @@ const UspCell: React.FC<HomeCellProps> = ({ url, title, desc, icon }) => {
           font-size: 1em;
           line-height: 1.625em;
           margin-bottom: 0;
-          color: ${theme.palette.background.accents_6};
+          color: ${theme.palette.background.hex_300};
         }
         .feature_title {
           display: -webkit-box;

@@ -57,7 +57,7 @@ export const getButtonColors = (palette: UIThemesPalette, props: ButtonProps): B
     },
     secondary: {
       bg: palette.secondary.value,
-      border: palette.secondary.light,
+      border: palette.secondary.hex_900,
       color: palette.secondary.contrast,
     },
     primary: {
@@ -88,14 +88,14 @@ export const getButtonColors = (palette: UIThemesPalette, props: ButtonProps): B
     abort: {
       bg: 'transparent',
       border: 'transparent',
-      color: palette.background.accents_5,
+      color: palette.background.hex_400,
     },
   };
   if (disabled)
     return {
-      bg: palette.background.accents_1,
+      bg: palette.background.hex_800,
       border: palette.border.value,
-      color: palette.background.accents_3,
+      color: palette.background.hex_600,
     };
 
   const defaultColor = colors.default as ButtonColorGroup;
@@ -108,7 +108,7 @@ export const getButtonGhostHoverColors = (palette: UIThemesPalette, type: Button
   const colors: { [key in ButtonTypes]?: ButtonColorGroup } = {
     secondary: {
       bg: palette.secondary.value,
-      border: palette.secondary.light,
+      border: palette.secondary.hex_900,
       color: palette.secondary.contrast,
     },
     success: {
@@ -149,49 +149,49 @@ export const getButtonHoverColors = (palette: UIThemesPalette, props: ButtonProp
     };
   } = {
     default: {
-      bg: palette.background.accents_0,
-      border: palette.border.dark,
+      bg: palette.background.hex_900,
+      border: palette.border.hex_1200,
       color: palette.foreground.value,
     },
     secondary: {
-      bg: palette.secondary.light,
-      border: palette.secondary.lighter,
+      bg: palette.secondary.hex_900,
+      border: palette.secondary.hex_800,
       color: palette.secondary.contrast,
     },
     primary: {
-      bg: palette.primary.light,
-      border: palette.primary.lighter,
+      bg: palette.primary.hex_900,
+      border: palette.primary.hex_800,
       color: palette.primary.contrast,
     },
     tertiary: {
-      bg: palette.tertiary.light,
-      border: palette.tertiary.lighter,
+      bg: palette.tertiary.hex_900,
+      border: palette.tertiary.hex_800,
       color: palette.tertiary.contrast,
     },
     success: {
-      bg: palette.success.light,
-      border: palette.success.lighter,
+      bg: palette.success.hex_900,
+      border: palette.success.hex_800,
       color: palette.success.contrast,
     },
     warning: {
-      bg: palette.warning.light,
-      border: palette.warning.lighter,
+      bg: palette.warning.hex_900,
+      border: palette.warning.hex_800,
       color: palette.warning.contrast,
     },
     error: {
-      bg: palette.error.light,
-      border: palette.error.lighter,
+      bg: palette.error.hex_900,
+      border: palette.error.hex_800,
       color: palette.error.contrast,
     },
     abort: {
-      bg: palette.background.accents_0,
-      border: palette.background.accents_0,
-      color: palette.background.accents_5,
+      bg: palette.background.hex_900,
+      border: palette.background.hex_900,
+      color: palette.background.hex_400,
     },
   };
   if (disabled)
     return {
-      bg: palette.background.accents_1,
+      bg: palette.background.hex_800,
       border: palette.border.value,
       color: '#ccc',
     };
@@ -218,54 +218,54 @@ export const getButtonActivatedColors = (palette: UIThemesPalette, props: Button
     };
   } = {
     default: {
-      bg: palette.background.accents_1,
-      border: palette.border.darker,
+      bg: palette.background.hex_800,
+      border: palette.border.hex_1100,
       color: palette.foreground.value,
     },
 
     secondary: {
-      bg: palette.secondary.dark,
+      bg: palette.secondary.hex_1200,
       border: palette.secondary.value,
       color: palette.secondary.contrast,
     },
 
     primary: {
-      bg: palette.primary.dark,
+      bg: palette.primary.hex_1200,
       border: palette.primary.value,
       color: palette.primary.contrast,
     },
 
     tertiary: {
-      bg: palette.tertiary.dark,
+      bg: palette.tertiary.hex_1200,
       border: palette.tertiary.value,
       color: palette.tertiary.contrast,
     },
 
     success: {
-      bg: palette.success.dark,
+      bg: palette.success.hex_1200,
       border: palette.success.value,
       color: palette.success.contrast,
     },
 
     warning: {
-      bg: palette.warning.dark,
+      bg: palette.warning.hex_1200,
       border: palette.warning.value,
       color: palette.warning.contrast,
     },
     error: {
-      bg: palette.error.dark,
+      bg: palette.error.hex_1200,
       border: palette.error.value,
       color: palette.error.contrast,
     },
     abort: {
-      bg: palette.background.accents_0,
-      border: palette.background.accents_0,
-      color: palette.background.accents_5,
+      bg: palette.background.hex_900,
+      border: palette.background.hex_900,
+      color: palette.background.hex_400,
     },
   };
   if (disabled)
     return {
-      bg: palette.background.accents_1,
+      bg: palette.background.hex_800,
       border: palette.border.value,
       color: '#ccc',
     };
@@ -307,5 +307,5 @@ export const getButtonCursor = (disabled: boolean, loading: boolean): ButtonCurs
 };
 
 export const getButtonDripColor = (palette: UIThemesPalette) => {
-  return addColorAlpha(palette.background.accents_2, 0.65);
+  return addColorAlpha(palette.background.hex_700, 0.65);
 };

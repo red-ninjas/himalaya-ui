@@ -101,7 +101,7 @@ const Hero: React.FC<PropsWithChildren<HeroPropsNative>> = ({ children, withDown
           right: -10px;
           bottom: -10px;
           border-radius: 50%;
-          border-left: 1px dashed ${theme.palette.background.accents_4};
+          border-left: 1px dashed ${theme.palette.background.hex_500};
           opacity: 0.4;
           -webkit-transform: rotate(90deg);
           -ms-transform: rotate(90deg);

@@ -39,7 +39,7 @@ const SelectIconClear: React.FC<Props> = ({ onClick }) => {
           cursor: pointer;
           box-sizing: border-box;
           transition: color 150ms ease 0s;
-          color: ${theme.palette.background.accents_3};
+          color: ${theme.palette.background.hex_600};
           visibility: visible;
           opacity: 1;
         }

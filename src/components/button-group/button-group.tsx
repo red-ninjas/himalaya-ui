@@ -24,13 +24,13 @@ const getGroupBorderColors = (palette: UIThemesPalette, type = 'default' as Butt
     return palette.border.value;
   }
   const colors: { [key in ButtonTypes]?: string } = {
-    primary: palette.primary.darker,
-    tertiary: palette.tertiary.darker,
+    primary: palette.primary.hex_1100,
+    tertiary: palette.tertiary.hex_1100,
     default: palette.border.value,
-    success: palette.success.darker,
-    secondary: palette.secondary.darker,
-    error: palette.error.darker,
-    warning: palette.warning.darker,
+    success: palette.success.hex_1100,
+    secondary: palette.secondary.hex_1100,
+    error: palette.error.hex_1100,
+    warning: palette.warning.hex_1100,
     abort: palette.border.value,
   };
   return colors[type] as string;

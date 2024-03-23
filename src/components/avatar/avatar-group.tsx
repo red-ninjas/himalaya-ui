@@ -40,7 +40,7 @@ const AvatarGroupComponent: React.FC<React.PropsWithChildren<AvatarGroupProps>> 
           display: inline-flex;
           align-items: center;
           padding-left: 5.5px;
-          color: ${theme.palette.background.accents_7};
+          color: ${theme.palette.background.hex_200};
         }
       `}</style>
     </div>

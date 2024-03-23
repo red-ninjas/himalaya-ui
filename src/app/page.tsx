@@ -11,7 +11,7 @@ export default function Index() {
   const theme = useTheme();
   return (
     <>
-      <Hero scrollToId="services" style={{ background: theme.type == 'dark' ? '#141415' : theme.palette.background.darker }}>
+      <Hero scrollToId="services" style={{ background: theme.type == 'dark' ? '#141415' : theme.palette.background.hex_1100 }}>
         <Hero.Tag>HIMALAYA UI</Hero.Tag>
         <Hero.Title>
           Scaling Heights of Design Excellence: Your UI Journey <span style={{ textDecoration: 'underline', fontWeight: 300 }}>Begins Here!</span>
@@ -81,7 +81,7 @@ export default function Index() {
           </div>
         </FooterBottom.Block>
         <FooterBottom.Block justify="flex-end">
-          <Text span font={'12px'} style={{ color: theme.palette.background.accents_5 }}>
+          <Text span font={'12px'} style={{ color: theme.palette.background.hex_400 }}>
             With support of{' '}
             <Link color href="https://redninjas.dev" target="_blank">
               RedNinjas LTD

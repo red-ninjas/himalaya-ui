@@ -30,12 +30,12 @@ const getStatusColor = (type: NoteTypes, filled: boolean, theme: UIThemes) => {
   const statusColor = colors[type];
 
   const borderColors: { [key in NoteTypes]?: string } = {
-    primary: theme.palette.primary.dark,
-    tertiary: theme.palette.tertiary.dark,
-    secondary: theme.palette.secondary.dark,
-    success: theme.palette.success.dark,
-    warning: theme.palette.warning.dark,
-    error: theme.palette.error.dark,
+    primary: theme.palette.primary.hex_1200,
+    tertiary: theme.palette.tertiary.hex_1200,
+    secondary: theme.palette.secondary.hex_1200,
+    success: theme.palette.success.hex_1200,
+    warning: theme.palette.warning.hex_1200,
+    error: theme.palette.error.hex_1200,
   };
   const borderColorsType = borderColors[type];
 

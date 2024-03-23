@@ -36,7 +36,7 @@ const NavigationSubItem: React.FC<PropsWithChildren<NavigationSubItemProps>> = (
       <style jsx>{`
         .description {
           font-weight: 14px;
-          color: ${theme.palette.background.accents_5};
+          color: ${theme.palette.background.hex_400};
           overflow-wrap: anywhere;
         }
         .sub-item {
@@ -62,7 +62,7 @@ const NavigationSubItem: React.FC<PropsWithChildren<NavigationSubItemProps>> = (
           width: 100%;
         }
         .sub-item:hover {
-          background: ${addColorAlpha(theme.palette.background.accents_2, 0.5)};
+          background: ${addColorAlpha(theme.palette.background.hex_700, 0.5)};
           border-radius: 5px;
         }
         .icon-with-title {
