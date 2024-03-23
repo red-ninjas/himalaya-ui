@@ -2,7 +2,7 @@ import type { DeepPartial } from '../utils/types';
 import darkTheme from './presets/dark';
 import lightTheme from './presets/default';
 import { UIThemes } from './presets/index';
-import { generateAccents, generateColor, generateColors, generateSteppedColors } from './utils';
+import { generateColor, generateColors, generateSteppedColors } from './utils';
 
 export type UIUserTheme = DeepPartial<UIThemes>;
 
@@ -76,7 +76,6 @@ const Themes = {
   create,
   createFromDark,
   createFromLight,
-  generateAccents,
   generateColors,
   generateColor,
   generateSteppedColors,

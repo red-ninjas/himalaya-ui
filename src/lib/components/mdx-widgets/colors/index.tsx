@@ -4,6 +4,7 @@ import { Code, Grid, useClipboard, useLayout, useTheme, useToasts } from 'compon
 import { UIThemesPalette } from 'components/themes';
 import { generateColor } from 'components/themes/utils';
 import { ColorVariable } from 'components/themes/utils/color-variable';
+import { isColorVariable, isGradient, isSingleColor } from 'components/utils/color';
 import React, { useMemo } from 'react';
 import { Gradient } from '../../../../components/themes/presets/index';
 import { getColorData } from './colors-data';
@@ -22,23 +23,6 @@ const getColorItem = (type: string, palette: UIThemesPalette, copy: (text: strin
 
   const keys = Object.keys(data);
 
-  const isGradient = (obj: any): obj is Gradient => {
-    if (typeof obj === 'string') {
-      return false;
-    }
-    return obj && 'from' in obj && 'to' in obj;
-  };
-
-  const isColorVariable = obj => {
-    if (typeof obj === 'string') {
-      return false;
-    }
-    return obj && 'value' in obj && 'contrast' in obj && 'light' in obj && 'dark' in obj;
-  };
-
-  const isSingleColor = obj => {
-    return typeof obj === 'string';
-  };
   const GradientColorComponent = ({ name, palette }: { name: string; palette: Gradient }) => (
     <div
       className="color"

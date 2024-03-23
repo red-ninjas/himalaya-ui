@@ -1,11 +1,13 @@
 'use client';
 
 import React, { PropsWithChildren, useEffect, useMemo, useState } from 'react';
+import { useConfigs } from '.';
 import Themes from '../themes';
 import { UIThemes } from '../themes/presets';
-import { ThemeContext } from '../use-theme/theme-context';
 import { AllThemesConfig, AllThemesContext } from '../use-all-themes/all-themes-context';
-import { useConfigs } from '.';
+import { ThemeContext } from '../use-theme/theme-context';
+import { hexToRgb, isColorVariable } from '../utils/color';
+import css from 'styled-jsx/css';
 
 export interface Props {
   themeType?: string;
@@ -32,10 +34,48 @@ const ThemeProvider: React.FC<PropsWithChildren<Props>> = ({ children, themeType
     setAllThemes({ themes: currentThemes });
   }, [currentThemes]);
 
+  const generateColors = Object.keys(currentTheme.palette).filter(key => isColorVariable(currentTheme.palette[key]));
+
+  let colorClasses: string = ``;
+  let vars: string = ``;
+
+  for (const key of generateColors) {
+    const value = currentTheme.palette[key];
+
+    let colorClassesTemp: string = ``;
+
+    for (const colorKey of Object.keys(value)) {
+      vars += css`
+      --theme-color-${key}-${colorKey}: ${value[colorKey]};
+      `;
+
+      vars += css`
+      --theme-color-${key}-${colorKey}-rgb: ${hexToRgb(value[colorKey])};
+      `;
+
+      colorClassesTemp += css`
+        --theme-color-${colorKey}: var(--theme-color-${key}-${colorKey});
+      `;
+    }
+    colorClasses += css`
+      .color-${key} {
+        ${colorClassesTemp}
+      }
+    `;
+  }
+
   return (
-    <AllThemesContext.Provider value={allThemes}>
-      <ThemeContext.Provider value={currentTheme}>{children}</ThemeContext.Provider>
-    </AllThemesContext.Provider>
+    <div className="theme">
+      <AllThemesContext.Provider value={allThemes}>
+        <ThemeContext.Provider value={currentTheme}>{children}</ThemeContext.Provider>
+      </AllThemesContext.Provider>
+      <style jsx>{`
+        .theme {
+          ${vars}
+          ${colorClasses}
+        }
+      `}</style>
+    </div>
   );
 };
 
