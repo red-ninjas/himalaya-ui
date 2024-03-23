@@ -73,7 +73,23 @@ Display the current value and an inputable range.
   scope={{ Slider, useState }}
   code={`
 () => {
-  const [value, setValue] = useState()
+  const [value, setValue] = useState(20)
+  const handler = val => {
+    console.log(val)
+    setValue(val)
+  }
+  return <Slider value={value} onChange={handler} w="75%" />
+}
+`}
+/>
+
+<Playground
+  title="Range Slider"
+  desc="Set the `value` prop to an array of two numbers, and the slider becomes a range slider."
+  scope={{ Slider, useState }}
+  code={`
+() => {
+  const [value, setValue] = useState([20 , 80])
   const handler = val => {
     console.log(val)
     setValue(val)
