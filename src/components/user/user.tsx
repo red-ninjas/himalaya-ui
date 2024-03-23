@@ -63,7 +63,7 @@ const UserComponent: React.FC<React.PropsWithChildren<UserProps>> = ({
 
         .name {
           font-size: calc(0.89 * var(--user-font-size));
-          color: ${theme.palette.background.accents.accents_8};
+          color: ${theme.palette.background.accents_8};
           line-height: 1.1em;
           text-transform: capitalize;
           font-weight: 500;
@@ -74,7 +74,7 @@ const UserComponent: React.FC<React.PropsWithChildren<UserProps>> = ({
 
         .social {
           font-size: calc(0.75 * var(--user-font-size));
-          color: ${theme.palette.background.accents.accents_6};
+          color: ${theme.palette.background.accents_6};
         }
 
         .social :global(*:first-child) {

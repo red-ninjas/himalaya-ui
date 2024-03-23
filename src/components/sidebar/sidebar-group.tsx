@@ -24,7 +24,7 @@ const SidebarGroup: React.FC<React.PropsWithChildren<SideItemProps>> = ({ childr
           font-size: ${SCALES.font(0.875)};
           font-weight: bold;
           transition: all 0.2s ease;
-          color: ${theme.palette.background.accents.accents_4};
+          color: ${theme.palette.background.accents_4};
           display: block;
           padding: ${SCALES.pt(0)} ${SCALES.pr(0.6)} ${SCALES.pb(0.6)} ${SCALES.pl(0.6)};
         }

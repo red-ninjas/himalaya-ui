@@ -106,7 +106,7 @@ const CollapseComponent: React.FC<React.PropsWithChildren<CollapseProps>> = ({
         }
 
         .subtitle {
-          color: ${theme.palette.background.accents.accents_5};
+          color: ${theme.palette.background.accents_5};
           margin: 0;
         }
 

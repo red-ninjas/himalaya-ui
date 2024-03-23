@@ -80,7 +80,7 @@ const CodeComponent: React.FC<React.PropsWithChildren<CodeProps>> = ({
         }
         .name {
           background-color: ${theme.palette.codeBg.value};
-          color: ${theme.palette.background.accents.accents_5};
+          color: ${theme.palette.background.accents_5};
           height: auto;
           line-height: 1.35em;
           border-bottom: 1px solid rgba(255, 255, 255, 0.1);

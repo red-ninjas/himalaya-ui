@@ -188,7 +188,7 @@ const InputComponent = React.forwardRef<HTMLInputElement, React.PropsWithChildre
           }
 
           .input-wrapper.disabled {
-            background-color: ${theme.palette.background.accents.accents_1};
+            background-color: ${theme.palette.background.accents_1};
             border-color: ${theme.palette.border.value};
             cursor: not-allowed;
           }
@@ -229,7 +229,7 @@ const InputComponent = React.forwardRef<HTMLInputElement, React.PropsWithChildre
           ::-moz-placeholder,
           :-ms-input-placeholder,
           ::-webkit-input-placeholder {
-            color: ${theme.palette.background.accents.accents_3};
+            color: ${theme.palette.background.accents_3};
           }
 
           ::-ms-reveal {

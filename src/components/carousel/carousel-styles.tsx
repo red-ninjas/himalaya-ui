@@ -16,9 +16,9 @@ const CarouseStyles: React.FC<
       <style jsx>{`
         .carousel-wrapper {
           --carousel-pagination-item-bg: ${theme.palette.foreground.value};
-          --carousel-arrow-bg: ${theme.palette.background.accents.accents_4};
-          --carousel-arrow-bg-color: ${theme.palette.background.accents.accents_7};
-          --carousel-arrow-hover: ${theme.palette.background.accents.accents_6};
+          --carousel-arrow-bg: ${theme.palette.background.accents_4};
+          --carousel-arrow-bg-color: ${theme.palette.background.accents_7};
+          --carousel-arrow-hover: ${theme.palette.background.accents_6};
           --carousel-arrow-size: ${arrowSize}px;
         }
       `}</style>

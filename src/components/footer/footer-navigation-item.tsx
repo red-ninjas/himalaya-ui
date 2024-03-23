@@ -27,7 +27,7 @@ const FooterNavigationItem: React.FC<PropsWithChildren<FooterNavigationItemProps
           .footer-link {
             font-weight: normal;
             font-size: 14px;
-            color: ${theme.palette.background.accents.accents_5};
+            color: ${theme.palette.background.accents_5};
             line-height: normal;
           }
           .footer-link:hover {

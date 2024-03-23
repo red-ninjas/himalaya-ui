@@ -81,7 +81,7 @@ export default function Index() {
           </div>
         </FooterBottom.Block>
         <FooterBottom.Block justify="flex-end">
-          <Text span font={'12px'} style={{ color: theme.palette.background.accents.accents_5 }}>
+          <Text span font={'12px'} style={{ color: theme.palette.background.accents_5 }}>
             With support of{' '}
             <Link color href="https://redninjas.dev" target="_blank">
               RedNinjas LTD

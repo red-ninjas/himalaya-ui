@@ -36,7 +36,7 @@ const SearchItem: React.FC<SearchItemProps> = ({ data, onMouseOver, onSelect, on
             transition: color 200ms ease;
             outline: none;
             border: 0;
-            color: ${theme.palette.background.accents.accents_4};
+            color: ${theme.palette.background.accents_4};
             background-color: transparent;
           }
           .container:focus {

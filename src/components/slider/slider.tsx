@@ -135,7 +135,7 @@ const SliderComponent: React.FC<React.PropsWithChildren<SliderProps>> = ({
       <style jsx>{`
         .slider {
           border-radius: 50px;
-          background-color: ${disabled ? theme.palette.background.accents.accents_2 : bg};
+          background-color: ${disabled ? theme.palette.background.accents_2 : bg};
           position: relative;
           cursor: ${disabled ? 'not-allow' : 'pointer'};
           --slider-font-size: ${SCALES.font(1)};

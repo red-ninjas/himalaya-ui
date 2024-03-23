@@ -51,17 +51,17 @@ const SelectOptionComponent: React.FC<React.PropsWithChildren<SelectOptionProps>
   }, [identValue, value]);
 
   const bgColor = useMemo(() => {
-    if (isDisabled) return theme.palette.background.accents.accents_1;
+    if (isDisabled) return theme.palette.background.accents_1;
     return theme.palette.background.value;
   }, [isDisabled, theme.palette]);
 
   const hoverBgColor = useMemo(() => {
     if (isDisabled || isLabel) return bgColor;
-    return theme.palette.background.accents.accents_0;
+    return theme.palette.background.accents_0;
   }, [isDisabled, theme.palette, isLabel, bgColor]);
 
   const color = useMemo(() => {
-    if (isDisabled) return theme.palette.background.accents.accents_4;
+    if (isDisabled) return theme.palette.background.accents_4;
     return theme.palette.foreground.value;
   }, [isDisabled, theme.palette]);
 
@@ -132,7 +132,7 @@ const SelectOptionComponent: React.FC<React.PropsWithChildren<SelectOptionProps>
         }
 
         .label {
-          color: ${theme.palette.background.accents.accents_7};
+          color: ${theme.palette.background.accents_7};
           border-bottom: 1px solid ${theme.palette.border.value};
           cursor: default;
           font-size: ${SCALES.font(0.875)};

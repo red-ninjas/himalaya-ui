@@ -42,8 +42,8 @@ const SliderDot = React.forwardRef<HTMLDivElement, React.PropsWithChildren<Slide
 
           .dot.disabled {
             cursor: not-allowed !important;
-            background-color: ${theme.palette.background.accents.accents_2};
-            color: ${theme.palette.background.accents.accents_4};
+            background-color: ${theme.palette.background.accents_2};
+            color: ${theme.palette.background.accents_4};
           }
 
           .dot.click {

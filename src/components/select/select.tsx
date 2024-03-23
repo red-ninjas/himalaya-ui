@@ -218,7 +218,7 @@ const SelectComponent = React.forwardRef<SelectRef, React.PropsWithChildren<Sele
                 box-shadow 200ms ease 0s;
               border: 1px solid ${border};
               border-radius: ${SCALES.r(1, theme.style.radius)};
-              background-color: ${disabled ? theme.palette.background.accents.accents_1 : theme.palette.background.value};
+              background-color: ${disabled ? theme.palette.background.accents_1 : theme.palette.background.value};
               --select-font-size: ${SCALES.font(0.875)};
               --select-height: ${SCALES.h(2.25)};
               min-width: 11.5em;
@@ -242,7 +242,7 @@ const SelectComponent = React.forwardRef<SelectRef, React.PropsWithChildren<Sele
 
             .select.active.icon,
             .select:hover .icon {
-              color: ${disabled ? theme.palette.background.accents.accents_5 : borderActive};
+              color: ${disabled ? theme.palette.background.accents_5 : borderActive};
             }
 
             .value {
@@ -254,7 +254,7 @@ const SelectComponent = React.forwardRef<SelectRef, React.PropsWithChildren<Sele
               padding: 0;
               margin-right: 1.25em;
               font-size: var(--select-font-size);
-              color: ${disabled ? theme.palette.background.accents.accents_4 : theme.palette.foreground.value};
+              color: ${disabled ? theme.palette.background.accents_4 : theme.palette.foreground.value};
               width: calc(100% - 1.25em);
             }
 

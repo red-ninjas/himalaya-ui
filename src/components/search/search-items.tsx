@@ -90,7 +90,7 @@ const SearchItems = React.forwardRef<SearchItemsRef, React.PropsWithChildren<Sea
               content: none;
             }
             .group-title {
-              color: ${theme.palette.background.accents.accents_5};
+              color: ${theme.palette.background.accents_5};
               font-size: 0.75rem;
               text-align: start;
               margin: 0.25rem 0;

@@ -161,7 +161,7 @@ const Video: React.FC<VideoProps> = ({ src, controls, poster, loop = false, auto
           display: flex;
         }
         .controls .progress-bar {
-          background-color: ${theme.palette.background.accents.accents_6};
+          background-color: ${theme.palette.background.accents_6};
           height: 4px;
           cursor: pointer;
           width: 100%;

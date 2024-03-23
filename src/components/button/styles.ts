@@ -88,14 +88,14 @@ export const getButtonColors = (palette: UIThemesPalette, props: ButtonProps): B
     abort: {
       bg: 'transparent',
       border: 'transparent',
-      color: palette.background.accents.accents_5,
+      color: palette.background.accents_5,
     },
   };
   if (disabled)
     return {
-      bg: palette.background.accents.accents_1,
+      bg: palette.background.accents_1,
       border: palette.border.value,
-      color: palette.background.accents.accents_3,
+      color: palette.background.accents_3,
     };
 
   const defaultColor = colors.default as ButtonColorGroup;
@@ -149,7 +149,7 @@ export const getButtonHoverColors = (palette: UIThemesPalette, props: ButtonProp
     };
   } = {
     default: {
-      bg: palette.background.accents.accents_0,
+      bg: palette.background.accents_0,
       border: palette.border.dark,
       color: palette.foreground.value,
     },
@@ -184,14 +184,14 @@ export const getButtonHoverColors = (palette: UIThemesPalette, props: ButtonProp
       color: palette.error.contrast,
     },
     abort: {
-      bg: palette.background.accents.accents_0,
-      border: palette.background.accents.accents_0,
-      color: palette.background.accents.accents_5,
+      bg: palette.background.accents_0,
+      border: palette.background.accents_0,
+      color: palette.background.accents_5,
     },
   };
   if (disabled)
     return {
-      bg: palette.background.accents.accents_1,
+      bg: palette.background.accents_1,
       border: palette.border.value,
       color: '#ccc',
     };
@@ -218,7 +218,7 @@ export const getButtonActivatedColors = (palette: UIThemesPalette, props: Button
     };
   } = {
     default: {
-      bg: palette.background.accents.accents_1,
+      bg: palette.background.accents_1,
       border: palette.border.darker,
       color: palette.foreground.value,
     },
@@ -258,14 +258,14 @@ export const getButtonActivatedColors = (palette: UIThemesPalette, props: Button
       color: palette.error.contrast,
     },
     abort: {
-      bg: palette.background.accents.accents_0,
-      border: palette.background.accents.accents_0,
-      color: palette.background.accents.accents_5,
+      bg: palette.background.accents_0,
+      border: palette.background.accents_0,
+      color: palette.background.accents_5,
     },
   };
   if (disabled)
     return {
-      bg: palette.background.accents.accents_1,
+      bg: palette.background.accents_1,
       border: palette.border.value,
       color: '#ccc',
     };
@@ -307,5 +307,5 @@ export const getButtonCursor = (disabled: boolean, loading: boolean): ButtonCurs
 };
 
 export const getButtonDripColor = (palette: UIThemesPalette) => {
-  return addColorAlpha(palette.background.accents.accents_2, 0.65);
+  return addColorAlpha(palette.background.accents_2, 0.65);
 };

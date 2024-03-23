@@ -68,11 +68,11 @@ const AutoCompleteItemComponent: React.FC<React.PropsWithChildren<AutoCompleteIt
         }
 
         .item:hover {
-          background-color: ${theme.palette.background.accents.accents_1};
+          background-color: ${theme.palette.background.accents_1};
         }
 
         .item.active {
-          background-color: ${theme.palette.background.accents.accents_1};
+          background-color: ${theme.palette.background.accents_1};
           color: ${theme.palette.primary.value};
         }
       `}</style>

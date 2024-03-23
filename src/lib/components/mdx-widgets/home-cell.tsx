@@ -22,7 +22,7 @@ const HomeCell: React.FC<HomeCellProps> = ({ url, title, desc, icon }) => {
             {title}
           </Text>
 
-          <Text color={theme.palette.background.accents.accents_6} m={0} font={1} className="feature-desc">
+          <Text color={theme.palette.background.accents_6} m={0} font={1} className="feature-desc">
             {desc}
           </Text>
 
@@ -43,9 +43,9 @@ const HomeCell: React.FC<HomeCellProps> = ({ url, title, desc, icon }) => {
             height: 40px;
             width: 40px;
             border-radius: 2rem;
-            background: ${theme.palette.background.accents.accents_0};
+            background: ${theme.palette.background.accents_0};
             border: 1px solid ${theme.palette.border.value};
-            color: ${theme.palette.background.accents.accents_5};
+            color: ${theme.palette.background.accents_5};
             display: flex;
             align-items: center;
             justify-content: center;
@@ -53,7 +53,7 @@ const HomeCell: React.FC<HomeCellProps> = ({ url, title, desc, icon }) => {
             padding: 8px;
           }
           :global(.feature-desc) {
-            color: ${theme.palette.background.accents.accents_6} !important;
+            color: ${theme.palette.background.accents_6} !important;
           }
         `}</style>
       </Link>

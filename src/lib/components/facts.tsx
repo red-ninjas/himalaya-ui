@@ -26,7 +26,7 @@ export function FactItem({ amount = 0, title = '' }: { amount?: number; title: s
           )}
         </CountUp>
 
-        <Text m={0} font={'21px'} style={{ color: theme.palette.background.accents.accents_4 }}>
+        <Text m={0} font={'21px'} style={{ color: theme.palette.background.accents_4 }}>
           {title}
         </Text>
         <style jsx>{`

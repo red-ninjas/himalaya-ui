@@ -25,15 +25,15 @@ const HeroTag: React.FC<PropsWithChildren<HeroTagProps>> = ({
           text-transform: uppercase;
           letter-spacing: 1px;
           border-radius: 30px;
-          border: 1px solid ${theme.palette.background.accents.accents_2};
-          color: ${theme.palette.background.accents.accents_8};
+          border: 1px solid ${theme.palette.background.accents_2};
+          color: ${theme.palette.background.accents_8};
           background: ${background || 'transparent'};
           display: inline-block;
           word-break: break-word;
 
           --start-color: ${gradient ? gradient.from : theme.palette.gradient_1.from};
           --end-color: ${gradient ? gradient.to : theme.palette.gradient_1.to};
-          --font-color: ${textColor || theme.palette.background.accents.accents_8};
+          --font-color: ${textColor || theme.palette.background.accents_8};
 
           color: var(--font-color);
           overflow: hidden;

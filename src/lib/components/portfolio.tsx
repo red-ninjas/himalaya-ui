@@ -30,7 +30,7 @@ export function PortfolioItem({
           </Link>
         </FadeInEffect>
         <FadeInEffect translateY="4rem">
-          <Text mt={0} style={{ color: theme.palette.background.accents.accents_6 }}>
+          <Text mt={0} style={{ color: theme.palette.background.accents_6 }}>
             {desc}
           </Text>
         </FadeInEffect>
@@ -88,7 +88,7 @@ export default function Portfolio() {
             </Text>
           </FadeInEffect>
           <FadeInEffect translateY="4rem">
-            <Text m={0} mt={'24px'} font={'clamp(14px, 1.2vw, 16px)'} style={{ color: theme.palette.background.accents.accents_6, fontWeight: 400 }}>
+            <Text m={0} mt={'24px'} font={'clamp(14px, 1.2vw, 16px)'} style={{ color: theme.palette.background.accents_6, fontWeight: 400 }}>
               Our UI library stands out with over 3 fully functional demo projects, offering real-world application scenarios, and a rich repository of 100+
               examples showcasing its extensive capabilities for diverse design and development needs.
             </Text>

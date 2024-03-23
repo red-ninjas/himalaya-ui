@@ -10,7 +10,7 @@ export type QuickBarColors = {
 
 export const getColors = (type: SnippetTypes, palette: UIThemesPalette): QuickBarColors => {
   const colors: Record<QuickActionTypes, string> = {
-    default: palette.background.accents.accents_2,
+    default: palette.background.accents_2,
     secondary: palette.secondary.value,
     tertiary: palette.tertiary.value,
     primary: palette.primary.value,
@@ -22,19 +22,19 @@ export const getColors = (type: SnippetTypes, palette: UIThemesPalette): QuickBa
   };
 
   const hoverColors: Record<QuickActionTypes, string> = {
-    default: palette.background.accents.accents_3,
+    default: palette.background.accents_3,
     tertiary: palette.tertiary.light,
     primary: palette.primary.light,
     secondary: palette.secondary.light,
     success: palette.success.light,
     warning: palette.warning.light,
     error: palette.error.light,
-    dark: palette.background.accents.accents_7,
+    dark: palette.background.accents_7,
     lite: palette.foreground.value,
   };
 
   const textColors: Record<QuickActionTypes, string> = {
-    default: palette.background.accents.accents_6,
+    default: palette.background.accents_6,
     tertiary: palette.tertiary.lighter,
     primary: palette.primary.lighter,
     secondary: palette.secondary.lighter,
@@ -46,7 +46,7 @@ export const getColors = (type: SnippetTypes, palette: UIThemesPalette): QuickBa
   };
 
   const textColorsHover: Record<QuickActionTypes, string> = {
-    default: palette.background.accents.accents_7,
+    default: palette.background.accents_7,
     primary: palette.primary.contrast,
     tertiary: palette.tertiary.contrast,
     secondary: palette.secondary.contrast,

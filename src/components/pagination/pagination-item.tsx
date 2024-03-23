@@ -80,12 +80,12 @@ const PaginationItem: React.FC<React.PropsWithChildren<PaginationItemProps>> = (
         }
 
         .disabled {
-          color: ${theme.palette.background.accents.accents_4};
+          color: ${theme.palette.background.accents_4};
           cursor: not-allowed;
         }
 
         .disabled:hover {
-          background-color: ${theme.palette.background.accents.accents_2};
+          background-color: ${theme.palette.background.accents_2};
         }
 
         button :global(svg) {

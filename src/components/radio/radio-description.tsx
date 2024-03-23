@@ -23,7 +23,7 @@ const RadioDescriptionComponent: React.FC<React.PropsWithChildren<RadioDescripti
       {children}
       <style jsx>{`
         span {
-          color: ${theme.palette.background.accents.accents_3};
+          color: ${theme.palette.background.accents_3};
           font-size: ${SCALES.font(0.85, 'calc(var(--radio-size) * 0.85)')};
           width: ${SCALES.w(1, 'auto')};
           height: ${SCALES.h(1, 'auto')};

@@ -47,7 +47,7 @@ const InputIconClear: React.FC<Props> = ({ onClick, disabled, visible }) => {
           transition: color 150ms ease 0s;
           margin: 0;
           padding: 0;
-          color: ${theme.palette.background.accents.accents_3};
+          color: ${theme.palette.background.accents_3};
           visibility: hidden;
           opacity: 0;
         }
@@ -58,7 +58,7 @@ const InputIconClear: React.FC<Props> = ({ onClick, disabled, visible }) => {
         }
 
         .clear-icon:hover {
-          color: ${disabled ? theme.palette.background.accents.accents_3 : theme.palette.foreground.value};
+          color: ${disabled ? theme.palette.background.accents_3 : theme.palette.foreground.value};
         }
 
         svg {

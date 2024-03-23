@@ -147,13 +147,13 @@ export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
         </MobileMenuProvider>
         <style global jsx>{`
           .attr-name {
-            color: ${theme.palette.background.accents.accents_6};
+            color: ${theme.palette.background.accents_6};
           }
           .attr-value {
-            color: ${theme.palette.background.accents.accents_4};
+            color: ${theme.palette.background.accents_4};
           }
           .language-javascript {
-            color: ${theme.palette.background.accents.accents_4};
+            color: ${theme.palette.background.accents_4};
           }
           .class-name {
             color: ${theme.palette.warning.value};
@@ -165,7 +165,7 @@ export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
             color: ${theme.palette.success.value};
           }
           .token.comment {
-            color: ${theme.palette.background.accents.accents_3};
+            color: ${theme.palette.background.accents_3};
           }
           .keyword {
             color: ${theme.palette.code.value};
@@ -174,7 +174,7 @@ export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
             color: ${theme.palette.tertiary.value};
           }
           .punctuation {
-            color: ${theme.palette.foreground.accents.accents_3};
+            color: ${theme.palette.foreground.accents_3};
           }
           .property-access {
             color: ${theme.palette.primary.darker};
@@ -183,7 +183,7 @@ export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
             color: ${theme.palette.tertiary.value};
           }
           .plain-text {
-            color: ${theme.palette.background.accents.accents_6};
+            color: ${theme.palette.background.accents_6};
           }
           .tag {
             color: ${theme.palette.primary.value};

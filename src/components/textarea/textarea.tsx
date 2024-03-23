@@ -118,7 +118,7 @@ const TextareaComponent = React.forwardRef<HTMLTextAreaElement, React.PropsWithC
             box-shadow: 0 0 0 4px ${addColorAlpha(hoverBorder, 0.2)};
           }
           .wrapper.disabled {
-            background-color: ${theme.palette.background.accents.accents_1};
+            background-color: ${theme.palette.background.accents_1};
             border-color: ${theme.palette.border.value};
             cursor: not-allowed;
           }

@@ -67,7 +67,7 @@ const ButtonDropdownComponent: React.FC<React.PropsWithChildren<ButtonDropdownPr
     loading,
   };
   const bgColor = useMemo(() => {
-    if (disabled || loading) return theme.palette.background.accents.accents_1;
+    if (disabled || loading) return theme.palette.background.accents_1;
     return visible ? colors.hoverBgColor : colors.bgColor;
   }, [visible, colors, theme.palette]);
   const [paddingLeft, paddingRight] = [auto ? SCALES.pl(1.15) : SCALES.pl(1.375), auto ? SCALES.pr(1.15) : SCALES.pr(1.375)];

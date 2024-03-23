@@ -13,15 +13,15 @@ export const getBrowserColors = (invert: boolean, palette: UIThemesPalette): Bro
     ? {
         color: palette.background.value,
         barBgColor: palette.foreground.value,
-        inputBgColor: palette.background.accents.accents_8,
-        borderColor: palette.background.accents.accents_7,
-        titleColor: palette.background.accents.accents_2,
+        inputBgColor: palette.background.accents_8,
+        borderColor: palette.background.accents_7,
+        titleColor: palette.background.accents_2,
       }
     : {
         color: palette.foreground.value,
         barBgColor: palette.background.value,
-        inputBgColor: palette.background.accents.accents_1,
+        inputBgColor: palette.background.accents_1,
         borderColor: palette.border.value,
-        titleColor: palette.background.accents.accents_5,
+        titleColor: palette.background.accents_5,
       };
 };

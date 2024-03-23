@@ -12,18 +12,18 @@ type ButtonDropdownColors = {
 export const getColor = (palette: UIThemesPalette, type: NormalTypes | undefined, disabled: boolean = false) => {
   const colors: { [key in NormalTypes]: ButtonDropdownColors } = {
     default: {
-      color: palette.background.accents.accents_5,
+      color: palette.background.accents_5,
       bgColor: palette.background.value,
       borderLeftColor: palette.border.value,
-      hoverBgColor: palette.background.accents.accents_1,
+      hoverBgColor: palette.background.accents_1,
       hoverBorder: palette.border.value,
     },
     secondary: {
       color: palette.background.value,
       bgColor: palette.foreground.value,
-      borderLeftColor: palette.background.accents.accents_7,
-      hoverBgColor: palette.background.accents.accents_7,
-      hoverBorder: palette.background.accents.accents_7,
+      borderLeftColor: palette.background.accents_7,
+      hoverBgColor: palette.background.accents_7,
+      hoverBorder: palette.background.accents_7,
     },
     success: {
       color: palette.success.contrast,
@@ -65,8 +65,8 @@ export const getColor = (palette: UIThemesPalette, type: NormalTypes | undefined
   if (disabled)
     return {
       ...colors.default,
-      bgColor: palette.background.accents.accents_1,
-      color: palette.background.accents.accents_4,
+      bgColor: palette.background.accents_1,
+      color: palette.background.accents_4,
     };
   return type ? colors[type] : colors.default;
 };

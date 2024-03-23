@@ -45,11 +45,11 @@ const AttributesTable: React.FC<React.PropsWithChildren<unknown>> = ({ children 
         }
         .attr th {
           height: 2.5rem;
-          color: ${theme.palette.background.accents.accents_5};
+          color: ${theme.palette.background.accents_5};
           font-size: 0.75rem;
           font-weight: 400;
           letter-spacing: 0;
-          background: ${theme.palette.background.accents.accents_0};
+          background: ${theme.palette.background.accents_0};
           border-bottom: 1px solid ${theme.palette.border.value};
           border-top: 1px solid ${theme.palette.border.value};
         }
@@ -67,7 +67,7 @@ const AttributesTable: React.FC<React.PropsWithChildren<unknown>> = ({ children 
         }
         .attr tr td {
           border-bottom: 1px solid ${theme.palette.border.value};
-          color: ${theme.palette.background.accents.accents_6};
+          color: ${theme.palette.background.accents_6};
           font-size: 0.875rem;
           height: 2.5rem;
         }

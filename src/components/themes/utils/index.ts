@@ -25,7 +25,7 @@ export const generateColor = (value: string): ColorVariable => {
     lighter: lighter.hex,
     dark: dark.hex,
     darker: darker.hex,
-    accents: generateAccents(value, contrast.hex),
+    ...generateAccents(value, contrast.hex),
   };
 };
 

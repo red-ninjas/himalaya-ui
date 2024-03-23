@@ -63,7 +63,7 @@ const Editor = () => {
         }
 
         .subtitle {
-          color: ${theme.palette.background.accents.accents_4};
+          color: ${theme.palette.background.accents_4};
           text-transform: uppercase;
           font-size: 0.75rem;
           margin-top: 2rem;
