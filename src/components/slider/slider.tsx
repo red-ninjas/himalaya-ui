@@ -13,15 +13,15 @@ import useClasses from '../use-classes';
 export type SliderTypes = NormalTypes;
 interface Props {
   hideValue?: boolean;
-  value?: number;
+  value?: number | [number, number];
   type?: SliderTypes;
-  initialValue?: number;
+  initialValue?: number | [number, number];
   step?: number;
   max?: number;
   min?: number;
   disabled?: boolean;
   showMarkers?: boolean;
-  onChange?: (val: number) => void;
+  onChange?: (val: number | [number, number]) => void;
   className?: string;
 }
 
@@ -60,76 +60,147 @@ const SliderComponent: React.FC<React.PropsWithChildren<SliderProps>> = ({
 }: React.PropsWithChildren<SliderProps>) => {
   const theme = useTheme();
   const { SCALES } = useScale();
-  const [value, setValue] = useState<number>(initialValue);
+  const [value, setValue] = useState<number | [number, number]>(initialValue);
+
   const [, setSliderWidth, sideWidthRef] = useCurrentState<number>(0);
-  const [, setLastDargOffset, lastDargOffsetRef] = useCurrentState<number>(0);
+
+  const [, setLastDargOffset1, lastDargOffsetRef1] = useCurrentState<number>(0);
+  const [, setLastDargOffset2, lastDargOffsetRef2] = useCurrentState<number>(0);
+  const [pendingValue, setPendingValue] = useState<number | [number, number] | null>(null);
+
   const [isClick, setIsClick] = useState<boolean>(false);
 
   const sliderRef = useRef<HTMLDivElement>(null);
-  const dotRef = useRef<HTMLDivElement>(null);
+  const dotRef1 = useRef<HTMLDivElement>(null);
+  const dotRef2 = useRef<HTMLDivElement>(null);
 
-  const currentRatio = useMemo(() => ((value - min) / (max - min)) * 100, [value, max, min]);
+  const currentRatio1 = useMemo(() => {
+    const val = Array.isArray(value) ? value[0] : value;
+    return ((val - min) / (max - min)) * 100;
+  }, [value, max, min]);
 
-  const setLastOffsetManually = (val: number) => {
+  const currentRatio2 = useMemo(() => {
+    return Array.isArray(value) ? ((value[1] - min) / (max - min)) * 100 : 0;
+  }, [value, max, min]);
+
+  const setLastOffsetManually = (val: number | [number, number]) => {
     const width = getRefWidth(sliderRef);
-    const shouldOffset = ((val - min) / (max - min)) * width;
-    setLastDargOffset(shouldOffset);
+    let shouldOffset1 = 0;
+    let shouldOffset2 = 0;
+    if (Array.isArray(val)) {
+      shouldOffset1 = ((val[0] - min) / (max - min)) * width;
+      shouldOffset2 = ((val[1] - min) / (max - min)) * width;
+    } else {
+      shouldOffset1 = ((val - min) / (max - min)) * width;
+      shouldOffset2 = shouldOffset1;
+    }
+
+    setLastDargOffset1(shouldOffset1);
+    setLastDargOffset2(shouldOffset2);
   };
 
   const updateValue = useCallback(
-    (offset: number) => {
-      const currentValue = getValue(max, min, step, offset, sideWidthRef.current);
-      setValue(currentValue);
-      onChange && onChange(currentValue);
+    (offset: number, index: number) => {
+      let currentValue = getValue(max, min, step, offset, sideWidthRef.current);
+      setValue(prevValue => {
+        if (Array.isArray(prevValue)) {
+          let newValue: [number, number];
+          if (index === 0) {
+            currentValue = Math.min(currentValue, prevValue[1]);
+            newValue = [currentValue, prevValue[1]];
+          } else {
+            currentValue = Math.max(currentValue, prevValue[0]);
+            newValue = [prevValue[0], currentValue];
+          }
+          setPendingValue(newValue);
+          return newValue;
+        } else {
+          setPendingValue(currentValue);
+          return currentValue;
+        }
+      });
     },
     [max, min, step, sideWidthRef],
   );
 
   const { bg } = useMemo(() => getColors(theme.palette, type), [theme.palette, type]);
 
-  const dragHandler = (event: DraggingEvent) => {
-    if (disabled) return;
-    const currentOffset = event.currentX - event.startX;
-    const offset = currentOffset + lastDargOffsetRef.current;
-    updateValue(offset);
+  const dragHandler = (event: DraggingEvent, index: number) => {
+    if (disabled || !sliderRef.current) return;
+
+    const sliderRect = sliderRef.current.getBoundingClientRect();
+    const currentOffset = event.currentX - sliderRect.left;
+    const boundedOffset = Math.max(0, Math.min(currentOffset, sliderRect.width));
+
+    updateValue(boundedOffset, index);
   };
+
   const dragStartHandler = () => {
     setIsClick(false);
     setSliderWidth(getRefWidth(sliderRef));
   };
+
   const dragEndHandler = (event: DraggingEvent) => {
     if (disabled) return;
-    const offset = event.currentX - event.startX;
-    const currentOffset = offset + lastDargOffsetRef.current;
-    const boundOffset = currentOffset < 0 ? 0 : Math.min(currentOffset, sideWidthRef.current);
-    setLastDargOffset(boundOffset);
+    const offset1 = event.currentX - event.startX + lastDargOffsetRef1.current;
+    const boundOffset1 = offset1 < 0 ? 0 : Math.min(offset1, sideWidthRef.current);
+    setLastDargOffset1(boundOffset1);
+
+    if (Array.isArray(value)) {
+      const offset2 = event.currentX - event.startX + lastDargOffsetRef2.current;
+      const boundOffset2 = offset2 < 0 ? 0 : Math.min(offset2, sideWidthRef.current);
+      setLastDargOffset2(boundOffset2);
+    }
   };
+
   const clickHandler = (event: React.MouseEvent<HTMLDivElement>) => {
     if (disabled) return;
     if (!sliderRef || !sliderRef.current) return;
     setIsClick(true);
     setSliderWidth(getRefWidth(sliderRef));
     const clickOffset = event.clientX - sliderRef.current.getBoundingClientRect().x;
-    setLastDargOffset(clickOffset);
-    updateValue(clickOffset);
+    const ratio = clickOffset / sideWidthRef.current;
+    const closestIndex = ratio < 0.5 ? 0 : 1;
+    const newOffset = ratio * sideWidthRef.current;
+    if (closestIndex === 0) {
+      setLastDargOffset1(newOffset);
+      updateValue(newOffset, 0);
+    } else {
+      setLastDargOffset2(newOffset);
+      updateValue(newOffset, 1);
+    }
   };
 
-  useDrag(dotRef, dragHandler, dragStartHandler, dragEndHandler);
+  useDrag(dotRef1, event => dragHandler(event, 0), dragStartHandler, dragEndHandler);
+  useDrag(dotRef2, event => dragHandler(event, 1), dragStartHandler, dragEndHandler);
 
   useEffect(() => {
-    if (customValue === undefined) return;
-    if (customValue === value) return;
-    setValue(customValue);
+    if (pendingValue !== null) {
+      onChange && onChange(pendingValue);
+      setPendingValue(null);
+    }
+  }, [pendingValue, onChange]);
+
+  useEffect(() => {
+    if (customValue !== undefined && customValue !== value) {
+      setValue(customValue);
+    }
   }, [customValue, value]);
 
   useEffect(() => {
-    initialValue && setLastOffsetManually(initialValue);
+    const effectiveValue = customValue !== undefined ? customValue : initialValue;
+    if (effectiveValue !== undefined) {
+      setLastOffsetManually(effectiveValue);
+    }
   }, []);
 
   return (
     <div className={useClasses('slider', className)} onClick={clickHandler} ref={sliderRef} {...props}>
-      <SliderDot disabled={disabled} ref={dotRef} isClick={isClick} left={currentRatio}>
-        {hideValue || value}
+      <SliderDot disabled={disabled} ref={dotRef1} isClick={isClick} left={currentRatio1}>
+        {hideValue ? undefined : Array.isArray(value) ? value[0] : value}
+      </SliderDot>
+      <SliderDot disabled={disabled} ref={dotRef2} isClick={isClick} left={currentRatio2} style={{ visibility: Array.isArray(value) ? 'visible' : 'hidden' }}>
+        {hideValue ? undefined : value[1]}
       </SliderDot>
       {showMarkers && <SliderMark max={max} min={min} step={step} />}
       <style jsx>{`

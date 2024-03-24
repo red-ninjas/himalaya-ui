@@ -13,12 +13,12 @@ type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
 export type SliderDotProps = Props & NativeAttrs;
 
 const SliderDot = React.forwardRef<HTMLDivElement, React.PropsWithChildren<SliderDotProps>>(
-  ({ children, disabled = false, left = 0, isClick = false }: React.PropsWithChildren<SliderDotProps>, ref: React.Ref<HTMLDivElement>) => {
+  ({ children, disabled = false, left = 0, isClick = false, ...props }: React.PropsWithChildren<SliderDotProps>, ref: React.Ref<HTMLDivElement>) => {
     const theme = useTheme();
     const classes = useClasses('dot', { disabled, click: isClick });
 
     return (
-      <div className={classes} ref={ref}>
+      <div {...props} className={`${classes} ${props.className || ''}`} ref={ref}>
         {children}
         <style jsx>{`
           .dot {
