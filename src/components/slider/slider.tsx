@@ -126,10 +126,13 @@ const SliderComponent: React.FC<React.PropsWithChildren<SliderProps>> = ({
   const { bg } = useMemo(() => getColors(theme.palette, type), [theme.palette, type]);
 
   const dragHandler = (event: DraggingEvent, index: number) => {
-    if (disabled) return;
-    const currentOffset = event.currentX - event.startX;
-    const offset = currentOffset + (index === 0 ? lastDargOffsetRef1.current : lastDargOffsetRef2.current);
-    updateValue(offset, index);
+    if (disabled || !sliderRef.current) return;
+
+    const sliderRect = sliderRef.current.getBoundingClientRect();
+    const currentOffset = event.currentX - sliderRect.left;
+    const boundedOffset = Math.max(0, Math.min(currentOffset, sliderRect.width));
+
+    updateValue(boundedOffset, index);
   };
 
   const dragStartHandler = () => {
