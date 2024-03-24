@@ -30,13 +30,13 @@ const AutoCompleteSearchComponent: React.FC<React.PropsWithChildren<AutoComplete
           align-items: center;
           font-weight: normal;
           white-space: pre;
-          padding: ${layout.gapHalf};
+          padding: var(--layout-gap-half);
           line-height: 1;
-          background-color: var(--theme-color-background-1000);
-          color: var(--theme-color-background-400);
+          background-color: var(--color-background-1000);
+          color: var(--color-background-400);
           user-select: none;
           border: 0;
-          border-radius: ${SCALES.r(1, theme.style.radius)};
+          border-radius: ${SCALES.r(1, `var(--layout-radius)`)};
           font-size: ${SCALES.font(0.875)};
           width: ${SCALES.w(1, 'auto')};
           height: ${SCALES.h(1, 'auto')};

@@ -15,10 +15,10 @@ const CarouseStyles: React.FC<
       {children}
       <style jsx>{`
         .carousel-wrapper {
-          --carousel-pagination-item-bg: var(--theme-color-foreground-1000);
-          --carousel-arrow-bg: var(--theme-color-background-500);
-          --carousel-arrow-bg-color: var(--theme-color-background-200);
-          --carousel-arrow-hover: var(--theme-color-background-300);
+          --carousel-pagination-item-bg: var(--color-foreground-1000);
+          --carousel-arrow-bg: var(--color-background-500);
+          --carousel-arrow-bg-color: var(--color-background-200);
+          --carousel-arrow-hover: var(--color-background-300);
           --carousel-arrow-size: ${arrowSize}px;
         }
       `}</style>

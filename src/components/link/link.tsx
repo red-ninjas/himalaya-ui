@@ -43,7 +43,7 @@ const LinkComponent = React.forwardRef<HTMLAnchorElement, React.PropsWithChildre
             line-height: inherit;
             color: ${linkColor};
             text-decoration: none;
-            border-radius: ${block ? theme.style.radius : 0};
+            border-radius: ${block ? `var(--layout-radius)` : 0};
             transition: color 200ms ease 0ms;
             text-decoration: none;
           }

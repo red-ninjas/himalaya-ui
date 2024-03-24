@@ -40,11 +40,11 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(({ toast, layout }) => {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            color: var(--theme-color-foreground-1000);
+            color: var(--color-foreground-1000);
             background-color: ${bgColor};
             color: ${color};
             border: 0;
-            border-radius: ${r ?? theme.style.radius};
+            border-radius: ${r ?? `var(--layout-radius)`};
             opacity: 1;
             box-shadow: ${theme.expressiveness.shadowSmall};
             transition: all 350ms cubic-bezier(0.1, 0.2, 0.1, 1);

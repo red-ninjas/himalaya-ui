@@ -118,7 +118,7 @@ const ConfigProvider: React.FC<React.PropsWithChildren<NativeConfigProps>> = ({
 
   return (
     <RouteChangeProvider>
-      <LayoutProvider>
+      <LayoutProvider inline={false}>
         <ConfigContext.Provider value={config}>
           <ThemeProvider inline={false} themes={themes} themeType={config.themeType}>
             <CssBaseline />

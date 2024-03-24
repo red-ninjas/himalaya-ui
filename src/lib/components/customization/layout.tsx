@@ -21,9 +21,9 @@ const CustomizationLayout: React.FC<React.PropsWithChildren<unknown>> = ({ child
       <style jsx>{`
         .layout {
           min-height: calc(100vh - 108px);
-          max-width: ${layout.pageWidthWithMargin};
+          max-width: var(--layout-page-width-with-margin);
           margin: 0 auto;
-          padding: 0 ${layout.gap};
+          padding: 0 var(--layout-gap);
           display: flex;
           flex-direction: column;
           box-sizing: border-box;

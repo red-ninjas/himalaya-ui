@@ -37,7 +37,7 @@ const MenuSkeleton: React.FC<unknown> = () => {
           left: 0;
           right: 0;
           height: var(${isMobile ? '--page-nav-height-mobile' : '--page-nav-height'}, 60px);
-          border-bottom: 1px solid var(--theme-color-border-1000);
+          border-bottom: 1px solid var(--color-border-1000);
           z-index: 999;
           display: flex;
           align-item: center;
@@ -47,17 +47,17 @@ const MenuSkeleton: React.FC<unknown> = () => {
           width: 100%;
           height: 100%;
           margin: 0 auto;
-          max-width: ${layout.pageWidthWithMargin};
+          max-width: var(--layout-page-width-with-margin);
           display: flex;
           align-items: center;
           justify-content: center;
         }
 
         .skeleton-item {
-          background-color: var(--theme-color-background-700);
+          background-color: var(--color-background-700);
           opacity: ${opacity};
-          margin: 0 ${layout.gap};
-          padding: ${layout.gap} 0;
+          margin: 0 var(--layout-gap);
+          padding: var(--layout-gap) 0;
           flex: 1;
           border-radius: 6px;
         }

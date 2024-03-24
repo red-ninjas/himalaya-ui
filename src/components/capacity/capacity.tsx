@@ -39,9 +39,9 @@ const CapacityComponent: React.FC<CapacityProps> = ({ value = 0, limit = 100, co
         .capacity {
           width: ${SCALES.w(3.125)};
           height: ${SCALES.h(0.625)};
-          border-radius: ${SCALES.r(1, theme.style.radius)};
+          border-radius: ${SCALES.r(1, `var(--layout-radius)`)};
           overflow: hidden;
-          background-color: var(--theme-color-background-700);
+          background-color: var(--color-background-700);
           padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
           margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
         }

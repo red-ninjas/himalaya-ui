@@ -47,9 +47,9 @@ const AutoCompleteDropdown: React.FC<React.PropsWithChildren<AutoCompleteDropdow
         {children}
         <style jsx>{`
           .auto-complete-dropdown {
-            border-radius: ${SCALES.r(1, theme.style.radius)};
+            border-radius: ${SCALES.r(1, `var(--layout-radius)`)};
             box-shadow: ${isEmpty ? 'none' : theme.expressiveness.shadowLarge};
-            background-color: var(--theme-color-background-1000);
+            background-color: var(--color-background-1000);
             overflow-y: auto;
             max-height: 15rem;
             overflow-anchor: none;

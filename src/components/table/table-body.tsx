@@ -45,20 +45,20 @@ const TableBody = <TableDataItem extends TableDataItemBase>({ data, hover, empty
         }
 
         tr :global(td) {
-          border-bottom: 1px solid var(--theme-color-border-1000);
-          color: var(--theme-color-foreground-1000);
+          border-bottom: 1px solid var(--color-border-1000);
+          color: var(--color-foreground-1000);
           font-size: calc(0.875 * var(--table-font-size));
           text-align: left;
         }
         tr.hover:hover :global(td) {
-          border-bottom: 1px solid var(--theme-color-background-800);
+          border-bottom: 1px solid var(--color-background-800);
         }
         tr :global(.cell) {
           display: flex;
           -webkit-box-align: center;
           align-items: center;
           flex-flow: row wrap;
-          padding: ${layout.gapHalf} ${layout.gapQuarter};
+          padding: var(--layout-gap-half) var(--layout-gap-quarter);
         }
       `}</style>
     </tbody>

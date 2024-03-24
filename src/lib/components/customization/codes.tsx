@@ -97,11 +97,11 @@ const CustomizationCodes: React.FC<unknown> = () => {
           width: 80%;
           margin: 0 auto;
           display: inline-block;
-          background: var(--theme-color-foreground-1000);
-          color: var(--theme-color-background-1000);
+          background: var(--color-foreground-1000);
+          color: var(--color-background-1000);
           font-size: 1rem;
           line-height: 1rem;
-          padding: ${layout.gap} 0;
+          padding: var(--layout-gap) 0;
           text-transform: uppercase;
           letter-spacing: 1.5px;
         }
@@ -109,10 +109,10 @@ const CustomizationCodes: React.FC<unknown> = () => {
         .codes {
           width: 80%;
           margin: 0 auto;
-          border: 1px solid var(--theme-color-border-1000);
-          border-radius: ${theme.style.radius};
+          border: 1px solid var(--color-border-1000);
+          border-radius: var(--layout-radius);
           overflow: hidden;
-          padding: calc(0.6 * ${layout.gap}) ${layout.gap};
+          padding: calc(0.6 * var(--layout-gap)) var(--layout-gap);
           position: relative;
         }
 
@@ -121,7 +121,7 @@ const CustomizationCodes: React.FC<unknown> = () => {
           right: 1rem;
           top: 1rem;
           z-index: 2000;
-          color: var(--theme-color-background-600);
+          color: var(--color-background-600);
           cursor: pointer;
           user-select: none;
           transition: color 200ms ease;
@@ -129,7 +129,7 @@ const CustomizationCodes: React.FC<unknown> = () => {
         }
 
         .copy:hover {
-          color: var(--theme-color-background-300);
+          color: var(--color-background-300);
         }
 
         @media only screen and (max-width: ${layout.breakpointMobile}) {

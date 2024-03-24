@@ -12,8 +12,6 @@ export interface LayoutPropsContext {
   gapHalfNegative?: string;
   gapQuarter?: string;
   gapQuarterNegative?: string;
-  breakpointMobile?: string;
-  breakpointTablet?: string;
   breakpoints?: UIThemesBreakpoints;
   radius?: string;
   unit?: string;

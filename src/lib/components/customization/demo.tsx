@@ -65,11 +65,11 @@ const Demo: React.FC<React.PropsWithChildren<unknown>> = () => {
       <style jsx>{`
         .demo {
           width: 34%;
-          margin-top: calc(${layout.gap} * 2);
-          margin-right: ${layout.gap};
-          padding-right: ${layout.gapQuarter};
+          margin-top: calc(var(--layout-gap) * 2);
+          margin-right: var(--layout-gap);
+          padding-right: var(--layout-gap-quarter);
           position: relative;
-          border-right: 1px solid var(--theme-color-border-1000);
+          border-right: 1px solid var(--color-border-1000);
           height: auto;
           transition: width 200ms ease;
         }

@@ -34,16 +34,16 @@ const SliderDot = React.forwardRef<HTMLDivElement, React.PropsWithChildren<Slide
             font-weight: 700;
             font-size: calc(var(--slider-font-size) * 0.75);
             z-index: 100;
-            background-color: var(--theme-color-primary-1000);
-            color: var(--theme-color-background-1000);
+            background-color: var(--color-primary-1000);
+            color: var(--color-background-1000);
             text-align: center;
             padding: 0 calc(0.57 * var(--slider-font-size));
           }
 
           .dot.disabled {
             cursor: not-allowed !important;
-            background-color: var(--theme-color-background-700);
-            color: var(--theme-color-background-500);
+            background-color: var(--color-background-700);
+            color: var(--color-background-500);
           }
 
           .dot.click {

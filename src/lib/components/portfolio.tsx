@@ -54,7 +54,7 @@ export function PortfolioItem({
           .portfolio-image {
             width: 100%;
             position: relative;
-            border-radius: ${theme.style.radius};
+            border-radius: var(--layout-radius);
             margin-bottom: 12px;
           }
 

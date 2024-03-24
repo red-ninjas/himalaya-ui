@@ -1,16 +1,10 @@
-import { generateColors } from '../utils';
+import { makeColors } from '../utils';
 import { UIThemes, UIThemesExpressiveness, UIThemesPalette } from './index';
 import { defaultFont, defaultStyles } from './shared';
-const colors = generateColors({
-  background: {
-    color: '#fafafa',
-    reversed: true,
-  },
-  border: {
-    color: '#e6e6e6',
-    reversed: true,
-  },
+const colors = makeColors({
+  gray: '#7d7d7d',
   foreground: '#171717',
+  border: '#e6e6e6',
   secondary: '#7d7d7d',
   primary: '#0062d1',
   tertiary: '#763da9',
@@ -19,6 +13,7 @@ const colors = generateColors({
   success: '#398e4a',
   link: '#3291ff',
   code: '#f75f8f',
+  background: '#fafafa',
 });
 export const palette: UIThemesPalette = Object.assign(
   {

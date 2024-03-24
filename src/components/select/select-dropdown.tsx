@@ -37,9 +37,9 @@ const SelectDropdown = React.forwardRef<HTMLDivElement | null, React.PropsWithCh
           {children}
           <style jsx>{`
             .select-dropdown {
-              border-radius: ${SCALES.r(1, theme.style.radius)};
+              border-radius: ${SCALES.r(1, `var(--layout-radius)`)};
               box-shadow: ${theme.expressiveness.shadowLarge};
-              background-color: var(--theme-color-background-1000);
+              background-color: var(--color-background-1000);
               max-height: 17em;
               overflow-y: auto;
               margin-top: 6px;

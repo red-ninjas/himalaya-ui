@@ -36,9 +36,9 @@ const ExampleBlock: React.FC<React.PropsWithChildren<ExampleBlockProps>> = React
           .block {
             width: 100%;
             background: ${bg};
-            padding: ${layout.gapHalf};
-            border-radius: ${theme.style.radius};
-            color: var(--theme-color-background-1000);
+            padding: var(--layout-gap-half);
+            border-radius: var(--layout-radius);
+            color: var(--color-background-1000);
             font-size: 0.75rem;
           }
         `}</style>

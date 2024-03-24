@@ -217,7 +217,7 @@ const SelectComponent = React.forwardRef<SelectRef, React.PropsWithChildren<Sele
                 color 200ms ease-out 0s,
                 box-shadow 200ms ease 0s;
               border: 1px solid ${border};
-              border-radius: ${SCALES.r(1, theme.style.radius)};
+              border-radius: ${SCALES.r(1, `var(--layout-radius)`)};
               background-color: ${disabled ? theme.palette.background.hex_800 : theme.palette.background.hex_1000};
               --select-font-size: ${SCALES.font(0.875)};
               --select-height: ${SCALES.h(2.25)};
@@ -273,7 +273,7 @@ const SelectComponent = React.forwardRef<SelectRef, React.PropsWithChildren<Sele
 
             .icon {
               position: absolute;
-              right: ${layout.gapQuarter};
+              right: var(--layout-gap-quarter);
               font-size: var(--select-font-size);
               top: 50%;
               bottom: 0;

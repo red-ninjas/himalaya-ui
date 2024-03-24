@@ -98,8 +98,8 @@ const ToastContainer: React.FC<React.PropsWithChildren<unknown>> = () => {
           position: fixed;
           width: auto;
           max-width: 100%;
-          right: ${layout.gap};
-          bottom: ${layout.gap};
+          right: var(--layout-gap);
+          bottom: var(--layout-gap);
           z-index: 2000;
           transition: all 400ms ease;
           box-sizing: border-box;
@@ -109,11 +109,11 @@ const ToastContainer: React.FC<React.PropsWithChildren<unknown>> = () => {
         .top {
           bottom: unset;
           flex-direction: column-reverse;
-          top: ${layout.gap};
+          top: var(--layout-gap);
         }
         .left {
           right: unset;
-          left: ${layout.gap};
+          left: var(--layout-gap);
         }
       `}</style>
     </div>,

@@ -59,11 +59,11 @@ const Editor = () => {
           flex-wrap: wrap;
           width: auto;
           margin: 0 auto;
-          padding-left: ${layout.gapQuarter};
+          padding-left: var(--layout-gap-quarter);
         }
 
         .subtitle {
-          color: var(--theme-color-background-500);
+          color: var(--color-background-500);
           text-transform: uppercase;
           font-size: 0.75rem;
           margin-top: 2rem;

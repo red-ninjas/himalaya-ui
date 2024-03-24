@@ -1,10 +1,9 @@
 'use client';
 
-import { Code, Grid, Tooltip, useClasses, useClipboard, useLayout, useTheme, useToasts } from 'components';
+import { Code, Grid, Tooltip, useClasses, useClipboard, useTheme, useToasts } from 'components';
 import { UIThemesPalette } from 'components/themes';
-import { generateColor } from 'components/themes/utils';
-import { ColorVariable } from 'components/themes/utils/color-variable';
-import { isColorVariable, isGradient, isSingleColor } from 'components/utils/color';
+import { getContrast } from 'components/themes/utils';
+import { isColorVariable, isGradient } from 'components/utils/color';
 import React, { useMemo } from 'react';
 import { Gradient } from '../../../../components/themes/presets/index';
 import { getColorData } from './colors-data';
@@ -17,8 +16,8 @@ const getColorItem = (type: string, palette: UIThemesPalette, copy: (text: strin
   const data = getColorData(type);
 
   const getColor = (color: string) => {
-    const generated = generateColor(color);
-    return generated.contrast;
+    const generated = getContrast(color);
+    return generated;
   };
 
   const keys = Object.keys(data);
@@ -54,25 +53,23 @@ const getColorItem = (type: string, palette: UIThemesPalette, copy: (text: strin
     </div>
   );
 
-  const ColorVariantComponent = ({ palette, name }: { name: string; palette: ColorVariable }) => {
+  const ColorVariantComponent = ({ palette, name }: { name: string; palette: any }) => {
     const keys = Object.keys(palette);
     return (
       <Grid.Container gap={1}>
         {keys.map((key, index) => (
           <Grid xs={12} md={4} lg={3} key={index}>
-            {isSingleColor(palette[key]) && (
-              <div
-                className={useClasses('color', {
-                  main: key == 'hex_1000',
-                })}
-                style={{ color: getColor(palette[key]), background: palette[key], width: '100%' }}
-                onClick={() => copy(`--theme-color-${name}-${key.replace('hex_', '')}`)}
-              >
-                <Tooltip style={{ width: '100%' }} text={`--theme-color-${name}-${key.replace('hex_', '')}`}>
-                  <div className="usage">{palette[key] as string}</div>
-                </Tooltip>
-              </div>
-            )}
+            <div
+              className={useClasses('color', {
+                main: key == 'hex_1000',
+              })}
+              style={{ color: getColor(palette[key]), background: palette[key], width: '100%' }}
+              onClick={() => copy(`--color-${name}-${key.replace('hex_', '')}`)}
+            >
+              <Tooltip style={{ width: '100%' }} text={`--color-${name}-${key.replace('hex_', '')}`}>
+                <div className="usage">{palette[key] as string}</div>
+              </Tooltip>
+            </div>
           </Grid>
         ))}
       </Grid.Container>
@@ -82,16 +79,13 @@ const getColorItem = (type: string, palette: UIThemesPalette, copy: (text: strin
   return (keys as Array<keyof UIThemesPalette>).map((key, index) => (
     <div className="color-stack" key={`color-item-${index}`}>
       {isGradient(palette[key]) && <GradientColorComponent key={`color-item-${index}`} name={key} palette={palette[key] as Gradient}></GradientColorComponent>}
-      {isColorVariable(palette[key]) && (
-        <ColorVariantComponent key={`color-item-${index}`} name={key} palette={palette[key] as ColorVariable}></ColorVariantComponent>
-      )}
+      {isColorVariable(palette[key]) && <ColorVariantComponent key={`color-item-${index}`} name={key} palette={palette[key]}></ColorVariantComponent>}
     </div>
   ));
 };
 
 const Colors: React.FC<Props> = ({ type }) => {
   const theme = useTheme();
-  const layout = useLayout();
   const { copy } = useClipboard();
   const { setToast } = useToasts();
   const copyText = (text: string) => {
@@ -121,11 +115,11 @@ const Colors: React.FC<Props> = ({ type }) => {
           user-select: none;
           border-radius: 4px;
           margin-top: 12px;
-          border: 2px solid var(--theme-color-border-1000);
+          border: 2px solid var(--color-border-1000);
         }
 
         .colors :global(.color.main) {
-          border: 2px solid var(--theme-color-primary-1000);
+          border: 2px solid var(--color-primary-1000);
         }
 
         .colors :global(.color h4) {

@@ -8,7 +8,6 @@ export interface QuickBarLayoutProps {
 export interface QuickActionProps {
   tooltip?: string | React.ReactNode;
   exactMatch?: boolean;
-  radius?: number;
   target?: HTMLAttributeAnchorTarget | undefined;
   highlightLeft?: number;
   href?: string;

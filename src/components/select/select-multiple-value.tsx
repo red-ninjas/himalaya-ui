@@ -29,8 +29,8 @@ const SelectMultipleValue: React.FC<React.PropsWithChildren<Props>> = ({ disable
           padding: 0 0.5em;
           font-size: var(--select-font-size);
           height: calc(var(--select-font-size) * 2);
-          border-radius: ${SCALES.r(1, theme.style.radius)};
-          background-color: var(--theme-color-background-900);
+          border-radius: ${SCALES.r(1, `var(--layout-radius)`)};
+          background-color: var(--color-background-900);
           color: ${disabled ? theme.palette.background.hex_500 : theme.palette.foreground.hex_1000};
         }
 

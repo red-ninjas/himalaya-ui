@@ -63,9 +63,9 @@ const ModalWrapper: React.FC<React.PropsWithChildren<ModalWrapperProps>> = ({
             flex-direction: column;
             position: relative;
             box-sizing: border-box;
-            background-color: var(--theme-color-background-1000);
-            color: var(--theme-color-foreground-1000);
-            border-radius: ${SCALES.r(1, theme.style.radius)};
+            background-color: var(--color-background-1000);
+            color: var(--color-foreground-1000);
+            border-radius: ${SCALES.r(1, `var(--layout-radius)`)};
             box-shadow: ${theme.expressiveness.shadowLarge};
             opacity: 0;
             outline: none;

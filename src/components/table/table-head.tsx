@@ -65,36 +65,36 @@ const TableHead = <TableDataItem extends TableDataItemBase>({ hasBorder = true, 
         }
 
         th {
-          padding: ${layout.gapHalf} ${layout.gapQuarter};
+          padding: var(--layout-gap-half) var(--layout-gap-quarter);
           font-size: calc(0.8 * var(--table-font-size));
           font-weight: 600;
           text-align: left;
           letter-spacing: 0;
           vertical-align: middle;
-          color: var(--theme-color-background-400);
+          color: var(--color-background-400);
           background: transparent;
-          border-bottom: 1px solid var(--theme-color-border-1000);
+          border-bottom: 1px solid var(--color-border-1000);
           border-radius: 0;
         }
 
         th.has-border {
-          border-top: 1px solid var(--theme-color-border-1000);
+          border-top: 1px solid var(--color-border-1000);
         }
 
         th.has-border:nth-child(1) {
-          border-bottom: 1px solid var(--theme-color-border-1000);
-          border-left: 1px solid var(--theme-color-border-1000);
-          border-top: 1px solid var(--theme-color-border-1000);
-          border-top-left-radius: ${theme.style.radius};
-          border-bottom-left-radius: ${theme.style.radius};
+          border-bottom: 1px solid var(--color-border-1000);
+          border-left: 1px solid var(--color-border-1000);
+          border-top: 1px solid var(--color-border-1000);
+          border-top-left-radius: var(--layout-radius);
+          border-bottom-left-radius: var(--layout-radius);
         }
 
         th.has-border:last-child {
-          border-bottom: 1px solid var(--theme-color-border-1000);
-          border-right: 1px solid var(--theme-color-border-1000);
-          border-top: 1px solid var(--theme-color-border-1000);
-          border-top-right-radius: ${theme.style.radius};
-          border-bottom-right-radius: ${theme.style.radius};
+          border-bottom: 1px solid var(--color-border-1000);
+          border-right: 1px solid var(--color-border-1000);
+          border-top: 1px solid var(--color-border-1000);
+          border-top-right-radius: var(--layout-radius);
+          border-bottom-right-radius: var(--layout-radius);
         }
 
         .thead-box {

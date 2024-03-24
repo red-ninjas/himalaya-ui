@@ -43,7 +43,7 @@ const Sidebar: React.FC<PropsWithChildren<SidebarPropsNative>> = ({ children, he
           display: flex;
           flex-direction: column;
           align-items: center;
-          gap: ${layout.gap};
+          gap: var(--layout-gap);
           padding: ${SCALES.pt(1)} ${SCALES.pr(0)} ${SCALES.pb(1)} ${SCALES.pl(0)};
         }
         .sidebar-inner::-webkit-scrollbar {

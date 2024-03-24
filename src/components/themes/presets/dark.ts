@@ -1,53 +1,20 @@
-import { generateColors } from '../utils';
+import { makeColors } from '../utils';
 import { UIThemes, UIThemesExpressiveness, UIThemesPalette } from './index';
 import { defaultFont, defaultStyles } from './shared';
 
-const colors = generateColors({
-  background: {
-    color: '#000000',
-    reversed: false,
-  },
-  border: {
-    color: '#242424',
-    reversed: false,
-  },
-  foreground: {
-    color: '#ededed',
-    reversed: true,
-  },
-  secondary: {
-    color: '#7d7d7d',
-    reversed: true,
-  },
-  primary: {
-    color: '#0062d1',
-    reversed: true,
-  },
-  tertiary: {
-    color: '#763da9',
-    reversed: true,
-  },
-
-  warning: {
-    color: '#ff990a',
-    reversed: true,
-  },
-  error: {
-    color: '#d93036',
-    reversed: true,
-  },
-  success: {
-    color: '#398e4a',
-    reversed: true,
-  },
-  link: {
-    color: '#0070f3',
-    reversed: true,
-  },
-  code: {
-    color: '#d73a49',
-    reversed: true,
-  },
+const colors = makeColors({
+  gray: '#7d7d7d',
+  foreground: '#ededed',
+  border: '#242424',
+  secondary: '#7d7d7d',
+  primary: '#0062d1',
+  tertiary: '#763da9',
+  warning: '#ff990a',
+  error: '#d93036',
+  success: '#398e4a',
+  link: '#0070f3',
+  code: '#d73a49',
+  background: '#000000',
 });
 export const palette: UIThemesPalette = Object.assign(
   {
@@ -64,7 +31,6 @@ export const palette: UIThemesPalette = Object.assign(
       to: '#fd9746',
     },
   },
-
   colors,
 );
 

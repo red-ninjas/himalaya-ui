@@ -48,7 +48,7 @@ function EntityFieldComponent({
           .desc {
             margin-top: 0px;
             margin-bottom: 0px;
-            color: var(--theme-color-background-400);
+            color: var(--color-background-400);
           }
 
           display: flex;
@@ -58,7 +58,7 @@ function EntityFieldComponent({
           width: ${width};
 
           &.disabled * {
-            color: var(--theme-color-background-500);
+            color: var(--color-background-500);
             pointer-events: none;
           }
 
@@ -80,7 +80,7 @@ function EntityFieldComponent({
               width: 24px !important;
               height: 24px !important;
               border-radius: 50%;
-              background: var(--theme-color-background-100);
+              background: var(--color-background-100);
             }
           }
         }

@@ -21,15 +21,7 @@ type NativeAttrs = Omit<
 >;
 export type ImageProps = Props & NativeAttrs;
 
-const ImageComponent: React.FC<ImageProps> = ({
-  src = '',
-  disableSkeleton = false,
-  className = '',
-  maxDelay = 3000,
-  alt = '',
-  radius,
-  ...props
-}: ImageProps) => {
+const ImageComponent: React.FC<ImageProps> = ({ src = '', disableSkeleton = false, className = '', maxDelay = 3000, alt = '', ...props }: ImageProps) => {
   const { SCALES, getScaleProps } = useScale();
   const width = getScaleProps(['w']);
   const height = getScaleProps(['h']);
@@ -82,7 +74,7 @@ const ImageComponent: React.FC<ImageProps> = ({
         .image {
           line-height: 0;
           position: relative;
-          border-radius: ${radius === undefined ? theme.style.radius : radius};
+          border-radius: ${SCALES.r(1, `var(--layout-radius)`)};
           overflow: hidden;
           max-width: 100%;
           width: ${SCALES.w(1, 'auto')};

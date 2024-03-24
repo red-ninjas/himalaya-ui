@@ -74,8 +74,8 @@ const CollapseComponent: React.FC<React.PropsWithChildren<CollapseProps>> = ({
       </Expand>
       <style jsx>{`
         .collapse {
-          border-top: 1px solid var(--theme-color-border-1000);
-          border-bottom: 1px solid var(--theme-color-border-1000);
+          border-top: 1px solid var(--color-border-1000);
+          border-bottom: 1px solid var(--color-border-1000);
           font-size: ${SCALES.font(1)};
           width: ${SCALES.w(1, 'auto')};
           height: ${SCALES.h(1, 'auto')};
@@ -86,8 +86,8 @@ const CollapseComponent: React.FC<React.PropsWithChildren<CollapseProps>> = ({
         .shadow {
           box-shadow: ${theme.expressiveness.shadowSmall};
           border: none;
-          border-radius: ${SCALES.r(1, theme.style.radius)};
-          padding: ${layout.gap};
+          border-radius: ${SCALES.r(1, `var(--layout-radius)`)};
+          padding: var(--layout-gap);
         }
 
         .view {
@@ -99,14 +99,14 @@ const CollapseComponent: React.FC<React.PropsWithChildren<CollapseProps>> = ({
           display: flex;
           justify-content: space-between;
           align-items: center;
-          color: var(--theme-color-foreground-1000);
+          color: var(--color-foreground-1000);
           font-weight: bold;
           margin: 0;
           font-size: ${SCALES.font(1.25)};
         }
 
         .subtitle {
-          color: var(--theme-color-background-400);
+          color: var(--color-background-400);
           margin: 0;
         }
 

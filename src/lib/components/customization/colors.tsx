@@ -28,8 +28,8 @@ const Colors: React.FC<React.PropsWithChildren<unknown>> = () => {
         .color-card {
           display: flex;
           width: 9rem;
-          margin-right: ${layout.gapHalf};
-          margin-bottom: ${layout.gapHalf};
+          margin-right: var(--layout-gap-half);
+          margin-bottom: var(--layout-gap-half);
         }
       `}</style>
     </div>

@@ -41,7 +41,7 @@ const IconsCell: React.FC<Props> = ({ component: Component, name, onClick }) => 
           min-width: 0px;
           height: 95px;
           margin: 12px 5px;
-          border-radius: ${theme.style.radius};
+          border-radius: var(--layout-radius);
           box-sizing: border-box;
           cursor: pointer;
           user-select: none;
@@ -54,7 +54,7 @@ const IconsCell: React.FC<Props> = ({ component: Component, name, onClick }) => 
           text-align: center;
           overflow: hidden;
           text-overflow: ellipsis;
-          color: var(--theme-color-background-600);
+          color: var(--color-background-600);
         }
 
         .icon-item:hover {

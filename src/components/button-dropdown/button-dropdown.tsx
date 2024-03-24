@@ -104,8 +104,8 @@ const ButtonDropdownComponent: React.FC<React.PropsWithChildren<ButtonDropdownPr
             display: inline-flex;
             position: relative;
             box-sizing: border-box;
-            border: 1px solid var(--theme-color-border-1000);
-            border-radius: ${SCALES.r(1, theme.style.radius)};
+            border: 1px solid var(--color-border-1000);
+            border-radius: ${SCALES.r(1, `var(--layout-radius)`)};
             --ui-dropdown-height: ${SCALES.h(2.5)};
             --ui-dropdown-min-width: ${auto ? 'min-content' : SCALES.w(10.5)};
             --ui-dropdown-padding: ${SCALES.pt(0)} ${paddingRight} ${SCALES.pb(0)} ${paddingLeft};
@@ -113,13 +113,13 @@ const ButtonDropdownComponent: React.FC<React.PropsWithChildren<ButtonDropdownPr
           }
 
           .btn-dropdown > :global(button) {
-            border-top-left-radius: ${theme.style.radius};
-            border-bottom-left-radius: ${theme.style.radius};
+            border-top-left-radius: var(--layout-radius);
+            border-bottom-left-radius: var(--layout-radius);
           }
 
           details {
-            border-top-right-radius: ${theme.style.radius};
-            border-bottom-right-radius: ${theme.style.radius};
+            border-top-right-radius: var(--layout-radius);
+            border-bottom-right-radius: var(--layout-radius);
             overflow: hidden;
           }
 
@@ -162,20 +162,20 @@ const ButtonDropdownComponent: React.FC<React.PropsWithChildren<ButtonDropdownPr
             left: 0;
             z-index: 90;
             width: 100%;
-            border-radius: ${SCALES.r(1, theme.style.radius)};
+            border-radius: ${SCALES.r(1, `var(--layout-radius)`)};
             box-shadow: ${theme.expressiveness.shadowLarge};
-            transform: translateY(${layout.gapHalf});
-            background-color: var(--theme-color-background-1000);
+            transform: translateY(var(--layout-gap-half));
+            background-color: var(--color-background-1000);
           }
 
           .content > :global(button:first-of-type) {
-            border-top-left-radius: ${theme.style.radius};
-            border-top-right-radius: ${theme.style.radius};
+            border-top-left-radius: var(--layout-radius);
+            border-top-right-radius: var(--layout-radius);
           }
 
           .content > :global(button:last-of-type) {
-            border-bottom-left-radius: ${theme.style.radius};
-            border-bottom-right-radius: ${theme.style.radius};
+            border-bottom-left-radius: var(--layout-radius);
+            border-bottom-right-radius: var(--layout-radius);
           }
 
           .dropdown-icon {

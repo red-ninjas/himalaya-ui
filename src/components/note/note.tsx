@@ -86,7 +86,7 @@ export const NoteComponent: React.FC<React.PropsWithChildren<NoteProps>> = ({
           border: 1px solid ${borderColor};
           color: ${color};
           background-color: ${bgColor};
-          border-radius: ${SCALES.r(1, theme.style.radius)};
+          border-radius: ${SCALES.r(1, `var(--layout-radius)`)};
           font-size: ${SCALES.font(0.875)};
           width: ${SCALES.w(1, 'auto')};
           height: ${SCALES.h(1, 'auto')};

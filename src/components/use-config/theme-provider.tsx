@@ -35,34 +35,38 @@ const ThemeProvider: React.FC<PropsWithChildren<Props>> = ({ children, themeType
     setAllThemes({ themes: currentThemes });
   }, [currentThemes]);
 
-  const generateColors = Object.keys(currentTheme.palette).filter(key => isColorVariable(currentTheme.palette[key]));
+  const makeColors = Object.keys(currentTheme.palette).filter(key => isColorVariable(currentTheme.palette[key]));
 
-  let colorClasses: string = ``;
-  let vars: string = ``;
+  const [colorClasses, vars] = useMemo(() => {
+    let colorClasses: string = ``;
+    let vars: string = ``;
 
-  for (const key of generateColors) {
-    const value = currentTheme.palette[key];
+    for (const key of makeColors) {
+      const value = currentTheme.palette[key];
 
-    let colorClassesTemp: string = ``;
-    for (const colorKey of Object.keys(value)) {
-      vars += css`
-      --theme-color-${key}-${colorKey.replace('hex_', '')}: ${value[colorKey]};
-      `;
+      let colorClassesTemp: string = ``;
+      for (const colorKey of Object.keys(value)) {
+        vars += `
+        --color-${key}-${colorKey.replace('hex_', '')}: ${value[colorKey]};
+        `;
 
-      vars += css`
-      --theme-color-${key}-${colorKey.replace('hex_', '')}-rgb: ${hexToRgb(value[colorKey])};
-      `;
+        vars += `
+        --color-${key}-${colorKey.replace('hex_', '')}-rgb: ${hexToRgb(value[colorKey])};
+        `;
 
-      colorClassesTemp += css`
-        --theme-color-${colorKey.replace('hex_', '')}: var(--theme-color-${key}-${colorKey});
+        colorClassesTemp += `
+          --color-${colorKey.replace('hex_', '')}: var(--color-${key}-${colorKey});
+        `;
+      }
+      colorClasses += `
+        .color-${key} {
+          ${colorClassesTemp}
+        }
       `;
     }
-    colorClasses += css`
-      .color-${key} {
-        ${colorClassesTemp}
-      }
-    `;
-  }
+
+    return [colorClasses, vars];
+  }, [currentTheme]);
 
   return (
     <AllThemesContext.Provider value={allThemes}>
@@ -73,6 +77,8 @@ const ThemeProvider: React.FC<PropsWithChildren<Props>> = ({ children, themeType
             <style jsx>
               {`
                 .theme {
+                  width: 100%;
+                  height: 100%;
                   ${vars}
                 }
               `}

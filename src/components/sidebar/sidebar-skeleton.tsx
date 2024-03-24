@@ -37,7 +37,7 @@ const SidebarSkeleton: React.FC<unknown> = () => {
           height: 20px;
           border-radius: 6px;
           margin: 8px 0;
-          background-color: var(--theme-color-background-700);
+          background-color: var(--color-background-700);
           opacity: ${opacity};
           transition: opacity 350ms linear;
         }

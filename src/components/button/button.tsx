@@ -117,7 +117,7 @@ const ButtonComponent = React.forwardRef<HTMLButtonElement, React.PropsWithChild
             box-sizing: border-box;
             display: inline-block;
             line-height: ${SCALES.lineHeight(0.875, SCALES.font(0.875))};
-            border-radius: ${SCALES.r(1, theme.style.radius)};
+            border-radius: ${SCALES.r(1, `var(--layout-radius)`)};
             font-weight: 500;
             font-size: ${SCALES.font(0.875)};
             user-select: none;

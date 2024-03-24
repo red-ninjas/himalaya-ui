@@ -126,7 +126,7 @@ const ImageBrowserComponent = React.forwardRef<HTMLDivElement, React.PropsWithCh
             background-color: transparent;
             box-shadow: ${theme.expressiveness.shadowLarge};
             max-width: 100%;
-            border-radius: ${SCALES.r(1, theme.style.radius)};
+            border-radius: ${SCALES.r(1, `var(--layout-radius)`)};
             overflow: hidden;
             font-size: ${SCALES.font(1)};
             width: ${SCALES.w(1, 'max-content')};
@@ -152,7 +152,7 @@ const ImageBrowserComponent = React.forwardRef<HTMLDivElement, React.PropsWithCh
           .traffic {
             width: auto;
             position: absolute;
-            left: ${layout.gapHalf};
+            left: var(--layout-gap-half);
             top: 50%;
             transform: translateY(-50%);
             bottom: 0;

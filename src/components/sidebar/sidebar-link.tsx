@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React, { PropsWithChildren } from 'react';
 import useScale, { withScale } from '../use-scale';
-import useTheme from '../use-theme';
 
 export interface Props {
   icon?: React.ReactNode;
@@ -15,7 +14,6 @@ type NativeAttrs = Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, keyof Pro
 export type SideBarLinkProp = Props & NativeAttrs;
 
 const SidebarLink: React.FC<PropsWithChildren<SideBarLinkProp>> = ({ children, icon, activeColor, activeBackground, href, ...props }) => {
-  const theme = useTheme();
   const pathname = usePathname();
   const { SCALES } = useScale();
 
@@ -31,7 +29,7 @@ const SidebarLink: React.FC<PropsWithChildren<SideBarLinkProp>> = ({ children, i
           }
           .sidebar-link .sidebar-link-icon {
             margin-right: 12px;
-            color: var(--theme-color-background-600);
+            color: var(--color-foreground-600);
             transition: all 200ms ease;
             display: inline-flex;
           }
@@ -40,7 +38,7 @@ const SidebarLink: React.FC<PropsWithChildren<SideBarLinkProp>> = ({ children, i
             display: flex;
             align-items: baseline;
             font-size: ${SCALES.font(0.85)};
-            color: var(--theme-color-background-400);
+            color: var(--color-foreground-700);
             margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
             padding: ${SCALES.pt(0.6)} 0 ${SCALES.pb(0.6)} 0;
 
@@ -53,20 +51,21 @@ const SidebarLink: React.FC<PropsWithChildren<SideBarLinkProp>> = ({ children, i
           }
 
           .sidebar-link:hover {
-            color: var(--theme-color-foreground-1000);
+            color: var(--color-foreground-1000);
+            background: ${activeBackground || `var(--color-background-900)`};
           }
 
           .sidebar-link:hover .sidebar-link-icon {
-            color: var(--theme-color-foreground-1000);
+            color: var(--color-foreground-1000);
           }
 
           .sidebar-link.active {
-            background: ${activeBackground || theme.palette.foreground.hex_100};
+            background: ${activeBackground || `var(--color-background-900)`};
           }
 
           .sidebar-link.active .sidebar-link-title,
           .sidebar-link.active .sidebar-link-icon {
-            color: ${activeColor || theme.palette.background.contrast};
+            color: ${activeColor || `var(--color-foreground-1000)`};
           }
         `}</style>
       </a>

@@ -25,8 +25,8 @@ const HeroTag: React.FC<PropsWithChildren<HeroTagProps>> = ({
           text-transform: uppercase;
           letter-spacing: 1px;
           border-radius: 30px;
-          border: 1px solid var(--theme-color-background-700);
-          color: var(--theme-color-background-100);
+          border: 1px solid var(--color-background-700);
+          color: var(--color-background-100);
           background: ${background || 'transparent'};
           display: inline-block;
           word-break: break-word;

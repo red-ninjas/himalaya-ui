@@ -95,8 +95,8 @@ const FieldsetGroupComponent: React.FC<React.PropsWithChildren<FieldsetGroupProp
             line-height: 2.7em;
             text-align: center;
             user-select: none;
-            color: var(--theme-color-background-600);
-            background-color: var(--theme-color-background-800);
+            color: var(--color-background-600);
+            background-color: var(--color-background-800);
             font-size: 0.875em;
             white-space: nowrap;
             text-transform: capitalize;
@@ -107,24 +107,24 @@ const FieldsetGroupComponent: React.FC<React.PropsWithChildren<FieldsetGroupProp
             overflow: hidden;
             transition: all 0.2s ease 0s;
             border-radius: 0;
-            border: 1px solid var(--theme-color-border-1000);
+            border: 1px solid var(--color-border-1000);
             text-decoration: none;
             outline: none;
           }
 
           button.active {
             border-bottom-color: transparent;
-            background-color: var(--theme-color-background-1000);
-            color: var(--theme-color-foreground-1000);
+            background-color: var(--color-background-1000);
+            color: var(--color-foreground-1000);
             cursor: default;
           }
 
           button:first-of-type {
-            border-top-left-radius: ${theme.style.radius};
+            border-top-left-radius: var(--layout-radius);
           }
 
           button:last-of-type {
-            border-top-right-radius: ${theme.style.radius};
+            border-top-right-radius: var(--layout-radius);
           }
 
           button + button {

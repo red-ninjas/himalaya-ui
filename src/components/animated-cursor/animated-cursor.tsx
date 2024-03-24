@@ -1,13 +1,13 @@
 'use client';
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import useClasses from '../use-classes';
 import useTheme from '../use-theme';
 import { addColorAlpha } from '../utils/color';
 import type { AnimatedCursorCoordinates, AnimatedCursorOptions, AnimatedCursorProps, Clickable } from './';
 import find from './find';
-import { useEventListener } from './useEventListener';
 import isDevice from './is-device';
-import useClasses from '../use-classes';
+import { useEventListener } from './useEventListener';
 
 const CursorCore: React.FC<AnimatedCursorProps> = ({
   clickables = [

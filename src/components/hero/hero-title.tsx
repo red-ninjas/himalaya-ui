@@ -18,7 +18,7 @@ const HeroTitle: React.FC<PropsWithChildren<HeroCoreProps>> = ({ Tag = 'h1', chi
           font-weight: 800;
           will-change: transform;
           line-height: 1.2;
-          color: var(--theme-color-foreground-1000);
+          color: var(--color-foreground-1000);
           display: inline-block;
           padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
           margin: ${SCALES.mt(0, 'auto')} ${SCALES.mr(0, 'auto')} ${SCALES.mb(0, 'auto')} ${SCALES.ml(0, 'auto')};

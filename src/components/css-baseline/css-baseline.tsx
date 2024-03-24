@@ -11,8 +11,8 @@ const CssBaseline: React.FC = () => {
   return (
     <style jsx global>{`
       body {
-        background-color: var(--theme-color-background-1000);
-        color: var(--theme-color-foreground-1000);
+        background-color: var(--color-background-1000);
+        color: var(--color-foreground-1000);
 
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
@@ -26,8 +26,8 @@ const CssBaseline: React.FC = () => {
         font-family: ${theme.font.sans};
         font-size: ${theme.font.baseSize + 'px'};
 
-        --ui-icon-background: var(--theme-color-background-1000);
-        --ui-icon-foreground: var(--theme-color-foreground-1000);
+        --ui-icon-background: var(--color-background-1000);
+        --ui-icon-foreground: var(--color-foreground-1000);
       }
 
       *,
@@ -77,7 +77,7 @@ const CssBaseline: React.FC = () => {
         -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
         -webkit-box-align: center;
         align-items: center;
-        color: var(--theme-color-link-1000);
+        color: var(--color-link-1000);
         text-decoration: ${theme.expressiveness.linkStyle};
 
         &:hover {
@@ -89,8 +89,8 @@ const CssBaseline: React.FC = () => {
       ol {
         padding: 0;
         list-style-type: none;
-        margin: ${layout.gapHalf} ${layout.gapHalf} ${layout.gapHalf} ${layout.gap};
-        color: var(--theme-color-foreground-1000);
+        margin: var(--layout-gap-half) var(--layout-gap-half) var(--layout-gap-half) var(--layout-gap);
+        color: var(--color-foreground-1000);
         position: relative;
       }
 
@@ -107,7 +107,7 @@ const CssBaseline: React.FC = () => {
       ul li:before {
         content: '–';
         display: inline-block;
-        color: var(--theme-color-background-500);
+        color: var(--color-background-500);
         position: absolute;
         margin-left: -0.9375em;
       }
@@ -196,10 +196,10 @@ const CssBaseline: React.FC = () => {
       }
 
       pre {
-        padding: calc(${layout.gap} * 0.9) ${layout.gap};
-        margin: ${layout.gap} 0;
-        border: 1px solid var(--theme-color-border-1000);
-        border-radius: ${theme.style.radius};
+        padding: calc(var(--layout-gap) * 0.9) var(--layout-gap);
+        margin: var(--layout-gap) 0;
+        border: 1px solid var(--color-border-1000);
+        border-radius: var(--layout-radius);
         font-family: ${theme.font.mono};
         white-space: pre;
         overflow: auto;
@@ -208,18 +208,18 @@ const CssBaseline: React.FC = () => {
         font-size: 14px;
         -webkit-overflow-scrolling: touch;
 
-        background-color: var(--theme-color-background-900);
+        background-color: var(--color-background-900);
       }
 
       .pre:has(header) {
-        border-radius: ${theme.style.radius};
+        border-radius: var(--layout-radius);
         pre {
           border-radius: 0;
         }
       }
 
       pre code {
-        color: var(--theme-color-primary-1000);
+        color: var(--color-primary-1000);
         font-size: 1em;
         line-height: 1.25em;
         white-space: pre;
@@ -242,11 +242,11 @@ const CssBaseline: React.FC = () => {
       }
 
       hr {
-        border-color: var(--theme-color-border-1000);
+        border-color: var(--color-border-1000);
       }
 
       details {
-        background-color: var(--theme-color-background-800);
+        background-color: var(--color-background-800);
         border: none;
       }
 
@@ -281,12 +281,12 @@ const CssBaseline: React.FC = () => {
       }
 
       blockquote {
-        padding: calc(0.667 * ${layout.gap}) ${layout.gap};
-        color: var(--theme-color-background-400);
-        background-color: var(--theme-color-background-900);
-        border-radius: ${theme.style.radius};
+        padding: calc(0.667 * var(--layout-gap)) var(--layout-gap);
+        color: var(--color-background-400);
+        background-color: var(--color-background-900);
+        border-radius: var(--layout-radius);
         margin: 1.5em 0;
-        border: 1px solid var(--theme-color-border-1000);
+        border: 1px solid var(--color-border-1000);
       }
 
       blockquote :global(*:first-child) {
@@ -312,8 +312,8 @@ const CssBaseline: React.FC = () => {
           to right,
           transparent 20%,
           transparent 40%,
-          var(--theme-color-background-600) 50%,
-          var(--theme-color-background-600) 55%,
+          var(--color-background-600) 50%,
+          var(--color-background-600) 55%,
           transparent 70%,
           transparent 100%
         );

@@ -13,7 +13,6 @@ import useClasses from '../use-classes';
 
 export const QuickBar: React.FC<PropsWithChildren<QuickActionProps>> = ({
   children,
-  radius,
   highlightLeft = -8,
   href,
   tooltip,
@@ -42,7 +41,8 @@ export const QuickBar: React.FC<PropsWithChildren<QuickActionProps>> = ({
             .quick-action {
               width: ${SCALES.h(1, '40px')};
               height: ${SCALES.w(1, '40px')};
-              border-radius: ${radius === undefined ? theme.style.radius : radius + 'px'};
+              border-radius: ${SCALES.r(1, `var(--layout-radius)`)};
+
               background: ${colors.bgColor};
               display: flex;
               align-items: center;
@@ -62,22 +62,22 @@ export const QuickBar: React.FC<PropsWithChildren<QuickActionProps>> = ({
             .quick-action.is-active:before {
               content: ' ';
               position: absolute;
-              background: var(--theme-color-primary-1000);
+              background: var(--color-primary-1000);
               width: 4px;
               height: 100%;
               left: calc(${highlightLeft}px - 2px);
-              border-radius: 0px ${theme.style.radius} ${theme.style.radius} 0px;
+              border-radius: 0px var(--layout-radius) var(--layout-radius) 0px;
               overflow: hidden;
             }
 
             .quick-action:hover:before {
               content: ' ';
               position: absolute;
-              background: var(--theme-color-primary-1000);
+              background: var(--color-primary-1000);
               width: 4px;
               height: 100%;
               left: calc(${highlightLeft}px - 2px);
-              border-radius: 0px ${theme.style.radius} ${theme.style.radius} 0px;
+              border-radius: 0px var(--layout-radius) var(--layout-radius) 0px;
               overflow: hidden;
             }
 

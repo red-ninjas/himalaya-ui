@@ -67,7 +67,7 @@ export default function Partners() {
             align-items: center;
             justify-items: center;
             font-size: clamp(24px, 21vw, 36px);
-            color: var(--theme-color-background-300);
+            color: var(--color-background-300);
             width: 100%;
             height: 100%;
           }
@@ -77,7 +77,7 @@ export default function Partners() {
           }
 
           :global(a.partner:hover) {
-            color: var(--theme-color-foreground-1000);
+            color: var(--color-foreground-1000);
           }
         `}</style>
       </div>

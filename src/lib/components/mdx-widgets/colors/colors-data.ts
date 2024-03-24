@@ -48,6 +48,10 @@ const code: ColorEnum = {
   code: 'Value',
 };
 
+const gray: ColorEnum = {
+  gray: 'Value',
+};
+
 const gradient: ColorEnum = {
   gradient_1: 'Gradient 1',
   gradient_2: 'Gradient 2',
@@ -55,6 +59,7 @@ const gradient: ColorEnum = {
 };
 
 const colorsData: { [key: string]: ColorEnum } = {
+  gray,
   background,
   foreground,
   border,

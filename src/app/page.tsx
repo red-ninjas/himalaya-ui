@@ -11,7 +11,7 @@ export default function Index() {
   const theme = useTheme();
   return (
     <>
-      <Hero scrollToId="services" style={{ background: theme.type == 'dark' ? '#141415' : theme.palette.background.hex_1100 }}>
+      <Hero scrollToId="services" style={{ background: theme.type == 'dark' ? '#141415' : '#ffffff' }}>
         <Hero.Tag>HIMALAYA UI</Hero.Tag>
         <Hero.Title>
           Scaling Heights of Design Excellence: Your UI Journey <span style={{ textDecoration: 'underline', fontWeight: 300 }}>Begins Here!</span>
@@ -92,7 +92,7 @@ export default function Index() {
 
       <style jsx>{`
         .logo-footer {
-          color: var(--theme-color-foreground-1000);
+          color: var(--color-foreground-1000);
         }
 
         section {

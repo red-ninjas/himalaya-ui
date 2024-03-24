@@ -79,7 +79,7 @@ const DividerComponent: React.FC<React.PropsWithChildren<DividerProps>> = ({
           font-size: inherit;
           font-weight: bold;
           text-transform: capitalize;
-          background-color: var(--theme-color-background-1000);
+          background-color: var(--color-background-1000);
           color: ${textColor};
           z-index: 10;
         }

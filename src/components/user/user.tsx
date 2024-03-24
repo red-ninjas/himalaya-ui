@@ -55,7 +55,7 @@ const UserComponent: React.FC<React.PropsWithChildren<UserProps>> = ({
 
         .names {
           font-size: inherit;
-          margin-left: ${layout.gapHalf};
+          margin-left: var(--layout-gap-half);
           display: inline-flex;
           flex-direction: column;
           white-space: nowrap;
@@ -63,7 +63,7 @@ const UserComponent: React.FC<React.PropsWithChildren<UserProps>> = ({
 
         .name {
           font-size: calc(0.89 * var(--user-font-size));
-          color: var(--theme-color-background-100);
+          color: var(--color-background-100);
           line-height: 1.1em;
           text-transform: capitalize;
           font-weight: 500;
@@ -74,7 +74,7 @@ const UserComponent: React.FC<React.PropsWithChildren<UserProps>> = ({
 
         .social {
           font-size: calc(0.75 * var(--user-font-size));
-          color: var(--theme-color-background-300);
+          color: var(--color-background-300);
         }
 
         .social :global(*:first-child) {

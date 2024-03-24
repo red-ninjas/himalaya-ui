@@ -80,9 +80,9 @@ const FieldsetComponent: React.FC<React.PropsWithChildren<FieldsetProps>> = ({
       {FooterChildren && FooterChildren}
       <style jsx>{`
         .fieldset {
-          background-color: var(--theme-color-background-1000);
-          border: 1px solid var(--theme-color-border-1000);
-          border-radius: ${SCALES.r(1, theme.style.radius)};
+          background-color: var(--color-background-1000);
+          border: 1px solid var(--color-border-1000);
+          border-radius: ${SCALES.r(1, `var(--layout-radius)`)};
           overflow: hidden;
           display: ${hidden ? 'none' : 'block'};
           font-size: ${SCALES.font(1)};

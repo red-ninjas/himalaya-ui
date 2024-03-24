@@ -40,7 +40,7 @@ const BreadcrumbsComponent: React.FC<React.PropsWithChildren<BreadcrumbsProps>> 
       <style jsx>{`
         nav {
           line-height: inherit;
-          color: var(--theme-color-background-500);
+          color: var(--color-background-500);
           box-sizing: border-box;
           display: flex;
           align-items: center;
@@ -52,11 +52,11 @@ const BreadcrumbsComponent: React.FC<React.PropsWithChildren<BreadcrumbsProps>> 
         }
 
         nav :global(.link:hover) {
-          color: var(--theme-color-link-1000);
+          color: var(--color-link-1000);
         }
 
         nav > :global(span:last-of-type) {
-          color: var(--theme-color-background-300);
+          color: var(--color-background-300);
         }
 
         nav > :global(.separator:last-child) {

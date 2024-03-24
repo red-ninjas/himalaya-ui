@@ -118,13 +118,13 @@ const SelectOptionComponent: React.FC<React.PropsWithChildren<SelectOptionProps>
 
         .option:hover {
           background-color: ${hoverBgColor};
-          color: var(--theme-color-foreground-1000);
+          color: var(--color-foreground-1000);
         }
 
         .divider {
           line-height: 0;
           overflow: hidden;
-          border-top: 1px solid var(--theme-color-border-1000);
+          border-top: 1px solid var(--color-border-1000);
           width: ${SCALES.w(1, '100%')};
           height: ${SCALES.h(1, 0)};
           padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
@@ -132,8 +132,8 @@ const SelectOptionComponent: React.FC<React.PropsWithChildren<SelectOptionProps>
         }
 
         .label {
-          color: var(--theme-color-background-200);
-          border-bottom: 1px solid var(--theme-color-border-1000);
+          color: var(--color-background-200);
+          border-bottom: 1px solid var(--color-border-1000);
           cursor: default;
           font-size: ${SCALES.font(0.875)};
           width: ${SCALES.w(1, '100%')};

@@ -98,7 +98,7 @@ const TextareaComponent = React.forwardRef<HTMLTextAreaElement, React.PropsWithC
             display: inline-flex;
             box-sizing: border-box;
             user-select: none;
-            border-radius: ${SCALES.r(1, theme.style.radius)};
+            border-radius: ${SCALES.r(1, `var(--layout-radius)`)};
             border: 1px solid ${borderColor};
             color: ${color};
             transition:
@@ -118,8 +118,8 @@ const TextareaComponent = React.forwardRef<HTMLTextAreaElement, React.PropsWithC
             box-shadow: 0 0 0 4px ${addColorAlpha(hoverBorder, 0.2)};
           }
           .wrapper.disabled {
-            background-color: var(--theme-color-background-800);
-            border-color: var(--theme-color-border-1000);
+            background-color: var(--color-background-800);
+            border-color: var(--color-border-1000);
             cursor: not-allowed;
           }
           textarea {
@@ -142,7 +142,7 @@ const TextareaComponent = React.forwardRef<HTMLTextAreaElement, React.PropsWithC
           textarea:-webkit-autofill:hover,
           textarea:-webkit-autofill:active,
           textarea:-webkit-autofill:focus {
-            -webkit-box-shadow: 0 0 0 30px var(--theme-color-background-1000) inset !important;
+            -webkit-box-shadow: 0 0 0 30px var(--color-background-1000) inset !important;
           }
         `}</style>
       </div>

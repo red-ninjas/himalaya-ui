@@ -21,7 +21,6 @@ interface Props {
   type?: ProgressTypes;
   className?: string;
   indeterminate?: boolean;
-  radius?: number;
 }
 
 type NativeAttrs = Omit<React.ProgressHTMLAttributes<any>, keyof Props>;
@@ -54,7 +53,6 @@ const ProgressComponent: React.FC<ProgressProps> = ({
   fixedTop = false,
   fixedBottom = false,
   indeterminate = false,
-  radius,
   ...props
 }: ProgressProps) => {
   const theme = useTheme();
@@ -84,8 +82,9 @@ const ProgressComponent: React.FC<ProgressProps> = ({
 
         .progress {
           position: relative;
-          background-color: var(--theme-color-background-700);
-          border-radius: ${radius !== undefined ? radius : theme.style.radius};
+          background-color: var(--color-background-700);
+          border-radius: ${SCALES.r(1, `var(--layout-radius)`)};
+
           width: ${SCALES.w(1, '100%')};
           height: ${SCALES.h(0.625)};
           padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
@@ -130,7 +129,7 @@ const ProgressComponent: React.FC<ProgressProps> = ({
           height: 100%;
           bottom: 0;
           transition: all 100ms ease-in;
-          border-radius: ${radius !== undefined ? radius : theme.style.radius};
+          border-radius: ${SCALES.r(1, `var(--layout-radius)`)};
           background-color: ${currentColor};
           width: ${percentValue}%;
         }

@@ -68,7 +68,7 @@ const ButtonGroupComponent: React.FC<React.PropsWithChildren<ButtonGroupProps>> 
         <style jsx>{`
           .btn-group {
             display: inline-flex;
-            border-radius: ${SCALES.r(1, theme.style.radius)};
+            border-radius: ${SCALES.r(1, `var(--layout-radius)`)};
             border: 1px solid ${border};
             background-color: transparent;
             overflow: hidden;

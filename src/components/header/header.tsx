@@ -78,7 +78,7 @@ const HeaderComponent: React.FC<HeaderPropsNative> = ({ children, transcluent = 
       </nav>
       <style jsx>{`
         .header-outer {
-          border-bottom: 1px solid var(--theme-color-border-1000);
+          border-bottom: 1px solid var(--color-border-1000);
         }
         .transcluent {
           backdrop-filter: saturate(180%) blur(5px);
@@ -88,7 +88,7 @@ const HeaderComponent: React.FC<HeaderPropsNative> = ({ children, transcluent = 
           display: flex;
           flex-direction: column;
           height: 100%;
-          max-width: ${layout.pageWidthWithMargin};
+          max-width: var(--layout-page-width-with-margin);
           margin: 0 auto;
         }
         .header-outer .navigation {

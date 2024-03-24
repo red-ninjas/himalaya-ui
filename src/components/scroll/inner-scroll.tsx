@@ -59,12 +59,12 @@ const InnerScrollComponent: React.FC<React.PropsWithChildren<InnerScrollProps>> 
       {children}
       <style jsx>{`
         .inner-scroll::-webkit-scrollbar-track {
-          border-radius: ${SCALES.r(1, theme.style.radius)};
+          border-radius: ${SCALES.r(1, `var(--layout-radius)`)};
           cursor: pointer;
         }
 
         .inner-scroll::-webkit-scrollbar-thumb {
-          border-radius: ${SCALES.r(1, theme.style.radius)};
+          border-radius: ${SCALES.r(1, `var(--layout-radius)`)};
           cursor: pointer;
         }
 
@@ -81,12 +81,12 @@ const InnerScrollComponent: React.FC<React.PropsWithChildren<InnerScrollProps>> 
         }
 
         .inner-scroll:hover::-webkit-scrollbar-thumb {
-          background: var(--theme-color-background-700);
+          background: var(--color-background-700);
         }
 
         .inner-scroll:hover::-webkit-scrollbar-corner,
         .inner-scroll:hover::-webkit-resizer {
-          background: var(--theme-color-background-700);
+          background: var(--color-background-700);
         }
 
         .inner-scroll:hover::-webkit-scrollbar-corner {

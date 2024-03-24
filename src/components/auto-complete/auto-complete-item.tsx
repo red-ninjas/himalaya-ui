@@ -42,8 +42,8 @@ const AutoCompleteItemComponent: React.FC<React.PropsWithChildren<AutoCompleteIt
           align-items: center;
           font-weight: normal;
           white-space: pre;
-          background-color: var(--theme-color-background-1000);
-          color: var(--theme-color-foreground-1000);
+          background-color: var(--color-background-1000);
+          color: var(--color-foreground-1000);
           user-select: none;
           border: 0;
           cursor: pointer;
@@ -58,22 +58,22 @@ const AutoCompleteItemComponent: React.FC<React.PropsWithChildren<AutoCompleteIt
         }
 
         .item:first-of-type {
-          border-top-left-radius: ${theme.style.radius};
-          border-top-right-radius: ${theme.style.radius};
+          border-top-left-radius: var(--layout-radius);
+          border-top-right-radius: var(--layout-radius);
         }
 
         .item:last-of-type {
-          border-bottom-left-radius: ${theme.style.radius};
-          border-bottom-right-radius: ${theme.style.radius};
+          border-bottom-left-radius: var(--layout-radius);
+          border-bottom-right-radius: var(--layout-radius);
         }
 
         .item:hover {
-          background-color: var(--theme-color-background-800);
+          background-color: var(--color-background-800);
         }
 
         .item.active {
-          background-color: var(--theme-color-background-800);
-          color: var(--theme-color-primary-1000);
+          background-color: var(--color-background-800);
+          color: var(--color-primary-1000);
         }
       `}</style>
     </div>

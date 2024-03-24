@@ -12,7 +12,6 @@ interface Props {
   disableSkeleton?: boolean;
   className?: string;
   maxDelay?: number;
-  radius?: number;
 }
 
 type NativeAttrs = Omit<
@@ -27,7 +26,6 @@ const ResponsiveImageComponent: React.FC<ImageProps> = ({
   className = '',
   maxDelay = 3000,
   alt = '',
-  radius,
   ...props
 }: ImageProps) => {
   const { SCALES, getScaleProps } = useScale();
@@ -96,7 +94,8 @@ const ResponsiveImageComponent: React.FC<ImageProps> = ({
         .image {
           line-height: 0;
           position: relative;
-          border-radius: ${radius === undefined ? theme.style.radius : radius};
+          border-radius: ${SCALES.r(1, `var(--layout-radius)`)};
+
           overflow: hidden;
           max-width: 100%;
           width: 100%;

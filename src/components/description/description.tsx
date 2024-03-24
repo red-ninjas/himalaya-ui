@@ -44,7 +44,7 @@ const DescriptionComponent: React.FC<DescriptionProps> = ({
           margin-bottom: 0.5em;
           text-transform: uppercase;
           white-space: nowrap;
-          color: var(--theme-color-background-400);
+          color: var(--color-background-400);
           font-weight: 500;
           display: flex;
         }
@@ -53,7 +53,7 @@ const DescriptionComponent: React.FC<DescriptionProps> = ({
           font-size: 0.875em;
           margin: 0;
           line-height: 1.1em;
-          color: var(--theme-color-foreground-1000);
+          color: var(--color-foreground-1000);
           font-weight: 500;
         }
 

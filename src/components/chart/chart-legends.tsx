@@ -37,8 +37,8 @@ const ChartLegends: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({ ...props
             display: flex;
             flex-wrap: wrap;
             align-items: center;
-            background: var(--theme-color-background-900);
-            border-radius: 0 0 ${theme.style.radius} ${theme.style.radius};
+            background: var(--color-background-900);
+            border-radius: 0 0 var(--layout-radius) var(--layout-radius);
             padding: ${SCALES.pt(0.475)} ${SCALES.pr(0.875)} ${SCALES.pb(0.475)} ${SCALES.pl(0.875)};
             margin: ${SCALES.mt(1)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
           }

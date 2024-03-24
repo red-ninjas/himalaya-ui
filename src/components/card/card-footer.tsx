@@ -36,9 +36,9 @@ const CardFooterComponent: React.FC<React.PropsWithChildren<CardFooterProps>> = 
           color: inherit;
           background-color: inherit;
           font-size: ${SCALES.font(0.875)};
-          border-top: 1px solid var(--theme-color-border-1000);
-          border-bottom-left-radius: ${theme.style.radius};
-          border-bottom-right-radius: ${theme.style.radius};
+          border-top: 1px solid var(--color-border-1000);
+          border-bottom-left-radius: var(--layout-radius);
+          border-bottom-right-radius: var(--layout-radius);
           min-height: ${SCALES.h(3.3)};
           width: ${SCALES.w(1, 'auto')};
           height: ${SCALES.h(1, 'auto')};
@@ -48,7 +48,7 @@ const CardFooterComponent: React.FC<React.PropsWithChildren<CardFooterProps>> = 
         .auto-margin :global(*) {
           margin-top: 0;
           margin-bottom: 0;
-          margin-right: ${layout.gapQuarter};
+          margin-right: var(--layout-gap-quarter);
         }
       `}</style>
     </footer>

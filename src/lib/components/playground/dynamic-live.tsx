@@ -32,7 +32,7 @@ const DynamicLive: React.FC<Props> = ({ code, scope }) => {
       <style jsx>{`
         .wrapper {
           width: 100%;
-          padding: ${layout.pageMargin};
+          padding: var(--layout-page-margin);
           display: flex;
           flex-direction: column;
           box-sizing: border-box;

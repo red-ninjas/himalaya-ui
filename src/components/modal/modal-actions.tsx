@@ -28,13 +28,13 @@ const ModalActionsComponent: React.FC<React.PropsWithChildren<unknown>> = ({ chi
           bottom: 0;
           left: 0;
           right: 0;
-          border-top: 1px solid var(--theme-color-border-1000);
-          border-bottom-left-radius: ${theme.style.radius};
-          border-bottom-right-radius: ${theme.style.radius};
+          border-top: 1px solid var(--color-border-1000);
+          border-bottom-left-radius: var(--layout-radius);
+          border-bottom-right-radius: var(--layout-radius);
         }
 
         footer > :global(button.btn + button.btn) {
-          border-left: 1px solid var(--theme-color-border-1000);
+          border-left: 1px solid var(--color-border-1000);
         }
 
         div {

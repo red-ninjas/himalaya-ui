@@ -21,10 +21,10 @@ function MenuItemComponent({ children, icon, ...other }: PropsWithChildren<MenuI
           align-items: center;
           font-size: ${SCALES.font(0.9)};
           padding: ${SCALES.pt(0.5)} ${SCALES.pr(0.5)} ${SCALES.pb(0.5)} ${SCALES.pl(0.5)};
-          border-radius: ${SCALES.r(1, theme.style.radius)};
+          border-radius: ${SCALES.r(1, `var(--layout-radius)`)};
 
           &:hover {
-            background: var(--theme-color-background-900);
+            background: var(--color-background-900);
           }
         }
       `}</style>

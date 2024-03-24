@@ -78,13 +78,13 @@ const TooltipContent: React.FC<React.PropsWithChildren<Props>> = ({ children, pa
             transform: ${rect.transform};
             background-color: var(--tooltip-content-bg);
             color: ${colors.color};
-            border-radius: ${SCALES.r(1, theme.style.radius)};
+            border-radius: ${SCALES.r(1, `var(--layout-radius)`)};
             padding: 0;
             z-index: 1000;
             box-shadow: ${hasShadow ? theme.expressiveness.shadowMedium : 'none'};
             width: ${SCALES.w(1, 'auto')};
             height: ${SCALES.h(1, 'auto')};
-            border: 1px solid var(--theme-color-border-1000);
+            border: 1px solid var(--color-border-1000);
           }
 
           .tooltip-content.transcluent-popover {
@@ -93,7 +93,7 @@ const TooltipContent: React.FC<React.PropsWithChildren<Props>> = ({ children, pa
             box-shadow:
               0 50px 100px -20px ${addColorAlpha(theme.palette.background.hex_1000, 0.12)},
               0 30px 60px -30px ${addColorAlpha(theme.palette.background.hex_1000, 0.15)} !important;
-            border: 1px solid var(--theme-color-border-1000);
+            border: 1px solid var(--color-border-1000);
           }
 
           .inner {

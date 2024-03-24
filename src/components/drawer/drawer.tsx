@@ -17,7 +17,6 @@ interface Props {
   onContentClick?: (event: MouseEvent<HTMLElement>) => void;
   wrapClassName?: string;
   placement?: DrawerPlacement;
-  radius?: number;
   backdropBackground?: string;
   transitionTime?: number;
 }
@@ -33,7 +32,6 @@ const DrawerComponent: React.FC<React.PropsWithChildren<DrawerProps>> = ({
   onContentClick,
   wrapClassName = '',
   children,
-  radius = 3,
   backdropBackground,
   transitionTime = 300,
   ...props
@@ -79,7 +77,7 @@ const DrawerComponent: React.FC<React.PropsWithChildren<DrawerProps>> = ({
       visible={visible}
       {...bindings}
     >
-      <DrawerWrapper leaveTime={transitionTime} enterTime={transitionTime} radius={radius} visible={visible} className={wrapClassName} {...props}>
+      <DrawerWrapper leaveTime={transitionTime} enterTime={transitionTime} visible={visible} className={wrapClassName} {...props}>
         {children}
       </DrawerWrapper>
     </Backdrop>,

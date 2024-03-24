@@ -18,13 +18,13 @@ const getSpans = (theme: UIThemes) => {
     <span key={`spinner-${index}`}>
       <style jsx>{`
         span {
-          background-color: var(--theme-color-foreground-1000);
+          background-color: var(--color-foreground-1000);
           position: absolute;
           top: -3.9%;
           width: 24%;
           height: 8%;
           left: -10%;
-          border-radius: ${theme.style.radius};
+          border-radius: var(--layout-radius);
           animation: spinner 1.2s linear 0s infinite normal none running;
         }
 

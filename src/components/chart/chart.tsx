@@ -331,8 +331,8 @@ const ChartComponent: React.FC<React.PropsWithChildren<ChartProps>> = ({
           position: relative;
           width: 100%;
           background: transparent;
-          border: 1px solid var(--theme-color-border-1000);
-          border-radius: ${SCALES.r(1, theme.style.radius)};
+          border: 1px solid var(--color-border-1000);
+          border-radius: ${SCALES.r(1, `var(--layout-radius)`)};
         }
         .chart-inner {
           padding: ${SCALES.pt(0.475)} ${SCALES.pr(0.875)} ${SCALES.pb(0.475)} ${SCALES.pl(0.875)};
@@ -354,13 +354,13 @@ const ChartComponent: React.FC<React.PropsWithChildren<ChartProps>> = ({
           left: 12px;
           pointer-events: none;
           border: 1px solid;
-          border-color: var(--theme-color-border-1000);
+          border-color: var(--color-border-1000);
           border-radius: 6px;
           font-family: -apple-system, BlinkMacSystemFont, 'Trebuchet MS', Roboto, Ubuntu, sans-serif;
           -webkit-font-smoothing: antialiased;
           -moz-osx-font-smoothing: grayscale;
-          color: var(--theme-color-foreground-1000);
-          background: var(--theme-color-background-1000);
+          color: var(--color-foreground-1000);
+          background: var(--color-background-1000);
           font-size: calc(1 * 12px);
           padding: calc(0.65 * 12px) calc(0.9 * 12px) calc(0.65 * 12px) calc(0.9 * 12px);
         }
@@ -371,7 +371,7 @@ const ChartComponent: React.FC<React.PropsWithChildren<ChartProps>> = ({
         }
 
         :global(.series-checkbox .text) {
-          color: var(--theme-color-background-400);
+          color: var(--color-background-400);
         }
       `}</style>
     </ChartContext.Provider>

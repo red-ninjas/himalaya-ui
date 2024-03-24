@@ -167,7 +167,7 @@ const InputComponent = React.forwardRef<HTMLInputElement, React.PropsWithChildre
             flex: 1;
             user-select: none;
             border: 0;
-            border-radius: ${SCALES.r(1, theme.style.radius)};
+            border-radius: ${SCALES.r(1, `var(--layout-radius)`)};
             border-color: ${borderColor};
             border-width: ${hasBorder ? '1px' : '0'};
             border-style: solid;
@@ -188,8 +188,8 @@ const InputComponent = React.forwardRef<HTMLInputElement, React.PropsWithChildre
           }
 
           .input-wrapper.disabled {
-            background-color: var(--theme-color-background-800);
-            border-color: var(--theme-color-border-1000);
+            background-color: var(--color-background-800);
+            border-color: var(--color-border-1000);
             cursor: not-allowed;
           }
 
@@ -229,7 +229,7 @@ const InputComponent = React.forwardRef<HTMLInputElement, React.PropsWithChildre
           ::-moz-placeholder,
           :-ms-input-placeholder,
           ::-webkit-input-placeholder {
-            color: var(--theme-color-background-600);
+            color: var(--color-background-600);
           }
 
           ::-ms-reveal {
@@ -240,7 +240,7 @@ const InputComponent = React.forwardRef<HTMLInputElement, React.PropsWithChildre
           input:-webkit-autofill:hover,
           input:-webkit-autofill:active,
           input:-webkit-autofill:focus {
-            -webkit-box-shadow: 0 0 0 30px var(--theme-color-background-1000) inset !important;
+            -webkit-box-shadow: 0 0 0 30px var(--color-background-1000) inset !important;
             -webkit-text-fill-color: ${color} !important;
           }
         `}</style>

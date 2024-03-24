@@ -1,110 +1,87 @@
-import { UIThemesColorKeys } from '../presets';
+import { UIColor, UIColorAccent, UIThemesColorKeys, UIThemesColors } from '../presets';
 import { Color } from './color';
-import { ColorVariable } from './color-variable';
 
-export const generateSteppedColors = (background = '#ffffff', text = '#000000') => {
+export const makeStepColors = (background = '#ffffff', text = '#000000') => {
   const color = new Color(background);
-  const colors = new Array(19).fill(null);
+  const colors = new Array(9).fill(null);
 
-  return colors.map((_, i) => color.mix(text, ((i + 1) * 5) / 100).hex);
+  return colors.map((_, i) => color.mix(text, ((i + 1) * 10) / 100).hex);
 };
 
-export const generateColor = (value: string, reversed: boolean = false): ColorVariable => {
+export const getContrast = (value: string) => {
   const color = new Color(value);
-  const contrast = color.contrast();
+  return color.contrast().hex;
+};
 
-  let light = color;
-  let lighter = color;
-  let lighter1 = color;
-  let lighter2 = color;
-  let lighter3 = color;
-  let lighter4 = color;
-  let lighter5 = color;
-  let lighter6 = color;
-  let lighter7 = color;
-  let dark = color;
-  let darker = color;
-  if (reversed) {
-    light = color.shade(0.1);
-    lighter = color.shade(0.2);
-    lighter1 = color.shade(0.3);
-    lighter2 = color.shade(0.4);
-    lighter3 = color.shade(0.5);
-    lighter4 = color.shade(0.6);
-    lighter5 = color.shade(0.7);
-    lighter6 = color.shade(0.8);
-    lighter7 = color.shade(0.9);
-
-    dark = color.tint(0.1);
-    darker = color.tint(0.2);
-  } else {
-    light = color.tint(0.1);
-    lighter = color.tint(0.2);
-    lighter1 = color.tint(0.3);
-    lighter2 = color.tint(0.4);
-    lighter3 = color.tint(0.5);
-    lighter4 = color.tint(0.6);
-    lighter5 = color.tint(0.7);
-    lighter6 = color.tint(0.8);
-    lighter7 = color.tint(0.9);
-
-    dark = color.shade(0.1);
-    darker = color.shade(0.2);
-  }
+export const makeColor = (value: string, background: string, foreground: string): UIColor => {
+  const color = new Color(value);
+  const stepped = makeStepColors(color.hex, foreground);
+  const reveresed = makeStepColors(color.hex, background);
   const colorTable = {
-    contrast: contrast.hex,
-    hex_100: lighter7.hex,
-    hex_200: lighter6.hex,
-    hex_300: lighter5.hex,
-    hex_400: lighter4.hex,
-    hex_500: lighter3.hex,
-    hex_600: lighter2.hex,
-    hex_700: lighter1.hex,
-    hex_800: lighter.hex,
-    hex_900: light.hex,
+    contrast: color.contrast().hex,
+    hex_100: stepped[8],
+    hex_200: stepped[7],
+    hex_300: stepped[6],
+    hex_400: stepped[5],
+    hex_500: stepped[4],
+    hex_600: stepped[3],
+    hex_700: stepped[2],
+    hex_800: stepped[1],
+    hex_900: stepped[0],
     hex_1000: value,
-    hex_1100: dark.hex,
-    hex_1200: darker.hex,
+    hex_1100: reveresed[0],
+    hex_1200: reveresed[1],
+    hex_1300: reveresed[2],
+    hex_1400: reveresed[3],
+    hex_1500: reveresed[4],
+    hex_1600: reveresed[5],
+    hex_1700: reveresed[6],
+    hex_1800: reveresed[7],
+    hex_1900: reveresed[8],
   };
 
   return colorTable;
 };
 
-export type ConvertableColor =
-  | {
-      color: string;
-      reversed: boolean;
-    }
-  | string;
-
-export type GenerateColorProps = {
-  [key in UIThemesColorKeys]: ConvertableColor;
-};
-
-export type GenerateColorPropsGenerated = {
-  [key in UIThemesColorKeys]: ColorVariable;
-};
-
-export const generateColors = (newConfig: GenerateColorProps): GenerateColorPropsGenerated => {
-  const result: GenerateColorPropsGenerated = {
-    background: generateColor('#000000'),
-    foreground: generateColor('#ffffff'),
-    primary: generateColor('#6e56cf'),
-    secondary: generateColor('#232225'),
-    tertiary: generateColor('#89DDFF'),
-    success: generateColor('#32CD32'),
-    error: generateColor('#F07178'),
-    warning: generateColor('#FFCB6B'),
-    link: generateColor('#baa7ff'),
-    code: generateColor('#6e56cf'),
-    border: generateColor('#333333'),
+export const makeColorAccent = (value: string, foreground: string): UIColorAccent => {
+  const color = new Color(value);
+  const stepped = makeStepColors(color.hex, foreground);
+  const colorTable = {
+    hex_100: stepped[8],
+    hex_200: stepped[7],
+    hex_300: stepped[6],
+    hex_400: stepped[5],
+    hex_500: stepped[4],
+    hex_600: stepped[3],
+    hex_700: stepped[2],
+    hex_800: stepped[1],
+    hex_900: stepped[0],
+    hex_1000: value,
   };
-  Object.keys(newConfig).map(oldKey => {
-    result[oldKey] = generateColor(
-      typeof newConfig[oldKey] === 'string' ? newConfig[oldKey] : newConfig[oldKey].color,
-      typeof newConfig[oldKey] === 'string' ? false : newConfig[oldKey].reversed,
-    );
-  });
 
+  return colorTable;
+};
+
+export type makeColorProps = {
+  [key in UIThemesColorKeys]?: string;
+};
+
+export const makeColors = (newConfig: makeColorProps): UIThemesColors => {
+  const foreground = newConfig.foreground ?? '#ffffff';
+  const background = newConfig.background ?? '#000000';
+  const result: UIThemesColors = {
+    background: makeColorAccent(newConfig['background'] ?? '#7d7d7d', foreground),
+    gray: makeColor(newConfig['gray'] ?? '#7d7d7d', foreground, background),
+    foreground: makeColorAccent(newConfig['foreground'] ?? '#ffffff', background),
+    primary: makeColor(newConfig['primary'] ?? '#6e56cf', foreground, background),
+    secondary: makeColor(newConfig['secondary'] ?? '#232225', foreground, background),
+    tertiary: makeColor(newConfig['tertiary'] ?? '#89DDFF', foreground, background),
+    success: makeColor(newConfig['success'] ?? '#32CD32', foreground, background),
+    error: makeColor(newConfig['error'] ?? '#F07178', foreground, background),
+    warning: makeColor(newConfig['warning'] ?? '#FFCB6B', foreground, background),
+    link: makeColor(newConfig['link'] ?? '#baa7ff', foreground, background),
+    code: makeColor(newConfig['code'] ?? '#6e56cf', foreground, background),
+    border: makeColor(newConfig['border'] ?? '#333333', foreground, background),
+  };
   return result;
 };

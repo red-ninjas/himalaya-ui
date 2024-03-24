@@ -13,8 +13,8 @@ const ContentLayoutComponent: React.FC<React.PropsWithChildren<{}>> = ({ childre
       <style jsx>{`
         .page-layout {
           width: 100%;
-          background: var(--theme-color-background-1000);
-          color: var(--theme-color-foreground-1000);
+          background: var(--color-background-1000);
+          color: var(--color-foreground-1000);
         }
       `}</style>
     </div>

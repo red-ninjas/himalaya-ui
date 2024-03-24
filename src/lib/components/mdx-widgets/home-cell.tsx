@@ -32,7 +32,7 @@ const HomeCell: React.FC<HomeCellProps> = ({ url, title, desc, icon }) => {
           .feature {
             width: 100%;
             padding: 40px 40px;
-            border: 1px solid var(--theme-color-border-1000);
+            border: 1px solid var(--color-border-1000);
             height: 100%;
             border-radius: 10px;
             display: flex;
@@ -43,9 +43,9 @@ const HomeCell: React.FC<HomeCellProps> = ({ url, title, desc, icon }) => {
             height: 40px;
             width: 40px;
             border-radius: 2rem;
-            background: var(--theme-color-background-900);
-            border: 1px solid var(--theme-color-border-1000);
-            color: var(--theme-color-background-400);
+            background: var(--color-background-900);
+            border: 1px solid var(--color-border-1000);
+            color: var(--color-background-400);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -53,7 +53,7 @@ const HomeCell: React.FC<HomeCellProps> = ({ url, title, desc, icon }) => {
             padding: 8px;
           }
           :global(.feature-desc) {
-            color: var(--theme-color-background-300) !important;
+            color: var(--color-background-300) !important;
           }
         `}</style>
       </Link>

@@ -16,10 +16,7 @@ export type PaginationItemProps = Props & NativeAttrs;
 
 const PaginationItem: React.FC<React.PropsWithChildren<PaginationItemProps>> = ({ active, children, disabled, onClick, ...props }) => {
   const theme = useTheme();
-  const [hover, activeHover] = useMemo(
-    () => [addColorAlpha(theme.palette.primary.hex_1000, 0.1), addColorAlpha(theme.palette.primary.hex_1000, 0.8)],
-    [theme.palette.primary.hex_1000],
-  );
+
   const classes = useClasses({
     active,
     disabled,
@@ -57,35 +54,35 @@ const PaginationItem: React.FC<React.PropsWithChildren<PaginationItemProps>> = (
           min-width: var(--pagination-size);
           font-size: inherit;
           cursor: pointer;
-          color: var(--theme-color-primary-1000);
-          border-radius: ${theme.style.radius};
-          background-color: var(--theme-color-background-1000);
+          color: var(--color-primary-1000);
+          border-radius: var(--layout-radius);
+          background-color: var(--color-background-1000);
           transition: all linear 200ms 0ms;
         }
 
         button:hover {
-          background-color: ${hover};
+          background-color: var(--color-primary-200);
         }
 
         .active {
           font-weight: bold;
-          background-color: var(--theme-color-primary-1000);
-          color: var(--theme-color-background-1000);
+          background-color: var(--color-primary-1000);
+          color: var(--color-background-1000);
           box-shadow: ${theme.expressiveness.shadowSmall};
         }
 
         .active:hover {
-          background-color: ${activeHover};
+          background-color: var(--color-primary-800);
           box-shadow: ${theme.expressiveness.shadowMedium};
         }
 
         .disabled {
-          color: var(--theme-color-background-500);
+          color: var(--color-background-500);
           cursor: not-allowed;
         }
 
         .disabled:hover {
-          background-color: var(--theme-color-background-700);
+          background-color: var(--color-background-700);
         }
 
         button :global(svg) {

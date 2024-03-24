@@ -52,7 +52,7 @@ const ModalActionComponent = React.forwardRef<HTMLButtonElement, React.PropsWith
         font-size: ${SCALES.font(0.75)};
         border: none;
         color: ${color};
-        background-color: var(--theme-color-background-1000);
+        background-color: var(--color-background-1000);
         display: flex;
         -webkit-box-align: center;
         align-items: center;

@@ -68,7 +68,7 @@ const LoadingSpinnerComponent: React.FC<React.PropsWithChildren<LoadingSpinnerPr
 
         label {
           margin-right: 0.5em;
-          color: var(--theme-color-background-400);
+          color: var(--color-background-400);
           line-height: 1;
         }
 

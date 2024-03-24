@@ -25,7 +25,7 @@ const AvatarComponent: React.FC<AvatarProps> = ({ src, stacked = false, text = '
   const theme = useTheme();
   const { SCALES } = useScale();
   const showText = !src;
-  const radius = isSquare ? theme.style.radius : '50%';
+  const radius = isSquare ? `var(--layout-radius)` : '50%';
   const marginLeft = stacked ? SCALES.ml(-0.625) : SCALES.ml(0);
   const classes = useClasses('avatar', className);
 
@@ -43,10 +43,10 @@ const AvatarComponent: React.FC<AvatarProps> = ({ src, stacked = false, text = '
           display: inline-block;
           position: relative;
           overflow: hidden;
-          border: 1px solid var(--theme-color-border-1000);
-          border-radius: ${radius};
+          border: 1px solid var(--color-border-1000);
+          border-radius: ${SCALES.r(1, radius)};
           vertical-align: top;
-          background-color: var(--theme-color-background-1000);
+          background-color: var(--color-background-1000);
           box-sizing: border-box;
           width: ${SCALES.w(1.75) || SCALES.h(1.75)};
           height: ${SCALES.h(1.75) || SCALES.w(1.75)};
@@ -60,6 +60,7 @@ const AvatarComponent: React.FC<AvatarProps> = ({ src, stacked = false, text = '
           width: 100%;
           height: 100%;
           border-radius: ${radius};
+
           user-select: none;
         }
 

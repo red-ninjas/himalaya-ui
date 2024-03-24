@@ -25,16 +25,16 @@ const FieldsetFooterComponent: React.FC<React.PropsWithChildren<FieldsetFooterPr
       {children}
       <style jsx>{`
         footer {
-          background-color: var(--theme-color-background-800);
-          border-top: 1px solid var(--theme-color-border-1000);
-          border-bottom-left-radius: ${theme.style.radius};
-          border-bottom-right-radius: ${theme.style.radius};
+          background-color: var(--color-background-800);
+          border-top: 1px solid var(--color-border-1000);
+          border-bottom-left-radius: var(--layout-radius);
+          border-bottom-right-radius: var(--layout-radius);
           display: flex;
           justify-content: space-between;
           align-items: center;
           overflow: hidden;
-          color: var(--theme-color-background-300);
-          padding: ${layout.gapHalf} ${layout.gap};
+          color: var(--color-background-300);
+          padding: var(--layout-gap-half) var(--layout-gap);
           box-sizing: border-box;
           font-size: ${SCALES.font(0.875)};
           width: ${SCALES.w(1, 'auto')};

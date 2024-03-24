@@ -175,7 +175,7 @@ const NavigationItem: React.FC<PropsWithChildren<NavigationPropsExternal>> = ({
           gap: 3px;
           white-space: nowrap;
           background-color: transparent;
-          color: var(--theme-color-background-400);
+          color: var(--color-background-400);
           user-select: none;
           display: flex;
           align-items: center;
@@ -205,7 +205,7 @@ const NavigationItem: React.FC<PropsWithChildren<NavigationPropsExternal>> = ({
           height: 2px;
           border-radius: 4px;
           transform: scaleX(0.75);
-          background-color: var(--theme-color-foreground-1000);
+          background-color: var(--color-foreground-1000);
           transition:
             opacity,
             transform 200ms ease-in;
@@ -218,7 +218,7 @@ const NavigationItem: React.FC<PropsWithChildren<NavigationPropsExternal>> = ({
         }
 
         .backdrop {
-          background: var(--theme-color-background-700);
+          background: var(--color-background-700);
           position: absolute;
           border-radius: 5px;
           width: 100%;
@@ -229,19 +229,19 @@ const NavigationItem: React.FC<PropsWithChildren<NavigationPropsExternal>> = ({
         }
 
         .menu-item:hover {
-          color: var(--theme-color-foreground-1000);
+          color: var(--color-foreground-1000);
         }
 
         .menu-item.active {
-          color: var(--theme-color-foreground-1000);
+          color: var(--color-foreground-1000);
           font-weight: 600;
         }
         .menu-item.is-hover {
-          color: var(--theme-color-background-1000) !important;
+          color: var(--color-background-1000) !important;
         }
 
         .menu-item.chevron-active {
-          color: var(--theme-color-foreground-1000);
+          color: var(--color-foreground-1000);
         }
 
         :global(.tooltip-content.menu-popover-item > .inner) {

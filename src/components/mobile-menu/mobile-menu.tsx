@@ -26,7 +26,7 @@ const MobileMenu: React.FC<PropsWithChildren<MobileMenuPropsNative>> = ({ childr
       <Drawer
         transitionTime={animationTime}
         w={SCALES.w(1, '80%')}
-        radius={0}
+        r={0}
         visible={isEnabled}
         wrapClassName={'mobilemenu-drawer-nav'}
         onClose={() => {
@@ -60,7 +60,7 @@ const MobileMenu: React.FC<PropsWithChildren<MobileMenuPropsNative>> = ({ childr
 
         .mobilemenu-nav-content .sub-group ~ .item {
           margin-left: 5px !important;
-          border-left: 1px solid var(--theme-color-border-1000);
+          border-left: 1px solid var(--color-border-1000);
         }
       `}</style>
     </>

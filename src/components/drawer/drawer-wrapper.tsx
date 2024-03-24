@@ -11,7 +11,6 @@ interface Props {
   className?: string;
   visible?: boolean;
   placement?: DrawerPlacement;
-  radius?: number;
   leaveTime?: number;
   enterTime?: number;
 }
@@ -24,7 +23,6 @@ const DrawerWrapper: React.FC<React.PropsWithChildren<DrawerWrapperProps>> = ({
   children,
   visible = false,
   placement = 'right' as DrawerPlacement,
-  radius = 3,
   leaveTime = 300,
   enterTime = 300,
   ...props
@@ -79,9 +77,9 @@ const DrawerWrapper: React.FC<React.PropsWithChildren<DrawerWrapperProps>> = ({
             display: flex;
             flex-direction: column;
             box-sizing: border-box;
-            background-color: var(--theme-color-background-1000);
-            color: var(--theme-color-foreground-1000);
-            border-radius: calc(${radius} * ${theme.style.radius});
+            background-color: var(--color-background-1000);
+            color: var(--color-foreground-1000);
+            border-radius: ${SCALES.r(3, `var(--layout-radius)`)};
             box-shadow: ${theme.expressiveness.shadowLarge};
             opacity: 0;
             outline: none;

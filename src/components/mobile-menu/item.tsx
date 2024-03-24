@@ -41,7 +41,7 @@ const NavigationItem: React.FC<PropsWithChildren<MobileNavigationItemProps>> = (
             box-sizing: border-box;
             justify-content: flex-start;
             align-items: center;
-            color: var(--theme-color-background-400);
+            color: var(--color-background-400);
             transition:
               color,
               background-color 150ms linear;
@@ -60,12 +60,12 @@ const NavigationItem: React.FC<PropsWithChildren<MobileNavigationItemProps>> = (
             width: 100%;
 
             &:hover {
-              background: var(--theme-color-background-900);
+              background: var(--color-background-900);
             }
           }
 
           .is-active {
-            color: var(--theme-color-foreground-1000);
+            color: var(--color-foreground-1000);
             font-weight: bold;
           }
 

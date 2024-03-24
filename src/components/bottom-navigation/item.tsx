@@ -65,7 +65,7 @@ const BottomNavigationItem: React.FC<PropsWithChildren<BottomNavigationItemProps
           gap: 3px;
           white-space: nowrap;
           background-color: transparent;
-          color: var(--theme-color-background-400);
+          color: var(--color-background-400);
           user-select: none;
           display: flex;
           align-items: center;
@@ -85,12 +85,12 @@ const BottomNavigationItem: React.FC<PropsWithChildren<BottomNavigationItemProps
         }
 
         .bottom-menu-item:hover {
-          color: var(--theme-color-foreground-1000);
+          color: var(--color-foreground-1000);
         }
 
         .bottom-menu-item.active {
-          color: var(--theme-color-foreground-1000);
-          border-top: 3px solid var(--theme-color-foreground-1000);
+          color: var(--color-foreground-1000);
+          border-top: 3px solid var(--color-foreground-1000);
           font-weight: 500;
         }
       `}</style>

@@ -109,22 +109,22 @@ export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
                 {children}
               </ScrollableLayout>
               <QuickBar h={'100%'} w={'100%'}>
-                <QuickAction type="lite" href="/" radius={50} tooltip="Home">
+                <QuickAction type="lite" href="/" r={50} tooltip="Home">
                   <Home size={20} />
                 </QuickAction>
                 <Divider w={'100%'}></Divider>
-                <QuickAction type="lite" radius={50} href="/guide" exactMatch={false} tooltip="Guide">
+                <QuickAction type="lite" r={50} href="/guide" exactMatch={false} tooltip="Guide">
                   <Code size={20} />
                 </QuickAction>
-                <QuickAction type="lite" radius={50} href="/components" exactMatch={false} tooltip="Components">
+                <QuickAction type="lite" r={50} href="/components" exactMatch={false} tooltip="Components">
                   <Layout size={20} />
                 </QuickAction>
-                <QuickAction type="lite" radius={50} href="/hooks" exactMatch={false} tooltip="Hooks">
+                <QuickAction type="lite" r={50} href="/hooks" exactMatch={false} tooltip="Hooks">
                   <Anchor size={20} />
                 </QuickAction>
                 <Divider w={'100%'}></Divider>
 
-                <QuickAction href="https://github.com/red-ninjas/himalaya-ui" target="_blank" type="lite" radius={50} tooltip="On Github">
+                <QuickAction href="https://github.com/red-ninjas/himalaya-ui" target="_blank" type="lite" r={50} tooltip="On Github">
                   <Github size={20} />
                 </QuickAction>
               </QuickBar>
@@ -147,13 +147,13 @@ export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
         </MobileMenuProvider>
         <style global jsx>{`
           .attr-name {
-            color: var(--theme-color-background-300);
+            color: var(--color-background-300);
           }
           .attr-value {
-            color: var(--theme-color-background-500);
+            color: var(--color-background-500);
           }
           .language-javascript {
-            color: var(--theme-color-background-500);
+            color: var(--color-background-500);
           }
           .class-name {
             color: ${theme.palette.warning.hex_1000};
@@ -165,7 +165,7 @@ export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
             color: ${theme.palette.success.hex_1000};
           }
           .token.comment {
-            color: var(--theme-color-background-600);
+            color: var(--color-background-600);
           }
           .keyword {
             color: ${theme.palette.code.hex_1000};
@@ -177,27 +177,27 @@ export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
             color: ${theme.palette.foreground.hex_600};
           }
           .property-access {
-            color: var(--theme-color-primary-1100);
+            color: var(--color-primary-1100);
           }
           .imports {
             color: ${theme.palette.tertiary.hex_1000};
           }
           .plain-text {
-            color: var(--theme-color-background-300);
+            color: var(--color-background-300);
           }
           .tag {
-            color: var(--theme-color-primary-1000);
+            color: var(--color-primary-1000);
           }
           .logo {
             padding-bottom: 6px;
-            color: var(--theme-color-foreground-1000);
+            color: var(--color-foreground-1000);
           }
 
           .logo,
           .brand {
             display: inline-flex;
             align-items: center;
-            color: var(--theme-color-foreground-1000);
+            color: var(--color-foreground-1000);
           }
 
           .brand {

@@ -15,7 +15,7 @@ const PageWidthComponent: React.FC<React.PropsWithChildren<PageWidthProps>> = ({
       <style jsx>{`
         .content-layout {
           flex: 1;
-          max-width: ${layout.pageWidthWithMargin};
+          max-width: var(--layout-page-width-with-margin);
           margin: 0 auto;
           display: flex;
           box-sizing: border-box;

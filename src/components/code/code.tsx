@@ -24,7 +24,7 @@ const CodeComponent: React.FC<React.PropsWithChildren<CodeProps>> = ({
   const { background, border } = useMemo(() => {
     return {
       border: theme.palette.border.hex_1000,
-      background: 'var(--theme-color-background-1000)',
+      background: 'var(--color-background-1000)',
     };
   }, [theme.palette]);
 
@@ -48,7 +48,7 @@ const CodeComponent: React.FC<React.PropsWithChildren<CodeProps>> = ({
           width: ${SCALES.w(1, 'initial')};
           height: ${SCALES.h(1, 'auto')};
           margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
-          border-radius: ${SCALES.r(1, theme.style.radius)};
+          border-radius: ${SCALES.r(1, `var(--layout-radius)`)};
           background-color: ${background};
           position: relative;
         }
@@ -73,14 +73,14 @@ const CodeComponent: React.FC<React.PropsWithChildren<CodeProps>> = ({
           width: 100%;
           display: flex;
           justify-content: space-between;
-          border-radius: ${SCALES.r(1, theme.style.radius)};
+          border-radius: ${SCALES.r(1, `var(--layout-radius)`)};
           background-color: transparent;
 
           z-index: 2;
         }
         .name {
-          background-color: var(--theme-color-background-800);
-          color: var(--theme-color-background-400);
+          background-color: var(--color-background-800);
+          color: var(--color-background-400);
           height: auto;
           line-height: 1.35em;
           border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -91,8 +91,8 @@ const CodeComponent: React.FC<React.PropsWithChildren<CodeProps>> = ({
           padding: ${SCALES.font(0.32)} ${SCALES.font(0.5)} ${SCALES.font(0.32)} ${SCALES.font(0.5)};
           width: 100%;
 
-          border-top-left-radius: ${theme.style.radius};
-          border-top-right-radius: ${theme.style.radius};
+          border-top-left-radius: var(--layout-radius);
+          border-top-right-radius: var(--layout-radius);
         }
       `}</style>
     </div>

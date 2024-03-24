@@ -16,11 +16,11 @@ const AttributesTable: React.FC<React.PropsWithChildren<unknown>> = ({ children 
         }
         .attr table {
           margin-top: 12px;
-          margin-right: ${layout.gap};
+          margin-right: var(--layout-gap);
         }
         .attr h4.title {
-          margin-top: calc(${layout.gap} * 2.2);
-          background-color: var(--theme-color-background-900);
+          margin-top: calc(var(--layout-gap) * 2.2);
+          background-color: var(--color-background-900);
           color: ${theme.palette.code.hex_1000};
           border-radius: 0;
         }
@@ -45,29 +45,29 @@ const AttributesTable: React.FC<React.PropsWithChildren<unknown>> = ({ children 
         }
         .attr th {
           height: 2.5rem;
-          color: var(--theme-color-background-400);
+          color: var(--color-background-400);
           font-size: 0.75rem;
           font-weight: 400;
           letter-spacing: 0;
-          background: var(--theme-color-background-900);
-          border-bottom: 1px solid var(--theme-color-border-1000);
-          border-top: 1px solid var(--theme-color-border-1000);
+          background: var(--color-background-900);
+          border-bottom: 1px solid var(--color-border-1000);
+          border-top: 1px solid var(--color-border-1000);
         }
         .attr th:nth-child(1) {
-          border-bottom: 1px solid var(--theme-color-border-1000);
-          border-left: 1px solid var(--theme-color-border-1000);
+          border-bottom: 1px solid var(--color-border-1000);
+          border-left: 1px solid var(--color-border-1000);
           border-radius: 4px 0 0 4px;
-          border-top: 1px solid var(--theme-color-border-1000);
+          border-top: 1px solid var(--color-border-1000);
         }
         .attr th:last-child {
-          border-bottom: 1px solid var(--theme-color-border-1000);
+          border-bottom: 1px solid var(--color-border-1000);
           border-radius: 0 4px 4px 0;
-          border-right: 1px solid var(--theme-color-border-1000);
-          border-top: 1px solid var(--theme-color-border-1000);
+          border-right: 1px solid var(--color-border-1000);
+          border-top: 1px solid var(--color-border-1000);
         }
         .attr tr td {
-          border-bottom: 1px solid var(--theme-color-border-1000);
-          color: var(--theme-color-background-300);
+          border-bottom: 1px solid var(--color-border-1000);
+          color: var(--color-background-300);
           font-size: 0.875rem;
           height: 2.5rem;
         }
