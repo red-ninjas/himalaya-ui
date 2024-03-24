@@ -1,15 +1,13 @@
 'use client';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
+import useClasses from '../use-classes';
+import useScale, { withScale } from '../use-scale';
+import { COLOR_TYPES } from '../utils/prop-types';
+import useWarning from '../utils/use-warning';
 import { useCheckbox } from './checkbox-context';
 import CheckboxIcon from './checkbox.icon';
-import useWarning from '../utils/use-warning';
-import { NormalTypes } from '../utils/prop-types';
-import { getColors } from './styles';
-import useTheme from '../use-theme';
-import useScale, { withScale } from '../use-scale';
-import useClasses from '../use-classes';
 
-export type CheckboxTypes = NormalTypes;
+export type CheckboxTypes = COLOR_TYPES;
 export interface CheckboxEventTarget {
   checked: boolean;
 }
@@ -44,12 +42,11 @@ const CheckboxComponent: React.FC<CheckboxProps> = ({
   value = '',
   ...props
 }: CheckboxProps) => {
-  const theme = useTheme();
-  const { SCALES } = useScale();
+  const { SCALES, RESPONSIVE } = useScale();
   const [selfChecked, setSelfChecked] = useState<boolean>(initialChecked);
   const { updateState, inGroup, disabledAll, values } = useCheckbox();
   const isDisabled = inGroup ? disabledAll || disabled : disabled;
-  const classes = useClasses('checkbox', className);
+  const classes = useClasses('checkbox', className, type ? 'color-' + type : null);
 
   if (inGroup && checked) {
     useWarning('Remove props "checked" when [Checkbox] component is in the group.', 'Checkbox');
@@ -61,8 +58,6 @@ const CheckboxComponent: React.FC<CheckboxProps> = ({
       setSelfChecked(next);
     }, [values.join(',')]);
   }
-
-  const { fill, bg } = useMemo(() => getColors(theme.palette, type), [theme.palette, type]);
 
   const changeHandle = useCallback(
     (ev: React.ChangeEvent) => {
@@ -92,27 +87,49 @@ const CheckboxComponent: React.FC<CheckboxProps> = ({
 
   return (
     <label className={classes}>
-      <CheckboxIcon fill={fill} bg={bg} disabled={isDisabled} checked={selfChecked} />
       <input type="checkbox" disabled={isDisabled} checked={selfChecked} onChange={changeHandle} {...props} />
+
+      <div className={useClasses('checkbox-inner', { checked: selfChecked })}>
+        <CheckboxIcon />
+      </div>
       <span className="text">{children}</span>
       <style jsx>{`
         .checkbox {
-          --checkbox-size: ${SCALES.font(0.875)};
           display: inline-flex;
           justify-content: center;
           align-items: center;
           cursor: ${isDisabled ? 'not-allowed' : 'pointer'};
           opacity: ${isDisabled ? 0.75 : 1};
+
+          --checkbox-size: ${SCALES.w(1)};
+          --checkbox-fill: var(--color-base);
+          --checkbox-bg: var(--color-contrast);
+          --checkbox-color: transparent;
+        }
+
+        .checkbox-inner {
+          transition:
+            border-color 0.2s ease,
+            background 0.2s ease,
+            box-shadow 0.2s ease;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
           line-height: var(--checkbox-size);
-          width: ${SCALES.w(1, 'auto')};
-          height: ${SCALES.h(1, 'var(--checkbox-size)')};
-          padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
-          margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
+          width: var(--checkbox-size);
+          height: var(--checkbox-size);
+          border: 1px solid var(--color-border);
+          border-radius: ${SCALES.r(0.25)};
+          opacity: ${disabled ? 0.4 : 1};
+          cursor: ${disabled ? 'not-allowed' : 'pointer'};
+        }
+
+        .checked {
+          background: var(--color-base);
+          --checkbox-color: var(--color-contrast);
         }
 
         .text {
-          font-size: var(--checkbox-size);
-          line-height: var(--checkbox-size);
           padding-left: calc(var(--checkbox-size) * 0.5);
           user-select: none;
           cursor: ${isDisabled ? 'not-allowed' : 'pointer'};
@@ -130,6 +147,12 @@ const CheckboxComponent: React.FC<CheckboxProps> = ({
           font-size: 0;
           background-color: transparent;
         }
+
+        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'checkbox')}
+        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'checkbox')}
+        ${RESPONSIVE.w(1, value => `--checkbox-size: ${value};`, undefined, 'checkbox')}
+        ${RESPONSIVE.font(0.875, value => `font-size: ${value};`, undefined, 'text')}
+        ${RESPONSIVE.lineHeight(0.875, value => `line-height: ${value};`, undefined, 'text')}
       `}</style>
     </label>
   );

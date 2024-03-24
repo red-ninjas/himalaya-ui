@@ -1,16 +1,14 @@
 'use client';
 import React, { useEffect, useMemo, useState } from 'react';
-import useTheme from '../use-theme';
+import useClasses from '../use-classes';
+import useScale, { withScale } from '../use-scale';
+import { pickChild } from '../utils/collections';
+import { COLOR_TYPES } from '../utils/prop-types';
+import useWarning from '../utils/use-warning';
 import { useRadioContext } from './radio-context';
 import RadioDescription from './radio-description';
-import { pickChild } from '../utils/collections';
-import useWarning from '../utils/use-warning';
-import { NormalTypes } from '../utils/prop-types';
-import { getColors } from './styles';
-import useScale, { withScale } from '../use-scale';
-import useClasses from '../use-classes';
 
-export type RadioTypes = NormalTypes;
+export type RadioTypes = COLOR_TYPES;
 export interface RadioEventTarget {
   checked: boolean;
 }
@@ -43,8 +41,7 @@ const RadioComponent: React.FC<React.PropsWithChildren<RadioProps>> = ({
   children,
   ...props
 }: React.PropsWithChildren<RadioProps>) => {
-  const theme = useTheme();
-  const { SCALES } = useScale();
+  const { RESPONSIVE } = useScale();
   const [selfChecked, setSelfChecked] = useState<boolean>(!!checked);
   const { value: groupValue, disabledAll, inGroup, updateState } = useRadioContext();
   const [withoutDescChildren, DescChildren] = pickChild(children, RadioDescription);
@@ -60,8 +57,6 @@ const RadioComponent: React.FC<React.PropsWithChildren<RadioProps>> = ({
       setSelfChecked(groupValue === radioValue);
     }, [groupValue, radioValue]);
   }
-
-  const { label, border, bg } = useMemo(() => getColors(theme.palette, type), [theme.palette, type]);
 
   const isDisabled = useMemo(() => disabled || disabledAll, [disabled, disabledAll]);
   const changeHandler = (event: React.ChangeEvent) => {
@@ -87,12 +82,14 @@ const RadioComponent: React.FC<React.PropsWithChildren<RadioProps>> = ({
   }, [checked]);
 
   return (
-    <div className={useClasses('radio', className)}>
+    <div className={useClasses('radio', className, type ? 'color-' + type : null)}>
       <label>
         <input type="radio" value={radioValue} checked={selfChecked} onChange={changeHandler} {...props} />
         <span className="name">
-          <span className={useClasses('point', { active: selfChecked })} />
-          {withoutDescChildren}
+          <div className="point-outer">
+            <span className={useClasses('point', { active: selfChecked })} />
+          </div>
+          {withoutDescChildren && <div className="with-label">{withoutDescChildren}</div>}
         </span>
         {DescChildren && DescChildren}
       </label>
@@ -112,52 +109,62 @@ const RadioComponent: React.FC<React.PropsWithChildren<RadioProps>> = ({
           display: flex;
           align-items: flex-start;
           position: relative;
-          --radio-size: ${SCALES.font(1)};
-          width: ${SCALES.w(1, 'initial')};
-          height: ${SCALES.h(1, 'auto')};
-          padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
-          margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
+          --radio-border-color: var(--color-base);
+          --radio-color-bg: var(--color-base);
+        }
+        .radio.color-default {
+          --radio-border-color: var(--color-foreground-1000);
+          --radio-color-bg: var(--color-foreground-1000);
         }
         label {
+          gap: 2px;
           display: flex;
           flex-direction: column;
           justify-content: flex-start;
-          color: ${isDisabled ? theme.palette.background.hex_500 : label};
+          opacity: ${isDisabled ? 0.4 : 1};
           cursor: ${isDisabled ? 'not-allowed' : 'pointer'};
         }
-        .name {
-          font-size: var(--radio-size);
-          font-weight: bold;
+        .with-label {
           user-select: none;
+          display: inline-flex;
+          align-items: center;
+          margin-left: calc(var(--radio-size) * 0.375);
+        }
+        .point-outer {
+          height: var(--radio-size);
+          width: var(--radio-size);
+          line-height: var(--radio-size);
+
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          border: 1px solid var(--radio-border-color);
+          position: relative;
+          border-radius: 50%;
+          overflow: hidden;
+        }
+        .name {
           display: inline-flex;
           align-items: center;
         }
         .point {
-          height: var(--radio-size);
-          width: var(--radio-size);
-          border-radius: 50%;
-          border: 1px solid ${border};
-          transition: all 0.2s ease 0s;
-          position: relative;
-          display: inline-block;
-          transform: scale(0.875);
-          margin-right: calc(var(--radio-size) * 0.375);
-        }
-        .point:before {
-          content: '';
           position: absolute;
-          left: -1px;
-          top: -1px;
-          transform: scale(0);
-          height: var(--radio-size);
-          width: var(--radio-size);
-          border-radius: 50%;
-          background-color: ${isDisabled ? theme.palette.background.hex_500 : bg};
-        }
-        .active:before {
-          transform: scale(0.875);
           transition: all 0.2s ease 0s;
+          display: inline-block;
+          border-radius: 50%;
+          display: block;
+          width: calc(var(--radio-size) * 0.5);
+          height: calc(var(--radio-size) * 0.5);
+          background-color: transparent;
         }
+        .point.active {
+          background-color: var(--radio-color-bg);
+        }
+
+        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'radio')}
+        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'radio')}
+        ${RESPONSIVE.w(1, value => `--radio-size: ${value};`, undefined, 'radio')}
+        ${RESPONSIVE.font(0.875, value => `font-size: ${value};`, undefined, 'with-label')}
       `}</style>
     </div>
   );

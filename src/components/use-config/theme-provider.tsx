@@ -7,7 +7,6 @@ import { UIThemes } from '../themes/presets';
 import { AllThemesConfig, AllThemesContext } from '../use-all-themes/all-themes-context';
 import { ThemeContext } from '../use-theme/theme-context';
 import { hexToRgb } from '../utils/color';
-import css from 'styled-jsx/css';
 
 export interface Props {
   themeType?: string;
@@ -61,13 +60,16 @@ const ThemeProvider: React.FC<PropsWithChildren<Props>> = ({ children, themeType
 
           --color-shade: var(--color-background-900);
           --color-shade-rgb: var(--color-background-900-rgb);
-          --color-tint: var(--color-background-700);
-          --color-tint-rgb: var(--color-background-700-rgb);
+          --color-tint: var(--color-background-800);
+          --color-tint-rgb: var(--color-background-800-rgb);
 
-          --color-border:var( --color-border-1000);
-          --color-shade-border: var(--color-border-900);
-          --color-tint-border:var(--color-border-800);
+          --color-border:var(--color-border-1000);
+          --color-shade-border: var(--color-border-800);
+          --color-tint-border:var(--color-border-600);
 
+          --color-border-rgb:var(--color-border-1000-rgb);
+          --color-shade-border-rgb: var(--color-border-800-rgb);
+          --color-tint-border-rgb:var(--color-border-600-rgb);
         }
 
         .color-abort {
@@ -84,7 +86,7 @@ const ThemeProvider: React.FC<PropsWithChildren<Props>> = ({ children, themeType
           --color-shade-border: var(--color-base);
           --color-tint-border: var(--color-base);
 
-          --color-border:var( --color-base);
+          --color-border: var( --color-base);
         }
       `;
       }
@@ -100,9 +102,12 @@ const ThemeProvider: React.FC<PropsWithChildren<Props>> = ({ children, themeType
             --color-tint: var(--color-${key}-800);
             --color-shade-rgb: var(--color-${key}-1200-rgb);
             --color-tint-rgb: var(--color-${key}-800-rgb);
-            --color-shade-border:var(--color-shade);
+            --color-shade-border: var(--color-shade);
             --color-tint-border: var(--color-tint);
             --color-border: var(--color-base);
+            --color-border-rgb:var(--color-base-rgb);
+            --color-shade-border-rgb:var(--color-shade-rgb);
+            --color-tint-border-rgb:var(--color-tint-rgb);
           }
         `;
       }

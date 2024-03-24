@@ -5,7 +5,7 @@ import Input from '../input';
 import LoadingSpinner from '../loading-spinner';
 import useScale, { ScaleResponsiveParameter, withScale } from '../use-scale';
 import { pickChild } from '../utils/collections';
-import { NormalTypes } from '../utils/prop-types';
+import { COLOR_TYPES, NormalTypes } from '../utils/prop-types';
 import useCurrentState from '../utils/use-current-state';
 import { AutoCompleteConfig, AutoCompleteContext } from './auto-complete-context';
 import AutoCompleteDropdown from './auto-complete-dropdown';
@@ -13,7 +13,7 @@ import AutoCompleteEmpty from './auto-complete-empty';
 import AutoCompleteItem, { AutoCompleteItemProps } from './auto-complete-item';
 import AutoCompleteSearching from './auto-complete-searching';
 
-export type AutoCompleteTypes = NormalTypes;
+export type AutoCompleteTypes = COLOR_TYPES;
 
 export type AutoCompleteOption = {
   label: string;
@@ -90,7 +90,7 @@ const AutoCompleteComponent = React.forwardRef<HTMLInputElement, React.PropsWith
       disableFreeSolo = false,
       getPopupContainer,
       className = '',
-      hasBorder = false,
+      hasBorder = true,
       ...props
     }: React.PropsWithChildren<AutoCompleteProps>,
     userRef: React.Ref<HTMLInputElement | null>,

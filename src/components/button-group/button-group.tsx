@@ -1,12 +1,10 @@
 'use client';
 
 import React, { useMemo } from 'react';
-import useTheme from '../use-theme';
-import { ButtonTypes } from '../utils/prop-types';
-import { ButtonGroupContext, ButtonGroupConfig } from './button-group-context';
-import { UIThemesPalette } from '../themes/presets';
-import useScale, { withScale } from '../use-scale';
 import useClasses from '../use-classes';
+import useScale, { withScale } from '../use-scale';
+import { ButtonTypes } from '../utils/prop-types';
+import { ButtonGroupConfig, ButtonGroupContext } from './button-group-context';
 
 interface Props {
   disabled?: boolean;
@@ -19,26 +17,8 @@ interface Props {
 type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
 export type ButtonGroupProps = Props & NativeAttrs;
 
-const getGroupBorderColors = (palette: UIThemesPalette, type = 'default' as ButtonTypes, disabled = false): string => {
-  if (disabled) {
-    return palette.border.hex_1000;
-  }
-  const colors: { [key in ButtonTypes]?: string } = {
-    primary: palette.primary.hex_1100,
-    tertiary: palette.tertiary.hex_1100,
-    default: palette.border.hex_1000,
-    success: palette.success.hex_1100,
-    secondary: palette.secondary.hex_1100,
-    error: palette.error.hex_1100,
-    warning: palette.warning.hex_1100,
-    abort: palette.border.hex_1000,
-  };
-  return colors[type] as string;
-};
-
 const ButtonGroupComponent: React.FC<React.PropsWithChildren<ButtonGroupProps>> = (groupProps: ButtonGroupProps) => {
-  const theme = useTheme();
-  const { SCALES } = useScale();
+  const { SCALES, RESPONSIVE } = useScale();
   const { disabled = false, type = 'default' as ButtonTypes, ghost = false, vertical = false, children, className = '', ...props } = groupProps;
   const initialValue = useMemo<ButtonGroupConfig>(
     () => ({
@@ -49,9 +29,7 @@ const ButtonGroupComponent: React.FC<React.PropsWithChildren<ButtonGroupProps>> 
     }),
     [disabled, type],
   );
-  const border = useMemo(() => {
-    return getGroupBorderColors(theme.palette, type, disabled);
-  }, [theme, type, disabled]);
+
   const classes = useClasses(
     'btn-group',
     {
@@ -59,6 +37,7 @@ const ButtonGroupComponent: React.FC<React.PropsWithChildren<ButtonGroupProps>> 
       horizontal: !vertical,
     },
     className,
+    type ? 'color-' + type : null,
   );
 
   return (
@@ -69,14 +48,11 @@ const ButtonGroupComponent: React.FC<React.PropsWithChildren<ButtonGroupProps>> 
           .btn-group {
             display: inline-flex;
             border-radius: ${SCALES.r(1, `var(--layout-radius)`)};
-            border: 1px solid ${border};
+            border: 1px solid var(--color-border);
             background-color: transparent;
             overflow: hidden;
-            width: ${SCALES.w(1, 'auto')};
-            height: ${SCALES.h(1, 'min-content')};
-            margin: ${SCALES.mt(0.313)} ${SCALES.mr(0.313)} ${SCALES.mb(0.313)} ${SCALES.ml(0.313)};
-            padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
           }
+
           .vertical {
             flex-direction: column;
           }
@@ -89,7 +65,7 @@ const ButtonGroupComponent: React.FC<React.PropsWithChildren<ButtonGroupProps>> 
           .horizontal :global(.btn:not(:first-child)) {
             border-top-left-radius: 0;
             border-bottom-left-radius: 0;
-            border-left: 1px solid ${border};
+            border-left: 1px solid var(--color-border);
           }
           .horizontal :global(.btn:not(:last-child)) {
             border-top-right-radius: 0;
@@ -98,12 +74,17 @@ const ButtonGroupComponent: React.FC<React.PropsWithChildren<ButtonGroupProps>> 
           .vertical :global(.btn:not(:first-child)) {
             border-top-left-radius: 0;
             border-top-right-radius: 0;
-            border-top: 1px solid ${border};
+            border-top: 1px solid var(--color-border);
           }
           .vertical :global(.btn:not(:last-child)) {
             border-bottom-left-radius: 0;
             border-bottom-right-radius: 0;
           }
+
+          ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'btn-group')}
+          ${RESPONSIVE.margin(0.313, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'btn-group')}
+          ${RESPONSIVE.h(1, value => `height: ${value}; --ui-button-height: ${value};`, 'min-content', 'btn-group')}
+          ${RESPONSIVE.w(1, value => `font-size: ${value}; --button-font-size: ${value};`, 'auto', 'btn-group')}
         `}</style>
       </div>
     </ButtonGroupContext.Provider>

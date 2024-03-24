@@ -1,4 +1,4 @@
-import { Activity } from 'components/icons';
+import Activity from 'components/icons/activity';
 import FeatherIcon from 'components/icons/feather';
 import GitHubIcon from 'components/icons/github';
 import PackageIcon from 'components/icons/package';

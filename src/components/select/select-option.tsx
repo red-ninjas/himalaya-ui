@@ -33,7 +33,7 @@ const SelectOptionComponent: React.FC<React.PropsWithChildren<SelectOptionProps>
   ...props
 }: React.PropsWithChildren<SelectOptionProps>) => {
   const theme = useTheme();
-  const { SCALES } = useScale();
+  const { SCALES, RESPONSIVE } = useScale();
   const { updateValue, value, disableAll } = useSelectContext();
   const isDisabled = useMemo(() => disabled || disableAll, [disabled, disableAll]);
   const isLabel = useMemo(() => label || divider, [label, divider]);
@@ -80,7 +80,7 @@ const SelectOptionComponent: React.FC<React.PropsWithChildren<SelectOptionProps>
         <Ellipsis height={SCALES.h(2.25)}>{children}</Ellipsis>
         {selected && hasCheckmark && (
           <div className="option-check">
-            <Check size={SCALES.h(1)}></Check>
+            <Check></Check>
           </div>
         )}
       </div>
@@ -108,12 +108,12 @@ const SelectOptionComponent: React.FC<React.PropsWithChildren<SelectOptionProps>
           transition:
             background 0.2s ease 0s,
             border-color 0.2s ease 0s;
-          --select-font-size: ${SCALES.font(0.875)};
           font-size: var(--select-font-size);
-          width: ${SCALES.w(1, '100%')};
-          height: ${SCALES.h(2.25)};
-          padding: ${SCALES.pt(0)} ${SCALES.pr(0.667)} ${SCALES.pb(0)} ${SCALES.pl(0.667)};
-          margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
+        }
+
+        .option-check :global(svg) {
+          width: 100%;
+          height: 100%;
         }
 
         .option:hover {
@@ -125,20 +125,39 @@ const SelectOptionComponent: React.FC<React.PropsWithChildren<SelectOptionProps>
           line-height: 0;
           overflow: hidden;
           border-top: 1px solid var(--color-border-1000);
-          width: ${SCALES.w(1, '100%')};
-          height: ${SCALES.h(1, 0)};
-          padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
-          margin: ${SCALES.mt(0.5)} ${SCALES.mr(0)} ${SCALES.mb(0.5)} ${SCALES.ml(0)};
         }
 
         .label {
           color: var(--color-background-200);
           border-bottom: 1px solid var(--color-border-1000);
           cursor: default;
-          font-size: ${SCALES.font(0.875)};
-          width: ${SCALES.w(1, '100%')};
           font-weight: 500;
+          font-size: var(--select-font-size);
         }
+
+        ${RESPONSIVE.font(1, value => `width: ${value}; height: ${value};`, undefined, 'option-check')}
+        ${RESPONSIVE.w(1, value => `width: ${value};`, '100%', 'label')}
+
+        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'divider')}
+        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'divider')}
+        ${RESPONSIVE.w(1, value => `width: ${value};`, '100%', 'divider')}
+        ${RESPONSIVE.h(1, value => `height: ${value};`, 0, 'divider')}
+
+        ${RESPONSIVE.padding(
+          {
+            top: 0,
+            left: 0.667,
+            right: 0.667,
+            bottom: 0,
+          },
+          value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
+          undefined,
+          'option',
+        )}
+        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'option')}
+        ${RESPONSIVE.font(0.875, value => `--select-font-size: ${value};`, undefined, 'option')}
+        ${RESPONSIVE.w(1, value => `width: ${value};`, '100%', 'option')}
+        ${RESPONSIVE.h(2.25, value => `height: ${value};`, undefined, 'item')}
       `}</style>
     </div>
   );

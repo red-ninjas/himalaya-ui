@@ -3,9 +3,9 @@
 import React from 'react';
 import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';
-import { ButtonTypes } from '../utils/prop-types';
+import { COLOR_TYPES } from '../utils/prop-types';
 
-export type LoadingSpinnerTypes = ButtonTypes;
+export type LoadingSpinnerTypes = COLOR_TYPES;
 interface Props {
   type?: LoadingSpinnerTypes;
   className?: string;

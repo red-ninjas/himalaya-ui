@@ -279,7 +279,6 @@ export const makeScaleHandlerResponsive =
   (scale1x, render, defaultValue, renderClassName) => {
     let responsiveContent: string = ``;
     const values = getResponsiveValues(attrValue, scale, unit, scale1x, defaultValue);
-
     for (const [key, value] of Object.entries(values)) {
       if (key == 'xs') {
         responsiveContent += css`

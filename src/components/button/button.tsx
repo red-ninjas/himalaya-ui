@@ -98,7 +98,7 @@ const ButtonComponent = React.forwardRef<HTMLButtonElement, React.PropsWithChild
       <button
         ref={buttonRef}
         type={htmlType}
-        className={useClasses('btn padding margin height font auto', className, disabled, 'color-' + (disabled ? 'default' : type), { ghost })}
+        className={useClasses('btn', className, disabled, type ? 'color-' + type : null, { ghost })}
         disabled={disabled}
         onClick={clickHandler}
         {...props}
@@ -110,10 +110,8 @@ const ButtonComponent = React.forwardRef<HTMLButtonElement, React.PropsWithChild
           .btn {
             box-sizing: border-box;
             display: inline-block;
-            line-height: ${SCALES.lineHeight(0.875, SCALES.font(0.875))};
             border-radius: ${SCALES.r(1, `var(--layout-radius)`)};
             font-weight: 500;
-            font-size: ${SCALES.font(0.875)};
             user-select: none;
             outline: none;
             justify-content: center;
@@ -131,7 +129,7 @@ const ButtonComponent = React.forwardRef<HTMLButtonElement, React.PropsWithChild
             pointer-events: ${events};
 
             --ui-button-icon-padding: ${SCALES.pl(0.727)};
-            --ui-button-height: ${SCALES.h(2.5)};
+
             --ui-button-color: var(--color-contrast);
             --ui-button-bg: var(--color-base);
             --ui-button-border: var(--color-border);
@@ -142,7 +140,6 @@ const ButtonComponent = React.forwardRef<HTMLButtonElement, React.PropsWithChild
             --ui-button-activated-bg: var(--color-tint);
             --ui-button-activated-border-color: var(--color-tint-border);
 
-            height: ${SCALES.h(2.5)};
             border: 1px solid var(--ui-button-border);
             box-shadow: ${shadow ? theme.expressiveness.shadowSmall : `none`};
 
@@ -167,14 +164,14 @@ const ButtonComponent = React.forwardRef<HTMLButtonElement, React.PropsWithChild
           .btn[disabled],
           .btn.disabled {
             --ui-button-color: var(--color-foreground-500);
-            --ui-button-bg: var(--color-shade);
-            --ui-button-border: var(--color-shade-border);
+            --ui-button-bg: var(--color-background-900);
+            --ui-button-border: var(--color-border-1000);
             --ui-button-hover-color: var(--color-foreground-500);
-            --ui-button-hover-bg: var(--color-shade);
-            --ui-button-hover-border-color: var(--color-shade-border);
-            --ui-button-activated-color: var(--color-foreground-500);
-            --ui-button-activated-bg: var(--color-shade);
-            --ui-button-activated-border-color: var(--color-shade-border);
+            --ui-button-hover-bg: var(--color-background-900);
+            --ui-button-hover-border-color: var(--color-border-1000);
+            --ui-button-activated-color: var(--color-foreground-900);
+            --ui-button-activated-bg: var(--color-background-500);
+            --ui-button-activated-border-color: var(--color-border-1000);
           }
 
           .btn:hover:not([disabled]) {
@@ -217,7 +214,7 @@ const ButtonComponent = React.forwardRef<HTMLButtonElement, React.PropsWithChild
 
           ${responsiveCss(
             auto,
-            'auto',
+            'btn',
             layoutRoot.breakpoints,
             value => `min-width: ${value ? 'min-content' : SCALES.w(10.5)}; width: ${value ? 'auto' : 'initial'};`,
           )}
@@ -225,10 +222,13 @@ const ButtonComponent = React.forwardRef<HTMLButtonElement, React.PropsWithChild
           ${RESPONSIVE.padding(
             { left: auto ? 1.15 : 1.375, right: auto ? 1.15 : 1.375, top: 0, bottom: 0 },
             value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
+            undefined,
+            'btn',
           )}
-
-          ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`)}
-          ${RESPONSIVE.font(0.875, value => `font-size: ${value};`)}
+          ${RESPONSIVE.h(2.5, value => `height: ${value}; --ui-button-height: ${value};`, undefined, 'btn')}
+          ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'btn')}
+          ${RESPONSIVE.font(0.875, value => `font-size: ${value}; --button-font-size: ${value};`, undefined, 'btn')}
+          ${RESPONSIVE.lineHeight(0.875, value => `line-height: ${value};`, `var(--button-font-size)`, 'btn')}
         `}</style>
       </button>
     );

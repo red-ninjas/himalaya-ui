@@ -1,10 +1,10 @@
 'use client';
 import React, { CSSProperties, useMemo } from 'react';
-import useTheme from '../use-theme';
-import { useAutoCompleteContext } from './auto-complete-context';
 import Dropdown from '../shared/dropdown';
 import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';
+import useTheme from '../use-theme';
+import { useAutoCompleteContext } from './auto-complete-context';
 
 interface Props {
   visible: boolean;
@@ -48,11 +48,11 @@ const AutoCompleteDropdown: React.FC<React.PropsWithChildren<AutoCompleteDropdow
         <style jsx>{`
           .auto-complete-dropdown {
             border-radius: ${SCALES.r(1, `var(--layout-radius)`)};
-            box-shadow: ${isEmpty ? 'none' : theme.expressiveness.shadowLarge};
             background-color: var(--color-background-1000);
             overflow-y: auto;
             max-height: 15rem;
             overflow-anchor: none;
+            box-shadow: 0 0 0 1px rgba(var(--color-background-800-rgb)}, 1);
           }
         `}</style>
       </div>

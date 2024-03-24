@@ -1,7 +1,7 @@
 import React from 'react';
-import { NormalTypes } from '../utils/prop-types';
+import { COLOR_TYPES } from '../utils/prop-types';
 
-export type InputTypes = NormalTypes;
+export type InputTypes = COLOR_TYPES;
 export interface Props {
   value?: string;
   initialValue?: string;

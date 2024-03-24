@@ -2,14 +2,11 @@
 import React, { useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react';
 import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';
-import useTheme from '../use-theme';
-import { addColorAlpha } from '../utils/color';
 import InputBlockLabel from './input-block-label';
 import InputIcon from './input-icon';
 import InputClearIcon from './input-icon-clear';
 import InputLabel from './input-label';
 import { InputTypes, Props } from './input-props';
-import { getColors } from './styles';
 
 type NativeAttrs = Omit<React.InputHTMLAttributes<any>, keyof Props>;
 export type InputProps = Props & NativeAttrs;
@@ -51,8 +48,7 @@ const InputComponent = React.forwardRef<HTMLInputElement, React.PropsWithChildre
     }: React.PropsWithChildren<InputProps>,
     ref: React.Ref<HTMLInputElement | null>,
   ) => {
-    const theme = useTheme();
-    const { SCALES } = useScale();
+    const { SCALES, RESPONSIVE } = useScale();
     const inputRef = useRef<HTMLInputElement>(null);
     useImperativeHandle(ref, () => inputRef.current);
 
@@ -61,7 +57,6 @@ const InputComponent = React.forwardRef<HTMLInputElement, React.PropsWithChildre
     const isControlledComponent = useMemo(() => value !== undefined, [value]);
     const labelClasses = useMemo(() => (labelRight ? 'right-label' : label ? 'left-label' : ''), [label, labelRight]);
     const iconClasses = useMemo(() => (iconRight ? 'right-icon' : icon ? 'left-icon' : ''), [icon, iconRight]);
-    const { color, borderColor, hoverBorder } = useMemo(() => getColors(theme.palette, type), [theme.palette, type]);
 
     const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
       if (disabled || readOnly) return;
@@ -116,7 +111,7 @@ const InputComponent = React.forwardRef<HTMLInputElement, React.PropsWithChildre
     return (
       <div className="with-label">
         {children && <InputBlockLabel>{children}</InputBlockLabel>}
-        <div className={useClasses('input-container', className)}>
+        <div className={useClasses('input-container', className, type ? 'color-' + type : null)}>
           {label && <InputLabel>{label}</InputLabel>}
           <div className={useClasses('input-wrapper', { hover, disabled }, labelClasses)}>
             {icon && <InputIcon icon={icon} {...iconProps} />}
@@ -145,17 +140,11 @@ const InputComponent = React.forwardRef<HTMLInputElement, React.PropsWithChildre
             display: inline-block;
             box-sizing: border-box;
             -webkit-box-align: center;
-            --input-height: ${SCALES.h(2.25)};
-            font-size: ${SCALES.font(0.875)};
-            width: ${SCALES.w(1, 'initial')};
-            padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
-            margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
           }
 
           .input-container {
             display: inline-flex;
             align-items: center;
-            width: ${SCALES.w(1, 'initial')};
             height: var(--input-height);
           }
 
@@ -167,15 +156,25 @@ const InputComponent = React.forwardRef<HTMLInputElement, React.PropsWithChildre
             flex: 1;
             user-select: none;
             border: 0;
+
             border-radius: ${SCALES.r(1, `var(--layout-radius)`)};
-            border-color: ${borderColor};
+
+            --input-border-color: var(--color-border);
+            --input-border-color-hover: var(--color-shade-border);
+            --input-border-color-hover-rgb: var(--color-shade-border-rgb);
+            --input-color: var(--color-foreground-1000);
+            --input-background: var(--color-background-1000);
+
+            background: var(--input-background);
+
+            border-color: var(--input-border-color);
             border-width: ${hasBorder ? '1px' : '0'};
             border-style: solid;
             transition:
               border 200ms ease 0s,
               color 200ms ease 0s;
               box-shadow 200ms ease 0s;
-          }
+            }
 
           .input-wrapper.left-label {
             border-top-left-radius: 0;
@@ -188,9 +187,12 @@ const InputComponent = React.forwardRef<HTMLInputElement, React.PropsWithChildre
           }
 
           .input-wrapper.disabled {
-            background-color: var(--color-background-800);
-            border-color: var(--color-border-1000);
             cursor: not-allowed;
+            --input-border-color: var(-color-border-1000);
+            --input-border-color-hover: var(-color-border-1000);
+            --input-border-color-hover-rgb: var(-color-border-1000);
+            --input-color: var(--color-foreground-1000);
+            --input-background: var(--color-background-900);
           }
 
           input.disabled {
@@ -198,8 +200,8 @@ const InputComponent = React.forwardRef<HTMLInputElement, React.PropsWithChildre
           }
 
           .input-wrapper.hover {
-            border-color: ${hoverBorder};
-            box-shadow: ${hasBorder ? `0 0 0 4px ${addColorAlpha(hoverBorder, 0.2)}` : `none`};
+            border-color: var(--input-border-color-hover);
+            box-shadow: ${hasBorder ? `0 0 0 4px rgba(var(--input-border-color-hover-rgb), 0.2)` : `none`};
           }
 
           input {
@@ -209,7 +211,7 @@ const InputComponent = React.forwardRef<HTMLInputElement, React.PropsWithChildre
             font-size: ${SCALES.font(0.875)};
             background-color: transparent;
             border: none;
-            color: ${color};
+            color: var(--input-color);
             outline: none;
             border-radius: 0;
             width: 100%;
@@ -241,8 +243,16 @@ const InputComponent = React.forwardRef<HTMLInputElement, React.PropsWithChildre
           input:-webkit-autofill:active,
           input:-webkit-autofill:focus {
             -webkit-box-shadow: 0 0 0 30px var(--color-background-1000) inset !important;
-            -webkit-text-fill-color: ${color} !important;
+            -webkit-text-fill-color: var(--input-color) !important;
           }
+
+
+          ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'with-label')}
+          ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'with-label')}
+          ${RESPONSIVE.w(1, value => `height: ${value};`, 'initial', 'with-label')}
+          ${RESPONSIVE.font(0.875, value => `font-size: ${value};`, undefined, 'with-label')}
+          ${RESPONSIVE.h(2.25, value => `--input-height: ${value};`, undefined, 'with-label')}
+          ${RESPONSIVE.w(1, value => `width: ${value};`, 'initial', 'input-container')}
         `}</style>
       </div>
     );

@@ -38,7 +38,6 @@ const SelectDropdown = React.forwardRef<HTMLDivElement | null, React.PropsWithCh
           <style jsx>{`
             .select-dropdown {
               border-radius: ${SCALES.r(1, `var(--layout-radius)`)};
-              box-shadow: ${theme.expressiveness.shadowLarge};
               background-color: var(--color-background-1000);
               max-height: 17em;
               overflow-y: auto;
@@ -46,7 +45,7 @@ const SelectDropdown = React.forwardRef<HTMLDivElement | null, React.PropsWithCh
               overflow-anchor: none;
               padding: 0.38em 0;
               scroll-behavior: smooth;
-              box-shadow: 0 0 0 1px rgba(${hexToRgb(theme.palette.background.hex_800)}, 1);
+              box-shadow: 0 0 0 1px rgba(var(--color-background-800-rgb)}, 1);
             }
           `}</style>
         </div>

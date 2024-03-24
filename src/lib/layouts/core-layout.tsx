@@ -15,10 +15,13 @@ import {
   SearchProvider,
   ThemeSwitcher,
   useLayout,
-  useTheme,
 } from 'components';
 import FixedHeader from 'components/header/fixed-header';
-import { Anchor, Code, Github, Home, Layout } from 'components/icons';
+import Layout from 'components/icons/layout';
+import Anchor from 'components/icons/anchor';
+import Code from 'components/icons/code';
+import Github from 'components/icons/github';
+import Home from 'components/icons/home';
 import ScrollableLayout from 'components/layout/scrollable-layout';
 import Search, { SearchButton, SearchResult, SearchResults } from 'components/search';
 import { capitalize } from 'components/utils/collections';
@@ -29,7 +32,6 @@ import React, { useState } from 'react';
 import { Seeds } from '../data';
 import metaData from '../data/metadata.json';
 export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
-  const theme = useTheme();
   const layout = useLayout();
   const pathname = usePathname();
   const [isHidden, setIsHidden] = useState<boolean>(false);

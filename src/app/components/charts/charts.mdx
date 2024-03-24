@@ -134,7 +134,7 @@ Charts creates interactive financial charts.
               { value: 56, time: 1643116522 },
               { value: 46, time: 1643202922 },
             ]} />
-            <Chart.Line color={theme.palette.error.hex_1000} title="Test Line 2" data={[
+            <Chart.Line color={theme.palette.error.value} title="Test Line 2" data={[
               { value: 4, time: 1642425322 },
               { value: 17, time: 1642511722 },
               { value: 17, time: 1642598122 },
@@ -197,7 +197,7 @@ Charts creates interactive financial charts.
             </ToggleList>
             <Chart viewMode={dataViewMode}>
               <Chart.Line color={theme.palette.primary.hex_1000} title={title} data={data} />
-              {enabled && <Chart.Line color={theme.palette.error.hex_1000} title="Serie 2" data={data2} />}
+              {enabled && <Chart.Line color={theme.palette.error.value} title="Serie 2" data={data2} />}
               <Chart.Legends/>
               <Chart.DataView/>
             </Chart>

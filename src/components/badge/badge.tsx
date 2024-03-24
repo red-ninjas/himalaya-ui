@@ -1,13 +1,12 @@
 'use client';
 
-import React, { useMemo } from 'react';
+import { COLOR_TYPES } from 'components/utils/prop-types';
+import React from 'react';
 import { UIThemesPalette } from '../themes/presets';
 import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';
-import useTheme from '../use-theme';
-import { NormalTypes } from '../utils/prop-types';
 
-export type BadgeTypes = NormalTypes;
+export type BadgeTypes = COLOR_TYPES;
 
 interface Props {
   type?: BadgeTypes;
@@ -18,8 +17,8 @@ interface Props {
 type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
 export type BadgeProps = Props & NativeAttrs;
 
-const getBgColor = (type: NormalTypes, palette: UIThemesPalette) => {
-  const colors: { [key in NormalTypes]: string } = {
+const getBgColor = (type: COLOR_TYPES, palette: UIThemesPalette) => {
+  const colors: { [key in COLOR_TYPES]: string } = {
     default: palette.foreground.hex_1000,
     success: palette.success.hex_1000,
     secondary: palette.secondary.hex_1000,
@@ -38,14 +37,8 @@ const BadgeComponent: React.FC<React.PropsWithChildren<BadgeProps>> = ({
   dot = false,
   ...props
 }: BadgeProps) => {
-  const theme = useTheme();
-  const { SCALES } = useScale();
-  const bg = useMemo(() => getBgColor(type, theme.palette), [type, theme.palette]);
-  const color = useMemo(() => {
-    if (!type || type === 'default') return theme.palette.background.hex_1000;
-    return 'white';
-  }, [type, theme.palette.background.hex_1000]);
-  const classes = useClasses('badge', { dot }, className);
+  const { RESPONSIVE } = useScale();
+  const classes = useClasses('badge', { dot }, className, type ? 'color-' + type : null);
 
   return (
     <span className={classes} {...props}>
@@ -55,23 +48,45 @@ const BadgeComponent: React.FC<React.PropsWithChildren<BadgeProps>> = ({
           display: inline-block;
           border-radius: 16px;
           font-variant: tabular-nums;
-          line-height: 1;
           vertical-align: middle;
-          background-color: ${bg};
-          color: ${color};
+
+          --badge-background: var(--color-base);
+          --badge-color: var(--color-contrast);
+          background-color: var(--badge-background);
+          color: var(--badge-color);
           border: 0;
-          font-size: ${SCALES.font(0.875)};
-          width: ${SCALES.w(1, 'auto')};
-          height: ${SCALES.h(1, 'auto')};
-          padding: ${SCALES.pt(0.25)} ${SCALES.pr(0.4375)} ${SCALES.pb(0.25)} ${SCALES.pl(0.4375)};
-          margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
+        }
+
+        .badge.color-default {
+          --badge-background: var(--color-contrast);
+          --badge-color: var(--color-base);
         }
 
         .dot {
-          padding: ${SCALES.py(0.25)} ${SCALES.px(0.25)};
           border-radius: 50%;
           user-select: none;
         }
+
+        ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'badge')}
+        ${RESPONSIVE.h(1, value => `width: ${value};`, 'auto', 'badge')}
+        ${RESPONSIVE.font(0.875, value => `font-size: ${value};`, undefined, 'badge')}
+        ${RESPONSIVE.lineHeight(1, value => `line-height: ${value};`, undefined, 'badge')}
+
+        ${RESPONSIVE.padding(
+          { left: 0.4375, right: 0.4375, top: 0.25, bottom: 0.25 },
+          value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
+          undefined,
+          'badge',
+        )}
+
+        ${RESPONSIVE.padding(
+          { left: 0.25, right: 0.25, top: 0.25, bottom: 0.25 },
+          value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
+          undefined,
+          'dot',
+        )}
+
+        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'badge')}
       `}</style>
     </span>
   );

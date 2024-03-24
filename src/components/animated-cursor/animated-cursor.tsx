@@ -2,7 +2,6 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import useClasses from '../use-classes';
-import useTheme from '../use-theme';
 import { addColorAlpha } from '../utils/color';
 import type { AnimatedCursorCoordinates, AnimatedCursorOptions, AnimatedCursorProps, Clickable } from './';
 import find from './find';
@@ -61,14 +60,13 @@ const CursorCore: React.FC<AnimatedCursorProps> = ({
   const [isInit, setIsInit] = useState(false);
   const endX = useRef(0);
   const endY = useRef(0);
-  const theme = useTheme();
 
-  let currentColor = theme.palette.tertiary.hex_1000;
-  let currentBackgroundColor = theme.palette.foreground.hex_1000;
+  let currentColor = `var(--color-tertiary-1000)`;
+  let currentBackgroundColor = `var(--color-foreground-1000)`;
 
   if (color === undefined) {
-    currentColor = addColorAlpha(theme.palette.primary.hex_1000, 1.0);
-    currentBackgroundColor = addColorAlpha(theme.palette.primary.hex_1000, options.outerAlpha);
+    currentColor = `rgba(var(--color-primary-1000-rgb), 1.0)`;
+    currentBackgroundColor = `rgba(var(--color-primary-1000-rgb), ${options.outerAlpha})`;
   } else {
     currentColor = addColorAlpha(color, 1.0);
     currentBackgroundColor = addColorAlpha(color, options.outerAlpha);

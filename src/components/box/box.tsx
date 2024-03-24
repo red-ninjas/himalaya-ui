@@ -41,7 +41,7 @@ export const Box: BoxComponent = React.forwardRef(
           ${RESPONSIVE.w(0, value => `width: ${value};`, 'auto')}
           ${RESPONSIVE.h(0, value => `height: ${value};`, 'auto')}
           ${RESPONSIVE.font(1, value => `font-size: ${value};`, 'inherit')}
-          ${RESPONSIVE.lineHeight(1, value => `font-size: ${value};`, 'inherit')}
+          ${RESPONSIVE.lineHeight(1, value => `line-height: ${value};`, 'inherit')}
           ${responsiveCss(hide, 'hide', layout.breakpoints, value => `display: ${value ? `none` : 'inherit'};`)}
           ${responsiveCss(show, 'show', layout.breakpoints, value => `display: ${value ? `inherit` : 'none'};`)}
         `}</style>
