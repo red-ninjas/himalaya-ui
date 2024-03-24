@@ -23,6 +23,7 @@ export interface UIColorAccent {
   hex_900: string;
   hex_1000: string;
 }
+
 export interface UIColor {
   contrast: string;
   hex_100: string;
@@ -45,30 +46,19 @@ export interface UIColor {
   hex_1800: string;
   hex_1900: string;
 }
-
-export type UIThemesColors = {
-  background: UIColorAccent;
-  foreground: UIColorAccent;
-  gray: UIColor;
-  secondary: UIColor;
-  tertiary: UIColor;
-  success: UIColor;
-  error: UIColor;
-  primary: UIColor;
-  warning: UIColor;
-  link: UIColor;
-  code: UIColor;
-  border: UIColor;
-};
-
-export type UIThemesColorKeys = keyof UIThemesColors;
+export type UIColorKeys = 'gray' | 'secondary' | 'tertiary' | 'success' | 'error' | 'primary' | 'warning' | 'link' | 'code';
+export type UIColorAcentKeys = 'background' | 'foreground' | 'border';
+export type UIColorAndAccentKeys = UIColorKeys | UIColorAcentKeys;
+export type UIColorAccents = Record<UIColorAcentKeys, UIColorAccent>;
+export type UIColors = Record<UIColorKeys, UIColor>;
+export type UIAllColors = UIColors & UIColorAccents;
 
 export interface UIThemesCore {
   gradient_1: Gradient;
   gradient_2: Gradient;
   gradient_3: Gradient;
 }
-export type UIThemesPalette = UIThemesCore & UIThemesColors;
+export type UIThemesPalette = UIThemesCore & UIAllColors;
 
 export interface UIThemesExpressiveness {
   linkStyle: string;

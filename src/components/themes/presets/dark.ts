@@ -1,6 +1,6 @@
 import { makeColors } from '../utils';
 import { UIThemes, UIThemesExpressiveness, UIThemesPalette } from './index';
-import { defaultFont, defaultStyles } from './shared';
+import { defaultFont } from './shared';
 
 const colors = makeColors({
   gray: '#7d7d7d',
@@ -47,7 +47,6 @@ export const expressiveness: UIThemesExpressiveness = {
 };
 
 export const font = defaultFont;
-export const style = defaultStyles;
 
 export const darkTheme = (): UIThemes => {
   return {
@@ -55,7 +54,6 @@ export const darkTheme = (): UIThemes => {
     font,
     palette,
     expressiveness,
-    style,
   };
 };
 

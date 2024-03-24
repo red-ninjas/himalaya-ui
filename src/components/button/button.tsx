@@ -6,11 +6,10 @@ import useClasses from '../use-classes';
 import useLayout from '../use-layout';
 import useScale, { ScaleResponsiveParameter, responsiveCss, withScale } from '../use-scale';
 import useTheme from '../use-theme';
-import { addColorAlpha } from '../utils/color';
 import { ButtonTypes } from '../utils/prop-types';
 import ButtonLoading from './button-loading';
 import ButtonDrip from './button.drip';
-import { getButtonActivatedColors, getButtonColors, getButtonCursor, getButtonDripColor, getButtonHoverColors } from './styles';
+import { getButtonCursor } from './styles';
 import { filterPropsWithGroup, getButtonChildrenWithIcon } from './utils';
 
 export interface bProps {
@@ -63,12 +62,7 @@ const ButtonComponent = React.forwardRef<HTMLButtonElement, React.PropsWithChild
     } = filteredProps;
     /* eslint-enable @typescript-eslint/no-unused-vars */
 
-    const { bg, border, color } = useMemo(() => getButtonColors(theme.palette, filteredProps), [theme.palette, filteredProps]);
-    const hover = useMemo(() => getButtonHoverColors(theme.palette, filteredProps), [theme.palette, filteredProps]);
-
-    const activated = useMemo(() => getButtonActivatedColors(theme.palette, filteredProps), [theme.palette, filteredProps]);
     const { cursor, events } = useMemo(() => getButtonCursor(disabled, loading), [disabled, loading]);
-    const dripColor = useMemo(() => getButtonDripColor(theme.palette), [theme.palette]);
 
     /* istanbul ignore next */
     const dripCompletedHandle = () => {
@@ -104,14 +98,14 @@ const ButtonComponent = React.forwardRef<HTMLButtonElement, React.PropsWithChild
       <button
         ref={buttonRef}
         type={htmlType}
-        className={useClasses('btn padding margin height font auto', className)}
+        className={useClasses('btn padding margin height font auto', className, disabled, 'color-' + (disabled ? 'default' : type), { ghost })}
         disabled={disabled}
         onClick={clickHandler}
         {...props}
       >
-        {loading && <ButtonLoading color={color} />}
+        {loading && <ButtonLoading />}
         {childrenWithIcon}
-        {dripShow && <ButtonDrip x={dripX} y={dripY} color={dripColor} onCompleted={dripCompletedHandle} />}
+        {dripShow && <ButtonDrip x={dripX} y={dripY} onCompleted={dripCompletedHandle} />}
         <style jsx>{`
           .btn {
             box-sizing: border-box;
@@ -138,17 +132,15 @@ const ButtonComponent = React.forwardRef<HTMLButtonElement, React.PropsWithChild
 
             --ui-button-icon-padding: ${SCALES.pl(0.727)};
             --ui-button-height: ${SCALES.h(2.5)};
-            --ui-button-color: ${color};
-            --ui-button-bg: ${bg};
-            --ui-button-border: ${border};
-            --ui-button-hover-color: ${hover.color};
-            --ui-button-hover-bg: ${hover.bg};
-            --ui-button-hover-border-color: ${hover.border};
-            --ui-button-hover-border-color-shade: ${addColorAlpha(hover.border, 0.2)};
-            --ui-button-activated-color: ${activated.color};
-            --ui-button-activated-bg: ${activated.bg};
-            --ui-button-activated-border-color: ${activated.border};
-            --ui-button-activated-border-color-shade: ${addColorAlpha(activated.border, 0.2)};
+            --ui-button-color: var(--color-contrast);
+            --ui-button-bg: var(--color-base);
+            --ui-button-border: var(--color-border);
+            --ui-button-hover-color: var(--color-contrast);
+            --ui-button-hover-bg: var(--color-shade);
+            --ui-button-hover-border-color: var(--color-shade-border);
+            --ui-button-activated-color: var(--color-contrast);
+            --ui-button-activated-bg: var(--color-tint);
+            --ui-button-activated-border-color: var(--color-tint-border);
 
             height: ${SCALES.h(2.5)};
             border: 1px solid var(--ui-button-border);
@@ -160,6 +152,29 @@ const ButtonComponent = React.forwardRef<HTMLButtonElement, React.PropsWithChild
             transition-property: border-color, background, color, transform, box-shadow;
             transition-duration: 0.15s;
             transition-timing-function: ease;
+
+            &.ghost {
+              --ui-button-color: var(--color-base);
+              --ui-button-bg: transparent;
+            }
+            &.ghost.color-default {
+              --ui-button-color: var(--color-contrast);
+              --ui-button-bg: var(--color-base);
+            }
+          }
+
+          .btn:disabled,
+          .btn[disabled],
+          .btn.disabled {
+            --ui-button-color: var(--color-foreground-500);
+            --ui-button-bg: var(--color-shade);
+            --ui-button-border: var(--color-shade-border);
+            --ui-button-hover-color: var(--color-foreground-500);
+            --ui-button-hover-bg: var(--color-shade);
+            --ui-button-hover-border-color: var(--color-shade-border);
+            --ui-button-activated-color: var(--color-foreground-500);
+            --ui-button-activated-bg: var(--color-shade);
+            --ui-button-activated-border-color: var(--color-shade-border);
           }
 
           .btn:hover:not([disabled]) {

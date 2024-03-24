@@ -3,14 +3,10 @@
 import React from 'react';
 import LoadingSpinner from '../loading-spinner';
 
-interface Props {
-  color: string;
-}
-
-const ButtonLoading: React.FC<React.PropsWithChildren<Props>> = ({ color }) => {
+const ButtonLoading: React.FC<React.PropsWithChildren> = () => {
   return (
     <div className="btn-loading">
-      <LoadingSpinner color={color} />
+      <LoadingSpinner />
       <style jsx>{`
         .btn-loading {
           position: absolute;
@@ -20,6 +16,10 @@ const ButtonLoading: React.FC<React.PropsWithChildren<Props>> = ({ color }) => {
           bottom: 0;
           z-index: 2;
           background-color: var(--ui-button-bg);
+        }
+
+        .btn-loading :global(.loading-container) {
+          --spinner-color: var(--ui-button-color) !important;
         }
       `}</style>
     </div>

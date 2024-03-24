@@ -156,31 +156,31 @@ export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
             color: var(--color-background-500);
           }
           .class-name {
-            color: ${theme.palette.warning.hex_1000};
+            color: var(--color-warning-1000);
           }
           .maybe-class-name {
-            color: ${theme.palette.code.hex_1000};
+            color: var(--color-code-1000);
           }
           .token.string {
-            color: ${theme.palette.success.hex_1000};
+            color: var(--color-success-1000);
           }
           .token.comment {
             color: var(--color-background-600);
           }
           .keyword {
-            color: ${theme.palette.code.hex_1000};
+            color: var(--color-code-1000);
           }
           .attr-name {
-            color: ${theme.palette.tertiary.hex_1000};
+            color: var(--color-tertiary-1000);
           }
           .punctuation {
-            color: ${theme.palette.foreground.hex_600};
+            color: var(--color-foreground-600);
           }
           .property-access {
             color: var(--color-primary-1100);
           }
           .imports {
-            color: ${theme.palette.tertiary.hex_1000};
+            color: var(--color-tertiary-1000);
           }
           .plain-text {
             color: var(--color-background-300);

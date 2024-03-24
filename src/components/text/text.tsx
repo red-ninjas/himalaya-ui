@@ -3,11 +3,11 @@
 import React, { ReactNode, useMemo } from 'react';
 import { GradientPositions } from '../themes/presets';
 import { withScale } from '../use-scale';
-import { NormalTypes } from '../utils/prop-types';
+import { ButtonTypes } from '../utils/prop-types';
 import TextChild from './child';
 import { TextColor } from './shared';
 
-export type TextTypes = NormalTypes;
+export type TextTypes = ButtonTypes;
 interface Props {
   h1?: boolean;
   h2?: boolean;

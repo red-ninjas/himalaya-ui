@@ -1,4 +1,4 @@
-import { UIColor, UIColorAccent, UIThemesColorKeys, UIThemesColors } from '../presets';
+import { UIAllColors, UIColor, UIColorAccent, UIColorAndAccentKeys } from '../presets';
 import { Color } from './color';
 
 export const makeStepColors = (background = '#ffffff', text = '#000000') => {
@@ -13,9 +13,10 @@ export const getContrast = (value: string) => {
   return color.contrast().hex;
 };
 
-export const makeColor = (value: string, background: string, foreground: string): UIColor => {
+export const makeColor = (value: string, background: string): UIColor => {
   const color = new Color(value);
-  const stepped = makeStepColors(color.hex, foreground);
+
+  const stepped = makeStepColors(color.hex, new Color(background).contrast().hex);
   const reveresed = makeStepColors(color.hex, background);
   const colorTable = {
     contrast: color.contrast().hex,
@@ -43,9 +44,9 @@ export const makeColor = (value: string, background: string, foreground: string)
   return colorTable;
 };
 
-export const makeColorAccent = (value: string, foreground: string): UIColorAccent => {
+export const makeColorAccent = (value: string, background: string): UIColorAccent => {
   const color = new Color(value);
-  const stepped = makeStepColors(color.hex, foreground);
+  const stepped = makeStepColors(color.hex, background);
   const colorTable = {
     hex_100: stepped[8],
     hex_200: stepped[7],
@@ -63,25 +64,25 @@ export const makeColorAccent = (value: string, foreground: string): UIColorAccen
 };
 
 export type makeColorProps = {
-  [key in UIThemesColorKeys]?: string;
+  [key in UIColorAndAccentKeys]?: string;
 };
 
-export const makeColors = (newConfig: makeColorProps): UIThemesColors => {
-  const foreground = newConfig.foreground ?? '#ffffff';
-  const background = newConfig.background ?? '#000000';
-  const result: UIThemesColors = {
-    background: makeColorAccent(newConfig['background'] ?? '#7d7d7d', foreground),
-    gray: makeColor(newConfig['gray'] ?? '#7d7d7d', foreground, background),
-    foreground: makeColorAccent(newConfig['foreground'] ?? '#ffffff', background),
-    primary: makeColor(newConfig['primary'] ?? '#6e56cf', foreground, background),
-    secondary: makeColor(newConfig['secondary'] ?? '#232225', foreground, background),
-    tertiary: makeColor(newConfig['tertiary'] ?? '#89DDFF', foreground, background),
-    success: makeColor(newConfig['success'] ?? '#32CD32', foreground, background),
-    error: makeColor(newConfig['error'] ?? '#F07178', foreground, background),
-    warning: makeColor(newConfig['warning'] ?? '#FFCB6B', foreground, background),
-    link: makeColor(newConfig['link'] ?? '#baa7ff', foreground, background),
-    code: makeColor(newConfig['code'] ?? '#6e56cf', foreground, background),
-    border: makeColor(newConfig['border'] ?? '#333333', foreground, background),
+export const makeColors = (newConfig: makeColorProps): UIAllColors => {
+  const backgroundReversed = new Color(newConfig.background ?? '#000000').contrast().hex;
+
+  const result: UIAllColors = {
+    background: makeColorAccent(newConfig['background'] ?? '#7d7d7d', backgroundReversed),
+    border: makeColorAccent(newConfig['border'] ?? '#333333', backgroundReversed),
+    gray: makeColor(newConfig['gray'] ?? '#7d7d7d', backgroundReversed),
+    foreground: makeColorAccent(newConfig['foreground'] ?? '#ffffff', newConfig.background ?? '#000000'),
+    primary: makeColor(newConfig['primary'] ?? '#6e56cf', backgroundReversed),
+    secondary: makeColor(newConfig['secondary'] ?? '#232225', backgroundReversed),
+    tertiary: makeColor(newConfig['tertiary'] ?? '#89DDFF', backgroundReversed),
+    success: makeColor(newConfig['success'] ?? '#32CD32', backgroundReversed),
+    error: makeColor(newConfig['error'] ?? '#F07178', backgroundReversed),
+    warning: makeColor(newConfig['warning'] ?? '#FFCB6B', backgroundReversed),
+    link: makeColor(newConfig['link'] ?? '#baa7ff', backgroundReversed),
+    code: makeColor(newConfig['code'] ?? '#6e56cf', backgroundReversed),
   };
   return result;
 };

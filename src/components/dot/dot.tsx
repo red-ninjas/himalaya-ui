@@ -1,44 +1,26 @@
 'use client';
-import React, { useMemo } from 'react';
-import useTheme from '../use-theme';
-import { NormalTypes } from '../utils/prop-types';
-import { UIThemes } from '../themes/presets';
-import useScale, { withScale } from '../use-scale';
+import React from 'react';
 import useClasses from '../use-classes';
+import useScale, { withScale } from '../use-scale';
+import { COLOR_TYPES } from '../utils/prop-types';
 
-export type DotTypes = NormalTypes;
 interface Props {
-  type?: DotTypes;
+  type?: COLOR_TYPES;
   className?: string;
 }
 
 type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
 export type DotProps = Props & NativeAttrs;
 
-const getColor = (type: DotTypes, theme: UIThemes): string => {
-  const colors: { [key in DotTypes]?: string } = {
-    default: theme.palette.background.hex_700,
-    success: theme.palette.success.hex_1000,
-    warning: theme.palette.warning.hex_1000,
-    error: theme.palette.error.hex_1000,
-    primary: theme.palette.primary.hex_1000,
-    tertiary: theme.palette.tertiary.hex_1000,
-    secondary: theme.palette.secondary.hex_1000,
-  };
-  return colors[type] || (colors.default as string);
-};
-
 const DotComponent: React.FC<React.PropsWithChildren<DotProps>> = ({
-  type = 'default' as DotTypes,
+  type = 'default' as COLOR_TYPES,
   children,
   className = '',
   ...props
 }: React.PropsWithChildren<DotProps>) => {
-  const theme = useTheme();
   const { SCALES } = useScale();
-  const color = useMemo(() => getColor(type, theme), [type, theme]);
   return (
-    <span className={useClasses('dot', className)} {...props}>
+    <span className={useClasses('dot', type ? 'color-' + type : null, className)} {...props}>
       <span className="icon" />
       <span className="label">{children}</span>
       <style jsx>{`
@@ -58,7 +40,7 @@ const DotComponent: React.FC<React.PropsWithChildren<DotProps>> = ({
           min-height: calc(0.625 * 12px);
           line-height: 0.625em;
           border-radius: 50%;
-          background-color: ${color};
+          background-color: var(--color-base);
           user-select: none;
         }
         .label {

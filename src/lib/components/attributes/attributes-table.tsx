@@ -21,7 +21,7 @@ const AttributesTable: React.FC<React.PropsWithChildren<unknown>> = ({ children 
         .attr h4.title {
           margin-top: calc(var(--layout-gap) * 2.2);
           background-color: var(--color-background-900);
-          color: ${theme.palette.code.hex_1000};
+          color: var(--color-code-1000);
           border-radius: 0;
         }
         .attr h4.title:first-of-type {

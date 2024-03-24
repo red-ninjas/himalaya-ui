@@ -1,16 +1,13 @@
 'use client';
 
-import React, { useMemo } from 'react';
-import useTheme from '../use-theme';
-import { NormalTypes } from '../utils/prop-types';
-import { UIThemesPalette } from '../themes/presets';
-import useScale, { withScale } from '../use-scale';
+import React from 'react';
 import useClasses from '../use-classes';
+import useScale, { withScale } from '../use-scale';
+import { ButtonTypes } from '../utils/prop-types';
 
-export type LoadingSpinnerTypes = NormalTypes;
+export type LoadingSpinnerTypes = ButtonTypes;
 interface Props {
   type?: LoadingSpinnerTypes;
-  color?: string;
   className?: string;
   spaceRatio?: number;
 }
@@ -18,32 +15,15 @@ interface Props {
 type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
 export type LoadingSpinnerProps = Props & NativeAttrs;
 
-const getIconBgColor = (type: LoadingSpinnerTypes, palette: UIThemesPalette, color?: string) => {
-  const colors: { [key in LoadingSpinnerTypes]: string } = {
-    default: palette.background.hex_300,
-    secondary: palette.secondary.hex_1000,
-    primary: palette.primary.hex_1000,
-    tertiary: palette.tertiary.hex_1000,
-    success: palette.success.hex_1000,
-    warning: palette.warning.hex_1000,
-    error: palette.error.hex_1000,
-  };
-
-  return color ? color : colors[type];
-};
-
 const LoadingSpinnerComponent: React.FC<React.PropsWithChildren<LoadingSpinnerProps>> = ({
   children,
   type = 'default' as LoadingSpinnerTypes,
-  color,
   className = '',
   spaceRatio = 1,
   ...props
 }: React.PropsWithChildren<LoadingSpinnerProps>) => {
-  const theme = useTheme();
   const { SCALES } = useScale();
-  const classes = useClasses('loading-container', className);
-  const bgColor = useMemo(() => getIconBgColor(type, theme.palette, color), [type, theme.palette, color]);
+  const classes = useClasses('loading-container', className, type ? 'color-' + type : null);
 
   return (
     <div className={classes} {...props}>
@@ -64,6 +44,11 @@ const LoadingSpinnerComponent: React.FC<React.PropsWithChildren<LoadingSpinnerPr
           min-height: 1em;
           padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
           margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
+          --spinner-color: var(--color-base);
+
+          &.color-default {
+            --spinner-color: var(--color-contrast);
+          }
         }
 
         label {
@@ -94,7 +79,7 @@ const LoadingSpinnerComponent: React.FC<React.PropsWithChildren<LoadingSpinnerPr
           width: 0.25em;
           height: 0.25em;
           border-radius: 50%;
-          background-color: ${bgColor};
+          background-color: var(--spinner-color);
           margin: 0 calc(0.25em / 2 * ${spaceRatio});
           display: inline-block;
           animation: loading-blink 1.4s infinite both;
