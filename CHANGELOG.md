@@ -1,5 +1,12 @@
 
 
+# [1.15.0](https://github.com/red-ninjas/himalaya-ui/compare/v1.14.2...v1.15.0) (2024-03-24)
+
+
+### Features
+
+* **slider:** add range support ([512525c](https://github.com/red-ninjas/himalaya-ui/commit/512525c6244cdc81d05a635e3ca785d1956010a3))
+
 ## [1.14.2](https://github.com/red-ninjas/himalaya-ui/compare/v1.14.1...v1.14.2) (2024-03-22)
 
 ## [1.14.1](https://github.com/red-ninjas/himalaya-ui/compare/v1.14.0...v1.14.1) (2024-03-22)
