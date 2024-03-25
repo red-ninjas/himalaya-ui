@@ -1,11 +1,11 @@
-import { Layout, Playground, Attributes } from 'lib/components'
-import { Slider, Spacer } from 'components'
-import { useState } from 'react'
+import { Layout, Playground, Attributes } from 'lib/components';
+import { Slider, Spacer } from 'components';
+import { useState } from 'react';
 
 export const meta = {
   title: 'Slider',
   group: 'Data Entry',
-}
+};
 
 # Slider
 
@@ -55,7 +55,7 @@ Display the current value and an inputable range.
 />
 
 <Playground
-  title="Range"
+  title="Limit"
   desc="Specifies the maximum or minimum value of the Slider."
   scope={{ Slider, Spacer }}
   code={`
@@ -84,7 +84,7 @@ Display the current value and an inputable range.
 />
 
 <Playground
-  title="Range Slider"
+  title="Range"
   desc="Set the `value` or `initialValue` prop to an array of two numbers, and the slider becomes a range slider."
   scope={{ Slider, useState }}
   code={`
@@ -119,7 +119,7 @@ Display the current value and an inputable range.
 <Attributes.Title>SliderTypes</Attributes.Title>
 
 ```ts
-type SliderTypes = 'default' | 'secondary' | 'success' | 'warning' | 'error'
+type SliderTypes = 'default' | 'secondary' | 'success' | 'warning' | 'error';
 ```
 
 </Attributes>
