@@ -1,12 +1,11 @@
 'use client';
 import React, { useMemo } from 'react';
-import useTheme from '../use-theme';
-import { useSelectContext } from './select-context';
-import useWarning from '../utils/use-warning';
-import Ellipsis from '../shared/ellipsis';
-import useScale, { withScale } from '../use-scale';
-import useClasses from '../use-classes';
 import Check from '../icons/check';
+import Ellipsis from '../shared/ellipsis';
+import useClasses from '../use-classes';
+import useScale, { withScale } from '../use-scale';
+import useWarning from '../utils/use-warning';
+import { useSelectContext } from './select-context';
 
 interface Props {
   value?: string;
@@ -32,12 +31,11 @@ const SelectOptionComponent: React.FC<React.PropsWithChildren<SelectOptionProps>
   hasCheckmark = true,
   ...props
 }: React.PropsWithChildren<SelectOptionProps>) => {
-  const theme = useTheme();
   const { SCALES, RESPONSIVE } = useScale();
   const { updateValue, value, disableAll } = useSelectContext();
   const isDisabled = useMemo(() => disabled || disableAll, [disabled, disableAll]);
   const isLabel = useMemo(() => label || divider, [label, divider]);
-  const classes = useClasses('option', { divider, label }, className);
+  const classes = useClasses('option', { divider, label }, className, { disabled: isDisabled });
   if (!isLabel && identValue === undefined) {
     useWarning('The props "value" is required.', 'Select Option');
   }
@@ -49,21 +47,6 @@ const SelectOptionComponent: React.FC<React.PropsWithChildren<SelectOptionProps>
     }
     return value.includes(`${identValue}`);
   }, [identValue, value]);
-
-  const bgColor = useMemo(() => {
-    if (isDisabled) return theme.palette.background.hex_800;
-    return theme.palette.background.hex_1000;
-  }, [isDisabled, theme.palette]);
-
-  const hoverBgColor = useMemo(() => {
-    if (isDisabled || isLabel) return bgColor;
-    return theme.palette.background.hex_900;
-  }, [isDisabled, theme.palette, isLabel, bgColor]);
-
-  const color = useMemo(() => {
-    if (isDisabled) return theme.palette.background.hex_500;
-    return theme.palette.foreground.hex_1000;
-  }, [isDisabled, theme.palette]);
 
   const clickHandler = (event: React.MouseEvent<HTMLDivElement>) => {
     if (preventAllEvents) return;
@@ -100,15 +83,26 @@ const SelectOptionComponent: React.FC<React.PropsWithChildren<SelectOptionProps>
           justify-content: flex-start;
           align-items: center;
           font-weight: normal;
-          background-color: ${bgColor};
-          color: ${color};
+
           user-select: none;
           border: 0;
-          cursor: ${isDisabled ? 'not-allowed' : 'pointer'};
+          cursor: pointer;
           transition:
             background 0.2s ease 0s,
             border-color 0.2s ease 0s;
           font-size: var(--select-font-size);
+
+          --option-bg: var(--color-background-1000);
+          --option-color: var(--color-foreground-1000);
+
+          --option-bg-hover: var(--color-background-900);
+          --option-color-hover: var(--color-foreground-1000);
+
+          --option-bg-disabled: var(--color-background-1000);
+          --option-color-disabled: var(--color-foreground-600);
+
+          background-color: var(--option-bg);
+          color: var(--option-color);
         }
 
         .option-check :global(svg) {
@@ -117,8 +111,18 @@ const SelectOptionComponent: React.FC<React.PropsWithChildren<SelectOptionProps>
         }
 
         .option:hover {
-          background-color: ${hoverBgColor};
-          color: var(--color-foreground-1000);
+          background-color: var(--option-bg-hover);
+          color: var(--option-color-hover);
+        }
+
+        .option.disabled {
+          background-color: var(--option-bg-disabled);
+          color: var(--option-color-disabled);
+          &:hover {
+            background-color: var(--option-bg-disabled);
+            color: var(--option-color-disabled);
+          }
+          cursor: not-allowed;
         }
 
         .divider {

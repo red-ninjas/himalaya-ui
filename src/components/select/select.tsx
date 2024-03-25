@@ -3,26 +3,22 @@ import React, { CSSProperties, useEffect, useImperativeHandle, useMemo, useRef, 
 import Grid from '../grid';
 import Ellipsis from '../shared/ellipsis';
 import useClasses from '../use-classes';
-import useLayout from '../use-layout';
 import useScale, { withScale } from '../use-scale';
-import useTheme from '../use-theme';
 import { pickChildByProps } from '../utils/collections';
-import { addColorAlpha } from '../utils/color';
-import { NormalTypes } from '../utils/prop-types';
+import { COLOR_TYPES } from '../utils/prop-types';
 import useCurrentState from '../utils/use-current-state';
 import { SelectConfig, SelectContext } from './select-context';
 import SelectDropdown from './select-dropdown';
 import SelectIcon from './select-icon';
 import SelectInput from './select-input';
 import SelectMultipleValue from './select-multiple-value';
-import { getColors } from './styles';
 
 export type SelectRef = {
   focus: () => void;
   blur: () => void;
   scrollTo?: (options?: ScrollToOptions) => void;
 };
-export type SelectTypes = NormalTypes;
+export type SelectTypes = COLOR_TYPES;
 interface Props {
   disabled?: boolean;
   type?: SelectTypes;
@@ -35,6 +31,7 @@ interface Props {
   multiple?: boolean;
   clearable?: boolean;
   className?: string;
+  hasBorder?: boolean;
   dropdownClassName?: string;
   dropdownStyle?: CSSProperties;
   disableMatchWidth?: boolean;
@@ -57,6 +54,7 @@ const SelectComponent = React.forwardRef<SelectRef, React.PropsWithChildren<Sele
       onChange,
       pure = false,
       multiple = false,
+      hasBorder = true,
       clearable = true,
       placeholder,
       className = '',
@@ -69,9 +67,7 @@ const SelectComponent = React.forwardRef<SelectRef, React.PropsWithChildren<Sele
     }: React.PropsWithChildren<SelectProps>,
     selectRef,
   ) => {
-    const theme = useTheme();
-    const layout = useLayout();
-    const { SCALES } = useScale();
+    const { SCALES, RESPONSIVE } = useScale();
     const ref = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
     const dropdownRef = useRef<HTMLDivElement>(null);
@@ -86,8 +82,6 @@ const SelectComponent = React.forwardRef<SelectRef, React.PropsWithChildren<Sele
       if (!Array.isArray(value)) return !value;
       return value.length === 0;
     }, [value]);
-
-    const { border, borderActive, iconBorder, placeholderColor } = useMemo(() => getColors(theme.palette, type), [theme.palette, type]);
 
     const updateVisible = (next: boolean) => {
       onDropdownVisibleChange(next);
@@ -172,8 +166,10 @@ const SelectComponent = React.forwardRef<SelectRef, React.PropsWithChildren<Sele
       {
         active: selectFocus || visible,
         multiple,
+        disabled,
       },
       className,
+      type ? 'color-' + type : null,
     );
 
     return (
@@ -208,43 +204,67 @@ const SelectComponent = React.forwardRef<SelectRef, React.PropsWithChildren<Sele
               align-items: center;
               user-select: none;
               white-space: nowrap;
+              cursor: pointer;
               position: relative;
-              cursor: ${disabled ? 'not-allowed' : 'pointer'};
               max-width: 90vw;
               overflow: hidden;
               transition:
                 border 200ms ease-in 0s,
                 color 200ms ease-out 0s,
                 box-shadow 200ms ease 0s;
-              border: 1px solid ${border};
               border-radius: ${SCALES.r(1, `var(--layout-radius)`)};
-              background-color: ${disabled ? theme.palette.background.hex_800 : theme.palette.background.hex_1000};
-              --select-font-size: ${SCALES.font(0.875)};
-              --select-height: ${SCALES.h(2.25)};
+
               min-width: 11.5em;
-              width: ${SCALES.w(1, 'initial')};
               height: var(--select-height);
-              padding: ${SCALES.pt(0)} ${SCALES.pr(0.334)} ${SCALES.pb(0)} ${SCALES.pl(0.667)};
-              margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
+
+              --select-color: var(--color-foreground-1000);
+              --select-color-hover: var(--color-foreground-1000);
+              --select-bg: var(--color-background-1000);
+              --select-border-color: var(--color-border);
+              --select-border-color-hover: var(--color-shade-border);
+              --select-border-color-hover-rgb: var(--color-shade-border-rgb);
+              --select-icon-color: var(--select-border-color);
+              --select-placeholder-color: var(--color-foreground-600);
+
+              background-color: var(--select-bg);
+              border-width: ${hasBorder ? '1px' : '0'};
+              border-style: solid;
+              border-color: var(--select-border-color);
+            }
+            .select.color-default {
+              --select-icon-color: var(--select-color);
             }
 
             .multiple {
               height: auto;
               min-height: var(--select-height);
-              padding: ${SCALES.pt(0.334)} ${SCALES.pr(0.334)} ${SCALES.pb(0.334)} ${SCALES.pl(0.667)};
             }
 
             .select.active,
             .select:hover {
-              border-color: ${borderActive};
-              box-shadow: 0 0 0 4px ${addColorAlpha(borderActive, 0.2)};
+              border-color: var(--select-border-color-hover);
+              box-shadow: 0 0 0 4px rgba(var(--select-border-color-hover-rgb), 0.2);
             }
 
-            .select.active.icon,
+            a .select.active.icon,
             .select:hover .icon {
-              color: ${disabled ? theme.palette.foreground.hex_700 : borderActive};
+              color: var(--select-color-hover);
             }
 
+            .select.disabled {
+              --select-bg: var(--color-background-900);
+              --select-border-color: var(--color-border-1000);
+              --select-icon-color: var(--color-foreground-500);
+              --select-color: var(--color-foreground-1000);
+              --select-placeholder-color: var(--color-foreground-600);
+              --select-color-hover: var(--color-foreground-1000);
+              --select-border-color-hover: var(--color-border-1000);
+              --select-border-color-hover-rgb: var(--color-border-1000-rgb);
+              &:hover {
+                box-shahow: none;
+              }
+              cursor: not-allowed;
+            }
             .value {
               display: inline-flex;
               flex: 1;
@@ -254,7 +274,7 @@ const SelectComponent = React.forwardRef<SelectRef, React.PropsWithChildren<Sele
               padding: 0;
               margin-right: 1.25em;
               font-size: var(--select-font-size);
-              color: ${disabled ? theme.palette.background.hex_500 : theme.palette.foreground.hex_1000};
+              color: var(--select-color);
               width: calc(100% - 1.25em);
             }
 
@@ -268,7 +288,7 @@ const SelectComponent = React.forwardRef<SelectRef, React.PropsWithChildren<Sele
             }
 
             .placeholder {
-              color: ${placeholderColor};
+              color: var(--select-placeholder-color);
             }
 
             .icon {
@@ -282,8 +302,36 @@ const SelectComponent = React.forwardRef<SelectRef, React.PropsWithChildren<Sele
               transition: transform 200ms ease;
               display: flex;
               align-items: center;
-              color: ${iconBorder};
+              color: var(--select-icon-color);
             }
+
+            ${RESPONSIVE.font(0.875, value => `--select-font-size: ${value};`, undefined, 'select')}
+            ${RESPONSIVE.padding(
+              {
+                top: 0,
+                left: 0.667,
+                right: 0.334,
+                bottom: 0,
+              },
+              value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
+              undefined,
+              'select',
+            )}
+            ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'select')}
+
+            ${RESPONSIVE.padding(
+              {
+                top: 0.334,
+                left: 0.667,
+                right: 0.334,
+                bottom: 0.334,
+              },
+              value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
+              undefined,
+              'multiple',
+            )}
+            ${RESPONSIVE.h(2.25, value => `--select-height: ${value};`, undefined, 'select')}
+            ${RESPONSIVE.w(1, value => `width: ${value};`, 'initial', 'select')}
           `}</style>
         </div>
       </SelectContext.Provider>

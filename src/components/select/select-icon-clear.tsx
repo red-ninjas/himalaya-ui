@@ -1,13 +1,11 @@
 'use client';
 import React from 'react';
-import useTheme from '../use-theme';
 
 interface Props {
   onClick?: (event: React.MouseEvent<HTMLDivElement>) => void;
 }
 
 const SelectIconClear: React.FC<Props> = ({ onClick }) => {
-  const theme = useTheme();
   const clickHandler = (event: React.MouseEvent<HTMLDivElement>) => {
     event.preventDefault();
     event.stopPropagation();
