@@ -1,12 +1,10 @@
 'use client';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import useTheme from '../use-theme';
-import { NormalTypes } from '../utils/prop-types';
-import { getColors } from './styles';
-import useScale, { withScale } from '../use-scale';
+import React, { useCallback, useEffect, useState } from 'react';
 import useClasses from '../use-classes';
+import useScale, { withScale } from '../use-scale';
+import { COLOR_TYPES } from '../utils/prop-types';
 
-export type ToggleTypes = NormalTypes;
+export type ToggleTypes = COLOR_TYPES;
 export interface ToggleEventTarget {
   checked: boolean;
 }
@@ -23,10 +21,9 @@ interface Props {
   onChange?: (ev: ToggleEvent) => void;
   disabled?: boolean;
   type?: ToggleTypes;
-  className?: string;
 }
 
-type NativeAttrs = Omit<React.LabelHTMLAttributes<any>, keyof Props>;
+type NativeAttrs = Omit<React.LabelHTMLAttributes<HTMLLabelElement>, keyof Props>;
 export type ToggleProps = Props & NativeAttrs;
 
 export type ToggleSize = {
@@ -40,11 +37,10 @@ const ToggleComponent: React.FC<ToggleProps> = ({
   disabled = false,
   onChange,
   type = 'default' as ToggleTypes,
-  className = '',
+  className,
   ...props
 }: ToggleProps) => {
-  const theme = useTheme();
-  const { SCALES } = useScale();
+  const { RESPONSIVE, SCALER } = useScale();
   const [selfChecked, setSelfChecked] = useState<boolean>(initialChecked);
   const classes = useClasses('toggle', { checked: selfChecked, disabled });
 
@@ -66,21 +62,19 @@ const ToggleComponent: React.FC<ToggleProps> = ({
     [disabled, selfChecked, onChange],
   );
 
-  const { bg } = useMemo(() => getColors(theme.palette, type), [theme.palette, type]);
-
   useEffect(() => {
     if (checked === undefined) return;
     setSelfChecked(checked);
   }, [checked]);
 
   return (
-    <label className={className} {...props}>
+    <label className={useClasses('toggle-label', className, type ? 'color-' + type : null)} {...props}>
       <input type="checkbox" disabled={disabled} checked={selfChecked} onChange={changeHandle} />
       <div className={classes}>
         <span className="inner" />
       </div>
       <style jsx>{`
-        label {
+        .toggle-label {
           -webkit-tap-highlight-color: transparent;
           display: inline-block;
           vertical-align: middle;
@@ -88,14 +82,13 @@ const ToggleComponent: React.FC<ToggleProps> = ({
           user-select: none;
           position: relative;
           cursor: ${disabled ? 'not-allowed' : 'pointer'};
-          --toggle-font-size: ${SCALES.font(1)};
-          --toggle-height: ${SCALES.h(0.875)};
-          width: ${SCALES.w(1.75)};
+          --toggle-bg: var(--color-base);
           height: var(--toggle-height);
-          padding: ${SCALES.pt(0.1875)} ${SCALES.pr(0)} ${SCALES.pb(0.1875)} ${SCALES.pl(0)};
-          margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
         }
 
+        .toggle-label.color-default {
+          --toggle-bg: var(--color-foreground-1000);
+        }
         input {
           overflow: hidden;
           visibility: hidden;
@@ -138,7 +131,7 @@ const ToggleComponent: React.FC<ToggleProps> = ({
 
         .disabled {
           border-color: var(--color-border-1000);
-          background-color: var(--color-background-800);
+          background-color: var(--color-background-900);
         }
 
         .disabled > .inner {
@@ -151,13 +144,30 @@ const ToggleComponent: React.FC<ToggleProps> = ({
         }
 
         .checked {
-          background-color: ${bg};
+          background-color: var(--toggle-bg);
         }
 
         .checked > .inner {
           left: calc(100% - (var(--toggle-height) - 2px));
           box-shadow: none;
         }
+
+        ${RESPONSIVE.padding(
+          {
+            top: 0.1875,
+            bottom: 0.1875,
+            left: 0,
+            right: 0,
+          },
+          value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
+          undefined,
+          'toggle-label',
+        )}
+        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'toggle-label')}
+        ${RESPONSIVE.h(0.875, value => `--toggle-height: ${value};`, undefined, 'toggle-label')}
+        ${RESPONSIVE.w(1.75, value => `width: ${value};`, undefined, 'toggle-label')}
+        ${RESPONSIVE.font(1, value => `--toggle-font-size: ${value};`, undefined, 'toggle-label')}
+        ${SCALER('toggle-label')}
       `}</style>
     </label>
   );

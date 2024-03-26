@@ -58,7 +58,7 @@ const ToggleListComponent: React.FC<PropsWithChildren<ToggleListProps>> = ({
 
         ${RESPONSIVE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'toggle-list')}
         ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto', 'toggle-list')}
-        ${RESPONSIVE.h(2, value => ` height: ${value};`, 'auto', 'toggle-list')}
+        ${RESPONSIVE.h(2, value => `height: ${value};`, 'auto', 'toggle-list')}
         ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'toggle-list')}
         ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'toggle-list')}
 
