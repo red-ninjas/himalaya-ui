@@ -1,7 +1,6 @@
 'use client';
 import React, { PropsWithChildren, useEffect, useMemo, useState } from 'react';
 import useScale, { withScale } from '../use-scale';
-import useTheme from '../use-theme';
 import { ToggleListContext } from './toggle-list-provider';
 
 interface Props {
@@ -22,8 +21,7 @@ const ToggleListComponent: React.FC<PropsWithChildren<ToggleListProps>> = ({
   children,
   ...props
 }: ToggleListProps) => {
-  const theme = useTheme();
-  const { SCALES } = useScale();
+  const { RESPONSIVE, SCALER } = useScale();
 
   const [selfVal, setSelfVal] = useState<string | number | undefined>(initialValue);
   const updateState = (nextValue: string | number) => {
@@ -51,16 +49,20 @@ const ToggleListComponent: React.FC<PropsWithChildren<ToggleListProps>> = ({
       </div>
       <style jsx>{`
         .toggle-list {
-          border-radius: ${SCALES.r(1, `var(--layout-radius)`)};
           background: var(--color-background-900);
-          width: ${SCALES.w(1, 'auto')};
-          height: ${SCALES.h(1, 'auto')};
-          padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
-          margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
+
           border: 1px solid var(--color-border-1000);
           display: inline-flex;
           position: relative;
         }
+
+        ${RESPONSIVE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'toggle-list')}
+        ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto', 'toggle-list')}
+        ${RESPONSIVE.h(2, value => ` height: ${value};`, 'auto', 'toggle-list')}
+        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'toggle-list')}
+        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'toggle-list')}
+
+        ${SCALER('toggle-list')}
       `}</style>
     </ToggleListContext.Provider>
   );

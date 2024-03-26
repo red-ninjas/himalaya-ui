@@ -165,20 +165,20 @@ export const getSingleHandlerValue = (attrValue, scale1x: number, defaultValue?:
 
   if (typeof attrValue === 'undefined') {
     if (typeof defaultValue !== 'undefined') return `${defaultValue}`;
-    return `calc(var(--scale-factor) * var(--scale-unit) * ${scale1x})`;
+    return `calc(var(--scale-unit-scale) * ${scale1x})`;
   }
 
   if (typeof attrValue === 'object') {
     if ('xs' in attrValue) {
       const xsValue = attrValue['xs'];
       if (!isCSSNumberValue(xsValue)) return `${xsValue}`;
-      return `calc(var(--scale-factor) *var(--scale-unit)  * ${scale1x} * ${Number(xsValue)})`;
+      return `calc(var(--scale-unit-scale)  * ${scale1x} * ${Number(xsValue)})`;
     } else {
       return `${defaultValue}`;
     }
   } else {
     if (!isCSSNumberValue(attrValue)) return `${attrValue}`;
-    return `calc(var(--scale-factor) * var(--scale-unit) * ${Number(attrValue)} * ${scale1x})`;
+    return `calc(var(--scale-unit-scale) * ${Number(attrValue)} * ${scale1x})`;
   }
 };
 
@@ -198,7 +198,7 @@ export const getResponsiveValues = (
     if (typeof defaultValue !== 'undefined') {
       result.xs = defaultValue;
     } else {
-      result.xs = `calc(var(--scale-factor) * var(--scale-unit) * ${scale1x})`;
+      result.xs = `calc(var(--scale-unit-scale) * ${scale1x})`;
     }
   } else if (typeof attrValue === 'object' && attrValue !== undefined) {
     for (const [key, value] of Object.entries(attrValue)) {
@@ -207,20 +207,20 @@ export const getResponsiveValues = (
           if (typeof defaultValue !== 'undefined') {
             result.xs = defaultValue;
           } else {
-            result.xs = `calc(var(--scale-factor) * var(--scale-unit) * ${scale1x})`;
+            result.xs = `calc(var(--scale-unit-scale) * ${scale1x})`;
           }
         } else {
           if (!isCSSNumberValue(value)) {
             result.xs = value;
           } else {
-            result.xs = `calc(var(--scale-factor) * ${Number(value)} * var(--scale-unit) * ${scale1x})`;
+            result.xs = `calc(var(--scale-unit-scale) * ${Number(value)} * ${scale1x})`;
           }
         }
       } else {
         if (!isCSSNumberValue(value)) {
           result[key] = value;
         } else {
-          result.xs = `calc(var(--scale-factor) * ${Number(value)} * var(--scale-unit) * ${scale1x})`;
+          result.xs = `calc(var(--scale-unit-scale) * ${Number(value)} * ${scale1x})`;
         }
       }
     }
@@ -230,7 +230,7 @@ export const getResponsiveValues = (
     if (!isCSSNumberValue(attrValue)) {
       result['xs'] = attrValue;
     } else {
-      result['xs'] = `calc(var(--scale-factor) * ${Number(attrValue)} * var(--scale-unit) * ${scale1x})`;
+      result['xs'] = `calc(var(--scale-unit-scale) * ${Number(attrValue)} * ${scale1x})`;
     }
   }
 
@@ -347,6 +347,7 @@ export const scaleAttribute =
         .${attributeClassName} {
           --scale-factor: ${factor};
           --scale-unit: ${unit};
+          --scale-unit-scale: calc(${unit} * ${factor});
         }
       `;
     } else {
@@ -358,6 +359,7 @@ export const scaleAttribute =
             .${attributeClassName} {
               --scale-factor: ${factor};
               --scale-unit: ${unit};
+              --scale-unit-scale: calc(${unit} * ${factor});
             }
           `;
         } else {
@@ -365,6 +367,8 @@ export const scaleAttribute =
             @media only screen and (min-width: ${breakpoints[key].min}) {
               .${attributeClassName} {
                 --scale-factor: ${factor};
+                --scale-unit: ${unit};
+                --scale-unit-scale: calc(${unit} * ${factor});
               }
             }
           `;
