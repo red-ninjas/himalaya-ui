@@ -42,7 +42,7 @@ const CheckboxComponent: React.FC<CheckboxProps> = ({
   value = '',
   ...props
 }: CheckboxProps) => {
-  const { SCALES, RESPONSIVE } = useScale();
+  const { SCALER, RESPONSIVE } = useScale();
   const [selfChecked, setSelfChecked] = useState<boolean>(initialChecked);
   const { updateState, inGroup, disabledAll, values } = useCheckbox();
   const isDisabled = inGroup ? disabledAll || disabled : disabled;
@@ -101,7 +101,6 @@ const CheckboxComponent: React.FC<CheckboxProps> = ({
           cursor: ${isDisabled ? 'not-allowed' : 'pointer'};
           opacity: ${isDisabled ? 0.75 : 1};
 
-          --checkbox-size: ${SCALES.w(1)};
           --checkbox-fill: var(--color-base);
           --checkbox-bg: var(--color-contrast);
           --checkbox-color: transparent;
@@ -119,7 +118,6 @@ const CheckboxComponent: React.FC<CheckboxProps> = ({
           width: var(--checkbox-size);
           height: var(--checkbox-size);
           border: 1px solid var(--color-border);
-          border-radius: ${SCALES.r(0.25)};
           opacity: ${disabled ? 0.4 : 1};
           cursor: ${disabled ? 'not-allowed' : 'pointer'};
         }
@@ -148,11 +146,14 @@ const CheckboxComponent: React.FC<CheckboxProps> = ({
           background-color: transparent;
         }
 
+        ${RESPONSIVE.r(0.25, value => `border-radius: ${value};`, undefined, 'checkbox-inner')}
         ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'checkbox')}
         ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'checkbox')}
         ${RESPONSIVE.w(1, value => `--checkbox-size: ${value};`, undefined, 'checkbox')}
         ${RESPONSIVE.font(0.875, value => `font-size: ${value};`, undefined, 'text')}
         ${RESPONSIVE.lineHeight(0.875, value => `line-height: ${value};`, undefined, 'text')}
+
+        ${SCALER('checkbox')}
       `}</style>
     </label>
   );

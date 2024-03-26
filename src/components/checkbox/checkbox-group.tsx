@@ -1,10 +1,10 @@
 'use client';
 
 import React, { useEffect, useMemo, useState } from 'react';
-import { CheckboxContext } from './checkbox-context';
-import useWarning from '../utils/use-warning';
-import useScale, { withScale } from '../use-scale';
 import useClasses from '../use-classes';
+import useScale, { withScale } from '../use-scale';
+import useWarning from '../utils/use-warning';
+import { CheckboxContext } from './checkbox-context';
 
 interface Props {
   value: string[];
@@ -24,7 +24,7 @@ const CheckboxGroupComponent: React.FC<React.PropsWithChildren<CheckboxGroupProp
   className = '',
   ...props
 }: CheckboxGroupProps) => {
-  const { SCALES } = useScale();
+  const { RESPONSIVE, SCALER } = useScale();
   const [selfVal, setSelfVal] = useState<string[]>([]);
   const classes = useClasses('group', className);
   if (!value) {
@@ -57,19 +57,22 @@ const CheckboxGroupComponent: React.FC<React.PropsWithChildren<CheckboxGroupProp
       <div className={classes} {...props}>
         {children}
         <style jsx>{`
-          .group {
-            width: ${SCALES.w(1, 'auto')};
-            height: ${SCALES.h(1, 'auto')};
-            padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
-            margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
-          }
           .group :global(label) {
-            margin-right: calc(${SCALES.font(1)} * 2);
-            --checkbox-size: ${SCALES.font(1)};
+            margin-right: calc(var(--checkbox-label-size) * 2);
+            --checkbox-size: var(--checkbox-label-size);
           }
           .group :global(label:last-of-type) {
             margin-right: 0;
           }
+
+          ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'checkbox')}
+          ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'checkbox')}
+
+          ${RESPONSIVE.font(1, value => `--checkbox-label-size: ${value};`, undefined, 'group')}
+
+          ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto', 'group')}
+          ${RESPONSIVE.h(1, value => `width: ${value};`, 'height', 'group')}
+          ${SCALER('group')}
         `}</style>
       </div>
     </CheckboxContext.Provider>
