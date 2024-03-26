@@ -1,7 +1,6 @@
 'use client';
 import React, { useRef, useState } from 'react';
-import { PlayFill, PauseFill, Minimize, Maximize, Volume2, VolumeX } from '../icons';
-import useTheme from '../use-theme';
+import { Maximize, Minimize, PauseFill, PlayFill, Volume2, VolumeX } from '../icons';
 import useScale, { withScale } from '../use-scale';
 
 interface Props {
@@ -13,12 +12,11 @@ interface Props {
   poster?: string;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLVideoElement>, keyof Props>;
 export type VideoProps = Props & NativeAttrs;
 
-const Video: React.FC<VideoProps> = ({ src, controls, poster, loop = false, autoplay = false, muted = false }) => {
-  const theme = useTheme();
-  const { SCALES } = useScale();
+const Video: React.FC<VideoProps> = ({ src, controls, poster, loop = false, autoplay = false, muted = false, ...props }) => {
+  const { SCALER, RESPONSIVE } = useScale();
 
   const [isPlaying, setIsPlaying] = useState(autoplay);
   const [isMuted, setIsMuted] = useState(muted);
@@ -76,13 +74,12 @@ const Video: React.FC<VideoProps> = ({ src, controls, poster, loop = false, auto
     <div className="video-player">
       <div className="video-container">
         <video
+          {...props}
           ref={videoRef}
           onPlay={() => setIsPlaying(true)}
           onPause={() => setIsPlaying(false)}
           autoPlay={autoplay}
           muted={muted}
-          width={SCALES.w(1, '100%')}
-          height={SCALES.h(1, 'auto')}
           loop={loop}
           poster={poster}
           onClick={() => {
@@ -129,8 +126,8 @@ const Video: React.FC<VideoProps> = ({ src, controls, poster, loop = false, auto
           position: relative;
           max-width: 100%;
           margin: 0 auto;
-          width: ${SCALES.w(1, '100%')};
-          height: ${SCALES.h(1, 'auto')};
+          width: var(--video-width);
+          height: var(--video-height);
         }
         .video-player video {
           width: 100%;
@@ -150,7 +147,6 @@ const Video: React.FC<VideoProps> = ({ src, controls, poster, loop = false, auto
           align-items: center;
           justify-content: center;
           padding: 0 8px;
-          border-radius: ${SCALES.r(1)};
           width: 85%;
           transform: translate3d(0, 6px, 0);
           transition: all 0.2s cubic-bezier(0.25, 0.57, 0.45, 0.94);
@@ -196,6 +192,14 @@ const Video: React.FC<VideoProps> = ({ src, controls, poster, loop = false, auto
         .controls span {
           font-weight: bold;
         }
+
+        ${RESPONSIVE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'controls')}
+
+        ${RESPONSIVE.h(1, value => `--video-height: ${value};`, 'auto', 'video-player')}
+        ${RESPONSIVE.w(1, value => `--video-width: ${value};`, '100%', 'video-player')}
+
+
+        ${SCALER('video-player')}
       `}</style>
     </div>
   );
