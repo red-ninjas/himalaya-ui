@@ -1,9 +1,8 @@
 'use client';
 
-import React, { useMemo } from 'react';
-import useTheme from '../use-theme';
-import { addColorAlpha } from '../utils/color';
+import React from 'react';
 import useClasses from '../use-classes';
+import useTheme from '../use-theme';
 
 interface Props {
   active?: boolean;
@@ -11,7 +10,7 @@ interface Props {
   onClick?: (e: React.MouseEvent) => void;
 }
 
-type NativeAttrs = Omit<React.ButtonHTMLAttributes<any>, keyof Props>;
+type NativeAttrs = Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, keyof Props>;
 export type PaginationItemProps = Props & NativeAttrs;
 
 const PaginationItem: React.FC<React.PropsWithChildren<PaginationItemProps>> = ({ active, children, disabled, onClick, ...props }) => {
@@ -54,25 +53,27 @@ const PaginationItem: React.FC<React.PropsWithChildren<PaginationItemProps>> = (
           min-width: var(--pagination-size);
           font-size: inherit;
           cursor: pointer;
-          color: var(--color-primary-1000);
-          border-radius: var(--layout-radius);
+          color: var(--color-foreground-1000);
           background-color: var(--color-background-1000);
+          border-radius: var(--layout-radius);
           transition: all linear 200ms 0ms;
         }
 
         button:hover {
-          background-color: var(--color-primary-200);
+          background-color: var(--color-tint);
+          color: var(--color-contrast);
         }
 
         .active {
-          font-weight: bold;
-          background-color: var(--color-primary-1000);
-          color: var(--color-background-1000);
+          background-color: var(--color-base);
+          color: var(--color-contrast);
+          font-weight: 500;
           box-shadow: ${theme.expressiveness.shadowSmall};
         }
 
         .active:hover {
-          background-color: var(--color-primary-800);
+          background-color: var(--color-shade);
+          color: var(--color-contrast);
           box-shadow: ${theme.expressiveness.shadowMedium};
         }
 
