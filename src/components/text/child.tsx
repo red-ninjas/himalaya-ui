@@ -99,7 +99,7 @@ const TextChild: React.FC<React.PropsWithChildren<TextChildProps>> = ({
           ${defaultColor}
 
           &.color-default {
-            --color-base: inherit;
+            color: inherit;
           }
         }
 

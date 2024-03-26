@@ -1,10 +1,10 @@
-import { Layout, Playground, Attributes } from 'lib/components'
-import { Card, Spacer, Link, Image, Text, Divider, Code, Grid } from 'components'
+import { Layout, Playground, Attributes } from 'lib/components';
+import { Card, Spacer, Link, Image, Text, Divider, Code, Grid } from 'components';
 
 export const meta = {
   title: 'Card',
   group: 'Surfaces',
-}
+};
 
 # Card
 
@@ -21,10 +21,10 @@ A common container component.
 />
 
 <Playground
-  title="Hoverable"
+  title="Without hover"
   scope={{ Card }}
   code={`
-<Card hoverable>
+<Card hoverable={false}>
   <p>hoverable card.</p>
 </Card>
 `}
@@ -47,7 +47,7 @@ A common container component.
   scope={{ Card, Grid, Text }}
   code={`
 () => {
-  const types = ['primary', 'secondary', 'tertiary',  'success', 'warning', 'error', 'dark', 'alert']
+  const types = ['primary', 'secondary', 'tertiary',  'success', 'warning', 'error', 'default']
   return (
     <Grid.Container gap={1.5}>
       {types.map(type => (
@@ -79,7 +79,7 @@ A common container component.
     </Card>
   </Grid>
   <Grid xs={12} justify="center">
-    <Card w="100%" type="dark">
+    <Card w="100%">
       <Text h4 my={0}>Himalaya UI React</Text>
       <Text>Modern and minimalist React UI library.</Text>
       <Card.Footer>
@@ -151,17 +151,7 @@ A common container component.
 <Attributes.Title>CardType</Attributes.Title>
 
 ```ts
-type CardType =
-  | 'default'
-  | 'secondary'
-  | 'success'
-  | 'warning'
-  | 'error'
-  | 'dark'
-  | 'lite'
-  | 'alert'
-  | 'tertiary'
-  | 'primary'
+type CardType = 'default' | 'secondary' | 'success' | 'warning' | 'error' | 'tertiary' | 'primary';
 ```
 
 </Attributes>

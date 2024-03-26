@@ -1,14 +1,13 @@
 'use client';
 
-import { Card, useTheme, useLayout } from 'components';
+import { Card, useLayout } from 'components';
 import React from 'react';
 
 const AttributesTable: React.FC<React.PropsWithChildren<unknown>> = ({ children }) => {
-  const theme = useTheme();
   const layout = useLayout();
 
   return (
-    <Card className="attr">
+    <Card hoverable={false} className="attr">
       {children}
       <style jsx global>{`
         .attr .pre {
