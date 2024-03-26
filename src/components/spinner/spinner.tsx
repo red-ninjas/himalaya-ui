@@ -120,11 +120,11 @@ const SpinnerComponent: React.FC<SpinnerProps> = ({ className = '', ...props }: 
           left: 50%;
           top: 50%;
         }
-        ${SCALER('spinner')}
         ${RESPONSIVE.w(1.25, value => `width: ${value};`, undefined, 'spinner')}
         ${RESPONSIVE.h(1.25, value => `height: ${value};`, undefined, 'spinner')}
         ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'spinner')}
         ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'spinner')}
+        ${SCALER('spinner')}
       `}</style>
     </div>
   );

@@ -134,12 +134,12 @@ const RatingComponent: React.FC<RatingProps> = ({
           --rating-hover-color: var(--color-contrast);
         }
 
-        ${SCALER('rating')}
         ${RESPONSIVE.h(0.625, value => `height: ${value};`, 'auto', 'rating')}
         ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto', 'rating')}
         ${RESPONSIVE.font(1, value => `font-size: ${value};`, undefined, 'rating')}
         ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'rating')}
         ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'rating')}
+        ${SCALER('rating')}
       `}</style>
     </div>
   );

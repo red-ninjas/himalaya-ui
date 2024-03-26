@@ -129,11 +129,11 @@ const ProgressComponent: React.FC<ProgressProps> = ({
           --progress-background: var(--color-contrast);
         }
 
-        ${SCALER('progress')}
         ${RESPONSIVE.w(1, value => `width: ${value};`, '100%', 'progress')}
         ${RESPONSIVE.h(0.5, value => `height: ${value};`, undefined, 'progress')}
         ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'progress')}
         ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'progress')}
+        ${SCALER('progress')}
       `}</style>
     </div>
   );
