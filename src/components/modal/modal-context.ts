@@ -6,7 +6,5 @@ export interface ModalConfig {
 }
 
 const defaultContext = {};
-
 export const ModalContext = React.createContext<ModalConfig>(defaultContext);
-
 export const useModalContext = (): ModalConfig => React.useContext<ModalConfig>(ModalContext);

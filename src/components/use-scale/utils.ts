@@ -73,7 +73,7 @@ export const scaleHandler4X =
       bottom: 0,
     };
     for (const [key] of Object.entries(breakpoints)) {
-      if (t[key] || b[key] || r[key] || l[key]) {
+      if (t[key] !== undefined || b[key] !== undefined || r[key] !== undefined || l[key] !== undefined) {
         if (key == 'xs') {
           responsiveContent += css`
             .${renderClassName ?? className} {

@@ -1,43 +1,44 @@
 'use client';
 import React from 'react';
-import useTheme from '../use-theme';
+import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';
 
-interface Props {
-  className?: string;
-}
+interface Props {}
 
-type NativeAttrs = Omit<React.HTMLAttributes<HTMLHeadingElement>, keyof Props>;
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLParagraphElement>, keyof Props>;
 export type ModalSubtitleProps = Props & NativeAttrs;
 
 const ModalSubtitleComponent: React.FC<React.PropsWithChildren<ModalSubtitleProps>> = ({
-  className = '',
+  className = undefined,
   children,
   ...props
 }: React.PropsWithChildren<ModalSubtitleProps>) => {
-  const theme = useTheme();
-  const { SCALES } = useScale();
+  const { RESPONSIVE, SCALER } = useScale();
 
   return (
     <>
-      <p className={className} {...props}>
+      <p className={useClasses('modal-sub-title', className)} {...props}>
         {children}
       </p>
       <style jsx>{`
-        p {
+        .modal-sub-title {
           font-weight: normal;
           display: inline-block;
           text-align: center;
           word-break: break-word;
           text-transform: uppercase;
           color: var(--color-background-400);
-          font-size: ${SCALES.font(0.875)};
-          line-height: 1.5em;
-          width: ${SCALES.w(1, 'auto')};
-          height: ${SCALES.h(1, '1.5em')};
-          padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
-          margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
         }
+
+        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'modal-sub-title')}
+        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'modal-sub-title')}
+
+        ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto', 'modal-sub-title')}
+        ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'modal-sub-title')}
+
+        ${RESPONSIVE.font(0.875, value => `font-size: ${value};`, undefined, 'modal-sub-title')}
+        ${RESPONSIVE.lineHeight(1.32, value => `line-height: ${value};`, undefined, 'modal-sub-title')}
+        ${SCALER('modal-sub-title')}
       `}</style>
     </>
   );

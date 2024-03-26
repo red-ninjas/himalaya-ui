@@ -1,9 +1,7 @@
 'use client';
 import React, { useEffect, useRef, useState } from 'react';
-import useTheme from '../use-theme';
 
 const ModalActionsComponent: React.FC<React.PropsWithChildren<unknown>> = ({ children, ...props }) => {
-  const theme = useTheme();
   const ref = useRef<HTMLDivElement>(null);
   const [height, setHeight] = useState<number | string>('auto');
 
