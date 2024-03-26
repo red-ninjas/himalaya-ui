@@ -4,25 +4,25 @@ import React, { useMemo } from 'react';
 import useTheme from '../use-theme';
 import type { Toast, ToastLayout } from './use-toast';
 import CssTransition from '../shared/css-transition';
-import { makeToastActions, getColors, getTranslateByPlacement } from './helpers';
+import { makeToastActions, getTranslateByPlacement } from './helpers';
 import useLayout from '../use-layout';
-
+import useClasses from '../use-classes';
 export interface ToastItemProps {
   toast: Toast;
   layout: Required<ToastLayout>;
 }
 
-const ToastItem: React.FC<ToastItemProps> = React.memo(({ toast, layout }) => {
+const ToastItemComponent: React.FC<ToastItemProps> = ({ toast, layout }) => {
   const theme = useTheme();
   const coreLayout = useLayout();
-  const { color, bgColor } = useMemo(() => getColors(theme.palette, toast.type), [theme.palette, toast.type]);
   const isReactNode = typeof toast.text !== 'string';
   const { padding, margin, r, maxHeight, maxWidth, width, placement } = layout;
   const { enter, leave } = useMemo(() => getTranslateByPlacement(placement), [placement]);
+  const classes = useClasses('toast', toast.type ? 'color-' + toast.type : null);
 
   return (
     <CssTransition name="toast" visible={toast.visible} clearTime={350}>
-      <div key={toast.id} className="toast">
+      <div key={toast.id} className={classes}>
         {isReactNode ? (
           toast.text
         ) : (
@@ -40,9 +40,8 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(({ toast, layout }) => {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            color: var(--color-foreground-1000);
-            background-color: ${bgColor};
-            color: ${color};
+            background-color: var(--color-base);
+            color: var(--color-contrast);
             border: 0;
             border-radius: ${r ?? `var(--layout-radius)`};
             opacity: 1;
@@ -93,6 +92,7 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(({ toast, layout }) => {
       </div>
     </CssTransition>
   );
-});
-ToastItem.displayName = 'HimalayToastItem';
+};
+ToastItemComponent.displayName = 'HimalayToastItem';
+const ToastItem = React.memo(ToastItemComponent);
 export default ToastItem;

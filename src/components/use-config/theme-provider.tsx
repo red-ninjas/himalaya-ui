@@ -72,6 +72,26 @@ const ThemeProvider: React.FC<PropsWithChildren<Props>> = ({ children, themeType
           --color-tint-border-rgb:var(--color-border-600-rgb);
         }
 
+        .color-dark {
+          --color-base: var(--color-foreground-1000);
+          --color-base-rgb: var(--color-foreground-1000-rgb);
+          --color-contrast: var(--color-background-1000);
+          --color-contrast-rgb: var(--color-background-1000-rgb);
+
+          --color-shade: var(--color-foreground-900);
+          --color-shade-rgb: var(--color-foreground-900-rgb);
+          --color-tint: var(--color-foreground-700);
+          --color-tint-rgb: var(--color-foreground-700-rgb);
+
+          --color-border:var(--color-border-1000);
+          --color-shade-border: var(--color-border-800);
+          --color-tint-border:var(--color-border-600);
+
+          --color-border-rgb:var(--color-border-1000-rgb);
+          --color-shade-border-rgb: var(--color-border-800-rgb);
+          --color-tint-border-rgb:var(--color-border-600-rgb);
+        }
+
         .color-abort {
           --color-base: transparent;
           --color-contrast: var(--color-foreground-1000);

@@ -1,10 +1,10 @@
-import { Layout, Playground, Attributes } from 'lib/components'
-import { Tooltip, Spacer, Button, Link, Badge, Code, Text, Grid } from 'components'
+import { Layout, Playground, Attributes } from 'lib/components';
+import { Tooltip, Spacer, Button, Link, Badge, Code, Text, Grid } from 'components';
 
 export const meta = {
   title: 'Tooltip',
   group: 'Data Display',
-}
+};
 
 # Tooltip
 
@@ -23,7 +23,7 @@ Displays additional information on hover.
   desc="Trigger by click."
   scope={{ Tooltip }}
   code={`
-<Tooltip text={'Push to Git and your website is live.'} trigger="click" type="dark">
+<Tooltip text={'Push to Git and your website is live.'} trigger="click">
   <span>Click me</span>
 </Tooltip>
 `}
@@ -35,15 +35,15 @@ Displays additional information on hover.
   scope={{ Tooltip, Button, Link, Spacer, Badge }}
   code={`
 <div>
-  <Tooltip text={'Push to Git and your website is live.'} type="dark">
+  <Tooltip text={'Push to Git and your website is live.'}>
     <Button auto scale={1/2}>Button</Button>
   </Tooltip>
   <Spacer inline w={1} />
-  <Tooltip text={'Push to Git and your website is live.'} type="dark">
+  <Tooltip text={'Push to Git and your website is live.'}>
     <Badge>1000+</Badge>
   </Tooltip>
   <Spacer inline w={1} />
-  <Tooltip text={'Push to Git and your website is live.'} type="dark">
+  <Tooltip text={'Push to Git and your website is live.'}>
     <Link href="#" color>Hyperlink</Link>
   </Tooltip>
 </div>
@@ -73,7 +73,11 @@ Displays additional information on hover.
   scope={{ Tooltip, Spacer, Code, Text }}
   code={`
 <div>
-  <Tooltip text="Perfect for working with a CMS." type="dark">
+  <Tooltip type="default" text="Perfect for working with a CMS.">
+    <span>Default</span>
+  </Tooltip>
+  <Spacer inline w={1.5} />
+  <Tooltip type="dark" text="Perfect for working with a CMS.">
     <span>Dark</span>
   </Tooltip>
   <Spacer inline w={1.5} />
@@ -102,9 +106,6 @@ Displays additional information on hover.
   scope={{ Tooltip, Spacer, Code, Text }}
   code={`
 <div>
-  <Tooltip text="Push to Git and your website is live." type="lite">
-    <span>Lite</span>
-  </Tooltip>
   <Spacer inline w={2.5} />
   <Tooltip text="Push to Git and your website is live." hideArrow>
     <span>No Arrow</span>
@@ -123,43 +124,43 @@ Displays additional information on hover.
   return (
     <Grid.Container gap={1.5} justify="center" alignItems="center">
       <Grid xs={8} justify="flex-end">
-        <Tooltip text={text} placement="topStart" type="dark">topStart</Tooltip>
+        <Tooltip text={text} placement="topStart">topStart</Tooltip>
       </Grid>
       <Grid xs={8} justify="center">
-        <Tooltip text={text} placement="top" type="dark">top</Tooltip>
+        <Tooltip text={text} placement="top">top</Tooltip>
       </Grid>
       <Grid xs={8}>
-        <Tooltip text={text} placement="topEnd" type="dark">topEnd</Tooltip>
+        <Tooltip text={text} placement="topEnd">topEnd</Tooltip>
       </Grid>
       <Grid xs={6} justify="flex-end">
-        <Tooltip text={text} placement="leftStart" type="dark">leftStart</Tooltip>
+        <Tooltip text={text} placement="leftStart">leftStart</Tooltip>
       </Grid>
       <Grid xs={12} />
       <Grid xs={6}>
-        <Tooltip text={text} placement="rightStart" type="dark">rightStart</Tooltip>
+        <Tooltip text={text} placement="rightStart">rightStart</Tooltip>
       </Grid>
       <Grid xs={6} justify="flex-end">
-        <Tooltip text={text} placement="left" type="dark">left</Tooltip>
+        <Tooltip text={text} placement="left">left</Tooltip>
       </Grid>
       <Grid xs={12} />
       <Grid xs={6}>
-        <Tooltip text={text} placement="right" type="dark">right</Tooltip>
+        <Tooltip text={text} placement="right">right</Tooltip>
       </Grid>
       <Grid xs={6} justify="flex-end">
-        <Tooltip text={text} placement="leftEnd" type="dark">leftEnd</Tooltip>
+        <Tooltip text={text} placement="leftEnd">leftEnd</Tooltip>
       </Grid>
       <Grid xs={12} />
       <Grid xs={6}>
-        <Tooltip text={text} placement="rightEnd" type="dark">rightEnd</Tooltip>
+        <Tooltip text={text} placement="rightEnd">rightEnd</Tooltip>
       </Grid>
       <Grid xs={8} justify="flex-end">
-        <Tooltip text={text} placement="bottomStart" type="dark">bottomStart</Tooltip>
+        <Tooltip text={text} placement="bottomStart">bottomStart</Tooltip>
       </Grid>
       <Grid xs={8} justify="center">
-        <Tooltip text={text} placement="bottom" type="dark">bottom</Tooltip>
+        <Tooltip text={text} placement="bottom">bottom</Tooltip>
       </Grid>
       <Grid xs={8}>
-        <Tooltip text={text} placement="bottomEnd" type="dark">bottomEnd</Tooltip>
+        <Tooltip text={text} placement="bottomEnd">bottomEnd</Tooltip>
       </Grid>
     </Grid.Container>
   )
@@ -189,14 +190,7 @@ Displays additional information on hover.
 <Attributes.Title>TooltipTypes</Attributes.Title>
 
 ```ts
-type TooltipTypes =
-  | 'default'
-  | 'secondary'
-  | 'success'
-  | 'warning'
-  | 'error'
-  | 'dark'
-  | 'lite'
+type TooltipTypes = 'default' | 'secondary' | 'success' | 'warning' | 'error';
 ```
 
 <Attributes.Title>Placement</Attributes.Title>

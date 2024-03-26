@@ -1,11 +1,13 @@
 'use client';
 import React, { PropsWithChildren, createRef, useEffect, useMemo, useState } from 'react';
 import useClasses from '../use-classes';
-import useScale, { withScale } from '../use-scale';
+import useScale, { ScaleResponsiveParameter, customResponsiveAttribute, withScale } from '../use-scale';
 import useWarning from '../utils/use-warning';
 import { ToggleListEvent } from './shared';
 import ToggleListIcon from './toggle-list-icon';
 import { useToggleListContext } from './toggle-list-provider';
+import useLayout from '../use-layout';
+import { isCSSNumberValue } from '../utils/collections';
 
 interface Props {
   checked?: boolean;
@@ -13,6 +15,7 @@ interface Props {
   disabled?: boolean;
   onChange?: (e: ToggleListEvent) => void;
   icon?: React.ReactNode;
+  gap?: ScaleResponsiveParameter<number | string>;
 }
 
 type NativeAttrs = Omit<React.HTMLAttributes<HTMLLabelElement>, keyof Props>;
@@ -24,6 +27,7 @@ const ToggleListItemComponent: React.FC<PropsWithChildren<ToggleProps>> = ({
   onChange,
   icon,
   children,
+  gap = 0.25,
   ...props
 }: ToggleProps) => {
   const { SCALER, RESPONSIVE } = useScale();
@@ -31,6 +35,7 @@ const ToggleListItemComponent: React.FC<PropsWithChildren<ToggleProps>> = ({
   const isDisabled = useMemo(() => disabled || disabledAll, [disabled, disabledAll]);
   const [selfChecked, setSelfChecked] = useState<boolean>(false);
 
+  const layoutRoot = useLayout();
   const optionRef = createRef<HTMLInputElement>();
 
   const changeHandler = (event: React.ChangeEvent) => {
@@ -77,7 +82,7 @@ const ToggleListItemComponent: React.FC<PropsWithChildren<ToggleProps>> = ({
           display: inline-flex;
           align-items: center;
         }
-        label.toggle-list-item {
+        .toggle-list-item {
           position: relative;
           overflow: hidden;
           min-width: min-content;
@@ -88,10 +93,15 @@ const ToggleListItemComponent: React.FC<PropsWithChildren<ToggleProps>> = ({
           background: var(--color-background-1000);
         }
 
-        ${SCALER('toggle-list-item')}
+        .has-icon .name {
+          padding-left: var(--toggle-name-left);
+        }
+
+        ${RESPONSIVE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'toggle-list-item')}
         ${RESPONSIVE.font(0.9, value => `font-size: ${value};`, undefined, 'toggle-list-item')}
         ${RESPONSIVE.h(1.5, value => `min-height: ${value};`, undefined, 'toggle-list-item')}
-        ${RESPONSIVE.r(1, value => `border-radius: ${value};`, `var(--layout-radius)`, 'toggle-list-item')}
+        ${RESPONSIVE.h(2.5, value => ` --ui-button-height: ${value};`, undefined, 'toggle-list-item')}
+
         ${RESPONSIVE.padding(
           {
             top: 0.25,
@@ -103,9 +113,13 @@ const ToggleListItemComponent: React.FC<PropsWithChildren<ToggleProps>> = ({
           undefined,
           'toggle-list-item',
         )}
-        ${RESPONSIVE.h(2.5, value => `--ui-button-height: ${value};`, undefined, 'toggle-list-item')}
-        ${RESPONSIVE.pl(0.45, value => `--ui-button-icon-padding: ${value};`, undefined, 'toggle-list-item')}
-        ${RESPONSIVE.pl(0.85, value => `padding-left: ${value};`, undefined, 'has-icon .name')}
+
+        ${RESPONSIVE.pl(0.85, value => `--toggle-name-left: ${value};`, undefined, 'toggle-list-item')}
+        ${customResponsiveAttribute(gap, 'toggle-list-item', layoutRoot.breakpoints, value =>
+          !isCSSNumberValue(value) ? `${value}` : `gap: calc(var(--scale-unit-scale) * ${value}))`,
+        )}
+        ${RESPONSIVE.pl(0.45, value => ` --ui-button-icon-padding: ${value};`, undefined, 'toggle-list-item')}
+        ${SCALER('toggle-list-item')}
       `}</style>
     </label>
   );

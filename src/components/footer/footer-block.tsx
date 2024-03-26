@@ -1,12 +1,11 @@
 'use client';
 
 import React, { PropsWithChildren } from 'react';
-import { withScale } from '../use-scale';
-import { FooterBlockProps } from './index';
+import { FooterBottomItemProps } from './index';
 
-const FooterBlock: React.FC<PropsWithChildren<FooterBlockProps>> = ({ children, justify = 'flex-start' }) => {
+const FooterBlock: React.FC<PropsWithChildren<FooterBottomItemProps>> = ({ children, justify = 'flex-start', ...props }) => {
   return (
-    <div className="footer-block">
+    <div className="footer-block" {...props}>
       {children}
       <style jsx>{`
         .footer-block {
@@ -20,4 +19,4 @@ const FooterBlock: React.FC<PropsWithChildren<FooterBlockProps>> = ({ children, 
   );
 };
 
-export default withScale(FooterBlock);
+export default FooterBlock;

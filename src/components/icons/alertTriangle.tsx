@@ -16,8 +16,8 @@ const AlertTriangle = ({ size = 24, color, style, ...props }: IconPropsNative) =
       width={size}
       style={{ ...style, color: color }}
     >
-      <path fill="currentColor" d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
-      <path stroke="var(--ui-icon-background)" d="M12 9v4M12 17h.01" />
+      <path fill="transparent" d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+      <path stroke="currentColor" d="M12 9v4M12 17h.01" />
     </svg>
   );
 };

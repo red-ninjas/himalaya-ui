@@ -3,19 +3,17 @@ import React from 'react';
 import useScale, { withScale } from '../use-scale';
 import useClasses from '../use-classes';
 
-interface Props {
-  className?: string;
-}
+interface Props {}
 
-type NativeAttrs = Omit<React.HTMLAttributes<HTMLElement>, keyof Props>;
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
 export type ModalContentProps = Props & NativeAttrs;
 
 const ModalContentComponent: React.FC<React.PropsWithChildren<ModalContentProps>> = ({
-  className = '',
+  className = undefined,
   children,
   ...props
 }: React.PropsWithChildren<ModalContentProps>) => {
-  const { SCALES } = useScale();
+  const { SCALER, RESPONSIVE } = useScale();
 
   return (
     <>
@@ -26,12 +24,6 @@ const ModalContentComponent: React.FC<React.PropsWithChildren<ModalContentProps>
         .content {
           position: relative;
           text-align: left;
-          font-size: ${SCALES.font(1)};
-          width: ${SCALES.w(1, 'auto')};
-          height: ${SCALES.h(1, 'auto')};
-          padding: ${SCALES.pt(1.3125)} ${SCALES.pr(1.3125)} ${SCALES.pb(0.6625)} ${SCALES.pl(1.3125)};
-          margin: ${SCALES.mt(0)} ${SCALES.mr(0, 'calc(var(--modal-wrapper-padding-right) * -1)')} ${SCALES.mb(0)}
-            ${SCALES.ml(0, 'calc(var(--modal-wrapper-padding-left) * -1)')};
         }
 
         .content > :global(*:first-child) {
@@ -41,6 +33,24 @@ const ModalContentComponent: React.FC<React.PropsWithChildren<ModalContentProps>
         .content > :global(*:last-child) {
           margin-bottom: 0;
         }
+
+        ${RESPONSIVE.margin(
+          0,
+          value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
+          {
+            right: `calc(var(--modal-wrapper-padding-right) * -1)`,
+            left: `calc(var(--modal-wrapper-padding-left) * -1)`,
+          },
+          'content',
+        )}
+        ${RESPONSIVE.padding(1.3125, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'content')}
+
+        ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto', 'content')}
+        ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'content')}
+
+        ${RESPONSIVE.font(1, value => `font-size: ${value};`, undefined, 'content')}
+        ${RESPONSIVE.lineHeight(1, value => `line-height: ${value};`, undefined, 'content')}
+        ${SCALER('content')}
       `}</style>
     </>
   );

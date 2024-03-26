@@ -21,7 +21,7 @@ const ToggleListComponent: React.FC<PropsWithChildren<ToggleListProps>> = ({
   children,
   ...props
 }: ToggleListProps) => {
-  const { SCALER, RESPONSIVE } = useScale();
+  const { RESPONSIVE, SCALER } = useScale();
 
   const [selfVal, setSelfVal] = useState<string | number | undefined>(initialValue);
   const updateState = (nextValue: string | number) => {
@@ -54,12 +54,14 @@ const ToggleListComponent: React.FC<PropsWithChildren<ToggleListProps>> = ({
           display: inline-flex;
           position: relative;
         }
-        ${SCALER('toggle-list')}
+
         ${RESPONSIVE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'toggle-list')}
         ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto', 'toggle-list')}
-        ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'toggle-list')}
+        ${RESPONSIVE.h(2, value => ` height: ${value};`, 'auto', 'toggle-list')}
         ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'toggle-list')}
         ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'toggle-list')}
+
+        ${SCALER('toggle-list')}
       `}</style>
     </ToggleListContext.Provider>
   );

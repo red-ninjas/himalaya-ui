@@ -244,7 +244,6 @@ const InputComponent = React.forwardRef<HTMLInputElement, React.PropsWithChildre
             -webkit-text-fill-color: var(--input-color) !important;
           }
 
-          ${SCALER('with-label')}
 
           ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'with-label')}
           ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'with-label')}
@@ -254,6 +253,8 @@ const InputComponent = React.forwardRef<HTMLInputElement, React.PropsWithChildre
           ${RESPONSIVE.font(0.875, value => `font-size: ${value};`, undefined, 'font')}
           ${RESPONSIVE.w(1, value => `width: ${value};`, 'initial', 'input-container')}
           ${RESPONSIVE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'input-wrapper')}
+
+          ${SCALER('with-label')}
 
         `}</style>
       </div>

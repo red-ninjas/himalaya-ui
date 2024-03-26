@@ -1,66 +1,60 @@
 'use client';
-import React from 'react';
-import useTheme from '../use-theme';
+import React, { useMemo } from 'react';
 import { useProportions } from '../utils/calculations';
-import { UIThemesPalette } from '../themes/presets';
-import { NormalTypes } from '../utils/prop-types';
+import { COLOR_TYPES } from '../utils/prop-types';
 import useScale, { withScale } from '../use-scale';
 import useClasses from '../use-classes';
 
 export type ProgressColors = {
   [key: number]: string;
 };
-export type ProgressTypes = NormalTypes;
+export type ProgressTypes = COLOR_TYPES;
 
 interface Props {
   value?: number;
   max?: number;
   fixedTop?: boolean;
   fixedBottom?: boolean;
-  colors?: ProgressColors;
   type?: ProgressTypes;
   className?: string;
   indeterminate?: boolean;
+  colors?: ProgressColors;
 }
 
-type NativeAttrs = Omit<React.ProgressHTMLAttributes<any>, keyof Props>;
+type NativeAttrs = Omit<React.ProgressHTMLAttributes<HTMLProgressElement>, keyof Props>;
 export type ProgressProps = Props & NativeAttrs;
-
-const getCurrentColor = (ratio: number, palette: UIThemesPalette, type: ProgressTypes, colors: ProgressColors = {}): string => {
-  const defaultColors: { [key in ProgressTypes]: string } = {
-    default: palette.foreground.hex_1000,
-    success: palette.success.hex_1000,
-    secondary: palette.secondary.hex_1000,
-    primary: palette.primary.hex_1000,
-    tertiary: palette.tertiary.hex_1000,
-    warning: palette.warning.hex_1000,
-    error: palette.error.hex_1000,
-  };
-  const colorKeys = Object.keys(colors);
-  if (colorKeys.length === 0) return defaultColors[type];
-
-  const customColorKey = colorKeys.find(key => ratio <= +key);
-  if (!customColorKey || Number.isNaN(+customColorKey)) return defaultColors[type];
-  return colors[+customColorKey];
-};
 
 const ProgressComponent: React.FC<ProgressProps> = ({
   value = 0,
   max = 100,
   className = '',
-  type = 'default' as ProgressTypes,
-  colors,
+  type = 'default' as COLOR_TYPES,
   fixedTop = false,
   fixedBottom = false,
   indeterminate = false,
+  colors,
   ...props
 }: ProgressProps) => {
-  const theme = useTheme();
-  const { SCALES } = useScale();
+  const { RESPONSIVE, SCALER } = useScale();
   const percentValue = useProportions(value, max);
-  const currentColor = getCurrentColor(percentValue, theme.palette, type, colors);
   const fixed = fixedTop || fixedBottom;
-  const classes = useClasses('progress', { fixed }, className);
+  const classes = useClasses('progress', { fixed }, className, type ? 'color-' + type : null);
+
+  const progressColor = useMemo(() => {
+    if (!colors) return 'var( --progress-background)';
+    const sortedKeys = Object.keys(colors)
+      .map(Number)
+      .sort((a, b) => a - b);
+    let color = colors[sortedKeys[0]] || 'var(--color-background-500)';
+    for (let i = 0; i < sortedKeys.length; i++) {
+      if (value >= sortedKeys[i]) {
+        color = colors[sortedKeys[i]];
+      } else {
+        break;
+      }
+    }
+    return color;
+  }, [value, colors]);
 
   return (
     <div className={classes}>
@@ -69,9 +63,15 @@ const ProgressComponent: React.FC<ProgressProps> = ({
           indeterminate: indeterminate,
         })}
         title={`${percentValue}%`}
+        style={{ backgroundColor: progressColor }}
       />
       <progress className={className} value={value} max={max} {...props} />
       <style jsx>{`
+        .progress {
+          position: relative;
+          background-color: var(--color-background-900);
+        }
+
         progress {
           position: fixed;
           top: -1000px;
@@ -80,19 +80,8 @@ const ProgressComponent: React.FC<ProgressProps> = ({
           pointer-events: none;
         }
 
-        .progress {
-          position: relative;
-          background-color: var(--color-background-700);
-          border-radius: ${SCALES.r(1, `var(--layout-radius)`)};
-
-          width: ${SCALES.w(1, '100%')};
-          height: ${SCALES.h(0.625)};
-          padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
-          margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
-        }
-
         .inner.indeterminate {
-          background-color: ${currentColor};
+          background-color: var(--color-background-500);
           animation: indeterminate 1s infinite linear;
           transform-origin: 0% 50%;
           width: 100%;
@@ -129,10 +118,21 @@ const ProgressComponent: React.FC<ProgressProps> = ({
           height: 100%;
           bottom: 0;
           transition: all 100ms ease-in;
-          border-radius: ${SCALES.r(1, `var(--layout-radius)`)};
-          background-color: ${currentColor};
+          border-radius: var(--layout-radius);
+          --progress-background: var(--color-base);
+          background-color: var(--progress-background);
           width: ${percentValue}%;
         }
+
+        .progress.color-default .inner {
+          --progress-background: var(--color-contrast);
+        }
+        ${RESPONSIVE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'progress')}
+        ${RESPONSIVE.w(1, value => `width: ${value};`, '100%', 'progress')}
+        ${RESPONSIVE.h(0.625, value => `height: ${value};`, undefined, 'progress')}
+        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'progress')}
+        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'progress')}
+        ${SCALER('progress')}
       `}</style>
     </div>
   );

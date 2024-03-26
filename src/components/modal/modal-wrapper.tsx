@@ -20,7 +20,7 @@ const ModalWrapper: React.FC<React.PropsWithChildren<ModalWrapperProps>> = ({
   ...props
 }: React.PropsWithChildren<ModalWrapperProps>) => {
   const theme = useTheme();
-  const { SCALES } = useScale();
+  const { RESPONSIVE, SCALER } = useScale();
   const modalContent = useRef<HTMLDivElement>(null);
   const tabStart = useRef<HTMLDivElement>(null);
   const tabEnd = useRef<HTMLDivElement>(null);
@@ -65,7 +65,6 @@ const ModalWrapper: React.FC<React.PropsWithChildren<ModalWrapperProps>> = ({
             box-sizing: border-box;
             background-color: var(--color-background-1000);
             color: var(--color-foreground-1000);
-            border-radius: ${SCALES.r(1, `var(--layout-radius)`)};
             box-shadow: ${theme.expressiveness.shadowLarge};
             opacity: 0;
             outline: none;
@@ -73,13 +72,10 @@ const ModalWrapper: React.FC<React.PropsWithChildren<ModalWrapperProps>> = ({
             transition:
               opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1) 0s,
               transform 0.35s cubic-bezier(0.4, 0, 0.2, 1) 0s;
-            width: 100%;
-            font-size: ${SCALES.font(1)};
-            height: ${SCALES.h(1, 'auto')};
-            --modal-wrapper-padding-left: ${SCALES.pl(1.3125)};
-            --modal-wrapper-padding-right: ${SCALES.pr(1.3125)};
-            padding: ${SCALES.pt(1.3125)} var(--modal-wrapper-padding-right) ${SCALES.pb(1.3125)} var(--modal-wrapper-padding-left);
-            margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
+            padding-top: var(--modal-wrapper-padding-top);
+            padding-bottom: var(--modal-wrapper-padding-bottom);
+            padding-left: var(--modal-wrapper-padding-left);
+            padding-right: var(--modal-wrapper-padding-right);
           }
 
           .wrapper-enter {
@@ -109,6 +105,25 @@ const ModalWrapper: React.FC<React.PropsWithChildren<ModalWrapperProps>> = ({
             height: 0;
             opacity: 0;
           }
+
+          ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'wrapper')}
+          ${RESPONSIVE.padding(
+            1.3125,
+            value => `
+            --modal-wrapper-padding-right: ${value.right};
+            --modal-wrapper-padding-top: ${value.top};
+            --modal-wrapper-padding-bottom: ${value.bottom};
+            --modal-wrapper-padding-left: ${value.left};
+            `,
+            undefined,
+            'wrapper',
+          )}
+
+          ${RESPONSIVE.w(1, value => `width: ${value};`, '100%', 'wrapper')}
+          ${RESPONSIVE.font(1, value => `font-size: ${value};`, undefined, 'wrapper')}
+          ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'wrapper')}
+          ${RESPONSIVE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'wrapper')}
+          ${SCALER('wrapper')}
         `}</style>
       </div>
     </CssTransition>

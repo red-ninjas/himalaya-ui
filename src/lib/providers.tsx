@@ -1,11 +1,11 @@
 'use client';
 
 import { ConfigProvider } from 'components';
-import React from 'react';
+import { PropsWithChildren } from 'react';
 import { SwipeProvider } from '../components/swipe';
 import { CoreLayout } from './layouts/core-layout';
 
-export function Providers({ children, defaultTheme }: { children: React.ReactNode; defaultTheme: string }) {
+export function Providers({ children, defaultTheme }: PropsWithChildren<{ defaultTheme: string }>) {
   return (
     <ConfigProvider themeType={defaultTheme}>
       <SwipeProvider>
