@@ -1,13 +1,11 @@
 'use client';
-import React, { useEffect, useMemo, useState } from 'react';
-import { UIThemesPalette } from '../themes';
-import { NormalTypes, tupleNumber } from '../utils/prop-types';
-import RatingIcon from './rating-icon';
-import useTheme from '../use-theme';
+import React, { useCallback, useEffect, useState } from 'react';
+import { COLOR_TYPES, tupleNumber } from '../utils/prop-types';
+import { Star } from '../icons';
 import useScale, { withScale } from '../use-scale';
 import useClasses from '../use-classes';
 
-export type RatingTypes = NormalTypes;
+export type RatingTypes = COLOR_TYPES;
 const ratingCountTuple = tupleNumber(2, 3, 4, 5, 6, 7, 8, 9, 10);
 const ratingValueTuple = tupleNumber(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
 export type RatingValue = (typeof ratingValueTuple)[number];
@@ -25,26 +23,13 @@ interface Props {
   onLockedChange?: (locked: boolean) => void;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
 export type RatingProps = Props & NativeAttrs;
-
-const getColor = (type: RatingTypes, palette: UIThemesPalette): string => {
-  const colors: { [key in RatingTypes]?: string } = {
-    default: palette.foreground.hex_1000,
-    success: palette.success.hex_1000,
-    warning: palette.warning.hex_1000,
-    tertiary: palette.tertiary.hex_1000,
-    secondary: palette.secondary.hex_1000,
-    primary: palette.primary.hex_1000,
-    error: palette.error.hex_1000,
-  };
-  return colors[type] || (colors.default as string);
-};
 
 const RatingComponent: React.FC<RatingProps> = ({
   type = 'default' as RatingTypes,
   className = '',
-  icon = (<RatingIcon />) as JSX.Element,
+  icon = <Star />,
   count = 5 as RatingCount,
   value: customValue,
   initialValue = 1 as RatingValue,
@@ -53,30 +38,43 @@ const RatingComponent: React.FC<RatingProps> = ({
   onLockedChange,
   ...props
 }: React.PropsWithChildren<RatingProps>) => {
-  const theme = useTheme();
-  const { SCALES } = useScale();
-  const color = useMemo(() => getColor(type, theme.palette), [type, theme.palette]);
+  const { RESPONSIVE, SCALER } = useScale();
   const [value, setValue] = useState<number>(initialValue);
   const [isLocked, setIsLocked] = useState<boolean>(locked);
 
-  const lockedChangeHandler = (next: boolean) => {
-    setIsLocked(next);
-    onLockedChange && onLockedChange(next);
-  };
-  const valueChangeHandler = (next: number) => {
-    setValue(next);
-    const emitValue = next > count ? count : next;
-    onValueChange && onValueChange(emitValue);
-  };
-  const clickHandler = (index: number) => {
-    if (isLocked) return lockedChangeHandler(false);
-    valueChangeHandler(index);
-    lockedChangeHandler(true);
-  };
-  const mouseEnterHandler = (index: number) => {
-    if (isLocked) return;
-    valueChangeHandler(index);
-  };
+  const lockedChangeHandler = useCallback(
+    (next: boolean) => {
+      setIsLocked(next);
+      onLockedChange?.(next);
+    },
+    [onLockedChange],
+  );
+
+  const valueChangeHandler = useCallback(
+    (next: number) => {
+      setValue(next);
+      const emitValue = next > count ? count : next;
+      onValueChange && onValueChange(emitValue);
+    },
+    [count, onValueChange],
+  );
+
+  const clickHandler = useCallback(
+    (index: number) => {
+      if (isLocked) return lockedChangeHandler(false);
+      valueChangeHandler(index);
+      lockedChangeHandler(true);
+    },
+    [isLocked, lockedChangeHandler, valueChangeHandler],
+  );
+
+  const mouseEnterHandler = useCallback(
+    (index: number) => {
+      if (isLocked) return;
+      valueChangeHandler(index);
+    },
+    [isLocked, valueChangeHandler],
+  );
 
   useEffect(() => {
     if (typeof customValue === 'undefined') return;
@@ -84,7 +82,7 @@ const RatingComponent: React.FC<RatingProps> = ({
   }, [customValue]);
 
   return (
-    <div className={useClasses('rating', className)} {...props}>
+    <div className={useClasses('rating', className, type ? 'color-' + type : null)} {...props}>
       {[...Array(count)].map((_, index) => (
         <div
           className={useClasses('icon-box', {
@@ -102,21 +100,20 @@ const RatingComponent: React.FC<RatingProps> = ({
           box-sizing: border-box;
           display: inline-flex;
           align-items: center;
-          --rating-font-size: ${SCALES.font(1)};
-          font-size: var(--rating-font-size);
-          width: ${SCALES.w(1, 'auto')};
-          height: ${SCALES.h(1, 'auto')};
-          padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
-          margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
         }
+
         .icon-box {
+          --rating-color: var(--color-base);
+          color: var(--rating-color);
           box-sizing: border-box;
-          color: ${color};
-          width: calc(var(--rating-font-size) * 1.5);
-          height: calc(var(--rating-font-size) * 1.5);
           margin-right: calc(var(--rating-font-size) * 1 / 5);
           cursor: ${isLocked ? 'default' : 'pointer'};
         }
+
+        .rating.color-default .icon-box {
+          --rating-color: var(--color-contrast);
+        }
+
         .icon-box :global(svg) {
           width: 100%;
           height: 100%;
@@ -128,9 +125,21 @@ const RatingComponent: React.FC<RatingProps> = ({
             fill 30ms linear;
         }
         .hovered :global(svg) {
-          fill: ${color};
+          --rating-hover-color: var(--color-base);
+          fill: var(--rating-hover-color);
           transform: scale(0.9);
         }
+
+        .rating.color-default .hovered :global(svg) {
+          --rating-hover-color: var(--color-contrast);
+        }
+
+        ${SCALER('rating')}
+        ${RESPONSIVE.h(0.625, value => `height: ${value};`, 'auto', 'rating')}
+        ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto', 'rating')}
+        ${RESPONSIVE.font(1, value => `font-size: ${value};`, undefined, 'rating')}
+        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'rating')}
+        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'rating')}
       `}</style>
     </div>
   );
