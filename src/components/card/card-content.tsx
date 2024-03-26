@@ -25,8 +25,8 @@ const CardContentComponent: React.FC<React.PropsWithChildren<CardContentProps>> 
           margin-bottom: 0;
         }
 
-        ${RESPONSIVE.margin(1, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'content')}
-        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'content')}
+        ${RESPONSIVE.padding(1, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'content')}
+        ${RESPONSIVE.margin(1, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, 0, 'content')}
         ${RESPONSIVE.w(1, value => `width: ${value};`, '100%', 'content')}
         ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'content')}
 

@@ -19,7 +19,7 @@ const AttributesTable: React.FC<React.PropsWithChildren<unknown>> = ({ children 
         }
         .attr h4.title {
           margin-top: calc(var(--layout-gap) * 2.2);
-          background-color: var(--color-background-900);
+          background-color: transparent;
           color: var(--color-code-1000);
           border-radius: 0;
         }

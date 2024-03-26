@@ -9,9 +9,9 @@ export type UpdateToastsLayoutFunction = (fn: (layout: Required<ToastLayout>) =>
 export type UpdateToastsIDFunction = (fn: () => string | null) => any;
 
 export const defaultLayout: LayoutProps = {
-  pageWidth: '920pt',
-  pageMargin: '16px',
-  pageWidthWithMargin: '950pt',
+  pageWidth: '1200px',
+  pageMargin: '24px',
+  pageWidthWithMargin: '1248px',
   gap: '16pt',
   gapNegative: '-16pt',
   gapHalf: '8pt',
