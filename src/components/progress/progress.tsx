@@ -69,8 +69,7 @@ const ProgressComponent: React.FC<ProgressProps> = ({
       <style jsx>{`
         .progress {
           position: relative;
-          background-color: var(--color-background-600);
-          border-radius: var(--layout-radius);
+          background-color: var(--color-background-900);
         }
 
         progress {
@@ -128,9 +127,9 @@ const ProgressComponent: React.FC<ProgressProps> = ({
         .progress.color-default .inner {
           --progress-background: var(--color-contrast);
         }
-
+        ${RESPONSIVE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'progress')}
         ${RESPONSIVE.w(1, value => `width: ${value};`, '100%', 'progress')}
-        ${RESPONSIVE.h(0.5, value => `height: ${value};`, undefined, 'progress')}
+        ${RESPONSIVE.h(0.625, value => `height: ${value};`, undefined, 'progress')}
         ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'progress')}
         ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'progress')}
         ${SCALER('progress')}

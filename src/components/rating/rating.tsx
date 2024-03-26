@@ -1,9 +1,9 @@
 'use client';
 import React, { useCallback, useEffect, useState } from 'react';
-import { COLOR_TYPES, tupleNumber } from '../utils/prop-types';
-import { Star } from '../icons';
-import useScale, { withScale } from '../use-scale';
+import { StarFill } from '../icons';
 import useClasses from '../use-classes';
+import useScale, { withScale } from '../use-scale';
+import { COLOR_TYPES, tupleNumber } from '../utils/prop-types';
 
 export type RatingTypes = COLOR_TYPES;
 const ratingCountTuple = tupleNumber(2, 3, 4, 5, 6, 7, 8, 9, 10);
@@ -29,7 +29,7 @@ export type RatingProps = Props & NativeAttrs;
 const RatingComponent: React.FC<RatingProps> = ({
   type = 'default' as RatingTypes,
   className = '',
-  icon = <Star />,
+  icon = <StarFill />,
   count = 5 as RatingCount,
   value: customValue,
   initialValue = 1 as RatingValue,
@@ -100,10 +100,17 @@ const RatingComponent: React.FC<RatingProps> = ({
           box-sizing: border-box;
           display: inline-flex;
           align-items: center;
+
+          transition:
+            color 0.2s ease 0s,
+            background 0.2s ease 0s,
+            border-color 0.2s ease 0s;
         }
 
         .icon-box {
-          --rating-color: var(--color-base);
+          --rating-color: var(--color-background-800);
+          --rating-hover-color: var(--color-base);
+
           color: var(--rating-color);
           box-sizing: border-box;
           margin-right: calc(var(--rating-font-size) * 1 / 5);
@@ -111,7 +118,7 @@ const RatingComponent: React.FC<RatingProps> = ({
         }
 
         .rating.color-default .icon-box {
-          --rating-color: var(--color-contrast);
+          --rating-hover-color: var(--color-foreground-1000);
         }
 
         .icon-box :global(svg) {
@@ -122,16 +129,12 @@ const RatingComponent: React.FC<RatingProps> = ({
           transition:
             transform,
             color,
-            fill 30ms linear;
-        }
-        .hovered :global(svg) {
-          --rating-hover-color: var(--color-base);
-          fill: var(--rating-hover-color);
-          transform: scale(0.9);
+            fill 0.2s ease 0s;
         }
 
-        .rating.color-default .hovered :global(svg) {
-          --rating-hover-color: var(--color-contrast);
+        .hovered :global(svg) {
+          color: var(--rating-hover-color);
+          transform: scale(0.9);
         }
 
         ${RESPONSIVE.h(0.625, value => `height: ${value};`, 'auto', 'rating')}
