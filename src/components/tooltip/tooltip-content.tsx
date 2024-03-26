@@ -82,6 +82,10 @@ const TooltipContent: React.FC<React.PropsWithChildren<Props>> = ({ children, pa
             border: 1px solid var(--color-border);
           }
 
+          .tooltip-content.popover > .inner {
+            padding: var(--tooltip-popover-padding);
+          }
+
           .tooltip-content.color-default {
             --color-base: var(--color-background-1000);
             --color-base-rgb: var(--color-background-1000-rgb);
@@ -119,6 +123,18 @@ const TooltipContent: React.FC<React.PropsWithChildren<Props>> = ({ children, pa
             value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
             undefined,
             'inner',
+          )}
+
+          ${RESPONSIVE.padding(
+            {
+              top: 0.9,
+              bottom: 0.9,
+              right: 0,
+              left: 0,
+            },
+            value => `--tooltip-popover-padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
+            undefined,
+            'tooltip-content',
           )}
 
           ${SCALER('tooltip-content')}

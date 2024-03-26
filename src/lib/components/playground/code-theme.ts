@@ -14,7 +14,7 @@ const makeCodeTheme = (theme: UIThemes): PrismTheme => ({
     {
       types: ['comment', 'prolog', 'doctype', 'cdata', 'punctuation'],
       style: {
-        color: 'theme.palette.background.hex_600',
+        color: theme.palette.background.hex_600,
         opacity: 0.5,
       },
     },

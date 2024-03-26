@@ -1,11 +1,11 @@
 'use client';
 import React, { useEffect, useMemo, useState } from 'react';
 import Tooltip, { TooltipOnVisibleChange, TooltipProps, TooltipTypes } from '../tooltip/tooltip';
-import { Placement, TriggerTypes } from '../utils/prop-types';
-import { getReactNode } from '../utils/collections';
-import useScale, { withScale } from '../use-scale';
-import { PopoverContext, PopoverConfig } from './popover-context';
 import useClasses from '../use-classes';
+import useScale, { withScale } from '../use-scale';
+import { getReactNode } from '../utils/collections';
+import { Placement, TriggerTypes } from '../utils/prop-types';
+import { PopoverConfig, PopoverContext } from './popover-context';
 
 export type PopoverTriggerTypes = TriggerTypes;
 export type PopoverPlacement = Placement;
@@ -42,7 +42,6 @@ const PopoverComponent: React.FC<React.PropsWithChildren<PopoverProps>> = ({
   leaveDelay = 150,
   ...props
 }: React.PropsWithChildren<PopoverProps>) => {
-  const { SCALES } = useScale();
   const [visible, setVisible] = useState<boolean>(initialVisible);
   const textNode = useMemo(() => getReactNode(content), [content]);
   const onChildClick = () => {
@@ -81,11 +80,6 @@ const PopoverComponent: React.FC<React.PropsWithChildren<PopoverProps>> = ({
         {...props}
       >
         {children}
-        <style jsx>{`
-          :global(.tooltip-content.popover > .inner) {
-            padding: ${SCALES.pt(0.9)} ${SCALES.pr(0)} ${SCALES.pb(0.9)} ${SCALES.pl(0)};
-          }
-        `}</style>
       </Tooltip>
     </PopoverContext.Provider>
   );
