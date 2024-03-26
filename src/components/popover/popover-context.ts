@@ -12,5 +12,4 @@ const defaultContext = {
 };
 
 export const PopoverContext = React.createContext<PopoverConfig>(defaultContext);
-
 export const usePopoverContext = () => useContext<PopoverConfig>(PopoverContext);

@@ -4,13 +4,10 @@ import '@fontsource-variable/roboto-mono';
 import { Analytics } from '@vercel/analytics/react';
 import { Providers } from '../lib/providers';
 
-import { THEME_COOKIE_NAME } from 'components/constants';
-import TilteInjector from 'lib/title-injector';
-import { cookies } from 'next/headers';
 import NextStyleRegistry from 'components/next/registry';
+import TilteInjector from 'lib/title-injector';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const defaultTheme = cookies().get(THEME_COOKIE_NAME)?.value || 'dark';
   return (
     <html lang="en">
       <head>
@@ -21,7 +18,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
         <NextStyleRegistry>
-          <Providers defaultTheme={defaultTheme}>{children}</Providers>
+          <Providers defaultTheme="light">{children}</Providers>
         </NextStyleRegistry>
         <Analytics></Analytics>
       </body>

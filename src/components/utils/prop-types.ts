@@ -33,4 +33,4 @@ export type Placement = (typeof placement)[number];
 
 export type DividerAlign = (typeof dividerAlign)[number];
 
-export type COLOR_TYPES = UIColorKeys | 'default';
+export type COLOR_TYPES = UIColorKeys | 'default' | 'dark';

@@ -201,8 +201,6 @@ const AutoCompleteComponent = React.forwardRef<HTMLInputElement, React.PropsWith
               width: max-content;
             }
 
-            ${SCALER('auto-complete')}
-
             ${RESPONSIVE.w(1, value => `width: ${value};`, 'max-content', 'auto-complete')}
             ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'auto-complete')}
 
@@ -211,6 +209,8 @@ const AutoCompleteComponent = React.forwardRef<HTMLInputElement, React.PropsWith
 
             ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'auto-complete')}
             ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'auto-complete')}
+
+            ${SCALER('auto-complete')}
           `}</style>
         </div>
       </AutoCompleteContext.Provider>
