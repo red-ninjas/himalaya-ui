@@ -2,7 +2,6 @@
 import React, { PropsWithChildren, createRef, useEffect, useMemo, useState } from 'react';
 import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';
-import useTheme from '../use-theme';
 import useWarning from '../utils/use-warning';
 import { ToggleListEvent } from './shared';
 import ToggleListIcon from './toggle-list-icon';
@@ -27,8 +26,7 @@ const ToggleListItemComponent: React.FC<PropsWithChildren<ToggleProps>> = ({
   children,
   ...props
 }: ToggleProps) => {
-  const theme = useTheme();
-  const { SCALES } = useScale();
+  const { SCALER, RESPONSIVE } = useScale();
   const { value: groupValue, disabledAll, updateState } = useToggleListContext();
   const isDisabled = useMemo(() => disabled || disabledAll, [disabled, disabledAll]);
   const [selfChecked, setSelfChecked] = useState<boolean>(false);
@@ -82,23 +80,32 @@ const ToggleListItemComponent: React.FC<PropsWithChildren<ToggleProps>> = ({
         label.toggle-list-item {
           position: relative;
           overflow: hidden;
-          font-size: ${SCALES.font(0.9)};
-          min-height: ${SCALES.h(1.5)};
-          border-radius: ${SCALES.r(1, `var(--layout-radius)`)};
-          gap: ${SCALES.font(0.25)};
-          padding: ${SCALES.pt(0.25)} ${SCALES.pr(1)} ${SCALES.pb(0.25)} ${SCALES.pl(1)};
-          --ui-button-height: ${SCALES.h(2.5)};
-          --ui-button-icon-padding: ${SCALES.pl(0.45)};
           min-width: min-content;
           cursor: pointer;
         }
+
         .toggle-list-item.active {
           background: var(--color-background-1000);
         }
 
-        .has-icon .name {
-          padding-left: ${SCALES.pl(0.85)};
-        }
+        ${SCALER('toggle-list-item')}
+        ${RESPONSIVE.font(0.9, value => `font-size: ${value};`, undefined, 'toggle-list-item')}
+        ${RESPONSIVE.h(1.5, value => `min-height: ${value};`, undefined, 'toggle-list-item')}
+        ${RESPONSIVE.r(1, value => `border-radius: ${value};`, `var(--layout-radius)`, 'toggle-list-item')}
+        ${RESPONSIVE.padding(
+          {
+            top: 0.25,
+            right: 1,
+            bottom: 0.25,
+            left: 1,
+          },
+          value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
+          undefined,
+          'toggle-list-item',
+        )}
+        ${RESPONSIVE.h(2.5, value => `--ui-button-height: ${value};`, undefined, 'toggle-list-item')}
+        ${RESPONSIVE.pl(0.45, value => `--ui-button-icon-padding: ${value};`, undefined, 'toggle-list-item')}
+        ${RESPONSIVE.pl(0.85, value => `padding-left: ${value};`, undefined, 'has-icon .name')}
       `}</style>
     </label>
   );

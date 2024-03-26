@@ -1,6 +1,5 @@
 'use client';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import useTheme from '../use-theme';
 import { NormalTypes } from '../utils/prop-types';
 import { getColors } from './styles';
 import useScale, { withScale } from '../use-scale';
@@ -43,8 +42,7 @@ const ToggleComponent: React.FC<ToggleProps> = ({
   className = '',
   ...props
 }: ToggleProps) => {
-  const theme = useTheme();
-  const { SCALES } = useScale();
+  const { RESPONSIVE, SCALER } = useScale();
   const [selfChecked, setSelfChecked] = useState<boolean>(initialChecked);
   const classes = useClasses('toggle', { checked: selfChecked, disabled });
 
@@ -66,7 +64,7 @@ const ToggleComponent: React.FC<ToggleProps> = ({
     [disabled, selfChecked, onChange],
   );
 
-  const { bg } = useMemo(() => getColors(theme.palette, type), [theme.palette, type]);
+  const { bg } = useMemo(() => getColors(type), [type]);
 
   useEffect(() => {
     if (checked === undefined) return;
@@ -74,7 +72,7 @@ const ToggleComponent: React.FC<ToggleProps> = ({
   }, [checked]);
 
   return (
-    <label className={className} {...props}>
+    <label className={useClasses('toggle-label', className)} {...props}>
       <input type="checkbox" disabled={disabled} checked={selfChecked} onChange={changeHandle} />
       <div className={classes}>
         <span className="inner" />
@@ -88,14 +86,7 @@ const ToggleComponent: React.FC<ToggleProps> = ({
           user-select: none;
           position: relative;
           cursor: ${disabled ? 'not-allowed' : 'pointer'};
-          --toggle-font-size: ${SCALES.font(1)};
-          --toggle-height: ${SCALES.h(0.875)};
-          width: ${SCALES.w(1.75)};
-          height: var(--toggle-height);
-          padding: ${SCALES.pt(0.1875)} ${SCALES.pr(0)} ${SCALES.pb(0.1875)} ${SCALES.pl(0)};
-          margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
         }
-
         input {
           overflow: hidden;
           visibility: hidden;
@@ -158,6 +149,24 @@ const ToggleComponent: React.FC<ToggleProps> = ({
           left: calc(100% - (var(--toggle-height) - 2px));
           box-shadow: none;
         }
+        ${SCALER('toggle-label')}
+
+        ${RESPONSIVE.font(1, value => `--toggle-font-size: ${value};`, undefined, 'toggle-label')}
+        ${RESPONSIVE.h(0.875, value => `--toggle-height: ${value};`, undefined, 'toggle-label')}
+        ${RESPONSIVE.w(1.75, value => `width: ${value};`, undefined, 'toggle-label')}
+        ${RESPONSIVE.h(0.875, value => `height: ${value};`, 'var(--toggle-height)', 'toggle-label')}
+        ${RESPONSIVE.padding(
+          {
+            top: 0.1875,
+            right: 0,
+            bottom: 0.1875,
+            left: 0,
+          },
+          value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
+          undefined,
+          'toggle-label',
+        )}
+        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'toggle-label')}
       `}</style>
     </label>
   );
