@@ -14,8 +14,7 @@ type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
 export type AvatarGroupProps = Props & NativeAttrs;
 
 const AvatarGroupComponent: React.FC<React.PropsWithChildren<AvatarGroupProps>> = ({ count, className = '', children }: AvatarGroupProps) => {
-  const theme = useTheme();
-  const { SCALES } = useScale();
+  const { SCALER, RESPONSIVE } = useScale();
 
   return (
     <div className={useClasses('avatar-group', className)}>
@@ -25,23 +24,26 @@ const AvatarGroupComponent: React.FC<React.PropsWithChildren<AvatarGroupProps>> 
         .avatar-group {
           display: flex;
           align-items: center;
-          width: ${SCALES.w(1, 'max-content')};
-          height: ${SCALES.h(1, 'auto')};
-          padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
-          margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
         }
 
         .avatar-group :global(.avatar) {
-          margin-left: -${SCALES.ml(0.625)};
+          margin-left: var(--avatar-left);
         }
 
         .count {
-          font-size: ${SCALES.font(0.875)};
           display: inline-flex;
           align-items: center;
           padding-left: 5.5px;
           color: var(--color-background-200);
         }
+
+        ${SCALER('avatar-group')}
+        ${RESPONSIVE.font(0.875, value => `font-size: ${value};`, undefined, 'count')}
+        ${RESPONSIVE.w(1, value => `width: ${value};`, 'max-content', 'avatar-group')}
+        ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'avatar-group')}
+        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'avatar-group')}
+        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'avatar-group')}
+        ${RESPONSIVE.ml(-0.625, value => `--avatar-left: ${value};`, undefined, 'avatar-group')}
       `}</style>
     </div>
   );

@@ -4,6 +4,7 @@ import React, { ReactNode } from 'react';
 import useScale, { withScale } from '../use-scale';
 import useTheme from '../use-theme';
 import BreadcrumbsSeparator from './breadcrumbs-separator';
+import useClasses from 'components/use-classes';
 
 interface Props {
   separator?: string | ReactNode;
@@ -15,7 +16,7 @@ export type BreadcrumbsProps = Props & NativeAttrs;
 
 const BreadcrumbsComponent: React.FC<React.PropsWithChildren<BreadcrumbsProps>> = ({ separator = '/', children, className = '' }: BreadcrumbsProps) => {
   const theme = useTheme();
-  const { SCALES } = useScale();
+  const { SCALER, RESPONSIVE } = useScale();
 
   const childrenArray = React.Children.toArray(children);
   const withSeparatorChildren = childrenArray.map((item, index) => {
@@ -35,20 +36,15 @@ const BreadcrumbsComponent: React.FC<React.PropsWithChildren<BreadcrumbsProps>> 
   });
 
   return (
-    <nav className={className}>
+    <nav className={useClasses('nav', className)}>
       {withSeparatorChildren}
       <style jsx>{`
-        nav {
+        .nav {
           line-height: inherit;
           color: var(--color-background-500);
           box-sizing: border-box;
           display: flex;
           align-items: center;
-          font-size: ${SCALES.font(1)};
-          width: ${SCALES.w(1, 'auto')};
-          height: ${SCALES.h(1, 'auto')};
-          padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
-          margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
         }
 
         nav :global(.link:hover) {
@@ -73,6 +69,14 @@ const BreadcrumbsComponent: React.FC<React.PropsWithChildren<BreadcrumbsProps>> 
           display: inline-flex;
           align-items: center;
         }
+
+        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'nav')}
+        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'nav')}
+        ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto', 'nav')}
+        ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'nav')}
+        ${RESPONSIVE.font(1, value => `height: ${value};`, undefined, 'nav')}
+
+        ${SCALER('nav')}
       `}</style>
     </nav>
   );

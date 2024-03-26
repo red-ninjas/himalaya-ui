@@ -1,8 +1,6 @@
 'use client';
 import React from 'react';
 
-export const ScalePropKeys = ['p', 'm', 'w', 'h', 'pl', 'pr', 'pt', 'pb', 'ml', 'mr', 'mt', 'mb', 'px', 'py', 'mx', 'my', 'font', 'unit', 'scale'];
-
 export type BreakpointInterface<T = number | string> = {
   xs: T;
   sm?: T;
@@ -11,7 +9,42 @@ export type BreakpointInterface<T = number | string> = {
   xl?: T;
 };
 
+export type HideInterface =
+  | {
+      xs?: boolean;
+      sm?: boolean;
+      md?: boolean;
+      lg?: boolean;
+      xl?: boolean;
+    }
+  | true;
+
 export type ScaleResponsiveParameter<T = number | string> = T | BreakpointInterface<T>;
+
+export const ScalePropKeys = [
+  'r',
+  'p',
+  'm',
+  'w',
+  'h',
+  'pl',
+  'pr',
+  'pt',
+  'pb',
+  'ml',
+  'mr',
+  'mt',
+  'mb',
+  'px',
+  'py',
+  'mx',
+  'my',
+  'font',
+  'hideOn',
+  'lineHeight',
+  'unit',
+  'scale',
+];
 
 export type ScaleProps = {
   r?: ScaleResponsiveParameter;
@@ -31,11 +64,14 @@ export type ScaleProps = {
   py?: ScaleResponsiveParameter;
   mx?: ScaleResponsiveParameter;
   my?: ScaleResponsiveParameter;
+  hideOn?: HideInterface;
   font?: ScaleResponsiveParameter;
   lineHeight?: ScaleResponsiveParameter;
   unit?: string;
-  scale?: number;
+  scale?: ScaleResponsiveParameter<number>;
 };
+
+export type ScalePropsKeysType = keyof ScaleProps;
 
 export interface DynamicScale4X<T> {
   left: T;
@@ -55,6 +91,7 @@ export type DynamicLayoutPipe = (scale1x: number, defaultValue?: string | number
 export type DynamicLayoutPipe4X = (scale1x: DynamicScale4X<number>, defaultValue?: DynamicScale4X<string | number>) => string;
 export type IRenderFunction = (value: string | number, responiveType: string) => string;
 export type DynamicLayoutResponsivePipe = (scale1x: number, render: IRenderFunction, defaultValue?: string | number, className?: string) => string | undefined;
+export type ScaleResponsivePipe = (className?: string) => string | undefined;
 
 export type DynamicLayoutResponsivePipe4X = (
   scale1x: DynamicScale4X<number> | number,
@@ -82,7 +119,6 @@ export type DynamicResponsiveScales = {
 } & DynamicResponsiveScalesExtra;
 
 export type GetScalePropsFunction = (key: keyof ScaleProps | Array<keyof ScaleProps>) => ScaleProps[keyof ScaleProps];
-
 export type GetAllScalePropsFunction = () => ScaleProps;
 
 export interface ScaleConfig {
@@ -91,6 +127,7 @@ export interface ScaleConfig {
   getScaleProps: GetScalePropsFunction;
   getAllScaleProps: GetAllScalePropsFunction;
   unit: string;
+  SCALER: ScaleResponsivePipe;
 }
 
 const defaultDynamicLayoutPipe: DynamicLayoutPipe = scale1x => {
@@ -148,6 +185,7 @@ const defaultContext: ScaleConfig = {
     margin: defaultDynamicResponsiveLayoutPipe,
     padding: defaultDynamicResponsiveLayoutPipe,
   },
+  SCALER: defaultDynamicResponsiveLayoutPipe,
   unit: '16px',
 };
 

@@ -60,7 +60,7 @@ export type { FieldsetProps, FieldsetTitleProps, FieldsetSubtitleProps, Fieldset
 export { default as Grid } from './grid';
 export type { GridProps, GridContainerProps } from './grid';
 
-export { default as Image, ResponsiveImage } from './image';
+export { default as Image } from './image';
 export type { ImageProps, ImageBrowserProps } from './image';
 
 export { default as Input } from './input';

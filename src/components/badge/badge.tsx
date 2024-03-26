@@ -14,21 +14,8 @@ interface Props {
   className?: string;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLSpanElement>, keyof Props>;
 export type BadgeProps = Props & NativeAttrs;
-
-const getBgColor = (type: COLOR_TYPES, palette: UIThemesPalette) => {
-  const colors: { [key in COLOR_TYPES]: string } = {
-    default: palette.foreground.hex_1000,
-    success: palette.success.hex_1000,
-    secondary: palette.secondary.hex_1000,
-    primary: palette.primary.hex_1000,
-    tertiary: palette.tertiary.hex_1000,
-    warning: palette.warning.hex_1000,
-    error: palette.error.hex_1000,
-  };
-  return colors[type];
-};
 
 const BadgeComponent: React.FC<React.PropsWithChildren<BadgeProps>> = ({
   type = 'default' as BadgeTypes,
@@ -37,7 +24,7 @@ const BadgeComponent: React.FC<React.PropsWithChildren<BadgeProps>> = ({
   dot = false,
   ...props
 }: BadgeProps) => {
-  const { RESPONSIVE } = useScale();
+  const { RESPONSIVE, SCALER } = useScale();
   const classes = useClasses('badge', { dot }, className, type ? 'color-' + type : null);
 
   return (
@@ -66,6 +53,8 @@ const BadgeComponent: React.FC<React.PropsWithChildren<BadgeProps>> = ({
           border-radius: 50%;
           user-select: none;
         }
+
+        ${SCALER('badge')}
 
         ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'badge')}
         ${RESPONSIVE.h(1, value => `width: ${value};`, 'auto', 'badge')}

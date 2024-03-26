@@ -41,7 +41,7 @@ const TextChild: React.FC<React.PropsWithChildren<TextChildProps>> = ({
   const font = getScaleProps('font');
   const lineHeight = getScaleProps('lineHeight');
 
-  const mx = getScaleProps(['m', 'ml', 'mr', 'mx', 'ml', 'mr']);
+  const mx = getScaleProps(['m', 'ml', 'mr', 'mx', 'ml', 'mr', 'font']);
   const my = getScaleProps(['m', 'mt', 'mb', 'my', 'mt', 'mb']);
   const px = getScaleProps(['p', 'pl', 'pr', 'pl', 'pr', 'px']);
   const py = getScaleProps(['p', 'pt', 'pb', 'pt', 'pb', 'py']);

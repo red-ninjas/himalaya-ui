@@ -1,9 +1,8 @@
 'use client';
 
 import React from 'react';
-import useTheme from '../use-theme';
 import useScale, { withScale } from '../use-scale';
-import useLayout from '../use-layout';
+import useClasses from '../use-classes';
 
 interface Props {
   className?: string;
@@ -15,15 +14,13 @@ const AutoCompleteSearchComponent: React.FC<React.PropsWithChildren<AutoComplete
   children,
   className = '',
 }: React.PropsWithChildren<AutoCompleteSearchProps>) => {
-  const theme = useTheme();
-  const layout = useLayout();
-  const { SCALES } = useScale();
+  const { RESPONSIVE, SCALER } = useScale();
 
   return (
-    <div className={className}>
+    <div className={useClasses('searching', className)}>
       {children}
       <style jsx>{`
-        div {
+        .searching {
           display: flex;
           justify-content: center;
           text-align: center;
@@ -36,13 +33,17 @@ const AutoCompleteSearchComponent: React.FC<React.PropsWithChildren<AutoComplete
           color: var(--color-background-400);
           user-select: none;
           border: 0;
-          border-radius: ${SCALES.r(1, `var(--layout-radius)`)};
-          font-size: ${SCALES.font(0.875)};
-          width: ${SCALES.w(1, 'auto')};
-          height: ${SCALES.h(1, 'auto')};
-          padding: ${SCALES.pt(0.875)} ${SCALES.pr(0.875)} ${SCALES.pb(0.875)} ${SCALES.pl(0.875)};
-          margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
         }
+
+        ${SCALER('searching')}
+
+        ${RESPONSIVE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'searching')}
+        ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto', 'searching')}
+        ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'searching')}
+        ${RESPONSIVE.padding(0.875, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'searching')}
+        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'searching')}
+
+        ${RESPONSIVE.font(0.875, value => `font-size: ${value};`, undefined, 'searching')}
       `}</style>
     </div>
   );

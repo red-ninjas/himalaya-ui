@@ -5,7 +5,7 @@ import Input from '../input';
 import LoadingSpinner from '../loading-spinner';
 import useScale, { ScaleResponsiveParameter, withScale } from '../use-scale';
 import { pickChild } from '../utils/collections';
-import { COLOR_TYPES, NormalTypes } from '../utils/prop-types';
+import { COLOR_TYPES } from '../utils/prop-types';
 import useCurrentState from '../utils/use-current-state';
 import { AutoCompleteConfig, AutoCompleteContext } from './auto-complete-context';
 import AutoCompleteDropdown from './auto-complete-dropdown';
@@ -41,7 +41,7 @@ interface Props {
   hasBorder?: boolean;
 }
 
-type NativeAttrs = Omit<React.InputHTMLAttributes<any>, keyof Props>;
+type NativeAttrs = Omit<React.InputHTMLAttributes<HTMLInputElement>, keyof Props>;
 export type AutoCompleteProps = Props & NativeAttrs;
 
 const childrenToOptionsNode = (options: Array<AutoCompleteOption>) =>
@@ -56,18 +56,8 @@ const childrenToOptionsNode = (options: Array<AutoCompleteOption>) =>
     );
   });
 
-// When the search is not set, the "clearable" icon can be displayed in the original location.
-// When the search is seted, at least one element should exist to avoid re-render.
-const getSearchIcon = (searching?: boolean, scale: ScaleResponsiveParameter = 1) => {
-  let newScale: number | string = 1;
-  if (typeof scale === 'object' && 'xs' in scale) {
-    newScale = scale.xs;
-  } else {
-    newScale = scale;
-  }
-
-  if (searching === undefined) return null;
-  return searching ? <LoadingSpinner scale={+newScale / 2} /> : <span />;
+const getSearchIcon = (searching?: boolean, scale: ScaleResponsiveParameter<number> = 1) => {
+  return searching ? <LoadingSpinner scale={scale} w={0.7} h={0.7} font={0.7} /> : <span />;
 };
 
 const AutoCompleteComponent = React.forwardRef<HTMLInputElement, React.PropsWithChildren<AutoCompleteProps>>(
@@ -96,7 +86,7 @@ const AutoCompleteComponent = React.forwardRef<HTMLInputElement, React.PropsWith
     userRef: React.Ref<HTMLInputElement | null>,
   ) => {
     const resetTimer = useRef<number>();
-    const { SCALES, getScaleProps } = useScale();
+    const { RESPONSIVE, SCALER, getScaleProps } = useScale();
     const ref = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
     const [state, setState, stateRef] = useCurrentState<string>(customInitialValue);
@@ -191,9 +181,9 @@ const AutoCompleteComponent = React.forwardRef<HTMLInputElement, React.PropsWith
             onFocus={() => toggleFocusHandler(true)}
             onBlur={() => toggleFocusHandler(false)}
             clearable={showClearIcon}
-            w={SCALES.w(1, 'initial')}
-            h={SCALES.h(2.25)}
-            iconRight={getSearchIcon(searching, getScaleProps('scale'))}
+            w={`var(--auto-input-width)`}
+            h={`var(--auto-input-height)`}
+            iconRight={getSearchIcon(searching, getScaleProps('scale') as ScaleResponsiveParameter<number>)}
             {...inputProps}
           />
           <AutoCompleteDropdown
@@ -207,16 +197,20 @@ const AutoCompleteComponent = React.forwardRef<HTMLInputElement, React.PropsWith
           </AutoCompleteDropdown>
 
           <style jsx>{`
-            .auto-complete {
-              width: ${SCALES.w(1, 'max-content')};
-              height: ${SCALES.h(1, 'auto')};
-              padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
-              margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
-            }
-
             .auto-complete :global(.loading) {
               width: max-content;
             }
+
+            ${SCALER('auto-complete')}
+
+            ${RESPONSIVE.w(1, value => `width: ${value};`, 'max-content', 'auto-complete')}
+            ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'auto-complete')}
+
+            ${RESPONSIVE.w(1, value => `--auto-input-width: ${value};`, 'initial', 'auto-complete')}
+            ${RESPONSIVE.h(2.25, value => `--auto-input-height: ${value};`, undefined, 'auto-complete')}
+
+            ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'auto-complete')}
+            ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'auto-complete')}
           `}</style>
         </div>
       </AutoCompleteContext.Provider>

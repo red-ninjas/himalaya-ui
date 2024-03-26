@@ -21,7 +21,7 @@ const AutoCompleteItemComponent: React.FC<React.PropsWithChildren<AutoCompleteIt
   isLabelOnly,
   hasCheckmark = true,
 }: React.PropsWithChildren<AutoCompleteItemProps>) => {
-  const { SCALES, RESPONSIVE } = useScale();
+  const { RESPONSIVE, SCALER } = useScale();
   const { value, updateValue, updateVisible } = useAutoCompleteContext();
   const selectHandler = () => {
     updateValue && updateValue(identValue);
@@ -35,7 +35,7 @@ const AutoCompleteItemComponent: React.FC<React.PropsWithChildren<AutoCompleteIt
 
   return (
     <div className={classes} onClick={selectHandler}>
-      {isLabelOnly ? <Ellipsis height={SCALES.h(2)}>{children}</Ellipsis> : children}
+      {isLabelOnly ? <Ellipsis height={`var(--ellipse-height)`}>{children}</Ellipsis> : children}
 
       {isActive && hasCheckmark && (
         <div className="auto-check">
@@ -101,6 +101,9 @@ const AutoCompleteItemComponent: React.FC<React.PropsWithChildren<AutoCompleteIt
         ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto', 'item')}
         ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'item')}
         ${RESPONSIVE.h(2.5, value => `height: ${value};`, undefined, 'label-only')}
+        ${RESPONSIVE.h(2, value => `--ellipse-height: ${value};`, undefined, 'item')}
+
+        ${SCALER('item')}
       `}</style>
     </div>
   );

@@ -4,7 +4,7 @@ import React, { MouseEvent, useImperativeHandle, useMemo, useRef, useState } fro
 import { useButtonGroupContext } from '../button-group/button-group-context';
 import useClasses from '../use-classes';
 import useLayout from '../use-layout';
-import useScale, { ScaleResponsiveParameter, responsiveCss, withScale } from '../use-scale';
+import useScale, { ScaleResponsiveParameter, customResponsiveAttribute, withScale } from '../use-scale';
 import useTheme from '../use-theme';
 import { ButtonTypes } from '../utils/prop-types';
 import ButtonLoading from './button-loading';
@@ -27,14 +27,14 @@ export interface bProps {
   className?: string;
 }
 
-type NativeAttrs = Omit<React.ButtonHTMLAttributes<any>, keyof bProps>;
+type NativeAttrs = Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, keyof bProps>;
 export type ButtonProps = bProps & NativeAttrs;
 
 const ButtonComponent = React.forwardRef<HTMLButtonElement, React.PropsWithChildren<ButtonProps>>(
   (btnProps: ButtonProps, ref: React.Ref<HTMLButtonElement | null>) => {
     const theme = useTheme();
     const layoutRoot = useLayout();
-    const { SCALES, RESPONSIVE } = useScale();
+    const { SCALER, RESPONSIVE } = useScale();
     const buttonRef = useRef<HTMLButtonElement>(null);
     useImperativeHandle(ref, () => buttonRef.current);
 
@@ -110,7 +110,6 @@ const ButtonComponent = React.forwardRef<HTMLButtonElement, React.PropsWithChild
           .btn {
             box-sizing: border-box;
             display: inline-block;
-            border-radius: ${SCALES.r(1, `var(--layout-radius)`)};
             font-weight: 500;
             user-select: none;
             outline: none;
@@ -127,8 +126,6 @@ const ButtonComponent = React.forwardRef<HTMLButtonElement, React.PropsWithChild
 
             cursor: ${cursor};
             pointer-events: ${events};
-
-            --ui-button-icon-padding: ${SCALES.pl(0.727)};
 
             --ui-button-color: var(--color-contrast);
             --ui-button-bg: var(--color-base);
@@ -212,11 +209,11 @@ const ButtonComponent = React.forwardRef<HTMLButtonElement, React.PropsWithChild
             margin: 0;
           }
 
-          ${responsiveCss(
+          ${customResponsiveAttribute(
             auto,
             'btn',
             layoutRoot.breakpoints,
-            value => `min-width: ${value ? 'min-content' : SCALES.w(10.5)}; width: ${value ? 'auto' : 'initial'};`,
+            value => `min-width: ${value ? 'min-content' : `--ui-button-min-width`}; width: ${value ? 'auto' : 'initial'};`,
           )}
 
           ${RESPONSIVE.padding(
@@ -225,10 +222,16 @@ const ButtonComponent = React.forwardRef<HTMLButtonElement, React.PropsWithChild
             undefined,
             'btn',
           )}
+
+          ${RESPONSIVE.pl(0.727, value => `--ui-button-icon-padding: ${value};`, undefined, 'btn')}
+          ${RESPONSIVE.w(10.5, value => `--ui-button-min-width: ${value};`, undefined, 'btn')}
           ${RESPONSIVE.h(2.5, value => `height: ${value}; --ui-button-height: ${value};`, undefined, 'btn')}
           ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'btn')}
           ${RESPONSIVE.font(0.875, value => `font-size: ${value}; --button-font-size: ${value};`, undefined, 'btn')}
           ${RESPONSIVE.lineHeight(0.875, value => `line-height: ${value};`, `var(--button-font-size)`, 'btn')}
+          ${RESPONSIVE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'btn')}
+
+          ${SCALER('btn')}
         `}</style>
       </button>
     );

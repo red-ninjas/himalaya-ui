@@ -1,17 +1,17 @@
 'use client';
 import React from 'react';
-import useScale, { withScale } from '../use-scale';
 import useClasses from '../use-classes';
+import useScale, { withScale } from '../use-scale';
 
 interface Props {
   className?: string;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
 export type BreadcrumbsSeparatorProps = Props & NativeAttrs;
 
 const Separator: React.FC<React.PropsWithChildren<BreadcrumbsSeparatorProps>> = ({ children, className = '' }: BreadcrumbsSeparatorProps) => {
-  const { SCALES } = useScale();
+  const { RESPONSIVE, SCALER } = useScale();
   const classes = useClasses('separator', className);
 
   return (
@@ -23,11 +23,23 @@ const Separator: React.FC<React.PropsWithChildren<BreadcrumbsSeparatorProps>> = 
           user-select: none;
           pointer-events: none;
           align-items: center;
-          width: ${SCALES.w(1, 'auto')};
-          height: ${SCALES.h(1, 'auto')};
-          padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
-          margin: ${SCALES.mt(0)} ${SCALES.mr(0.5)} ${SCALES.mb(0)} ${SCALES.ml(0.5)};
         }
+
+        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'separator')}
+        ${RESPONSIVE.margin(
+          {
+            top: 0,
+            right: 0.5,
+            left: 0.5,
+            bottom: 0,
+          },
+          value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
+          undefined,
+          'separator',
+        )}
+        ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto', 'separator')}
+        ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'separator')}
+        ${SCALER('separator')}
       `}</style>
     </div>
   );

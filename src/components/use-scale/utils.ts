@@ -13,23 +13,21 @@ import {
   ScalePropKeys,
   ScaleProps,
   ScaleResponsiveParameter,
+  ScaleResponsivePipe,
 } from './scale-context';
+import _ from 'lodash';
+import { HideInterface } from './scale-context';
 
 export const generateGetScaleProps = <P>(props: P & ScaleProps): GetScalePropsFunction => {
   const getScaleProps: GetScalePropsFunction = keyOrKeys => {
     if (!Array.isArray(keyOrKeys)) return props[keyOrKeys as keyof ScaleProps];
-    let value: string | undefined | number = undefined;
     for (const key of keyOrKeys) {
       const currentValue = props[key];
       if (typeof currentValue !== 'undefined') {
-        if (typeof currentValue === 'object' && 'xs' in currentValue) {
-          value = currentValue.xs;
-        } else {
-          value = currentValue;
-        }
+        return currentValue;
       }
     }
-    return value;
+    return undefined;
   };
   return getScaleProps;
 };
@@ -39,43 +37,30 @@ export const reduceScaleCoefficient = (scale: number) => {
   return scale > 1 ? 1 + diff : 1 - diff;
 };
 
-export const makeScaleHandlerResponsive4X =
+export const scaleHandler4X =
   (
     left: ScaleResponsiveParameter | undefined,
     right: ScaleResponsiveParameter | undefined,
     top: ScaleResponsiveParameter | undefined,
     bottom: ScaleResponsiveParameter | undefined,
-    scale: number,
-    unit: string,
     breakpoints: UIThemesBreakpoints,
     className: string,
   ): DynamicLayoutResponsivePipe4X =>
   (scale1x, render, defaultValue, renderClassName) => {
-    const t = getResponsiveValues(
-      top,
-      scale,
-      unit,
-      typeof scale1x === 'object' ? scale1x.top : scale1x,
-      typeof defaultValue === 'object' ? defaultValue.top : defaultValue,
-    );
+    const t = getResponsiveValues(top, typeof scale1x === 'object' ? scale1x.top : scale1x, typeof defaultValue === 'object' ? defaultValue.top : defaultValue);
     const l = getResponsiveValues(
       left,
-      scale,
-      unit,
       typeof scale1x === 'object' ? scale1x.left : scale1x,
       typeof defaultValue === 'object' ? defaultValue.left : defaultValue,
     );
     const r = getResponsiveValues(
       right,
-      scale,
-      unit,
+
       typeof scale1x === 'object' ? scale1x.right : scale1x,
       typeof defaultValue === 'object' ? defaultValue.right : defaultValue,
     );
     const b = getResponsiveValues(
       bottom,
-      scale,
-      unit,
       typeof scale1x === 'object' ? scale1x.bottom : scale1x,
       typeof defaultValue === 'object' ? defaultValue.bottom : defaultValue,
     );
@@ -135,9 +120,9 @@ export const makeScaleHandlerResponsive4X =
   };
 
 export const makeScaleHandler =
-  (attrValue: ScaleResponsiveParameter | undefined, scale: number, unit: string): DynamicLayoutPipe =>
+  (attrValue: ScaleResponsiveParameter | undefined): DynamicLayoutPipe =>
   (scale1x, defaultValue) => {
-    return getSingleHandlerValue(attrValue, scale, unit, scale1x, defaultValue);
+    return getSingleHandlerValue(attrValue, scale1x, defaultValue);
   };
 
 export const makeScaleHandler4X =
@@ -146,35 +131,25 @@ export const makeScaleHandler4X =
     right: ScaleResponsiveParameter | undefined,
     top: ScaleResponsiveParameter | undefined,
     bottom: ScaleResponsiveParameter | undefined,
-    scale: number,
-    unit: string,
   ): DynamicLayoutPipe4X =>
   (scale1x, defaultValue) => {
     const t = getSingleHandlerValue(
       top,
-      scale,
-      unit,
       typeof scale1x === 'object' ? scale1x.top : scale1x,
       typeof defaultValue === 'object' ? defaultValue.top : defaultValue,
     );
     const l = getSingleHandlerValue(
       left,
-      scale,
-      unit,
       typeof scale1x === 'object' ? scale1x.left : scale1x,
       typeof defaultValue === 'object' ? defaultValue.left : defaultValue,
     );
     const r = getSingleHandlerValue(
       right,
-      scale,
-      unit,
       typeof scale1x === 'object' ? scale1x.right : scale1x,
       typeof defaultValue === 'object' ? defaultValue.right : defaultValue,
     );
     const b = getSingleHandlerValue(
       bottom,
-      scale,
-      unit,
       typeof scale1x === 'object' ? scale1x.bottom : scale1x,
       typeof defaultValue === 'object' ? defaultValue.bottom : defaultValue,
     );
@@ -182,38 +157,33 @@ export const makeScaleHandler4X =
     return `${t} ${r} ${b} ${l}`;
   };
 
-export const getSingleHandlerValue = (attrValue, scale: number, unit: string, scale1x: number, defaultValue?: number | string): string => {
+export const getSingleHandlerValue = (attrValue, scale1x: number, defaultValue?: number | string): string => {
   if (scale1x === 0) {
     scale1x = 1;
     defaultValue = defaultValue || 0;
   }
-  const factor = reduceScaleCoefficient(scale) * scale1x;
 
   if (typeof attrValue === 'undefined') {
     if (typeof defaultValue !== 'undefined') return `${defaultValue}`;
-    return `calc(${factor} * ${unit})`;
+    return `calc(var(--scale-factor) * var(--scale-unit) * ${scale1x})`;
   }
 
   if (typeof attrValue === 'object') {
     if ('xs' in attrValue) {
       const xsValue = attrValue['xs'];
       if (!isCSSNumberValue(xsValue)) return `${xsValue}`;
-      const customFactor = factor * Number(xsValue);
-      return `calc(${customFactor} * ${unit})`;
+      return `calc(var(--scale-factor) *var(--scale-unit)  * ${scale1x} * ${Number(xsValue)})`;
     } else {
       return `${defaultValue}`;
     }
   } else {
     if (!isCSSNumberValue(attrValue)) return `${attrValue}`;
-    const customFactor = factor * Number(attrValue);
-    return `calc(${customFactor} * ${unit})`;
+    return `calc(var(--scale-factor) * var(--scale-unit) * ${Number(attrValue)} * ${scale1x})`;
   }
 };
 
 export const getResponsiveValues = (
   attrValue: ScaleResponsiveParameter | undefined,
-  scale: number,
-  unit: string,
   scale1x: number,
   defaultValue?: string | number,
 ): BreakpointInterface<string | number> => {
@@ -224,12 +194,11 @@ export const getResponsiveValues = (
     scale1x = 1;
     defaultValue = defaultValue || 0;
   }
-  const factor = reduceScaleCoefficient(scale) * scale1x;
   if (typeof attrValue === 'undefined') {
     if (typeof defaultValue !== 'undefined') {
       result.xs = defaultValue;
     } else {
-      result.xs = `calc(${factor} * ${unit})`;
+      result.xs = `calc(var(--scale-factor) * var(--scale-unit) * ${scale1x})`;
     }
   } else if (typeof attrValue === 'object' && attrValue !== undefined) {
     for (const [key, value] of Object.entries(attrValue)) {
@@ -238,20 +207,20 @@ export const getResponsiveValues = (
           if (typeof defaultValue !== 'undefined') {
             result.xs = defaultValue;
           } else {
-            result.xs = `calc(${factor} * ${unit})`;
+            result.xs = `calc(var(--scale-factor) * var(--scale-unit) * ${scale1x})`;
           }
         } else {
           if (!isCSSNumberValue(value)) {
             result.xs = value;
           } else {
-            result.xs = `calc(${factor * Number(value)} * ${unit})`;
+            result.xs = `calc(var(--scale-factor) * ${Number(value)} * var(--scale-unit) * ${scale1x})`;
           }
         }
       } else {
         if (!isCSSNumberValue(value)) {
           result[key] = value;
         } else {
-          result[key] = `calc(${factor * Number(value)} * ${unit})`;
+          result.xs = `calc(var(--scale-factor) * ${Number(value)} * var(--scale-unit) * ${scale1x})`;
         }
       }
     }
@@ -261,24 +230,18 @@ export const getResponsiveValues = (
     if (!isCSSNumberValue(attrValue)) {
       result['xs'] = attrValue;
     } else {
-      result['xs'] = `calc(${factor * Number(attrValue)} * ${unit})`;
+      result['xs'] = `calc(var(--scale-factor) * ${Number(attrValue)} * var(--scale-unit) * ${scale1x})`;
     }
   }
 
   return result;
 };
 
-export const makeScaleHandlerResponsive =
-  (
-    attrValue: ScaleResponsiveParameter | undefined,
-    scale: number,
-    unit: string,
-    breakpoints: UIThemesBreakpoints,
-    className: string,
-  ): DynamicLayoutResponsivePipe =>
+export const scaleHandler1X =
+  (attrValue: ScaleResponsiveParameter | undefined, breakpoints: UIThemesBreakpoints, className: string): DynamicLayoutResponsivePipe =>
   (scale1x, render, defaultValue, renderClassName) => {
     let responsiveContent: string = ``;
-    const values = getResponsiveValues(attrValue, scale, unit, scale1x, defaultValue);
+    const values = getResponsiveValues(attrValue, scale1x, defaultValue);
     for (const [key, value] of Object.entries(values)) {
       if (key == 'xs') {
         responsiveContent += css`
@@ -300,21 +263,20 @@ export const makeScaleHandlerResponsive =
     return responsiveContent;
   };
 
-export const generateGetAllScaleProps = <P>(props: P & ScaleProps): GetAllScalePropsFunction => {
-  const getAllScaleProps: GetAllScalePropsFunction = () => {
-    const scaleProps: ScaleProps = {};
-    for (const key of ScalePropKeys) {
-      const value = props[key as keyof ScaleProps];
-      if (typeof value !== 'undefined') {
-        scaleProps[key as keyof ScaleProps] = value as any;
-      }
-    }
-    return scaleProps;
-  };
-  return getAllScaleProps;
-};
-
-export const responsiveCss = (property, className, breakpoints: UIThemesBreakpoints, reflect: (value: any, responsive: string) => string): string => {
+/**
+ * Make a custom attribute reponsive
+ * @param property
+ * @param className
+ * @param breakpoints
+ * @param reflect
+ * @returns
+ */
+export const customResponsiveAttribute = (
+  property,
+  className,
+  breakpoints: UIThemesBreakpoints,
+  reflect: (value: any, responsive: string) => string,
+): string => {
   let responsiveContent: string = ``;
   if (typeof property === 'object' && 'xs' in property) {
     for (const key in property) {
@@ -344,4 +306,85 @@ export const responsiveCss = (property, className, breakpoints: UIThemesBreakpoi
   }
 
   return responsiveContent;
+};
+
+export const mergeParameters = (fields: { [key: string]: ScaleResponsiveParameter<any> }) => {
+  const result = Object.entries(fields)
+    .map(df => {
+      df[1] = typeof df[1] !== 'object' ? { xs: df[1] } : df[1];
+      return df;
+    })
+    .map(data => {
+      return Object.entries(data[1]).map(item => {
+        return {
+          key: data[0],
+          size: item[0],
+          value: item[1],
+        };
+      });
+    });
+
+  return _.groupBy(_.concat(...result), 'size');
+};
+
+/**
+ * Create scale and unit vars
+ * @param scale
+ * @param unit
+ * @param breakpoints
+ * @param className
+ * @returns
+ */
+export const scaleAttribute =
+  (scale: ScaleResponsiveParameter<number>, unit: string, breakpoints: UIThemesBreakpoints, className: string, hideOn?: HideInterface): ScaleResponsivePipe =>
+  renderClassName => {
+    let responsiveContent: string = ``;
+    const attributeClassName = renderClassName ?? className;
+
+    if (typeof scale === 'number') {
+      const factor = reduceScaleCoefficient(scale);
+      responsiveContent += css`
+        .${attributeClassName} {
+          --scale-factor: ${factor};
+          --scale-unit: ${unit};
+        }
+      `;
+    } else {
+      for (const [key, value] of Object.entries(scale)) {
+        const factor = reduceScaleCoefficient(value);
+
+        if (key == 'xs') {
+          responsiveContent += css`
+            .${attributeClassName} {
+              --scale-factor: ${factor};
+              --scale-unit: ${unit};
+            }
+          `;
+        } else {
+          responsiveContent += css`
+            @media only screen and (min-width: ${breakpoints[key].min}) {
+              .${attributeClassName} {
+                --scale-factor: ${factor};
+              }
+            }
+          `;
+        }
+      }
+    }
+
+    return responsiveContent;
+  };
+
+export const generateGetAllScaleProps = <P>(props: P & ScaleProps): GetAllScalePropsFunction => {
+  const getAllScaleProps: GetAllScalePropsFunction = () => {
+    const scaleProps: ScaleProps = {};
+    for (const key of ScalePropKeys) {
+      const value = props[key as keyof ScaleProps];
+      if (typeof value !== 'undefined') {
+        scaleProps[key as keyof ScaleProps] = value as any;
+      }
+    }
+    return scaleProps;
+  };
+  return getAllScaleProps;
 };

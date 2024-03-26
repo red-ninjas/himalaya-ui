@@ -3,7 +3,7 @@ import React from 'react';
 import css from 'styled-jsx/css';
 import useClasses from '../use-classes';
 import useLayout from '../use-layout';
-import useScale, { ScaleResponsiveParameter, responsiveCss, withScale } from '../use-scale';
+import useScale, { ScaleResponsiveParameter, customResponsiveAttribute, withScale } from '../use-scale';
 import GridBasicItem, { GridBasicItemProps } from './basic-item';
 import { GridWrap } from './grid-types';
 
@@ -34,7 +34,7 @@ const GridContainerComponent: React.FC<React.PropsWithChildren<GridContainerProp
       box-sizing: border-box;
     }
 
-    ${responsiveCss(
+    ${customResponsiveAttribute(
       gap,
       'gap',
       layout.breakpoints,
@@ -42,7 +42,7 @@ const GridContainerComponent: React.FC<React.PropsWithChildren<GridContainerProp
         `--grid-gap-unit: calc(${value} * ${unit} * 1/3); --grid-container-margin: calc(-1 * var(--grid-gap-unit)); --grid-container-width: calc(100% + var(--grid-gap-unit) * 2);`,
     )}
     ${RESPONSIVE.w(0, value => `width: ${value};`, 'var(--grid-container-width)')}
-    ${responsiveCss(
+    ${customResponsiveAttribute(
       rowGap ?? gap,
       'rowGap',
       layout.breakpoints,

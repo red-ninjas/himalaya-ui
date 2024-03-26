@@ -1,4 +1,4 @@
-import { Button, PageWidth, FadeInEffect, Grid, Hero, Link, ResponsiveImage, Text, useTheme } from 'components';
+import { Button, PageWidth, FadeInEffect, Grid, Hero, Link, Text, useTheme } from 'components';
 
 export function PortfolioItem({
   image,
@@ -21,7 +21,9 @@ export function PortfolioItem({
       <div className="portfolio">
         {image && (
           <div className="portfolio-image">
+            {/*
             <ResponsiveImage alt={title} src={image} w={w} h={h} draggable={false} />
+            */}
           </div>
         )}
         <FadeInEffect translateY="4rem">

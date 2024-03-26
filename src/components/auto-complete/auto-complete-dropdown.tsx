@@ -3,7 +3,6 @@ import React, { CSSProperties, useMemo } from 'react';
 import Dropdown from '../shared/dropdown';
 import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';
-import useTheme from '../use-theme';
 import { useAutoCompleteContext } from './auto-complete-context';
 
 interface Props {
@@ -26,14 +25,13 @@ const AutoCompleteDropdown: React.FC<React.PropsWithChildren<AutoCompleteDropdow
   getPopupContainer,
   ...props
 }: React.PropsWithChildren<AutoCompleteDropdownProps>) => {
-  const theme = useTheme();
   const { ref } = useAutoCompleteContext();
   const isEmpty = useMemo(() => {
     return !visible || React.Children.count(children) === 0;
   }, [children, visible]);
-  const classes = useClasses('auto-complete-dropdown', className);
+  const classes = useClasses('auto-complete-dropdown', className, { empty: isEmpty });
 
-  const { SCALES } = useScale();
+  const { SCALER, RESPONSIVE } = useScale();
 
   const clickHandler = (event: React.MouseEvent<HTMLDivElement>) => {
     event.preventDefault();
@@ -47,13 +45,19 @@ const AutoCompleteDropdown: React.FC<React.PropsWithChildren<AutoCompleteDropdow
         {children}
         <style jsx>{`
           .auto-complete-dropdown {
-            border-radius: ${SCALES.r(1, `var(--layout-radius)`)};
             background-color: var(--color-background-1000);
             overflow-y: auto;
             max-height: 15rem;
             overflow-anchor: none;
             box-shadow: 0 0 0 1px rgba(var(--color-background-800-rgb)}, 1);
           }
+
+          .auto-complete-dropdown.empty {
+            box-shadow: none;
+          }
+
+          ${SCALER('auto-complete-dropdown')}
+          ${RESPONSIVE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'auto-complete-dropdown')}
         `}</style>
       </div>
     </Dropdown>

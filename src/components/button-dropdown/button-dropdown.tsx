@@ -1,19 +1,17 @@
 'use client';
 
-import React, { MouseEvent, useCallback, useMemo, useRef, useState } from 'react';
-import useTheme from '../use-theme';
-import useClickAway from '../utils/use-click-away';
-import { getColor } from './styles';
-import ButtonDropdownIcon from './icon';
-import ButtonDropdownItem from './button-dropdown-item';
-import { ButtonDropdownContext } from './button-dropdown-context';
-import { NormalTypes } from '../utils/prop-types';
-import { pickChild, pickChildByProps } from '../utils/collections';
-import useScale, { withScale } from '../use-scale';
+import React, { MouseEvent, useCallback, useRef, useState } from 'react';
 import useClasses from '../use-classes';
-import useLayout from '../use-layout';
+import useScale, { withScale } from '../use-scale';
+import useTheme from '../use-theme';
+import { pickChild, pickChildByProps } from '../utils/collections';
+import { COLOR_TYPES } from '../utils/prop-types';
+import useClickAway from '../utils/use-click-away';
+import { ButtonDropdownContext } from './button-dropdown-context';
+import ButtonDropdownItem from './button-dropdown-item';
+import ButtonDropdownIcon from './icon';
 
-export type ButtonDropdownTypes = NormalTypes;
+export type ButtonDropdownTypes = COLOR_TYPES;
 
 interface Props {
   type?: ButtonDropdownTypes;
@@ -24,7 +22,7 @@ interface Props {
   icon?: React.ReactNode;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
 export type ButtonDropdownProps = Props & NativeAttrs;
 
 const stopPropagation = (event: MouseEvent<HTMLElement>) => {
@@ -34,7 +32,7 @@ const stopPropagation = (event: MouseEvent<HTMLElement>) => {
 
 const ButtonDropdownComponent: React.FC<React.PropsWithChildren<ButtonDropdownProps>> = ({
   children,
-  type,
+  type = 'default',
   auto,
   className,
   disabled,
@@ -42,11 +40,9 @@ const ButtonDropdownComponent: React.FC<React.PropsWithChildren<ButtonDropdownPr
   icon,
   ...props
 }) => {
-  const { SCALES } = useScale();
+  const { SCALER, RESPONSIVE } = useScale();
   const ref = useRef<HTMLDivElement>(null);
   const theme = useTheme();
-  const layout = useLayout();
-  const colors = getColor(theme.palette, type);
   const itemChildren = pickChild(children, ButtonDropdownItem)[1];
   const [itemChildrenWithoutMain, mainItemChildren] = pickChildByProps(itemChildren, 'main', true);
   const [visible, setVisible] = useState<boolean>(false);
@@ -66,36 +62,16 @@ const ButtonDropdownComponent: React.FC<React.PropsWithChildren<ButtonDropdownPr
     disabled,
     loading,
   };
-  const bgColor = useMemo(() => {
-    if (disabled || loading) return theme.palette.background.hex_800;
-    return visible ? colors.hoverBgColor : colors.bgColor;
-  }, [visible, colors, theme.palette]);
-  const [paddingLeft, paddingRight] = [auto ? SCALES.pl(1.15) : SCALES.pl(1.375), auto ? SCALES.pr(1.15) : SCALES.pr(1.375)];
 
   useClickAway(ref, () => setVisible(false));
 
   return (
     <ButtonDropdownContext.Provider value={initialValue}>
-      <div ref={ref} className={useClasses('btn-dropdown', className)} onClick={stopPropagation} {...props}>
+      <div ref={ref} className={useClasses('btn-dropdown', className, type ? 'color-' + type : null)} onClick={stopPropagation} {...props}>
         {mainItemChildren}
         <details open={visible}>
           <summary onClick={clickHandler}>
-            <div className="dropdown-box">
-              {icon ? (
-                <span
-                  className="dropdown-icon"
-                  style={{
-                    color: colors.color,
-                    height: SCALES.h(2.5),
-                    width: SCALES.h(2.5),
-                  }}
-                >
-                  {icon}
-                </span>
-              ) : (
-                <ButtonDropdownIcon color={colors.color} height={SCALES.h(2.5)} />
-              )}
-            </div>
+            <div className="dropdown-box">{icon ? <span className="dropdown-icon">{icon}</span> : <ButtonDropdownIcon />}</div>
           </summary>
           <div className="content">{itemChildrenWithoutMain}</div>
         </details>
@@ -104,17 +80,33 @@ const ButtonDropdownComponent: React.FC<React.PropsWithChildren<ButtonDropdownPr
             display: inline-flex;
             position: relative;
             box-sizing: border-box;
-            border: 1px solid var(--color-border-1000);
-            border-radius: ${SCALES.r(1, `var(--layout-radius)`)};
-            --ui-dropdown-height: ${SCALES.h(2.5)};
-            --ui-dropdown-min-width: ${auto ? 'min-content' : SCALES.w(10.5)};
-            --ui-dropdown-padding: ${SCALES.pt(0)} ${paddingRight} ${SCALES.pb(0)} ${paddingLeft};
-            --ui-dropdown-font-size: ${SCALES.font(0.875)};
+
+            --ui-dropdown-color: var(--color-contrast);
+            --ui-button-bg: var(--color-base);
+            --ui-button-border: var(--color-border);
+            --ui-button-hover-color: var(--color-contrast);
+            --ui-button-hover-bg: var(--color-shade);
+            --ui-button-hover-border-color: var(--color-shade-border);
+            --ui-button-activated-color: var(--color-contrast);
+            --ui-button-activated-bg: var(--color-tint);
+            --ui-button-activated-border-color: var(--color-tint-border);
+
+            border-radius: var(--ui-dropdown-radius);
+            border: 1px solid var(--ui-button-border);
+
+            transition-property: border-color, background, color, transform, box-shadow;
+            transition-duration: 0.15s;
+            transition-timing-function: ease;
+
+            &:hover {
+              border-color: var(--ui-button-hover-border-color);
+            }
           }
 
           .btn-dropdown > :global(button) {
             border-top-left-radius: var(--layout-radius);
             border-bottom-left-radius: var(--layout-radius);
+            border-right: 1px solid var(--ui-button-border);
           }
 
           details {
@@ -124,7 +116,7 @@ const ButtonDropdownComponent: React.FC<React.PropsWithChildren<ButtonDropdownPr
           }
 
           .dropdown-box {
-            height: ${SCALES.h(2.5)};
+            height: var(--ui-dropdown-height);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -136,24 +128,25 @@ const ButtonDropdownComponent: React.FC<React.PropsWithChildren<ButtonDropdownPr
             -webkit-tap-highlight-color: transparent;
             list-style: none;
             outline: none;
-            color: ${colors.color};
-            background-color: ${bgColor};
-            height: ${SCALES.h(2.5)};
-            border-left: 1px solid ${colors.borderLeftColor};
+            color: var(--ui-dropdown-color);
+            height: var(--ui-dropdown-height);
             cursor: ${disabled || loading ? 'not-allowed' : 'pointer'};
             display: flex;
             justify-content: center;
             align-items: center;
             width: auto;
             padding: 0 1px;
-            transition:
-              background 0.2s ease 0s,
-              border-color 0.2s ease 0s;
-          }
 
-          summary:hover {
-            border-color: ${colors.hoverBorder};
-            background-color: ${colors.hoverBgColor};
+            transition-property: border-color, background, color, transform, box-shadow;
+            transition-duration: 0.15s;
+            transition-timing-function: ease;
+
+            background-color: var(--ui-button-bg);
+
+            &:hover {
+              border-color: var(--ui-button-hover-border-color);
+              background-color: var(--ui-button-hover-bg);
+            }
           }
 
           .content {
@@ -162,10 +155,10 @@ const ButtonDropdownComponent: React.FC<React.PropsWithChildren<ButtonDropdownPr
             left: 0;
             z-index: 90;
             width: 100%;
-            border-radius: ${SCALES.r(1, `var(--layout-radius)`)};
-            box-shadow: ${theme.expressiveness.shadowLarge};
+            border-radius: var(--ui-dropdown-radius);
             transform: translateY(var(--layout-gap-half));
             background-color: var(--color-background-1000);
+            box-shadow: 0 0 0 1px rgba(var(--color-background-800-rgb)}, 1);
           }
 
           .content > :global(button:first-of-type) {
@@ -183,7 +176,25 @@ const ButtonDropdownComponent: React.FC<React.PropsWithChildren<ButtonDropdownPr
             justify-content: center;
             align-items: center;
             transform: scale(0.6);
+            height: var(--ui-dropdown-height);
+            width: var(--ui-dropdown-height);
+            color: var(--ui-dropdown-color);
           }
+
+          ${RESPONSIVE.r(1, value => `--ui-dropdown-radius: ${value};`, 'var(--layout-radius)', 'btn-dropdown')}
+          ${RESPONSIVE.h(2.5, value => `--ui-dropdown-height: ${value};`, undefined, 'btn-dropdown')}
+          ${RESPONSIVE.w(10.5, value => `--ui-dropdown-min-width: ${auto ? 'min-content' : value};`, undefined, 'btn-dropdown')}
+          ${RESPONSIVE.font(0.875, value => `--ui-dropdown-font-size: ${value};`, undefined, 'btn-dropdown')}
+          ${RESPONSIVE.lineHeight(0.875, value => `line-height: ${value};`, `var(--ui-dropdown-font-size)`, 'btn-dropdown')}
+
+          ${RESPONSIVE.padding(
+            { left: auto ? 1.15 : 1.375, right: auto ? 1.15 : 1.375, top: 0, bottom: 0 },
+            value => `--ui-dropdown-padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
+            undefined,
+            'btn-dropdown',
+          )}
+
+          ${SCALER('btn-dropdown')}
         `}</style>
       </div>
     </ButtonDropdownContext.Provider>

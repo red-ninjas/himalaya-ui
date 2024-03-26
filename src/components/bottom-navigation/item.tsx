@@ -2,10 +2,9 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React, { PropsWithChildren, useRef } from 'react';
-import { IBottomNavigationItem } from './index';
 import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';
-import useTheme from '../use-theme';
+import { IBottomNavigationItem } from './index';
 
 export interface BottomNavigationItemProps extends IBottomNavigationItem {
   exactMatch?: boolean;
@@ -13,9 +12,8 @@ export interface BottomNavigationItemProps extends IBottomNavigationItem {
 }
 
 const BottomNavigationItem: React.FC<PropsWithChildren<BottomNavigationItemProps>> = ({ exactMatch = true, url = '#', icon, onClick }) => {
-  const theme = useTheme();
   const pathname = usePathname();
-  const { SCALES } = useScale();
+  const { SCALER, RESPONSIVE } = useScale();
   const ref = useRef<HTMLAnchorElement | null>(null);
 
   const isLinkActive = url ? (exactMatch ? pathname == url : pathname.startsWith(url)) : false;
@@ -70,12 +68,6 @@ const BottomNavigationItem: React.FC<PropsWithChildren<BottomNavigationItemProps
           display: flex;
           align-items: center;
           user-select: none;
-          font-size: ${SCALES.font(0.875)};
-          line-height: normal;
-          width: ${SCALES.w(1, 'auto')};
-          height: ${SCALES.h(1, 'auto')};
-          padding: ${SCALES.pt(0.875)} ${SCALES.pr(0.55)} ${SCALES.pb(0.875)} ${SCALES.pl(0.55)};
-          margin: ${SCALES.mt(0)} ${SCALES.mr(0.2)} ${SCALES.mb(0)} ${SCALES.ml(0.2)};
           z-index: 1;
         }
 
@@ -93,6 +85,35 @@ const BottomNavigationItem: React.FC<PropsWithChildren<BottomNavigationItemProps
           border-top: 3px solid var(--color-foreground-1000);
           font-weight: 500;
         }
+
+        ${SCALER('bottom-navigation-item')}
+
+        ${RESPONSIVE.lineHeight(0.875, value => `font-size: ${value};`, 'normal', 'bottom-navigation-item')}
+        ${RESPONSIVE.font(0.875, value => `font-size: ${value};`, undefined, 'bottom-navigation-item')}
+        ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto', 'bottom-navigation-item')}
+        ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'bottom-navigation-item')}
+        ${RESPONSIVE.padding(
+          {
+            top: 0.875,
+            left: 0.55,
+            right: 0.55,
+            bottom: 0.875,
+          },
+          value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
+          undefined,
+          'bottom-navigation-item',
+        )}
+        ${RESPONSIVE.margin(
+          {
+            top: 0,
+            left: 0.2,
+            right: 0,
+            bottom: 0,
+          },
+          value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
+          undefined,
+          'bottom-navigation-item',
+        )}
       `}</style>
     </div>
   );

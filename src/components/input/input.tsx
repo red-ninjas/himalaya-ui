@@ -8,7 +8,7 @@ import InputClearIcon from './input-icon-clear';
 import InputLabel from './input-label';
 import { InputTypes, Props } from './input-props';
 
-type NativeAttrs = Omit<React.InputHTMLAttributes<any>, keyof Props>;
+type NativeAttrs = Omit<React.InputHTMLAttributes<HTMLInputElement>, keyof Props>;
 export type InputProps = Props & NativeAttrs;
 
 const simulateChangeEvent = (el: HTMLInputElement, event: React.MouseEvent<HTMLDivElement>): React.ChangeEvent<HTMLInputElement> => {
@@ -48,7 +48,7 @@ const InputComponent = React.forwardRef<HTMLInputElement, React.PropsWithChildre
     }: React.PropsWithChildren<InputProps>,
     ref: React.Ref<HTMLInputElement | null>,
   ) => {
-    const { SCALES, RESPONSIVE } = useScale();
+    const { SCALER, RESPONSIVE } = useScale();
     const inputRef = useRef<HTMLInputElement>(null);
     useImperativeHandle(ref, () => inputRef.current);
 
@@ -118,7 +118,7 @@ const InputComponent = React.forwardRef<HTMLInputElement, React.PropsWithChildre
             <input
               type={htmlType}
               ref={inputRef}
-              className={useClasses({ disabled }, iconClasses)}
+              className={useClasses({ disabled }, iconClasses, 'font')}
               placeholder={placeholder}
               disabled={disabled}
               readOnly={readOnly}
@@ -157,7 +157,6 @@ const InputComponent = React.forwardRef<HTMLInputElement, React.PropsWithChildre
             user-select: none;
             border: 0;
 
-            border-radius: ${SCALES.r(1, `var(--layout-radius)`)};
 
             --input-border-color: var(--color-border);
             --input-border-color-hover: var(--color-shade-border);
@@ -208,7 +207,6 @@ const InputComponent = React.forwardRef<HTMLInputElement, React.PropsWithChildre
             margin: 0.25em 0.625em;
             padding: 0;
             box-shadow: none;
-            font-size: ${SCALES.font(0.875)};
             background-color: transparent;
             border: none;
             color: var(--input-color);
@@ -246,13 +244,17 @@ const InputComponent = React.forwardRef<HTMLInputElement, React.PropsWithChildre
             -webkit-text-fill-color: var(--input-color) !important;
           }
 
+          ${SCALER('with-label')}
 
           ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'with-label')}
           ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'with-label')}
-          ${RESPONSIVE.w(1, value => `height: ${value};`, 'initial', 'with-label')}
+          ${RESPONSIVE.w(1, value => `width: ${value};`, 'initial', 'with-label')}
           ${RESPONSIVE.font(0.875, value => `font-size: ${value};`, undefined, 'with-label')}
           ${RESPONSIVE.h(2.25, value => `--input-height: ${value};`, undefined, 'with-label')}
+          ${RESPONSIVE.font(0.875, value => `font-size: ${value};`, undefined, 'font')}
           ${RESPONSIVE.w(1, value => `width: ${value};`, 'initial', 'input-container')}
+          ${RESPONSIVE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'input-wrapper')}
+
         `}</style>
       </div>
     );
