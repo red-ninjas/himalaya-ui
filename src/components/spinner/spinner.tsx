@@ -1,8 +1,6 @@
 'use client';
 
 import React from 'react';
-import useTheme from '../use-theme';
-import { UIThemes } from '../themes/presets';
 import useScale, { withScale } from '../use-scale';
 import useClasses from '../use-classes';
 
@@ -13,10 +11,10 @@ interface Props {
 type NativeAttrs = Omit<React.HTMLAttributes<HTMLSpanElement>, keyof Props>;
 export type SpinnerProps = Props & NativeAttrs;
 
-const getSpans = (theme: UIThemes) => {
+const getSpans = () => {
   return [...new Array(12)].map((_, index) => (
     <span key={`spinner-${index}`}>
-      <style jsx>{`
+      <style jsx={true}>{`
         span {
           background-color: var(--color-foreground-1000);
           position: absolute;
@@ -102,22 +100,17 @@ const getSpans = (theme: UIThemes) => {
 };
 
 const SpinnerComponent: React.FC<SpinnerProps> = ({ className = '', ...props }: SpinnerProps) => {
-  const theme = useTheme();
-  const { SCALES } = useScale();
+  const { RESPONSIVE, SCALER } = useScale();
   const classes = useClasses('spinner', className);
 
   return (
     <div className={classes} {...props}>
-      <div className="container">{getSpans(theme)}</div>
+      <div className="container">{getSpans()}</div>
 
       <style jsx>{`
         .spinner {
           display: block;
           box-sizing: border-box;
-          width: ${SCALES.w(1.25)};
-          height: ${SCALES.h(1.25)};
-          padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
-          margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
         }
 
         .container {
@@ -127,6 +120,11 @@ const SpinnerComponent: React.FC<SpinnerProps> = ({ className = '', ...props }: 
           left: 50%;
           top: 50%;
         }
+        ${RESPONSIVE.w(1.25, value => `width: ${value};`, undefined, 'spinner')}
+        ${RESPONSIVE.h(1.25, value => `height: ${value};`, undefined, 'spinner')}
+        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'spinner')}
+        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'spinner')}
+        ${SCALER('spinner')}
       `}</style>
     </div>
   );

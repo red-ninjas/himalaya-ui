@@ -4,14 +4,14 @@ import React, { CSSProperties, useEffect } from 'react';
 import { useConfigs, defaultToastLayout } from '../use-config';
 import { ToastPlacement } from '../use-toasts/helpers';
 import { getId } from '../utils/collections';
-import type { NormalTypes } from '../utils/prop-types';
+import type { COLOR_TYPES } from '../utils/prop-types';
 
 export interface ToastAction {
   name: string;
   handler: (event: React.MouseEvent<HTMLButtonElement>, cancel: () => void) => void;
   passive?: boolean;
 }
-export type ToastTypes = NormalTypes;
+export type ToastTypes = COLOR_TYPES;
 export type ToastLayout = {
   padding?: CSSProperties['padding'];
   r?: CSSProperties['borderRadius'];
