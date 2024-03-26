@@ -12,22 +12,25 @@ const justify = tuple('flex-start', 'center', 'flex-end', 'space-between', 'spac
 export type FooterBlockJustify = (typeof justify)[number];
 
 export interface FooterProps {}
-export interface FooterBlockProps {
-  justify?: FooterBlockJustify;
-}
 
-export interface FooterBottomItemProps {
+type BottomItemProps = {
   justify?: FooterBlockJustify;
-}
+};
+
+type BottomItemPropsNative = Omit<React.HTMLAttributes<HTMLDivElement>, keyof BottomItemProps>;
+export type FooterBottomItemProps = BottomItemProps & BottomItemPropsNative;
 
 export interface FooterNavigationProps {
   title?: string;
 }
 
-export interface FooterNavigationItemProps {
+type NavigationItemProps = {
   href: string;
   target?: HTMLAttributeAnchorTarget;
-}
+};
+
+type NativeAttrsNavigationItems = Omit<React.HTMLAttributes<HTMLLIElement>, keyof NavigationItemProps>;
+export type FooterNavigationItemProps = NavigationItemProps & NativeAttrsNavigationItems;
 
 export type FooterNavigationType = typeof FooterNavigationComponent & {
   Item: typeof FooterNavigationItem;

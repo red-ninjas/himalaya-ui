@@ -1,24 +1,21 @@
 'use client';
-import React from 'react';
-import { PropsWithChildren } from 'react';
-import useScale, { withScale } from '../use-scale';
+import React, { PropsWithChildren } from 'react';
 import { FooterProps } from '.';
+import PageWidth from '../page-width';
+import useScale, { withScale } from '../use-scale';
 import { pickChild } from '../utils/collections';
 import FooterBlock from './footer-block';
 import FooterBottom from './footer-bottom';
-import PageWidth from '../page-width';
-import useTheme from '../use-theme';
 
 const Footer: React.FC<PropsWithChildren<FooterProps>> = ({ children }) => {
   const [, footerBottom] = pickChild(children, FooterBottom);
   const [, footerBlock] = pickChild(children, FooterBlock);
 
-  const { SCALES } = useScale();
-  const theme = useTheme();
+  const { RESPONSIVE, SCALER } = useScale();
   return (
     <>
       <footer className="footer">
-        <PageWidth pt={SCALES.pt(2)} pb={SCALES.pb(2)}>
+        <PageWidth py={0}>
           <div className="blocks">{footerBlock}</div>
         </PageWidth>
         {footerBottom}
@@ -36,6 +33,19 @@ const Footer: React.FC<PropsWithChildren<FooterProps>> = ({ children }) => {
           justify-content: space-between;
           flex-wrap: wrap;
         }
+
+        ${RESPONSIVE.padding(
+          {
+            top: 4,
+            bottom: 4,
+            left: 0,
+            right: 0,
+          },
+          value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
+          undefined,
+          'footer',
+        )}
+        ${SCALER('footer')}
       `}</style>
     </>
   );

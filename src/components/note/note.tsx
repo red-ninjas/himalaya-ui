@@ -1,13 +1,14 @@
 'use client';
 import React, { useMemo } from 'react';
 import useTheme from '../use-theme';
-import { NormalTypes } from '../utils/prop-types';
+import { COLOR_TYPES, NormalTypes } from '../utils/prop-types';
 import { UIThemes } from '../themes/presets';
 import useScale, { withScale } from '../use-scale';
 import useClasses from '../use-classes';
 import { AlertCircleFill, AlertTriangle, Info, XCircleFill } from '../icons';
 
-export type NoteTypes = NormalTypes;
+export type NoteTypes = COLOR_TYPES;
+
 interface Props {
   type?: NoteTypes;
   icon?: React.ReactNode | boolean;
@@ -15,7 +16,7 @@ interface Props {
   className?: string;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
 export type NoteProps = Props & NativeAttrs;
 
 const getStatusColor = (type: NoteTypes, filled: boolean, theme: UIThemes) => {
