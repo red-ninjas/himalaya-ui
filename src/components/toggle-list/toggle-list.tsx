@@ -50,7 +50,6 @@ const ToggleListComponent: React.FC<PropsWithChildren<ToggleListProps>> = ({
       <style jsx>{`
         .toggle-list {
           background: var(--color-background-900);
-
           border: 1px solid var(--color-border-1000);
           display: inline-flex;
           position: relative;

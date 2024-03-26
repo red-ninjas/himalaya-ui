@@ -88,6 +88,7 @@ const ToggleListItemComponent: React.FC<PropsWithChildren<ToggleProps>> = ({
           min-width: min-content;
           cursor: pointer;
         }
+
         .toggle-list-item.active {
           background: var(--color-background-1000);
         }
