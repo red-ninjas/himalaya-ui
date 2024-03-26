@@ -1,29 +1,28 @@
 'use client';
 
-import useClasses from '../use-classes';
 import React, { ReactNode, useEffect, useState } from 'react';
 import PageWidth from '../page-width';
-import useScale, { withScale } from '../use-scale';
-import useTheme from '../use-theme';
+import useClasses from '../use-classes';
+import useLayout from '../use-layout';
+import useScale, { ScaleResponsiveParameter, customResponsiveAttribute, withScale } from '../use-scale';
 import { pickChild } from '../utils/collections';
-import { addColorAlpha } from '../utils/color';
 import CenterHeaderControl from './controls/center-control';
 import { default as LeftHeaderControl } from './controls/left-control';
 import RightHeaderControl from './controls/right-control';
-import useLayout from '../use-layout';
 
 export interface HeaderProps {
   children?: ReactNode | undefined;
   transcluent?: boolean;
+  transcluentColor?: string;
+  gap?: ScaleResponsiveParameter<string>;
 }
 
 type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof HeaderProps>;
 export type HeaderPropsNative = HeaderProps & NativeAttrs;
 
-const HeaderComponent: React.FC<HeaderPropsNative> = ({ children, transcluent = true, ...props }) => {
-  const theme = useTheme();
-  const layout = useLayout();
-  const { SCALES } = useScale();
+const HeaderComponent: React.FC<HeaderPropsNative> = ({ children, transcluent = true, transcluentColor, gap = '6px', ...props }) => {
+  const { SCALER, RESPONSIVE } = useScale();
+  const layoutRoot = useLayout();
 
   const [, leftHeaderControl] = pickChild(children, LeftHeaderControl);
   const [, rightHeaderControl] = pickChild(children, RightHeaderControl);
@@ -61,7 +60,7 @@ const HeaderComponent: React.FC<HeaderPropsNative> = ({ children, transcluent = 
         {...props}
       >
         <PageWidth pt={0} pb={0}>
-          <div className="navigation">
+          <div className="header-navigation">
             <div className="left-controls">
               <div className="left-controls-inner">{leftHeaderControl}</div>
             </div>
@@ -82,24 +81,21 @@ const HeaderComponent: React.FC<HeaderPropsNative> = ({ children, transcluent = 
         }
         .transcluent {
           backdrop-filter: saturate(180%) blur(5px);
-          background-color: ${addColorAlpha(theme.palette.background.hex_1000, 0.8)};
+          background-color: ${transcluentColor ?? `rgba(var(--color-background-1000-rgb), 0.7)`};
         }
         .header-inner {
           display: flex;
           flex-direction: column;
           height: 100%;
           max-width: var(--layout-page-width-with-margin);
-          margin: 0 auto;
         }
-        .header-outer .navigation {
+        .header-navigation {
           display: flex;
           align-items: center;
           justify-content: space-between;
           height: 100%;
           user-select: none;
-          padding: 0;
-          height: ${SCALES.h(1, '60px')};
-          gap: 12px;
+          gap: calc(var(--header-gap) * 2);
         }
 
         .left-controls {
@@ -112,7 +108,7 @@ const HeaderComponent: React.FC<HeaderPropsNative> = ({ children, transcluent = 
         .left-controls-inner {
           display: flex;
           align-items: center;
-          gap: 6px;
+          gap: var(--header-gap);
           height: 100%;
           width: 100%;
         }
@@ -128,7 +124,7 @@ const HeaderComponent: React.FC<HeaderPropsNative> = ({ children, transcluent = 
         .center-controls-inner {
           display: flex;
           align-items: center;
-          gap: 6px;
+          gap: var(--header-gap);
           height: 100%;
         }
 
@@ -141,9 +137,27 @@ const HeaderComponent: React.FC<HeaderPropsNative> = ({ children, transcluent = 
         .right-controls-inner {
           display: flex;
           align-items: center;
-          gap: 6px;
+          gap: var(--header-gap);
           height: 100%;
         }
+
+        ${RESPONSIVE.h(3.75, value => `height: ${value};`, undefined, 'header-navigation')}
+        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'header-navigation')}
+        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'header-navigation')}
+        ${RESPONSIVE.margin(
+          0,
+          value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
+          {
+            top: undefined,
+            right: 'auto',
+            left: 'auto',
+            bottom: undefined,
+          },
+          'header-inner',
+        )}
+
+        ${customResponsiveAttribute(gap, 'header-outer', layoutRoot.breakpoints, value => `--header-gap: ${value}`)}
+        ${SCALER('header-outer')}
       `}</style>
     </>
   );

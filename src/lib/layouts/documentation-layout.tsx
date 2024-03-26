@@ -1,7 +1,6 @@
 'use client';
 
 import {
-  PageWidth,
   FixedHeader,
   FooterBottom,
   Header,
@@ -10,11 +9,11 @@ import {
   MobileMenuButton,
   MobileMenuProvider,
   MobilePage,
+  PageWidth,
   Sidebar,
   SidebarLayout,
   SidebarProvider,
   Text,
-  useTheme,
 } from 'components';
 import { Title } from 'components/header';
 import BackButton from 'components/header/back-button';
@@ -23,7 +22,6 @@ import { usePathname } from 'next/navigation';
 import { Seeds } from '../data';
 
 export default function DocumentationLayout({ children }) {
-  const theme = useTheme();
   const pathName = usePathname();
   const seperated = pathName && pathName.length > 0 ? pathName.split('/') : [];
   const firstElement = seperated.length > 1 ? seperated[1] : '/';
@@ -38,7 +36,7 @@ export default function DocumentationLayout({ children }) {
     <PageWidth p={0}>
       <MobilePage>
         <MobileMenuProvider>
-          <FixedHeader onDesktop={false} onMobile={true}>
+          <FixedHeader hideOn={{ xs: false, md: true, lg: true, sm: true, xl: true }}>
             <Header>
               <Header.Left>
                 <BackButton url="/"></BackButton>

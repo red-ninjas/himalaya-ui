@@ -1,6 +1,7 @@
 'use client';
 import React from 'react';
-import { UIThemesBreakpoints, LayoutProps, defaultBreakpoints } from './shared';
+import { defaultLayout } from '../use-config/config-context';
+import { LayoutProps, UIThemesBreakpoints } from './shared';
 
 export interface LayoutPropsContext {
   pageWidth?: string;
@@ -18,23 +19,5 @@ export interface LayoutPropsContext {
   sectionSpace?: string;
 }
 
-export const defaultConfigs: LayoutProps = {
-  pageWidth: '750pt',
-  pageMargin: '16px',
-  pageWidthWithMargin: '782pt',
-  gap: '16pt',
-  gapNegative: '-16pt',
-  gapHalf: '8pt',
-  gapHalfNegative: '-8pt',
-  gapQuarter: '4pt',
-  gapQuarterNegative: '-4pt',
-  breakpointMobile: defaultBreakpoints.xs.max,
-  breakpointTablet: defaultBreakpoints.sm.max,
-  breakpoints: defaultBreakpoints,
-  radius: '6px',
-  unit: '16px',
-  sectionSpace: '160px',
-};
-
-export const LayoutContext = React.createContext<LayoutProps>(defaultConfigs);
+export const LayoutContext = React.createContext<LayoutProps>(defaultLayout);
 export const useLayout = (): LayoutProps => React.useContext(LayoutContext);

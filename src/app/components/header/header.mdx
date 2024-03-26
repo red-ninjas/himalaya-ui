@@ -1,30 +1,28 @@
-import { Layout, Playground, Attributes } from 'lib/components'
-import { Header, Logo } from 'components'
+import { Layout, Playground, Attributes } from 'lib/components';
+import { Header } from 'components';
 
 export const meta = {
   title: 'Header',
   group: 'Layout',
-}
+};
 
 # Header
+
 The `Header` UI component provides a customizable header section for your web application, with options for creating a visually appealing and functional top bar.
 
-
 <Playground
-  scope={{ Header, Logo }}
+  scope={{ Header }}
   title={'Header example'}
   desc={'Example of a header'}
-  code={`
-  <Header transcluent={false}>
-    <Header.Left>
-      <Logo logoBackground={'#fff'} title='Logo'>
-      </Logo>
-    </Header.Left>
-    <Header.Center>
-      Middle part
-    </Header.Center>
-    <Header.Right><span>Right</span></Header.Right>
-    <Header.Right><span>Part</span></Header.Right>
+  code={`<Header transcluent={false}>
+  <Header.Left>
+    Logo
+  </Header.Left>
+  <Header.Center>
+    Middle part
+  </Header.Center>
+  <Header.Right><span>Right</span></Header.Right>
+  <Header.Right><span>Part</span></Header.Right>
   </Header>
   `}
 />

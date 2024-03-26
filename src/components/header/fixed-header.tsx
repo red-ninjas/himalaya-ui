@@ -1,28 +1,23 @@
 'use client';
 
-import { pickChild } from '../utils/collections';
+import useScale, { withScale } from '../use-scale';
 import React from 'react';
-import Header from './header';
-import { useConfigs } from '../use-config/config-context';
 import useClasses from '../use-classes';
-import useLayout from '../use-layout';
+import { pickChild } from '../utils/collections';
+import Header from './header';
 
 export interface FixedHeaderProps {
-  onDesktop?: boolean;
-  onMobile?: boolean;
-  hide?: boolean;
   mode?: 'fixed' | 'sticky';
+  hidden?: boolean;
 }
-const FixedHeader: React.FC<React.PropsWithChildren<FixedHeaderProps>> = ({ children, onDesktop = true, onMobile = true, hide = false, mode = 'sticky' }) => {
-  const { isMobile } = useConfigs();
-  const layout = useLayout();
+const FixedHeader: React.FC<React.PropsWithChildren<FixedHeaderProps>> = ({ children, mode = 'sticky', hidden = false }) => {
+  const { SCALER } = useScale();
 
   const [, header] = pickChild(children, Header);
-
-  const isActive = (onDesktop && !isMobile) || (isMobile && onMobile);
   return (
-    <>
-      {isActive && <div className={useClasses('fixed-header', { hidden: hide })}>{header}</div>}
+    <div className={useClasses('fixed-header', { hidden })}>
+      {header}
+
       <style jsx>{`
         .header-spacer {
           position: relative;
@@ -34,7 +29,7 @@ const FixedHeader: React.FC<React.PropsWithChildren<FixedHeaderProps>> = ({ chil
           max-width: 100%;
           top: 0;
           z-index: 9;
-          display: ${isActive ? 'block' : 'none'};
+          display: block;
           transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
           transition-duration: 0.5s;
           --translate-y: 0px;
@@ -44,15 +39,12 @@ const FixedHeader: React.FC<React.PropsWithChildren<FixedHeaderProps>> = ({ chil
         .hidden {
           --translate-y: -100%;
         }
-        @media only screen and (max-width: ${layout.breakpoints.xs.max}) {
-          .fixed-header {
-            display: block;
-          }
-        }
+
+        ${SCALER('fixed-header')}
       `}</style>
-    </>
+    </div>
   );
 };
 
 FixedHeader.displayName = 'HimalayaFixedHeader';
-export default FixedHeader;
+export default withScale(FixedHeader);

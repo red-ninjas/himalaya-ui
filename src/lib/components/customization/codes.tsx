@@ -50,7 +50,7 @@ const CustomizationCodes: React.FC<unknown> = () => {
  *
  *  export const App = () => {
  *    return (
- *      <ConfigProvider themes={[myTheme]} themeType="${CUSTOM_THEME_TYPE}">
+ *      <ConfigProvider themes={[myTheme]} layout={{ pageMargin: 30px }} themeType="${CUSTOM_THEME_TYPE}">
  *        <CssBaseline />
  *        <YourComponent />
  *      </ConfigProvider>

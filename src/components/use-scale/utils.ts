@@ -372,6 +372,44 @@ export const scaleAttribute =
       }
     }
 
+    if (hideOn) {
+      if (typeof hideOn === 'boolean' && hideOn) {
+        responsiveContent += css`
+          .${attributeClassName} {
+            display: none !important;
+          }
+        `;
+      } else {
+        for (const [key, value] of Object.entries(hideOn).filter(df => df[1] === true)) {
+          if (key == 'xs') {
+            responsiveContent += css`
+              @media only screen and (max-width: ${breakpoints[key].min}) {
+                .${attributeClassName} {
+                  display: none !important;
+                }
+              }
+            `;
+          } else if (key === 'xl') {
+            responsiveContent += css`
+              @media only screen and (min-width: ${breakpoints[key].min}) {
+                .${attributeClassName} {
+                  display: none !important;
+                }
+              }
+            `;
+          } else {
+            responsiveContent += css`
+              @media only screen and (min-width: ${breakpoints[key].min}) and (max-width: ${breakpoints[key].max}) {
+                .${attributeClassName} {
+                  display: none !important;
+                }
+              }
+            `;
+          }
+        }
+      }
+    }
+
     return responsiveContent;
   };
 

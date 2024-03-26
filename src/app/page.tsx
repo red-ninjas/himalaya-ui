@@ -40,24 +40,19 @@ export default function Index() {
         </Section>
       </div>
 
-      <PageLayout>
-        <FadeInEffect blur={10} transition={1000}>
-          <Partners></Partners>
-        </FadeInEffect>
-      </PageLayout>
+      <FadeInEffect blur={10} transition={1000}>
+        <Partners></Partners>
+      </FadeInEffect>
 
-      <PageLayout>
-        <Section>
-          <Portfolio></Portfolio>
-        </Section>
-      </PageLayout>
+      <Section>
+        <Portfolio></Portfolio>
+      </Section>
 
       <Section>
         <Facts></Facts>
       </Section>
-      <PageLayout>
-        <RunningSlogan></RunningSlogan>
-      </PageLayout>
+
+      <RunningSlogan></RunningSlogan>
 
       <Footer>
         <Footer.Block justify="space-between">

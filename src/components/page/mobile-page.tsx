@@ -1,11 +1,9 @@
 'use client';
 
-import useTheme from '../use-theme';
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 import useLayout from '../use-layout';
 
-const MobilePage: React.FC<React.PropsWithChildren<{}>> = React.memo(({ children }) => {
-  const theme = useTheme();
+const MobilePage: React.FC<React.PropsWithChildren<{}>> = React.memo(({ children }: PropsWithChildren) => {
   const layout = useLayout();
   return (
     <>

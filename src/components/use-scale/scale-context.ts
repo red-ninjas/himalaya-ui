@@ -17,7 +17,7 @@ export type HideInterface =
       lg?: boolean;
       xl?: boolean;
     }
-  | true;
+  | boolean;
 
 export type ScaleResponsiveParameter<T = number | string> = T | BreakpointInterface<T>;
 

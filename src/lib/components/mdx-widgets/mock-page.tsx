@@ -1,6 +1,5 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import { useTheme } from 'components';
 
 interface Props {
   visible: boolean;
@@ -8,7 +7,6 @@ interface Props {
 }
 
 const MockPage: React.FC<React.PropsWithChildren<Props>> = ({ visible: customVisible, onClose, children }) => {
-  const theme = useTheme();
   const [visible, setVisible] = useState<boolean>(false);
 
   useEffect(() => {

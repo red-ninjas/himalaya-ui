@@ -2,11 +2,8 @@
 
 import React from 'react';
 import Text from '../text';
-import useLayout from '../use-layout';
 
-const ErrorPage404: React.FC<React.PropsWithChildren<{}>> = () => {
-  const layout = useLayout();
-
+const ErrorPage404: React.FC = () => {
   return (
     <div className="error-404">
       <div className="error-message">

@@ -1,53 +1,23 @@
 'use client';
+import { useConfigs } from 'components/use-config';
 import _ from 'lodash';
 import React, { useMemo } from 'react';
 import { LayoutContext, LayoutPropsContext } from '../use-layout/layout-context';
-import { defaultBreakpoints } from '../use-layout/shared';
 
 export type LayoutProviderProps = {
   inline?: boolean;
-} & LayoutPropsContext;
+  layout?: LayoutPropsContext;
+};
 
-const LayoutProvider: React.FC<React.PropsWithChildren<LayoutProviderProps>> = ({
-  children,
-  pageWidth = '920pt',
-  pageMargin = '16pt',
-  gap = '16pt',
-  gapNegative = `-16pt`,
-  gapHalf = `8pt`,
-  gapHalfNegative = `-8pt`,
-  gapQuarter = `4pt`,
-  gapQuarterNegative = `-4pt`,
-  breakpoints = defaultBreakpoints,
-  radius = '6px',
-  unit = '16px',
-  pageWidthWithMargin = '950pt',
-  sectionSpace = '160px',
-  inline = true,
-}) => {
-  const args = {
-    pageWidth,
-    pageMargin,
-    gap,
-    gapNegative,
-    gapHalf,
-    gapHalfNegative,
-    gapQuarter,
-    gapQuarterNegative,
-    radius,
-    unit,
-    pageWidthWithMargin,
-    sectionSpace,
-    breakpoints,
-    breakpointMobile: defaultBreakpoints.xs.max,
-    breakpointTablet: defaultBreakpoints.sm.max,
-  };
+const LayoutProvider: React.FC<React.PropsWithChildren<LayoutProviderProps>> = ({ children, layout, inline = true }) => {
+  const { layout: configLayout } = useConfigs();
+  const mainLayout = _.merge(configLayout, layout);
 
   const varsCss: string = useMemo(() => {
     let cssCode: string = ``;
 
-    for (const key of Object.keys(args)) {
-      const value = args[key];
+    for (const key of Object.keys(mainLayout)) {
+      const value = mainLayout[key];
       const kebabCaseString = _.kebabCase(key);
 
       if (key == 'breakpoints') {
@@ -67,10 +37,10 @@ const LayoutProvider: React.FC<React.PropsWithChildren<LayoutProviderProps>> = (
       }
     }
     return cssCode;
-  }, Object.values(args));
+  }, Object.values(mainLayout));
 
   return (
-    <LayoutContext.Provider value={args}>
+    <LayoutContext.Provider value={mainLayout}>
       {inline ? (
         <div className="theme-layout">
           {children}

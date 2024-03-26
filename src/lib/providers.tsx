@@ -7,7 +7,7 @@ import { CoreLayout } from './layouts/core-layout';
 
 export function Providers({ children, defaultTheme }: { children: React.ReactNode; defaultTheme: string }) {
   return (
-    <ConfigProvider detectTheme={true} themeType={defaultTheme}>
+    <ConfigProvider themeType={defaultTheme}>
       <SwipeProvider>
         <div className="app-layout">
           <CoreLayout>{children}</CoreLayout>

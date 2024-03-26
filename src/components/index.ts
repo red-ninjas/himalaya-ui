@@ -204,8 +204,8 @@ export type { ReactiveDomReact } from './utils/layouts';
 export { default as Highlight } from './shared/highlight';
 export type { HighlightProps } from './shared/highlight';
 
-export { default as Header, Logo, FixedHeader } from './header';
-export type { HeaderProps, LogoProps } from './header';
+export { default as Header, FixedHeader } from './header';
+export type { HeaderProps } from './header';
 
 export { default as Navigation } from './navigation';
 export type { INavigationItem } from './navigation';
@@ -227,7 +227,7 @@ export { default as SearchProvider } from './use-search/search-provider';
 export { InnerScroll } from './scroll';
 export type { InnerScrollProps } from './scroll';
 
-export { PageLayout, ScrollableLayout, GradientContent, LayoutProvider } from './layout';
+export { ScrollableLayout, GradientContent, LayoutProvider } from './layout';
 
 export { default as PageWidth } from './page-width';
 export type { PageWidthProps } from './page-width';

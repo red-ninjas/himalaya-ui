@@ -1,42 +1,41 @@
 'use client';
 import React from 'react';
-import useScale, { withScale } from '../use-scale';
 import useClasses from '../use-classes';
+import useScale, { withScale } from '../use-scale';
 
 interface Props {
   center?: boolean;
-  className?: string;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
 export type PageHeaderProps = Props & NativeAttrs;
 
 const PageHeaderComponent: React.FC<React.PropsWithChildren<PageHeaderProps>> = ({
   children,
   center = false,
-  className = '',
+  className = undefined,
   ...props
 }: React.PropsWithChildren<PageHeaderProps>) => {
-  const { SCALES } = useScale();
-  const classes = useClasses({ center }, className);
+  const { RESPONSIVE, SCALER } = useScale();
+  const classes = useClasses({ center }, className, 'page-header');
 
   return (
     <header className={classes} {...props}>
       {children}
       <style jsx>{`
-        header {
-          font-size: ${SCALES.font(1)};
-          width: ${SCALES.w(1, '100%')};
-          height: ${SCALES.h(1, 'auto')};
-          padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
-          margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
-        }
-
         .center {
           display: flex;
           justify-content: center;
           align-items: center;
         }
+
+        ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'page-header')}
+        ${RESPONSIVE.w(1, value => `width: ${value}};`, `100%`, 'page-header')}
+
+        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'page-header')}
+        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'page-header')}
+
+        ${SCALER('page-header')}
       `}</style>
     </header>
   );

@@ -9,8 +9,8 @@ import React, { PropsWithChildren } from 'react';
 export interface UserProfileMenuProps {
   name?: string;
 }
-const UserProfileComponent: React.FC<PropsWithChildren<UserProfileMenuProps>> = React.memo(({ children, name }) => {
-  const { SCALES } = useScale();
+const UserProfileComponent: React.FC<PropsWithChildren<UserProfileMenuProps>> = ({ children, name }) => {
+  const { SCALER, RESPONSIVE } = useScale();
   return (
     <div className="user-profile-menu">
       <Popover className="menu-popover" offset={8} ml={3} placement="bottomEnd" trigger="click" enterDelay={0} leaveDelay={0} content={children}>
@@ -22,13 +22,15 @@ const UserProfileComponent: React.FC<PropsWithChildren<UserProfileMenuProps>> = 
         }
         .user-profile-menu {
           display: inline-flex;
-          padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
-          margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
         }
+
+        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'user-profile-menu')}
+        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'user-profile-menu')}
+        ${SCALER('user-profile-menu')}
       `}</style>
     </div>
   );
-});
+};
 
 UserProfileComponent.displayName = 'HimalayaUserProfile';
 const UserProfileMenu = withScale(UserProfileComponent);

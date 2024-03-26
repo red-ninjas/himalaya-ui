@@ -11,7 +11,7 @@ interface Props {
   gap?: ScaleResponsiveParameter<number>;
   rowGap?: ScaleResponsiveParameter<number>;
   order?: ScaleResponsiveParameter<number>;
-  wrap?: GridWrap;
+  wrap?: ScaleResponsiveParameter<GridWrap>;
   className?: string;
 }
 
@@ -20,7 +20,7 @@ export type GridContainerProps = Props & GridBasicItemProps;
 const GridContainerComponent: React.FC<React.PropsWithChildren<GridContainerProps>> = ({
   gap = 0,
   rowGap,
-  wrap = 'wrap' as GridWrap,
+  wrap = 'wrap',
   children,
   className = '',
   ...props
@@ -28,26 +28,27 @@ const GridContainerComponent: React.FC<React.PropsWithChildren<GridContainerProp
   const { unit, RESPONSIVE } = useScale();
   const layout = useLayout();
   const { className: resolveClassName, styles } = css.resolve`
-    div {
+    .grid-item {
       display: flex;
-      flex-wrap: ${wrap};
       box-sizing: border-box;
     }
 
     ${customResponsiveAttribute(
-      gap,
-      'gap',
+      gap ?? 0,
+      'grid-item',
       layout.breakpoints,
       value =>
         `--grid-gap-unit: calc(${value} * ${unit} * 1/3); --grid-container-margin: calc(-1 * var(--grid-gap-unit)); --grid-container-width: calc(100% + var(--grid-gap-unit) * 2);`,
     )}
     ${RESPONSIVE.w(0, value => `width: ${value};`, 'var(--grid-container-width)')}
     ${customResponsiveAttribute(
-      rowGap ?? gap,
-      'rowGap',
+      rowGap ?? gap ?? 0,
+      'grid-item',
       layout.breakpoints,
       value => `--grid-row-gap-unit: calc(${value} * ${unit} * 1/3); --grid-row-container-margin: calc(-1 * var(--grid-row-gap-unit));`,
     )}
+
+    ${customResponsiveAttribute(wrap, 'grid-item', layout.breakpoints, value => `flex-wrap: ${value};`)}
     ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, {
       top: 'var(--grid-row-container-margin)',
       bottom: 'var(--grid-row-container-margin)',
@@ -55,7 +56,7 @@ const GridContainerComponent: React.FC<React.PropsWithChildren<GridContainerProp
       right: 'var(--grid-container-margin)',
     })}
   `;
-  const classes = useClasses(resolveClassName, className, 'width', 'margin', 'gap', 'rowGap');
+  const classes = useClasses(resolveClassName, className);
 
   return (
     <GridBasicItem className={classes} {...props}>
