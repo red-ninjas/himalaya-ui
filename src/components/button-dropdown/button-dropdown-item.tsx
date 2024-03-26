@@ -1,10 +1,9 @@
 'use client';
 import React, { MouseEvent, useMemo } from 'react';
-import useTheme from '../use-theme';
-import { getColor } from './styles';
-import { useButtonDropdown } from './button-dropdown-context';
 import LoadingSpinner from '../loading-spinner';
 import { NormalTypes } from '../utils/prop-types';
+import { useButtonDropdown } from './button-dropdown-context';
+import useClasses from 'components/use-classes';
 
 export type ButtonDropdownItemTypes = NormalTypes;
 
@@ -39,7 +38,7 @@ const ButtonDropdownItem: React.FC<React.PropsWithChildren<ButtonDropdownItemPro
   }, [loading, disabled]);
 
   return (
-    <button className={className} onClick={clickHandler} {...props}>
+    <button className={useClasses(className, { loading, disabled })} onClick={clickHandler} {...props}>
       {loading ? <LoadingSpinner /> : children}
       <style jsx>{`
         button {
@@ -56,7 +55,7 @@ const ButtonDropdownItem: React.FC<React.PropsWithChildren<ButtonDropdownItemPro
           box-sizing: border-box;
           margin: 0;
           border: none;
-          font-weight: ${main ? '500' : 'auto'};
+          font-weight: ${main ? '500' : 'inherit'};
           background-color: var(--ui-button-bg);
           color: var(--ui-dropdown-color);
           width: 100%;
@@ -73,6 +72,11 @@ const ButtonDropdownItem: React.FC<React.PropsWithChildren<ButtonDropdownItemPro
         button:hover {
           border-color: var(--ui-button-hover-border-color);
           background-color: var(--ui-button-hover-bg);
+        }
+
+        button.disabled,
+        button.loading {
+          cursor: not-allowed;
         }
       `}</style>
     </button>

@@ -3,7 +3,6 @@
 import React, { MouseEvent, useCallback, useRef, useState } from 'react';
 import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';
-import useTheme from '../use-theme';
 import { pickChild, pickChildByProps } from '../utils/collections';
 import { COLOR_TYPES } from '../utils/prop-types';
 import useClickAway from '../utils/use-click-away';
@@ -42,7 +41,6 @@ const ButtonDropdownComponent: React.FC<React.PropsWithChildren<ButtonDropdownPr
 }) => {
   const { SCALER, RESPONSIVE } = useScale();
   const ref = useRef<HTMLDivElement>(null);
-  const theme = useTheme();
   const itemChildren = pickChild(children, ButtonDropdownItem)[1];
   const [itemChildrenWithoutMain, mainItemChildren] = pickChildByProps(itemChildren, 'main', true);
   const [visible, setVisible] = useState<boolean>(false);
@@ -67,7 +65,12 @@ const ButtonDropdownComponent: React.FC<React.PropsWithChildren<ButtonDropdownPr
 
   return (
     <ButtonDropdownContext.Provider value={initialValue}>
-      <div ref={ref} className={useClasses('btn-dropdown', className, type ? 'color-' + type : null)} onClick={stopPropagation} {...props}>
+      <div
+        ref={ref}
+        className={useClasses('btn-dropdown', className, type ? 'color-' + type : null, { disabled, loading })}
+        onClick={stopPropagation}
+        {...props}
+      >
         {mainItemChildren}
         <details open={visible}>
           <summary onClick={clickHandler}>
@@ -130,7 +133,7 @@ const ButtonDropdownComponent: React.FC<React.PropsWithChildren<ButtonDropdownPr
             outline: none;
             color: var(--ui-dropdown-color);
             height: var(--ui-dropdown-height);
-            cursor: ${disabled || loading ? 'not-allowed' : 'pointer'};
+            cursor: pointer;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -146,6 +149,25 @@ const ButtonDropdownComponent: React.FC<React.PropsWithChildren<ButtonDropdownPr
             &:hover {
               border-color: var(--ui-button-hover-border-color);
               background-color: var(--ui-button-hover-bg);
+            }
+          }
+
+          .btn-dropdown.disabled {
+            --ui-button-color: var(--color-foreground-500);
+            --ui-button-bg: var(--color-background-900);
+            --ui-button-border: var(--color-border-1000);
+            --ui-button-hover-color: var(--color-foreground-500);
+            --ui-button-hover-bg: var(--color-background-900);
+            --ui-button-hover-border-color: var(--color-border-1000);
+            --ui-button-activated-color: var(--color-foreground-900);
+            --ui-button-activated-bg: var(--color-background-500);
+            --ui-button-activated-border-color: var(--color-border-1000);
+          }
+
+          .btn-dropdown.disabled,
+          .btn-dropdown.loading {
+            summary {
+              cursor: not-allowed;
             }
           }
 
