@@ -17,7 +17,7 @@ type NativeAttrs = Omit<React.HTMLAttributes<HTMLVideoElement>, keyof Props>;
 export type VideoProps = Props & NativeAttrs;
 
 const Video: React.FC<VideoProps> = ({ src, controls, poster, loop = false, autoplay = false, muted = false, ...props }) => {
-  const { SCALER, RESPONSIVE, HIDER } = useScale();
+  const { SCALER, RESPONSIVE, SCALE_CLASSES } = useScale();
 
   const [isPlaying, setIsPlaying] = useState(autoplay);
   const [isMuted, setIsMuted] = useState(muted);
@@ -72,7 +72,7 @@ const Video: React.FC<VideoProps> = ({ src, controls, poster, loop = false, auto
   };
 
   return (
-    <div className={useClasses('video-player', HIDER)}>
+    <div className={useClasses('video-player', SCALE_CLASSES)}>
       <div className="video-container">
         <video
           {...props}

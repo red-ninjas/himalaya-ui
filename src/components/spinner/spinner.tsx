@@ -98,8 +98,8 @@ const getSpans = () => {
 };
 
 const SpinnerComponent: React.FC<SpinnerProps> = ({ className, ...props }: SpinnerProps) => {
-  const { RESPONSIVE, SCALER, HIDER } = useScale();
-  const classes = useClasses('spinner', className, HIDER);
+  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
+  const classes = useClasses('spinner', className, SCALE_CLASSES);
 
   return (
     <div className={classes} {...props}>

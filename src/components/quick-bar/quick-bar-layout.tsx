@@ -11,7 +11,7 @@ import { default as QuickBar } from './quick-bar';
 
 const QuickBarLayout: React.FC<React.PropsWithChildren<QuickBarLayoutProps>> = ({ children, className, animationTime = 250, ...props }) => {
   const [otherElements, quickBar] = pickChild(children, QuickBar);
-  const { RESPONSIVE, SCALER, HIDER } = useScale();
+  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
   const { isEnabled } = useQuickBar();
 
   return (
@@ -24,7 +24,7 @@ const QuickBarLayout: React.FC<React.PropsWithChildren<QuickBarLayoutProps>> = (
           {
             'quickbar-active': isEnabled,
           },
-          HIDER,
+          SCALE_CLASSES,
         )}
       >
         <div className="quickbar-content">

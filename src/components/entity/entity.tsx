@@ -22,11 +22,11 @@ function EntityComponent({
   ...others
 }: PropsWithChildren<EntityProps>) {
   const classes = useClasses('entity-wrapper');
-  const { SCALER, RESPONSIVE, HIDER } = useScale();
+  const { SCALER, RESPONSIVE, SCALE_CLASSES } = useScale();
   const layout = useLayout();
   const [, entityFields] = pickChild(children, EntityField);
 
-  const outerClasses = useClasses('entity-outer-wrapper', HIDER, {
+  const outerClasses = useClasses('entity-outer-wrapper', SCALE_CLASSES, {
     disabled,
   });
 

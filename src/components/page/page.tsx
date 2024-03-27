@@ -22,7 +22,7 @@ const PageComponent: React.FC<React.PropsWithChildren<PageProps>> = ({
   className,
   ...props
 }: React.PropsWithChildren<PageProps>) => {
-  const { RESPONSIVE, SCALER, HIDER } = useScale();
+  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
   const [preventRender, setPreventRender] = useState<boolean>(render !== 'default');
 
   useEffect(() => {
@@ -48,7 +48,7 @@ const PageComponent: React.FC<React.PropsWithChildren<PageProps>> = ({
   const hasContent = hasChild(children, PageContent);
 
   return (
-    <section className={useClasses('page-section', className, HIDER)} {...props}>
+    <section className={useClasses('page-section', className, SCALE_CLASSES)} {...props}>
       {hasContent ? children : <PageContent>{children}</PageContent>}
       <style jsx>{`
         .page-section {

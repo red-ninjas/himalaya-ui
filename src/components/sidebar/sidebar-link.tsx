@@ -18,10 +18,10 @@ const SidebarLink = React.forwardRef<HTMLAnchorElement, React.PropsWithChildren<
     { children, icon, isActive, activeColor, activeBackground, className, ...props }: React.PropsWithChildren<SideBarLinkProp>,
     ref: React.Ref<HTMLAnchorElement>,
   ) => {
-    const { SCALER, RESPONSIVE, HIDER } = useScale();
+    const { SCALER, RESPONSIVE, SCALE_CLASSES } = useScale();
 
     return (
-      <a ref={ref} {...props} className={useClasses(`sidebar-link`, { active: isActive, className }, HIDER)}>
+      <a ref={ref} {...props} className={useClasses(`sidebar-link`, { active: isActive, className }, SCALE_CLASSES)}>
         {icon && <span className="sidebar-link-icon">{icon}</span>}
         <span className="sidebar-link-title">{children}</span>
         <style jsx>{`

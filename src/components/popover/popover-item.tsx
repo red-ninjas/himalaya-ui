@@ -23,11 +23,11 @@ const PopoverItemComponent: React.FC<React.PropsWithChildren<PopoverItemProps>> 
   disableAutoClose = false,
   ...props
 }: React.PropsWithChildren<PopoverItemProps>) => {
-  const { RESPONSIVE, SCALER, HIDER } = useScale();
+  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
   const { disableItemsAutoClose, onItemClick } = usePopoverContext();
   const hasHandler = Boolean(onClick);
   const dontCloseByClick = disableAutoClose || disableItemsAutoClose || title || line;
-  const classes = useClasses('item', { line, title }, className, HIDER);
+  const classes = useClasses('item', { line, title }, className, SCALE_CLASSES);
 
   const clickHandler = (event: React.MouseEvent<HTMLDivElement>) => {
     onClick && onClick(event);

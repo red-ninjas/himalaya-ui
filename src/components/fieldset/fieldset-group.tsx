@@ -23,11 +23,11 @@ const FieldsetGroupComponent: React.FC<React.PropsWithChildren<FieldsetGroupProp
   onChange,
   ...props
 }: React.PropsWithChildren<FieldsetGroupProps>) => {
-  const { RESPONSIVE, SCALER, HIDER } = useScale();
+  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
 
   const [selfVal, setSelfVal] = useState<string>(value);
   const [items, setItems, ref] = useCurrentState<FieldItem[]>([]);
-  const classes = useClasses('group', className, HIDER);
+  const classes = useClasses('group', className, SCALE_CLASSES);
 
   const register = (newItem: FieldItem) => {
     const hasItem = ref.current.find(item => item.value === newItem.value);

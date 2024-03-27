@@ -14,10 +14,10 @@ const PageContentComponent: React.FC<React.PropsWithChildren<PageContentProps>> 
   children,
   ...props
 }: React.PropsWithChildren<PageContentProps>) => {
-  const { RESPONSIVE, SCALER, HIDER } = useScale();
+  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
 
   return (
-    <main className={useClasses('page-content', className, HIDER)} {...props}>
+    <main className={useClasses('page-content', className, SCALE_CLASSES)} {...props}>
       {children}
       <style jsx>{`
         ${RESPONSIVE.h(1, value => `height: ${value};`, '100%', 'page-content')}

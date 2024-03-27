@@ -16,8 +16,8 @@ const PageHeaderComponent: React.FC<React.PropsWithChildren<PageHeaderProps>> = 
   className,
   ...props
 }: React.PropsWithChildren<PageHeaderProps>) => {
-  const { RESPONSIVE, SCALER, HIDER } = useScale();
-  const classes = useClasses('page-header', { center }, className, HIDER);
+  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
+  const classes = useClasses('page-header', { center }, className, SCALE_CLASSES);
 
   return (
     <header className={classes} {...props}>

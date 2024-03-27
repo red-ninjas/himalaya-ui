@@ -12,9 +12,9 @@ const Footer: React.FC<PropsWithChildren<FooterPropsNativeProps>> = ({ children,
   const [, footerBottom] = pickChild(children, FooterBottom);
   const [, footerBlock] = pickChild(children, FooterBlock);
 
-  const { RESPONSIVE, SCALER, HIDER } = useScale();
+  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
   return (
-    <footer className={useClasses('footer', className, HIDER)} {...props}>
+    <footer className={useClasses('footer', className, SCALE_CLASSES)} {...props}>
       <PageWidth py={0}>
         <div className="blocks">{footerBlock}</div>
       </PageWidth>

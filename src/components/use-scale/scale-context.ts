@@ -128,7 +128,7 @@ export interface ScaleConfig {
   getAllScaleProps: GetAllScalePropsFunction;
   unit: string;
   SCALER: ScaleResponsivePipe;
-  HIDER: string | undefined;
+  SCALE_CLASSES: string | undefined;
 }
 
 const defaultDynamicLayoutPipe: DynamicLayoutPipe = scale1x => {
@@ -186,7 +186,7 @@ const defaultContext: ScaleConfig = {
     margin: defaultDynamicResponsiveLayoutPipe,
     padding: defaultDynamicResponsiveLayoutPipe,
   },
-  HIDER: undefined,
+  SCALE_CLASSES: undefined,
   SCALER: defaultDynamicResponsiveLayoutPipe,
   unit: '16px',
 };

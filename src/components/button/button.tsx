@@ -34,7 +34,7 @@ const ButtonComponent = React.forwardRef<HTMLButtonElement, React.PropsWithChild
   (btnProps: ButtonProps, ref: React.Ref<HTMLButtonElement | null>) => {
     const theme = useTheme();
     const layoutRoot = useLayout();
-    const { SCALER, RESPONSIVE, HIDER } = useScale();
+    const { SCALER, RESPONSIVE, SCALE_CLASSES } = useScale();
     const buttonRef = useRef<HTMLButtonElement>(null);
     useImperativeHandle(ref, () => buttonRef.current);
 
@@ -98,7 +98,7 @@ const ButtonComponent = React.forwardRef<HTMLButtonElement, React.PropsWithChild
       <button
         ref={buttonRef}
         type={htmlType}
-        className={useClasses('btn', className, disabled, type ? 'color-' + type : null, { ghost }, HIDER)}
+        className={useClasses('btn', className, disabled, type ? 'color-' + type : null, { ghost }, SCALE_CLASSES)}
         disabled={disabled}
         onClick={clickHandler}
         {...props}

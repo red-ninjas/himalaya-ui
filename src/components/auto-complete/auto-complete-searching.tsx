@@ -14,10 +14,10 @@ const AutoCompleteSearchComponent: React.FC<React.PropsWithChildren<AutoComplete
   children,
   className = '',
 }: React.PropsWithChildren<AutoCompleteSearchProps>) => {
-  const { RESPONSIVE, SCALER, HIDER } = useScale();
+  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
 
   return (
-    <div className={useClasses('searching', className, HIDER)}>
+    <div className={useClasses('searching', className, SCALE_CLASSES)}>
       {children}
       <style jsx>{`
         .searching {

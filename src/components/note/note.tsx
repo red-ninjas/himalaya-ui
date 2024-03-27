@@ -27,7 +27,7 @@ export const NoteComponent: React.FC<React.PropsWithChildren<NoteProps>> = ({
   className = '',
   ...props
 }: React.PropsWithChildren<NoteProps>) => {
-  const { RESPONSIVE, SCALER, HIDER } = useScale();
+  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
 
   const icons: { [key in NoteTypes]?: React.ReactNode } = {
     success: <CheckInCircle></CheckInCircle>,
@@ -39,7 +39,7 @@ export const NoteComponent: React.FC<React.PropsWithChildren<NoteProps>> = ({
   const foundIcon = icon === true ? statusIcon ?? <Info></Info> : icon;
 
   return (
-    <div className={useClasses('note', className, type ? 'color-' + type : null, { filled }, HIDER)} {...props}>
+    <div className={useClasses('note', className, type ? 'color-' + type : null, { filled }, SCALE_CLASSES)} {...props}>
       {foundIcon && <span className="label">{foundIcon}</span>}
       <span>{children}</span>
 

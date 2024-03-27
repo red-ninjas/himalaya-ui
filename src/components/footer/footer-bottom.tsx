@@ -9,9 +9,9 @@ import PageWidth from '../page-width';
 import useClasses from '../use-classes';
 const FooterBottom: React.FC<PropsWithChildren<FooterPropsNativeProps>> = ({ children, className, ...props }) => {
   const [, footerBottomBlock] = pickChild(children, FooterBottomBlock);
-  const { RESPONSIVE, SCALER, HIDER } = useScale();
+  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
   return (
-    <div className={useClasses('footer-bottom', HIDER, className)} {...props}>
+    <div className={useClasses('footer-bottom', SCALE_CLASSES, className)} {...props}>
       <PageWidth pt={0} pb={0}>
         <div className="footer-bottom-inner">{footerBottomBlock}</div>
       </PageWidth>

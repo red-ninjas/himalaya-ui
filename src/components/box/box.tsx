@@ -23,10 +23,10 @@ export type BoxComponent = {
 export const Box: BoxComponent = React.forwardRef(
   <E extends React.ElementType = typeof defaultElement>({ as, children, className, ...restProps }: BoxProps<E>, ref: typeof restProps.ref | null) => {
     const Element = as || defaultElement;
-    const { RESPONSIVE, SCALER, HIDER } = useScale();
+    const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
 
     return (
-      <Element className={useClasses('box', className, HIDER)} ref={ref} {...restProps}>
+      <Element className={useClasses('box', className, SCALE_CLASSES)} ref={ref} {...restProps}>
         {children}
         <style jsx>{`
           ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'box')}

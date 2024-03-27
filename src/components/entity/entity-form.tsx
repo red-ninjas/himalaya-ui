@@ -15,8 +15,8 @@ function EntityFormComponent({
   footerNote = null,
   footerSeparator = true,
 }: PropsWithChildren<EntityFormProps>) {
-  const { SCALER, RESPONSIVE, HIDER } = useScale();
-  const entityFormClasses = useClasses('entity-form-wrapper', HIDER);
+  const { SCALER, RESPONSIVE, SCALE_CLASSES } = useScale();
+  const entityFormClasses = useClasses('entity-form-wrapper', SCALE_CLASSES);
 
   const entityFooterClasses = useClasses('entity-form-footer', {
     separator: footerSeparator,

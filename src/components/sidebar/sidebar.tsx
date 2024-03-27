@@ -16,7 +16,7 @@ const Sidebar: React.FC<PropsWithChildren<SidebarPropsNative>> = ({ children, he
   const pathname = usePathname();
   const boxRef = useRef<HTMLDivElement>(null);
   const { sidebarScrollHeight, updateSidebarScrollHeight } = useConfigs();
-  const { RESPONSIVE, SCALER, HIDER } = useScale();
+  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
 
   useEffect(() => {
     if (!boxRef.current) return;
@@ -29,7 +29,7 @@ const Sidebar: React.FC<PropsWithChildren<SidebarPropsNative>> = ({ children, he
   }, [boxRef.current]);
 
   return (
-    <div ref={boxRef} {...props} className={useClasses('sidebar-inner', className, HIDER)}>
+    <div ref={boxRef} {...props} className={useClasses('sidebar-inner', className, SCALE_CLASSES)}>
       {header}
       {children}
       <style jsx>{`

@@ -18,8 +18,8 @@ const DescriptionComponent: React.FC<DescriptionProps> = ({
   className,
   ...props
 }: DescriptionProps) => {
-  const { RESPONSIVE, SCALER, HIDER } = useScale();
-  const classes = useClasses('description', className, HIDER);
+  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
+  const classes = useClasses('description', className, SCALE_CLASSES);
 
   return (
     <dl className={classes} {...props}>

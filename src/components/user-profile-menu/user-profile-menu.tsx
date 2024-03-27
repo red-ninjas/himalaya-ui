@@ -11,9 +11,9 @@ export interface UserProfileMenuProps {
   name?: string;
 }
 const UserProfileComponent: React.FC<PropsWithChildren<UserProfileMenuProps>> = ({ children, name }) => {
-  const { SCALER, RESPONSIVE, HIDER } = useScale();
+  const { SCALER, RESPONSIVE, SCALE_CLASSES } = useScale();
   return (
-    <div className={useClasses('user-profile-menu', HIDER)}>
+    <div className={useClasses('user-profile-menu', SCALE_CLASSES)}>
       <Popover className="menu-popover" offset={8} ml={3} placement="bottomEnd" trigger="click" enterDelay={0} leaveDelay={0} content={children}>
         <Avatar text={name} scale={1.2}></Avatar>
       </Popover>

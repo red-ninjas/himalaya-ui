@@ -34,7 +34,7 @@ const PaginationComponent: React.FC<React.PropsWithChildren<PaginationProps>> = 
   className = undefined,
   ...props
 }: React.PropsWithChildren<PaginationProps>) => {
-  const { SCALER, RESPONSIVE, HIDER } = useScale();
+  const { SCALER, RESPONSIVE, SCALE_CLASSES } = useScale();
   const [page, setPage, pageRef] = useCurrentState(initialPage);
   const [, prevChildren] = pickChild(children, PaginationPrevious);
   const [, nextChildren] = pickChild(children, PaginationNext);
@@ -74,7 +74,7 @@ const PaginationComponent: React.FC<React.PropsWithChildren<PaginationProps>> = 
 
   return (
     <PaginationContext.Provider value={values}>
-      <nav className={useClasses('pagination', className, type ? 'color-' + type : null, HIDER)} {...props}>
+      <nav className={useClasses('pagination', className, type ? 'color-' + type : null, SCALE_CLASSES)} {...props}>
         {prevItem}
         <PaginationPages count={count} current={page} limit={limit} setPage={setPage} />
         {nextItem}

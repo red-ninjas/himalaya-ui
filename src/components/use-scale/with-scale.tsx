@@ -47,7 +47,7 @@ const withScale = <T, P = {}>(Render: React.ComponentType<P & { ref?: React.Ref<
         margin: makeScaleHandler4X(ml ?? mx ?? m, mr ?? mx ?? m, mt ?? my ?? m, mb ?? my ?? m),
       },
       SCALER: scaleAttribute(scale, unit, layout.breakpoints, 'scale'),
-      HIDER: hideAttribute(hideOn),
+      SCALE_CLASSES: hideAttribute(hideOn),
       RESPONSIVE: {
         r: scaleHandler1X(r, layout.breakpoints, 'radius'),
         pt: scaleHandler1X(pt ?? py ?? p, layout.breakpoints, 'padding'),

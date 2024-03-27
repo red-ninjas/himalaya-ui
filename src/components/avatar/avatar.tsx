@@ -20,8 +20,8 @@ const safeText = (text: string): string => {
 };
 
 const AvatarComponent: React.FC<AvatarProps> = ({ src, text = '', isSquare = false, className = '', ...props }: AvatarProps) => {
-  const { SCALER, RESPONSIVE, HIDER } = useScale();
-  const classes = useClasses('avatar', className, HIDER);
+  const { SCALER, RESPONSIVE, SCALE_CLASSES } = useScale();
+  const classes = useClasses('avatar', className, SCALE_CLASSES);
   const showText = !src;
   return (
     <span className={classes}>

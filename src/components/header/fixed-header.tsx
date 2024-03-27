@@ -15,11 +15,11 @@ type FixedHeaderPropsNative = Omit<React.HTMLAttributes<HTMLDivElement>, keyof P
 export type FixedHeaderProps = FixedHeaderPropsNative & Props;
 
 const FixedHeader: React.FC<React.PropsWithChildren<FixedHeaderProps>> = ({ children, mode = 'sticky', hidden = false, className, ...props }) => {
-  const { SCALER, HIDER } = useScale();
+  const { SCALER, SCALE_CLASSES } = useScale();
 
   const [, header] = pickChild(children, Header);
   return (
-    <div className={useClasses('fixed-header', { hidden }, className, HIDER)} {...props}>
+    <div className={useClasses('fixed-header', { hidden }, className, SCALE_CLASSES)} {...props}>
       {header}
 
       <style jsx>{`

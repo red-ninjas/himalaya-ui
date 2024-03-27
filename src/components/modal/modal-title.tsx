@@ -13,11 +13,11 @@ const ModalTitleComponent: React.FC<React.PropsWithChildren<ModalTitleProps>> = 
   children,
   ...props
 }: React.PropsWithChildren<ModalTitleProps>) => {
-  const { RESPONSIVE, SCALER, HIDER } = useScale();
+  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
 
   return (
     <>
-      <h2 className={useClasses('modal-title', className, HIDER)} {...props}>
+      <h2 className={useClasses('modal-title', className, SCALE_CLASSES)} {...props}>
         {children}
       </h2>
       <style jsx>{`

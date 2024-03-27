@@ -15,14 +15,14 @@ function EntityFieldComponent({
   skeleton = null,
   ...props
 }: EntityFieldProps) {
-  const { SCALER, RESPONSIVE, HIDER } = useScale();
+  const { SCALER, RESPONSIVE, SCALE_CLASSES } = useScale();
   const layout = useLayout();
 
   const wrapperClasses = useClasses({
     'field-wrapper': true,
     disabled: !active,
     right,
-    HIDER,
+    SCALE_CLASSES,
   });
   return (
     <>

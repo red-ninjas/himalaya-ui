@@ -22,7 +22,7 @@ const ModalActionComponent = React.forwardRef<HTMLButtonElement, React.PropsWith
     { className = undefined, children, onClick, passive = false, disabled = false, ...props }: React.PropsWithChildren<ModalActionProps>,
     ref: React.Ref<HTMLButtonElement | null>,
   ) => {
-    const { SCALER, RESPONSIVE, HIDER } = useScale();
+    const { SCALER, RESPONSIVE, SCALE_CLASSES } = useScale();
     const btnRef = useRef<HTMLButtonElement>(null);
     const { close } = useModalContext();
     useImperativeHandle(ref, () => btnRef.current);
@@ -68,7 +68,7 @@ const ModalActionComponent = React.forwardRef<HTMLButtonElement, React.PropsWith
       ${SCALER('btn.action-btn')}
     `;
 
-    const classes = useClasses('action-btn', className, resolveClassName, HIDER);
+    const classes = useClasses('action-btn', className, resolveClassName, SCALE_CLASSES);
 
     const overrideProps = {
       ...props,

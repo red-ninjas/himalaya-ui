@@ -87,7 +87,7 @@ const AutoCompleteComponent = React.forwardRef<HTMLInputElement, React.PropsWith
     userRef: React.Ref<HTMLInputElement | null>,
   ) => {
     const resetTimer = useRef<number>();
-    const { RESPONSIVE, SCALER, getScaleProps, HIDER } = useScale();
+    const { RESPONSIVE, SCALER, getScaleProps, SCALE_CLASSES } = useScale();
     const ref = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
     const [state, setState, stateRef] = useCurrentState<string>(customInitialValue);
@@ -174,7 +174,7 @@ const AutoCompleteComponent = React.forwardRef<HTMLInputElement, React.PropsWith
 
     return (
       <AutoCompleteContext.Provider value={initialValue}>
-        <div ref={ref} className={useClasses('auto-complete', HIDER)}>
+        <div ref={ref} className={useClasses('auto-complete', SCALE_CLASSES)}>
           <Input
             ref={inputRef}
             type={type}

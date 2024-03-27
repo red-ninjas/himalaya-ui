@@ -39,7 +39,7 @@ const ButtonDropdownComponent: React.FC<React.PropsWithChildren<ButtonDropdownPr
   icon,
   ...props
 }) => {
-  const { SCALER, RESPONSIVE, HIDER } = useScale();
+  const { SCALER, RESPONSIVE, SCALE_CLASSES } = useScale();
   const ref = useRef<HTMLDivElement>(null);
   const itemChildren = pickChild(children, ButtonDropdownItem)[1];
   const [itemChildrenWithoutMain, mainItemChildren] = pickChildByProps(itemChildren, 'main', true);
@@ -67,7 +67,7 @@ const ButtonDropdownComponent: React.FC<React.PropsWithChildren<ButtonDropdownPr
     <ButtonDropdownContext.Provider value={initialValue}>
       <div
         ref={ref}
-        className={useClasses('btn-dropdown', className, type ? 'color-' + type : null, { disabled, loading }, HIDER)}
+        className={useClasses('btn-dropdown', className, type ? 'color-' + type : null, { disabled, loading }, SCALE_CLASSES)}
         onClick={stopPropagation}
         {...props}
       >

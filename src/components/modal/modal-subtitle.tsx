@@ -13,11 +13,11 @@ const ModalSubtitleComponent: React.FC<React.PropsWithChildren<ModalSubtitleProp
   children,
   ...props
 }: React.PropsWithChildren<ModalSubtitleProps>) => {
-  const { RESPONSIVE, SCALER, HIDER } = useScale();
+  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
 
   return (
     <>
-      <p className={useClasses('modal-sub-title', className, HIDER)} {...props}>
+      <p className={useClasses('modal-sub-title', className, SCALE_CLASSES)} {...props}>
         {children}
       </p>
       <style jsx>{`

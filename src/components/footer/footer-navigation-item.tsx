@@ -8,9 +8,9 @@ import { withScale } from '../use-scale';
 import { useScale } from '../use-scale/scale-context';
 
 const FooterNavigationItem: React.FC<PropsWithChildren<FooterNavigationItemProps>> = ({ children, href, className, target = '_self', ...props }) => {
-  const { SCALER, RESPONSIVE, HIDER } = useScale();
+  const { SCALER, RESPONSIVE, SCALE_CLASSES } = useScale();
   return (
-    <li className={useClasses('footer-navigation-item', className, HIDER)} {...props}>
+    <li className={useClasses('footer-navigation-item', className, SCALE_CLASSES)} {...props}>
       <NextLink legacyBehavior passHref href={href} target={target}>
         <a className="footer-link">{children}</a>
       </NextLink>

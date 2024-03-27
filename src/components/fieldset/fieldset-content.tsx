@@ -15,9 +15,9 @@ const FieldsetContentComponent: React.FC<React.PropsWithChildren<FieldsetContent
   children,
   ...props
 }: React.PropsWithChildren<FieldsetContentProps>) => {
-  const { RESPONSIVE, SCALER, HIDER } = useScale();
+  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
 
-  const classes = useClasses('content', className, HIDER);
+  const classes = useClasses('content', className, SCALE_CLASSES);
 
   return (
     <div className={classes} {...props}>

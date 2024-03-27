@@ -14,10 +14,10 @@ const PageFooterComponent: React.FC<React.PropsWithChildren<PageFooterProps>> = 
   className = undefined,
   ...props
 }: React.PropsWithChildren<PageFooterProps>) => {
-  const { RESPONSIVE, SCALER, HIDER } = useScale();
+  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
 
   return (
-    <footer className={useClasses('page-footer', className, HIDER)} {...props}>
+    <footer className={useClasses('page-footer', className, SCALE_CLASSES)} {...props}>
       {children}
       <style jsx>{`
         .page-footer {

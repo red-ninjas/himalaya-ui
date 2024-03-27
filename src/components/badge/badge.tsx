@@ -24,8 +24,8 @@ const BadgeComponent: React.FC<React.PropsWithChildren<BadgeProps>> = ({
   dot = false,
   ...props
 }: BadgeProps) => {
-  const { RESPONSIVE, SCALER, HIDER } = useScale();
-  const classes = useClasses('badge', { dot }, className, type ? 'color-' + type : null, HIDER);
+  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
+  const classes = useClasses('badge', { dot }, className, type ? 'color-' + type : null, SCALE_CLASSES);
 
   return (
     <span className={classes} {...props}>

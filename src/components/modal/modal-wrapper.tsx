@@ -20,7 +20,7 @@ const ModalWrapper: React.FC<React.PropsWithChildren<ModalWrapperProps>> = ({
   ...props
 }: React.PropsWithChildren<ModalWrapperProps>) => {
   const theme = useTheme();
-  const { RESPONSIVE, SCALER, HIDER } = useScale();
+  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
   const modalContent = useRef<HTMLDivElement>(null);
   const tabStart = useRef<HTMLDivElement>(null);
   const tabEnd = useRef<HTMLDivElement>(null);
@@ -50,7 +50,7 @@ const ModalWrapper: React.FC<React.PropsWithChildren<ModalWrapperProps>> = ({
 
   return (
     <CssTransition name="wrapper" visible={visible} clearTime={300}>
-      <div className={useClasses('wrapper', className, HIDER)} role="dialog" tabIndex={-1} onKeyDown={onKeyDown} ref={modalContent} {...props}>
+      <div className={useClasses('wrapper', className, SCALE_CLASSES)} role="dialog" tabIndex={-1} onKeyDown={onKeyDown} ref={modalContent} {...props}>
         <div tabIndex={0} className="hide-tab" aria-hidden="true" ref={tabStart} />
         {children}
         <div tabIndex={0} className="hide-tab" aria-hidden="true" ref={tabEnd} />

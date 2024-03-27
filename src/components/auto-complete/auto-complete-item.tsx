@@ -21,7 +21,7 @@ const AutoCompleteItemComponent: React.FC<React.PropsWithChildren<AutoCompleteIt
   isLabelOnly,
   hasCheckmark = true,
 }: React.PropsWithChildren<AutoCompleteItemProps>) => {
-  const { RESPONSIVE, SCALER, HIDER } = useScale();
+  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
   const { value, updateValue, updateVisible } = useAutoCompleteContext();
   const selectHandler = () => {
     updateValue && updateValue(identValue);
@@ -34,7 +34,7 @@ const AutoCompleteItemComponent: React.FC<React.PropsWithChildren<AutoCompleteIt
       active: isActive,
       'label-only': isLabelOnly,
     },
-    HIDER,
+    SCALE_CLASSES,
   );
 
   return (

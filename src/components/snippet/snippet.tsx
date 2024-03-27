@@ -41,13 +41,13 @@ const SnippetComponent: React.FC<React.PropsWithChildren<SnippetProps>> = ({
   className = '',
   ...props
 }: React.PropsWithChildren<SnippetProps>) => {
-  const { RESPONSIVE, SCALER, HIDER } = useScale();
+  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
 
   const { copy } = useClipboard();
   const { setToast } = useToasts();
   const ref = useRef<HTMLPreElement>(null);
   const isMultiLine = text && Array.isArray(text);
-  const classes = useClasses('snippet', className, type ? 'color-' + type : null, filled ? 'filled' : '', HIDER);
+  const classes = useClasses('snippet', className, type ? 'color-' + type : null, filled ? 'filled' : '', SCALE_CLASSES);
 
   const showCopyIcon = useMemo(() => copyType !== 'prevent', [copyType]);
   const childText = useMemo<string | undefined | null>(() => {

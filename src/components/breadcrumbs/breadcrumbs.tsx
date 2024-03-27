@@ -14,7 +14,7 @@ type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
 export type BreadcrumbsProps = Props & NativeAttrs;
 
 const BreadcrumbsComponent: React.FC<React.PropsWithChildren<BreadcrumbsProps>> = ({ separator = '/', children, className = '' }: BreadcrumbsProps) => {
-  const { SCALER, RESPONSIVE, HIDER } = useScale();
+  const { SCALER, RESPONSIVE, SCALE_CLASSES } = useScale();
 
   const childrenArray = React.Children.toArray(children);
   const withSeparatorChildren = childrenArray.map((item, index) => {
@@ -34,7 +34,7 @@ const BreadcrumbsComponent: React.FC<React.PropsWithChildren<BreadcrumbsProps>> 
   });
 
   return (
-    <nav className={useClasses('nav', className, HIDER)}>
+    <nav className={useClasses('nav', className, SCALE_CLASSES)}>
       {withSeparatorChildren}
       <style jsx>{`
         .nav {

@@ -13,10 +13,10 @@ const FieldsetFooterComponent: React.FC<React.PropsWithChildren<FieldsetFooterPr
   children,
   ...props
 }: React.PropsWithChildren<FieldsetFooterProps>) => {
-  const { RESPONSIVE, SCALER, HIDER } = useScale();
+  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
 
   return (
-    <footer className={useClasses('footer', className, HIDER)} {...props}>
+    <footer className={useClasses('footer', className, SCALE_CLASSES)} {...props}>
       {children}
       <style jsx>{`
         .footer {

@@ -11,10 +11,10 @@ type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
 export type CardContentProps = Props & NativeAttrs;
 
 const CardContentComponent: React.FC<React.PropsWithChildren<CardContentProps>> = ({ className = '', children, ...props }: CardContentProps) => {
-  const { RESPONSIVE, SCALER, HIDER } = useScale();
+  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
 
   return (
-    <div className={useClasses('content', className, HIDER)} {...props}>
+    <div className={useClasses('content', className, SCALE_CLASSES)} {...props}>
       {children}
       <style jsx>{`
         .content > :global(p:first-child) {

@@ -6,9 +6,9 @@ import { FooterNavigationProps } from '.';
 import useScale, { withScale } from '../use-scale';
 
 const FooterNavigation: React.FC<PropsWithChildren<FooterNavigationProps>> = ({ children, title, className, ...props }) => {
-  const { SCALER, RESPONSIVE, HIDER } = useScale();
+  const { SCALER, RESPONSIVE, SCALE_CLASSES } = useScale();
   return (
-    <nav className={useClasses('footer-navigation', className, HIDER)} {...props}>
+    <nav className={useClasses('footer-navigation', className, SCALE_CLASSES)} {...props}>
       {title && <div className="footer-navigation-title">{title}</div>}
       <ul className="footer-navigation-group">{children}</ul>
       <style jsx>{`

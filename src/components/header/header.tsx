@@ -21,7 +21,7 @@ type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof HeaderProps>
 export type HeaderPropsNative = HeaderProps & NativeAttrs;
 
 const HeaderComponent: React.FC<HeaderPropsNative> = ({ children, transcluent = true, className, transcluentColor, gap = '6px', ...props }) => {
-  const { SCALER, RESPONSIVE, HIDER } = useScale();
+  const { SCALER, RESPONSIVE, SCALE_CLASSES } = useScale();
   const layoutRoot = useLayout();
 
   const [, leftHeaderControl] = pickChild(children, LeftHeaderControl);
@@ -57,7 +57,7 @@ const HeaderComponent: React.FC<HeaderPropsNative> = ({ children, transcluent = 
         {
           transcluent: transcluent,
         },
-        HIDER,
+        SCALE_CLASSES,
         className,
       )}
       {...props}

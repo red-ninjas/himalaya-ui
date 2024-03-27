@@ -22,8 +22,8 @@ const LoadingSpinnerComponent: React.FC<React.PropsWithChildren<LoadingSpinnerPr
   spaceRatio = 1,
   ...props
 }: React.PropsWithChildren<LoadingSpinnerProps>) => {
-  const { RESPONSIVE, SCALER, HIDER } = useScale();
-  const classes = useClasses('loading-container', className, type ? 'color-' + type : null, HIDER);
+  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
+  const classes = useClasses('loading-container', className, type ? 'color-' + type : null, SCALE_CLASSES);
 
   return (
     <div className={classes} {...props}>

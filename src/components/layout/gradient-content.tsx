@@ -9,10 +9,10 @@ type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof GradientCont
 export type CardContentProps = GradientContentProps & NativeAttrs;
 
 const GradientContentComponent: React.FC<React.PropsWithChildren<CardContentProps>> = ({ children, maxHeight = '50vh', className, gradient, ...props }) => {
-  const { SCALER, RESPONSIVE, HIDER } = useScale();
+  const { SCALER, RESPONSIVE, SCALE_CLASSES } = useScale();
   const defaultGradient = `linear-gradient(to bottom, rgba(var(--color-background-800-rgb), 0.5), var(--color-background-1000))`;
   return (
-    <div className={useClasses('gradient-layout', className, HIDER)} {...props}>
+    <div className={useClasses('gradient-layout', className, SCALE_CLASSES)} {...props}>
       <div className="gradient-content">
         <div className="bg-gradient">{props.img}</div>
         <div className="gradient-space">
