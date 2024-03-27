@@ -1,5 +1,6 @@
-import { QuickActionTypes } from '../utils/prop-types';
 import { HTMLAttributeAnchorTarget } from 'react';
+import { COLOR_TYPES } from '../utils/prop-types';
+import { ScaleResponsiveParameter } from '../use-scale';
 
 export interface LayoutProps {
   animationTime?: number;
@@ -14,5 +15,6 @@ export interface QuickActionProps {
   target?: HTMLAttributeAnchorTarget | undefined;
   highlightLeft?: number;
   href?: string;
-  type?: QuickActionTypes;
+  type?: COLOR_TYPES;
+  space?: ScaleResponsiveParameter<number | string>;
 }

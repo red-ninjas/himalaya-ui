@@ -115,7 +115,7 @@ const ToggleListItemComponent: React.FC<PropsWithChildren<ToggleProps>> = ({
 
         ${RESPONSIVE.pl(0.85, value => `--toggle-name-left: ${value};`, undefined, 'toggle-list-item')}
         ${customResponsiveAttribute(gap, 'toggle-list-item', layoutRoot.breakpoints, value =>
-          !isCSSNumberValue(value) ? `${value}` : `gap: calc(var(--scale-unit-scale) * ${value}))`,
+          !isCSSNumberValue(value) ? `gap: ${value};` : `gap: calc(var(--scale-unit-scale) * ${value}))`,
         )}
         ${RESPONSIVE.pl(0.45, value => ` --ui-button-icon-padding: ${value};`, undefined, 'toggle-list-item')}
         ${SCALER('toggle-list-item')}

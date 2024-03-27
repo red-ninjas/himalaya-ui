@@ -1,22 +1,25 @@
 'use client';
 
+import { isCSSNumberValue } from 'components/utils/collections';
 import React, { PropsWithChildren } from 'react';
-import useScale from '../use-scale';
+import useClasses from '../use-classes';
+import useLayout from '../use-layout';
+import useScale, { ScaleResponsiveParameter, customResponsiveAttribute } from '../use-scale';
 import withScale from '../use-scale/with-scale';
-import useTheme from '../use-theme';
 interface NativeQuickBarProps {
   header?: React.ReactNode;
+  gap?: ScaleResponsiveParameter<number | string>;
 }
 
 type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof NativeQuickBarProps>;
 export type QuickBarProps = NativeQuickBarProps & NativeAttrs;
 
-const QuickBarComponent: React.FC<PropsWithChildren<QuickBarProps>> = ({ children, ...props }) => {
-  const theme = useTheme();
-  const { SCALES } = useScale();
+const QuickBarComponent: React.FC<PropsWithChildren<QuickBarProps>> = ({ children, gap = 0.375, className, ...props }) => {
+  const { SCALER, RESPONSIVE } = useScale();
+  const layout = useLayout();
 
   return (
-    <div className="quick-bar" {...props}>
+    <div className={useClasses('quick-bar', className)} {...props}>
       <div className="quick-bar-inner">{children}</div>
       <style jsx>{`
         .quick-bar-inner {
@@ -24,9 +27,6 @@ const QuickBarComponent: React.FC<PropsWithChildren<QuickBarProps>> = ({ childre
           flex-direction: column;
           align-items: center;
           gap: 6px;
-          height: ${SCALES.h(1, 'auto')};
-          margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
-          padding: ${SCALES.pt(0.75)} ${SCALES.pr(0.75)} ${SCALES.pb(0.75)} ${SCALES.pl(0.75)};
         }
 
         .quick-bar {
@@ -39,6 +39,16 @@ const QuickBarComponent: React.FC<PropsWithChildren<QuickBarProps>> = ({ childre
           transition: all var(--quickbar-transition) ease;
           transform: translateX(var(--quickbar-position, 0));
         }
+
+        ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'iquick-bar-inner')}
+        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'quick-bar-inner')}
+        ${RESPONSIVE.padding(0.75, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'quick-bar-inner')}
+
+        ${customResponsiveAttribute(gap, 'quick-bar', layout.breakpoints, value =>
+          !isCSSNumberValue(value) ? `gap: ${value};` : `gap: calc(var(--scale-unit-scale) * ${value}))`,
+        )}
+
+        ${SCALER('quick-bar')}
       `}</style>
     </div>
   );

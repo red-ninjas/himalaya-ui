@@ -111,22 +111,22 @@ export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
                 {children}
               </ScrollableLayout>
               <QuickBar h={'100%'} w={'100%'}>
-                <QuickAction type="lite" href="/" r={50} tooltip="Home">
+                <QuickAction href="/" tooltip="Home">
                   <Home size={20} />
                 </QuickAction>
                 <Divider w={'100%'}></Divider>
-                <QuickAction type="lite" r={50} href="/guide" exactMatch={false} tooltip="Guide">
+                <QuickAction href="/guide" exactMatch={false} tooltip="Guide">
                   <Code size={20} />
                 </QuickAction>
-                <QuickAction type="lite" r={50} href="/components" exactMatch={false} tooltip="Components">
+                <QuickAction href="/components" exactMatch={false} tooltip="Components">
                   <Layout size={20} />
                 </QuickAction>
-                <QuickAction type="lite" r={50} href="/hooks" exactMatch={false} tooltip="Hooks">
+                <QuickAction href="/hooks" exactMatch={false} tooltip="Hooks">
                   <Anchor size={20} />
                 </QuickAction>
                 <Divider w={'100%'}></Divider>
 
-                <QuickAction href="https://github.com/red-ninjas/himalaya-ui" target="_blank" type="lite" r={50} tooltip="On Github">
+                <QuickAction href="https://github.com/red-ninjas/himalaya-ui" target="_blank" tooltip="On Github">
                   <Github size={20} />
                 </QuickAction>
               </QuickBar>
