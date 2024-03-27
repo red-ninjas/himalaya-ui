@@ -1,5 +1,6 @@
 'use client';
 
+import useLayout from 'components/use-layout';
 import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';
 import { EntityFieldProps } from './index';
@@ -12,9 +13,11 @@ function EntityFieldComponent({
   right = false,
   avatar = null,
   skeleton = null,
-  ...others
+  ...props
 }: EntityFieldProps) {
   const { SCALER, RESPONSIVE } = useScale();
+  const layout = useLayout();
+
   const wrapperClasses = useClasses({
     'field-wrapper': true,
     disabled: !active,
@@ -22,7 +25,7 @@ function EntityFieldComponent({
   });
   return (
     <>
-      <div className={wrapperClasses} {...others}>
+      <div className={wrapperClasses} {...props}>
         {skeleton}
         {!skeleton && (
           <>
@@ -83,7 +86,7 @@ function EntityFieldComponent({
           }
         }
 
-        @media screen and (max-width: 600px) {
+        @media only screen and (max-width: ${layout.breakpoints.xs.max}) {
           .field-wrapper {
             flex-wrap: wrap;
             width: 100%;

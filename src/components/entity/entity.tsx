@@ -9,6 +9,7 @@ import useScale, { withScale } from '../use-scale';
 import { pickChild } from '../utils/collections';
 import EntityField from './entity-field';
 import { EntityProps } from './index';
+import useLayout from '../use-layout';
 
 function EntityComponent({
   children,
@@ -22,6 +23,7 @@ function EntityComponent({
 }: PropsWithChildren<EntityProps>) {
   const classes = useClasses('entity-wrapper');
   const { SCALER, RESPONSIVE } = useScale();
+  const layout = useLayout();
   const [, entityFields] = pickChild(children, EntityField);
 
   const outerClasses = useClasses({
@@ -33,10 +35,8 @@ function EntityComponent({
 
   if (items) {
     const [, mItems] = pickChild(items.props.children, MenuItem);
-
     items = mItems as unknown as ReactElement;
   }
-
   return (
     <>
       <div className={outerClasses} {...others}>
@@ -77,7 +77,7 @@ function EntityComponent({
         }
 
         .entity-thumbnail {
-          margin-right: var(--entity-mr) px;
+          margin-right: var(--entity-mr);
         }
 
         .entity-wrapper {
@@ -93,7 +93,7 @@ function EntityComponent({
 
           .entity-checkbox {
             display: flex;
-            margin-right: var(--entity-mr) px;
+            margin-right: var(--entity-mr);
           }
 
           .entity-actions {
@@ -101,18 +101,18 @@ function EntityComponent({
             justify-content: flex-start;
 
             :not(:first-child) {
-              margin-left: var(--entity-ml) px;
+              margin-left: var(--entity-ml);
             }
           }
 
           .entity-footer {
-            width: calc(100% - var(--entity-ml) px);
-            margin-left: var(--entity-ml) px;
+            width: calc(100% - var(--entity-ml));
+            margin-left: var(--entity-ml);
           }
 
           .entity-menu {
             position: relative;
-            margin-left: var(--entity-ml) px;
+            margin-left: var(--entity-ml);
             right: 0;
             justify-content: center;
             align-items: center;
@@ -130,7 +130,7 @@ function EntityComponent({
           min-width: 0;
         }
 
-        @media screen and (max-width: 800px) {
+        @media only screen and (max-width: ${layout.breakpoints.sm.max}) {
           .entity-wrapper {
             flex-direction: column;
             flex-wrap: wrap;
