@@ -3,7 +3,6 @@
 import { EntityFormProps } from './index';
 import useScale, { withScale } from '../use-scale';
 import useClasses from '../use-classes';
-import useTheme from '../use-theme';
 import { PropsWithChildren } from 'react';
 
 function EntityFormComponent({
@@ -16,8 +15,7 @@ function EntityFormComponent({
   footerNote = null,
   footerSeparator = true,
 }: PropsWithChildren<EntityFormProps>) {
-  const theme = useTheme();
-  const { SCALES } = useScale();
+  const { SCALER, RESPONSIVE } = useScale();
   const entityFormClasses = useClasses({
     'entity-form-wrapper': true,
   });
@@ -61,13 +59,10 @@ function EntityFormComponent({
         .entity-form-wrapper {
           position: relative;
           box-sizing: border-box;
-          padding: ${SCALES.pt(1)} ${SCALES.pr(1)} ${SCALES.pb(1)} ${SCALES.pl(1)};
           border: 1px solid var(--color-background-700);
-          border-radius: ${SCALES.r(1, `var(--layout-radius)`)};
 
           .entity-body-text {
             font-weight: 600;
-            font-size: ${SCALES.font(0.875)};
             line-height: 1.6;
           }
 
@@ -76,9 +71,8 @@ function EntityFormComponent({
             flex-direction: row;
             flex-wrap: nowrap;
             align-items: center;
-            padding-bottom: ${SCALES.pb(1)};
-            margin-bottom: ${SCALES.mb(1)};
-            border-bottom: 1px solid var(--color-background-600);
+            border-bottom: 1px solid var(--color-background-800);
+            margin-bottom: 23px;
 
             .entity-title {
               self-align: 'flex-start';
@@ -89,29 +83,35 @@ function EntityFormComponent({
               flex: 1 1;
             }
           }
+        }
 
-          .entity-form-footer {
-            display: flex;
-            box-sizing: content-box;
-            align-items: center;
-            justify-content: center;
-            min-height: ${SCALES.h(2)};
-            padding-top: ${SCALES.pt(1)};
-
-            .entity-form-spacer {
-              margin-top: ${SCALES.mt(0.9375)};
-            }
-
-            .entity-form-footer-primary-action {
-              margin-left: ${SCALES.ml(1)};
-            }
-          }
-
-          .separator {
-            margin-top: ${SCALES.mt(1)};
-            border-top: 1px solid var(--color-background-600);
+        .entity-form-footer {
+          display: flex;
+          box-sizing: content-box;
+          align-items: center;
+          justify-content: center;
+          .entity-footer-note-inline {
+            margin-top: var(--entity-form-mt);
           }
         }
+
+        .entity-form-footer-primary-action {
+          margin-left: var(--entity-form-ml);
+        }
+
+        ${RESPONSIVE.padding(1, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, `entity-form-wrapper`)}
+        ${RESPONSIVE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', `entity-form-wrapper`)}
+        ${RESPONSIVE.mt(100, value => `margin-top: ${value}px;`, undefined, 'entity-footer-note-inline')}
+        ${RESPONSIVE.ml(1, value => `margin-right: ${value}px;`, undefined, 'entity-form-footer-primary-action')}
+
+        ${RESPONSIVE.padding(
+          { left: 0, right: 0, top: 1, bottom: 1 },
+          value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
+          undefined,
+          'entity-form-title',
+        )}
+        ${RESPONSIVE.font(0.875, value => `font-size: ${value}rem;`, undefined, 'entity-body-text')}
+        ${SCALER('entity-form-wrapper')}
       `}</style>
     </>
   );

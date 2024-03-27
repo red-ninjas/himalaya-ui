@@ -16,12 +16,10 @@ const FieldsetFooterComponent: React.FC<React.PropsWithChildren<FieldsetFooterPr
   children,
   ...props
 }: React.PropsWithChildren<FieldsetFooterProps>) => {
-  const theme = useTheme();
-  const layout = useLayout();
-  const { SCALES } = useScale();
+  const { RESPONSIVE, SCALER } = useScale();
 
   return (
-    <footer className={className} {...props}>
+    <footer className={`footer ${className}`} {...props}>
       {children}
       <style jsx>{`
         footer {
@@ -36,17 +34,29 @@ const FieldsetFooterComponent: React.FC<React.PropsWithChildren<FieldsetFooterPr
           color: var(--color-background-300);
           padding: var(--layout-gap-half) var(--layout-gap);
           box-sizing: border-box;
-          font-size: ${SCALES.font(0.875)};
-          width: ${SCALES.w(1, 'auto')};
-          height: ${SCALES.h(2.875)};
-          padding: ${SCALES.pt(0.625)} ${SCALES.pr(1.31)} ${SCALES.pb(0.625)} ${SCALES.pl(1.31)};
-          margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
         }
+
+        ${RESPONSIVE.h(2.875, value => `height: ${value};`, undefined, 'footer')}
+        ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto', 'footer')}
+        ${RESPONSIVE.font(0.875, value => `font-size: ${value};`, undefined, 'footer')}
+        ${RESPONSIVE.padding(
+          {
+            top: 0.625,
+            right: 1.31,
+            bottom: 0.625,
+            left: 1.31,
+          },
+          value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
+          undefined,
+          'footer',
+        )}
+        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'footer')}
+        ${SCALER('footer')}
       `}</style>
     </footer>
   );
 };
 
 FieldsetFooterComponent.displayName = 'HimalayaFieldsetFooter';
-const FieldsetFooter = withScale(FieldsetFooterComponent);
+const FieldsetFooter = React.memo(withScale(FieldsetFooterComponent));
 export default FieldsetFooter;

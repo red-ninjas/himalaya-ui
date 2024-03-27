@@ -6,11 +6,10 @@ import Menu from '../menu';
 import MenuItem from '../menu/menu-item';
 import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';
-import useTheme from '../use-theme';
 import { pickChild } from '../utils/collections';
 import EntityField from './entity-field';
 import { EntityProps } from './index';
-import { addColorAlpha } from '../utils/color';
+import useLayout from '../use-layout';
 
 function EntityComponent({
   children,
@@ -23,8 +22,8 @@ function EntityComponent({
   ...others
 }: PropsWithChildren<EntityProps>) {
   const classes = useClasses('entity-wrapper');
-  const theme = useTheme();
-  const { SCALES } = useScale();
+  const { SCALER, RESPONSIVE } = useScale();
+  const layout = useLayout();
   const [, entityFields] = pickChild(children, EntityField);
 
   const outerClasses = useClasses({
@@ -36,10 +35,8 @@ function EntityComponent({
 
   if (items) {
     const [, mItems] = pickChild(items.props.children, MenuItem);
-
     items = mItems as unknown as ReactElement;
   }
-
   return (
     <>
       <div className={outerClasses} {...others}>
@@ -60,17 +57,14 @@ function EntityComponent({
       </div>
       <style jsx>{`
         .entity-outer-wrapper {
-          font-size: ${SCALES.font(0.88)};
           width: 100%;
           display: flex;
           gap: 12px;
           justify-content: flex-start;
           flex-direction: column;
           align-items: flex-start;
-
-          padding: ${SCALES.pt(1)} ${SCALES.pr(1)} ${SCALES.pb(1)} ${SCALES.pl(1)};
-          margin: ${SCALES.mt(1, 'auto')} ${SCALES.mr(1, 'auto')} ${SCALES.mb(1, 'auto')} ${SCALES.ml(1, 'auto')};
-          background: ${addColorAlpha(theme.palette.background.hex_900, 0.15)};
+          background-color: rgba(var(--color-background), 0.15);
+          border: 1px solid var(--color-border-1000);
 
           &.disabled {
             background: var(--color-background-800);
@@ -80,12 +74,10 @@ function EntityComponent({
               opacity: 0.6;
             }
           }
-          border: 1px solid var(--color-border-1000);
-          border-radius: ${SCALES.r(1, `var(--layout-radius)`)};
         }
 
         .entity-thumbnail {
-          margin-right: ${SCALES.mr(1)};
+          margin-right: var(--entity-mr);
         }
 
         .entity-wrapper {
@@ -101,7 +93,7 @@ function EntityComponent({
 
           .entity-checkbox {
             display: flex;
-            margin-right: ${SCALES.mr(1)};
+            margin-right: var(--entity-mr);
           }
 
           .entity-actions {
@@ -109,18 +101,18 @@ function EntityComponent({
             justify-content: flex-start;
 
             :not(:first-child) {
-              margin-left: ${SCALES.ml(0.5)};
+              margin-left: var(--entity-ml);
             }
           }
 
           .entity-footer {
-            width: calc(100% - ${SCALES.ml(1)});
-            margin-left: ${SCALES.ml(1)};
+            width: calc(100% - var(--entity-ml));
+            margin-left: var(--entity-ml);
           }
 
           .entity-menu {
             position: relative;
-            margin-left: ${SCALES.ml(0.5)};
+            margin-left: var(--entity-ml);
             right: 0;
             justify-content: center;
             align-items: center;
@@ -138,21 +130,7 @@ function EntityComponent({
           min-width: 0;
         }
 
-        .entity-spacer {
-          display: block;
-          width: 1px;
-          height: 1px;
-          min-width: 1px;
-          min-height: 1px;
-          margin-left: calc(24px - 1px);
-          margin-top: calc(24px - 1px);
-
-          &.expand {
-            flex: 1 1;
-          }
-        }
-
-        @media screen and (max-width: 600px) {
+        @media only screen and (max-width: ${layout.breakpoints.sm.max}) {
           .entity-wrapper {
             flex-direction: column;
             flex-wrap: wrap;
@@ -162,6 +140,17 @@ function EntityComponent({
             padding-bottom: 12px;
           }
         }
+
+        ${RESPONSIVE.font(0.9, value => `font-size: ${value};`, undefined, 'entity-outer-wrapper')}
+        ${RESPONSIVE.padding(1, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, `entity-outer-wrapper`)}
+        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, `entity-outer-wrapper`)}
+        ${RESPONSIVE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', `entity-outer-wrapper`)}
+
+
+        ${RESPONSIVE.mr(1, value => `--entity-mr: ${value};`, undefined, 'entity-thumbnail')}
+        ${RESPONSIVE.ml(0.5, value => `--entity-ml: ${value};`, undefined, 'entity-thumbnail')}
+
+        ${SCALER('entity-outer-wrapper')}
       `}</style>
     </>
   );

@@ -216,4 +216,4 @@ const Search: React.FC<SearchProps> = ({ searchFunction, visibile = false, place
   );
 };
 
-export default Search;
+export default React.memo(Search);

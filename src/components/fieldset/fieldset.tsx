@@ -1,6 +1,5 @@
 'use client';
 import React, { ReactNode, useEffect, useMemo, useState } from 'react';
-import useTheme from '../use-theme';
 import FieldsetTitle from './fieldset-title';
 import FieldsetSubtitle from './fieldset-subtitle';
 import FieldsetFooter from './fieldset-footer';
@@ -16,14 +15,13 @@ interface Props {
   label?: string;
   title?: string | ReactNode;
   subtitle?: string | ReactNode;
-  className?: string;
 }
 
 type NativeAttrs = Omit<React.FieldsetHTMLAttributes<any>, keyof Props>;
 export type FieldsetProps = Props & NativeAttrs;
 
 const FieldsetComponent: React.FC<React.PropsWithChildren<FieldsetProps>> = ({
-  className = '',
+  className,
   title = '' as string | ReactNode,
   subtitle = '' as string | ReactNode,
   children,
@@ -31,8 +29,8 @@ const FieldsetComponent: React.FC<React.PropsWithChildren<FieldsetProps>> = ({
   label = '',
   ...props
 }: React.PropsWithChildren<FieldsetProps>) => {
-  const theme = useTheme();
-  const { SCALES } = useScale();
+  const { RESPONSIVE, SCALER } = useScale();
+
   const { inGroup, currentValue, register } = useFieldset();
   const [hidden, setHidden] = useState<boolean>(inGroup);
   const classes = useClasses('fieldset', className);
@@ -82,20 +80,22 @@ const FieldsetComponent: React.FC<React.PropsWithChildren<FieldsetProps>> = ({
         .fieldset {
           background-color: var(--color-background-1000);
           border: 1px solid var(--color-border-1000);
-          border-radius: ${SCALES.r(1, `var(--layout-radius)`)};
+          border-radius: var(--layout-radius);
           overflow: hidden;
           display: ${hidden ? 'none' : 'block'};
-          font-size: ${SCALES.font(1)};
-          width: ${SCALES.w(1, 'auto')};
-          height: ${SCALES.h(1, 'auto')};
-          padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
-          margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
         }
+
+        ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'fieldset')}
+        ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto', 'fieldset')}
+        ${RESPONSIVE.font(1, value => `--fieldset-font-size: ${value};`, undefined, 'fieldset')}
+        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'fieldset')}
+        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'fieldset')}
+        ${SCALER('fieldset')}
       `}</style>
     </div>
   );
 };
 
 FieldsetComponent.displayName = 'HimalayaFieldset';
-const Fieldset = withScale(FieldsetComponent);
+const Fieldset = React.memo(withScale(FieldsetComponent));
 export default Fieldset;
