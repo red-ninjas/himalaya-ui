@@ -2,11 +2,12 @@
 
 import React from 'react';
 import { QuickBarLayoutProps } from '.';
+import { InnerScroll } from '../scroll';
+import useClasses from '../use-classes';
+import useQuickBar from '../use-quickbar';
 import { useScale, withScale } from '../use-scale';
 import { pickChild } from '../utils/collections';
 import { default as QuickBar } from './quick-bar';
-import useQuickBar from '../use-quickbar';
-import useClasses from '../use-classes';
 
 const QuickBarLayout: React.FC<React.PropsWithChildren<QuickBarLayoutProps>> = ({ children, className, animationTime = 250, ...props }) => {
   const [otherElements, quickBar] = pickChild(children, QuickBar);
@@ -24,7 +25,13 @@ const QuickBarLayout: React.FC<React.PropsWithChildren<QuickBarLayoutProps>> = (
         <div className="quickbar-content">
           <div className="quickbar-content-inner">{otherElements}</div>
         </div>
-        {quickBar}
+        {quickBar && (
+          <div className="quickbar-inner">
+            <InnerScroll h={'100%'} w={'100%'} type="vertical">
+              {quickBar}
+            </InnerScroll>
+          </div>
+        )}
       </div>
       <style jsx>{`
         .quickbar-layout {
@@ -48,6 +55,17 @@ const QuickBarLayout: React.FC<React.PropsWithChildren<QuickBarLayoutProps>> = (
         .quickbar-content-inner {
           height: 100%;
           overflow: hidden;
+        }
+
+        .quickbar-inner {
+          position: absolute;
+          left: var(--quickbar-position);
+          top: 0;
+          transition: all var(--quickbar-transition) ease;
+          transform: translateX(var(--quickbar-position, 0));
+          height: 100%;
+          border-right: 1px solid var(--color-border-1000);
+          width: var(--quickbar-width);
         }
 
         .quickbar-layout.quickbar-active {

@@ -1,5 +1,5 @@
 'use client';
-import { LoadingSpinner, useTheme } from 'components';
+import { LoadingSpinner } from 'components';
 import dynamic from 'next/dynamic';
 import React from 'react';
 import Title from './title';
@@ -13,7 +13,7 @@ const DynamicLive = dynamic(() => import('./dynamic-live'), {
   ),
 });
 
-export type PlaygroundProps = {
+type Props = {
   title?: React.ReactNode | string;
   desc?: React.ReactNode | string;
   code: string;
@@ -22,15 +22,17 @@ export type PlaygroundProps = {
   };
 };
 
-const Playground: React.FC<PlaygroundProps> = React.memo(({ title: inputTitle, code: inputCode = '', desc = '', scope }: PlaygroundProps) => {
-  const theme = useTheme();
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
+export type PlaygroundProps = Props & NativeAttrs;
+
+const Playground: React.FC<PlaygroundProps> = React.memo(({ title: inputTitle, code: inputCode = '', desc = '', scope, ...props }: PlaygroundProps) => {
   const code = inputCode.trim();
   const title = inputTitle || 'General';
 
   return (
     <>
       <Title title={title} desc={desc} />
-      <div className="playground">
+      <div {...props} className="playground">
         <DynamicLive code={code} scope={scope} />
         <style jsx>{`
           .playground {

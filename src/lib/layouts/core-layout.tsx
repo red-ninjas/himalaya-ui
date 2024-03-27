@@ -1,7 +1,6 @@
 'use client';
 
 import {
-  Divider,
   Header,
   MobileMenu,
   MobileMenuButton,
@@ -16,12 +15,13 @@ import {
   ThemeSwitcher,
   useLayout,
 } from 'components';
+import Divider from 'components/divider';
 import FixedHeader from 'components/header/fixed-header';
-import Layout from 'components/icons/layout';
 import Anchor from 'components/icons/anchor';
 import Code from 'components/icons/code';
 import Github from 'components/icons/github';
 import Home from 'components/icons/home';
+import Layout from 'components/icons/layout';
 import ScrollableLayout from 'components/layout/scrollable-layout';
 import Search, { SearchButton, SearchResult, SearchResults } from 'components/search';
 import { capitalize } from 'components/utils/collections';
@@ -110,25 +110,34 @@ export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
                 </FixedHeader>
                 {children}
               </ScrollableLayout>
-              <QuickBar h={'100%'} w={'100%'}>
-                <QuickAction href="/" tooltip="Home">
-                  <Home size={20} />
-                </QuickAction>
+              <QuickBar>
+                <NextLink href="/" passHref legacyBehavior>
+                  <QuickAction active={pathname == '/'} tooltip="Home">
+                    <Home size={20} />
+                  </QuickAction>
+                </NextLink>
                 <Divider w={'100%'}></Divider>
-                <QuickAction href="/guide" exactMatch={false} tooltip="Guide">
-                  <Code size={20} />
-                </QuickAction>
-                <QuickAction href="/components" exactMatch={false} tooltip="Components">
-                  <Layout size={20} />
-                </QuickAction>
-                <QuickAction href="/hooks" exactMatch={false} tooltip="Hooks">
-                  <Anchor size={20} />
-                </QuickAction>
+                <NextLink href="/guide" passHref legacyBehavior>
+                  <QuickAction active={pathname.startsWith('/guide')} tooltip="Guide">
+                    <Code size={20} />
+                  </QuickAction>
+                </NextLink>
+                <NextLink href="/components" passHref legacyBehavior>
+                  <QuickAction active={pathname.startsWith('/components')} tooltip="Components">
+                    <Layout size={20} />
+                  </QuickAction>
+                </NextLink>
+                <NextLink href="/hooks" passHref legacyBehavior>
+                  <QuickAction active={pathname.startsWith('/hooks')} tooltip="Hooks">
+                    <Anchor size={20} />
+                  </QuickAction>
+                </NextLink>
                 <Divider w={'100%'}></Divider>
-
-                <QuickAction href="https://github.com/red-ninjas/himalaya-ui" target="_blank" tooltip="On Github">
-                  <Github size={20} />
-                </QuickAction>
+                <NextLink href="https://github.com/red-ninjas/himalaya-ui" passHref legacyBehavior>
+                  <QuickAction target="_blank" tooltip="On Github">
+                    <Github size={20} />
+                  </QuickAction>
+                </NextLink>
               </QuickBar>
             </QuickBarLayout>
           </QuickBarProvider>

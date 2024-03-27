@@ -1,6 +1,5 @@
-import { HTMLAttributeAnchorTarget } from 'react';
-import { COLOR_TYPES } from '../utils/prop-types';
 import { ScaleResponsiveParameter } from '../use-scale';
+import { COLOR_TYPES } from '../utils/prop-types';
 
 export interface LayoutProps {
   animationTime?: number;
@@ -9,12 +8,12 @@ export interface LayoutProps {
 type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof LayoutProps>;
 export type QuickBarLayoutProps = LayoutProps & NativeAttrs;
 
-export interface QuickActionProps {
+export interface ActionProps {
   tooltip?: string | React.ReactNode;
-  exactMatch?: boolean;
-  target?: HTMLAttributeAnchorTarget | undefined;
-  highlightLeft?: number;
-  href?: string;
+  active?: boolean;
   type?: COLOR_TYPES;
   space?: ScaleResponsiveParameter<number | string>;
 }
+
+type ActionPropsNative = Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, keyof ActionProps>;
+export type QuickActionProps = ActionProps & ActionPropsNative;

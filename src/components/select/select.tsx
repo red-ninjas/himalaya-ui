@@ -39,7 +39,7 @@ interface Props {
   getPopupContainer?: () => HTMLElement | null;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
 export type SelectProps = Props & NativeAttrs;
 
 const SelectComponent = React.forwardRef<SelectRef, React.PropsWithChildren<SelectProps>>(

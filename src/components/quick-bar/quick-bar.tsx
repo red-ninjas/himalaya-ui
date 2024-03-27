@@ -19,36 +19,25 @@ const QuickBarComponent: React.FC<PropsWithChildren<QuickBarProps>> = ({ childre
   const layout = useLayout();
 
   return (
-    <div className={useClasses('quick-bar', className)} {...props}>
-      <div className="quick-bar-inner">{children}</div>
+    <div className={useClasses('quick-bar-inner', className)} {...props}>
+      {children}
       <style jsx>{`
         .quick-bar-inner {
           display: flex;
           flex-direction: column;
           align-items: center;
-          gap: 6px;
         }
 
-        .quick-bar {
-          width: calc(var(--quickbar-width) - 1px);
-          left: var(--quickbar-position);
-          top: 0;
-          height: 100%;
-          position: fixed;
-          border-right: 1px solid var(--color-border-1000);
-          transition: all var(--quickbar-transition) ease;
-          transform: translateX(var(--quickbar-position, 0));
-        }
-
-        ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'iquick-bar-inner')}
+        ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'quick-bar-inner')}
+        ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto', 'quick-bar-inner')}
         ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'quick-bar-inner')}
         ${RESPONSIVE.padding(0.75, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'quick-bar-inner')}
 
-        ${customResponsiveAttribute(gap, 'quick-bar', layout.breakpoints, value =>
-          !isCSSNumberValue(value) ? `gap: ${value};` : `gap: calc(var(--scale-unit-scale) * ${value}))`,
+        ${customResponsiveAttribute(gap, 'quick-bar-inner', layout.breakpoints, value =>
+          !isCSSNumberValue(value) ? `gap: ${value};` : `gap: calc(var(--scale-unit-scale) * ${value})`,
         )}
 
-        ${SCALER('quick-bar')}
+        ${SCALER('quick-bar-inner')}
       `}</style>
     </div>
   );
