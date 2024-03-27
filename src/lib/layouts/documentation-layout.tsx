@@ -8,7 +8,6 @@ import {
   MobileMenu,
   MobileMenuButton,
   MobileMenuProvider,
-  MobilePage,
   PageWidth,
   Sidebar,
   SidebarLayout,
@@ -18,9 +17,9 @@ import {
 import { Title } from 'components/header';
 import BackButton from 'components/header/back-button';
 import _ from 'lodash';
+import NextLink from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Seeds } from '../data';
-import NextLink from 'next/link';
 
 export default function DocumentationLayout({ children }) {
   const pathName = usePathname();
@@ -34,60 +33,58 @@ export default function DocumentationLayout({ children }) {
     .value();
 
   return (
-    <PageWidth p={0}>
-      <MobilePage>
-        <MobileMenuProvider>
-          <FixedHeader hideOn={{ xs: false, md: true, lg: true, sm: true, xl: true }}>
-            <Header>
-              <Header.Left>
-                <BackButton url="/"></BackButton>
-                <Title>{activeRecord?.name}</Title>
-              </Header.Left>
-              <Header.Right>
-                <MobileMenuButton></MobileMenuButton>
-              </Header.Right>
-            </Header>
-          </FixedHeader>
-          <SidebarProvider>
-            <SidebarLayout>
-              <Sidebar>
-                {groups.map((item, index) => (
-                  <Sidebar.Group isActive={activeRecord ? activeRecord.group == item.title : false} key={index} title={item.title}>
-                    {item.children.map((subChild, subIndex) => (
-                      <NextLink href={subChild.url ?? ''} key={subIndex} passHref legacyBehavior>
-                        <Sidebar.Item isActive={subChild.url === pathName}>{subChild.name}</Sidebar.Item>
-                      </NextLink>
-                    ))}
-                  </Sidebar.Group>
-                ))}
-              </Sidebar>
-              <PageWidth>
-                <div className="markdown">{children}</div>
-              </PageWidth>
-              <FooterBottom>
-                <FooterBottom.Block></FooterBottom.Block>
-                <FooterBottom.Block justify="flex-end">
-                  <Text span font={'12px'}>
-                    With support of{' '}
-                    <Link color href="https://redninjas.dev" target="_blank">
-                      RedNinjas LTD
-                    </Link>
-                  </Text>
-                </FooterBottom.Block>
-              </FooterBottom>
-            </SidebarLayout>
-          </SidebarProvider>
-          <MobileMenu direction="right">
-            {groups.map((item, index) => (
-              <MobileMenu.Group key={index} title={item.title}>
-                {item.children.map((subChild, subIndex) => (
-                  <MobileMenu.Item title={subChild.name} key={subIndex} url={subChild.url}></MobileMenu.Item>
-                ))}
-              </MobileMenu.Group>
-            ))}
-          </MobileMenu>
-        </MobileMenuProvider>
-      </MobilePage>
+    <PageWidth h={'100%'} p={0}>
+      <MobileMenuProvider>
+        <FixedHeader hideOn={{ xs: false, md: true, lg: true, sm: true, xl: true }}>
+          <Header>
+            <Header.Left>
+              <BackButton url="/"></BackButton>
+              <Title>{activeRecord?.name}</Title>
+            </Header.Left>
+            <Header.Right>
+              <MobileMenuButton></MobileMenuButton>
+            </Header.Right>
+          </Header>
+        </FixedHeader>
+        <SidebarProvider>
+          <SidebarLayout hideOn={{ xs: true }}>
+            <Sidebar>
+              {groups.map((item, index) => (
+                <Sidebar.Group isActive={activeRecord ? activeRecord.group == item.title : false} key={index} title={item.title}>
+                  {item.children.map((subChild, subIndex) => (
+                    <NextLink href={subChild.url ?? ''} key={subIndex} passHref legacyBehavior>
+                      <Sidebar.Item isActive={subChild.url === pathName}>{subChild.name}</Sidebar.Item>
+                    </NextLink>
+                  ))}
+                </Sidebar.Group>
+              ))}
+            </Sidebar>
+            <PageWidth>
+              <div className="markdown">{children}</div>
+            </PageWidth>
+            <FooterBottom>
+              <FooterBottom.Block></FooterBottom.Block>
+              <FooterBottom.Block justify="flex-end">
+                <Text span font={'12px'}>
+                  With support of{' '}
+                  <Link color href="https://redninjas.dev" target="_blank">
+                    RedNinjas LTD
+                  </Link>
+                </Text>
+              </FooterBottom.Block>
+            </FooterBottom>
+          </SidebarLayout>
+        </SidebarProvider>
+        <MobileMenu direction="right">
+          {groups.map((item, index) => (
+            <MobileMenu.Group key={index} title={item.title}>
+              {item.children.map((subChild, subIndex) => (
+                <MobileMenu.Item title={subChild.name} key={subIndex} url={subChild.url}></MobileMenu.Item>
+              ))}
+            </MobileMenu.Group>
+          ))}
+        </MobileMenu>
+      </MobileMenuProvider>
 
       <style jsx global>{`
         .markdown h2,

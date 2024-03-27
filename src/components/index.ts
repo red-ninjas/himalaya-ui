@@ -81,7 +81,7 @@ export type { ModalProps, ModalTitleProps, ModalSubtitleProps, ModalContentProps
 export { default as Note } from './note';
 export type { NoteProps } from './note';
 
-export { default as Page, MobilePage, ErrorPage404 } from './page';
+export { default as Page, ErrorPage404 } from './page';
 export type { PageProps, PageHeaderProps, PageContentProps, PageFooterProps } from './page';
 
 export { default as Pagination } from './pagination';

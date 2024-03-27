@@ -22,6 +22,7 @@ const PageWidthComponent: React.FC<React.PropsWithChildren<PageWidthProps>> = ({
 
         ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, `var(--layout-page-margin)`, 'content-layout')}
         ${RESPONSIVE.w(1, value => `width: ${value};`, `100%`, 'content-layout')}
+        ${RESPONSIVE.h(1, value => `height: ${value};`, `auto`, 'content-layout')}
         ${RESPONSIVE.margin(
           0,
           value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`,

@@ -4,9 +4,9 @@ import { pickChild } from '../utils/collections';
 import { default as SidebarWithoutTypes } from './sidebar';
 import { Sidebar } from './types';
 
+import useClasses from 'components/use-classes';
 import { DrawerPlacement } from '../drawer/helper';
 import { InnerScroll } from '../scroll';
-import useLayout from '../use-layout';
 import useScale, { withScale } from '../use-scale';
 import useTheme from '../use-theme';
 
@@ -49,19 +49,12 @@ const SidebarLayout: React.FC<React.PropsWithChildren<SidebarLayoutProps>> = ({ 
 
   const ref = createRef<HTMLDivElement>();
   const theme = useTheme();
-  const layout = useLayout();
-  const height = useRefDimensions(ref);
-  const { RESPONSIVE, SCALER } = useScale();
+  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
 
   return (
-    <div className="layout" ref={ref}>
-      <div className="sidebar-holder">
-        <div
-          className="sidebar"
-          style={{
-            height: height === undefined ? '100%' : `calc(100% - ${height}px)`,
-          }}
-        >
+    <div className={useClasses('sidebar-layout')} ref={ref}>
+      <div className={useClasses('sidebar-holder', SCALE_CLASSES)}>
+        <div className="sidebar">
           <InnerScroll transparentBg={true} w={'100%'} h={'100%'} type="vertical">
             {sidebar}
             {sidebarWithoutTypes}
@@ -69,23 +62,17 @@ const SidebarLayout: React.FC<React.PropsWithChildren<SidebarLayoutProps>> = ({ 
         </div>
       </div>
       <main className="main">{contentExtra}</main>
-      <div className="border-right-holder">
-        <div
-          className="border-right"
-          style={{
-            height: height === undefined ? '100%' : `calc(100% - ${height}px)`,
-          }}
-        ></div>
-      </div>
+
       <style jsx>{`
         .main {
           display: flex;
           flex-direction: column;
           height: 100%;
-          width: 100%;
           flex: 1;
+          box-sizing: border-box;
+
           padding: 0;
-          width: var(--sidebar-width);
+          width: 100%;
         }
 
         .main.disabled {
@@ -104,6 +91,7 @@ const SidebarLayout: React.FC<React.PropsWithChildren<SidebarLayoutProps>> = ({ 
           min-width: var(--sidebar-width);
           position: relative;
           height: 100%;
+          box-sizing: border-box;
         }
 
         .border-right-holder {
@@ -121,31 +109,26 @@ const SidebarLayout: React.FC<React.PropsWithChildren<SidebarLayoutProps>> = ({ 
           border-right: ${hasBorder ? '1px solid ' + theme.palette.border.hex_1000 : '0px solid transparent'};
           padding: 0;
           background: ${backgroundColor ? backgroundColor : 'transparent'};
+          box-sizing: border-box;
         }
 
         :global(.sidebar-drawer) {
           max-width: 85% !important;
           min-width: 85% !important;
         }
-        .layout {
+        .sidebar-layout {
           min-height: 100%;
           display: flex;
           justify-content: space-between;
           box-sizing: border-box;
           width: 100%;
           position: relative;
-          padding: var(--sidebar-padding);,
-          width: calc(100% - var(--sidebar-width));
+          width: 100%;
+          box-sizing: border-box;
+          border-right: 1px solid ${hasBorder ? theme.palette.border.hex_1000 : 'transparent'};
         }
 
-        .border-right {
-          position: fixed;
-          height: 100%;
-          width: 0.5px;
-          background: ${hasBorder ? theme.palette.border.hex_1000 : 'transparent'};
-        }
-
-        ${RESPONSIVE.w(17.8, value => `--sidebar-width: ${value}`, undefined, 'layout')}
+        ${RESPONSIVE.w(17.8, value => `--sidebar-width: ${value}`, undefined, 'sidebar-layout')}
         ${RESPONSIVE.padding(
           {
             top: 0,
@@ -155,9 +138,9 @@ const SidebarLayout: React.FC<React.PropsWithChildren<SidebarLayoutProps>> = ({ 
           },
           value => `--sidebar-padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
           undefined,
-          'layout',
+          'sidebar-layout',
         )}
-        ${SCALER('layout')}
+        ${SCALER('sidebar-layout')}
       `}</style>
     </div>
   );

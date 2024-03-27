@@ -342,6 +342,9 @@ const CssBaseline: React.FC = () => {
           transform: rotate(1turn);
         }
       }
+      .hide {
+        display: none !important;
+      }
     `}</style>
   );
 };
