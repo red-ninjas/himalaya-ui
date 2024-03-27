@@ -31,4 +31,4 @@ const FieldsetSubtitle: React.FC<React.PropsWithChildren<FieldsetSubtitleProps>>
 };
 
 FieldsetSubtitle.displayName = 'HimalayaFieldsetSubtitle';
-export default FieldsetSubtitle;
+export default React.memo(FieldsetSubtitle);

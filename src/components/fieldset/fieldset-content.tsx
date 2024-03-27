@@ -7,15 +7,16 @@ interface Props {
   className?: string;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
 export type FieldsetContentProps = Props & NativeAttrs;
 
 const FieldsetContentComponent: React.FC<React.PropsWithChildren<FieldsetContentProps>> = ({
-  className = '',
+  className,
   children,
   ...props
 }: React.PropsWithChildren<FieldsetContentProps>) => {
-  const { SCALES } = useScale();
+  const { RESPONSIVE, SCALER } = useScale();
+
   const classes = useClasses('content', className);
 
   return (
@@ -23,10 +24,6 @@ const FieldsetContentComponent: React.FC<React.PropsWithChildren<FieldsetContent
       {children}
       <style jsx>{`
         .content {
-          width: ${SCALES.w(1, '100%')};
-          height: ${SCALES.h(1, 'auto')};
-          padding: ${SCALES.pt(1.3)} ${SCALES.pr(1.3)} ${SCALES.pb(1.3)} ${SCALES.pl(1.3)};
-          margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
         }
         .content :global(> *:first-child) {
           margin-top: 0;
@@ -34,11 +31,18 @@ const FieldsetContentComponent: React.FC<React.PropsWithChildren<FieldsetContent
         .content :global(> *:last-child) {
           margin-bottom: 0;
         }
+
+        ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'content')}
+        ${RESPONSIVE.w(1, value => `width: ${value};`, '100%', 'content')}
+        ${RESPONSIVE.font(1, value => `--fieldset-font-size: ${value};`, undefined, 'content')}
+        ${RESPONSIVE.padding(1.3, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'content')}
+        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'content')}
+        ${SCALER('content')}
       `}</style>
     </div>
   );
 };
 
 FieldsetContentComponent.displayName = 'HimalayaFieldsetContent';
-const FieldsetContent = withScale(FieldsetContentComponent);
+const FieldsetContent = React.memo(withScale(FieldsetContentComponent));
 export default FieldsetContent;

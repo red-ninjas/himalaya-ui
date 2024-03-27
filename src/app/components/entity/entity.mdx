@@ -1,5 +1,6 @@
 import { Layout, Playground, Attributes } from 'lib/components';
-import { Entity, Link, Image, Checkbox, Button, Footer, Avatar, FooterNavigation, FooterBottom, Logo, Input, Skeleton, Menu, Divider } from 'components';
+import { Entity, Link, Image, Checkbox, Button, Footer, Avatar, FooterNavigation, FooterBottom, Input, Skeleton, Menu, Divider } from 'components';
+import Logo from 'components/header/title';
 
 export const meta = {
   title: 'Entity',
@@ -58,7 +59,7 @@ The `Entity` UI component is designed to display a collection of related informa
     return (
       <Entity
         checkbox={<Checkbox onChange={() => alert('clicked')}/>}
-        actions={<Button size="small" type="secondary">Revoke</Button>}
+        actions={<Button scale={0.75} type="secondary">Revoke</Button>}
       >
         <Entity.Field title="Vercel CLI on chris.lan" description="Last used just now" />
       </Entity>
@@ -78,8 +79,8 @@ The `Entity` UI component is designed to display a collection of related informa
       <Avatar text="W" scale={1.4} />
     }
     actions={<div>
-      <Button size="small" type="secondary" style={{ marginRight: 16 }}>Decline</Button>
-      <Button size="small">Accept</Button>
+      <Button scale={0.75} type="secondary" mr={0.5}>Decline</Button>
+      <Button scale={0.75}>Accept</Button>
     </div>}
 >
     <Entity.Field title="Leo Lamprecht" description="leo"/>
@@ -164,8 +165,8 @@ The `Entity` UI component is designed to display a collection of related informa
        <Avatar text="W" scale={1.4} />
     }
     actions={<div>
-      <Button size="small" type="secondary" style={{ marginRight: 16 }}>Decline</Button>
-      <Button size="small">Accept</Button>
+      <Button scale={0.75} type="secondary" mr={0.5}>Decline</Button>
+      <Button scale={0.75}>Accept</Button>
     </div>}
 >
     <Entity.Field
@@ -186,11 +187,11 @@ The `Entity` UI component is designed to display a collection of related informa
   return (
     <Entity.Form
       footerNote={<>Learn more about <Link href="/" color>Custom Domains →</Link></>}
-      primaryAction={<Button size="small">Add</Button>}
+      primaryAction={<Button scale={0.75}>Add</Button>}
       extraActions={
         <>
-          <Button size="small" type="error">Buy</Button>
-          <Button size="small" type="warning" style={{marginLeft: '8px'}}>Transfer In</Button>
+          <Button scale={0.75} type="error">Buy</Button>
+          <Button scale={0.75} type="warning" ml={0.5}>Transfer In</Button>
         </>
       }
     >
@@ -243,8 +244,8 @@ The `Entity` UI component is designed to display a collection of related informa
     <Entity.Form
       title="With Secondary Action"
       footerNote={<>Learn more about <Link href="/" color>Env Variables →</Link></>}
-      primaryAction={<Button size="small">Save</Button>}
-      secondaryAction={<Button size="small" type="secondary">Discard</Button>}
+      primaryAction={<Button scale={0.75}>Save</Button>}
+      secondaryAction={<Button scale={0.75} mx={0.5} type="secondary">Discard</Button>}
     >
       <Input placeholder="example.com">Domain</Input>
     </Entity.Form>
@@ -262,9 +263,9 @@ The `Entity` UI component is designed to display a collection of related informa
     <Entity.Form
       title="With Destructive Action"
       footerNote={<>Learn more about <Link href="/" color>Env Variables →</Link></>}
-      primaryAction={<Button size="small">Save</Button>}
-      secondaryAction={<Button size="small" type="secondary">Discard</Button>}
-      destructiveAction={<Button size="small" type="error">Remove</Button>}
+      primaryAction={<Button scale={0.75}>Save</Button>}
+      secondaryAction={<Button scale={0.75} mx={0.5} type="secondary">Discard</Button>}
+      destructiveAction={<Button scale={0.75} type="error">Remove</Button>}
     >
       <Input placeholder="example.com">Domain</Input>
     </Entity.Form>

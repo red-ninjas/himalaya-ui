@@ -2,7 +2,6 @@
 import React, { FocusEvent, MouseEvent, useImperativeHandle, useMemo, useRef, useState } from 'react';
 import { SearchResultGroup, SearchResults } from '.';
 import Highlight from '../shared/highlight';
-import useTheme from '../use-theme';
 import { useRect } from '../utils/layouts';
 import SearchItem from './search-item';
 import InnerScroll from '../scroll/inner-scroll';
@@ -38,7 +37,6 @@ export const groupResults = (data: SearchResults) => {
 
 const SearchItems = React.forwardRef<SearchItemsRef, React.PropsWithChildren<SearchItemsProps>>(
   ({ data, onSelect, preventHoverHighlightSync }, outRef: React.Ref<SearchItemsRef | null>) => {
-    const theme = useTheme();
     const { rect, setRect } = useRect();
     const ref = useRef<HTMLUListElement | null>(null);
     const [displayHighlight, setDisplayHighlight] = useState<boolean>(false);

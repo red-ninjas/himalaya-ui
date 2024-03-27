@@ -2,7 +2,6 @@
 
 import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';
-import useTheme from '../use-theme';
 import { EntityFieldProps } from './index';
 
 function EntityFieldComponent({
@@ -15,8 +14,7 @@ function EntityFieldComponent({
   skeleton = null,
   ...others
 }: EntityFieldProps) {
-  const theme = useTheme();
-  const { SCALES } = useScale();
+  const { SCALER, RESPONSIVE } = useScale();
   const wrapperClasses = useClasses({
     'field-wrapper': true,
     disabled: !active,
@@ -75,7 +73,7 @@ function EntityFieldComponent({
           }
 
           .avatar {
-            margin-left: ${SCALES.ml(1)};
+            margin-left: var(--avatar-margin-left);
             .image {
               width: 24px !important;
               height: 24px !important;
@@ -97,6 +95,9 @@ function EntityFieldComponent({
             }
           }
         }
+
+        ${RESPONSIVE.ml(1, value => `--avatar-margin-left: ${value};`, undefined, 'avatar')}
+        ${SCALER('field-wrapper')}
       `}</style>
     </>
   );

@@ -1,55 +1,37 @@
 'use client';
 import React, { useMemo } from 'react';
-import useTheme from '../use-theme';
-import { DividerAlign, SnippetTypes } from '../utils/prop-types';
-import { UIThemesPalette } from '../themes/presets';
+import { COLOR_TYPES, DividerAlign } from '../utils/prop-types';
 import useScale, { withScale } from '../use-scale';
 import useClasses from '../use-classes';
 
-export type DividerTypes = SnippetTypes;
+export type DividerTypes = COLOR_TYPES;
 
 interface Props {
   type?: DividerTypes;
   align?: DividerAlign;
-  className?: string;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
 export type DividerProps = Props & NativeAttrs;
-
-const getColor = (type: DividerTypes, palette: UIThemesPalette) => {
-  const colors: { [key in DividerTypes]: string } = {
-    default: palette.border.hex_1000,
-    lite: palette.background.hex_800,
-    success: palette.success.hex_900,
-    primary: palette.primary.hex_900,
-    tertiary: palette.tertiary.hex_900,
-    warning: palette.warning.hex_900,
-    error: palette.error.hex_900,
-    secondary: palette.secondary.hex_900,
-    dark: palette.foreground.hex_1000,
-  };
-  return colors[type];
-};
 
 const DividerComponent: React.FC<React.PropsWithChildren<DividerProps>> = ({
   type = 'default' as DividerTypes,
   align = 'center' as DividerAlign,
   children,
-  className = '',
+  className,
   ...props
 }: React.PropsWithChildren<DividerProps>) => {
-  const theme = useTheme();
-  const { SCALES } = useScale();
-  const classes = useClasses('divider', className);
-  const color = useMemo(() => getColor(type, theme.palette), [type, theme.palette]);
+  const { RESPONSIVE, SCALER } = useScale();
+  const classes = useClasses('divider', className, type ? 'color-' + type : null);
+
   const alignClassName = useMemo(() => {
     if (!align || align === 'center') return '';
     if (align === 'left' || align === 'start') return 'start';
     return 'end';
   }, [align]);
+
   const alignClasses = useClasses('text', alignClassName);
-  const textColor = type === 'default' ? theme.palette.foreground.hex_1000 : color;
+  const textColor = type === 'default' ? 'var(--color-contrast)' : 'var(--color-base)';
 
   return (
     <div role="separator" className={classes} {...props}>
@@ -57,13 +39,13 @@ const DividerComponent: React.FC<React.PropsWithChildren<DividerProps>> = ({
       <style jsx>{`
         .divider {
           max-width: 100%;
-          background-color: ${color};
+          --divider-bg: var(--color-base);
+          background-color: var(--divider-bg);
           position: relative;
-          font-size: ${SCALES.font(1)};
-          width: ${SCALES.w(1, 'auto')};
-          height: ${SCALES.h(0.0625)};
-          padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
-          margin: ${SCALES.mt(0.5)} ${SCALES.mr(0)} ${SCALES.mb(0.5)} ${SCALES.ml(0)};
+        }
+
+        .divider.color-default {
+          --divider-bg: var(--color-background-800);
         }
 
         .text {
@@ -94,11 +76,18 @@ const DividerComponent: React.FC<React.PropsWithChildren<DividerProps>> = ({
           left: auto;
           right: 7%;
         }
+
+        ${RESPONSIVE.font(1, value => `font-size: ${value};`, undefined, 'divider')}
+        ${RESPONSIVE.w(1.75, value => `width: ${value};`, 'auto', 'divider')}
+        ${RESPONSIVE.h(0.0625, value => `height: ${value};`, undefined, 'divider')}
+        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'divider')}
+        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'divider')}
+        ${SCALER('divider')}
       `}</style>
     </div>
   );
 };
 
 DividerComponent.displayName = 'HimalayaDivider';
-const Divider = withScale(DividerComponent);
+const Divider = React.memo(withScale(DividerComponent));
 export default Divider;
