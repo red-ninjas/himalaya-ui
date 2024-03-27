@@ -3,7 +3,7 @@ import React, { MouseEvent, useMemo } from 'react';
 import LoadingSpinner from '../loading-spinner';
 import { NormalTypes } from '../utils/prop-types';
 import { useButtonDropdown } from './button-dropdown-context';
-import useClasses from 'components/use-classes';
+import useClasses from '../use-classes';
 
 export type ButtonDropdownItemTypes = NormalTypes;
 

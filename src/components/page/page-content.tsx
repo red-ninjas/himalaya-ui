@@ -1,6 +1,6 @@
 'use client';
 
-import useClasses from 'components/use-classes';
+import useClasses from '../use-classes';
 import React from 'react';
 import useScale, { withScale } from '../use-scale';
 
@@ -14,10 +14,10 @@ const PageContentComponent: React.FC<React.PropsWithChildren<PageContentProps>> 
   children,
   ...props
 }: React.PropsWithChildren<PageContentProps>) => {
-  const { RESPONSIVE, SCALER } = useScale();
+  const { RESPONSIVE, SCALER, HIDER } = useScale();
 
   return (
-    <main className={useClasses('page-content', className)} {...props}>
+    <main className={useClasses('page-content', className, HIDER)} {...props}>
       {children}
       <style jsx>{`
         ${RESPONSIVE.h(1, value => `height: ${value};`, '100%', 'page-content')}

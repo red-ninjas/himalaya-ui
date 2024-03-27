@@ -2,6 +2,7 @@
 import React, { useRef, useState } from 'react';
 import { Maximize, Minimize, PauseFill, PlayFill, Volume2, VolumeX } from '../icons';
 import useScale, { withScale } from '../use-scale';
+import useClasses from '../use-classes';
 
 interface Props {
   src: string;
@@ -16,7 +17,7 @@ type NativeAttrs = Omit<React.HTMLAttributes<HTMLVideoElement>, keyof Props>;
 export type VideoProps = Props & NativeAttrs;
 
 const Video: React.FC<VideoProps> = ({ src, controls, poster, loop = false, autoplay = false, muted = false, ...props }) => {
-  const { SCALER, RESPONSIVE } = useScale();
+  const { SCALER, RESPONSIVE, HIDER } = useScale();
 
   const [isPlaying, setIsPlaying] = useState(autoplay);
   const [isMuted, setIsMuted] = useState(muted);
@@ -71,7 +72,7 @@ const Video: React.FC<VideoProps> = ({ src, controls, poster, loop = false, auto
   };
 
   return (
-    <div className="video-player">
+    <div className={useClasses('video-player', HIDER)}>
       <div className="video-container">
         <video
           {...props}

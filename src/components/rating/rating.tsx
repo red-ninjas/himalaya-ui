@@ -38,7 +38,7 @@ const RatingComponent: React.FC<RatingProps> = ({
   onLockedChange,
   ...props
 }: React.PropsWithChildren<RatingProps>) => {
-  const { RESPONSIVE, SCALER } = useScale();
+  const { RESPONSIVE, SCALER, HIDER } = useScale();
   const [value, setValue] = useState<number>(initialValue);
   const [isLocked, setIsLocked] = useState<boolean>(locked);
 
@@ -82,7 +82,7 @@ const RatingComponent: React.FC<RatingProps> = ({
   }, [customValue]);
 
   return (
-    <div className={useClasses('rating', className, type ? 'color-' + type : null)} {...props}>
+    <div className={useClasses('rating', className, type ? 'color-' + type : null, HIDER)} {...props}>
       {[...Array(count)].map((_, index) => (
         <div
           className={useClasses('icon-box', {

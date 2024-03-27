@@ -30,14 +30,14 @@ const CardComponent: React.FC<React.PropsWithChildren<CardProps>> = ({
   ...props
 }: CardProps) => {
   const theme = useTheme();
-  const { SCALER, RESPONSIVE } = useScale();
+  const { SCALER, RESPONSIVE, HIDER } = useScale();
 
   const [withoutFooterChildren, footerChildren] = pickChild(children, CardFooter);
   const [withoutImageChildren, imageChildren] = pickChild(withoutFooterChildren, Image);
   const hasContent = hasChild(withoutImageChildren, CardContent);
 
   return (
-    <div className={useClasses('card', className, type ? 'color-' + type : null, { hoverable })} {...props}>
+    <div className={useClasses('card', className, type ? 'color-' + type : null, { hoverable }, HIDER)} {...props}>
       {imageChildren}
       {hasContent ? withoutImageChildren : <CardContent>{withoutImageChildren}</CardContent>}
       {footerChildren}

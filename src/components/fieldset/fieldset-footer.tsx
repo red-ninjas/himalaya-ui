@@ -1,28 +1,25 @@
 'use client';
+import useClasses from '../use-classes';
 import React from 'react';
-import useTheme from '../use-theme';
 import useScale, { withScale } from '../use-scale';
-import useLayout from '../use-layout';
 
-interface Props {
-  className?: string;
-}
+interface Props {}
 
 type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
 export type FieldsetFooterProps = Props & NativeAttrs;
 
 const FieldsetFooterComponent: React.FC<React.PropsWithChildren<FieldsetFooterProps>> = ({
-  className = '',
+  className,
   children,
   ...props
 }: React.PropsWithChildren<FieldsetFooterProps>) => {
-  const { RESPONSIVE, SCALER } = useScale();
+  const { RESPONSIVE, SCALER, HIDER } = useScale();
 
   return (
-    <footer className={`footer ${className}`} {...props}>
+    <footer className={useClasses('footer', className, HIDER)} {...props}>
       {children}
       <style jsx>{`
-        footer {
+        .footer {
           background-color: var(--color-background-900);
           border-top: 1px solid var(--color-border-1000);
           border-bottom-left-radius: var(--layout-radius);

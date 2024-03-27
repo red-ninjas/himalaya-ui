@@ -14,7 +14,7 @@ const QuickBarAction = React.forwardRef<HTMLAnchorElement, React.PropsWithChildr
     { children, space = 0.625, tooltip, className, type = 'default' as COLOR_TYPES, active, ...props }: React.PropsWithChildren<QuickActionProps>,
     ref: React.Ref<HTMLAnchorElement>,
   ) => {
-    const { SCALER, RESPONSIVE } = useScale();
+    const { SCALER, RESPONSIVE, HIDER } = useScale();
     const layout = useLayout();
 
     return (
@@ -27,6 +27,7 @@ const QuickBarAction = React.forwardRef<HTMLAnchorElement, React.PropsWithChildr
             {
               'is-active': active,
             },
+            HIDER,
             className,
             type ? 'color-' + type : null,
           )}

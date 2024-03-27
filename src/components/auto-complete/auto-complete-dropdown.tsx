@@ -26,12 +26,12 @@ const AutoCompleteDropdown: React.FC<React.PropsWithChildren<AutoCompleteDropdow
   ...props
 }: React.PropsWithChildren<AutoCompleteDropdownProps>) => {
   const { ref } = useAutoCompleteContext();
+  const { SCALER, RESPONSIVE, HIDER } = useScale();
+
   const isEmpty = useMemo(() => {
     return !visible || React.Children.count(children) === 0;
   }, [children, visible]);
-  const classes = useClasses('auto-complete-dropdown', className, { empty: isEmpty });
-
-  const { SCALER, RESPONSIVE } = useScale();
+  const classes = useClasses('auto-complete-dropdown', className, { empty: isEmpty }, HIDER);
 
   const clickHandler = (event: React.MouseEvent<HTMLDivElement>) => {
     event.preventDefault();

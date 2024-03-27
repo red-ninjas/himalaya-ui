@@ -1,5 +1,6 @@
 'use client';
 
+import useClasses from '../use-classes';
 import Avatar from '../avatar';
 import Popover from '../popover';
 import useScale, { withScale } from '../use-scale';
@@ -10,9 +11,9 @@ export interface UserProfileMenuProps {
   name?: string;
 }
 const UserProfileComponent: React.FC<PropsWithChildren<UserProfileMenuProps>> = ({ children, name }) => {
-  const { SCALER, RESPONSIVE } = useScale();
+  const { SCALER, RESPONSIVE, HIDER } = useScale();
   return (
-    <div className="user-profile-menu">
+    <div className={useClasses('user-profile-menu', HIDER)}>
       <Popover className="menu-popover" offset={8} ml={3} placement="bottomEnd" trigger="click" enterDelay={0} leaveDelay={0} content={children}>
         <Avatar text={name} scale={1.2}></Avatar>
       </Popover>

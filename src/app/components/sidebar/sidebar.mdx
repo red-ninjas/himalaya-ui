@@ -1,6 +1,7 @@
 import { Layout, Playground, Attributes, MockPage } from 'lib/components';
 import { SidebarLayout, Sidebar, SidebarSwitcher, Page, Button, PageWidth, Text } from 'components';
 import { Home } from 'components/icons';
+import NextLink from 'next/link';
 
 export const meta = {
   title: 'Sidebar',
@@ -19,7 +20,22 @@ Display a sidebar
 <Sidebar >
   <Sidebar.Group title="Group 1">
     <Sidebar.Item icon={ <Home size={16} /> } href="/page1">Link 1</Sidebar.Link>
-    <Sidebar.Item href="/page2">Link 2</Sidebar.Link>
+    <Sidebar.Item >Link 2</Sidebar.Link>
+  </Sidebar.Group>
+</Sidebar>
+`}
+/>
+
+<Playground
+  title="General Next.JS"
+  desc="Display a basic sidebar with group titles and links."
+  scope={{ Sidebar, Home, NextLink }}
+  code={`
+<Sidebar>
+  <Sidebar.Group title="Group 1">
+    <NextLink href="/page1" passHref legacyBehavior>
+      <Sidebar.Item icon={ <Home size={16} /> }>Link 1</Sidebar.Link>
+    </NextLink>
   </Sidebar.Group>
 </Sidebar>
 `}
@@ -36,12 +52,12 @@ Display a sidebar
 <SidebarLayout>
   <Sidebar>
     <Sidebar.Group title="Group 1">
-      <Sidebar.Item href="#">Link 1</Sidebar.Link>
-      <Sidebar.Item href="#">Link 2</Sidebar.Link>
+      <Sidebar.Item>Link 1</Sidebar.Link>
+      <Sidebar.Item>Link 2</Sidebar.Link>
     </Sidebar.Group>
       <Sidebar.Group title="Group 2">
-      <Sidebar.Item href="#">Link 3</Sidebar.Link>
-      <Sidebar.Item href="#">Link 4</Sidebar.Link>
+      <Sidebar.Item>Link 3</Sidebar.Link>
+      <Sidebar.Item>Link 4</Sidebar.Link>
     </Sidebar.Group>
   </Sidebar>
   <PageWidth>

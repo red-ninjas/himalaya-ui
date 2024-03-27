@@ -24,7 +24,7 @@ const InnerScrollComponent: React.FC<React.PropsWithChildren<InnerScrollProps>> 
   onScroll = () => {},
   ...props
 }) => {
-  const { SCALER, RESPONSIVE } = useScale();
+  const { SCALER, RESPONSIVE, HIDER } = useScale();
   const ref = createRef<HTMLDivElement>();
   const pathName = usePathname();
 
@@ -48,10 +48,15 @@ const InnerScrollComponent: React.FC<React.PropsWithChildren<InnerScrollProps>> 
     <div
       ref={ref}
       onScroll={onScrollHandler}
-      className={useClasses('inner-scroll', className, {
-        vertical: type == 'both' || type == 'vertical',
-        horizontal: type == 'both' || type == 'horizontal',
-      })}
+      className={useClasses(
+        'inner-scroll',
+        className,
+        {
+          vertical: type == 'both' || type == 'vertical',
+          horizontal: type == 'both' || type == 'horizontal',
+        },
+        HIDER,
+      )}
       {...props}
     >
       {children}

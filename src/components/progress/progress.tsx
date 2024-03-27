@@ -35,10 +35,10 @@ const ProgressComponent: React.FC<ProgressProps> = ({
   colors,
   ...props
 }: ProgressProps) => {
-  const { RESPONSIVE, SCALER } = useScale();
+  const { RESPONSIVE, SCALER, HIDER } = useScale();
   const percentValue = useProportions(value, max);
   const fixed = fixedTop || fixedBottom;
-  const classes = useClasses('progress', { fixed }, className, type ? 'color-' + type : null);
+  const classes = useClasses('progress', { fixed }, className, type ? 'color-' + type : null, HIDER);
 
   const progressColor = useMemo(() => {
     if (!colors) return 'var( --progress-background)';

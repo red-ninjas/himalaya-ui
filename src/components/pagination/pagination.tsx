@@ -1,6 +1,6 @@
 'use client';
 
-import useClasses from 'components/use-classes';
+import useClasses from '../use-classes';
 import React, { useEffect, useMemo } from 'react';
 import useScale, { withScale } from '../use-scale';
 import { pickChild } from '../utils/collections';
@@ -34,7 +34,7 @@ const PaginationComponent: React.FC<React.PropsWithChildren<PaginationProps>> = 
   className = undefined,
   ...props
 }: React.PropsWithChildren<PaginationProps>) => {
-  const { SCALER, RESPONSIVE } = useScale();
+  const { SCALER, RESPONSIVE, HIDER } = useScale();
   const [page, setPage, pageRef] = useCurrentState(initialPage);
   const [, prevChildren] = pickChild(children, PaginationPrevious);
   const [, nextChildren] = pickChild(children, PaginationNext);
@@ -74,7 +74,7 @@ const PaginationComponent: React.FC<React.PropsWithChildren<PaginationProps>> = 
 
   return (
     <PaginationContext.Provider value={values}>
-      <nav className={useClasses('pagination', className, type ? 'color-' + type : null)} {...props}>
+      <nav className={useClasses('pagination', className, type ? 'color-' + type : null, HIDER)} {...props}>
         {prevItem}
         <PaginationPages count={count} current={page} limit={limit} setPage={setPage} />
         {nextItem}

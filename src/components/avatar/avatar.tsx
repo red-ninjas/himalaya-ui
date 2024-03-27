@@ -20,8 +20,8 @@ const safeText = (text: string): string => {
 };
 
 const AvatarComponent: React.FC<AvatarProps> = ({ src, text = '', isSquare = false, className = '', ...props }: AvatarProps) => {
-  const { SCALER, RESPONSIVE } = useScale();
-  const classes = useClasses('avatar', className);
+  const { SCALER, RESPONSIVE, HIDER } = useScale();
+  const classes = useClasses('avatar', className, HIDER);
   const showText = !src;
   return (
     <span className={classes}>
@@ -62,8 +62,6 @@ const AvatarComponent: React.FC<AvatarProps> = ({ src, text = '', isSquare = fal
           white-space: nowrap;
           user-select: none;
         }
-
-        ${SCALER('avatar')}
         ${RESPONSIVE.font(1, value => `font-size: ${value};`, undefined, 'avatar-text')}
         ${RESPONSIVE.w(1.75, value => `width: ${value};`, undefined, 'avatar')}
         ${RESPONSIVE.h(1.75, value => `height: ${value};`, undefined, 'avatar')}
@@ -80,6 +78,8 @@ const AvatarComponent: React.FC<AvatarProps> = ({ src, text = '', isSquare = fal
           undefined,
           'avatar',
         )}
+
+        ${SCALER('avatar')}
       `}</style>
     </span>
   );

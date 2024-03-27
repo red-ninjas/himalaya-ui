@@ -2,7 +2,7 @@
 
 import React from 'react';
 import useScale, { withScale } from '../use-scale';
-import useClasses from 'components/use-classes';
+import useClasses from '../use-classes';
 
 interface Props {}
 
@@ -14,10 +14,10 @@ const PageFooterComponent: React.FC<React.PropsWithChildren<PageFooterProps>> = 
   className = undefined,
   ...props
 }: React.PropsWithChildren<PageFooterProps>) => {
-  const { RESPONSIVE, SCALER } = useScale();
+  const { RESPONSIVE, SCALER, HIDER } = useScale();
 
   return (
-    <footer className={useClasses('page-footer', className)} {...props}>
+    <footer className={useClasses('page-footer', className, HIDER)} {...props}>
       {children}
       <style jsx>{`
         .page-footer {

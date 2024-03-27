@@ -1,12 +1,10 @@
 'use client';
 
 import React from 'react';
-import useLayout from '../use-layout';
 import useTheme from '../use-theme';
 
 const CssBaseline: React.FC = () => {
   const theme = useTheme();
-  const layout = useLayout();
 
   return (
     <style jsx global>{`

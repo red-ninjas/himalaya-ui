@@ -4,9 +4,7 @@ import React from 'react';
 import useScale, { withScale } from '../use-scale';
 import useClasses from '../use-classes';
 
-interface Props {
-  className?: string;
-}
+interface Props {}
 
 type NativeAttrs = Omit<React.HTMLAttributes<HTMLSpanElement>, keyof Props>;
 export type SpinnerProps = Props & NativeAttrs;
@@ -99,9 +97,9 @@ const getSpans = () => {
   ));
 };
 
-const SpinnerComponent: React.FC<SpinnerProps> = ({ className = '', ...props }: SpinnerProps) => {
-  const { RESPONSIVE, SCALER } = useScale();
-  const classes = useClasses('spinner', className);
+const SpinnerComponent: React.FC<SpinnerProps> = ({ className, ...props }: SpinnerProps) => {
+  const { RESPONSIVE, SCALER, HIDER } = useScale();
+  const classes = useClasses('spinner', className, HIDER);
 
   return (
     <div className={classes} {...props}>

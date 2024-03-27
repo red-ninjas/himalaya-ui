@@ -1,22 +1,20 @@
 'use client';
 
+import useClasses from '../use-classes';
 import React, { ReactNode } from 'react';
 import useScale, { withScale } from '../use-scale';
-import useTheme from '../use-theme';
 import BreadcrumbsSeparator from './breadcrumbs-separator';
-import useClasses from 'components/use-classes';
 
 interface Props {
   separator?: string | ReactNode;
   className?: string;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
 export type BreadcrumbsProps = Props & NativeAttrs;
 
 const BreadcrumbsComponent: React.FC<React.PropsWithChildren<BreadcrumbsProps>> = ({ separator = '/', children, className = '' }: BreadcrumbsProps) => {
-  const theme = useTheme();
-  const { SCALER, RESPONSIVE } = useScale();
+  const { SCALER, RESPONSIVE, HIDER } = useScale();
 
   const childrenArray = React.Children.toArray(children);
   const withSeparatorChildren = childrenArray.map((item, index) => {
@@ -36,7 +34,7 @@ const BreadcrumbsComponent: React.FC<React.PropsWithChildren<BreadcrumbsProps>> 
   });
 
   return (
-    <nav className={useClasses('nav', className)}>
+    <nav className={useClasses('nav', className, HIDER)}>
       {withSeparatorChildren}
       <style jsx>{`
         .nav {

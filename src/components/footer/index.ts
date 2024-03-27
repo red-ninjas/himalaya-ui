@@ -10,8 +10,9 @@ import { HTMLAttributeAnchorTarget } from 'react';
 
 const justify = tuple('flex-start', 'center', 'flex-end', 'space-between', 'space-around', 'space-evenly');
 export type FooterBlockJustify = (typeof justify)[number];
-
-export interface FooterProps {}
+type FooterProps = {};
+type FooterPropsNative = Omit<React.HTMLAttributes<HTMLDivElement>, keyof FooterProps>;
+export type FooterPropsNativeProps = FooterPropsNative & FooterProps;
 
 type BottomItemProps = {
   justify?: FooterBlockJustify;
@@ -20,9 +21,12 @@ type BottomItemProps = {
 type BottomItemPropsNative = Omit<React.HTMLAttributes<HTMLDivElement>, keyof BottomItemProps>;
 export type FooterBottomItemProps = BottomItemProps & BottomItemPropsNative;
 
-export interface FooterNavigationProps {
+type NavigationProps = {
   title?: string;
-}
+};
+
+type FooterNavigationPropsNative = Omit<React.HTMLAttributes<HTMLDivElement>, keyof NavigationProps>;
+export type FooterNavigationProps = NavigationProps & FooterNavigationPropsNative;
 
 type NavigationItemProps = {
   href: string;

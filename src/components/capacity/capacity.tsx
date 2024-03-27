@@ -21,9 +21,9 @@ const getColor = (val: number): string => {
 };
 
 const CapacityComponent: React.FC<CapacityProps> = ({ value = 0, limit = 100, color: userColor = '', className = '', ...props }: CapacityProps) => {
-  const { RESPONSIVE, SCALER } = useScale();
+  const { RESPONSIVE, SCALER, HIDER } = useScale();
   const percentValue = useProportions(value, limit);
-  const classes = useClasses('capacity', className);
+  const classes = useClasses('capacity', className, HIDER);
   const color = useMemo(() => {
     if (userColor && userColor !== '') return userColor;
     return getColor(percentValue);

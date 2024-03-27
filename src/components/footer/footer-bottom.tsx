@@ -2,20 +2,19 @@
 
 import React, { PropsWithChildren } from 'react';
 import useScale, { withScale } from '../use-scale';
-import { FooterProps } from '.';
+import { FooterPropsNativeProps } from '.';
 import FooterBottomBlock from './footer-bottom-block';
 import { pickChild } from '../utils/collections';
 import PageWidth from '../page-width';
-const FooterBottom: React.FC<PropsWithChildren<FooterProps>> = ({ children }) => {
+import useClasses from '../use-classes';
+const FooterBottom: React.FC<PropsWithChildren<FooterPropsNativeProps>> = ({ children, className, ...props }) => {
   const [, footerBottomBlock] = pickChild(children, FooterBottomBlock);
-  const { RESPONSIVE, SCALER } = useScale();
+  const { RESPONSIVE, SCALER, HIDER } = useScale();
   return (
-    <>
-      <div className="footer-bottom">
-        <PageWidth pt={0} pb={0}>
-          <div className="footer-bottom-inner">{footerBottomBlock}</div>
-        </PageWidth>
-      </div>
+    <div className={useClasses('footer-bottom', HIDER, className)} {...props}>
+      <PageWidth pt={0} pb={0}>
+        <div className="footer-bottom-inner">{footerBottomBlock}</div>
+      </PageWidth>
       <style jsx>{`
         .footer-bottom {
           border-top: 1px solid var(--color-border-1000);
@@ -37,7 +36,7 @@ const FooterBottom: React.FC<PropsWithChildren<FooterProps>> = ({ children }) =>
 
         ${SCALER('footer-bottom')}
       `}</style>
-    </>
+    </div>
   );
 };
 

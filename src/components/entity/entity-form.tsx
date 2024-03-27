@@ -15,18 +15,14 @@ function EntityFormComponent({
   footerNote = null,
   footerSeparator = true,
 }: PropsWithChildren<EntityFormProps>) {
-  const { SCALER, RESPONSIVE } = useScale();
-  const entityFormClasses = useClasses({
-    'entity-form-wrapper': true,
-  });
+  const { SCALER, RESPONSIVE, HIDER } = useScale();
+  const entityFormClasses = useClasses('entity-form-wrapper', HIDER);
 
-  const entityFooterClasses = useClasses({
-    'entity-form-footer': true,
+  const entityFooterClasses = useClasses('entity-form-footer', {
     separator: footerSeparator,
   });
 
-  const footerNoteInlineClasses = useClasses({
-    'entity-footer-note-inline': true,
+  const footerNoteInlineClasses = useClasses('entity-footer-note-inline', {
     separator: footerSeparator,
   });
 

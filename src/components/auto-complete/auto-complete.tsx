@@ -1,5 +1,6 @@
 'use client';
 
+import useClasses from '../use-classes';
 import React, { CSSProperties, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react';
 import Input from '../input';
 import LoadingSpinner from '../loading-spinner';
@@ -86,7 +87,7 @@ const AutoCompleteComponent = React.forwardRef<HTMLInputElement, React.PropsWith
     userRef: React.Ref<HTMLInputElement | null>,
   ) => {
     const resetTimer = useRef<number>();
-    const { RESPONSIVE, SCALER, getScaleProps } = useScale();
+    const { RESPONSIVE, SCALER, getScaleProps, HIDER } = useScale();
     const ref = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
     const [state, setState, stateRef] = useCurrentState<string>(customInitialValue);
@@ -173,7 +174,7 @@ const AutoCompleteComponent = React.forwardRef<HTMLInputElement, React.PropsWith
 
     return (
       <AutoCompleteContext.Provider value={initialValue}>
-        <div ref={ref} className="auto-complete">
+        <div ref={ref} className={useClasses('auto-complete', HIDER)}>
           <Input
             ref={inputRef}
             type={type}

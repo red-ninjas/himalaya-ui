@@ -40,7 +40,7 @@ const ToggleComponent: React.FC<ToggleProps> = ({
   className,
   ...props
 }: ToggleProps) => {
-  const { RESPONSIVE, SCALER } = useScale();
+  const { RESPONSIVE, SCALER, HIDER } = useScale();
   const [selfChecked, setSelfChecked] = useState<boolean>(initialChecked);
   const classes = useClasses('toggle', { checked: selfChecked, disabled });
 
@@ -68,7 +68,7 @@ const ToggleComponent: React.FC<ToggleProps> = ({
   }, [checked]);
 
   return (
-    <label className={useClasses('toggle-label', className, type ? 'color-' + type : null)} {...props}>
+    <label className={useClasses('toggle-label', className, type ? 'color-' + type : null, HIDER)} {...props}>
       <input type="checkbox" disabled={disabled} checked={selfChecked} onChange={changeHandle} />
       <div className={classes}>
         <span className="inner" />

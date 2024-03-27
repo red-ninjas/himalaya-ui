@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import css from 'styled-jsx/css';
 import { UIThemesBreakpoints } from '../use-layout/shared';
 import { isCSSNumberValue } from '../utils/collections';
@@ -10,13 +11,12 @@ import {
   DynamicScale4X,
   GetAllScalePropsFunction,
   GetScalePropsFunction,
+  HideInterface,
   ScalePropKeys,
   ScaleProps,
   ScaleResponsiveParameter,
   ScaleResponsivePipe,
 } from './scale-context';
-import _ from 'lodash';
-import { HideInterface } from './scale-context';
 
 export const generateGetScaleProps = <P>(props: P & ScaleProps): GetScalePropsFunction => {
   const getScaleProps: GetScalePropsFunction = keyOrKeys => {
@@ -336,7 +336,7 @@ export const mergeParameters = (fields: { [key: string]: ScaleResponsiveParamete
  * @returns
  */
 export const scaleAttribute =
-  (scale: ScaleResponsiveParameter<number>, unit: string, breakpoints: UIThemesBreakpoints, className: string, hideOn?: HideInterface): ScaleResponsivePipe =>
+  (scale: ScaleResponsiveParameter<number>, unit: string, breakpoints: UIThemesBreakpoints, className: string): ScaleResponsivePipe =>
   renderClassName => {
     let responsiveContent: string = ``;
     const attributeClassName = renderClassName ?? className;
@@ -376,6 +376,7 @@ export const scaleAttribute =
       }
     }
 
+    /*
     if (hideOn) {
       if (typeof hideOn === 'boolean' && hideOn) {
         responsiveContent += css`
@@ -413,9 +414,34 @@ export const scaleAttribute =
         }
       }
     }
+    */
 
     return responsiveContent;
   };
+
+/**
+ * Create scale and unit vars
+ * @param scale
+ * @param unit
+ * @param breakpoints
+ * @param className
+ * @returns
+ */
+export const hideAttribute = (hideOn?: HideInterface): string | undefined => {
+  let hideClasses: string[] = [];
+
+  if (hideOn) {
+    if (typeof hideOn === 'boolean' && hideOn) {
+      hideClasses.push('hide');
+    } else {
+      hideClasses = Object.entries(hideOn)
+        .filter(df => df[1] === true)
+        .map(df => 'hide-' + df[0]);
+    }
+  }
+
+  return hideClasses.length > 0 ? hideClasses.join(' ') : undefined;
+};
 
 export const generateGetAllScaleProps = <P>(props: P & ScaleProps): GetAllScalePropsFunction => {
   const getAllScaleProps: GetAllScalePropsFunction = () => {

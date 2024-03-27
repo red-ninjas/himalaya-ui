@@ -14,10 +14,10 @@ const AutoCompleteSearchComponent: React.FC<React.PropsWithChildren<AutoComplete
   children,
   className = '',
 }: React.PropsWithChildren<AutoCompleteSearchProps>) => {
-  const { RESPONSIVE, SCALER } = useScale();
+  const { RESPONSIVE, SCALER, HIDER } = useScale();
 
   return (
-    <div className={useClasses('searching', className)}>
+    <div className={useClasses('searching', className, HIDER)}>
       {children}
       <style jsx>{`
         .searching {
@@ -35,8 +35,6 @@ const AutoCompleteSearchComponent: React.FC<React.PropsWithChildren<AutoComplete
           border: 0;
         }
 
-        ${SCALER('searching')}
-
         ${RESPONSIVE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'searching')}
         ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto', 'searching')}
         ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'searching')}
@@ -44,6 +42,8 @@ const AutoCompleteSearchComponent: React.FC<React.PropsWithChildren<AutoComplete
         ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'searching')}
 
         ${RESPONSIVE.font(0.875, value => `font-size: ${value};`, undefined, 'searching')}
+
+        ${SCALER('searching')}
       `}</style>
     </div>
   );

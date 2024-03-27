@@ -20,6 +20,7 @@ import BackButton from 'components/header/back-button';
 import _ from 'lodash';
 import { usePathname } from 'next/navigation';
 import { Seeds } from '../data';
+import NextLink from 'next/link';
 
 export default function DocumentationLayout({ children }) {
   const pathName = usePathname();
@@ -53,9 +54,9 @@ export default function DocumentationLayout({ children }) {
                 {groups.map((item, index) => (
                   <Sidebar.Group isActive={activeRecord ? activeRecord.group == item.title : false} key={index} title={item.title}>
                     {item.children.map((subChild, subIndex) => (
-                      <Sidebar.Item key={subIndex} href={subChild.url}>
-                        {subChild.name}
-                      </Sidebar.Item>
+                      <NextLink href={subChild.url ?? ''} key={subIndex} passHref legacyBehavior>
+                        <Sidebar.Item isActive={subChild.url === pathName}>{subChild.name}</Sidebar.Item>
+                      </NextLink>
                     ))}
                   </Sidebar.Group>
                 ))}

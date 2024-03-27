@@ -1,27 +1,27 @@
 'use client';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import React, { PropsWithChildren } from 'react';
+import useClasses from '../use-classes';
+import React from 'react';
 import useScale, { withScale } from '../use-scale';
 
 export interface Props {
   icon?: React.ReactNode;
   activeColor?: string;
   activeBackground?: string;
+  isActive?: boolean;
 }
 
 type NativeAttrs = Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, keyof Props>;
 export type SideBarLinkProp = Props & NativeAttrs;
 
-const SidebarLink: React.FC<PropsWithChildren<SideBarLinkProp>> = ({ children, icon, activeColor, activeBackground, href, ...props }) => {
-  const pathname = usePathname();
-  const { SCALES } = useScale();
+const SidebarLink = React.forwardRef<HTMLAnchorElement, React.PropsWithChildren<SideBarLinkProp>>(
+  (
+    { children, icon, isActive, activeColor, activeBackground, className, ...props }: React.PropsWithChildren<SideBarLinkProp>,
+    ref: React.Ref<HTMLAnchorElement>,
+  ) => {
+    const { SCALER, RESPONSIVE, HIDER } = useScale();
 
-  const isActive = pathname === href;
-
-  return (
-    <Link legacyBehavior href={href || ''}>
-      <a {...props} className={`sidebar-link ${isActive ? 'active' : ''}`}>
+    return (
+      <a ref={ref} {...props} className={useClasses(`sidebar-link`, { active: isActive, className }, HIDER)}>
         {icon && <span className="sidebar-link-icon">{icon}</span>}
         <span className="sidebar-link-title">{children}</span>
         <style jsx>{`
@@ -37,13 +37,7 @@ const SidebarLink: React.FC<PropsWithChildren<SideBarLinkProp>> = ({ children, i
           .sidebar-link {
             display: flex;
             align-items: baseline;
-            font-size: ${SCALES.font(0.85)};
             color: var(--color-foreground-700);
-            margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
-            padding: ${SCALES.pt(0.6)} 0 ${SCALES.pb(0.6)} 0;
-
-            padding-left: ${SCALES.pl(0.6)};
-            padding-right: ${SCALES.pl(0.6)};
             box-sizing: border-box;
             align-self: stretch;
             transition: all 200ms ease;
@@ -66,11 +60,18 @@ const SidebarLink: React.FC<PropsWithChildren<SideBarLinkProp>> = ({ children, i
           .sidebar-link.active .sidebar-link-title,
           .sidebar-link.active .sidebar-link-icon {
             color: ${activeColor || `var(--color-foreground-1000)`};
+            font-weight: 500;
           }
+
+          ${RESPONSIVE.font(0.85, value => `font-size: ${value};`, undefined, 'sidebar-link')}
+          ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'sidebar-link')}
+          ${RESPONSIVE.padding(0.6, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'sidebar-link')}
+
+          ${SCALER('sidebar-link')}
         `}</style>
       </a>
-    </Link>
-  );
-};
-
+    );
+  },
+);
+SidebarLink.displayName = 'HimalayaSidebarLink';
 export default withScale(SidebarLink);

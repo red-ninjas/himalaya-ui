@@ -21,17 +21,21 @@ const AutoCompleteItemComponent: React.FC<React.PropsWithChildren<AutoCompleteIt
   isLabelOnly,
   hasCheckmark = true,
 }: React.PropsWithChildren<AutoCompleteItemProps>) => {
-  const { RESPONSIVE, SCALER } = useScale();
+  const { RESPONSIVE, SCALER, HIDER } = useScale();
   const { value, updateValue, updateVisible } = useAutoCompleteContext();
   const selectHandler = () => {
     updateValue && updateValue(identValue);
     updateVisible && updateVisible(false);
   };
   const isActive = useMemo(() => value === identValue, [identValue, value]);
-  const classes = useClasses('item', {
-    active: isActive,
-    'label-only': isLabelOnly,
-  });
+  const classes = useClasses(
+    'item',
+    {
+      active: isActive,
+      'label-only': isLabelOnly,
+    },
+    HIDER,
+  );
 
   return (
     <div className={classes} onClick={selectHandler}>

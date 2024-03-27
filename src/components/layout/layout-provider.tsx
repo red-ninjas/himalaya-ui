@@ -14,7 +14,9 @@ const LayoutProvider: React.FC<React.PropsWithChildren<LayoutProviderProps>> = (
   const mainLayout = _.merge(configLayout, layout);
 
   const varsCss: string = useMemo(() => {
-    let cssCode: string = ``;
+    let cssCode: string = `
+      .hide {display: none !important;}
+    `;
 
     for (const key of Object.keys(mainLayout)) {
       const value = mainLayout[key];

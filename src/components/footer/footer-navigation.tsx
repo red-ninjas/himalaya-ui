@@ -1,13 +1,14 @@
 'use client';
 
+import useClasses from '../use-classes';
 import React, { PropsWithChildren } from 'react';
-import useScale, { withScale } from '../use-scale';
 import { FooterNavigationProps } from '.';
+import useScale, { withScale } from '../use-scale';
 
-const FooterNavigation: React.FC<PropsWithChildren<FooterNavigationProps>> = ({ children, title }) => {
-  const { SCALER, RESPONSIVE } = useScale();
+const FooterNavigation: React.FC<PropsWithChildren<FooterNavigationProps>> = ({ children, title, className, ...props }) => {
+  const { SCALER, RESPONSIVE, HIDER } = useScale();
   return (
-    <nav className="footer-navigation">
+    <nav className={useClasses('footer-navigation', className, HIDER)} {...props}>
       {title && <div className="footer-navigation-title">{title}</div>}
       <ul className="footer-navigation-group">{children}</ul>
       <style jsx>{`

@@ -21,8 +21,8 @@ const DividerComponent: React.FC<React.PropsWithChildren<DividerProps>> = ({
   className,
   ...props
 }: React.PropsWithChildren<DividerProps>) => {
-  const { RESPONSIVE, SCALER } = useScale();
-  const classes = useClasses('divider', className, type ? 'color-' + type : null);
+  const { RESPONSIVE, SCALER, HIDER } = useScale();
+  const classes = useClasses('divider', className, type ? 'color-' + type : null, HIDER);
 
   const alignClassName = useMemo(() => {
     if (!align || align === 'center') return '';

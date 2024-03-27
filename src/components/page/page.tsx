@@ -1,5 +1,5 @@
 'use client';
-import useClasses from 'components/use-classes';
+import useClasses from '../use-classes';
 import React, { useEffect, useState } from 'react';
 import useScale, { withScale } from '../use-scale';
 import { hasChild } from '../utils/collections';
@@ -22,7 +22,7 @@ const PageComponent: React.FC<React.PropsWithChildren<PageProps>> = ({
   className,
   ...props
 }: React.PropsWithChildren<PageProps>) => {
-  const { RESPONSIVE, SCALER } = useScale();
+  const { RESPONSIVE, SCALER, HIDER } = useScale();
   const [preventRender, setPreventRender] = useState<boolean>(render !== 'default');
 
   useEffect(() => {
@@ -48,7 +48,7 @@ const PageComponent: React.FC<React.PropsWithChildren<PageProps>> = ({
   const hasContent = hasChild(children, PageContent);
 
   return (
-    <section className={useClasses('page-section', className)} {...props}>
+    <section className={useClasses('page-section', className, HIDER)} {...props}>
       {hasContent ? children : <PageContent>{children}</PageContent>}
       <style jsx>{`
         .page-section {

@@ -11,8 +11,8 @@ type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
 export type BreadcrumbsSeparatorProps = Props & NativeAttrs;
 
 const Separator: React.FC<React.PropsWithChildren<BreadcrumbsSeparatorProps>> = ({ children, className = '' }: BreadcrumbsSeparatorProps) => {
-  const { RESPONSIVE, SCALER } = useScale();
-  const classes = useClasses('separator', className);
+  const { RESPONSIVE, SCALER, HIDER } = useScale();
+  const classes = useClasses('separator', className, HIDER);
 
   return (
     <div className={classes}>

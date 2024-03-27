@@ -6,16 +6,20 @@ import useClasses from '../use-classes';
 import { pickChild } from '../utils/collections';
 import Header from './header';
 
-export interface FixedHeaderProps {
+interface Props {
   mode?: 'fixed' | 'sticky';
   hidden?: boolean;
 }
-const FixedHeader: React.FC<React.PropsWithChildren<FixedHeaderProps>> = ({ children, mode = 'sticky', hidden = false }) => {
-  const { SCALER } = useScale();
+
+type FixedHeaderPropsNative = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
+export type FixedHeaderProps = FixedHeaderPropsNative & Props;
+
+const FixedHeader: React.FC<React.PropsWithChildren<FixedHeaderProps>> = ({ children, mode = 'sticky', hidden = false, className, ...props }) => {
+  const { SCALER, HIDER } = useScale();
 
   const [, header] = pickChild(children, Header);
   return (
-    <div className={useClasses('fixed-header', { hidden })}>
+    <div className={useClasses('fixed-header', { hidden }, className, HIDER)} {...props}>
       {header}
 
       <style jsx>{`

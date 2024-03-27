@@ -14,10 +14,10 @@ type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
 export type AvatarGroupProps = Props & NativeAttrs;
 
 const AvatarGroupComponent: React.FC<React.PropsWithChildren<AvatarGroupProps>> = ({ count, className = '', children }: AvatarGroupProps) => {
-  const { SCALER, RESPONSIVE } = useScale();
+  const { SCALER, RESPONSIVE, HIDER } = useScale();
 
   return (
-    <div className={useClasses('avatar-group', className)}>
+    <div className={useClasses('avatar-group', className, HIDER)}>
       {children}
       {count && <span className="count">+{count}</span>}
       <style jsx>{`

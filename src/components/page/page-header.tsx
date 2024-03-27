@@ -13,11 +13,11 @@ export type PageHeaderProps = Props & NativeAttrs;
 const PageHeaderComponent: React.FC<React.PropsWithChildren<PageHeaderProps>> = ({
   children,
   center = false,
-  className = undefined,
+  className,
   ...props
 }: React.PropsWithChildren<PageHeaderProps>) => {
-  const { RESPONSIVE, SCALER } = useScale();
-  const classes = useClasses({ center }, className, 'page-header');
+  const { RESPONSIVE, SCALER, HIDER } = useScale();
+  const classes = useClasses('page-header', { center }, className, HIDER);
 
   return (
     <header className={classes} {...props}>

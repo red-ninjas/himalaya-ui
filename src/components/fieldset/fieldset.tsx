@@ -29,11 +29,11 @@ const FieldsetComponent: React.FC<React.PropsWithChildren<FieldsetProps>> = ({
   label = '',
   ...props
 }: React.PropsWithChildren<FieldsetProps>) => {
-  const { RESPONSIVE, SCALER } = useScale();
+  const { RESPONSIVE, SCALER, HIDER } = useScale();
 
   const { inGroup, currentValue, register } = useFieldset();
   const [hidden, setHidden] = useState<boolean>(inGroup);
-  const classes = useClasses('fieldset', className);
+  const classes = useClasses('fieldset', className, HIDER);
 
   const [withoutFooterChildren, FooterChildren] = pickChild(children, FieldsetFooter);
   const hasTitle = hasChild(withoutFooterChildren, FieldsetTitle);

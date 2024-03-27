@@ -1,15 +1,16 @@
 'use client';
 
+import useClasses from '../use-classes';
 import NextLink from 'next/link';
 import React, { PropsWithChildren } from 'react';
 import { FooterNavigationItemProps } from '.';
 import { withScale } from '../use-scale';
 import { useScale } from '../use-scale/scale-context';
 
-const FooterNavigationItem: React.FC<PropsWithChildren<FooterNavigationItemProps>> = ({ children, href, target = '_self', ...props }) => {
-  const { SCALER, RESPONSIVE } = useScale();
+const FooterNavigationItem: React.FC<PropsWithChildren<FooterNavigationItemProps>> = ({ children, href, className, target = '_self', ...props }) => {
+  const { SCALER, RESPONSIVE, HIDER } = useScale();
   return (
-    <li className="footer-navigation-item" {...props}>
+    <li className={useClasses('footer-navigation-item', className, HIDER)} {...props}>
       <NextLink legacyBehavior passHref href={href} target={target}>
         <a className="footer-link">{children}</a>
       </NextLink>

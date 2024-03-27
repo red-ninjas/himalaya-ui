@@ -24,9 +24,9 @@ const CheckboxGroupComponent: React.FC<React.PropsWithChildren<CheckboxGroupProp
   className = '',
   ...props
 }: CheckboxGroupProps) => {
-  const { RESPONSIVE, SCALER } = useScale();
+  const { RESPONSIVE, SCALER, HIDER } = useScale();
   const [selfVal, setSelfVal] = useState<string[]>([]);
-  const classes = useClasses('group', className);
+  const classes = useClasses('group', className, HIDER);
   if (!value) {
     value = [];
     useWarning('Props "value" is required.', 'Checkbox Group');

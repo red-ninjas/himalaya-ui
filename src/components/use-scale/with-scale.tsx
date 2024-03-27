@@ -3,7 +3,16 @@
 import React, { forwardRef } from 'react';
 import useLayout from '../use-layout';
 import { ScaleConfig, ScaleContext, ScaleProps } from './scale-context';
-import { generateGetAllScaleProps, generateGetScaleProps, makeScaleHandler, makeScaleHandler4X, scaleHandler1X, scaleHandler4X, scaleAttribute } from './utils';
+import {
+  generateGetAllScaleProps,
+  generateGetScaleProps,
+  makeScaleHandler,
+  makeScaleHandler4X,
+  scaleHandler1X,
+  scaleHandler4X,
+  scaleAttribute,
+  hideAttribute,
+} from './utils';
 
 export type ContentScaleProps = {
   children?: React.ReactNode | (() => React.ReactNode) | string | undefined | null | number;
@@ -37,7 +46,8 @@ const withScale = <T, P = {}>(Render: React.ComponentType<P & { ref?: React.Ref<
         padding: makeScaleHandler4X(pl ?? px ?? p, pr ?? px ?? p, pt ?? py ?? p, pb ?? py ?? p),
         margin: makeScaleHandler4X(ml ?? mx ?? m, mr ?? mx ?? m, mt ?? my ?? m, mb ?? my ?? m),
       },
-      SCALER: scaleAttribute(scale, unit, layout.breakpoints, 'scale', hideOn),
+      SCALER: scaleAttribute(scale, unit, layout.breakpoints, 'scale'),
+      HIDER: hideAttribute(hideOn),
       RESPONSIVE: {
         r: scaleHandler1X(r, layout.breakpoints, 'radius'),
         pt: scaleHandler1X(pt ?? py ?? p, layout.breakpoints, 'padding'),

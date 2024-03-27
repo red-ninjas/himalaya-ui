@@ -20,8 +20,8 @@ export interface HeaderProps {
 type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof HeaderProps>;
 export type HeaderPropsNative = HeaderProps & NativeAttrs;
 
-const HeaderComponent: React.FC<HeaderPropsNative> = ({ children, transcluent = true, transcluentColor, gap = '6px', ...props }) => {
-  const { SCALER, RESPONSIVE } = useScale();
+const HeaderComponent: React.FC<HeaderPropsNative> = ({ children, transcluent = true, className, transcluentColor, gap = '6px', ...props }) => {
+  const { SCALER, RESPONSIVE, HIDER } = useScale();
   const layoutRoot = useLayout();
 
   const [, leftHeaderControl] = pickChild(children, LeftHeaderControl);
@@ -51,30 +51,32 @@ const HeaderComponent: React.FC<HeaderPropsNative> = ({ children, transcluent = 
   }, []);
 
   return (
-    <>
-      <nav
-        className={useClasses({
-          'header-outer': true,
+    <nav
+      className={useClasses(
+        'header-outer',
+        {
           transcluent: transcluent,
-        })}
-        {...props}
-      >
-        <PageWidth pt={0} pb={0}>
-          <div className="header-navigation">
-            <div className="left-controls">
-              <div className="left-controls-inner">{leftHeaderControl}</div>
-            </div>
-            {centerHeaderControl && centerHeaderControl.length > 0 && (
-              <div className="center-controls">
-                <div className="center-controls-inner">{centerHeaderControl}</div>
-              </div>
-            )}
-            <div className="right-controls">
-              <div className="right-controls-inner">{rightHeaderControl}</div>
-            </div>
+        },
+        HIDER,
+        className,
+      )}
+      {...props}
+    >
+      <PageWidth pt={0} pb={0}>
+        <div className="header-navigation">
+          <div className="left-controls">
+            <div className="left-controls-inner">{leftHeaderControl}</div>
           </div>
-        </PageWidth>
-      </nav>
+          {centerHeaderControl && centerHeaderControl.length > 0 && (
+            <div className="center-controls">
+              <div className="center-controls-inner">{centerHeaderControl}</div>
+            </div>
+          )}
+          <div className="right-controls">
+            <div className="right-controls-inner">{rightHeaderControl}</div>
+          </div>
+        </div>
+      </PageWidth>
       <style jsx>{`
         .header-outer {
           border-bottom: 1px solid var(--color-border-1000);
@@ -159,7 +161,7 @@ const HeaderComponent: React.FC<HeaderPropsNative> = ({ children, transcluent = 
         ${customResponsiveAttribute(gap, 'header-outer', layoutRoot.breakpoints, value => `--header-gap: ${value}`)}
         ${SCALER('header-outer')}
       `}</style>
-    </>
+    </nav>
   );
 };
 

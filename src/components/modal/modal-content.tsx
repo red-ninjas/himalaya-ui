@@ -13,11 +13,11 @@ const ModalContentComponent: React.FC<React.PropsWithChildren<ModalContentProps>
   children,
   ...props
 }: React.PropsWithChildren<ModalContentProps>) => {
-  const { SCALER, RESPONSIVE } = useScale();
+  const { SCALER, RESPONSIVE, HIDER } = useScale();
 
   return (
     <>
-      <div className={useClasses('content', className)} {...props}>
+      <div className={useClasses('content', className, HIDER)} {...props}>
         {children}
       </div>
       <style jsx>{`

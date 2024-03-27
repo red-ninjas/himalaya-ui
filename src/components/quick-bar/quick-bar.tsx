@@ -15,11 +15,11 @@ type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof NativeQuickB
 export type QuickBarProps = NativeQuickBarProps & NativeAttrs;
 
 const QuickBarComponent: React.FC<PropsWithChildren<QuickBarProps>> = ({ children, gap = 0.375, className, ...props }) => {
-  const { SCALER, RESPONSIVE } = useScale();
+  const { SCALER, RESPONSIVE, HIDER } = useScale();
   const layout = useLayout();
 
   return (
-    <div className={useClasses('quick-bar-inner', className)} {...props}>
+    <div className={useClasses('quick-bar-inner', className, HIDER)} {...props}>
       {children}
       <style jsx>{`
         .quick-bar-inner {

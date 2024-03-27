@@ -17,8 +17,8 @@ const CardFooterComponent: React.FC<React.PropsWithChildren<CardFooterProps>> = 
   disableAutoMargin = false,
   ...props
 }: CardFooterProps) => {
-  const { RESPONSIVE, SCALER } = useScale();
-  const classes = useClasses('card-footer', { 'auto-margin': !disableAutoMargin }, className);
+  const { RESPONSIVE, SCALER, HIDER } = useScale();
+  const classes = useClasses('card-footer', { 'auto-margin': !disableAutoMargin }, className, HIDER);
 
   return (
     <footer className={classes} {...props}>

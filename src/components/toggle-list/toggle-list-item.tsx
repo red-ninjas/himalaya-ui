@@ -30,7 +30,7 @@ const ToggleListItemComponent: React.FC<PropsWithChildren<ToggleProps>> = ({
   gap = 0.25,
   ...props
 }: ToggleProps) => {
-  const { SCALER, RESPONSIVE } = useScale();
+  const { SCALER, RESPONSIVE, HIDER } = useScale();
   const { value: groupValue, disabledAll, updateState } = useToggleListContext();
   const isDisabled = useMemo(() => disabled || disabledAll, [disabled, disabledAll]);
   const [selfChecked, setSelfChecked] = useState<boolean>(false);
@@ -61,7 +61,7 @@ const ToggleListItemComponent: React.FC<PropsWithChildren<ToggleProps>> = ({
   }, [groupValue, toggleValue]);
 
   return (
-    <label className={useClasses('toggle-list-item', { active: selfChecked, 'has-icon': icon !== undefined })} {...props}>
+    <label className={useClasses('toggle-list-item', { active: selfChecked, 'has-icon': icon !== undefined, HIDER })} {...props}>
       <input ref={optionRef} type="radio" value={toggleValue} checked={selfChecked} onChange={changeHandler} />
       {children && <span className="name">{children}</span>}
       <ToggleListIcon>{icon}</ToggleListIcon>

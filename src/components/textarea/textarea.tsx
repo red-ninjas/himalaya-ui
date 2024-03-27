@@ -45,13 +45,13 @@ const TextareaComponent = React.forwardRef<HTMLTextAreaElement, React.PropsWithC
     ref: React.Ref<HTMLTextAreaElement | null>,
   ) => {
     const theme = useTheme();
-    const { SCALER, RESPONSIVE } = useScale();
+    const { SCALER, RESPONSIVE, HIDER } = useScale();
     const textareaRef = useRef<HTMLTextAreaElement>(null);
     useImperativeHandle(ref, () => textareaRef.current);
     const isControlledComponent = useMemo(() => value !== undefined, [value]);
     const [selfValue, setSelfValue] = useState<string>(initialValue);
     const [hover, setHover] = useState<boolean>(false);
-    const classes = useClasses('wrapper', { hover, disabled }, className, type ? 'color-' + type : null);
+    const classes = useClasses('wrapper', { hover, disabled }, className, type ? 'color-' + type : null, HIDER);
 
     const changeHandler = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
       if (disabled || readOnly) return;

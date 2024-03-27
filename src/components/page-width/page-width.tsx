@@ -2,13 +2,14 @@
 
 import React from 'react';
 import useScale, { withScale } from '../use-scale';
+import useClasses from '../use-classes';
 
 export type PageWidthProps = React.HTMLAttributes<HTMLDivElement>;
-const PageWidthComponent: React.FC<React.PropsWithChildren<PageWidthProps>> = ({ children, ...props }) => {
-  const { RESPONSIVE, SCALER } = useScale();
+const PageWidthComponent: React.FC<React.PropsWithChildren<PageWidthProps>> = ({ children, className, ...props }) => {
+  const { RESPONSIVE, SCALER, HIDER } = useScale();
 
   return (
-    <div className="content-layout" {...props}>
+    <div className={useClasses('content-layout', className, HIDER)} {...props}>
       {children}
       <style jsx>{`
         .content-layout {

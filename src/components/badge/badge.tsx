@@ -24,8 +24,8 @@ const BadgeComponent: React.FC<React.PropsWithChildren<BadgeProps>> = ({
   dot = false,
   ...props
 }: BadgeProps) => {
-  const { RESPONSIVE, SCALER } = useScale();
-  const classes = useClasses('badge', { dot }, className, type ? 'color-' + type : null);
+  const { RESPONSIVE, SCALER, HIDER } = useScale();
+  const classes = useClasses('badge', { dot }, className, type ? 'color-' + type : null, HIDER);
 
   return (
     <span className={classes} {...props}>
@@ -54,8 +54,6 @@ const BadgeComponent: React.FC<React.PropsWithChildren<BadgeProps>> = ({
           user-select: none;
         }
 
-        ${SCALER('badge')}
-
         ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'badge')}
         ${RESPONSIVE.h(1, value => `width: ${value};`, 'auto', 'badge')}
         ${RESPONSIVE.font(0.875, value => `font-size: ${value};`, undefined, 'badge')}
@@ -76,6 +74,8 @@ const BadgeComponent: React.FC<React.PropsWithChildren<BadgeProps>> = ({
         )}
 
         ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'badge')}
+
+        ${SCALER('badge')}
       `}</style>
     </span>
   );

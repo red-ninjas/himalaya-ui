@@ -2,6 +2,7 @@
 import React, { PropsWithChildren, useEffect, useMemo, useState } from 'react';
 import useScale, { withScale } from '../use-scale';
 import { ToggleListContext } from './toggle-list-provider';
+import useClasses from '../use-classes';
 
 interface Props {
   disabled?: boolean;
@@ -19,9 +20,10 @@ const ToggleListComponent: React.FC<PropsWithChildren<ToggleListProps>> = ({
   value,
   disabled = false,
   children,
+  className,
   ...props
 }: ToggleListProps) => {
-  const { RESPONSIVE, SCALER } = useScale();
+  const { RESPONSIVE, SCALER, HIDER } = useScale();
 
   const [selfVal, setSelfVal] = useState<string | number | undefined>(initialValue);
   const updateState = (nextValue: string | number) => {
@@ -44,7 +46,7 @@ const ToggleListComponent: React.FC<PropsWithChildren<ToggleListProps>> = ({
 
   return (
     <ToggleListContext.Provider value={providerValue}>
-      <div className={'toggle-list'} {...props}>
+      <div className={useClasses('toggle-list', className, HIDER)} {...props}>
         {children}
       </div>
       <style jsx>{`

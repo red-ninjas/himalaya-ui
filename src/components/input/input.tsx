@@ -48,7 +48,7 @@ const InputComponent = React.forwardRef<HTMLInputElement, React.PropsWithChildre
     }: React.PropsWithChildren<InputProps>,
     ref: React.Ref<HTMLInputElement | null>,
   ) => {
-    const { SCALER, RESPONSIVE } = useScale();
+    const { SCALER, RESPONSIVE, HIDER } = useScale();
     const inputRef = useRef<HTMLInputElement>(null);
     useImperativeHandle(ref, () => inputRef.current);
 
@@ -109,7 +109,7 @@ const InputComponent = React.forwardRef<HTMLInputElement, React.PropsWithChildre
     };
 
     return (
-      <div className="with-label">
+      <div className={useClasses('with-label', HIDER)}>
         {children && <InputBlockLabel>{children}</InputBlockLabel>}
         <div className={useClasses('input-container', className, type ? 'color-' + type : null)}>
           {label && <InputLabel>{label}</InputLabel>}

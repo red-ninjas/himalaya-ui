@@ -64,7 +64,7 @@ const GridBasicItem: React.FC<React.PropsWithChildren<GridBasicItemProps>> = ({
   className = '',
 }: React.PropsWithChildren<GridBasicItemProps>) => {
   const layoutRoot = useLayout();
-  const { RESPONSIVE, SCALER } = useScale();
+  const { RESPONSIVE, SCALER, HIDER } = useScale();
 
   const classes = useMemo(() => {
     const aligns: { [key: string]: any } = {
@@ -102,7 +102,7 @@ const GridBasicItem: React.FC<React.PropsWithChildren<GridBasicItemProps>> = ({
   );
 
   return (
-    <div className={useClasses('grid-item', classes, className)}>
+    <div className={useClasses('grid-item', classes, className, HIDER)}>
       {children}
       <style jsx>
         {`
