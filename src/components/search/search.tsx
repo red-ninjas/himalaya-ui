@@ -153,7 +153,17 @@ const Search: React.FC<SearchProps> = ({ searchFunction, visibile = false, place
   return (
     <div className="container" {...KeyBindings}>
       <Modal {...bindings} py={0} px={0.75} wrapClassName="search-menu" backdropClassName="bg-drop" positionClassName="search-position">
-        <Input ref={ref} w="100%" font="1.125rem" py={0.75} placeholder={placeholder || ''} className="search-input" clearable {...inputBindings} />
+        <Input
+          hasBorder={false}
+          ref={ref}
+          w="100%"
+          font="1.125rem"
+          py={0.75}
+          placeholder={placeholder || ''}
+          className="search-input"
+          clearable
+          {...inputBindings}
+        />
         {results.length > 0 && (
           <>
             <Divider mt={0} mb={1} />

@@ -59,7 +59,7 @@ function EntityFormComponent({
         .entity-form-wrapper {
           position: relative;
           box-sizing: border-box;
-          border: 1px solid var(--color-background-700);
+          border: 1px solid var(--color-border-1000);
 
           .entity-body-text {
             font-weight: 600;
@@ -71,7 +71,7 @@ function EntityFormComponent({
             flex-direction: row;
             flex-wrap: nowrap;
             align-items: center;
-            border-bottom: 1px solid var(--color-background-800);
+            border-bottom: 1px solid var(--color-border);
             margin-bottom: 23px;
 
             .entity-title {

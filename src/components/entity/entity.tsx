@@ -67,7 +67,7 @@ function EntityComponent({
           border: 1px solid var(--color-border-1000);
 
           &.disabled {
-            background: var(--color-background-800);
+            background: var(--color-background-900);
             cursor: not-allowed;
 
             .entity-wrapper {

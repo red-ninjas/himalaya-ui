@@ -23,7 +23,7 @@ const FieldsetFooterComponent: React.FC<React.PropsWithChildren<FieldsetFooterPr
       {children}
       <style jsx>{`
         footer {
-          background-color: var(--color-background-800);
+          background-color: var(--color-background-900);
           border-top: 1px solid var(--color-border-1000);
           border-bottom-left-radius: var(--layout-radius);
           border-bottom-right-radius: var(--layout-radius);

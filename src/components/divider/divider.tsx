@@ -31,7 +31,6 @@ const DividerComponent: React.FC<React.PropsWithChildren<DividerProps>> = ({
   }, [align]);
 
   const alignClasses = useClasses('text', alignClassName);
-  const textColor = type === 'default' ? 'var(--color-contrast)' : 'var(--color-base)';
 
   return (
     <div role="separator" className={classes} {...props}>
@@ -40,12 +39,14 @@ const DividerComponent: React.FC<React.PropsWithChildren<DividerProps>> = ({
         .divider {
           max-width: 100%;
           --divider-bg: var(--color-base);
+          --divider-color: var(--color-base);
           background-color: var(--divider-bg);
           position: relative;
         }
 
         .divider.color-default {
-          --divider-bg: var(--color-background-800);
+          --divider-bg: var(--color-border-1000);
+          --divider-color: var(--color-foreground-1000);
         }
 
         .text {
@@ -62,7 +63,7 @@ const DividerComponent: React.FC<React.PropsWithChildren<DividerProps>> = ({
           font-weight: bold;
           text-transform: capitalize;
           background-color: var(--color-background-1000);
-          color: ${textColor};
+          color: var(--divider-color);
           z-index: 10;
         }
 
@@ -77,7 +78,7 @@ const DividerComponent: React.FC<React.PropsWithChildren<DividerProps>> = ({
           right: 7%;
         }
 
-        ${RESPONSIVE.font(1, value => `font-size: ${value};`, undefined, 'divider')}
+        ${RESPONSIVE.font(0.875, value => `font-size: ${value};`, undefined, 'divider')}
         ${RESPONSIVE.w(1.75, value => `width: ${value};`, 'auto', 'divider')}
         ${RESPONSIVE.h(0.0625, value => `height: ${value};`, undefined, 'divider')}
         ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'divider')}
