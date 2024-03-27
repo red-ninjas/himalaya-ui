@@ -4,7 +4,6 @@ import React, { createRef, useEffect } from 'react';
 import { InnerScrollEvent } from '.';
 import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';
-import useTheme from '../use-theme';
 
 interface InnerScrollNativeProps {
   type?: 'horizontal' | 'vertical' | 'both';
@@ -19,13 +18,13 @@ export type InnerScrollProps = InnerScrollNativeProps & NativeAttrs;
 const InnerScrollComponent: React.FC<React.PropsWithChildren<InnerScrollProps>> = ({
   children,
   type = 'both',
+  className,
   transparentBg = false,
   scrollUpOnRouteChange = true,
   onScroll = () => {},
   ...props
 }) => {
-  const theme = useTheme();
-  const { SCALES } = useScale();
+  const { SCALER, RESPONSIVE } = useScale();
   const ref = createRef<HTMLDivElement>();
   const pathName = usePathname();
 
@@ -49,8 +48,7 @@ const InnerScrollComponent: React.FC<React.PropsWithChildren<InnerScrollProps>> 
     <div
       ref={ref}
       onScroll={onScrollHandler}
-      className={useClasses({
-        'inner-scroll': true,
+      className={useClasses('inner-scroll', className, {
         vertical: type == 'both' || type == 'vertical',
         horizontal: type == 'both' || type == 'horizontal',
       })}
@@ -59,12 +57,12 @@ const InnerScrollComponent: React.FC<React.PropsWithChildren<InnerScrollProps>> 
       {children}
       <style jsx>{`
         .inner-scroll::-webkit-scrollbar-track {
-          border-radius: ${SCALES.r(1, `var(--layout-radius)`)};
+          border-radius: var(--scroll-border-radius);
           cursor: pointer;
         }
 
         .inner-scroll::-webkit-scrollbar-thumb {
-          border-radius: ${SCALES.r(1, `var(--layout-radius)`)};
+          border-radius: var(--scroll-border-radius);
           cursor: pointer;
         }
 
@@ -97,10 +95,6 @@ const InnerScrollComponent: React.FC<React.PropsWithChildren<InnerScrollProps>> 
           overflow: hidden;
           width: 100%;
           scroll-behavior: smooth;
-          height: ${SCALES.h(1, '100%')};
-          width: ${SCALES.w(1, '100%')};
-          padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
-          margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
           position: relative;
         }
 
@@ -115,8 +109,16 @@ const InnerScrollComponent: React.FC<React.PropsWithChildren<InnerScrollProps>> 
         .inner-scroll::-webkit-scrollbar {
           width: var(--page-scrollbar-width, 6px);
           height: var(--page-scrollbar-width, 6px);
-          background: ${transparentBg ? 'transparent' : theme.palette.background.hex_800};
+          background: ${transparentBg ? 'transparent' : `var(--color-background-800)`};
         }
+
+        ${RESPONSIVE.w(1, value => `width: ${value};`, '100%', 'inner-scroll')}
+        ${RESPONSIVE.h(1, value => `height: ${value};`, '100%', 'inner-scroll')}
+        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'inner-scroll')}
+        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'inner-scroll')}
+        ${RESPONSIVE.r(1, value => `--scroll-border-radius: ${value};`, 'var(--layout-radius)', 'inner-scroll')}
+
+        ${SCALER('inner-scroll')}
       `}</style>
     </div>
   );

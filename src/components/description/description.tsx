@@ -54,7 +54,6 @@ const DescriptionComponent: React.FC<DescriptionProps> = ({
         ${RESPONSIVE.font(0.75, value => `font-size: ${value};`, undefined, 'description-title')}
         ${RESPONSIVE.font(0.875, value => `font-size: ${value};`, undefined, 'description-desc')}
         ${RESPONSIVE.font(1, value => `font-size: ${value};`, undefined, 'description')}
-        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'description')}
         ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto', 'description')}
         ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'description')}
         ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'description')}
