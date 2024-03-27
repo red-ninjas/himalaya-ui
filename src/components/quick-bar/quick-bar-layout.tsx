@@ -8,15 +8,16 @@ import { default as QuickBar } from './quick-bar';
 import useQuickBar from '../use-quickbar';
 import useClasses from '../use-classes';
 
-const QuickBarLayout: React.FC<React.PropsWithChildren<QuickBarLayoutProps>> = ({ children, animationTime = 250 }) => {
+const QuickBarLayout: React.FC<React.PropsWithChildren<QuickBarLayoutProps>> = ({ children, className, animationTime = 250, ...props }) => {
   const [otherElements, quickBar] = pickChild(children, QuickBar);
-  const { SCALES } = useScale();
+  const { RESPONSIVE, SCALER } = useScale();
   const { isEnabled } = useQuickBar();
 
   return (
     <>
       <div
-        className={useClasses('quickbar-layout', {
+        {...props}
+        className={useClasses('quickbar-layout', className, {
           'quickbar-active': isEnabled,
         })}
       >
@@ -30,9 +31,7 @@ const QuickBarLayout: React.FC<React.PropsWithChildren<QuickBarLayoutProps>> = (
           width: 100%;
           height: 100%;
           position: relative;
-          --quickbar-width: ${SCALES.w(1, '60px')};
           --quickbar-transition: ${animationTime}ms;
-          --quickbar-position: -${SCALES.w(1, '60px')};
           --quickbar-position-content: 0;
         }
 
@@ -51,16 +50,19 @@ const QuickBarLayout: React.FC<React.PropsWithChildren<QuickBarLayoutProps>> = (
           overflow: hidden;
         }
 
-        .quickbar-active {
+        .quickbar-layout.quickbar-active {
           --quickbar-position: 0;
           --quickbar-position-content: calc(var(--quickbar-width));
         }
 
-        .quickbar-active .quickbar-content {
+        .quickbar-layout.quickbar-active .quickbar-content {
           left: 0;
           width: calc(100% - var(--quickbar-width));
           transform: translate(var(--quickbar-position-content), 0);
         }
+
+        ${RESPONSIVE.w(3.75, value => `--quickbar-width: ${value}; --quickbar-position: calc(${value} * -1)`, undefined, 'quickbar-layout')}
+        ${SCALER('quickbar-layout')}
       `}</style>
     </>
   );

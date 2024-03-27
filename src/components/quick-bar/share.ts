@@ -1,9 +1,12 @@
 import { QuickActionTypes } from '../utils/prop-types';
 import { HTMLAttributeAnchorTarget } from 'react';
 
-export interface QuickBarLayoutProps {
+export interface LayoutProps {
   animationTime?: number;
 }
+
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof LayoutProps>;
+export type QuickBarLayoutProps = LayoutProps & NativeAttrs;
 
 export interface QuickActionProps {
   tooltip?: string | React.ReactNode;
