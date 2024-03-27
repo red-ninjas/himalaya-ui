@@ -1,5 +1,6 @@
 import { Layout, Playground, Attributes } from 'lib/components';
-import { Entity, Link, Image, Checkbox, Button, Footer, Avatar, FooterNavigation, FooterBottom, Logo, Input, Skeleton, Menu, Divider } from 'components';
+import { Entity, Link, Image, Checkbox, Button, Footer, Avatar, FooterNavigation, FooterBottom, Input, Skeleton, Menu, Divider } from 'components';
+import Logo from 'components/header/title';
 
 export const meta = {
   title: 'Entity',
@@ -20,8 +21,8 @@ The `Entity` UI component is designed to display a collection of related informa
     <Entity>
       <Entity.Field title="GitHub" description="Guillermo Rauch" />
       <Entity.Field active={false} title="Inactive" description="This field is inactive" />
-      <Entity.Field w="20%" title="Fixed Width" description={<Link color tab href="/docs">Open docs</Link>} />
-      <Entity.Field label w={'100px'} title="Label" description={<i>Encrypted</i>} />
+      <Entity.Field w="20%" title="Fixed Width" description={<Link color href="/docs">Open docs</Link>} />
+      <Entity.Field w={'100px'} title="Label" description={<i>Encrypted</i>} />
       <Entity.Field right description="Right Aligned" avatar={<Avatar text="W" scale={1.4} />} />
     </Entity>
   )
@@ -58,7 +59,7 @@ The `Entity` UI component is designed to display a collection of related informa
     return (
       <Entity
         checkbox={<Checkbox onChange={() => alert('clicked')}/>}
-        actions={<Button size="small" type="secondary">Revoke</Button>}
+        actions={<Button scale={0.75} type="secondary">Revoke</Button>}
       >
         <Entity.Field title="Vercel CLI on chris.lan" description="Last used just now" />
       </Entity>
@@ -78,8 +79,8 @@ The `Entity` UI component is designed to display a collection of related informa
       <Avatar text="W" scale={1.4} />
     }
     actions={<div>
-      <Button size="small" type="secondary" style={{ marginRight: 16 }}>Decline</Button>
-      <Button size="small">Accept</Button>
+      <Button scale={0.75} type="secondary" mr={0.5}>Decline</Button>
+      <Button scale={0.75}>Accept</Button>
     </div>}
 >
     <Entity.Field title="Leo Lamprecht" description="leo"/>
@@ -98,16 +99,16 @@ The `Entity` UI component is designed to display a collection of related informa
   <Entity
     menuItems={
       <>
-        <Menu.Item><Link href="/">Profile</Link></Menu.Item>
-        <Menu.Item><Link href="/">Settings</Link></Menu.Item>
-        <Menu.Item><Link href="/">Logout</Link></Menu.Item>
+        <Menu.Item><Link href="#">Profile</Link></Menu.Item>
+        <Menu.Item><Link href="#">Settings</Link></Menu.Item>
+        <Menu.Item><Link href="#">Logout</Link></Menu.Item>
       </>
     }
   >
     <Entity.Field title="GitHub" description="Guillermo Rauch" />
       <Entity.Field active={false} title="Inactive" description="This field is inactive" />
-      <Entity.Field w="20%" title="Fixed Width" description={<Link color tab href="/docs">Open docs</Link>} />
-      <Entity.Field label w={'100px'} title="Label" description={<i>Encrypted</i>} />
+      <Entity.Field w="20%" title="Fixed Width" description={<Link color href="#">Open docs</Link>} />
+      <Entity.Field w={'100px'} title="Label" description={<i>Encrypted</i>} />
       <Entity.Field right description="Right Aligned" avatar={<Image w="60px" h="60px" src="/images/himalaya-banner.png" />} />
   </Entity>
   )
@@ -144,8 +145,8 @@ The `Entity` UI component is designed to display a collection of related informa
     <Entity disabled>
       <Entity.Field title="GitHub" description="Guillermo Rauch" />
       <Entity.Field active={false} title="Inactive" description="This field is inactive" />
-      <Entity.Field w="20%" title="Fixed Width" description={<Link color tab href="/docs">Open docs</Link>} />
-      <Entity.Field label w={'100px'} title="Label" description={<i>Encrypted</i>} />
+      <Entity.Field w="20%" title="Fixed Width" description={<Link color href="#">Open docs</Link>} />
+      <Entity.Field w={'100px'} title="Label" description={<i>Encrypted</i>} />
       <Entity.Field right description="Right Aligned" avatar={<Image w="60px" h="60px" src="/images/himalaya-banner.png" />} />
     </Entity>
   )
@@ -164,8 +165,8 @@ The `Entity` UI component is designed to display a collection of related informa
        <Avatar text="W" scale={1.4} />
     }
     actions={<div>
-      <Button size="small" type="secondary" style={{ marginRight: 16 }}>Decline</Button>
-      <Button size="small">Accept</Button>
+      <Button scale={0.75} type="secondary" mr={0.5}>Decline</Button>
+      <Button scale={0.75}>Accept</Button>
     </div>}
 >
     <Entity.Field
@@ -185,12 +186,12 @@ The `Entity` UI component is designed to display a collection of related informa
 () => {
   return (
     <Entity.Form
-      footerNote={<>Learn more about <Link href="/" color>Custom Domains →</Link></>}
-      primaryAction={<Button size="small">Add</Button>}
+      footerNote={<>Learn more about <Link href="#" color>Custom Domains →</Link></>}
+      primaryAction={<Button scale={0.75}>Add</Button>}
       extraActions={
         <>
-          <Button size="small" type="error">Buy</Button>
-          <Button size="small" type="warning" style={{marginLeft: '8px'}}>Transfer In</Button>
+          <Button scale={0.75} type="error">Buy</Button>
+          <Button scale={0.75} type="warning" ml={0.5}>Transfer In</Button>
         </>
       }
     >
@@ -208,7 +209,7 @@ The `Entity` UI component is designed to display a collection of related informa
 () => {
   return (
     <Entity.Form
-      footerNote={<>Learn more about <Link href="/" color>Custom Domains →</Link></>}
+      footerNote={<>Learn more about <Link href="#" color>Custom Domains →</Link></>}
     >
       <Input placeholder="example.com">Domain</Input>
     </Entity.Form>
@@ -225,7 +226,7 @@ The `Entity` UI component is designed to display a collection of related informa
   return (
     <Entity.Form
       footerSeparator={false}
-      footerNote={<>Learn more about <Link href="/" color>Custom Domains →</Link></>}
+      footerNote={<>Learn more about <Link href="#" color>Custom Domains →</Link></>}
     >
       <Input placeholder="example.com">Domain</Input>
     </Entity.Form>
@@ -242,9 +243,9 @@ The `Entity` UI component is designed to display a collection of related informa
   return (
     <Entity.Form
       title="With Secondary Action"
-      footerNote={<>Learn more about <Link href="/" color>Env Variables →</Link></>}
-      primaryAction={<Button size="small">Save</Button>}
-      secondaryAction={<Button size="small" type="secondary">Discard</Button>}
+      footerNote={<>Learn more about <Link href="#" color>Env Variables →</Link></>}
+      primaryAction={<Button scale={0.75}>Save</Button>}
+      secondaryAction={<Button scale={0.75} mx={0.5} type="secondary">Discard</Button>}
     >
       <Input placeholder="example.com">Domain</Input>
     </Entity.Form>
@@ -261,10 +262,10 @@ The `Entity` UI component is designed to display a collection of related informa
   return (
     <Entity.Form
       title="With Destructive Action"
-      footerNote={<>Learn more about <Link href="/" color>Env Variables →</Link></>}
-      primaryAction={<Button size="small">Save</Button>}
-      secondaryAction={<Button size="small" type="secondary">Discard</Button>}
-      destructiveAction={<Button size="small" type="error">Remove</Button>}
+      footerNote={<>Learn more about <Link href="#" color>Env Variables →</Link></>}
+      primaryAction={<Button scale={0.75}>Save</Button>}
+      secondaryAction={<Button scale={0.75} mx={0.5} type="secondary">Discard</Button>}
+      destructiveAction={<Button scale={0.75} type="error">Remove</Button>}
     >
       <Input placeholder="example.com">Domain</Input>
     </Entity.Form>

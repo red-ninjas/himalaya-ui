@@ -37,4 +37,4 @@ const FieldsetTitle: React.FC<React.PropsWithChildren<FieldsetTitleProps>> = ({
 };
 
 FieldsetTitle.displayName = 'HimalayaFieldsetTitle';
-export default FieldsetTitle;
+export default React.memo(FieldsetTitle);

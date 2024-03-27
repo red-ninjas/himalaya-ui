@@ -1,8 +1,8 @@
 'use client';
 
+import useLayout from 'components/use-layout';
 import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';
-import useTheme from '../use-theme';
 import { EntityFieldProps } from './index';
 
 function EntityFieldComponent({
@@ -13,10 +13,11 @@ function EntityFieldComponent({
   right = false,
   avatar = null,
   skeleton = null,
-  ...others
+  ...props
 }: EntityFieldProps) {
-  const theme = useTheme();
-  const { SCALES } = useScale();
+  const { SCALER, RESPONSIVE } = useScale();
+  const layout = useLayout();
+
   const wrapperClasses = useClasses({
     'field-wrapper': true,
     disabled: !active,
@@ -24,7 +25,7 @@ function EntityFieldComponent({
   });
   return (
     <>
-      <div className={wrapperClasses} {...others}>
+      <div className={wrapperClasses} {...props}>
         {skeleton}
         {!skeleton && (
           <>
@@ -75,7 +76,7 @@ function EntityFieldComponent({
           }
 
           .avatar {
-            margin-left: ${SCALES.ml(1)};
+            margin-left: var(--avatar-margin-left);
             .image {
               width: 24px !important;
               height: 24px !important;
@@ -85,7 +86,7 @@ function EntityFieldComponent({
           }
         }
 
-        @media screen and (max-width: 600px) {
+        @media only screen and (max-width: ${layout.breakpoints.xs.max}) {
           .field-wrapper {
             flex-wrap: wrap;
             width: 100%;
@@ -97,6 +98,9 @@ function EntityFieldComponent({
             }
           }
         }
+
+        ${RESPONSIVE.ml(1, value => `--avatar-margin-left: ${value};`, undefined, 'avatar')}
+        ${SCALER('field-wrapper')}
       `}</style>
     </>
   );
