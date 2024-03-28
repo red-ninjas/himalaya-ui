@@ -22,7 +22,7 @@ const HomeCell: React.FC<HomeCellProps> = ({ url, title, desc, icon }) => {
             {title}
           </Text>
 
-          <Text color={theme.palette.background.hex_300} m={0} font={1} className="feature-desc">
+          <Text color={`var(--color-foreground-700)`} m={0} font={1} className="feature-desc">
             {desc}
           </Text>
 
@@ -51,9 +51,6 @@ const HomeCell: React.FC<HomeCellProps> = ({ url, title, desc, icon }) => {
             justify-content: center;
             border-radius: 8px;
             padding: 8px;
-          }
-          :global(.feature-desc) {
-            color: var(--color-background-300) !important;
           }
         `}</style>
       </Link>

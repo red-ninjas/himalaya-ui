@@ -67,6 +67,10 @@ const TextChild: React.FC<React.PropsWithChildren<TextChildProps>> = ({
           -moz-text-fill-color: transparent;`;
     }
 
+    if (type === 'default') {
+      return ``;
+    }
+
     return `color: var(--color-base);`;
   }, [type, color, gradientDegress]);
   const classNames = useMemo<string>(() => {
@@ -97,10 +101,6 @@ const TextChild: React.FC<React.PropsWithChildren<TextChildProps>> = ({
 
         ${tag} {
           ${defaultColor}
-
-          &.color-default {
-            color: inherit;
-          }
         }
 
         ${RESPONSIVE.ml(0, value => `margin-left: ${value};`, 'revert', 'mx')}
