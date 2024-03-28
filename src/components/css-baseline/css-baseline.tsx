@@ -20,12 +20,16 @@ const CssBaseline: React.FC = () => {
         padding: 0;
         min-height: 100%;
         position: relative;
-        overflow-x: hidden;
         font-family: ${theme.font.sans};
         font-size: ${theme.font.baseSize + 'px'};
 
         --ui-icon-background: var(--color-background-1000);
         --ui-icon-foreground: var(--color-foreground-1000);
+      }
+
+      html,
+      body {
+        overflow: initial;
       }
 
       *,

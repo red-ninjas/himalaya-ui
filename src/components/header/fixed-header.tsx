@@ -7,28 +7,26 @@ import { pickChild } from '../utils/collections';
 import Header from './header';
 
 interface Props {
-  mode?: 'fixed' | 'sticky';
   hidden?: boolean;
 }
 
 type FixedHeaderPropsNative = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
 export type FixedHeaderProps = FixedHeaderPropsNative & Props;
 
-const FixedHeader: React.FC<React.PropsWithChildren<FixedHeaderProps>> = ({ children, mode = 'sticky', hidden = false, className, ...props }) => {
+const FixedHeader: React.FC<React.PropsWithChildren<FixedHeaderProps>> = ({ children, hidden = false, className, ...props }) => {
   const { SCALER, SCALE_CLASSES } = useScale();
-
   const [, header] = pickChild(children, Header);
   return (
     <div className={useClasses('fixed-header', { hidden }, className, SCALE_CLASSES)} {...props}>
       {header}
-
       <style jsx>{`
         .header-spacer {
           position: relative;
           width: 100%;
         }
         .fixed-header {
-          position: ${mode};
+          position: sticky;
+          align-items: center;
           width: 100%;
           max-width: 100%;
           top: 0;

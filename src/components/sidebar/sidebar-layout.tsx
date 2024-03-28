@@ -8,59 +8,62 @@ import useClasses from 'components/use-classes';
 import { DrawerPlacement } from '../drawer/helper';
 import { InnerScroll } from '../scroll';
 import useScale, { withScale } from '../use-scale';
-import useTheme from '../use-theme';
+import useSidebar from '../use-sidebar';
 
 export interface SidebarLayoutProps {
-  hasBorder?: boolean;
   placement?: DrawerPlacement;
   backgroundColor?: string;
 }
 
 const useRefDimensions = (ref: React.RefObject<HTMLDivElement>) => {
-  const [height, setHeight] = useState<number | undefined>(undefined);
+  const [yCoodinate, setYCoodinate] = useState<string | undefined>(undefined);
 
   useEffect(() => {
     if (!ref.current) {
       return;
     }
     const resizeObserver = new ResizeObserver(() => {
-      const offsetHeight = ref?.current?.getBoundingClientRect() || undefined;
-      if (offsetHeight) {
-        const space = offsetHeight?.bottom - offsetHeight?.height;
-        if (space !== height) {
-          setHeight(space);
-        }
+      const boundingRect = ref?.current?.getBoundingClientRect();
+      if (boundingRect != undefined) {
+        console.log(boundingRect);
+        const { y } = boundingRect;
+        setYCoodinate(y + 'px');
       }
     });
 
     resizeObserver.observe(ref.current);
 
-    return function cleanup() {
+    return () => {
       resizeObserver.disconnect();
     };
   }, [ref]);
 
-  return height;
+  return yCoodinate;
 };
 
-const SidebarLayout: React.FC<React.PropsWithChildren<SidebarLayoutProps>> = ({ children, hasBorder = true, backgroundColor }) => {
+const SidebarLayout: React.FC<React.PropsWithChildren<SidebarLayoutProps>> = ({ children, backgroundColor }) => {
   const [content, sidebar] = pickChild(children, Sidebar);
   const [contentExtra, sidebarWithoutTypes] = pickChild(content, SidebarWithoutTypes);
 
-  const ref = createRef<HTMLDivElement>();
-  const theme = useTheme();
   const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
+  const chartOuterContainerRef = createRef<HTMLDivElement>();
+  const { isEnabled } = useSidebar();
+
+  const yCoordinate = useRefDimensions(chartOuterContainerRef);
 
   return (
-    <div className={useClasses('sidebar-layout')} ref={ref}>
-      <div className={useClasses('sidebar-holder', SCALE_CLASSES)}>
-        <div className="sidebar">
-          <InnerScroll transparentBg={true} w={'100%'} h={'100%'} type="vertical">
-            {sidebar}
-            {sidebarWithoutTypes}
-          </InnerScroll>
-        </div>
-      </div>
+    <div
+      ref={chartOuterContainerRef}
+      className={useClasses('layout', 'active', SCALE_CLASSES, {
+        active: isEnabled,
+      })}
+    >
+      <aside className="sidebar">
+        <InnerScroll transparentBg={true} w={'100%'} h={'100%'} type="vertical">
+          {sidebar}
+          {sidebarWithoutTypes}
+        </InnerScroll>
+      </aside>
       <main className="main">{contentExtra}</main>
 
       <style jsx>{`
@@ -69,78 +72,65 @@ const SidebarLayout: React.FC<React.PropsWithChildren<SidebarLayoutProps>> = ({ 
           flex-direction: column;
           height: 100%;
           flex: 1;
-          box-sizing: border-box;
-
           padding: 0;
-          width: 100%;
+
+          transition: all var(--sidebar-transition) ease;
+          width: calc(100% - var(--sidebar-left));
+          box-sizing: border-box;
+          transform: translate(var(--sidebar-left));
         }
 
         .main.disabled {
           --sidebar-width: 100%;
         }
 
-        :global(.sidebar-content) {
-          text-align: left;
-          height: 100%;
-          position: relative;
-          overflow: hidden;
-          width: 100%;
-        }
-        .sidebar-holder {
-          width: var(--sidebar-width);
-          min-width: var(--sidebar-width);
-          position: relative;
-          height: 100%;
-          box-sizing: border-box;
-        }
-
-        .border-right-holder {
-          position: relative;
-          height: 100%;
-          width: 0.5px;
+        .sidebar-holder-inner {
+          position: absolute;
         }
 
         .sidebar {
-          height: 100%;
           position: fixed;
-          width: var(--sidebar-width);
-          z-index: 100;
-          overflow: hidden;
-          border-right: ${hasBorder ? '1px solid ' + theme.palette.border.hex_1000 : '0px solid transparent'};
           padding: 0;
           background: ${backgroundColor ? backgroundColor : 'transparent'};
-          box-sizing: border-box;
+          top: var(--sidebar-top);
+          bottom: 0;
+          overflow: hidden;
+          transition: all var(--sidebar-transition) ease;
+          transform: translateX(var(--sidebar-side));
+          width: var(--sidebar-width);
         }
 
         :global(.sidebar-drawer) {
           max-width: 85% !important;
           min-width: 85% !important;
         }
-        .sidebar-layout {
+
+        .layout {
+          clip-path: inset(0);
+
           min-height: 100%;
-          display: flex;
           justify-content: space-between;
           box-sizing: border-box;
           width: 100%;
           position: relative;
+          width: calc(100% - var(--sidebar-width));
+          --sidebar-top: ${yCoordinate};
+
+          --sidebar-left: 0;
+          --sidebar-side: calc(var(--sidebar-width) * -1);
+          --sidebar-transition: 200ms;
+
+          position: relative;
           width: 100%;
-          box-sizing: border-box;
-          border-right: 1px solid ${hasBorder ? theme.palette.border.hex_1000 : 'transparent'};
         }
 
-        ${RESPONSIVE.w(17.8, value => `--sidebar-width: ${value}`, undefined, 'sidebar-layout')}
-        ${RESPONSIVE.padding(
-          {
-            top: 0,
-            left: 1,
-            right: 1,
-            bottom: 0,
-          },
-          value => `--sidebar-padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
-          undefined,
-          'sidebar-layout',
-        )}
-        ${SCALER('sidebar-layout')}
+        .layout.active {
+          --sidebar-left: var(--sidebar-width);
+          --sidebar-side: 0;
+        }
+
+        ${RESPONSIVE.w(17.8, value => `--sidebar-width: ${value}`, undefined, 'layout')}
+        ${SCALER('layout')}
       `}</style>
     </div>
   );

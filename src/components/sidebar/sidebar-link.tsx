@@ -1,6 +1,6 @@
 'use client';
-import useClasses from '../use-classes';
 import React from 'react';
+import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';
 
 export interface Props {
@@ -26,7 +26,12 @@ const SidebarLink = React.forwardRef<HTMLAnchorElement, React.PropsWithChildren<
         <span className="sidebar-link-title">{children}</span>
         <style jsx>{`
           .sidebar-link-title {
+            padding-top: var(--padding-top);
+            padding-bottom: var(--padding-bottom);
+            padding-left: var(--padding-left);
+            padding-right: var(--padding-right);
           }
+
           .sidebar-link .sidebar-link-icon {
             margin-right: 12px;
             color: var(--color-foreground-600);
@@ -64,8 +69,25 @@ const SidebarLink = React.forwardRef<HTMLAnchorElement, React.PropsWithChildren<
           }
 
           ${RESPONSIVE.font(0.85, value => `font-size: ${value};`, undefined, 'sidebar-link')}
-          ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'sidebar-link')}
-          ${RESPONSIVE.padding(0.6, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'sidebar-link')}
+          ${RESPONSIVE.margin(
+            0,
+            value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
+            {
+              top: undefined,
+              bottom: undefined,
+              left: `calc(var(--padding-left) * -1)`,
+              right: `calc(var(--padding-right) * -1)`,
+            },
+            'sidebar-link',
+          )}
+          ${RESPONSIVE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'sidebar-link')}
+
+          ${RESPONSIVE.padding(
+            0.6,
+            value => `--padding-top: ${value.top}; --padding-right: ${value.right}; --padding-bottom: ${value.bottom}; --padding-left: ${value.left};`,
+            undefined,
+            'sidebar-link',
+          )}
 
           ${SCALER('sidebar-link')}
         `}</style>

@@ -5,7 +5,7 @@ import PageWidth from '../page-width';
 import useClasses from '../use-classes';
 import useLayout from '../use-layout';
 import useScale, { ScaleResponsiveParameter, customResponsiveAttribute, withScale } from '../use-scale';
-import { pickChild } from '../utils/collections';
+import { isCSSNumberValue, pickChild } from '../utils/collections';
 import CenterHeaderControl from './controls/center-control';
 import { default as LeftHeaderControl } from './controls/left-control';
 import RightHeaderControl from './controls/right-control';
@@ -14,13 +14,13 @@ export interface HeaderProps {
   children?: ReactNode | undefined;
   transcluent?: boolean;
   transcluentColor?: string;
-  gap?: ScaleResponsiveParameter<string>;
+  gap?: ScaleResponsiveParameter<string | number>;
 }
 
 type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof HeaderProps>;
 export type HeaderPropsNative = HeaderProps & NativeAttrs;
 
-const HeaderComponent: React.FC<HeaderPropsNative> = ({ children, transcluent = true, className, transcluentColor, gap = '6px', ...props }) => {
+const HeaderComponent: React.FC<HeaderPropsNative> = ({ children, transcluent = true, className, transcluentColor, gap = 0.375, ...props }) => {
   const { SCALER, RESPONSIVE, SCALE_CLASSES } = useScale();
   const layoutRoot = useLayout();
 
@@ -62,7 +62,7 @@ const HeaderComponent: React.FC<HeaderPropsNative> = ({ children, transcluent = 
       )}
       {...props}
     >
-      <PageWidth pt={0} pb={0}>
+      <PageWidth h={'100%'} pt={0} pb={0}>
         <div className="header-navigation">
           <div className="left-controls">
             <div className="left-controls-inner">{leftHeaderControl}</div>
@@ -80,6 +80,7 @@ const HeaderComponent: React.FC<HeaderPropsNative> = ({ children, transcluent = 
       <style jsx>{`
         .header-outer {
           border-bottom: 1px solid var(--color-border-1000);
+          display: flex;
         }
         .transcluent {
           backdrop-filter: saturate(180%) blur(5px);
@@ -97,6 +98,7 @@ const HeaderComponent: React.FC<HeaderPropsNative> = ({ children, transcluent = 
           justify-content: space-between;
           height: 100%;
           user-select: none;
+          width: 100%;
           gap: calc(var(--header-gap) * 2);
         }
 
@@ -143,7 +145,7 @@ const HeaderComponent: React.FC<HeaderPropsNative> = ({ children, transcluent = 
           height: 100%;
         }
 
-        ${RESPONSIVE.h(3.75, value => `height: ${value};`, undefined, 'header-navigation')}
+        ${RESPONSIVE.h(3.75, value => `height: ${value};`, undefined, 'header-outer')}
         ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'header-navigation')}
         ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'header-navigation')}
         ${RESPONSIVE.margin(
@@ -157,8 +159,9 @@ const HeaderComponent: React.FC<HeaderPropsNative> = ({ children, transcluent = 
           },
           'header-inner',
         )}
-
-        ${customResponsiveAttribute(gap, 'header-outer', layoutRoot.breakpoints, value => `--header-gap: ${value}`)}
+        ${customResponsiveAttribute(gap, 'header-outer', layoutRoot.breakpoints, value =>
+          !isCSSNumberValue(value) ? `--header-gap:: ${value};` : `--header-gap:: calc(var(--scale-unit-scale) * ${value})`,
+        )}
         ${SCALER('header-outer')}
       `}</style>
     </nav>
