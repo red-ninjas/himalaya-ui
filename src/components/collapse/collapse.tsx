@@ -8,8 +8,6 @@ import useCurrentState from '../utils/use-current-state';
 import useWarning from '../utils/use-warning';
 import useScale, { withScale } from '../use-scale';
 import useClasses from '../use-classes';
-import useLayout from '../use-layout';
-
 interface Props {
   title: string;
   subtitle?: React.ReactNode | string;
@@ -33,8 +31,8 @@ const CollapseComponent: React.FC<React.PropsWithChildren<CollapseProps>> = ({
   ...props
 }: React.PropsWithChildren<CollapseProps>) => {
   const theme = useTheme();
-  const layout = useLayout();
-  const { SCALES } = useScale();
+  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
+
   const { values, updateValues } = useCollapseContext();
   const [visible, setVisible, visibleRef] = useCurrentState<boolean>(initialVisible);
   const classes = useClasses(
@@ -43,6 +41,7 @@ const CollapseComponent: React.FC<React.PropsWithChildren<CollapseProps>> = ({
       shadow,
     },
     className,
+    SCALE_CLASSES,
   );
 
   if (!title) {
@@ -76,17 +75,12 @@ const CollapseComponent: React.FC<React.PropsWithChildren<CollapseProps>> = ({
         .collapse {
           border-top: 1px solid var(--color-border-1000);
           border-bottom: 1px solid var(--color-border-1000);
-          font-size: ${SCALES.font(1)};
-          width: ${SCALES.w(1, 'auto')};
-          height: ${SCALES.h(1, 'auto')};
-          padding: ${SCALES.pt(1.2)} ${SCALES.pr(0)} ${SCALES.pb(1.2)} ${SCALES.pl(0)};
-          margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
         }
 
         .shadow {
           box-shadow: ${theme.expressiveness.shadowSmall};
           border: none;
-          border-radius: ${SCALES.r(1, `var(--layout-radius)`)};
+          border-radius: var(--layout-radius);
           padding: var(--layout-gap);
         }
 
@@ -102,7 +96,6 @@ const CollapseComponent: React.FC<React.PropsWithChildren<CollapseProps>> = ({
           color: var(--color-foreground-1000);
           font-weight: bold;
           margin: 0;
-          font-size: ${SCALES.font(1.25)};
         }
 
         .subtitle {
@@ -117,7 +110,6 @@ const CollapseComponent: React.FC<React.PropsWithChildren<CollapseProps>> = ({
         .content {
           font-size: inherit;
           line-height: 1.6em;
-          padding: ${SCALES.pt(1.2)} ${SCALES.pr(0)} ${SCALES.pb(1.2)} ${SCALES.pl(0)};
         }
 
         .content > :global(*:first-child) {
@@ -127,6 +119,34 @@ const CollapseComponent: React.FC<React.PropsWithChildren<CollapseProps>> = ({
         .content > :global(*:last-child) {
           margin-bottom: 0;
         }
+        ${RESPONSIVE.font(1, value => `width: ${value}; height: ${value};`, undefined, 'collapse')}
+        ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto', 'collapse')}
+        ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'collapse')}
+        ${RESPONSIVE.padding(
+          {
+            top: 1.2,
+            right: 0,
+            left: 0,
+            bottom: 1.2,
+          },
+          value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
+          undefined,
+          'collapse',
+        )}
+        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'collapse')}
+        ${RESPONSIVE.font(1.25, value => `font-size: ${value};`, undefined, 'title')}
+        ${RESPONSIVE.padding(
+          {
+            top: 1.2,
+            right: 0,
+            left: 0,
+            bottom: 1.2,
+          },
+          value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
+          undefined,
+          'content',
+        )}
+        ${SCALER('collapse')}
       `}</style>
     </div>
   );
