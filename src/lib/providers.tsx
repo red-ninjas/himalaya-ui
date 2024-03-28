@@ -9,17 +9,7 @@ export function Providers({ children, defaultTheme }: PropsWithChildren<{ defaul
   return (
     <ConfigProvider themeType={defaultTheme}>
       <SwipeProvider>
-        <div className="app-layout">
-          <CoreLayout>{children}</CoreLayout>
-        </div>
-
-        <style global jsx>{`
-          .app-layout {
-            width: 100%;
-            overflow: initial;
-            position: relative;
-          }
-        `}</style>
+        <CoreLayout>{children}</CoreLayout>
       </SwipeProvider>
     </ConfigProvider>
   );
