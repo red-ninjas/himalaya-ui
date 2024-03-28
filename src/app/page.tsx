@@ -69,21 +69,21 @@ export default function Index() {
         <Footer.Block justify="flex-end"></Footer.Block>
       </Footer>
 
-      <FooterBottom>
-        <FooterBottom.Block>
+      <Footer.Bottom>
+        <Footer.Bottom.Block>
           <div className="logo-footer">
             <BrandLogo size={35}></BrandLogo>
           </div>
-        </FooterBottom.Block>
-        <FooterBottom.Block justify="flex-end">
+        </Footer.Bottom.Block>
+        <Footer.Bottom.Block justify="flex-end">
           <Text span font={'12px'} style={{ color: theme.palette.foreground.hex_700 }}>
             With support of{' '}
             <Link color href="https://redninjas.dev" target="_blank">
               RedNinjas LTD
             </Link>
           </Text>
-        </FooterBottom.Block>
-      </FooterBottom>
+        </Footer.Bottom.Block>
+      </Footer.Bottom>
 
       <style jsx>{`
         .logo-footer {

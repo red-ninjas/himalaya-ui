@@ -1,5 +1,5 @@
 import { Layout, Playground, Attributes } from 'lib/components';
-import { Footer, FooterNavigation, FooterBottom, Logo, Link } from 'components';
+import { Footer, FooterNavigation, FooterBottom, Link } from 'components';
 
 export const meta = {
   title: 'Footer',
@@ -11,7 +11,7 @@ export const meta = {
 The `Footer` UI component is a versatile element designed to be placed at the bottom of a web page or section, typically used for navigation, contact information, or additional content.
 
 <Playground
-  scope={{ Footer, FooterNavigation, FooterBottom, Logo, Link }}
+  scope={{ Footer, FooterNavigation, FooterBottom, Link }}
   title={'Footer example'}
   desc={'Example of a footer'}
   code={`
@@ -28,20 +28,20 @@ The `Footer` UI component is a versatile element designed to be placed at the bo
         Test
       </Footer.Block>
     </Footer>
-    <FooterBottom>
-      <FooterBottom.Block>
-        <div className='logo-footer'><Logo></Logo></div>
-      </FooterBottom.Block>
-      <FooterBottom.Block justify='flex-end'>
+    <Footer.Bottom>
+      <Footer.Bottom.Block>
+        <div className='logo-footer'>Logo</div>
+      </Footer.Bottom.Block>
+      <Footer.Bottom.Block justify='flex-end'>
         Copyright by <Link color href='https://redninjas.dev' target='_blank'>{' '}RedNinjas LTD</Link>
-      </FooterBottom.Block>
-    </FooterBottom>
+      </Footer.Bottom.Block>
+    </Footer.Bottom>
   </>
   `}
 />
 
 <Attributes edit="/app/components/footer.mdx">
-<Attributes.Title>Footer.Block.Props & FooterBottom.Block.Props</Attributes.Title>
+<Attributes.Title>Footer.Block.Props & Footer.Bottom.Block.Props</Attributes.Title>
 
 | Attribute | Description       | Type             | Accepted values                                                                        | Default      |
 | --------- | ----------------- | ---------------- | -------------------------------------------------------------------------------------- | ------------ |

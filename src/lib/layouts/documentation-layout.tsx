@@ -2,6 +2,7 @@
 
 import {
   FixedHeader,
+  Footer,
   FooterBottom,
   Header,
   Link,
@@ -62,17 +63,17 @@ export default function DocumentationLayout({ children }) {
             <PageWidth>
               <div className="markdown">{children}</div>
             </PageWidth>
-            <FooterBottom>
-              <FooterBottom.Block></FooterBottom.Block>
-              <FooterBottom.Block justify="flex-end">
+            <Footer.Bottom>
+              <Footer.Bottom.Block></Footer.Bottom.Block>
+              <Footer.Bottom.Block justify="flex-end">
                 <Text span font={'12px'}>
                   With support of{' '}
                   <Link color href="https://redninjas.dev" target="_blank">
                     RedNinjas LTD
                   </Link>
                 </Text>
-              </FooterBottom.Block>
-            </FooterBottom>
+              </Footer.Bottom.Block>
+            </Footer.Bottom>
           </SidebarLayout>
         </SidebarProvider>
         <MobileMenu direction="right">

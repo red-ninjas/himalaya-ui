@@ -33,7 +33,9 @@ const SidebarGroup: React.FC<React.PropsWithChildren<SideItemProps>> = ({ childr
       <style jsx>{`
         .sidebar-group-title {
           font-weight: bold;
-          transition: all 0.2s ease;
+          transition:
+            color 200ms ease,
+            background 200ms ease;
           color: var(--color-foreground-700);
           display: block;
 
@@ -52,7 +54,9 @@ const SidebarGroup: React.FC<React.PropsWithChildren<SideItemProps>> = ({ childr
           justify-content: center;
           align-items: flex-start;
           flex-direction: column;
-          transition: all 0.2s ease-in-out;
+          transition:
+            color 200ms ease-in-out,
+            background 200ms ease-in-out;
           position: relative;
           margin-top: 0.5rem;
         }

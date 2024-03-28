@@ -35,7 +35,9 @@ const SidebarLink = React.forwardRef<HTMLAnchorElement, React.PropsWithChildren<
           .sidebar-link .sidebar-link-icon {
             margin-right: 12px;
             color: var(--color-foreground-600);
-            transition: all 200ms ease;
+            transition:
+              color 200ms ease,
+              background 200ms ease;
             display: inline-flex;
           }
 
@@ -45,7 +47,9 @@ const SidebarLink = React.forwardRef<HTMLAnchorElement, React.PropsWithChildren<
             color: var(--color-foreground-700);
             box-sizing: border-box;
             align-self: stretch;
-            transition: all 200ms ease;
+            transition:
+              color 200ms ease,
+              background 200ms ease;
             align-items: center;
           }
 

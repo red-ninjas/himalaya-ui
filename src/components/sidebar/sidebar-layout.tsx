@@ -77,7 +77,7 @@ const SidebarLayout: React.FC<React.PropsWithChildren<SidebarLayoutProps>> = ({ 
           flex: 1;
           padding: 0;
 
-          transition: all var(--sidebar-transition) ease;
+          transition: transform var(--sidebar-transition) ease;
           width: calc(100% - var(--sidebar-left));
           box-sizing: border-box;
           transform: translate(var(--sidebar-left));
@@ -98,7 +98,7 @@ const SidebarLayout: React.FC<React.PropsWithChildren<SidebarLayoutProps>> = ({ 
           top: var(--sidebar-top);
           bottom: 0;
           overflow: hidden;
-          transition: all var(--sidebar-transition) ease;
+          transition: transform var(--sidebar-transition) ease;
           transform: translateX(var(--sidebar-side));
           width: var(--sidebar-width);
         }

@@ -62,7 +62,7 @@ const QuickBarLayout: React.FC<React.PropsWithChildren<QuickBarLayoutProps>> = (
         .quickbar-content {
           height: 100%;
           overflow: hidden;
-          transition: all var(--quickbar-transition) ease;
+          transition: transform var(--quickbar-transition) ease;
           width: calc(100% - var(--quickbar-left));
           box-sizing: border-box;
           transform: translate(var(--quickbar-left));
@@ -74,7 +74,7 @@ const QuickBarLayout: React.FC<React.PropsWithChildren<QuickBarLayoutProps>> = (
           position: fixed;
           left: 0;
           top: 0;
-          transition: all var(--quickbar-transition) ease;
+          transition: transform var(--quickbar-transition) ease;
           transform: translateX(var(--quickbar-side));
           width: var(--quickbar-width);
 
