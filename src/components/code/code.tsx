@@ -23,7 +23,7 @@ const CodeComponent: React.FC<React.PropsWithChildren<CodeProps>> = ({
   const theme = useTheme();
   const { background, border } = useMemo(() => {
     return {
-      border: theme.palette.border.hex_1000,
+      border: 'var(--color-border-1000)',
       background: 'var(--color-background-1000)',
     };
   }, [theme.palette]);
