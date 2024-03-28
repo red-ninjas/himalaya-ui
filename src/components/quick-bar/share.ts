@@ -4,6 +4,7 @@ import { COLOR_TYPES } from '../utils/prop-types';
 export interface LayoutProps {
   animationTime?: number;
   hasBorder?: boolean;
+  disabled?: ScaleResponsiveParameter<boolean>;
 }
 
 type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof LayoutProps>;

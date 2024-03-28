@@ -68,7 +68,7 @@ export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
         <Search searchFunction={doSearch} placeholder="Search in documentation." />
         <MobileMenuProvider>
           <QuickBarProvider>
-            <QuickBarLayout>
+            <QuickBarLayout disabled={{ xs: true, md: false }}>
               <ScrollableLayout onScroll={event => setIsHidden(event.scrollTop >= 200)}>
                 <FixedHeader hidden={pathname == '/' && isHidden} hideOn={{ xs: pathname != '/' }}>
                   <Header>

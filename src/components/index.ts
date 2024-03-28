@@ -157,7 +157,6 @@ export type { AllThemesConfig } from './use-all-themes';
 export { default as useSearch } from './use-search';
 export { default as useSidebar, SidebarProvider } from './use-sidebar';
 export { default as useQuickBar, QuickBarProvider } from './use-quickbar';
-export { default as SidebarSwitcher } from './sidebar/sidebar-switcher';
 
 export { Sidebar } from './sidebar';
 export { default as SidebarLayout } from './sidebar/sidebar-layout';

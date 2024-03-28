@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { SidebarContext } from './sidebar-context';
 
 const SidebarProvider: React.FC<React.PropsWithChildren> = ({ children }: React.PropsWithChildren<{}>) => {
-  const [isEnabled, setIsEnabled] = useState<boolean>(false);
+  const [isEnabled, setIsEnabled] = useState<boolean | undefined>(undefined);
   return (
     <SidebarContext.Provider
       value={{

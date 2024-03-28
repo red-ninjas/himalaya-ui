@@ -47,7 +47,7 @@ export default function DocumentationLayout({ children }) {
           </Header>
         </FixedHeader>
         <SidebarProvider>
-          <SidebarLayout hideOn={{ xs: true }}>
+          <SidebarLayout disabled={{ xs: true, sm: false }}>
             <Sidebar>
               {groups.map((item, index) => (
                 <Sidebar.Group isActive={activeRecord ? activeRecord.group == item.title : false} key={index} title={item.title}>

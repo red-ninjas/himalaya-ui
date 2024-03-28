@@ -11,6 +11,7 @@ export interface SidebarProps {
   header?: React.ReactNode;
   hasBorder?: boolean;
   gap?: ScaleResponsiveParameter<number | string>;
+  enabled?: ScaleResponsiveParameter<boolean>;
 }
 
 type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof SidebarProps>;
@@ -73,6 +74,7 @@ const Sidebar: React.FC<PropsWithChildren<SidebarPropsNative>> = ({ children, ha
         ${customResponsiveAttribute(gap, 'sidebar-inner', layout.breakpoints, value =>
           !isCSSNumberValue(value) ? `gap: ${value};` : `gap: calc(var(--scale-unit-scale) * ${value})`,
         )}
+
         ${SCALER('sidebar-inner')}
       `}</style>
     </div>

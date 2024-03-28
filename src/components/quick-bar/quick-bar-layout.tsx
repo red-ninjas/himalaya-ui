@@ -5,15 +5,23 @@ import { QuickBarLayoutProps } from '.';
 import { InnerScroll } from '../scroll';
 import useClasses from '../use-classes';
 import useQuickBar from '../use-quickbar';
-import { useScale, withScale } from '../use-scale';
+import { customResponsiveAttribute, useScale, withScale } from '../use-scale';
 import { pickChild } from '../utils/collections';
 import { default as QuickBar } from './quick-bar';
+import useLayout from '../use-layout';
 
-const QuickBarLayout: React.FC<React.PropsWithChildren<QuickBarLayoutProps>> = ({ children, hasBorder = true, className, animationTime = 200, ...props }) => {
+const QuickBarLayout: React.FC<React.PropsWithChildren<QuickBarLayoutProps>> = ({
+  children,
+  hasBorder = true,
+  disabled,
+  className,
+  animationTime = 200,
+  ...props
+}) => {
   const [otherElements, quickBar] = pickChild(children, QuickBar);
   const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
   const { isEnabled } = useQuickBar();
-
+  const layout = useLayout();
   return (
     <>
       <div
@@ -22,7 +30,8 @@ const QuickBarLayout: React.FC<React.PropsWithChildren<QuickBarLayoutProps>> = (
           'quickbar-layout',
           className,
           {
-            active: isEnabled,
+            enabled: isEnabled === true,
+            disabled: isEnabled === false,
           },
           SCALE_CLASSES,
         )}
@@ -45,8 +54,8 @@ const QuickBarLayout: React.FC<React.PropsWithChildren<QuickBarLayoutProps>> = (
           overflow: hidden;
           --quickbar-transition: ${animationTime}ms;
           box-sizing: border-box;
-          --quickbar-left: 0;
-          --quickbar-side: calc(var(--quickbar-width) * -1);
+          --quickbar-left: var(--quickbar-width);
+          --quickbar-side: 0;
           clip-path: inset(0);
         }
 
@@ -76,13 +85,24 @@ const QuickBarLayout: React.FC<React.PropsWithChildren<QuickBarLayoutProps>> = (
           border-style: solid;
         }
 
-        .active {
+        quickbar-layout.enabled {
           --quickbar-left: var(--quickbar-width);
           --quickbar-side: 0;
         }
 
+        quickbar-layout.disabled {
+          --quickbar-left: 0;
+          --quickbar-side: calc(var(--quickbar-width) * -1);
+        }
+
         ${RESPONSIVE.w(3.75, value => `--quickbar-width: ${value};`, undefined, 'quickbar-layout')}
         ${SCALER('quickbar-layout')}
+
+        ${customResponsiveAttribute(disabled, 'quickbar-layout', layout.breakpoints, (value, key) =>
+          value === true
+            ? `--quickbar-left: 0; --quickbar-side: calc(var(--quickbar-width) * -1);`
+            : `--quickbar-left: var(--quickbar-width);  --quickbar-side: 0;`,
+        )}
       `}</style>
     </>
   );

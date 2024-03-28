@@ -1,18 +1,11 @@
 'use client';
-import React, { useEffect, useState } from 'react';
-import { QuickBarContext } from './quickbar-context';
+import React, { useState } from 'react';
 import { QuickBarProviderProps } from '.';
-import { useConfigs } from '../use-config';
+import { QuickBarContext } from './quickbar-context';
 
-const QuickBarProvider: React.FC<React.PropsWithChildren<QuickBarProviderProps>> = ({ children, hideOnMobile = true }) => {
-  const { isMobile } = useConfigs();
-  const [isEnabled, setIsEnabled] = useState<boolean>(hideOnMobile && isMobile ? false : true);
+const QuickBarProvider: React.FC<React.PropsWithChildren<QuickBarProviderProps>> = ({ children }) => {
+  const [isEnabled, setIsEnabled] = useState<boolean | undefined>(undefined);
 
-  useEffect(() => {
-    if (hideOnMobile) {
-      setIsEnabled(!isMobile);
-    }
-  }, [isMobile]);
   return (
     <QuickBarContext.Provider
       value={{
