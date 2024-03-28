@@ -2,6 +2,7 @@
 
 import {
   Header,
+  InnerScroll,
   MobileMenu,
   MobileMenuButton,
   MobileMenuProvider,
@@ -22,7 +23,6 @@ import Code from 'components/icons/code';
 import Github from 'components/icons/github';
 import Home from 'components/icons/home';
 import Layout from 'components/icons/layout';
-import ScrollableLayout from 'components/layout/scrollable-layout';
 import Search, { SearchButton, SearchResult, SearchResults } from 'components/search';
 import { capitalize } from 'components/utils/collections';
 import { BrandLogo, BrandTitle } from 'lib/components/icons';
@@ -69,7 +69,7 @@ export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
         <MobileMenuProvider>
           <QuickBarProvider>
             <QuickBarLayout disabled={{ xs: true, md: false }}>
-              <ScrollableLayout onScroll={event => setIsHidden(event.scrollTop >= 200)}>
+              <InnerScroll style={{ display: 'flex', flexDirection: 'column' }}>
                 <FixedHeader hidden={pathname == '/' && isHidden} hideOn={{ xs: pathname != '/' }}>
                   <Header>
                     <Header.Left>
@@ -109,7 +109,7 @@ export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
                   </Header>
                 </FixedHeader>
                 {children}
-              </ScrollableLayout>
+              </InnerScroll>
               <QuickBar>
                 <NextLink href="/" passHref legacyBehavior>
                   <QuickAction active={pathname == '/'} tooltip="Home">

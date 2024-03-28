@@ -16,6 +16,8 @@ const ScrollableLayout: React.FC<React.PropsWithChildren<ScrollableLayoutProps>>
           position: relative;
           background: ${background || `var(--color-background-1000)`};
           overflow: hidden;
+          display: flex;
+          flex-direction: column;
         }
       `}</style>
     </div>

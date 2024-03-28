@@ -33,7 +33,7 @@ export default function DocumentationLayout({ children }) {
     .value();
 
   return (
-    <PageWidth p={0}>
+    <PageWidth p={0} h={'100%'}>
       <MobileMenuProvider>
         <FixedHeader hideOn={{ xs: false, md: true, lg: true, sm: true, xl: true }}>
           <Header>
