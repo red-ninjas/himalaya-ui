@@ -131,7 +131,6 @@ const CursorCore: React.FC<AnimatedCursorProps> = ({
     return `${parseInt(String(orignalSize * scaleAmount))}px`;
   };
 
-  // Scales cursor by HxW
   const scaleBySize = useCallback(
     (cursorRef: HTMLDivElement | null, orignalSize: number, scaleAmount: number) => {
       if (cursorRef && isInit) {
