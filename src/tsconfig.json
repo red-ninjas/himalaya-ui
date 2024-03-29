@@ -51,7 +51,7 @@
   "include": [
     "next-env.d.ts",
     "next.config.mjs",
-    ".eslintrc.js",
+    ".eslintrc.mjs",
     "mdx-components.tsx",
     "**/*.js",
     "**/*.ts",
