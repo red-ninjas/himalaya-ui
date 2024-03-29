@@ -1,11 +1,9 @@
 'use client';
 import React, { CSSProperties, useImperativeHandle, useRef } from 'react';
-import useTheme from '../use-theme';
 import { useSelectContext } from './select-context';
 import Dropdown from '../shared/dropdown';
 import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';
-import { hexToRgb } from '../utils/color';
 
 interface Props {
   visible: boolean;
@@ -23,11 +21,10 @@ const SelectDropdown = React.forwardRef<HTMLDivElement | null, React.PropsWithCh
     { visible, children, className = '', dropdownStyle = {}, disableMatchWidth, getPopupContainer }: React.PropsWithChildren<SelectDropdownProps>,
     dropdownRef,
   ) => {
-    const theme = useTheme();
-    const { SCALES } = useScale();
+    const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
     const internalDropdownRef = useRef<HTMLDivElement | null>(null);
     const { ref } = useSelectContext();
-    const classes = useClasses('select-dropdown', className);
+    const classes = useClasses('select-dropdown', className, SCALE_CLASSES);
 
     useImperativeHandle<HTMLDivElement | null, HTMLDivElement | null>(dropdownRef, () => internalDropdownRef.current);
 
@@ -37,7 +34,6 @@ const SelectDropdown = React.forwardRef<HTMLDivElement | null, React.PropsWithCh
           {children}
           <style jsx>{`
             .select-dropdown {
-              border-radius: ${SCALES.r(1, `var(--layout-radius)`)};
               background-color: var(--color-background-1000);
               max-height: 17em;
               overflow-y: auto;
@@ -47,6 +43,9 @@ const SelectDropdown = React.forwardRef<HTMLDivElement | null, React.PropsWithCh
               scroll-behavior: smooth;
               box-shadow: 0 0 0 1px rgba(var(--color-background-800-rgb)}, 1);
             }
+
+            ${RESPONSIVE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'select-dropdown')}
+            ${SCALER('select-dropdown')}
           `}</style>
         </div>
       </Dropdown>

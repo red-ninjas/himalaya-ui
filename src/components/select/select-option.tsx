@@ -17,7 +17,7 @@ interface Props {
   hasCheckmark?: boolean;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
 export type SelectOptionProps = Props & NativeAttrs;
 
 const SelectOptionComponent: React.FC<React.PropsWithChildren<SelectOptionProps>> = ({
@@ -31,11 +31,11 @@ const SelectOptionComponent: React.FC<React.PropsWithChildren<SelectOptionProps>
   hasCheckmark = true,
   ...props
 }: React.PropsWithChildren<SelectOptionProps>) => {
-  const { SCALES, RESPONSIVE } = useScale();
+  const { SCALER, RESPONSIVE, SCALE_CLASSES } = useScale();
   const { updateValue, value, disableAll } = useSelectContext();
   const isDisabled = useMemo(() => disabled || disableAll, [disabled, disableAll]);
   const isLabel = useMemo(() => label || divider, [label, divider]);
-  const classes = useClasses('option', { divider, label }, className, { disabled: isDisabled });
+  const classes = useClasses('option', { divider, label }, className, { disabled: isDisabled }, SCALE_CLASSES);
   if (!isLabel && identValue === undefined) {
     useWarning('The props "value" is required.', 'Select Option');
   }
@@ -60,7 +60,7 @@ const SelectOptionComponent: React.FC<React.PropsWithChildren<SelectOptionProps>
   return (
     <div className={classes} onClick={clickHandler} {...props}>
       <div className="option-input">
-        <Ellipsis height={SCALES.h(2.25)}>{children}</Ellipsis>
+        <Ellipsis height="var(--select-input-height)">{children}</Ellipsis>
         {selected && hasCheckmark && (
           <div className="option-check">
             <Check></Check>
@@ -162,6 +162,9 @@ const SelectOptionComponent: React.FC<React.PropsWithChildren<SelectOptionProps>
         ${RESPONSIVE.font(0.875, value => `--select-font-size: ${value};`, undefined, 'option')}
         ${RESPONSIVE.w(1, value => `width: ${value};`, '100%', 'option')}
         ${RESPONSIVE.h(2.25, value => `height: ${value};`, undefined, 'item')}
+        ${RESPONSIVE.h(2.25, value => `--select-input-height: ${value};`, undefined, 'option-input')}
+
+        ${SCALER('option')}
       `}</style>
     </div>
   );

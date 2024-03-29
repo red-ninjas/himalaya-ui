@@ -43,15 +43,22 @@ const ThemeProvider: React.FC<PropsWithChildren<Props>> = ({ children, themeType
     for (const key of colorKeys) {
       const value = currentTheme.palette[key];
 
-      for (const colorKey of Object.keys(value)) {
+      if (key.startsWith('gradient_')) {
+        const gradientIndex = key.replace('gradient_', '');
         vars += `
-        --color-${key}-${colorKey.replace('hex_', '')}: ${value[colorKey]};
-        --color-${key}-${colorKey.replace('hex_', '')}-rgb: ${hexToRgb(value[colorKey])};
-        `;
-      }
+        --gradient-${gradientIndex}-from: ${value.from};
+        --gradient-${gradientIndex}-to: ${value.to};
+      `;
+      } else {
+        for (const colorKey of Object.keys(value)) {
+          vars += `
+          --color-${key}-${colorKey.replace('hex_', '')}: ${value[colorKey]};
+          --color-${key}-${colorKey.replace('hex_', '')}-rgb: ${hexToRgb(value[colorKey])};
+          `;
+        }
 
-      if (key === 'background') {
-        colorClasses += `
+        if (key === 'background') {
+          colorClasses += `
         .color-default {
           --color-base: var(--color-background-1000);
           --color-base-rgb: var(--color-background-1000-rgb);
@@ -109,10 +116,10 @@ const ThemeProvider: React.FC<PropsWithChildren<Props>> = ({ children, themeType
           --color-border: var( --color-base);
         }
       `;
-      }
+        }
 
-      if (value['hex_1200'] !== 'undefined') {
-        colorClasses += `
+        if (value['hex_1200'] !== 'undefined') {
+          colorClasses += `
           .color-${key} {
             --color-base: var(--color-${key}-1000);
             --color-base-rgb: var(--color-${key}-1000-rgb);
@@ -130,6 +137,7 @@ const ThemeProvider: React.FC<PropsWithChildren<Props>> = ({ children, themeType
             --color-tint-border-rgb:var(--color-tint-rgb);
           }
         `;
+        }
       }
     }
 

@@ -2,11 +2,13 @@
 
 import useScale, { withScale } from '../use-scale';
 import { PropsWithChildren } from 'react';
+import useClasses from '../use-classes';
 
 const HeroActions: React.FC<PropsWithChildren> = ({ children, ...props }) => {
-  const { SCALES } = useScale();
+  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
+
   return (
-    <div className="actions" {...props}>
+    <div className={useClasses('actions', SCALE_CLASSES)} {...props}>
       {children}
       <style jsx>{`
         .actions {
@@ -14,10 +16,14 @@ const HeroActions: React.FC<PropsWithChildren> = ({ children, ...props }) => {
           flex-wrap: wrap;
           gap: 12px;
           align-items: center;
-          padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
-          margin: ${SCALES.mt(2)} ${SCALES.mr(0, 'auto')} ${SCALES.mb(0, 'auto')} ${SCALES.ml(0, 'auto')};
           justify-content: center;
         }
+
+        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'actions')}
+        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, 'auto', 'actions')}
+        ${RESPONSIVE.mt(2, value => `margin-top: ${value}`, undefined, 'actions')}
+
+        ${SCALER('actions')}
       `}</style>
     </div>
   );
