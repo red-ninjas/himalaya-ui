@@ -1,7 +1,6 @@
 'use client';
 
 import { PropsWithChildren } from 'react';
-import useTheme from '../use-theme';
 import useScale, { withScale } from '../use-scale';
 import useClasses from '../use-classes';
 import { HeroTagProps } from './share';
@@ -14,14 +13,12 @@ const HeroTag: React.FC<PropsWithChildren<HeroTagProps>> = ({
   background,
   Tag = 'h6',
 }: PropsWithChildren<HeroTagProps>) => {
-  const theme = useTheme();
-  const { SCALES } = useScale();
+  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
   return (
-    <Tag className={useClasses('tag', { gradient: hasGradient })}>
+    <Tag className={useClasses('tag', { gradient: hasGradient }, SCALE_CLASSES)}>
       {children}
       <style jsx>{`
         .tag {
-          font-size: ${SCALES.font(0.75)};
           text-transform: uppercase;
           letter-spacing: 1px;
           border-radius: 30px;
@@ -31,15 +28,12 @@ const HeroTag: React.FC<PropsWithChildren<HeroTagProps>> = ({
           display: inline-block;
           word-break: break-word;
 
-          --start-color: ${gradient ? gradient.from : theme.palette.gradient_1.from};
-          --end-color: ${gradient ? gradient.to : theme.palette.gradient_1.to};
-          --font-color: ${textColor || theme.palette.background.hex_100};
+          --start-color: ${gradient ? gradient.from : 'var(--gradient-1-from)'};
+          --end-color: ${gradient ? gradient.to : 'var(--gradient-1-to)'};
+          --font-color: ${textColor || 'var(--color-background-100)'};
 
           color: var(--font-color);
           overflow: hidden;
-
-          padding: ${SCALES.pt(0.45)} ${SCALES.pr(1.9)} ${SCALES.pb(0.45)} ${SCALES.pl(1.9)};
-          margin: ${SCALES.mt(0, 'auto')} ${SCALES.mr(0, 'auto')} ${SCALES.mb(0, 'auto')} ${SCALES.ml(0, 'auto')};
         }
 
         .gradient {
@@ -47,6 +41,21 @@ const HeroTag: React.FC<PropsWithChildren<HeroTagProps>> = ({
           background: linear-gradient(90deg, var(--start-color), var(--end-color));
           color: var(--font-color);
         }
+
+        ${RESPONSIVE.font(0.75, value => `font-size: ${value};`, undefined, 'tag')}
+        ${RESPONSIVE.padding(
+          {
+            top: 0.45,
+            right: 1.9,
+            bottom: 0.45,
+            left: 1.9,
+          },
+          value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
+          undefined,
+          'tag',
+        )} ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, 'auto', 'tag')}
+
+        ${SCALER('tag')}
       `}</style>
     </Tag>
   );

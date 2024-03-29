@@ -11,11 +11,11 @@ interface Props {
 }
 
 const SelectMultipleValue: React.FC<React.PropsWithChildren<Props>> = ({ disabled, onClear, children }) => {
-  const { SCALES } = useScale();
+  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
 
   return (
     <Grid>
-      <div className={useClasses('item', disabled)}>
+      <div className={(useClasses('item', disabled), SCALE_CLASSES)}>
         {children}
         {!!onClear && <SelectClearIcon onClick={onClear} />}
       </div>
@@ -28,7 +28,6 @@ const SelectMultipleValue: React.FC<React.PropsWithChildren<Props>> = ({ disable
           padding: 0 0.5em;
           font-size: var(--select-font-size);
           height: calc(var(--select-font-size) * 2);
-          border-radius: ${SCALES.r(1, `var(--layout-radius)`)};
 
           --multi-option-color: var(--color-foreground-1000);
           --multi-option-bg: var(--color-background-900);
@@ -47,6 +46,8 @@ const SelectMultipleValue: React.FC<React.PropsWithChildren<Props>> = ({ disable
           margin: 0;
           color: inherit;
         }
+        ${RESPONSIVE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'item')}
+        ${SCALER('item')}
       `}</style>
     </Grid>
   );
