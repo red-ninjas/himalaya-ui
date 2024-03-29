@@ -66,7 +66,7 @@ const SelectComponent = React.forwardRef<SelectRef, React.PropsWithChildren<Sele
     }: React.PropsWithChildren<SelectProps>,
     selectRef,
   ) => {
-    const { SCALES, RESPONSIVE } = useScale();
+    const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
     const ref = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
     const dropdownRef = useRef<HTMLDivElement>(null);
@@ -169,6 +169,7 @@ const SelectComponent = React.forwardRef<SelectRef, React.PropsWithChildren<Sele
       },
       className,
       type ? 'color-' + type : null,
+      SCALE_CLASSES,
     );
 
     return (
@@ -211,7 +212,6 @@ const SelectComponent = React.forwardRef<SelectRef, React.PropsWithChildren<Sele
                 border 200ms ease-in 0s,
                 color 200ms ease-out 0s,
                 box-shadow 200ms ease 0s;
-              border-radius: ${SCALES.r(1, `var(--layout-radius)`)};
 
               min-width: 11.5em;
               height: var(--select-height);
@@ -331,6 +331,9 @@ const SelectComponent = React.forwardRef<SelectRef, React.PropsWithChildren<Sele
             )}
             ${RESPONSIVE.h(2.25, value => `--select-height: ${value};`, undefined, 'select')}
             ${RESPONSIVE.w(1, value => `width: ${value};`, 'initial', 'select')}
+            ${RESPONSIVE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'select')}
+
+            ${SCALER('select')}
           `}</style>
         </div>
       </SelectContext.Provider>
