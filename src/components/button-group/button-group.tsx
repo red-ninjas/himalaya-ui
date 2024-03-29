@@ -83,7 +83,8 @@ const ButtonGroupComponent: React.FC<React.PropsWithChildren<ButtonGroupProps>> 
           ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'btn-group')}
           ${RESPONSIVE.margin(0.313, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'btn-group')}
           ${RESPONSIVE.h(1, value => `height: ${value}; --ui-button-height: ${value};`, 'min-content', 'btn-group')}
-          ${RESPONSIVE.w(1, value => `font-size: ${value}; --button-font-size: ${value};`, 'auto', 'btn-group')}
+          ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto', 'btn-group')}
+          ${RESPONSIVE.font(1, value => `font-size: ${value}; --button-font-size: ${value};`, undefined, 'btn-group')}
           ${RESPONSIVE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'btn-group')}
 
           ${SCALER('btn-group')}

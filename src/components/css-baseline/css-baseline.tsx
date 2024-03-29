@@ -185,7 +185,7 @@ const CssBaseline: React.FC = () => {
       }
 
       code {
-        color: ${theme.palette.code.hex_1000};
+        color: var(--color-code-1000);
         font-family: ${theme.font.mono};
         font-size: 0.9em;
         white-space: pre-wrap;

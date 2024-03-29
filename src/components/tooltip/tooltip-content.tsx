@@ -45,7 +45,6 @@ const TooltipContent: React.FC<React.PropsWithChildren<Props>> = ({
   const el = usePortal('tooltip');
   const selfRef = useRef<HTMLDivElement>(null);
   const [rect, setRect] = useState<TooltipPosition>(defaultTooltipPosition);
-  // const colors = useMemo(() => getColors(type, theme.palette), [type, theme.palette]);
   const hasShadow = type === 'default';
   const classes = useClasses('tooltip-content', className, type ? 'color-' + type : null, SCALE_CLASSES);
   if (!parent) return null;
