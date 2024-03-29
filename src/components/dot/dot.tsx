@@ -2,10 +2,10 @@
 import React from 'react';
 import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';
-import { COLOR_TYPES } from '../utils/prop-types';
+import { UIColorTypes } from '../themes/presets';
 
 interface Props {
-  type?: COLOR_TYPES;
+  type?: UIColorTypes;
   className?: string;
 }
 
@@ -13,7 +13,7 @@ type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
 export type DotProps = Props & NativeAttrs;
 
 const DotComponent: React.FC<React.PropsWithChildren<DotProps>> = ({
-  type = 'default' as COLOR_TYPES,
+  type = 'default' as UIColorTypes,
   children,
   className = '',
   ...props

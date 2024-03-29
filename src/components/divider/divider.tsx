@@ -1,13 +1,12 @@
 'use client';
 import React, { useMemo } from 'react';
-import { COLOR_TYPES, DividerAlign } from '../utils/prop-types';
+import { DividerAlign } from '../utils/prop-types';
 import useScale, { withScale } from '../use-scale';
 import useClasses from '../use-classes';
-
-export type DividerTypes = COLOR_TYPES;
+import { UIColorTypes } from '../themes/presets';
 
 interface Props {
-  type?: DividerTypes;
+  type?: UIColorTypes;
   align?: DividerAlign;
 }
 
@@ -15,7 +14,7 @@ type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
 export type DividerProps = Props & NativeAttrs;
 
 const DividerComponent: React.FC<React.PropsWithChildren<DividerProps>> = ({
-  type = 'default' as DividerTypes,
+  type = 'default' as UIColorTypes,
   align = 'center' as DividerAlign,
   children,
   className,

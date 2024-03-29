@@ -10,7 +10,6 @@ export type InputComponentType = typeof Input & {
 (Input as InputComponentType).Password = InputPassword;
 
 export type { InputProps } from './input';
-export type { InputTypes } from './input-props';
 export type { InputPasswordProps } from './password';
 export type { TextareaProps } from '../textarea/textarea';
 export default Input as InputComponentType;

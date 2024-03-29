@@ -3,7 +3,6 @@
 import {
   FixedHeader,
   Footer,
-  FooterBottom,
   Header,
   Link,
   MobileMenu,

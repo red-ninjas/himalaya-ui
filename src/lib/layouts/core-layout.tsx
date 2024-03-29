@@ -34,7 +34,7 @@ import metaData from '../data/metadata.json';
 export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
   const layout = useLayout();
   const pathname = usePathname();
-  const [isHidden, setIsHidden] = useState<boolean>(false);
+  const [isHidden] = useState<boolean>(false);
 
   async function doSearch(keyword: string): Promise<SearchResults> {
     const lowerCaseKeyword = keyword.toLowerCase();

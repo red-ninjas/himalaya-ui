@@ -3,16 +3,14 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React, { PropsWithChildren } from 'react';
 import useClasses from '../use-classes';
-import useScale, { withScale } from '../use-scale';
-import useTheme from '../use-theme';
-import { INavigationItem } from './index';
 import { useMobileMenu } from '../use-mobile-menu/mobile-menu-context';
+import useScale, { withScale } from '../use-scale';
+import { INavigationItem } from './index';
 
 type NativeAttrs = Omit<React.HTMLAttributes<HTMLAnchorElement>, keyof INavigationItem>;
 export type MobileNavigationItemProps = INavigationItem & NativeAttrs;
 
 const NavigationItem: React.FC<PropsWithChildren<MobileNavigationItemProps>> = ({ url = '/', icon, title, ...props }) => {
-  const theme = useTheme();
   const { SCALES } = useScale();
   const pathname = usePathname();
   const { setIsEnabled } = useMobileMenu();

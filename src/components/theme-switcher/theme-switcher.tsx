@@ -14,7 +14,7 @@ const ThemeSwitcherComponent: React.FC<unknown> = () => {
   const switchThemeOnClick = () => {
     setTheme(themeType === 'dark' ? 'light' : 'dark');
   };
-  return <Button w="28px" h="28px" py={0} px={0} icon={icon} onClick={switchThemeOnClick} title={'Switch theme'} />;
+  return <Button auto px={0.34} h={0.75} py={0} iconRight={icon} onClick={switchThemeOnClick} title={'Switch theme'} />;
 };
 const ThemeSwitcher = withScale(ThemeSwitcherComponent);
 export default ThemeSwitcher;

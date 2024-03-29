@@ -6,7 +6,8 @@ import InputBlockLabel from './input-block-label';
 import InputIcon from './input-icon';
 import InputClearIcon from './input-icon-clear';
 import InputLabel from './input-label';
-import { InputTypes, Props } from './input-props';
+import { Props } from './input-props';
+import { UIColorTypes } from '../themes/presets';
 
 type NativeAttrs = Omit<React.InputHTMLAttributes<HTMLInputElement>, keyof Props>;
 export type InputProps = Props & NativeAttrs;
@@ -24,7 +25,7 @@ const InputComponent = React.forwardRef<HTMLInputElement, React.PropsWithChildre
     {
       label,
       labelRight,
-      type = 'default' as InputTypes,
+      type = 'default' as UIColorTypes,
       htmlType = 'text',
       icon,
       iconRight,

@@ -1,18 +1,18 @@
 'use client';
 import React, { useCallback, useMemo, useRef } from 'react';
-import { SnippetTypes, CopyTypes, COLOR_TYPES } from '../utils/prop-types';
-import SnippetIcon from './snippet-icon';
-import useClipboard from '../utils/use-clipboard';
-import useToasts from '../use-toasts';
-import useScale, { withScale } from '../use-scale';
+import { UIColorTypes } from '../themes/presets';
 import useClasses from '../use-classes';
+import useScale, { withScale } from '../use-scale';
+import useToasts from '../use-toasts';
+import { CopyTypes, SnippetTypes } from '../utils/prop-types';
+import useClipboard from '../utils/use-clipboard';
+import SnippetIcon from './snippet-icon';
 
-export type ToastTypes = COLOR_TYPES;
 interface Props {
   text?: string | string[];
   symbol?: string;
   toastText?: string;
-  toastType?: ToastTypes;
+  toastType?: UIColorTypes;
   filled?: boolean;
   copy?: CopyTypes;
   type?: SnippetTypes;
@@ -35,7 +35,7 @@ const SnippetComponent: React.FC<React.PropsWithChildren<SnippetProps>> = ({
   children,
   symbol = '$',
   toastText = 'Copied to clipboard!',
-  toastType = 'success' as ToastTypes,
+  toastType = 'success' as UIColorTypes,
   text,
   copy: copyType = 'default' as CopyTypes,
   className = '',

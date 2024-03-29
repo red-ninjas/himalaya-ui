@@ -1,9 +1,8 @@
 'use client';
 import React, { useEffect, useMemo, useRef } from 'react';
-import { TabsInternalCellProps, useTabsContext } from './tabs-context';
-import useTheme from '../use-theme';
-import useScale, { withScale } from '../use-scale';
 import useClasses from '../use-classes';
+import useScale, { withScale } from '../use-scale';
+import { TabsInternalCellProps, useTabsContext } from './tabs-context';
 
 interface Props {
   label: string | React.ReactNode;
@@ -27,7 +26,6 @@ const TabsItemComponent: React.FC<React.PropsWithChildren<TabsItemProps>> = ({
   const isActive = useMemo(() => currentValue === value, [currentValue, value]);
 
   const TabsInternalCell: React.FC<TabsInternalCellProps> = ({ onClick, onMouseOver, activeClassName, activeStyle, hideBorder }) => {
-    const theme = useTheme();
     const ref = useRef<HTMLDivElement | null>(null);
     const { currentValue } = useTabsContext();
     const active = currentValue === value;

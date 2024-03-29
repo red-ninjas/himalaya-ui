@@ -1,3 +1,4 @@
+'use client';
 import { PageWidth, FadeInEffect, Text, useTheme } from 'components';
 import { RedNinjas, Striked } from './icons';
 import Carousel from 'components/carousel';

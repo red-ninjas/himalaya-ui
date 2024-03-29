@@ -4,19 +4,19 @@ import useClasses from '../use-classes';
 import React, { useEffect, useMemo } from 'react';
 import useScale, { withScale } from '../use-scale';
 import { pickChild } from '../utils/collections';
-import { COLOR_TYPES } from '../utils/prop-types';
 import useCurrentState from '../utils/use-current-state';
 import { PaginationConfig, PaginationContext, PaginationUpdateType } from './pagination-context';
 import PaginationNext from './pagination-next';
 import PaginationPages from './pagination-pages';
 import PaginationPrevious from './pagination-previous';
+import { UIColorTypes } from '../themes/presets';
 
 interface Props {
   page?: number;
   initialPage?: number;
   count?: number;
   limit?: number;
-  type?: COLOR_TYPES;
+  type?: UIColorTypes;
   onChange?: (val: number) => void;
 }
 

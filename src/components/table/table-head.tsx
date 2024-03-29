@@ -1,9 +1,7 @@
 'use client';
 import React, { useMemo } from 'react';
-import useLayout from '../use-layout';
-import useTheme from '../use-theme';
-import { TableAbstractColumn, TableDataItemBase } from './table-types';
 import useClasses from '../use-classes';
+import { TableAbstractColumn, TableDataItemBase } from './table-types';
 
 interface Props<TableDataItem extends TableDataItemBase> {
   w: number;
@@ -32,8 +30,6 @@ const makeColgroup = <TableDataItem extends TableDataItemBase>(w: number, column
 };
 
 const TableHead = <TableDataItem extends TableDataItemBase>({ hasBorder = true, ...props }: TableHeadProps<TableDataItem>) => {
-  const theme = useTheme();
-  const layout = useLayout();
   const { columns, w } = props as TableHeadProps<TableDataItem>;
   const isScalableWidth = useMemo(() => columns.find(item => !!item.w), [columns]);
   const colgroup = useMemo(() => {

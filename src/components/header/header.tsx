@@ -159,10 +159,11 @@ const HeaderComponent: React.FC<HeaderPropsNative> = ({ children, transcluent = 
           },
           'header-inner',
         )}
-        ${customResponsiveAttribute(gap, 'header-outer', layoutRoot.breakpoints, value =>
-          !isCSSNumberValue(value) ? `--header-gap:: ${value};` : `--header-gap:: calc(var(--scale-unit-scale) * ${value})`,
-        )}
+
         ${SCALER('header-outer')}
+        ${customResponsiveAttribute(gap, 'header-outer', layoutRoot.breakpoints, value =>
+          !isCSSNumberValue(value) ? `--header-gap: ${value};` : `--header-gap: calc(var(--scale-unit-scale) * ${value})`,
+        )}
       `}</style>
     </nav>
   );

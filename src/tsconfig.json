@@ -3,12 +3,13 @@
     "baseUrl": ".",
     "outDir": "../dist/documentation",
     "strictNullChecks": true,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "jsx": "preserve",
     "noUnusedParameters": true,
     "noUnusedLocals": true,
+    "allowImportingTsExtensions": true,
     "target": "esnext",
     "lib": [
       "DOM",
@@ -24,7 +25,6 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "typeRoots": [
-      "node_modules/@types",
       "./typings"
     ],
     "types": [

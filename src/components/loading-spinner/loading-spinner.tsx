@@ -3,21 +3,20 @@
 import React from 'react';
 import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';
-import { COLOR_TYPES } from '../utils/prop-types';
+import { UIColorTypes } from '../themes/presets';
 
-export type LoadingSpinnerTypes = COLOR_TYPES;
 interface Props {
-  type?: LoadingSpinnerTypes;
+  type?: UIColorTypes;
   className?: string;
   spaceRatio?: number;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
 export type LoadingSpinnerProps = Props & NativeAttrs;
 
 const LoadingSpinnerComponent: React.FC<React.PropsWithChildren<LoadingSpinnerProps>> = ({
   children,
-  type = 'default' as LoadingSpinnerTypes,
+  type = 'default' as UIColorTypes,
   className = '',
   spaceRatio = 1,
   ...props

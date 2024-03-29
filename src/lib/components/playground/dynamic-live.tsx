@@ -1,7 +1,7 @@
 'use client';
-import React, { useRef, useState } from 'react';
-import { LivePreview, LiveProvider, LiveError } from 'react-live';
 import { useLayout, useTheme } from 'components';
+import React, { useRef, useState } from 'react';
+import { LiveError, LivePreview, LiveProvider } from 'react-live';
 import makeCodeTheme from './code-theme';
 import Editor from './editor';
 
@@ -14,7 +14,6 @@ export interface Props {
 
 const DynamicLive: React.FC<Props> = ({ code, scope }) => {
   const theme = useTheme();
-  const layout = useLayout();
   const codeTheme = makeCodeTheme(theme);
 
   scope['useState'] = useState;

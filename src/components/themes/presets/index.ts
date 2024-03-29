@@ -46,7 +46,18 @@ export interface UIColor {
   hex_1800: string;
   hex_1900: string;
 }
+
+/**
+ * Possible color keys
+ * @interface
+ */
 export type UIColorKeys = 'gray' | 'secondary' | 'tertiary' | 'success' | 'error' | 'primary' | 'warning' | 'link' | 'code';
+
+/**
+ * Possible color types
+ * @interface
+ */
+export type UIColorTypes = UIColorKeys | 'default' | 'dark' | string;
 export type UIColorAcentKeys = 'background' | 'foreground' | 'border';
 export type UIColorAndAccentKeys = UIColorKeys | UIColorAcentKeys;
 export type UIColorAccents = Record<UIColorAcentKeys, UIColorAccent>;

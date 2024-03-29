@@ -1,5 +1,5 @@
+import { Input, UIThemes, useTheme } from 'components';
 import React, { useMemo } from 'react';
-import { useTheme, Input, UIThemes, useConfigs } from 'components';
 
 type Props = {
   value?: string;
@@ -9,7 +9,6 @@ type Props = {
 
 const EditorInputItem: React.FC<React.PropsWithChildren<Props>> = ({ groupName, keyName }) => {
   const theme = useTheme();
-  const { updateCustomTheme } = useConfigs();
   const currentVal = useMemo(() => {
     const group = theme[groupName];
     const key = keyName as keyof typeof group;
@@ -18,9 +17,7 @@ const EditorInputItem: React.FC<React.PropsWithChildren<Props>> = ({ groupName, 
   const width = useMemo(() => (`${currentVal}`.length > 15 ? '350px' : 'auto'), []);
 
   const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    updateCustomTheme({
-      [groupName]: { [keyName]: event.target.value },
-    });
+    console.log(event);
   };
 
   return (

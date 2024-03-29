@@ -1,37 +1,44 @@
 'use client';
 import React, { useMemo } from 'react';
 import { useProportions } from '../utils/calculations';
-import { COLOR_TYPES } from '../utils/prop-types';
 import useScale, { withScale } from '../use-scale';
 import useClasses from '../use-classes';
+import useIsMounted from '../use-is-mounted';
+import { UIColorTypes } from '../themes/presets';
 
 export type ProgressColors = {
   [key: number]: string;
 };
-export type ProgressTypes = COLOR_TYPES;
 
-interface Props {
+type Props = {
   value?: number;
   max?: number;
   fixedTop?: boolean;
   fixedBottom?: boolean;
-  type?: ProgressTypes;
-  className?: string;
+  type?: UIColorTypes;
+  withAnimation?: boolean;
   indeterminate?: boolean;
   colors?: ProgressColors;
-}
+};
 
 type NativeAttrs = Omit<React.ProgressHTMLAttributes<HTMLProgressElement>, keyof Props>;
+
+/**
+ * This will be displayed as an interface
+ * @indeterminate A infinite based progress bar
+ * @interface
+ */
 export type ProgressProps = Props & NativeAttrs;
 
 const ProgressComponent: React.FC<ProgressProps> = ({
   value = 0,
   max = 100,
-  className = '',
-  type = 'default' as COLOR_TYPES,
+  className,
+  type = 'default' as UIColorTypes,
   fixedTop = false,
   fixedBottom = false,
   indeterminate = false,
+  withAnimation = true,
   colors,
   ...props
 }: ProgressProps) => {
@@ -39,6 +46,24 @@ const ProgressComponent: React.FC<ProgressProps> = ({
   const percentValue = useProportions(value, max);
   const fixed = fixedTop || fixedBottom;
   const classes = useClasses('progress', { fixed }, className, type ? 'color-' + type : null, SCALE_CLASSES);
+  const [, isMounted] = useIsMounted({
+    rerender: true,
+    delay: 100,
+  });
+
+  const selfMounted = withAnimation ? isMounted : true;
+
+  const percentage = useMemo(() => {
+    if (!selfMounted) {
+      return 0;
+    }
+
+    if (indeterminate) {
+      return 0;
+    }
+
+    return percentValue;
+  }, [selfMounted, percentValue, indeterminate]);
 
   const progressColor = useMemo(() => {
     if (!colors) return 'var( --progress-background)';
@@ -62,7 +87,7 @@ const ProgressComponent: React.FC<ProgressProps> = ({
         className={useClasses('inner', {
           indeterminate: indeterminate,
         })}
-        title={`${percentValue}%`}
+        title={`${percentage}%`}
         style={{ backgroundColor: progressColor }}
       />
       <progress className={className} value={value} max={max} {...props} />
@@ -70,6 +95,7 @@ const ProgressComponent: React.FC<ProgressProps> = ({
         .progress {
           position: relative;
           background-color: var(--color-background-900);
+          overflow: hidden;
         }
 
         progress {
@@ -112,16 +138,15 @@ const ProgressComponent: React.FC<ProgressProps> = ({
         }
 
         .inner {
-          position: absolute;
-          top: 0;
-          left: 0;
           height: 100%;
+          width: 100%;
           bottom: 0;
-          transition: all 100ms ease-in;
           border-radius: var(--layout-radius);
           --progress-background: var(--color-base);
           background-color: var(--progress-background);
-          width: ${percentValue}%;
+
+          transition: width 0.2s ease;
+          width: ${percentage}%;
         }
 
         .progress.color-default .inner {

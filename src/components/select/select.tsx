@@ -5,23 +5,22 @@ import Ellipsis from '../shared/ellipsis';
 import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';
 import { pickChildByProps } from '../utils/collections';
-import { COLOR_TYPES } from '../utils/prop-types';
 import useCurrentState from '../utils/use-current-state';
 import { SelectConfig, SelectContext } from './select-context';
 import SelectDropdown from './select-dropdown';
 import SelectIcon from './select-icon';
 import SelectInput from './select-input';
 import SelectMultipleValue from './select-multiple-value';
+import { UIColorTypes } from '../themes/presets';
 
 export type SelectRef = {
   focus: () => void;
   blur: () => void;
   scrollTo?: (options?: ScrollToOptions) => void;
 };
-export type SelectTypes = COLOR_TYPES;
 interface Props {
   disabled?: boolean;
-  type?: SelectTypes;
+  type?: UIColorTypes;
   value?: string | string[];
   initialValue?: string | string[];
   placeholder?: React.ReactNode | string;
@@ -46,7 +45,7 @@ const SelectComponent = React.forwardRef<SelectRef, React.PropsWithChildren<Sele
   (
     {
       children,
-      type = 'default' as SelectTypes,
+      type = 'default' as UIColorTypes,
       disabled = false,
       initialValue: init,
       value: customValue,

@@ -1,5 +1,5 @@
+import { UIColorTypes } from '../themes/presets';
 import { ScaleResponsiveParameter } from '../use-scale';
-import { COLOR_TYPES } from '../utils/prop-types';
 
 export interface LayoutProps {
   animationTime?: number;
@@ -13,7 +13,7 @@ export type QuickBarLayoutProps = LayoutProps & NativeAttrs;
 export interface ActionProps {
   tooltip?: string | React.ReactNode;
   active?: boolean;
-  type?: COLOR_TYPES;
+  type?: UIColorTypes;
   space?: ScaleResponsiveParameter<number | string>;
 }
 

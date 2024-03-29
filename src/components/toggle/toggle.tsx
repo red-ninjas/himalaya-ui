@@ -2,9 +2,8 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';
-import { COLOR_TYPES } from '../utils/prop-types';
+import { UIColorTypes } from '../themes/presets';
 
-export type ToggleTypes = COLOR_TYPES;
 export interface ToggleEventTarget {
   checked: boolean;
 }
@@ -20,7 +19,7 @@ interface Props {
   initialChecked?: boolean;
   onChange?: (ev: ToggleEvent) => void;
   disabled?: boolean;
-  type?: ToggleTypes;
+  type?: UIColorTypes;
 }
 
 type NativeAttrs = Omit<React.LabelHTMLAttributes<HTMLLabelElement>, keyof Props>;
@@ -36,7 +35,7 @@ const ToggleComponent: React.FC<ToggleProps> = ({
   checked,
   disabled = false,
   onChange,
-  type = 'default' as ToggleTypes,
+  type = 'default' as UIColorTypes,
   className,
   ...props
 }: ToggleProps) => {

@@ -16,7 +16,7 @@ export { default as Breadcrumbs } from './breadcrumbs';
 export type { BreadcrumbsProps, BreadcrumbsItemProps, BreadcrumbsSeparatorProps } from './breadcrumbs';
 
 export { default as Button } from './button';
-export type { ButtonProps } from './button';
+export type { ButtonProps, ButtonInternalProps } from './button';
 
 export { default as ButtonDropdown } from './button-dropdown';
 export type { ButtonDropdownProps, ButtonDropdownItemProps } from './button-dropdown';

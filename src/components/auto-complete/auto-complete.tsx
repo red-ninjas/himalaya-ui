@@ -1,20 +1,18 @@
 'use client';
 
-import useClasses from '../use-classes';
+import { UIColorTypes } from '../themes/presets';
 import React, { CSSProperties, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react';
 import Input from '../input';
 import LoadingSpinner from '../loading-spinner';
+import useClasses from '../use-classes';
 import useScale, { ScaleResponsiveParameter, withScale } from '../use-scale';
 import { pickChild } from '../utils/collections';
-import { COLOR_TYPES } from '../utils/prop-types';
 import useCurrentState from '../utils/use-current-state';
 import { AutoCompleteConfig, AutoCompleteContext } from './auto-complete-context';
 import AutoCompleteDropdown from './auto-complete-dropdown';
 import AutoCompleteEmpty from './auto-complete-empty';
 import AutoCompleteItem, { AutoCompleteItemProps } from './auto-complete-item';
 import AutoCompleteSearching from './auto-complete-searching';
-
-export type AutoCompleteTypes = COLOR_TYPES;
 
 export type AutoCompleteOption = {
   label: string;
@@ -25,7 +23,7 @@ export type AutoCompleteOptions = Array<typeof AutoCompleteItem | AutoCompleteOp
 
 interface Props {
   options?: AutoCompleteOptions;
-  type?: AutoCompleteTypes;
+  type?: UIColorTypes;
   initialValue?: string;
   value?: string;
   onChange?: (value: string) => void;
@@ -71,7 +69,7 @@ const AutoCompleteComponent = React.forwardRef<HTMLInputElement, React.PropsWith
       onChange,
       searching,
       children,
-      type = 'default' as AutoCompleteTypes,
+      type = 'default' as UIColorTypes,
       value,
       clearable = false,
       disabled = false,

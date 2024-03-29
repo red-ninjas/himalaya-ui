@@ -3,16 +3,16 @@ import React, { useEffect, useImperativeHandle, useMemo, useRef, useState } from
 import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';
 import useTheme from '../use-theme';
-import { COLOR_TYPES, tuple } from '../utils/prop-types';
+import { tuple } from '../utils/prop-types';
+import { UIColorTypes } from '../themes/presets';
 
 const resizeTypes = tuple('none', 'both', 'horizontal', 'vertical', 'initial', 'inherit');
 export type TextareaResizes = (typeof resizeTypes)[number];
-export type TextareaTypes = COLOR_TYPES;
 interface Props {
   value?: string;
   initialValue?: string;
   placeholder?: string;
-  type?: TextareaTypes;
+  type?: UIColorTypes;
   disabled?: boolean;
   readOnly?: boolean;
   hasBorder?: boolean;
@@ -28,7 +28,7 @@ export type TextareaProps = Props & NativeAttrs;
 const TextareaComponent = React.forwardRef<HTMLTextAreaElement, React.PropsWithChildren<TextareaProps>>(
   (
     {
-      type = 'default' as TextareaTypes,
+      type = 'default' as UIColorTypes,
       disabled = false,
       readOnly = false,
       onFocus,

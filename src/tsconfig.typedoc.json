@@ -6,9 +6,6 @@
       "*": [
         "*"
       ],
-      "himalaya-ui": [
-        "components/index.tsx"
-      ],
       "components/*": [
         "components/*"
       ]
@@ -21,14 +18,14 @@
       "dom-not-standarted"
     ],
     "declaration": true,
-    "emitDeclarationOnly": false,
+    "emitDeclarationOnly": true,
     "strictNullChecks": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "jsx": "preserve",
     "noUnusedParameters": false,
-    "noUnusedLocals": true,
+    "noUnusedLocals": false,
     "noImplicitAny": false,
     "target": "esnext",
     "lib": [
@@ -58,11 +55,9 @@
   },
   "files": [
     "./components/index.ts",
+    "./components/button/index.ts",
     "./components/constants/index.ts",
     "./components/themes/presets/index.ts",
-    "./components/carousel/index.ts",
-    "./components/chart/index.ts",
-    "./components/swipe/index.ts"
   ],
   "exclude": [
     "node_modules",

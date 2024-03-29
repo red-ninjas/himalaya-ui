@@ -1,3 +1,4 @@
+'use client';
 import { Button, PageWidth, FadeInEffect, Grid, Hero, Link, Text, useTheme } from 'components';
 
 export function PortfolioItem({

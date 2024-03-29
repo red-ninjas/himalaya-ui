@@ -1,14 +1,12 @@
 'use client';
 import React from 'react';
-import { AlertCircle, AlertTriangle, CheckInCircle, Info, XCircle } from '../icons';
+import { AlertTriangle, CheckInCircle, Info, XCircle } from '../icons';
+import { UIColorTypes } from '../themes/presets';
 import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';
-import { COLOR_TYPES } from '../utils/prop-types';
-
-export type NoteTypes = COLOR_TYPES;
 
 interface Props {
-  type?: NoteTypes;
+  type?: UIColorTypes;
   icon?: React.ReactNode | boolean;
   filled?: boolean;
   className?: string;
@@ -20,7 +18,7 @@ export type NoteProps = Props & NativeAttrs;
 
 export const NoteComponent: React.FC<React.PropsWithChildren<NoteProps>> = ({
   children,
-  type = 'default' as NoteTypes,
+  type = 'default' as UIColorTypes,
   icon = true,
   filled = false,
   hasBorder = true,
@@ -29,7 +27,7 @@ export const NoteComponent: React.FC<React.PropsWithChildren<NoteProps>> = ({
 }: React.PropsWithChildren<NoteProps>) => {
   const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
 
-  const icons: { [key in NoteTypes]?: React.ReactNode } = {
+  const icons: { [key in UIColorTypes]?: React.ReactNode } = {
     success: <CheckInCircle></CheckInCircle>,
     warning: <AlertTriangle></AlertTriangle>,
     error: <XCircle></XCircle>,

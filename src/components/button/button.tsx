@@ -12,7 +12,11 @@ import ButtonDrip from './button.drip';
 import { getButtonCursor } from './styles';
 import { filterPropsWithGroup, getButtonChildrenWithIcon } from './utils';
 
-export interface bProps {
+/**
+ * Button Internal Props
+ * @interface
+ */
+export type ButtonInternalProps = {
   type?: ButtonTypes;
   ghost?: boolean;
   loading?: boolean;
@@ -25,10 +29,13 @@ export interface bProps {
   iconRight?: React.ReactNode;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   className?: string;
-}
+};
 
-type NativeAttrs = Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, keyof bProps>;
-export type ButtonProps = bProps & NativeAttrs;
+/**
+ * Button Props
+ * @interface
+ */
+export type ButtonProps = ButtonInternalProps & Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, keyof ButtonInternalProps>;
 
 const ButtonComponent = React.forwardRef<HTMLButtonElement, React.PropsWithChildren<ButtonProps>>(
   (btnProps: ButtonProps, ref: React.Ref<HTMLButtonElement | null>) => {

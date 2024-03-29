@@ -1,3 +1,4 @@
+'use client';
 import Activity from 'components/icons/activity';
 import FeatherIcon from 'components/icons/feather';
 import GitHubIcon from 'components/icons/github';

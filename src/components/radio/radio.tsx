@@ -3,12 +3,11 @@ import React, { useEffect, useMemo, useState } from 'react';
 import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';
 import { pickChild } from '../utils/collections';
-import { COLOR_TYPES } from '../utils/prop-types';
 import useWarning from '../utils/use-warning';
 import { useRadioContext } from './radio-context';
 import RadioDescription from './radio-description';
+import { UIColorTypes } from '../themes/presets';
 
-export type RadioTypes = COLOR_TYPES;
 export interface RadioEventTarget {
   checked: boolean;
 }
@@ -24,7 +23,7 @@ interface Props {
   value?: string | number;
   disabled?: boolean;
   onChange?: (e: RadioEvent) => void;
-  type?: RadioTypes;
+  type?: UIColorTypes;
   className?: string;
 }
 
@@ -36,7 +35,7 @@ const RadioComponent: React.FC<React.PropsWithChildren<RadioProps>> = ({
   checked,
   onChange,
   disabled = false,
-  type = 'default' as RadioTypes,
+  type = 'default' as UIColorTypes,
   value: radioValue,
   children,
   ...props

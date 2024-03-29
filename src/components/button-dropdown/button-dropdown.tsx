@@ -4,25 +4,36 @@ import React, { MouseEvent, useCallback, useRef, useState } from 'react';
 import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';
 import { pickChild, pickChildByProps } from '../utils/collections';
-import { COLOR_TYPES } from '../utils/prop-types';
 import useClickAway from '../utils/use-click-away';
 import { ButtonDropdownContext } from './button-dropdown-context';
 import ButtonDropdownItem from './button-dropdown-item';
 import ButtonDropdownIcon from './icon';
+import { UIColorTypes } from '../themes/presets';
 
-export type ButtonDropdownTypes = COLOR_TYPES;
+/**
+ * Properties for button
+ * @interface
+ */
+export type ButtonProps = {
+  /**
+   * Color type of button
+   */
+  type?: UIColorTypes;
 
-interface Props {
-  type?: ButtonDropdownTypes;
+  /**
+   * Autoscale button by input
+   */
   auto?: boolean;
   loading?: boolean;
   disabled?: boolean;
-  className?: string;
   icon?: React.ReactNode;
-}
+};
 
-type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
-export type ButtonDropdownProps = Props & NativeAttrs;
+/**
+ * Properties for button with native
+ * @interface
+ */
+export type ButtonDropdownProps = ButtonProps & Omit<React.HTMLAttributes<HTMLDivElement>, keyof ButtonProps>;
 
 const stopPropagation = (event: MouseEvent<HTMLElement>) => {
   event.stopPropagation();

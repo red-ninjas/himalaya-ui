@@ -46,6 +46,10 @@ export const ScalePropKeys = [
   'scale',
 ];
 
+/**
+ * Scale props
+ * @interface
+ */
 export type ScaleProps = {
   r?: ScaleResponsiveParameter;
   p?: ScaleResponsiveParameter;

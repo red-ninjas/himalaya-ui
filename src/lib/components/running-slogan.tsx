@@ -1,3 +1,4 @@
+'use client';
 import { FadeInEffect, RunningText, Text } from 'components';
 
 export default function RunningSlogan() {

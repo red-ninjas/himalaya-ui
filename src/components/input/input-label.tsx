@@ -1,16 +1,11 @@
 'use client';
 import React from 'react';
-import useTheme from '../use-theme';
-import useLayout from '../use-layout';
 
 export interface InputLabel {
   isRight?: boolean;
 }
 
 const InputLabel: React.FC<React.PropsWithChildren<InputLabel>> = ({ children, isRight }) => {
-  const theme = useTheme();
-  const layout = useLayout();
-
   return (
     <span className={isRight ? 'right' : ''}>
       {children}

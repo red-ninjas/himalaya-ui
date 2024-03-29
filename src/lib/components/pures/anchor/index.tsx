@@ -1,7 +1,7 @@
 'use client';
 
+import { Link } from 'components';
 import React, { useEffect, useRef, useState } from 'react';
-import { Link, useTheme } from 'components';
 import AnchorIcon from './anchor-icon';
 
 export interface Props {
@@ -14,7 +14,6 @@ export const virtualAnchorEncode = (text?: string) => {
 };
 
 const VirtualAnchor: React.FC<React.PropsWithChildren<Props>> = ({ children, pure }) => {
-  const theme = useTheme();
   const ref = useRef<HTMLAnchorElement>(null);
   const [id, setId] = useState<string | undefined>();
 

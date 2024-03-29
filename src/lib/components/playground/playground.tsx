@@ -1,17 +1,9 @@
 'use client';
 import { LoadingSpinner } from 'components';
-import dynamic from 'next/dynamic';
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import Title from './title';
 
-const DynamicLive = dynamic(() => import('./dynamic-live'), {
-  ssr: false,
-  loading: () => (
-    <div style={{ padding: '20pt 0' }}>
-      <LoadingSpinner />
-    </div>
-  ),
-});
+const LayzPreview = lazy(() => import('./dynamic-live'));
 
 type Props = {
   title?: React.ReactNode | string;
@@ -33,7 +25,15 @@ const Playground: React.FC<PlaygroundProps> = React.memo(({ title: inputTitle, c
     <>
       <Title title={title} desc={desc} />
       <div {...props} className="playground">
-        <DynamicLive code={code} scope={scope} />
+        <Suspense
+          fallback={
+            <div style={{ padding: '20pt 0' }}>
+              <LoadingSpinner />
+            </div>
+          }
+        >
+          <LayzPreview code={code} scope={scope} />
+        </Suspense>
         <style jsx>{`
           .playground {
             width: 100%;

@@ -5,16 +5,16 @@ import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';
 import useTheme from '../use-theme';
 import { hasChild, pickChild } from '../utils/collections';
-import { COLOR_TYPES } from '../utils/prop-types';
 import CardContent from './card-content';
 import CardFooter from './card-footer';
+import { UIColorTypes } from '../themes/presets';
 
 interface Props {
   hoverable?: boolean;
   shadow?: boolean;
   className?: string;
   hasBorder?: boolean;
-  type?: COLOR_TYPES;
+  type?: UIColorTypes;
 }
 
 type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
@@ -26,7 +26,7 @@ const CardComponent: React.FC<React.PropsWithChildren<CardProps>> = ({
   className = '',
   shadow = false,
   hasBorder = true,
-  type = 'default' as COLOR_TYPES,
+  type = 'default' as UIColorTypes,
   ...props
 }: CardProps) => {
   const theme = useTheme();

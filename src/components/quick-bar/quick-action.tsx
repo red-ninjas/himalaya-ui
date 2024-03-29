@@ -6,12 +6,12 @@ import useLayout from '../use-layout';
 import useScale, { customResponsiveAttribute } from '../use-scale';
 import withScale from '../use-scale/with-scale';
 import { isCSSNumberValue } from '../utils/collections';
-import { COLOR_TYPES } from '../utils/prop-types';
 import { QuickActionProps } from './share';
+import { UIColorTypes } from '../themes/presets';
 
 const QuickBarAction = React.forwardRef<HTMLAnchorElement, React.PropsWithChildren<QuickActionProps>>(
   (
-    { children, space = 0.625, tooltip, className, type = 'default' as COLOR_TYPES, active, ...props }: React.PropsWithChildren<QuickActionProps>,
+    { children, space = 0.625, tooltip, className, type = 'default' as UIColorTypes, active, ...props }: React.PropsWithChildren<QuickActionProps>,
     ref: React.Ref<HTMLAnchorElement>,
   ) => {
     const { SCALER, RESPONSIVE, SCALE_CLASSES } = useScale();

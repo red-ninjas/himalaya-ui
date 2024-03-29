@@ -1,6 +1,5 @@
 'use client';
 import React from 'react';
-import useTheme from '../use-theme';
 
 interface Props {
   opacity?: number;
@@ -9,7 +8,6 @@ interface Props {
 export type ImageSkeletonProps = Props;
 
 const ImageSkeleton: React.FC<ImageSkeletonProps> = React.memo(({ opacity = 0.5, ...props }: ImageSkeletonProps) => {
-  const theme = useTheme();
   return (
     <div className="skeleton" {...props}>
       <style jsx>{`

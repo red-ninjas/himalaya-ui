@@ -2,12 +2,11 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';
-import { COLOR_TYPES } from '../utils/prop-types';
 import useWarning from '../utils/use-warning';
 import { useCheckbox } from './checkbox-context';
 import CheckboxIcon from './checkbox.icon';
+import { UIColorTypes } from '../themes/presets';
 
-export type CheckboxTypes = COLOR_TYPES;
 export interface CheckboxEventTarget {
   checked: boolean;
 }
@@ -21,7 +20,7 @@ export interface CheckboxEvent {
 interface Props {
   checked?: boolean;
   disabled?: boolean;
-  type?: CheckboxTypes;
+  type?: UIColorTypes;
   initialChecked?: boolean;
   onChange?: (e: CheckboxEvent) => void;
   className?: string;
@@ -38,7 +37,7 @@ const CheckboxComponent: React.FC<CheckboxProps> = ({
   onChange,
   className = '',
   children,
-  type = 'default' as CheckboxTypes,
+  type = 'default' as UIColorTypes,
   value = '',
   ...props
 }: CheckboxProps) => {

@@ -5,18 +5,19 @@ import CssTransition from '../shared/css-transition';
 import useClasses from '../use-classes';
 import useScale from '../use-scale';
 import useTheme from '../use-theme';
-import { COLOR_TYPES, Placement } from '../utils/prop-types';
+import { Placement } from '../utils/prop-types';
 import useClickAnyWhere from '../utils/use-click-anywhere';
 import usePortal from '../utils/use-portal';
 import useResize from '../utils/use-resize';
 import { getRect } from './helper';
 import { TooltipPosition, defaultTooltipPosition, getPosition } from './placement';
 import TooltipIcon from './tooltip-icon';
+import { UIColorTypes } from '../themes/presets';
 
 interface Props {
   parent?: MutableRefObject<HTMLElement | null> | undefined;
   placement: Placement;
-  type: COLOR_TYPES;
+  type?: UIColorTypes;
   visible: boolean;
   hideArrow: boolean;
   offset: number;
@@ -28,7 +29,17 @@ export type TooltipIconOffset = {
   y: string;
 };
 
-const TooltipContent: React.FC<React.PropsWithChildren<Props>> = ({ children, parent, visible, offset, iconOffset, placement, type, className, hideArrow }) => {
+const TooltipContent: React.FC<React.PropsWithChildren<Props>> = ({
+  children,
+  parent,
+  visible,
+  offset,
+  iconOffset,
+  placement,
+  type = 'default',
+  className,
+  hideArrow,
+}) => {
   const theme = useTheme();
   const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
   const el = usePortal('tooltip');

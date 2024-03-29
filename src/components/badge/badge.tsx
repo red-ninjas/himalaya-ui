@@ -1,15 +1,12 @@
 'use client';
 
-import { COLOR_TYPES } from 'components/utils/prop-types';
+import { UIColorTypes } from '../themes/presets';
 import React from 'react';
-import { UIThemesPalette } from '../themes/presets';
 import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';
 
-export type BadgeTypes = COLOR_TYPES;
-
 interface Props {
-  type?: BadgeTypes;
+  type?: UIColorTypes;
   dot?: boolean;
   className?: string;
 }
@@ -18,7 +15,7 @@ type NativeAttrs = Omit<React.HTMLAttributes<HTMLSpanElement>, keyof Props>;
 export type BadgeProps = Props & NativeAttrs;
 
 const BadgeComponent: React.FC<React.PropsWithChildren<BadgeProps>> = ({
-  type = 'default' as BadgeTypes,
+  type = 'default' as UIColorTypes,
   className = '',
   children,
   dot = false,

@@ -27,7 +27,6 @@ const useRefDimensions = (ref: React.RefObject<HTMLDivElement>) => {
     const resizeObserver = new ResizeObserver(() => {
       const boundingRect = ref?.current?.getBoundingClientRect();
       if (boundingRect != undefined) {
-        console.log(boundingRect);
         const { y } = boundingRect;
         setYCoodinate(y + 'px');
       }

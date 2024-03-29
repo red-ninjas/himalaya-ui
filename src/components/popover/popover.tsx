@@ -1,8 +1,9 @@
 'use client';
 import React, { useEffect, useMemo, useState } from 'react';
-import Tooltip, { TooltipOnVisibleChange, TooltipProps, TooltipTypes } from '../tooltip/tooltip';
+import { UIColorTypes } from '../themes/presets';
+import Tooltip, { TooltipOnVisibleChange, TooltipProps } from '../tooltip/tooltip';
 import useClasses from '../use-classes';
-import useScale, { withScale } from '../use-scale';
+import { withScale } from '../use-scale';
 import { getReactNode } from '../utils/collections';
 import { Placement, TriggerTypes } from '../utils/prop-types';
 import { PopoverConfig, PopoverContext } from './popover-context';
@@ -37,7 +38,7 @@ const PopoverComponent: React.FC<React.PropsWithChildren<PopoverProps>> = ({
   onVisibleChange = (() => {}) as TooltipOnVisibleChange,
   visible: customVisible,
   offset = 12,
-  type = 'default' as TooltipTypes,
+  type = 'default' as UIColorTypes,
   enterDelay = 100,
   leaveDelay = 150,
   ...props

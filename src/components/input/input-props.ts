@@ -1,12 +1,11 @@
 import React from 'react';
-import { COLOR_TYPES } from '../utils/prop-types';
+import { UIColorTypes } from '../themes/presets';
 
-export type InputTypes = COLOR_TYPES;
 export interface Props {
   value?: string;
   initialValue?: string;
   placeholder?: string;
-  type?: InputTypes;
+  type?: UIColorTypes;
   htmlType?: string;
   readOnly?: boolean;
   disabled?: boolean;

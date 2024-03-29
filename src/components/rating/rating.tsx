@@ -3,16 +3,16 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { StarFill } from '../icons';
 import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';
-import { COLOR_TYPES, tupleNumber } from '../utils/prop-types';
+import { tupleNumber } from '../utils/prop-types';
+import { UIColorTypes } from '../themes/presets';
 
-export type RatingTypes = COLOR_TYPES;
 const ratingCountTuple = tupleNumber(2, 3, 4, 5, 6, 7, 8, 9, 10);
 const ratingValueTuple = tupleNumber(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
 export type RatingValue = (typeof ratingValueTuple)[number];
 export type RatingCount = (typeof ratingCountTuple)[number];
 
 interface Props {
-  type?: RatingTypes;
+  type?: UIColorTypes;
   className?: string;
   icon?: JSX.Element;
   count?: RatingCount | number;
@@ -27,7 +27,7 @@ type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
 export type RatingProps = Props & NativeAttrs;
 
 const RatingComponent: React.FC<RatingProps> = ({
-  type = 'default' as RatingTypes,
+  type = 'default' as UIColorTypes,
   className = '',
   icon = <StarFill />,
   count = 5 as RatingCount,

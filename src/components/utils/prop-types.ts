@@ -1,4 +1,4 @@
-import { UIColorKeys } from 'components/themes/presets';
+import { UIColorTypes } from '../themes/presets';
 
 export const tuple = <T extends string[]>(...args: T) => args;
 
@@ -17,7 +17,7 @@ const placement = tuple('top', 'topStart', 'topEnd', 'left', 'leftStart', 'leftE
 
 const dividerAlign = tuple('start', 'center', 'end', 'left', 'right');
 
-export type ButtonTypes = COLOR_TYPES | 'abort';
+export type ButtonTypes = UIColorTypes | 'abort';
 
 export type NormalTypes = (typeof normalTypes)[number];
 
@@ -32,5 +32,3 @@ export type TriggerTypes = (typeof triggerTypes)[number];
 export type Placement = (typeof placement)[number];
 
 export type DividerAlign = (typeof dividerAlign)[number];
-
-export type COLOR_TYPES = UIColorKeys | 'default' | 'dark';

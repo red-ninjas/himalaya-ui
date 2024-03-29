@@ -2,6 +2,7 @@
   "name": "@himalaya-ui/core",
   "version": "1.14.1",
   "main": "dist/bundle/index.js",
+  "exports": "./dist/bundle/index.js",
   "module": "dist/bundle/index.js",
   "types": "dist/bundle/index.d.ts",
   "files": [
@@ -16,10 +17,11 @@
     "access": "public"
   },
   "scripts": {
+    "typedoc": "typedoc --tsconfig src/tsconfig.typedoc.json",
     "dev": "npm run docs:collect && next dev ./src",
     "docs:start": "next start src",
     "docs:collect": "node scripts/collect-meta.mjs",
-    "docs:build": "npm run docs:collect && cross-env NODE_ENV=production next build ./src && npm run docs:sitemap",
+    "docs:build": "npm run typedoc && npm run docs:collect && cross-env NODE_ENV=production next build ./src && npm run docs:sitemap",
     "docs:sitemap": "node scripts/sitemap.js",
     "prettier": "prettier --write src",
     "lint": "next lint ./src",
@@ -54,6 +56,7 @@
     "react ui"
   ],
   "sideEffects": false,
+  "type": "module",
   "devDependencies": {
     "@babel/cli": "^7.23.0",
     "@babel/core": "^7.23.0",
@@ -157,6 +160,8 @@
     "tslint": "^6.1.3",
     "tslint-to-eslint-config": "^2.14.1",
     "ttsc": "^0.3.1",
+    "typedoc": "^0.25.12",
+    "typedoc-json-parser": "8.2.0",
     "typescript": "^5.2.2",
     "typescript-transform-paths": "^3.4.6",
     "usehooks-ts": "^2.9.1",

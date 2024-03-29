@@ -1,3 +1,4 @@
+'use client';
 import axios from 'axios';
 import { PageWidth, CountUp, FadeInEffect, Grid, Hero, Text, useTheme } from 'components';
 import useVisible from 'components/utils/use-visibile';
