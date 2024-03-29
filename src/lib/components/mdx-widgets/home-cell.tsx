@@ -1,6 +1,6 @@
 'use client';
 
-import { Link, Text, useTheme } from 'components';
+import { Link, Text } from 'components';
 import NextLink from 'next/link';
 import React from 'react';
 
@@ -12,7 +12,6 @@ export type HomeCellProps = {
 };
 
 const HomeCell: React.FC<HomeCellProps> = ({ url, title, desc, icon }) => {
-  const theme = useTheme();
   return (
     <NextLink href={url} passHref legacyBehavior>
       <Link style={{ width: '100%', height: '100%' }}>

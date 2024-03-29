@@ -2,7 +2,6 @@ import { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
 import { LineType, UTCTimestamp } from '../use-charts';
 import { ISeriesApi } from '../use-charts/api/iseries-api';
 import { LineSeriesPartialOptions } from '../use-charts/model/series-options';
-import useTheme from '../use-theme';
 import { useChart } from './chart-context';
 import { ChartLineProp, ChartPriceFormatter, ThemedChartDataRecord } from './shared';
 
@@ -22,9 +21,7 @@ const ChartLine = forwardRef(
     }: ChartLineProp,
     ref,
   ) => {
-    const theme = useTheme();
     const { chart } = useChart();
-
     const [serie, setSerie] = useState<ISeriesApi<'Line'>>();
 
     useImperativeHandle(ref, () => ({
@@ -47,7 +44,8 @@ const ChartLine = forwardRef(
     }));
 
     const getPropertes = (): LineSeriesPartialOptions => {
-      const currentColor = color ? color : theme.palette.primary.hex_1000;
+      const currentColor = color ? color : `var(--color-primary-1000)`;
+
       return {
         title: showTitle ? title : undefined,
         visible: visible,

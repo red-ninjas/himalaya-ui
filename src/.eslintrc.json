@@ -21,7 +21,7 @@
     "project": "./src/tsconfig.json",
     "sourceType": "module",
     "ecmaFeatures": {
-      "jsx": "true"
+      "jsx": true
     }
   },
   "ignorePatterns": [

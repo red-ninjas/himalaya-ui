@@ -1,6 +1,6 @@
 'use client';
 
-import { Button, FadeInEffect, Footer, FooterBottom, FooterNavigation, Hero, Link, Section, Text, useTheme } from 'components';
+import { Button, FadeInEffect, Footer, FooterNavigation, Hero, Link, Section, Text, useTheme } from 'components';
 import { Code } from 'components/icons';
 import { capitalize } from 'components/utils/collections';
 import { Facts, Partners, Portfolio, RunningSlogan, Services } from 'lib/components';
@@ -76,7 +76,7 @@ export default function Index() {
           </div>
         </Footer.Bottom.Block>
         <Footer.Bottom.Block justify="flex-end">
-          <Text span font={'12px'} style={{ color: theme.palette.foreground.hex_700 }}>
+          <Text span font={'12px'} style={{ color: 'var(--color-foreground-700)' }}>
             With support of{' '}
             <Link color href="https://redninjas.dev" target="_blank">
               RedNinjas LTD

@@ -1,64 +1,51 @@
 'use client';
-import React, { useMemo } from 'react';
+import React from 'react';
 import useScale, { withScale } from '../use-scale';
-import useTheme from '../use-theme';
+import useClasses from '../use-classes';
 
 interface Props {
   block?: boolean;
-  className?: string;
   name?: string;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLPreElement>, keyof Props>;
 export type CodeProps = Props & NativeAttrs;
 
 const CodeComponent: React.FC<React.PropsWithChildren<CodeProps>> = ({
   children,
   block = false,
-  className = '',
+  className,
   name = '',
   ...props
 }: React.PropsWithChildren<CodeProps>) => {
-  const { SCALES } = useScale();
-  const theme = useTheme();
-  const { background, border } = useMemo(() => {
-    return {
-      border: 'var(--color-border-1000)',
-      background: 'var(--color-background-1000)',
-    };
-  }, [theme.palette]);
+  const { SCALER, RESPONSIVE, SCALE_CLASSES } = useScale();
 
   if (!block) return <code {...props}>{children}</code>;
 
   return (
-    <div className="pre">
+    <div className={useClasses('pre', SCALE_CLASSES)}>
       {name && (
         <header>
           <div className="name">{name}</div>
         </header>
       )}
-      <pre className={className} {...props}>
+      <pre className={useClasses('pre-container', className)} {...props}>
         {children}
       </pre>
       <style jsx>{`
         .pre {
           max-width: 100%;
-          border: 1px solid ${border};
-          font-size: ${SCALES.font(0.925)};
-          width: ${SCALES.w(1, 'initial')};
-          height: ${SCALES.h(1, 'auto')};
-          margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
-          border-radius: ${SCALES.r(1, `var(--layout-radius)`)};
-          background-color: ${background};
+          border: 1px solid var(--color-border-1000);
+          background-color: var(--color-background-1000);
           position: relative;
+          border-radius: var(--code-border-radius);
         }
-        pre {
+        .pre-container {
           max-width: 100%;
           font-size: inherit;
           border: none;
           margin: 0;
           line-height: 1.5em;
-          padding: ${SCALES.pt(1.1)} ${SCALES.pr(1)} ${SCALES.pb(1.1)} ${SCALES.pl(1)};
           position: relative;
         }
         .hex_1200 {
@@ -73,7 +60,7 @@ const CodeComponent: React.FC<React.PropsWithChildren<CodeProps>> = ({
           width: 100%;
           display: flex;
           justify-content: space-between;
-          border-radius: ${SCALES.r(1, `var(--layout-radius)`)};
+          border-radius: var(--code-border-radius);
           background-color: transparent;
 
           z-index: 2;
@@ -87,13 +74,45 @@ const CodeComponent: React.FC<React.PropsWithChildren<CodeProps>> = ({
           display: inline-block;
           align-items: center;
           text-align: center;
-          font-size: ${SCALES.font(0.8125)};
-          padding: ${SCALES.font(0.32)} ${SCALES.font(0.5)} ${SCALES.font(0.32)} ${SCALES.font(0.5)};
           width: 100%;
 
-          border-top-left-radius: var(--layout-radius);
-          border-top-right-radius: var(--layout-radius);
+          border-top-left-radius: var(--code-border-radius);
+          border-top-right-radius: var(--code-border-radius);
         }
+
+        ${RESPONSIVE.padding(
+          {
+            top: 0.32,
+            right: 0.5,
+            left: 0.5,
+            bottom: 0.32,
+          },
+          value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
+          undefined,
+          'name',
+        )}
+
+        ${RESPONSIVE.padding(
+          {
+            top: 1.1,
+            right: 1,
+            left: 1.1,
+            bottom: 1,
+          },
+          value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
+          undefined,
+          'pre-container',
+        )}
+
+
+        ${RESPONSIVE.r(1, value => `--code-border-radius: ${value};`, 'var(--layout-radius)', 'pre')},
+        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'pre')}
+        ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'pre')}
+        ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto', 'pre')}
+        ${RESPONSIVE.font(0.925, value => `font-size: ${value};`, undefined, 'pre')}
+        ${RESPONSIVE.font(0.8125, value => `font-size: ${value};`, undefined, 'name')}
+
+        ${SCALER('pre')};
       `}</style>
     </div>
   );

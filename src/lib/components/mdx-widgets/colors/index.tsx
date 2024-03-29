@@ -28,27 +28,25 @@ const getColorItem = (type: string, palette: UIThemesPalette, copy: (text: strin
       style={{ color: getColor(palette.from), background: 'linear-gradient(to right, ' + palette.from + ' 0% , ' + palette.to + ') 100%' }}
     >
       <Grid.Container justify="space-between" style={{ height: '4.5rem' }}>
-        <Grid.Container alignItems="center" sm={8} xs={16}>
-          <span className="usage" onClick={() => copy(`theme.palette.${name}.from`)}>
-            theme.palette.{name}.from
-          </span>
-
-          <span className="usage" onClick={() => copy(`theme.palette.${name}.to`)}>
-            theme.palette.{name}.to
-          </span>
-        </Grid.Container>
-
-        <Grid.Container alignItems="center" justify="flex-end" sm={8} xs>
+        <Grid xs>
           <div className="values">
-            <span className="value" onClick={() => copy((palette as Gradient).from)}>
-              {(palette as Gradient).from}
-            </span>
-
-            <span className="value" onClick={() => copy((palette as Gradient).to)}>
-              {(palette as Gradient).to}
+            <span className="usage" onClick={() => copy(`--${name.replace('_', '-')}-from`)}>
+              <Tooltip style={{ width: '100%' }} text={`--${name.replace('_', '-')}-from`}>
+                {(palette as Gradient).from}
+              </Tooltip>
             </span>
           </div>
-        </Grid.Container>
+        </Grid>
+
+        <Grid xs>
+          <div className="values">
+            <span className="usage" onClick={() => copy(`--${name.replace('_', '-')}-to`)}>
+              <Tooltip style={{ width: '100%' }} text={`--${name.replace('_', '-')}-to`}>
+                {(palette as Gradient).to}
+              </Tooltip>
+            </span>
+          </div>
+        </Grid>
       </Grid.Container>
     </div>
   );

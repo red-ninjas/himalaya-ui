@@ -220,7 +220,7 @@ const ButtonComponent = React.forwardRef<HTMLButtonElement, React.PropsWithChild
             auto,
             'btn',
             layoutRoot.breakpoints,
-            value => `min-width: ${value ? 'min-content' : `--ui-button-min-width`}; width: ${value ? 'auto' : 'initial'};`,
+            value => `min-width: ${value ? 'min-content' : `var(--ui-button-min-width)`}; width: ${value ? 'auto' : 'initial'};`,
           )}
 
           ${RESPONSIVE.padding(
