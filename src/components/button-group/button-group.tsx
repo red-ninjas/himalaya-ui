@@ -11,15 +11,14 @@ interface Props {
   vertical?: boolean;
   ghost?: boolean;
   type?: ButtonTypes;
-  className?: string;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
 export type ButtonGroupProps = Props & NativeAttrs;
 
 const ButtonGroupComponent: React.FC<React.PropsWithChildren<ButtonGroupProps>> = (groupProps: ButtonGroupProps) => {
-  const { SCALES, RESPONSIVE } = useScale();
-  const { disabled = false, type = 'default' as ButtonTypes, ghost = false, vertical = false, children, className = '', ...props } = groupProps;
+  const { SCALER, RESPONSIVE, SCALE_CLASSES } = useScale();
+  const { disabled = false, type = 'default' as ButtonTypes, ghost = false, vertical = false, children, className, ...props } = groupProps;
   const initialValue = useMemo<ButtonGroupConfig>(
     () => ({
       disabled,
@@ -38,6 +37,7 @@ const ButtonGroupComponent: React.FC<React.PropsWithChildren<ButtonGroupProps>> 
     },
     className,
     type ? 'color-' + type : null,
+    SCALE_CLASSES,
   );
 
   return (
@@ -47,7 +47,6 @@ const ButtonGroupComponent: React.FC<React.PropsWithChildren<ButtonGroupProps>> 
         <style jsx>{`
           .btn-group {
             display: inline-flex;
-            border-radius: ${SCALES.r(1, `var(--layout-radius)`)};
             border: 1px solid var(--color-border);
             background-color: transparent;
             overflow: hidden;
@@ -85,6 +84,9 @@ const ButtonGroupComponent: React.FC<React.PropsWithChildren<ButtonGroupProps>> 
           ${RESPONSIVE.margin(0.313, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'btn-group')}
           ${RESPONSIVE.h(1, value => `height: ${value}; --ui-button-height: ${value};`, 'min-content', 'btn-group')}
           ${RESPONSIVE.w(1, value => `font-size: ${value}; --button-font-size: ${value};`, 'auto', 'btn-group')}
+          ${RESPONSIVE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'btn-group')}
+
+          ${SCALER('btn-group')}
         `}</style>
       </div>
     </ButtonGroupContext.Provider>
