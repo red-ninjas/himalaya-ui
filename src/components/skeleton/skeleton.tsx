@@ -20,8 +20,7 @@ export type SkeletonProps = Props & NativeAttrs;
 const SkeletonComponent: React.FC<React.PropsWithChildren<SkeletonProps>> = ({
   component = 'span' as keyof React.JSX.IntrinsicElements,
   children,
-  squared = false,
-  rounded = false,
+
   show = false,
   minHeight = 24,
   className = '',
@@ -29,9 +28,8 @@ const SkeletonComponent: React.FC<React.PropsWithChildren<SkeletonProps>> = ({
   ...props
 }: React.PropsWithChildren<SkeletonProps>) => {
   const Component = component;
-  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
-
-  const classes = useClasses('skeleton', { rounded, squared, show, stop: !animated, hasChildren: !!children }, className, SCALE_CLASSES);
+  const { SCALER, SCALE_CLASSES, RESPONSIVE } = useScale();
+  const classes = useClasses('skeleton', { show, stop: !animated, hasChildren: !!children }, className, SCALE_CLASSES);
 
   return (
     <Component className={classes} {...props}>
@@ -43,14 +41,15 @@ const SkeletonComponent: React.FC<React.PropsWithChildren<SkeletonProps>> = ({
           position: relative;
           overflow: hidden;
         }
+
         .skeleton,
         .skeleton:before {
           background-image: linear-gradient(
             270deg,
+            var(--color-background-900),
             var(--color-background-800),
-            var(--color-background-700),
-            var(--color-background-700),
-            var(--color-background-800)
+            var(--color-background-800),
+            var(--color-background-900)
           );
           background-size: 400% 100%;
           -webkit-animation: loading 8s ease-in-out infinite;
@@ -70,16 +69,14 @@ const SkeletonComponent: React.FC<React.PropsWithChildren<SkeletonProps>> = ({
         .skeleton.stop:before {
           -webkit-animation: none;
           animation: none;
-          background: var(--color-background-700);
+          background: var(--color-background-800);
         }
-        .skeleton.rounded,
-        .skeleton.rounded:before {
-          border-radius: 100%;
+
+        .skeleton,
+        .skeleton:before {
+          border-radius: var(--skeleton-radius);
         }
-        .skeleton.squared,
-        .skeleton.squared:before {
-          border-radius: 0;
-        }
+
         .skeleton.show,
         .skeleton.show:before {
           background: transparent;
@@ -103,10 +100,12 @@ const SkeletonComponent: React.FC<React.PropsWithChildren<SkeletonProps>> = ({
           }
         }
 
-        ${RESPONSIVE.w(1, value => `width: ${value};`, 'initial', 'skeleton')}
         ${RESPONSIVE.h(1, value => `height: ${value};`, 'initial', 'skeleton')}
-        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'skeleton')}
+        ${RESPONSIVE.w(1, value => `width: ${value};`, 'initial', 'skeleton')}
+        ${RESPONSIVE.r(1, value => `--skeleton-radius: ${value};`, 'var(--layout-radius)', 'skeleton')}
+
         ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'skeleton')}
+        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'skeleton')}
         ${SCALER('skeleton')}
       `}</style>
     </Component>
