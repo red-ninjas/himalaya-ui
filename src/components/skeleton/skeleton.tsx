@@ -3,7 +3,6 @@
 import React from 'react';
 import useClasses from '../use-classes';
 import { useScale, withScale } from '../use-scale';
-import useTheme from '../use-theme';
 
 interface Props {
   squared?: boolean;
@@ -30,23 +29,19 @@ const SkeletonComponent: React.FC<React.PropsWithChildren<SkeletonProps>> = ({
   ...props
 }: React.PropsWithChildren<SkeletonProps>) => {
   const Component = component;
-  const theme = useTheme();
-  const { SCALES } = useScale();
-  const classes = useClasses('skeleton', { rounded, squared, show, stop: !animated, hasChildren: !!children }, className);
+  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
+
+  const classes = useClasses('skeleton', { rounded, squared, show, stop: !animated, hasChildren: !!children }, className, SCALE_CLASSES);
 
   return (
     <Component className={classes} {...props}>
       {children}
       <style jsx>{`
         .skeleton {
-          width: ${SCALES.w(1, 'initial')};
-          height: ${SCALES.h(1, 'initial')};
           display: block;
           min-height: ${minHeight}px;
           position: relative;
           overflow: hidden;
-          padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
-          margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
         }
         .skeleton,
         .skeleton:before {
@@ -107,6 +102,12 @@ const SkeletonComponent: React.FC<React.PropsWithChildren<SkeletonProps>> = ({
             background-position: -200% 0;
           }
         }
+
+        ${RESPONSIVE.w(1, value => `width: ${value};`, 'initial', 'skeleton')}
+        ${RESPONSIVE.h(1, value => `height: ${value};`, 'initial', 'skeleton')}
+        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'skeleton')}
+        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'skeleton')}
+        ${SCALER('skeleton')}
       `}</style>
     </Component>
   );

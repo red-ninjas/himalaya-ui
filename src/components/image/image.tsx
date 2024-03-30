@@ -1,6 +1,5 @@
 'use client';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import useTheme from '../use-theme';
 import ImageSkeleton from './image.skeleton';
 import { transformDataSource } from './helpers';
 import useScale, { withScale } from '../use-scale';
@@ -22,12 +21,12 @@ type NativeAttrs = Omit<
 export type ImageProps = Props & NativeAttrs;
 
 const ImageComponent: React.FC<ImageProps> = ({ src = '', disableSkeleton = false, className = '', maxDelay = 3000, alt = '', ...props }: ImageProps) => {
-  const { SCALES, getScaleProps } = useScale();
+  const { getScaleProps, SCALER, RESPONSIVE, SCALE_CLASSES } = useScale();
+
   const width = getScaleProps(['w']);
   const height = getScaleProps(['h']);
   const showAnimation = !disableSkeleton && width && height;
 
-  const theme = useTheme();
   const [loading, setLoading] = useState<boolean>(true);
   const [showSkeleton, setShowSkeleton] = useState<boolean>(true);
   const imageRef = useRef<HTMLImageElement>(null);
@@ -56,7 +55,7 @@ const ImageComponent: React.FC<ImageProps> = ({ src = '', disableSkeleton = fals
   }, [loading]);
 
   return (
-    <div className={useClasses('image', className)}>
+    <div className={useClasses('image', className, SCALE_CLASSES)}>
       {showSkeleton && showAnimation && <ImageSkeleton opacity={loading ? 0.5 : 0} />}
       <NextImage
         ref={imageRef}
@@ -74,14 +73,18 @@ const ImageComponent: React.FC<ImageProps> = ({ src = '', disableSkeleton = fals
         .image {
           line-height: 0;
           position: relative;
-          border-radius: ${SCALES.r(1, `var(--layout-radius)`)};
           overflow: hidden;
           max-width: 100%;
-          width: ${SCALES.w(1, 'auto')};
-          height: ${SCALES.h(1, 'auto')};
-          margin: ${SCALES.mt(0)} ${SCALES.mr(0, 'auto')} ${SCALES.mb(0)} ${SCALES.ml(0, 'auto')};
-          padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
         }
+
+        ${RESPONSIVE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'image')}
+        ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto', 'image')}
+        ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'image')}
+        ${RESPONSIVE.mx(0, value => `margin-left: ${value};margin-right: ${value}`, 'auto', 'image')}
+        ${RESPONSIVE.my(0, value => `margin-top: ${value};margin-bottom: ${value}`, undefined, 'image')}
+        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'image')}
+
+        ${SCALER('image')}
       `}</style>
     </div>
   );

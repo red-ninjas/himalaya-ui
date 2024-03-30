@@ -56,8 +56,8 @@ const AutoCompleteDropdown: React.FC<React.PropsWithChildren<AutoCompleteDropdow
             box-shadow: none;
           }
 
-          ${SCALER('auto-complete-dropdown')}
           ${RESPONSIVE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'auto-complete-dropdown')}
+          ${SCALER('auto-complete-dropdown')}
         `}</style>
       </div>
     </Dropdown>

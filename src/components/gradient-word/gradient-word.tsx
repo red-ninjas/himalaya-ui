@@ -1,6 +1,5 @@
 'use client';
 
-import useTheme from '../use-theme';
 import { PropsWithChildren } from 'react';
 import { Gradient } from '../themes/presets';
 
@@ -10,7 +9,6 @@ interface GradientWordProps {
 }
 
 const GradientWord: React.FC<PropsWithChildren<GradientWordProps>> = ({ children, gradient, animationTime = 8000 }: PropsWithChildren<GradientWordProps>) => {
-  const theme = useTheme();
   return (
     <div className="gradient">
       <span>{children}</span>
@@ -19,8 +17,8 @@ const GradientWord: React.FC<PropsWithChildren<GradientWordProps>> = ({ children
         {`
           .gradient {
             --degrees: ${gradient?.degrees ?? '90deg'};
-            --start-color: ${gradient?.from || theme.palette.gradient_1.from};
-            --end-color: ${gradient?.to || theme.palette.gradient_1.to};
+            --start-color: ${gradient?.from || `var(--gradient-1-from)`};
+            --end-color: ${gradient?.to || `var(--gradient-1-to)`};
             position: relative;
             display: inline-block;
             --bg-size: 400%;

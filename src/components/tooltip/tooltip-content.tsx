@@ -136,12 +136,7 @@ const TooltipContent: React.FC<React.PropsWithChildren<Props>> = ({
           )}
 
           ${RESPONSIVE.padding(
-            {
-              top: 0.9,
-              bottom: 0.9,
-              right: 0,
-              left: 0,
-            },
+            0,
             value => `--tooltip-popover-padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
             undefined,
             'tooltip-content',

@@ -1,19 +1,17 @@
 'use client';
 
-import React, { useMemo } from 'react';
-import useTheme from '../use-theme';
-import { SnippetTypes } from '../utils/prop-types';
-import { UIThemesPalette } from '../themes/presets';
+import React from 'react';
+import { UIColorTypes } from '../themes/presets';
 import useScale, { withScale } from '../use-scale';
+import useClasses from '../use-classes';
 
-export type TagTypes = SnippetTypes;
 interface Props {
-  type?: TagTypes;
-  invert?: boolean;
+  type?: UIColorTypes;
+  filled?: boolean;
   className?: string;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
 export type TagProps = Props & NativeAttrs;
 
 export type TagColors = {
@@ -22,80 +20,59 @@ export type TagColors = {
   borderColor: string;
 };
 
-const getColors = (type: TagTypes, palette: UIThemesPalette, invert: boolean) => {
-  const colors: {
-    [key in TagTypes]: Pick<TagColors, 'color'> & Partial<TagColors>;
-  } = {
-    tertiary: {
-      color: palette.tertiary.hex_1000,
-    },
-    primary: {
-      color: palette.primary.hex_1000,
-    },
-    default: {
-      color: palette.foreground.hex_1000,
-    },
-    success: {
-      color: palette.success.hex_1000,
-    },
-    warning: {
-      color: palette.warning.hex_1000,
-    },
-    error: {
-      color: palette.error.hex_1000,
-    },
-    secondary: {
-      color: palette.secondary.hex_1000,
-    },
-    dark: {
-      color: palette.foreground.hex_1000,
-      bgColor: palette.background.hex_1000,
-    },
-    lite: {
-      color: palette.foreground.hex_1000,
-      bgColor: palette.background.hex_700,
-    },
-  };
-  const hideBorder = invert || type === 'lite';
-
-  const cardStyle = {
-    ...colors[type],
-    bgColor: colors[type].bgColor || palette.background.hex_1000,
-    borderColor: hideBorder ? 'transparent' : colors[type].color,
-  };
-
-  return !invert ? cardStyle : { ...cardStyle, color: cardStyle.bgColor, bgColor: cardStyle.color };
-};
-
 const TagComponent: React.FC<React.PropsWithChildren<TagProps>> = ({
-  type = 'default' as TagTypes,
+  type = 'default' as UIColorTypes,
   children,
   className = '',
-  invert = false,
+  filled = false,
   ...props
 }: React.PropsWithChildren<TagProps>) => {
-  const theme = useTheme();
-  const { SCALES } = useScale();
-  const { color, bgColor, borderColor } = useMemo(() => getColors(type, theme.palette, invert), [type, theme.palette, invert]);
+  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
+  const classes = useClasses('tag', className, type ? 'color-' + type : null, { filled }, SCALE_CLASSES);
 
   return (
-    <span className={className} {...props}>
+    <span className={classes} {...props}>
       {children}
       <style jsx>{`
-        span {
+        .tag {
+          --tag-bg: var(--color-background-1000);
+          --tag-color: var(--color-base);
+          --tag-border: var(--color-tint);
+
+          background-color: var(--tag-bg);
+          color: var(--tag-color);
           display: inline-block;
-          border: 1px solid ${borderColor};
-          background-color: ${bgColor};
-          color: ${color};
+          border: 1px solid var(--tag-border);
           box-sizing: border-box;
           line-height: 1em;
-          border-radius: ${SCALES.h(0.3125)};
-          font-size: ${SCALES.font(0.875)};
-          width: ${SCALES.w(1, 'auto')};
-          height: ${SCALES.h(1.75)};
-          padding: ${SCALES.pt(0.375)} ${SCALES.pr(0.375)} ${SCALES.pb(0.375)} ${SCALES.pl(0.375)};
-          margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
         }
+
+        .tag.color-default {
+          --tag-bg: var(--color-background-1000);
+          --tag-color: var(--color-foreground-800);
+          --tag-border: var(--color-border-1000);
+        }
+
+        .tag.color-default.filled {
+          --tag-bg: var(--color-background-900);
+          --tag-color: var(--color-foreground-800);
+          --tag-border: var(--color-background-900);
+        }
+
+        .tag.filled {
+          --tag-bg: var(--color-base);
+          --tag-color: var(--color-contrast);
+          --tag-border: var(--color-base);
+        }
+
+        ${RESPONSIVE.h(1.75, value => `height: ${value};`, undefined, 'tag')}
+        ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto', 'tag')}
+        ${RESPONSIVE.r(0.3125, value => `border-radius: ${value};`, 'var(--layout-radius)', 'tag')}
+        ${RESPONSIVE.font(0.875, value => `font-size: ${value};`, undefined, 'tag')}
+        ${RESPONSIVE.padding(0.375, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'tag')}
+        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'tag')}
+
+        ${SCALER('tag')}
       `}</style>
     </span>
   );

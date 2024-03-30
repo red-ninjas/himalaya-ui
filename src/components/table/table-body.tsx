@@ -1,11 +1,9 @@
 'use client';
 import React from 'react';
-import useTheme from '../use-theme';
 import TableCell from './table-cell';
 import { useTableContext } from './table-context';
 import { TableDataItemBase, TableOnCellClick, TableOnRowClick, TableRowClassNameHandler } from './table-types';
 import useClasses from '../use-classes';
-import useLayout from '../use-layout';
 
 interface Props<TableDataItem extends TableDataItemBase> {
   hover: boolean;
@@ -21,8 +19,6 @@ type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props<any>>;
 export type TableBodyProps<TableDataItem extends TableDataItemBase> = Props<TableDataItem> & NativeAttrs;
 
 const TableBody = <TableDataItem extends TableDataItemBase>({ data, hover, emptyText, onRow, onCell, rowClassName }: TableBodyProps<TableDataItem>) => {
-  const theme = useTheme();
-  const layout = useLayout();
   const { columns } = useTableContext<TableDataItem>();
   const rowClickHandler = (row: TableDataItem, index: number) => {
     onRow && onRow(row, index);

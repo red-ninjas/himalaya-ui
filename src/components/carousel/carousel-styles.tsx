@@ -1,15 +1,12 @@
 'use client';
 
 import React, { PropsWithChildren } from 'react';
-import useTheme from '../use-theme';
 
 const CarouseStyles: React.FC<
   PropsWithChildren<{
     arrowSize?: number;
   }>
 > = ({ children, arrowSize = 36 }) => {
-  const theme = useTheme();
-
   return (
     <div className="carousel-wrapper">
       {children}

@@ -3,16 +3,12 @@ import Popover from '../popover';
 import Link from 'next/link';
 import React, { PropsWithChildren } from 'react';
 import { INavigationItem } from '.';
-import useTheme from '../use-theme';
-import { addColorAlpha } from '../utils/color';
 
 export interface NavigationSubItemProps extends INavigationItem {
   onClick?: () => void;
 }
 
 const NavigationSubItem: React.FC<PropsWithChildren<NavigationSubItemProps>> = ({ url = '/', ...props }) => {
-  const theme = useTheme();
-
   const handleClick = (e: any) => {
     if (props.onClick) {
       e.preventDefault();
@@ -62,7 +58,8 @@ const NavigationSubItem: React.FC<PropsWithChildren<NavigationSubItemProps>> = (
           width: 100%;
         }
         .sub-item:hover {
-          background: ${addColorAlpha(theme.palette.background.hex_700, 0.5)};
+          background-color: rgba(var(--color-background-700-rgb), 0.5);
+
           border-radius: 5px;
         }
         .icon-with-title {
