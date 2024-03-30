@@ -11,7 +11,7 @@ interface Props {
   className?: string;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLSpanElement>, keyof Props>;
 export type TagProps = Props & NativeAttrs;
 
 export type TagColors = {

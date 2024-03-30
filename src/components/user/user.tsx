@@ -9,7 +9,6 @@ interface Props {
   name: ReactNode | string;
   src?: string;
   text?: string;
-  className?: string;
   altText?: string;
 }
 
@@ -21,7 +20,7 @@ const UserComponent: React.FC<React.PropsWithChildren<UserProps>> = ({
   text,
   name,
   children,
-  className = '',
+  className,
   altText,
   ...props
 }: React.PropsWithChildren<UserProps>) => {

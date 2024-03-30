@@ -59,7 +59,7 @@ const SliderComponent: React.FC<React.PropsWithChildren<SliderProps>> = ({
   ...props
 }: React.PropsWithChildren<SliderProps>) => {
   const theme = useTheme();
-  const { SCALES } = useScale();
+  const { RESPONSIVE, SCALE_CLASSES, SCALER } = useScale();
   const [value, setValue] = useState<number>(initialValue);
   const [, setSliderWidth, sideWidthRef] = useCurrentState<number>(0);
   const [, setLastDargOffset, lastDargOffsetRef] = useCurrentState<number>(0);
@@ -127,7 +127,7 @@ const SliderComponent: React.FC<React.PropsWithChildren<SliderProps>> = ({
   }, []);
 
   return (
-    <div className={useClasses('slider', className)} onClick={clickHandler} ref={sliderRef} {...props}>
+    <div className={useClasses('slider', className, SCALE_CLASSES)} onClick={clickHandler} ref={sliderRef} {...props}>
       <SliderDot disabled={disabled} ref={dotRef} isClick={isClick} left={currentRatio}>
         {hideValue || value}
       </SliderDot>
@@ -135,15 +135,17 @@ const SliderComponent: React.FC<React.PropsWithChildren<SliderProps>> = ({
       <style jsx>{`
         .slider {
           border-radius: 50px;
-          background-color: ${disabled ? theme.palette.background.hex_700 : bg};
+          background-color: ${disabled ? `var(--color-background-900)` : bg};
           position: relative;
           cursor: ${disabled ? 'not-allow' : 'pointer'};
-          --slider-font-size: ${SCALES.font(1)};
-          width: ${SCALES.w(1, '100%')};
-          height: ${SCALES.h(0.5)};
-          padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
-          margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
         }
+
+        ${RESPONSIVE.h(0.5, value => `height: ${value};`, undefined, 'slider')}
+        ${RESPONSIVE.w(0, value => `width: ${value};`, '100%', 'slider')}
+        ${RESPONSIVE.font(1, value => `--slider-font-size: ${value};`, undefined, 'slider')}
+        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'slider')}
+        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'slider')}
+        ${SCALER('slider')}
       `}</style>
     </div>
   );
