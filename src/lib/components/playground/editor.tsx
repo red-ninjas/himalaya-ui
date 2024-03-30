@@ -107,7 +107,7 @@ const Editor: React.FC<Props> = ({ code }) => {
           position: relative;
           box-sizing: border-box;
           white-space: pre;
-          font-family: ${theme.font.mono};
+          font-family: var(--theme-font-mono)
           color: var(--color-foreground-hex_1000);
           background-color: var(--color-background-1000);
           font-size: 1em;

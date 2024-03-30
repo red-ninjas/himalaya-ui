@@ -7,7 +7,6 @@ import NavigationItem from './item';
 import { NavigationContext } from './navigation-context';
 import { withScale } from '../use-scale';
 import useLayout from '../use-layout';
-import useTheme from '../use-theme';
 
 export interface NavigationProps {
   hoverHeightRatio?: number;
@@ -37,8 +36,6 @@ const NavigationComponent: React.FC<PropsWithChildren<NavigationPropsExternal>> 
   const [rect, setRect] = useState<ReactiveDomReact>(defaultRect);
   const [displayHighlight, setDisplayHighlight] = useState<boolean>(false);
 
-  const theme = useTheme();
-
   const ref = useRef<HTMLDivElement | null>(null);
   const tabItemMouseOverHandler = (event: ReactiveDomReact) => {
     if (rect?.rect != event.rect) {
@@ -59,7 +56,7 @@ const NavigationComponent: React.FC<PropsWithChildren<NavigationPropsExternal>> 
     <NavigationContext.Provider value={{ onMouseOver: tabItemMouseOverHandler }}>
       <div {...props} className="navigation" ref={ref} onMouseLeave={() => setDisplayHighlight(false)}>
         <Highlight
-          background={theme.palette.foreground.hex_1000}
+          background={'var(--color-foreground-1000)'}
           activeOpacity={1}
           hoverHeightRatio={hoverHeightRatio}
           hoverWidthRatio={hoverWidthRatio}

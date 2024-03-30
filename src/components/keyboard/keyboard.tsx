@@ -41,7 +41,7 @@ const KeyboardComponent: React.FC<React.PropsWithChildren<KeyboardProps>> = ({
           display: inline-block;
           color: var(--color-background-400);
           background-color: var(--color-background-800);
-          font-family: ${theme.font.sans};
+          font-family: var(--theme-font-sans);
           border-radius: ${SCALES.r(1, `var(--layout-radius)`)};
           border: 1px solid var(--color-background-700);
           font-size: ${SCALES.font(0.875)};

@@ -1,5 +1,5 @@
 import { Layout, Playground, Attributes } from 'lib/components'
-import { Spacer, Grid } from 'components'
+import { Spacer, Grid, Card } from 'components'
 
 export const meta = {
   title: 'Spacer',
@@ -12,19 +12,25 @@ Provide empty space.
 
 <Playground
   title="Vertical"
-  scope={{ Spacer, Grid }}
+  scope={{ Spacer, Grid, Card }}
   code={`
 <Grid.Container>
-  <Grid xs={24} style={{ background: '#444', borderRadius: '15px' }}>
-    <Spacer h={2}/>
+  <Grid xs={24}>
+    <Card shadow>
+      <Spacer h={2}/>
+    </Card>
   </Grid>
   <Spacer h={2}/>
-  <Grid xs={24} style={{ background: '#666', borderRadius: '15px' }}>
-    <Spacer h={3}/>
+  <Grid xs={24}>
+    <Card shadow>
+      <Spacer h={3}/>
+    </Card>
   </Grid>
   <Spacer h={3}/>
-  <Grid xs={24} style={{ background: '#999', borderRadius: '15px' }}>
-    <Spacer h={4}/>
+  <Grid xs={24}>
+    <Card shadow>
+      <Spacer h={4}/>
+    </Card>
   </Grid>
 </Grid.Container>
 `}
@@ -32,12 +38,14 @@ Provide empty space.
 
 <Playground
   title="Horizontal"
-  scope={{ Spacer, Grid }}
+  scope={{ Spacer, Grid, Card }}
   code={`
 <Grid.Container>
-  <Grid xs={4} style={{ background: '#444', borderRadius: '15px' }} />
-  <Spacer w={5}/>
-  <Grid xs={4} style={{ background: '#444', borderRadius: '15px' }} />
+  <Grid xs={4} />
+   <Card shadow>
+      <Spacer w={5}/>
+    </Card>
+  <Grid xs={4} />
 </Grid.Container>
 `}
 />

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import useScale, { withScale } from '../use-scale';
-
+import useClasses from '../use-classes';
 interface Props {
   inline?: boolean;
   className?: string;
@@ -11,19 +11,22 @@ interface Props {
 type NativeAttrs = Omit<React.HTMLAttributes<HTMLSpanElement>, keyof Props>;
 export type SpacerProps = Props & NativeAttrs;
 
-const SpacerComponent: React.FC<SpacerProps> = ({ inline = false, className = '', ...props }: SpacerProps) => {
-  const { SCALES } = useScale();
+const SpacerComponent: React.FC<SpacerProps> = ({ inline = false, className, ...props }: SpacerProps) => {
+  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
 
   return (
-    <span className={className} {...props}>
+    <span className={useClasses('spacer', className, SCALE_CLASSES)} {...props}>
       <style jsx>{`
-        span {
+        .spacer {
           display: ${inline ? 'inline-block' : 'block'};
-          width: ${SCALES.w(1)};
-          height: ${SCALES.h(1)};
-          padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
-          margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
         }
+
+        ${RESPONSIVE.w(1, value => `width: ${value};`, undefined, 'spacer')}
+        ${RESPONSIVE.h(1, value => `height: ${value};`, undefined, 'spacer')}
+        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'spacer')}
+        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'spacer')}
+
+        ${SCALER('spacer')}
       `}</style>
     </span>
   );

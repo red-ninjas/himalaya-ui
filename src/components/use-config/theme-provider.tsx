@@ -40,6 +40,14 @@ const ThemeProvider: React.FC<PropsWithChildren<Props>> = ({ children, themeType
     let colorClasses: string = ``;
     let vars: string = ``;
 
+    vars += `
+  --theme-font-sans: ${currentTheme.font.sans};
+  --theme-font-mono: ${currentTheme.font.mono};
+  --theme-font-prism: ${currentTheme.font.prism};
+  --theme-font-base-size: ${currentTheme.font.baseSize};
+  --theme-font-heading-factor: ${currentTheme.font.headingFactor};
+  --theme-font-line-height-base: ${currentTheme.font.baseLineHeight};
+`;
     for (const key of colorKeys) {
       const value = currentTheme.palette[key];
 
