@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import useTheme from '../use-theme';
 import useScale, { withScale } from '../use-scale';
 import useClasses from '../use-classes';
 
@@ -37,13 +36,13 @@ const AvatarGroupComponent: React.FC<React.PropsWithChildren<AvatarGroupProps>> 
           color: var(--color-background-200);
         }
 
-        ${SCALER('avatar-group')}
         ${RESPONSIVE.font(0.875, value => `font-size: ${value};`, undefined, 'count')}
         ${RESPONSIVE.w(1, value => `width: ${value};`, 'max-content', 'avatar-group')}
         ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'avatar-group')}
         ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'avatar-group')}
         ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'avatar-group')}
         ${RESPONSIVE.ml(-0.625, value => `--avatar-left: ${value};`, undefined, 'avatar-group')}
+        ${SCALER('avatar-group')}
       `}</style>
     </div>
   );

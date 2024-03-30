@@ -2,8 +2,8 @@
 
 import React, { ReactNode } from 'react';
 import Avatar from '../avatar';
+import useScale, { withScale } from '../use-scale';
 import useClasses from '../use-classes';
-import useScale, { ScaleResponsiveParameter, withScale } from '../use-scale';
 
 interface Props {
   name: ReactNode | string;
@@ -24,8 +24,9 @@ const UserComponent: React.FC<React.PropsWithChildren<UserProps>> = ({
   altText,
   ...props
 }: React.PropsWithChildren<UserProps>) => {
-  const { SCALE_CLASSES, RESPONSIVE, SCALER, getScaleProps } = useScale();
-  const scale = getScaleProps('scale') as number | undefined | ScaleResponsiveParameter<number>;
+  const { getScaleProps, RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
+
+  const scale = getScaleProps('scale') as number | undefined;
   return (
     <div className={useClasses('user', className, SCALE_CLASSES)} {...props}>
       <Avatar src={src} scale={scale} text={text} alt={altText} />
@@ -40,7 +41,6 @@ const UserComponent: React.FC<React.PropsWithChildren<UserProps>> = ({
           justify-content: center;
           align-items: center;
           max-width: 100%;
-          font-size: var(--user-font-size);
         }
 
         .names {
@@ -75,22 +75,21 @@ const UserComponent: React.FC<React.PropsWithChildren<UserProps>> = ({
           margin-bottom: 0;
         }
 
-        ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'user')}
+        ${RESPONSIVE.font(1, value => `font-size: ${value};`, undefined, 'user')}
         ${RESPONSIVE.w(1, value => `width: ${value};`, 'max-content', 'user')}
-
-        ${RESPONSIVE.font(1, value => `--user-font-size: ${value};`, undefined, 'user')}
-        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'user')}
+        ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'user')}
         ${RESPONSIVE.padding(
           {
             top: 0,
             right: 0.5,
-            bottom: 0,
             left: 0.5,
+            bottom: 0,
           },
           value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
           undefined,
           'user',
         )}
+        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'user')}
         ${SCALER('user')}
       `}</style>
     </div>

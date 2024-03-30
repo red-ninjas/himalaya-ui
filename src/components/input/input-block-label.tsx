@@ -1,12 +1,9 @@
 'use client';
 import React from 'react';
-import useTheme from '../use-theme';
 
 export interface InputBlockLabelLabel {}
 
 const InputBlockLabelComponent: React.FC<React.PropsWithChildren<InputBlockLabelLabel>> = ({ children }) => {
-  const theme = useTheme();
-
   return (
     <label>
       {children}

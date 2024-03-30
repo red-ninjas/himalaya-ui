@@ -52,7 +52,7 @@ const BadgeComponent: React.FC<React.PropsWithChildren<BadgeProps>> = ({
         }
 
         ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'badge')}
-        ${RESPONSIVE.h(1, value => `width: ${value};`, 'auto', 'badge')}
+        ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto', 'badge')}
         ${RESPONSIVE.font(0.875, value => `font-size: ${value};`, undefined, 'badge')}
         ${RESPONSIVE.lineHeight(1, value => `line-height: ${value};`, undefined, 'badge')}
 

@@ -6,14 +6,12 @@ import Drawer from '../drawer';
 import { InnerScroll } from '../scroll';
 import { useMobileMenu } from '../use-mobile-menu/mobile-menu-context';
 import useScale, { withScale } from '../use-scale';
-import useTheme from '../use-theme';
 
 type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof MobileMenuProps>;
 export type MobileMenuPropsNative = MobileMenuProps & NativeAttrs;
 
 const MobileMenu: React.FC<PropsWithChildren<MobileMenuPropsNative>> = ({ children, direction = 'left', animationTime = 300, ...props }) => {
   const { SCALES } = useScale();
-  const theme = useTheme();
 
   const { isEnabled, setIsEnabled, setDirection } = useMobileMenu();
 
