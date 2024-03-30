@@ -20,9 +20,8 @@ const CssBaseline: React.FC = () => {
         padding: 0;
         min-height: 100%;
         position: relative;
-        font-family: ${theme.font.sans};
-        font-size: ${theme.font.baseSize + 'px'};
-
+        font-family: var(--theme-font-sans);
+        font-size: var(--theme-font-base-size) px;
         --ui-icon-background: var(--color-background-1000);
         --ui-icon-foreground: var(--color-foreground-1000);
       }
@@ -43,7 +42,7 @@ const CssBaseline: React.FC = () => {
       p,
       small {
         color: inherit;
-        font-family: ${theme.font.sans};
+        font-family: var(--theme-font-sans);
       }
 
       p {
@@ -186,7 +185,7 @@ const CssBaseline: React.FC = () => {
 
       code {
         color: var(--color-code-1000);
-        font-family: ${theme.font.mono};
+        font-family: var(--theme-font-mono);
         font-size: 0.9em;
         white-space: pre-wrap;
         font-weight: normal;
@@ -202,7 +201,7 @@ const CssBaseline: React.FC = () => {
         margin: var(--layout-gap) 0;
         border: 1px solid var(--color-border-1000);
         border-radius: var(--layout-radius);
-        font-family: ${theme.font.mono};
+        font-family: var(--theme-font-mono);
         white-space: pre;
         overflow: auto;
         line-height: 1.5;

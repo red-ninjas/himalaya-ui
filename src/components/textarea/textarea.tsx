@@ -137,7 +137,7 @@ const TextareaComponent = React.forwardRef<HTMLTextAreaElement, React.PropsWithC
             background-color: transparent;
             box-shadow: none;
             display: block;
-            font-family: ${theme.font.sans};
+            font-family: var(--theme-font-sans);
             font-size: var(--textarea-font-size);
             width: 100%;
             height: var(--textarea-height);
