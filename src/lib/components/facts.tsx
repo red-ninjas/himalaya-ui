@@ -1,12 +1,11 @@
 'use client';
 import axios from 'axios';
-import { PageWidth, CountUp, FadeInEffect, Grid, Hero, Text, useTheme } from 'components';
+import { CountUp, FadeInEffect, Grid, Hero, PageWidth, Text } from 'components';
 import useVisible from 'components/utils/use-visibile';
 import { GITHUB_CONTRIBUTORS_URL } from 'lib/constants';
 import { useEffect, useRef, useState } from 'react';
 
 export function FactItem({ amount = 0, title = '' }: { amount?: number; title: string }) {
-  const theme = useTheme();
   const [isPlaying, setIsPlaying] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const isVisible = useVisible(ref);
@@ -27,7 +26,7 @@ export function FactItem({ amount = 0, title = '' }: { amount?: number; title: s
           )}
         </CountUp>
 
-        <Text m={0} font={'21px'} style={{ color: theme.palette.background.hex_500 }}>
+        <Text m={0} font={'21px'} style={{ color: `var(--color-background-500)` }}>
           {title}
         </Text>
         <style jsx>{`
@@ -43,7 +42,6 @@ export function FactItem({ amount = 0, title = '' }: { amount?: number; title: s
 }
 
 export default function Facts() {
-  const theme = useTheme();
   const ref = useRef<HTMLDivElement>(null);
 
   const [repoStatistics, setRepoStatistics] = useState<Record<string, number>>({});
@@ -71,7 +69,7 @@ export default function Facts() {
       <FadeInEffect translateY="4rem">
         <div className="header" ref={ref}>
           <FadeInEffect translateY="4rem">
-            <Hero.Tag background={theme.palette.primary.hex_1000} textColor={theme.palette.primary.contrast}>
+            <Hero.Tag background={`var(--color-primary-1000)`} textColor={`var(--color-primary-contrast)`}>
               Our facts
             </Hero.Tag>
           </FadeInEffect>

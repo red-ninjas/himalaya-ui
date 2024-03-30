@@ -13,8 +13,7 @@ export interface Props {
 }
 
 const DynamicLive: React.FC<Props> = ({ code, scope }) => {
-  const theme = useTheme();
-  const codeTheme = makeCodeTheme(theme);
+  const codeTheme = makeCodeTheme();
 
   scope['useState'] = useState;
   scope['useRef'] = useRef;
@@ -43,9 +42,9 @@ const DynamicLive: React.FC<Props> = ({ code, scope }) => {
         .wrapper > :global(.live-error) {
           padding: 10px 12px 0 12px;
           margin-bottom: 0;
-          border: 2px ${theme.palette.error.hex_1000} dotted;
+          border: 2px var(--color-error-1000) dotted;
           border-radius: 10px;
-          color: ${theme.palette.error.hex_900};
+          color: var(--color-error-900);
           font-size: 13px;
         }
       `}</style>
