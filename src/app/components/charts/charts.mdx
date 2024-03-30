@@ -122,7 +122,7 @@ Charts creates interactive financial charts.
       const theme = useTheme();
       return (
           <Chart>
-            <Chart.Line color={'var(--color-primary-100)'} title="Test Line" data={[
+            <Chart.Line color='#0062d1' title="Test Line" data={[
               { value: 1, time: 1642425322 },
               { value: 8, time: 1642511722 },
               { value: 10, time: 1642598122 },
@@ -134,7 +134,7 @@ Charts creates interactive financial charts.
               { value: 56, time: 1643116522 },
               { value: 46, time: 1643202922 },
             ]} />
-            <Chart.Line color='var(--color-error-1000)' title="Test Line 2" data={[
+            <Chart.Line color='#da2f35' title="Test Line 2" data={[
               { value: 4, time: 1642425322 },
               { value: 17, time: 1642511722 },
               { value: 17, time: 1642598122 },
@@ -196,8 +196,8 @@ Charts creates interactive financial charts.
               <ToggleList.Item value="data">Data</ToggleList.Item>
             </ToggleList>
             <Chart viewMode={dataViewMode}>
-              <Chart.Line color='var(--color-primary-1000)' title={title} data={data} />
-              {enabled && <Chart.Line color='var(--color-error-1000)' title="Serie 2" data={data2} />}
+              <Chart.Line color='#0062d1' title={title} data={data} />
+              {enabled && <Chart.Line color='#da2f35' title="Serie 2" data={data2} />}
               <Chart.Legends/>
               <Chart.DataView/>
             </Chart>
