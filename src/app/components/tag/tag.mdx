@@ -40,20 +40,19 @@ Display a unique keyword, optionally as a part of a set.
 />
 
 <Playground
-  title="Filled"
-  desc="Filled color and background."
+  title="Without background"
   scope={{ Tag, Spacer }}
   code={`
 <>
-  <Tag type="default" filled={true}>Default</Tag>
+  <Tag type="default" filled={false}>Default</Tag>
   <Spacer h={.5} />
-  <Tag type="secondary" filled={true}>Secondary</Tag>
+  <Tag type="secondary" filled={false}>Secondary</Tag>
   <Spacer h={.5} />
-  <Tag type="success" filled={true}>Success</Tag>
+  <Tag type="success" filled={false}>Success</Tag>
   <Spacer h={.5} />
-  <Tag type="warning" filled={true}>Warning</Tag>
+  <Tag type="warning" filled={false}>Warning</Tag>
   <Spacer h={.5} />
-  <Tag type="error" filled={true}>Error</Tag>
+  <Tag type="error" filled={false}>Error</Tag>
 
 </>
 `}
@@ -65,7 +64,7 @@ Display a unique keyword, optionally as a part of a set.
 | Attribute  | Description                 | Type                  | Accepted values          | Default   |
 | ---------- | --------------------------- | --------------------- | ------------------------ | --------- |
 | **type**   | tag type                    | [TagTypes](#tagtypes) | -                        | `default` |
-| **filled** | filled color and background | `boolean`             | -                        | `false`   |
+| **filled** | filled color and background | `boolean`             | -                        | `true`   |
 | ...        | native props                | `HTMLAttributes`      | `'id', 'className', ...` | -         |
 
 <Attributes.Title>TagTypes</Attributes.Title>

@@ -18,7 +18,7 @@ const TagComponent: React.FC<React.PropsWithChildren<TagProps>> = ({
   type = 'default' as UIColorTypes,
   children,
   className = '',
-  filled = false,
+  filled = true,
   ...props
 }: React.PropsWithChildren<TagProps>) => {
   const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
@@ -42,15 +42,15 @@ const TagComponent: React.FC<React.PropsWithChildren<TagProps>> = ({
         }
 
         .tag.color-default {
-          --tag-bg: var(--color-background-1000);
-          --tag-color: var(--color-foreground-800);
-          --tag-border: var(--color-border-1000);
+          --tag-bg: var(--color-base);
+          --tag-color: var(--color-foreground-1000);
+          --tag-border: var(--color-contrast);
         }
 
         .tag.color-default.filled {
-          --tag-bg: var(--color-background-900);
-          --tag-color: var(--color-foreground-800);
-          --tag-border: var(--color-background-900);
+          --tag-bg: var(--color-contrast);
+          --tag-color: var(--color-base);
+          --tag-border: var(--color-contrast);
         }
 
         .tag.filled {
