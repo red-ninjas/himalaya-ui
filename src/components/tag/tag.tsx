@@ -1,15 +1,12 @@
 'use client';
 
-import React, { useMemo } from 'react';
-import useTheme from '../use-theme';
-import { SnippetTypes } from '../utils/prop-types';
-import { UIThemesPalette } from '../themes/presets';
+import useClasses from 'components/use-classes';
+import React from 'react';
+import { UIColorTypes } from '../themes/presets';
 import useScale, { withScale } from '../use-scale';
-import { useClasses } from 'components';
 
-export type TagTypes = SnippetTypes;
 interface Props {
-  type?: TagTypes;
+  type?: UIColorTypes;
   invert?: boolean;
 }
 
@@ -22,73 +19,42 @@ export type TagColors = {
   borderColor: string;
 };
 
-const getColors = (type: TagTypes, palette: UIThemesPalette, invert: boolean) => {
-  const colors: {
-    [key in TagTypes]: Pick<TagColors, 'color'> & Partial<TagColors>;
-  } = {
-    tertiary: {
-      color: palette.tertiary.hex_1000,
-    },
-    primary: {
-      color: palette.primary.hex_1000,
-    },
-    default: {
-      color: palette.foreground.hex_1000,
-    },
-    success: {
-      color: palette.success.hex_1000,
-    },
-    warning: {
-      color: palette.warning.hex_1000,
-    },
-    error: {
-      color: palette.error.hex_1000,
-    },
-    secondary: {
-      color: palette.secondary.hex_1000,
-    },
-    dark: {
-      color: palette.foreground.hex_1000,
-      bgColor: palette.background.hex_1000,
-    },
-    lite: {
-      color: palette.foreground.hex_1000,
-      bgColor: palette.background.hex_700,
-    },
-  };
-  const hideBorder = invert || type === 'lite';
-
-  const cardStyle = {
-    ...colors[type],
-    bgColor: colors[type].bgColor || palette.background.hex_1000,
-    borderColor: hideBorder ? 'transparent' : colors[type].color,
-  };
-
-  return !invert ? cardStyle : { ...cardStyle, color: cardStyle.bgColor, bgColor: cardStyle.color };
-};
-
 const TagComponent: React.FC<React.PropsWithChildren<TagProps>> = ({
-  type = 'default' as TagTypes,
+  type = 'default' as UIColorTypes,
   children,
   className,
-  invert = false,
+  invert = true,
   ...props
 }: React.PropsWithChildren<TagProps>) => {
-  const theme = useTheme();
   const { RESPONSIVE, SCALE_CLASSES, SCALER } = useScale();
-  const { color, bgColor, borderColor } = useMemo(() => getColors(type, theme.palette, invert), [type, theme.palette, invert]);
 
   return (
-    <span className={useClasses('tag', className, SCALE_CLASSES)} {...props}>
+    <span className={useClasses('tag', type ? 'color-' + type : null, { invert }, className, SCALE_CLASSES)} {...props}>
       {children}
       <style jsx>{`
         .tag {
+          --tag-border-color: var(--color-base);
+          --tag-background-color: var(--color-background-1000);
+          --tag-color: var(--color-base);
+
           display: inline-block;
-          border: 1px solid ${borderColor};
-          background-color: ${bgColor};
-          color: ${color};
+          border: 1px solid var(--tag-border-color);
+          background-color: var(--tag-background-color);
+          color: var(--tag-color);
           box-sizing: border-box;
           line-height: 1em;
+        }
+
+        .tag.color-default {
+          --color-base: var(--color-foreground-1000);
+          --color-border: var(--color-border-1000);
+          --color-contrast: var(--color-background-1000);
+        }
+
+        .tag.invert {
+          --tag-border-color: var(--color-border);
+          --tag-background-color: var(--color-base);
+          --tag-color: var(--color-contrast);
         }
 
         ${RESPONSIVE.h(1.75, value => `height: ${value};`, undefined, 'tag')}

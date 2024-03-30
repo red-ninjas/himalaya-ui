@@ -25,6 +25,8 @@ Display a unique keyword, optionally as a part of a set.
   scope={{ Tag, Spacer }}
   code={`
 <>
+  <Tag type="default">Success</Tag>
+  <Spacer h={.5} />
   <Tag type="success">Success</Tag>
   <Spacer h={.5} />
   <Tag type="warning">Warning</Tag>
@@ -33,26 +35,26 @@ Display a unique keyword, optionally as a part of a set.
   <Spacer h={.5} />
   <Tag type="secondary">Secondary</Tag>
   <Spacer h={.5} />
-  <Tag type="lite">Lite</Tag>
+  <Tag type="dark">Dark</Tag>
 </>
 `}
 />
 
 <Playground
-  title="Invert"
+  title="Without background"
   desc="Invert color and background."
   scope={{ Tag, Spacer }}
   code={`
 <>
-  <Tag type="default" invert>Default</Tag>
+  <Tag type="default" invert={false}>Default</Tag>
   <Spacer h={.5} />
-  <Tag type="success" invert>Success</Tag>
+  <Tag type="success" invert={false}>Success</Tag>
   <Spacer h={.5} />
-  <Tag type="warning" invert>Warning</Tag>
+  <Tag type="warning" invert={false}>Warning</Tag>
   <Spacer h={.5} />
-  <Tag type="error" invert>Error</Tag>
+  <Tag type="error" invert={false}>Error</Tag>
   <Spacer h={.5} />
-  <Tag type="secondary" invert>Secondary</Tag>
+  <Tag type="secondary" invert={false}>Secondary</Tag>
 </>
 `}
 />
@@ -78,7 +80,6 @@ type TagTypes =
   | 'warning'
   | 'error'
   | 'dark'
-  | 'lite'
 ```
 
 </Attributes>
