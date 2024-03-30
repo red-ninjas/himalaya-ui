@@ -112,8 +112,8 @@ const CarouselComponent: React.FC<React.PropsWithChildren<SplideProps>> = ({
       </div>
 
       <style jsx>{`
-        ${RESPONSIVE.h(1, value => `height: ${value};`, '100%', 'user')}
-        ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto', 'user')}
+        ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'splide')}
+        ${RESPONSIVE.w(1, value => `width: ${value};`, '100%', 'splide')}
 
         ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'splide')}
         ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'splide')}
