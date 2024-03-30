@@ -5,15 +5,15 @@ import useTheme from '../use-theme';
 import { SnippetTypes } from '../utils/prop-types';
 import { UIThemesPalette } from '../themes/presets';
 import useScale, { withScale } from '../use-scale';
+import { useClasses } from 'components';
 
 export type TagTypes = SnippetTypes;
 interface Props {
   type?: TagTypes;
   invert?: boolean;
-  className?: string;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLSpanElement>, keyof Props>;
 export type TagProps = Props & NativeAttrs;
 
 export type TagColors = {
@@ -70,32 +70,35 @@ const getColors = (type: TagTypes, palette: UIThemesPalette, invert: boolean) =>
 const TagComponent: React.FC<React.PropsWithChildren<TagProps>> = ({
   type = 'default' as TagTypes,
   children,
-  className = '',
+  className,
   invert = false,
   ...props
 }: React.PropsWithChildren<TagProps>) => {
   const theme = useTheme();
-  const { SCALES } = useScale();
+  const { RESPONSIVE, SCALE_CLASSES, SCALER } = useScale();
   const { color, bgColor, borderColor } = useMemo(() => getColors(type, theme.palette, invert), [type, theme.palette, invert]);
 
   return (
-    <span className={className} {...props}>
+    <span className={useClasses('tag', className, SCALE_CLASSES)} {...props}>
       {children}
       <style jsx>{`
-        span {
+        .tag {
           display: inline-block;
           border: 1px solid ${borderColor};
           background-color: ${bgColor};
           color: ${color};
           box-sizing: border-box;
           line-height: 1em;
-          border-radius: ${SCALES.h(0.3125)};
-          font-size: ${SCALES.font(0.875)};
-          width: ${SCALES.w(1, 'auto')};
-          height: ${SCALES.h(1.75)};
-          padding: ${SCALES.pt(0.375)} ${SCALES.pr(0.375)} ${SCALES.pb(0.375)} ${SCALES.pl(0.375)};
-          margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
         }
+
+        ${RESPONSIVE.h(1.75, value => `height: ${value};`, undefined, 'tag')}
+        ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto', 'tag')}
+        ${RESPONSIVE.font(0.875, value => `font-size: ${value};`, undefined, 'tag')}
+        ${RESPONSIVE.r(0.3125, value => `border-radius: ${value};`, 'var(--layout-radius)', `tag`)}
+
+        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'tag')}
+        ${RESPONSIVE.padding(0.375, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'tag')}
+        ${SCALER('tag')}
       `}</style>
     </span>
   );

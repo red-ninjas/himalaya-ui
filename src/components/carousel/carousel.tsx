@@ -1,9 +1,10 @@
 'use client';
 
-import { ArrowLeft, ArrowRight } from '../icons';
 import { Splide as SplideCore } from '@splidejs/splide';
+import { omit } from 'lodash';
 import React, { useEffect, useLayoutEffect } from 'react';
 import { SliderOptions, SplideProps } from '.';
+import { ArrowLeft, ArrowRight } from '../icons';
 import useScale, { withScale } from '../use-scale';
 import { pickChild } from '../utils/collections';
 import { CarouselItem } from './carousel-item';
@@ -11,14 +12,12 @@ import CarouseStyles from './carousel-styles';
 import { CarouselTrack } from './carousel-track';
 import { EVENTS } from './constants/events';
 import { classNames, merge } from './utils';
-import { omit } from 'lodash';
 
 const classOverride = {
   arrows: 'carousel_arrows',
   arrow: 'carousel_arrow',
   prev: 'carousel_arrow--prev',
   next: 'carousel_arrow--next',
-
   pagination: 'splide__pagination',
   page: 'splide__pagination_item',
 };
@@ -32,7 +31,7 @@ const CarouselComponent: React.FC<React.PropsWithChildren<SplideProps>> = ({
   arrowSize = 38,
   ...props
 }) => {
-  const { SCALES } = useScale();
+  const { SCALER, SCALE_CLASSES, RESPONSIVE } = useScale();
   const splideRef = React.createRef<HTMLDivElement>();
   const [, slides] = pickChild(children, CarouselItem);
   let splide: SplideCore | undefined = undefined;
@@ -97,7 +96,7 @@ const CarouselComponent: React.FC<React.PropsWithChildren<SplideProps>> = ({
 
   return (
     <CarouseStyles arrowSize={arrowSize}>
-      <div className={classNames('splide', className)} ref={splideRef} {...htmlOps}>
+      <div className={classNames('splide', className, SCALE_CLASSES)} ref={splideRef} {...htmlOps}>
         <div className="splide-inner">
           <CarouselTrack>{slides}</CarouselTrack>
           <div className="splide__arrows">
@@ -113,12 +112,12 @@ const CarouselComponent: React.FC<React.PropsWithChildren<SplideProps>> = ({
       </div>
 
       <style jsx>{`
-        .splide {
-          width: ${SCALES.w(1, '100%')};
-          height: ${SCALES.h(1, 'auto')};
-          padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
-          margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
-        }
+        ${RESPONSIVE.h(1, value => `height: ${value};`, '100%', 'user')}
+        ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto', 'user')}
+
+        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'splide')}
+        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'splide')}
+        ${SCALER('splide')}
       `}</style>
     </CarouseStyles>
   );
