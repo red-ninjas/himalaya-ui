@@ -147,11 +147,11 @@ The `Text` component allows you to display text with standardized typographic st
   code={`() => {
     const theme = useTheme();
     return (
-      <>
-        <Text font="1rem" mt={0} color={theme.palette.gradient_1}>Gradient 1</Text>
-        <Text font="2rem" gradientDegress={'bottom'} color={theme.palette.gradient_2}>Gradient 2 with Bottom Direction</Text>
-        <Text font="3rem" mt={0} mb={0} gradientDegress={140} color={theme.palette.gradient_3}>Gradient 3 with 140 Degress Direction</Text>
-      </>
+     <>
+      <Text font="1rem" mt={0} style={{ color: 'var(--gradient-1-from)' }}>Gradient 1</Text>
+      <Text font="2rem" gradientDegrees={'bottom'} style={{ color: 'var(--gradient-2-from)' }}>Gradient 2 with Bottom Direction</Text>
+      <Text font="3rem" mt={0} mb={0} gradientDegrees={140} style={{ color: 'var(--gradient-3-from)' }}>Gradient 3 with 140 Degrees Direction</Text>
+    </>
     )
 }
 `}

@@ -149,7 +149,6 @@ const ThemeProvider: React.FC<PropsWithChildren<Props>> = ({ children, themeType
       }
     }
 
-    console.log(vars);
     return [colorClasses, vars];
   }, [currentTheme]);
 

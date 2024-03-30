@@ -122,7 +122,7 @@ Charts creates interactive financial charts.
       const theme = useTheme();
       return (
           <Chart>
-            <Chart.Line color={theme.palette.primary.hex_1000} title="Test Line" data={[
+            <Chart.Line color={'var(--color-primary-100)'} title="Test Line" data={[
               { value: 1, time: 1642425322 },
               { value: 8, time: 1642511722 },
               { value: 10, time: 1642598122 },
@@ -134,7 +134,7 @@ Charts creates interactive financial charts.
               { value: 56, time: 1643116522 },
               { value: 46, time: 1643202922 },
             ]} />
-            <Chart.Line color={theme.palette.error.value} title="Test Line 2" data={[
+            <Chart.Line color='var(--color-error-1000)' title="Test Line 2" data={[
               { value: 4, time: 1642425322 },
               { value: 17, time: 1642511722 },
               { value: 17, time: 1642598122 },
@@ -196,8 +196,8 @@ Charts creates interactive financial charts.
               <ToggleList.Item value="data">Data</ToggleList.Item>
             </ToggleList>
             <Chart viewMode={dataViewMode}>
-              <Chart.Line color={theme.palette.primary.hex_1000} title={title} data={data} />
-              {enabled && <Chart.Line color={theme.palette.error.value} title="Serie 2" data={data2} />}
+              <Chart.Line color='var(--color-primary-1000)' title={title} data={data} />
+              {enabled && <Chart.Line color='var(--color-error-1000)' title="Serie 2" data={data2} />}
               <Chart.Legends/>
               <Chart.DataView/>
             </Chart>
@@ -252,7 +252,7 @@ Charts creates interactive financial charts.
 <Attributes.Title>Chart.Props</Attributes.Title>
 
 | Attribute           | Description       | Type                | Accepted values | Default |
-| ------------------- | ----------------- | ------------------- | --------------- | ------- | --- | --- |
+| ------------------- | ----------------- | ------------------- | --------------- | ------- |
 | **height**          | chart height      | `number`            | -               | -       |
 | **showTime**        | show time         | `boolean`           | -               | `false` |
 | **showBottomHover** | show bottom hover | `boolean`           | -               | `false` |
@@ -260,7 +260,7 @@ Charts creates interactive financial charts.
 | **showSeconds**     | show seconds      | `boolean`           | -               | `false` |
 | **timeFormatter**   | format time       | `TimeFormatterFn`   | -               | -       |
 | **tickFormatter**   | format tick       | `TickMarkFormatter` | -               | -       |
-| **hasSides**        | chart sides       | `'right'            | 'left'          | 'both'` | -   | -   |
+| **hasSides**        | chart sides       | `'right'            | 'left'          | 'both'` | 
 | **viewMode**        | chart view mode   | `ChartViewMode`     | -               | -       |
 
 <Attributes.Title>ChartSeriesProps</Attributes.Title>
@@ -280,3 +280,4 @@ type ChartSeriesProps = {
 ```
 
 </Attributes>
+
