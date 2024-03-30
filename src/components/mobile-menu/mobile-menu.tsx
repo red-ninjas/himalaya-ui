@@ -12,7 +12,6 @@ export type MobileMenuPropsNative = MobileMenuProps & NativeAttrs;
 
 const MobileMenu: React.FC<PropsWithChildren<MobileMenuPropsNative>> = ({ children, direction = 'left', animationTime = 300, ...props }) => {
   const { SCALES } = useScale();
-
   const { isEnabled, setIsEnabled, setDirection } = useMobileMenu();
 
   useEffect(() => {

@@ -28,12 +28,12 @@ const DrawerWrapper: React.FC<React.PropsWithChildren<DrawerWrapperProps>> = ({
   ...props
 }: React.PropsWithChildren<DrawerWrapperProps>) => {
   const theme = useTheme();
-  const { SCALES } = useScale();
+  const { RESPONSIVE, SCALE_CLASSES, SCALER } = useScale();
   const modalContent = useRef<HTMLDivElement>(null);
   const tabStart = useRef<HTMLDivElement>(null);
   const tabEnd = useRef<HTMLDivElement>(null);
   const transform = useMemo(() => getDrawerTransform(placement), [placement]);
-  const classes = useClasses('wrapper', placement, className);
+  const classes = useClasses('wrapper', placement, className, SCALE_CLASSES);
 
   useEffect(() => {
     if (!visible) return;
@@ -79,7 +79,6 @@ const DrawerWrapper: React.FC<React.PropsWithChildren<DrawerWrapperProps>> = ({
             box-sizing: border-box;
             background-color: var(--color-background-1000);
             color: var(--color-foreground-1000);
-            border-radius: ${SCALES.r(3, `var(--layout-radius)`)};
             box-shadow: ${theme.expressiveness.shadowLarge};
             opacity: 0;
             outline: none;
@@ -87,22 +86,10 @@ const DrawerWrapper: React.FC<React.PropsWithChildren<DrawerWrapperProps>> = ({
             transition:
               opacity,
               transform ${enterTime}ms cubic-bezier(0.1, 0.6, 0.1, 1);
-            font-size: ${SCALES.font(1)};
-            --modal-wrapper-padding-left: ${SCALES.pl(1.3125)};
-            --modal-wrapper-padding-right: ${SCALES.pr(1.3125)};
-            padding: ${SCALES.pt(1.3125)} var(--modal-wrapper-padding-right) ${SCALES.pb(1.3125)} var(--modal-wrapper-padding-left);
-            margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
+
+            border-radius: var(--drawer-radius);
           }
-          .top,
-          .bottom {
-            width: ${SCALES.w(1, '100%')};
-            height: ${SCALES.h(1, 'auto')};
-          }
-          .left,
-          .right {
-            width: ${SCALES.w(1, 'auto')};
-            height: ${SCALES.h(1, '100%')};
-          }
+
           .top {
             bottom: auto;
             border-top-left-radius: 0;
@@ -149,6 +136,32 @@ const DrawerWrapper: React.FC<React.PropsWithChildren<DrawerWrapperProps>> = ({
             height: 0;
             opacity: 0;
           }
+
+          ${RESPONSIVE.r(2, value => `--drawer-radius: ${value};`, undefined, 'wrapper')}
+          ${RESPONSIVE.font(1, value => `font-size: ${value};`, undefined, 'wrapper')}
+
+          ${RESPONSIVE.h(1, value => `--modal-height: ${value};`, 'auto', 'wrapper')}
+          ${RESPONSIVE.w(1, value => `--modal-width: ${value};`, '100%', 'wrapper')}
+
+          ${RESPONSIVE.padding(
+            1.3125,
+            value =>
+              `padding: ${value.top} ${value.right} ${value.bottom} ${value.left}; --modal-wrapper-padding-left: ${value.left}; --modal-wrapper-padding-right: ${value.right}; `,
+            undefined,
+            'wrapper',
+          )}
+          ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'wrapper')}
+
+          ${RESPONSIVE.w(1, value => `width: ${value};`, '100%', 'top')}
+          ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'top')}
+          ${RESPONSIVE.w(1, value => `width: ${value};`, '100%', 'bottom')}
+          ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'bottom')}
+
+          ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto', 'left')}
+          ${RESPONSIVE.h(1, value => `height: ${value};`, '100%', 'left')}
+          ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto', 'right')}
+          ${RESPONSIVE.h(1, value => `height: ${value};`, '100%', 'right')}
+          ${SCALER('wrapper')}
         `}</style>
       </div>
     </CssTransition>

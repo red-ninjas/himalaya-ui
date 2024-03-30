@@ -48,6 +48,7 @@ const ShowMore: React.FC<PropsWithChildren<ShowMoreProps>> = ({
   children,
   expanded,
   onClick,
+  className,
   showLines = true,
   showMoreTitle = 'Show more',
   showLessTitle = 'Show less',
@@ -68,7 +69,7 @@ const ShowMore: React.FC<PropsWithChildren<ShowMoreProps>> = ({
 
   return (
     <div
-      className={useClasses(`show-more`, expanded ? 'expanded' : 'collapsed', SCALE_CLASSES)}
+      className={useClasses(`show-more`, expanded ? 'expanded' : 'collapsed', className, SCALE_CLASSES)}
       {...props}
       onClick={() => {
         onClick();
