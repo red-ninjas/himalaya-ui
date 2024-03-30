@@ -13,12 +13,6 @@ interface Props {
 type NativeAttrs = Omit<React.HTMLAttributes<HTMLSpanElement>, keyof Props>;
 export type TagProps = Props & NativeAttrs;
 
-export type TagColors = {
-  color: string;
-  bgColor: string;
-  borderColor: string;
-};
-
 const TagComponent: React.FC<React.PropsWithChildren<TagProps>> = ({
   type = 'default' as UIColorTypes,
   children,

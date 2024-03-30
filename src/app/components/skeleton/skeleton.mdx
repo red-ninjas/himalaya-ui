@@ -38,7 +38,7 @@ Show a placeholder in place of content that is loading.
   title="Rounded skeleton."
   scope={{ Skeleton }}
   code={`
-<Skeleton rounded w={3} h={3} />
+<Skeleton r={'100%'} w={3} h={3} />
 `}
 />
 
@@ -46,7 +46,7 @@ Show a placeholder in place of content that is loading.
   title="Squared skeleton."
   scope={{ Skeleton }}
   code={`
-<Skeleton squared w={3} h={3} />
+<Skeleton r={0} w={3} h={3} />
 `}
 />
 
@@ -64,7 +64,6 @@ Show a placeholder in place of content that is loading.
 | Attribute   | Description              | Type             | Accepted values    | Default |
 | ----------- | ------------------------ | ---------------- | ------------------ | ------- |
 | **animated** | enable animation         | `boolean`        | -                  | `true`  |
-| **rounded** | show round skeleton      | `boolean`        | -                  | `false` |
 | **show**    | show children            | `boolean`        | -                  | `false` |
 | ...         | native props             | `HTMLAttributes` | `'className', ...` | -       |
 
