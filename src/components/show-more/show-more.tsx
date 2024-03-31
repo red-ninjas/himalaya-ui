@@ -4,7 +4,6 @@ import Button from '../button';
 import { ChevronDown } from '../icons';
 import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';
-import useTheme from '../use-theme';
 
 interface Props {
   expanded: boolean;
@@ -40,7 +39,7 @@ const useRefDimensions = (ref: React.RefObject<HTMLDivElement>) => {
   return height;
 };
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLElement>, keyof Props>;
 export type ShowMoreProps = Props & NativeAttrs;
 
 const ShowMore: React.FC<PropsWithChildren<ShowMoreProps>> = ({
@@ -52,9 +51,8 @@ const ShowMore: React.FC<PropsWithChildren<ShowMoreProps>> = ({
   showLessTitle = 'Show less',
   ...props
 }) => {
-  const theme = useTheme();
   const [iconRotated, setIconRotated] = useState(false);
-  const { SCALES, RESPONSIVE } = useScale();
+  const { SCALER, RESPONSIVE, SCALE_CLASSES } = useScale();
 
   const ref = React.createRef<HTMLDivElement>();
   const dimensions = useRefDimensions(ref);
@@ -67,7 +65,7 @@ const ShowMore: React.FC<PropsWithChildren<ShowMoreProps>> = ({
 
   return (
     <div
-      className={`show-more ${expanded ? 'expanded' : 'collapsed'}`}
+      className={useClasses(`show-more ${expanded ? 'expanded' : 'collapsed'}`, SCALE_CLASSES)}
       onClick={() => {
         onClick();
         toggleIconRotation();
@@ -118,7 +116,6 @@ const ShowMore: React.FC<PropsWithChildren<ShowMoreProps>> = ({
 
           .show-more-line {
             width: 100%;
-            height: ${SCALES.h(0.08)};
             background-color: var(--color-border-1000);
           }
 
@@ -129,9 +126,6 @@ const ShowMore: React.FC<PropsWithChildren<ShowMoreProps>> = ({
             width: 100%;
             display: block;
           }
-
-          ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`)}
-          ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`)}
         }
 
         .show-more :global(.chevon-icon) {
@@ -146,6 +140,11 @@ const ShowMore: React.FC<PropsWithChildren<ShowMoreProps>> = ({
             height: ${dimensions}px;
           }
         }
+        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'show-more')}
+        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'show-more')}
+        ${RESPONSIVE.h(0.08, value => `height: ${value};`, undefined, 'show-more-line')}
+
+        ${SCALER('show-more')}
       `}</style>
     </div>
   );
