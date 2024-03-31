@@ -33,10 +33,10 @@ const GaugeComponent: React.FC<GaugeProps> = ({
   size = 3.1,
   ...props
 }: GaugeProps) => {
-  const { SCALE_CLASSES, SCALER } = useScale();
+  const { CLASS_NAMES, UNIT } = useScale();
 
   const percentValue = useProportions(value, max);
-  const classes = useClasses('gauge', className, SCALE_CLASSES, type ? 'color-' + type : null);
+  const classes = useClasses('gauge', className, CLASS_NAMES, type ? 'color-' + type : null);
   const layout = useLayout();
   const radius = 24 / 2;
   const strokeWidth = radius / 7;
@@ -144,7 +144,7 @@ const GaugeComponent: React.FC<GaugeProps> = ({
         ${customResponsiveAttribute(size, 'gauge', layout.breakpoints, value =>
           !isCSSNumberValue(value) ? `--gauge-size: ${value};` : `--gauge-size: calc(var(--scale-unit-scale) * ${value});`,
         )}
-        ${SCALER('gauge')}
+        ${UNIT('gauge')}
       `}</style>
     </div>
   );

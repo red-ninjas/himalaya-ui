@@ -21,8 +21,8 @@ const DisplayComponent: React.FC<React.PropsWithChildren<DisplayProps>> = ({
   ...props
 }: React.PropsWithChildren<DisplayProps>) => {
   const theme = useTheme();
-  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
-  const classes = useClasses('display', className, SCALE_CLASSES);
+  const { SCALE, UNIT, CLASS_NAMES } = useScale();
+  const classes = useClasses('display', className, CLASS_NAMES);
 
   return (
     <div className={classes} {...props}>
@@ -64,14 +64,14 @@ const DisplayComponent: React.FC<React.PropsWithChildren<DisplayProps>> = ({
           max-width: 85%;
         }
 
-        ${RESPONSIVE.font(0.875, value => `width: ${value}; height: ${value};`, undefined, 'display')}
-        ${RESPONSIVE.w(1, value => `width: ${value};`, '100%', 'display')}
-        ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'display')}
-        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'display')}
-        ${RESPONSIVE.mx(1, value => `margin-left: ${value};margin-right: ${value}`, 'auto', 'display')}
-        ${RESPONSIVE.my(2.25, value => `margin-top: ${value};margin-bottom: ${value}`, undefined, 'display')}
-        ${RESPONSIVE.w(1, value => `width: ${value};`, 'max-content', 'content')}
-        ${SCALER('display')}
+        ${SCALE.font(0.875, value => `width: ${value}; height: ${value};`, undefined, 'display')}
+        ${SCALE.w(1, value => `width: ${value};`, '100%', 'display')}
+        ${SCALE.h(1, value => `height: ${value};`, 'auto', 'display')}
+        ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'display')}
+        ${SCALE.mx(1, value => `margin-left: ${value};margin-right: ${value}`, 'auto', 'display')}
+        ${SCALE.my(2.25, value => `margin-top: ${value};margin-bottom: ${value}`, undefined, 'display')}
+        ${SCALE.w(1, value => `width: ${value};`, 'max-content', 'content')}
+        ${UNIT('display')}
       `}</style>
     </div>
   );

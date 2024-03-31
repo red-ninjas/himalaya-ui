@@ -18,12 +18,12 @@ const CodeComponent: React.FC<React.PropsWithChildren<CodeProps>> = ({
   name = '',
   ...props
 }: React.PropsWithChildren<CodeProps>) => {
-  const { SCALER, RESPONSIVE, SCALE_CLASSES } = useScale();
+  const { UNIT, SCALE, CLASS_NAMES } = useScale();
 
   if (!block) return <code {...props}>{children}</code>;
 
   return (
-    <div className={useClasses('pre', SCALE_CLASSES)}>
+    <div className={useClasses('pre', CLASS_NAMES)}>
       {name && (
         <header>
           <div className="name">{name}</div>
@@ -80,7 +80,7 @@ const CodeComponent: React.FC<React.PropsWithChildren<CodeProps>> = ({
           border-top-right-radius: var(--code-border-radius);
         }
 
-        ${RESPONSIVE.padding(
+        ${SCALE.padding(
           {
             top: 0.32,
             right: 0.5,
@@ -92,7 +92,7 @@ const CodeComponent: React.FC<React.PropsWithChildren<CodeProps>> = ({
           'name',
         )}
 
-        ${RESPONSIVE.padding(
+        ${SCALE.padding(
           {
             top: 1.1,
             right: 1,
@@ -105,14 +105,14 @@ const CodeComponent: React.FC<React.PropsWithChildren<CodeProps>> = ({
         )}
 
 
-        ${RESPONSIVE.r(1, value => `--code-border-radius: ${value};`, 'var(--layout-radius)', 'pre')},
-        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'pre')}
-        ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'pre')}
-        ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto', 'pre')}
-        ${RESPONSIVE.font(0.925, value => `font-size: ${value};`, undefined, 'pre')}
-        ${RESPONSIVE.font(0.8125, value => `font-size: ${value};`, undefined, 'name')}
+        ${SCALE.r(1, value => `--code-border-radius: ${value};`, 'var(--layout-radius)', 'pre')},
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'pre')}
+        ${SCALE.h(1, value => `height: ${value};`, 'auto', 'pre')}
+        ${SCALE.w(1, value => `width: ${value};`, 'auto', 'pre')}
+        ${SCALE.font(0.925, value => `font-size: ${value};`, undefined, 'pre')}
+        ${SCALE.font(0.8125, value => `font-size: ${value};`, undefined, 'name')}
 
-        ${SCALER('pre')};
+        ${UNIT('pre')};
       `}</style>
     </div>
   );

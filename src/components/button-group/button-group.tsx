@@ -17,7 +17,7 @@ type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
 export type ButtonGroupProps = Props & NativeAttrs;
 
 const ButtonGroupComponent: React.FC<React.PropsWithChildren<ButtonGroupProps>> = (groupProps: ButtonGroupProps) => {
-  const { SCALER, RESPONSIVE, SCALE_CLASSES } = useScale();
+  const { UNIT, SCALE, CLASS_NAMES } = useScale();
   const { disabled = false, type = 'default' as ButtonTypes, ghost = false, vertical = false, children, className, ...props } = groupProps;
   const initialValue = useMemo<ButtonGroupConfig>(
     () => ({
@@ -37,7 +37,7 @@ const ButtonGroupComponent: React.FC<React.PropsWithChildren<ButtonGroupProps>> 
     },
     className,
     type ? 'color-' + type : null,
-    SCALE_CLASSES,
+    CLASS_NAMES,
   );
 
   return (
@@ -80,14 +80,14 @@ const ButtonGroupComponent: React.FC<React.PropsWithChildren<ButtonGroupProps>> 
             border-bottom-right-radius: 0;
           }
 
-          ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'btn-group')}
-          ${RESPONSIVE.margin(0.313, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'btn-group')}
-          ${RESPONSIVE.h(1, value => `height: ${value}; --ui-button-height: ${value};`, 'min-content', 'btn-group')}
-          ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto', 'btn-group')}
-          ${RESPONSIVE.font(1, value => `font-size: ${value}; --button-font-size: ${value};`, undefined, 'btn-group')}
-          ${RESPONSIVE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'btn-group')}
+          ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'btn-group')}
+          ${SCALE.margin(0.313, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'btn-group')}
+          ${SCALE.h(1, value => `height: ${value}; --ui-button-height: ${value};`, 'min-content', 'btn-group')}
+          ${SCALE.w(1, value => `width: ${value};`, 'auto', 'btn-group')}
+          ${SCALE.font(1, value => `font-size: ${value}; --button-font-size: ${value};`, undefined, 'btn-group')}
+          ${SCALE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'btn-group')}
 
-          ${SCALER('btn-group')}
+          ${UNIT('btn-group')}
         `}</style>
       </div>
     </ButtonGroupContext.Provider>

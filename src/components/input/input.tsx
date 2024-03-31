@@ -49,7 +49,7 @@ const InputComponent = React.forwardRef<HTMLInputElement, React.PropsWithChildre
     }: React.PropsWithChildren<InputProps>,
     ref: React.Ref<HTMLInputElement | null>,
   ) => {
-    const { SCALER, RESPONSIVE, SCALE_CLASSES } = useScale();
+    const { UNIT, SCALE, CLASS_NAMES } = useScale();
     const inputRef = useRef<HTMLInputElement>(null);
     useImperativeHandle(ref, () => inputRef.current);
 
@@ -110,7 +110,7 @@ const InputComponent = React.forwardRef<HTMLInputElement, React.PropsWithChildre
     };
 
     return (
-      <div className={useClasses('with-label', SCALE_CLASSES)}>
+      <div className={useClasses('with-label', CLASS_NAMES)}>
         {children && <InputBlockLabel>{children}</InputBlockLabel>}
         <div className={useClasses('input-container', className, type ? 'color-' + type : null)}>
           {label && <InputLabel>{label}</InputLabel>}
@@ -246,16 +246,16 @@ const InputComponent = React.forwardRef<HTMLInputElement, React.PropsWithChildre
           }
 
 
-          ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'with-label')}
-          ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'with-label')}
-          ${RESPONSIVE.w(1, value => `width: ${value};`, 'initial', 'with-label')}
-          ${RESPONSIVE.font(0.875, value => `font-size: ${value};`, undefined, 'with-label')}
-          ${RESPONSIVE.h(2.25, value => `--input-height: ${value};`, undefined, 'with-label')}
-          ${RESPONSIVE.font(0.875, value => `font-size: ${value};`, undefined, 'font')}
-          ${RESPONSIVE.w(1, value => `width: ${value};`, 'initial', 'input-container')}
-          ${RESPONSIVE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'input-wrapper')}
+          ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'with-label')}
+          ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'with-label')}
+          ${SCALE.w(1, value => `width: ${value};`, 'initial', 'with-label')}
+          ${SCALE.font(0.875, value => `font-size: ${value};`, undefined, 'with-label')}
+          ${SCALE.h(2.25, value => `--input-height: ${value};`, undefined, 'with-label')}
+          ${SCALE.font(0.875, value => `font-size: ${value};`, undefined, 'font')}
+          ${SCALE.w(1, value => `width: ${value};`, 'initial', 'input-container')}
+          ${SCALE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'input-wrapper')}
 
-          ${SCALER('with-label')}
+          ${UNIT('with-label')}
 
         `}</style>
       </div>

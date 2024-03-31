@@ -15,11 +15,11 @@ type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof NativeQuickB
 export type QuickBarProps = NativeQuickBarProps & NativeAttrs;
 
 const QuickBarComponent: React.FC<PropsWithChildren<QuickBarProps>> = ({ children, gap = 0.375, className, ...props }) => {
-  const { SCALER, RESPONSIVE, SCALE_CLASSES } = useScale();
+  const { UNIT, SCALE, CLASS_NAMES } = useScale();
   const layout = useLayout();
 
   return (
-    <div className={useClasses('quickbar', className, SCALE_CLASSES)} {...props}>
+    <div className={useClasses('quickbar', className, CLASS_NAMES)} {...props}>
       {children}
       <style jsx>{`
         .quickbar {
@@ -28,16 +28,16 @@ const QuickBarComponent: React.FC<PropsWithChildren<QuickBarProps>> = ({ childre
           align-items: center;
         }
 
-        ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'quickbar')}
-        ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto', 'quickbar')}
-        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'quickbar')}
-        ${RESPONSIVE.padding(0.75, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'quickbar')}
+        ${SCALE.h(1, value => `height: ${value};`, 'auto', 'quickbar')}
+        ${SCALE.w(1, value => `width: ${value};`, 'auto', 'quickbar')}
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'quickbar')}
+        ${SCALE.padding(0.75, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'quickbar')}
 
         ${customResponsiveAttribute(gap, 'quickbar', layout.breakpoints, value =>
           !isCSSNumberValue(value) ? `gap: ${value};` : `gap: calc(var(--scale-unit-scale) * ${value})`,
         )}
 
-        ${SCALER('quickbar')}
+        ${UNIT('quickbar')}
       `}</style>
     </div>
   );

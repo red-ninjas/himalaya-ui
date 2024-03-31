@@ -22,7 +22,7 @@ const PageComponent: React.FC<React.PropsWithChildren<PageProps>> = ({
   className,
   ...props
 }: React.PropsWithChildren<PageProps>) => {
-  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
+  const { SCALE, UNIT, CLASS_NAMES } = useScale();
   const [preventRender, setPreventRender] = useState<boolean>(render !== 'default');
 
   useEffect(() => {
@@ -48,7 +48,7 @@ const PageComponent: React.FC<React.PropsWithChildren<PageProps>> = ({
   const hasContent = hasChild(children, PageContent);
 
   return (
-    <section className={useClasses('page-section', className, SCALE_CLASSES)} {...props}>
+    <section className={useClasses('page-section', className, CLASS_NAMES)} {...props}>
       {hasContent ? children : <PageContent>{children}</PageContent>}
       <style jsx>{`
         .page-section {
@@ -58,17 +58,17 @@ const PageComponent: React.FC<React.PropsWithChildren<PageProps>> = ({
           position: relative;
         }
 
-        ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'page-section')}
-        ${RESPONSIVE.w(1, value => `width: ${value}};`, `calc(100% - 100pt)`, 'page-section')}
+        ${SCALE.h(1, value => `height: ${value};`, 'auto', 'page-section')}
+        ${SCALE.w(1, value => `width: ${value}};`, `calc(100% - 100pt)`, 'page-section')}
 
-        ${RESPONSIVE.padding(
+        ${SCALE.padding(
           { left: 1.34, right: 1.34, top: 0, bottom: 0 },
           value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
           undefined,
           'page-section',
         )}
 
-        ${RESPONSIVE.margin(
+        ${SCALE.margin(
           0,
           value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
           {
@@ -80,7 +80,7 @@ const PageComponent: React.FC<React.PropsWithChildren<PageProps>> = ({
           'page-section',
         )}
 
-        ${SCALER('page-section')}
+        ${UNIT('page-section')}
       `}</style>
     </section>
   );

@@ -11,8 +11,8 @@ type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
 export type BreadcrumbsSeparatorProps = Props & NativeAttrs;
 
 const Separator: React.FC<React.PropsWithChildren<BreadcrumbsSeparatorProps>> = ({ children, className = '' }: BreadcrumbsSeparatorProps) => {
-  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
-  const classes = useClasses('separator', className, SCALE_CLASSES);
+  const { SCALE, UNIT, CLASS_NAMES } = useScale();
+  const classes = useClasses('separator', className, CLASS_NAMES);
 
   return (
     <div className={classes}>
@@ -25,8 +25,8 @@ const Separator: React.FC<React.PropsWithChildren<BreadcrumbsSeparatorProps>> = 
           align-items: center;
         }
 
-        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'separator')}
-        ${RESPONSIVE.margin(
+        ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'separator')}
+        ${SCALE.margin(
           {
             top: 0,
             right: 0.5,
@@ -37,9 +37,9 @@ const Separator: React.FC<React.PropsWithChildren<BreadcrumbsSeparatorProps>> = 
           undefined,
           'separator',
         )}
-        ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto', 'separator')}
-        ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'separator')}
-        ${SCALER('separator')}
+        ${SCALE.w(1, value => `width: ${value};`, 'auto', 'separator')}
+        ${SCALE.h(1, value => `height: ${value};`, 'auto', 'separator')}
+        ${UNIT('separator')}
       `}</style>
     </div>
   );

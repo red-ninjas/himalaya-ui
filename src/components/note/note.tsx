@@ -25,7 +25,7 @@ export const NoteComponent: React.FC<React.PropsWithChildren<NoteProps>> = ({
   className = '',
   ...props
 }: React.PropsWithChildren<NoteProps>) => {
-  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
+  const { SCALE, UNIT, CLASS_NAMES } = useScale();
 
   const icons: { [key in UIColorTypes]?: React.ReactNode } = {
     success: <CheckInCircle></CheckInCircle>,
@@ -37,7 +37,7 @@ export const NoteComponent: React.FC<React.PropsWithChildren<NoteProps>> = ({
   const foundIcon = icon === true ? statusIcon ?? <Info></Info> : icon;
 
   return (
-    <div className={useClasses('note', className, type ? 'color-' + type : null, { filled }, SCALE_CLASSES)} {...props}>
+    <div className={useClasses('note', className, type ? 'color-' + type : null, { filled }, CLASS_NAMES)} {...props}>
       {foundIcon && <span className="label">{foundIcon}</span>}
       <span>{children}</span>
 
@@ -99,15 +99,15 @@ export const NoteComponent: React.FC<React.PropsWithChildren<NoteProps>> = ({
           align-items: center;
         }
 
-        ${RESPONSIVE.font(0.875, value => `font-size: ${value};`, undefined, 'note')}
-        ${RESPONSIVE.font(1.1, value => `--note-icon-size: ${value};`, undefined, 'note')}
+        ${SCALE.font(0.875, value => `font-size: ${value};`, undefined, 'note')}
+        ${SCALE.font(1.1, value => `--note-icon-size: ${value};`, undefined, 'note')}
 
-        ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto', 'note')}
-        ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'note')}
-        ${RESPONSIVE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'note')}
+        ${SCALE.w(1, value => `width: ${value};`, 'auto', 'note')}
+        ${SCALE.h(1, value => `height: ${value};`, 'auto', 'note')}
+        ${SCALE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'note')}
 
-        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'note')}
-        ${RESPONSIVE.padding(
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'note')}
+        ${SCALE.padding(
           {
             top: 0.5,
             bottom: 0.5,
@@ -118,7 +118,7 @@ export const NoteComponent: React.FC<React.PropsWithChildren<NoteProps>> = ({
           undefined,
           'note',
         )}
-        ${SCALER('note')}
+        ${UNIT('note')}
       `}</style>
     </div>
   );

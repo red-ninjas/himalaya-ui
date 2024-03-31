@@ -41,12 +41,12 @@ const TooltipContent: React.FC<React.PropsWithChildren<Props>> = ({
   hideArrow,
 }) => {
   const theme = useTheme();
-  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
+  const { SCALE, UNIT, CLASS_NAMES } = useScale();
   const el = usePortal('tooltip');
   const selfRef = useRef<HTMLDivElement>(null);
   const [rect, setRect] = useState<TooltipPosition>(defaultTooltipPosition);
   const hasShadow = type === 'default';
-  const classes = useClasses('tooltip-content', className, type ? 'color-' + type : null, SCALE_CLASSES);
+  const classes = useClasses('tooltip-content', className, type ? 'color-' + type : null, CLASS_NAMES);
   if (!parent) return null;
 
   const updateRect = () => {
@@ -117,13 +117,13 @@ const TooltipContent: React.FC<React.PropsWithChildren<Props>> = ({
             height: 100%;
           }
 
-          ${RESPONSIVE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'tooltip-content')}
-          ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'tooltip-content')}
-          ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto', 'tooltip-content')}
+          ${SCALE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'tooltip-content')}
+          ${SCALE.h(1, value => `height: ${value};`, 'auto', 'tooltip-content')}
+          ${SCALE.w(1, value => `width: ${value};`, 'auto', 'tooltip-content')}
 
-          ${RESPONSIVE.font(0.875, value => `font-size: ${value};`, undefined, 'tooltip-content')}
+          ${SCALE.font(0.875, value => `font-size: ${value};`, undefined, 'tooltip-content')}
 
-          ${RESPONSIVE.padding(
+          ${SCALE.padding(
             {
               top: 0.5,
               bottom: 0.5,
@@ -135,14 +135,9 @@ const TooltipContent: React.FC<React.PropsWithChildren<Props>> = ({
             'inner',
           )}
 
-          ${RESPONSIVE.padding(
-            0,
-            value => `--tooltip-popover-padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
-            undefined,
-            'tooltip-content',
-          )}
+          ${SCALE.padding(0, value => `--tooltip-popover-padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'tooltip-content')}
 
-          ${SCALER('tooltip-content')}
+          ${UNIT('tooltip-content')}
         `}</style>
       </div>
     </CssTransition>,

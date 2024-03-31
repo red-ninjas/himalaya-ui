@@ -6,7 +6,7 @@ import { useChart } from './chart-context';
 
 const ChartLegends: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({ ...props }) => {
   const { series } = useChart();
-  const { RESPONSIVE, SCALE_CLASSES, SCALER } = useScale();
+  const { SCALE, CLASS_NAMES, UNIT } = useScale();
 
   const onVisibleChanged = (legendIds: string[]) => {
     for (const serie of series) {
@@ -19,7 +19,7 @@ const ChartLegends: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({ ...props
   return (
     series &&
     series.length > 0 && (
-      <div {...props} className={useClasses('chart-legends', SCALE_CLASSES)}>
+      <div {...props} className={useClasses('chart-legends', CLASS_NAMES)}>
         <Text pr={1.5} small style={{ color: `var(--color-background-600)` }}>
           Legend
         </Text>
@@ -39,23 +39,23 @@ const ChartLegends: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({ ...props
             background: var(--color-background-900);
           }
 
-          ${RESPONSIVE.margin(
+          ${SCALE.margin(
             { left: 0, right: 0, top: 1, bottom: 0 },
             value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
             undefined,
             'chart-legends',
           )}
 
-          ${RESPONSIVE.padding(
+          ${SCALE.padding(
             { left: 0.875, right: 0.875, top: 0.475, bottom: 0.475 },
             value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
             undefined,
             'chart-legends',
           )}
-          ${RESPONSIVE.r(1, value => `border-radius: 0 0 ${value} ${value};`, 'var(--layout-radius)', 'chart-legends')}
+          ${SCALE.r(1, value => `border-radius: 0 0 ${value} ${value};`, 'var(--layout-radius)', 'chart-legends')}
 
 
-          ${SCALER('chart-legends')}
+          ${UNIT('chart-legends')}
         `}</style>
       </div>
     )

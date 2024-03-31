@@ -18,8 +18,8 @@ const DotComponent: React.FC<React.PropsWithChildren<DotProps>> = ({
   className = '',
   ...props
 }: React.PropsWithChildren<DotProps>) => {
-  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
-  const classes = useClasses('dot', className, SCALE_CLASSES, type ? 'color-' + type : null);
+  const { SCALE, UNIT, CLASS_NAMES } = useScale();
+  const classes = useClasses('dot', className, CLASS_NAMES, type ? 'color-' + type : null);
 
   return (
     <span className={classes} {...props}>
@@ -54,12 +54,12 @@ const DotComponent: React.FC<React.PropsWithChildren<DotProps>> = ({
           text-transform: capitalize;
         }
 
-        ${RESPONSIVE.font(1, value => `width: ${value}; height: ${value};`, undefined, 'dot')}
-        ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto', 'dot')}
-        ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'dot')}
-        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'dot')}
-        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'dot')}
-        ${SCALER('dot')}
+        ${SCALE.font(1, value => `width: ${value}; height: ${value};`, undefined, 'dot')}
+        ${SCALE.w(1, value => `width: ${value};`, 'auto', 'dot')}
+        ${SCALE.h(1, value => `height: ${value};`, 'auto', 'dot')}
+        ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'dot')}
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'dot')}
+        ${UNIT('dot')}
       `}</style>
     </span>
   );

@@ -34,7 +34,7 @@ const PaginationComponent: React.FC<React.PropsWithChildren<PaginationProps>> = 
   className = undefined,
   ...props
 }: React.PropsWithChildren<PaginationProps>) => {
-  const { SCALER, RESPONSIVE, SCALE_CLASSES } = useScale();
+  const { UNIT, SCALE, CLASS_NAMES } = useScale();
   const [page, setPage, pageRef] = useCurrentState(initialPage);
   const [, prevChildren] = pickChild(children, PaginationPrevious);
   const [, nextChildren] = pickChild(children, PaginationNext);
@@ -74,7 +74,7 @@ const PaginationComponent: React.FC<React.PropsWithChildren<PaginationProps>> = 
 
   return (
     <PaginationContext.Provider value={values}>
-      <nav className={useClasses('pagination', className, type ? 'color-' + type : null, SCALE_CLASSES)} {...props}>
+      <nav className={useClasses('pagination', className, type ? 'color-' + type : null, CLASS_NAMES)} {...props}>
         {prevItem}
         <PaginationPages count={count} current={page} limit={limit} setPage={setPage} />
         {nextItem}
@@ -96,13 +96,13 @@ const PaginationComponent: React.FC<React.PropsWithChildren<PaginationProps>> = 
           --color-tint: var(--color-foreground-600);
         }
 
-        ${RESPONSIVE.font(2, value => `--pagination-size: ${value};`, undefined, 'pagination')}
-        ${RESPONSIVE.font(0.875, value => `font-size: ${value};`, undefined, 'pagination')}
-        ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto', 'pagination')}
-        ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'pagination')}
-        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'pagination')}
-        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'pagination')}
-        ${SCALER('pagination')}
+        ${SCALE.font(2, value => `--pagination-size: ${value};`, undefined, 'pagination')}
+        ${SCALE.font(0.875, value => `font-size: ${value};`, undefined, 'pagination')}
+        ${SCALE.w(1, value => `width: ${value};`, 'auto', 'pagination')}
+        ${SCALE.h(1, value => `height: ${value};`, 'auto', 'pagination')}
+        ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'pagination')}
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'pagination')}
+        ${UNIT('pagination')}
       `}</style>
     </PaginationContext.Provider>
   );

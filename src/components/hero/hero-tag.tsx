@@ -13,9 +13,9 @@ const HeroTag: React.FC<PropsWithChildren<HeroTagProps>> = ({
   background,
   Tag = 'h6',
 }: PropsWithChildren<HeroTagProps>) => {
-  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
+  const { SCALE, UNIT, CLASS_NAMES } = useScale();
   return (
-    <Tag className={useClasses('tag', { gradient: hasGradient }, SCALE_CLASSES)}>
+    <Tag className={useClasses('tag', { gradient: hasGradient }, CLASS_NAMES)}>
       {children}
       <style jsx>{`
         .tag {
@@ -42,8 +42,8 @@ const HeroTag: React.FC<PropsWithChildren<HeroTagProps>> = ({
           color: var(--font-color);
         }
 
-        ${RESPONSIVE.font(0.75, value => `font-size: ${value};`, undefined, 'tag')}
-        ${RESPONSIVE.padding(
+        ${SCALE.font(0.75, value => `font-size: ${value};`, undefined, 'tag')}
+        ${SCALE.padding(
           {
             top: 0.45,
             right: 1.9,
@@ -53,9 +53,9 @@ const HeroTag: React.FC<PropsWithChildren<HeroTagProps>> = ({
           value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
           undefined,
           'tag',
-        )} ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, 'auto', 'tag')}
+        )} ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, 'auto', 'tag')}
 
-        ${SCALER('tag')}
+        ${UNIT('tag')}
       `}</style>
     </Tag>
   );

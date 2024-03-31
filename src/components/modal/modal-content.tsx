@@ -13,11 +13,11 @@ const ModalContentComponent: React.FC<React.PropsWithChildren<ModalContentProps>
   children,
   ...props
 }: React.PropsWithChildren<ModalContentProps>) => {
-  const { SCALER, RESPONSIVE, SCALE_CLASSES } = useScale();
+  const { UNIT, SCALE, CLASS_NAMES } = useScale();
 
   return (
     <>
-      <div className={useClasses('content', className, SCALE_CLASSES)} {...props}>
+      <div className={useClasses('content', className, CLASS_NAMES)} {...props}>
         {children}
       </div>
       <style jsx>{`
@@ -34,7 +34,7 @@ const ModalContentComponent: React.FC<React.PropsWithChildren<ModalContentProps>
           margin-bottom: 0;
         }
 
-        ${RESPONSIVE.margin(
+        ${SCALE.margin(
           0,
           value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
           {
@@ -43,14 +43,14 @@ const ModalContentComponent: React.FC<React.PropsWithChildren<ModalContentProps>
           },
           'content',
         )}
-        ${RESPONSIVE.padding(1.3125, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'content')}
+        ${SCALE.padding(1.3125, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'content')}
 
-        ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto', 'content')}
-        ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'content')}
+        ${SCALE.w(1, value => `width: ${value};`, 'auto', 'content')}
+        ${SCALE.h(1, value => `height: ${value};`, 'auto', 'content')}
 
-        ${RESPONSIVE.font(1, value => `font-size: ${value};`, undefined, 'content')}
-        ${RESPONSIVE.lineHeight(1, value => `line-height: ${value};`, undefined, 'content')}
-        ${SCALER('content')}
+        ${SCALE.font(1, value => `font-size: ${value};`, undefined, 'content')}
+        ${SCALE.lineHeight(1, value => `line-height: ${value};`, undefined, 'content')}
+        ${UNIT('content')}
       `}</style>
     </>
   );

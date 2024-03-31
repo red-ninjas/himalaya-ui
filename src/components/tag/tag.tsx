@@ -21,8 +21,8 @@ const TagComponent: React.FC<React.PropsWithChildren<TagProps>> = ({
   filled = true,
   ...props
 }: React.PropsWithChildren<TagProps>) => {
-  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
-  const classes = useClasses('tag', className, type ? 'color-' + type : null, { filled }, SCALE_CLASSES);
+  const { SCALE, UNIT, CLASS_NAMES } = useScale();
+  const classes = useClasses('tag', className, type ? 'color-' + type : null, { filled }, CLASS_NAMES);
 
   return (
     <span className={classes} {...props}>
@@ -59,14 +59,14 @@ const TagComponent: React.FC<React.PropsWithChildren<TagProps>> = ({
           --tag-border: var(--color-base);
         }
 
-        ${RESPONSIVE.h(1.75, value => `height: ${value};`, undefined, 'tag')}
-        ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto', 'tag')}
-        ${RESPONSIVE.r(0.3125, value => `border-radius: ${value};`, 'var(--layout-radius)', 'tag')}
-        ${RESPONSIVE.font(0.875, value => `font-size: ${value};`, undefined, 'tag')}
-        ${RESPONSIVE.padding(0.375, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'tag')}
-        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'tag')}
+        ${SCALE.h(1.75, value => `height: ${value};`, undefined, 'tag')}
+        ${SCALE.w(1, value => `width: ${value};`, 'auto', 'tag')}
+        ${SCALE.r(0.3125, value => `border-radius: ${value};`, 'var(--layout-radius)', 'tag')}
+        ${SCALE.font(0.875, value => `font-size: ${value};`, undefined, 'tag')}
+        ${SCALE.padding(0.375, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'tag')}
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'tag')}
 
-        ${SCALER('tag')}
+        ${UNIT('tag')}
       `}</style>
     </span>
   );

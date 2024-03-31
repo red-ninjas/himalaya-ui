@@ -13,10 +13,10 @@ type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
 export type AvatarGroupProps = Props & NativeAttrs;
 
 const AvatarGroupComponent: React.FC<React.PropsWithChildren<AvatarGroupProps>> = ({ count, className = '', children }: AvatarGroupProps) => {
-  const { SCALER, RESPONSIVE, SCALE_CLASSES } = useScale();
+  const { UNIT, SCALE, CLASS_NAMES } = useScale();
 
   return (
-    <div className={useClasses('avatar-group', className, SCALE_CLASSES)}>
+    <div className={useClasses('avatar-group', className, CLASS_NAMES)}>
       {children}
       {count && <span className="count">+{count}</span>}
       <style jsx>{`
@@ -36,13 +36,13 @@ const AvatarGroupComponent: React.FC<React.PropsWithChildren<AvatarGroupProps>> 
           color: var(--color-background-200);
         }
 
-        ${RESPONSIVE.font(0.875, value => `font-size: ${value};`, undefined, 'count')}
-        ${RESPONSIVE.w(1, value => `width: ${value};`, 'max-content', 'avatar-group')}
-        ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'avatar-group')}
-        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'avatar-group')}
-        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'avatar-group')}
-        ${RESPONSIVE.ml(-0.625, value => `--avatar-left: ${value};`, undefined, 'avatar-group')}
-        ${SCALER('avatar-group')}
+        ${SCALE.font(0.875, value => `font-size: ${value};`, undefined, 'count')}
+        ${SCALE.w(1, value => `width: ${value};`, 'max-content', 'avatar-group')}
+        ${SCALE.h(1, value => `height: ${value};`, 'auto', 'avatar-group')}
+        ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'avatar-group')}
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'avatar-group')}
+        ${SCALE.ml(-0.625, value => `--avatar-left: ${value};`, undefined, 'avatar-group')}
+        ${UNIT('avatar-group')}
       `}</style>
     </div>
   );

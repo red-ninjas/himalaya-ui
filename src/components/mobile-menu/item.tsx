@@ -10,7 +10,7 @@ export type MobileNavigationItemProps = INavigationItem & NativeAttrs;
 
 const NavigationItem = React.forwardRef<HTMLAnchorElement, React.PropsWithChildren<MobileNavigationItemProps>>(
   ({ icon, title, active = false, ...props }: React.PropsWithChildren<MobileNavigationItemProps>, ref: React.Ref<HTMLAnchorElement>) => {
-    const { RESPONSIVE, SCALE_CLASSES, SCALER } = useScale();
+    const { SCALE, CLASS_NAMES, UNIT } = useScale();
     const { setIsEnabled } = useMobileMenu();
 
     const handleInstantCloseMenu = () => {
@@ -26,7 +26,7 @@ const NavigationItem = React.forwardRef<HTMLAnchorElement, React.PropsWithChildr
           {
             'is-active': active,
           },
-          SCALE_CLASSES,
+          CLASS_NAMES,
         )}
         onClick={handleInstantCloseMenu}
       >
@@ -88,10 +88,10 @@ const NavigationItem = React.forwardRef<HTMLAnchorElement, React.PropsWithChildr
             width: 100%;
           }
 
-          ${RESPONSIVE.w(1, value => `width: ${value};`, '100%', 'item')}
-          ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'item')}
-          ${RESPONSIVE.font(0.85, value => `font-size: ${value};`, undefined, 'item')}
-          ${RESPONSIVE.padding(
+          ${SCALE.w(1, value => `width: ${value};`, '100%', 'item')}
+          ${SCALE.h(1, value => `height: ${value};`, 'auto', 'item')}
+          ${SCALE.font(0.85, value => `font-size: ${value};`, undefined, 'item')}
+          ${SCALE.padding(
             {
               top: 0.7,
               bottom: 0.7,
@@ -102,8 +102,8 @@ const NavigationItem = React.forwardRef<HTMLAnchorElement, React.PropsWithChildr
             undefined,
             'item',
           )}
-          ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'item')}
-          ${SCALER('item')}
+          ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'item')}
+          ${UNIT('item')}
         `}</style>
       </a>
     );

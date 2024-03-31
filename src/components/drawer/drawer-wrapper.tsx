@@ -28,12 +28,12 @@ const DrawerWrapper: React.FC<React.PropsWithChildren<DrawerWrapperProps>> = ({
   ...props
 }: React.PropsWithChildren<DrawerWrapperProps>) => {
   const theme = useTheme();
-  const { RESPONSIVE, SCALE_CLASSES, SCALER } = useScale();
+  const { SCALE, CLASS_NAMES, UNIT } = useScale();
   const modalContent = useRef<HTMLDivElement>(null);
   const tabStart = useRef<HTMLDivElement>(null);
   const tabEnd = useRef<HTMLDivElement>(null);
   const transform = useMemo(() => getDrawerTransform(placement), [placement]);
-  const classes = useClasses('wrapper', placement, className, SCALE_CLASSES);
+  const classes = useClasses('wrapper', placement, className, CLASS_NAMES);
 
   useEffect(() => {
     if (!visible) return;
@@ -137,31 +137,31 @@ const DrawerWrapper: React.FC<React.PropsWithChildren<DrawerWrapperProps>> = ({
             opacity: 0;
           }
 
-          ${RESPONSIVE.r(2, value => `--drawer-radius: ${value};`, undefined, 'wrapper')}
-          ${RESPONSIVE.font(1, value => `font-size: ${value};`, undefined, 'wrapper')}
+          ${SCALE.r(2, value => `--drawer-radius: ${value};`, undefined, 'wrapper')}
+          ${SCALE.font(1, value => `font-size: ${value};`, undefined, 'wrapper')}
 
-          ${RESPONSIVE.h(1, value => `--modal-height: ${value};`, 'auto', 'wrapper')}
-          ${RESPONSIVE.w(1, value => `--modal-width: ${value};`, '100%', 'wrapper')}
+          ${SCALE.h(1, value => `--modal-height: ${value};`, 'auto', 'wrapper')}
+          ${SCALE.w(1, value => `--modal-width: ${value};`, '100%', 'wrapper')}
 
-          ${RESPONSIVE.padding(
+          ${SCALE.padding(
             1.3125,
             value =>
               `padding: ${value.top} ${value.right} ${value.bottom} ${value.left}; --modal-wrapper-padding-left: ${value.left}; --modal-wrapper-padding-right: ${value.right}; `,
             undefined,
             'wrapper',
           )}
-          ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'wrapper')}
+          ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'wrapper')}
 
-          ${RESPONSIVE.w(1, value => `width: ${value};`, '100%', 'top')}
-          ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'top')}
-          ${RESPONSIVE.w(1, value => `width: ${value};`, '100%', 'bottom')}
-          ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'bottom')}
+          ${SCALE.w(1, value => `width: ${value};`, '100%', 'top')}
+          ${SCALE.h(1, value => `height: ${value};`, 'auto', 'top')}
+          ${SCALE.w(1, value => `width: ${value};`, '100%', 'bottom')}
+          ${SCALE.h(1, value => `height: ${value};`, 'auto', 'bottom')}
 
-          ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto', 'left')}
-          ${RESPONSIVE.h(1, value => `height: ${value};`, '100%', 'left')}
-          ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto', 'right')}
-          ${RESPONSIVE.h(1, value => `height: ${value};`, '100%', 'right')}
-          ${SCALER('wrapper')}
+          ${SCALE.w(1, value => `width: ${value};`, 'auto', 'left')}
+          ${SCALE.h(1, value => `height: ${value};`, '100%', 'left')}
+          ${SCALE.w(1, value => `width: ${value};`, 'auto', 'right')}
+          ${SCALE.h(1, value => `height: ${value};`, '100%', 'right')}
+          ${UNIT('wrapper')}
         `}</style>
       </div>
     </CssTransition>

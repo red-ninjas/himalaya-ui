@@ -46,7 +46,7 @@ const SidebarLayout: React.FC<React.PropsWithChildren<SidebarLayoutProps>> = ({ 
   const [content, sidebar] = pickChild(children, Sidebar);
   const [contentExtra, sidebarWithoutTypes] = pickChild(content, SidebarWithoutTypes);
 
-  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
+  const { SCALE, UNIT, CLASS_NAMES } = useScale();
   const chartOuterContainerRef = createRef<HTMLDivElement>();
   const { isEnabled } = useSidebar();
 
@@ -56,7 +56,7 @@ const SidebarLayout: React.FC<React.PropsWithChildren<SidebarLayoutProps>> = ({ 
   return (
     <div
       ref={chartOuterContainerRef}
-      className={useClasses('sidebar-layout', SCALE_CLASSES, {
+      className={useClasses('sidebar-layout', CLASS_NAMES, {
         disabled: isEnabled === false,
         enabled: isEnabled === true,
       })}
@@ -133,8 +133,8 @@ const SidebarLayout: React.FC<React.PropsWithChildren<SidebarLayoutProps>> = ({ 
         ${customResponsiveAttribute(disabled, 'sidebar-layout', layout.breakpoints, (value, key) =>
           value === true ? ` --sidebar-left: 0; --sidebar-side: calc(var(--sidebar-width) * -1);` : `--sidebar-left: var(--sidebar-width); --sidebar-side: 0;`,
         )}
-        ${RESPONSIVE.w(17.8, value => `--sidebar-width: ${value}`, undefined, 'sidebar-layout')}
-        ${SCALER('sidebar-layout')}
+        ${SCALE.w(17.8, value => `--sidebar-width: ${value}`, undefined, 'sidebar-layout')}
+        ${UNIT('sidebar-layout')}
       `}</style>
     </div>
   );

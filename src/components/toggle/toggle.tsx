@@ -39,7 +39,7 @@ const ToggleComponent: React.FC<ToggleProps> = ({
   className,
   ...props
 }: ToggleProps) => {
-  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
+  const { SCALE, UNIT, CLASS_NAMES } = useScale();
   const [selfChecked, setSelfChecked] = useState<boolean>(initialChecked);
   const classes = useClasses('toggle', { checked: selfChecked, disabled });
 
@@ -67,7 +67,7 @@ const ToggleComponent: React.FC<ToggleProps> = ({
   }, [checked]);
 
   return (
-    <label className={useClasses('toggle-label', className, type ? 'color-' + type : null, SCALE_CLASSES)} {...props}>
+    <label className={useClasses('toggle-label', className, type ? 'color-' + type : null, CLASS_NAMES)} {...props}>
       <input type="checkbox" disabled={disabled} checked={selfChecked} onChange={changeHandle} />
       <div className={classes}>
         <span className="inner" />
@@ -151,7 +151,7 @@ const ToggleComponent: React.FC<ToggleProps> = ({
           box-shadow: none;
         }
 
-        ${RESPONSIVE.padding(
+        ${SCALE.padding(
           {
             top: 0.1875,
             bottom: 0.1875,
@@ -162,11 +162,11 @@ const ToggleComponent: React.FC<ToggleProps> = ({
           undefined,
           'toggle-label',
         )}
-        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'toggle-label')}
-        ${RESPONSIVE.h(0.875, value => `--toggle-height: ${value};`, undefined, 'toggle-label')}
-        ${RESPONSIVE.w(1.75, value => `width: ${value};`, undefined, 'toggle-label')}
-        ${RESPONSIVE.font(1, value => `--toggle-font-size: ${value};`, undefined, 'toggle-label')}
-        ${SCALER('toggle-label')}
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'toggle-label')}
+        ${SCALE.h(0.875, value => `--toggle-height: ${value};`, undefined, 'toggle-label')}
+        ${SCALE.w(1.75, value => `width: ${value};`, undefined, 'toggle-label')}
+        ${SCALE.font(1, value => `--toggle-font-size: ${value};`, undefined, 'toggle-label')}
+        ${UNIT('toggle-label')}
       `}</style>
     </label>
   );

@@ -17,7 +17,7 @@ type NativeAttrs = Omit<React.HTMLAttributes<HTMLVideoElement>, keyof Props>;
 export type VideoProps = Props & NativeAttrs;
 
 const Video: React.FC<VideoProps> = ({ src, controls, poster, loop = false, autoplay = false, muted = false, ...props }) => {
-  const { SCALER, RESPONSIVE, SCALE_CLASSES } = useScale();
+  const { UNIT, SCALE, CLASS_NAMES } = useScale();
 
   const [isPlaying, setIsPlaying] = useState(autoplay);
   const [isMuted, setIsMuted] = useState(muted);
@@ -72,7 +72,7 @@ const Video: React.FC<VideoProps> = ({ src, controls, poster, loop = false, auto
   };
 
   return (
-    <div className={useClasses('video-player', SCALE_CLASSES)}>
+    <div className={useClasses('video-player', CLASS_NAMES)}>
       <div className="video-container">
         <video
           {...props}
@@ -194,13 +194,13 @@ const Video: React.FC<VideoProps> = ({ src, controls, poster, loop = false, auto
           font-weight: bold;
         }
 
-        ${RESPONSIVE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'controls')}
+        ${SCALE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'controls')}
 
-        ${RESPONSIVE.h(1, value => `--video-height: ${value};`, 'auto', 'video-player')}
-        ${RESPONSIVE.w(1, value => `--video-width: ${value};`, '100%', 'video-player')}
+        ${SCALE.h(1, value => `--video-height: ${value};`, 'auto', 'video-player')}
+        ${SCALE.w(1, value => `--video-width: ${value};`, '100%', 'video-player')}
 
 
-        ${SCALER('video-player')}
+        ${UNIT('video-player')}
       `}</style>
     </div>
   );

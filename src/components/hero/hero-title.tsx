@@ -6,10 +6,10 @@ import { HeroCoreProps } from './share';
 import useClasses from '../use-classes';
 
 const HeroTitle: React.FC<PropsWithChildren<HeroCoreProps>> = ({ Tag = 'h1', children, ...props }: PropsWithChildren<HeroCoreProps>) => {
-  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
+  const { SCALE, UNIT, CLASS_NAMES } = useScale();
 
   return (
-    <Tag className={useClasses('title', SCALE_CLASSES)} {...props}>
+    <Tag className={useClasses('title', CLASS_NAMES)} {...props}>
       {children}
       <style jsx>{`
         .title {
@@ -21,11 +21,11 @@ const HeroTitle: React.FC<PropsWithChildren<HeroCoreProps>> = ({ Tag = 'h1', chi
           display: inline-block;
         }
 
-        ${RESPONSIVE.font(5, value => `font-size: ${value};`, undefined, 'title')}
-        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'title')}
-        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, 'auto', 'title')}
+        ${SCALE.font(5, value => `font-size: ${value};`, undefined, 'title')}
+        ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'title')}
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, 'auto', 'title')}
 
-        ${SCALER('title')}
+        ${UNIT('title')}
       `}</style>
     </Tag>
   );

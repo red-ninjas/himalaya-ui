@@ -37,7 +37,7 @@ const TextChild: React.FC<React.PropsWithChildren<TextChildProps>> = ({
 }: React.PropsWithChildren<TextChildProps>) => {
   const Component = tag;
 
-  const { getScaleProps, RESPONSIVE } = useScale();
+  const { getScaleProps, SCALE } = useScale();
   const font = getScaleProps('font');
   const lineHeight = getScaleProps('lineHeight');
 
@@ -103,18 +103,18 @@ const TextChild: React.FC<React.PropsWithChildren<TextChildProps>> = ({
           ${defaultColor}
         }
 
-        ${RESPONSIVE.ml(0, value => `margin-left: ${value};`, 'revert', 'mx')}
-        ${RESPONSIVE.mr(0, value => `margin-right: ${value};`, 'revert', 'mx')}
-        ${RESPONSIVE.mt(0, value => `margin-top: ${value};`, 'revert', 'my')}
-        ${RESPONSIVE.mb(0, value => `margin-bottom: ${value};`, 'revert', 'my')}
-        ${RESPONSIVE.pl(0, value => `padding-left: ${value};`, 'revert', 'px')}
-        ${RESPONSIVE.pr(0, value => `padding-right: ${value};`, 'revert', 'px')}
-        ${RESPONSIVE.pt(0, value => `padding-top: ${value};`, 'revert', 'py')}
-        ${RESPONSIVE.pb(0, value => `padding-bottom: ${value};`, 'revert', 'py')}
-        ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto')}
-        ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto')}
-        ${RESPONSIVE.font(1, value => `font-size: ${value}; --font-size: ${value};`, 'inherit')}
-        ${RESPONSIVE.lineHeight(1, value => `line-height: ${value};`, 'inherit')}
+        ${SCALE.ml(0, value => `margin-left: ${value};`, 'revert', 'mx')}
+        ${SCALE.mr(0, value => `margin-right: ${value};`, 'revert', 'mx')}
+        ${SCALE.mt(0, value => `margin-top: ${value};`, 'revert', 'my')}
+        ${SCALE.mb(0, value => `margin-bottom: ${value};`, 'revert', 'my')}
+        ${SCALE.pl(0, value => `padding-left: ${value};`, 'revert', 'px')}
+        ${SCALE.pr(0, value => `padding-right: ${value};`, 'revert', 'px')}
+        ${SCALE.pt(0, value => `padding-top: ${value};`, 'revert', 'py')}
+        ${SCALE.pb(0, value => `padding-bottom: ${value};`, 'revert', 'py')}
+        ${SCALE.w(1, value => `width: ${value};`, 'auto')}
+        ${SCALE.h(1, value => `height: ${value};`, 'auto')}
+        ${SCALE.font(1, value => `font-size: ${value}; --font-size: ${value};`, 'inherit')}
+        ${SCALE.lineHeight(1, value => `line-height: ${value};`, 'inherit')}
       `}</style>
     </Component>
   );

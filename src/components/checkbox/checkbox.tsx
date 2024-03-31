@@ -41,11 +41,11 @@ const CheckboxComponent: React.FC<CheckboxProps> = ({
   value = '',
   ...props
 }: CheckboxProps) => {
-  const { SCALER, RESPONSIVE, SCALE_CLASSES } = useScale();
+  const { UNIT, SCALE, CLASS_NAMES } = useScale();
   const [selfChecked, setSelfChecked] = useState<boolean>(initialChecked);
   const { updateState, inGroup, disabledAll, values } = useCheckbox();
   const isDisabled = inGroup ? disabledAll || disabled : disabled;
-  const classes = useClasses('checkbox', className, type ? 'color-' + type : null, SCALE_CLASSES);
+  const classes = useClasses('checkbox', className, type ? 'color-' + type : null, CLASS_NAMES);
 
   if (inGroup && checked) {
     useWarning('Remove props "checked" when [Checkbox] component is in the group.', 'Checkbox');
@@ -145,14 +145,14 @@ const CheckboxComponent: React.FC<CheckboxProps> = ({
           background-color: transparent;
         }
 
-        ${RESPONSIVE.r(0.25, value => `border-radius: ${value};`, undefined, 'checkbox-inner')}
-        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'checkbox')}
-        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'checkbox')}
-        ${RESPONSIVE.w(1, value => `--checkbox-size: ${value};`, undefined, 'checkbox')}
-        ${RESPONSIVE.font(0.875, value => `font-size: ${value};`, undefined, 'text')}
-        ${RESPONSIVE.lineHeight(0.875, value => `line-height: ${value};`, undefined, 'text')}
+        ${SCALE.r(0.25, value => `border-radius: ${value};`, undefined, 'checkbox-inner')}
+        ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'checkbox')}
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'checkbox')}
+        ${SCALE.w(1, value => `--checkbox-size: ${value};`, undefined, 'checkbox')}
+        ${SCALE.font(0.875, value => `font-size: ${value};`, undefined, 'text')}
+        ${SCALE.lineHeight(0.875, value => `line-height: ${value};`, undefined, 'text')}
 
-        ${SCALER('checkbox')}
+        ${UNIT('checkbox')}
       `}</style>
     </label>
   );

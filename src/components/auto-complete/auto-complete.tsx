@@ -85,7 +85,7 @@ const AutoCompleteComponent = React.forwardRef<HTMLInputElement, React.PropsWith
     userRef: React.Ref<HTMLInputElement | null>,
   ) => {
     const resetTimer = useRef<number>();
-    const { RESPONSIVE, SCALER, getScaleProps, SCALE_CLASSES } = useScale();
+    const { SCALE, UNIT, getScaleProps, CLASS_NAMES } = useScale();
     const ref = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
     const [state, setState, stateRef] = useCurrentState<string>(customInitialValue);
@@ -172,7 +172,7 @@ const AutoCompleteComponent = React.forwardRef<HTMLInputElement, React.PropsWith
 
     return (
       <AutoCompleteContext.Provider value={initialValue}>
-        <div ref={ref} className={useClasses('auto-complete', SCALE_CLASSES)}>
+        <div ref={ref} className={useClasses('auto-complete', CLASS_NAMES)}>
           <Input
             ref={inputRef}
             type={type}
@@ -200,16 +200,16 @@ const AutoCompleteComponent = React.forwardRef<HTMLInputElement, React.PropsWith
               width: max-content;
             }
 
-            ${RESPONSIVE.w(1, value => `width: ${value};`, 'max-content', 'auto-complete')}
-            ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'auto-complete')}
+            ${SCALE.w(1, value => `width: ${value};`, 'max-content', 'auto-complete')}
+            ${SCALE.h(1, value => `height: ${value};`, 'auto', 'auto-complete')}
 
-            ${RESPONSIVE.w(1, value => `--auto-input-width: ${value};`, 'initial', 'auto-complete')}
-            ${RESPONSIVE.h(2.25, value => `--auto-input-height: ${value};`, undefined, 'auto-complete')}
+            ${SCALE.w(1, value => `--auto-input-width: ${value};`, 'initial', 'auto-complete')}
+            ${SCALE.h(2.25, value => `--auto-input-height: ${value};`, undefined, 'auto-complete')}
 
-            ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'auto-complete')}
-            ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'auto-complete')}
+            ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'auto-complete')}
+            ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'auto-complete')}
 
-            ${SCALER('auto-complete')}
+            ${UNIT('auto-complete')}
           `}</style>
         </div>
       </AutoCompleteContext.Provider>

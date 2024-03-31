@@ -126,12 +126,12 @@ export type GetScalePropsFunction = (key: keyof ScaleProps | Array<keyof ScalePr
 export type GetAllScalePropsFunction = () => ScaleProps;
 
 export interface ScaleConfig {
-  RESPONSIVE: DynamicResponsiveScales;
+  SCALE: DynamicResponsiveScales;
   getScaleProps: GetScalePropsFunction;
   getAllScaleProps: GetAllScalePropsFunction;
   unit: string;
-  SCALER: ScaleResponsivePipe;
-  SCALE_CLASSES: string | undefined;
+  UNIT: ScaleResponsivePipe;
+  CLASS_NAMES: string | undefined;
 }
 
 const defaultDynamicResponsiveLayoutPipe = () => undefined;
@@ -140,7 +140,7 @@ const defaultContext: ScaleConfig = {
   getScaleProps: () => undefined,
   getAllScaleProps: () => ({}),
 
-  RESPONSIVE: {
+  SCALE: {
     r: defaultDynamicResponsiveLayoutPipe,
     pl: defaultDynamicResponsiveLayoutPipe,
     pr: defaultDynamicResponsiveLayoutPipe,
@@ -161,8 +161,8 @@ const defaultContext: ScaleConfig = {
     margin: defaultDynamicResponsiveLayoutPipe,
     padding: defaultDynamicResponsiveLayoutPipe,
   },
-  SCALE_CLASSES: undefined,
-  SCALER: defaultDynamicResponsiveLayoutPipe,
+  CLASS_NAMES: undefined,
+  UNIT: defaultDynamicResponsiveLayoutPipe,
   unit: '16px',
 };
 

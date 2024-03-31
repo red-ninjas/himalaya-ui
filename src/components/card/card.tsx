@@ -30,14 +30,14 @@ const CardComponent: React.FC<React.PropsWithChildren<CardProps>> = ({
   ...props
 }: CardProps) => {
   const theme = useTheme();
-  const { SCALER, RESPONSIVE, SCALE_CLASSES } = useScale();
+  const { UNIT, SCALE, CLASS_NAMES } = useScale();
 
   const [withoutFooterChildren, footerChildren] = pickChild(children, CardFooter);
   const [withoutImageChildren, imageChildren] = pickChild(withoutFooterChildren, Image);
   const hasContent = hasChild(withoutImageChildren, CardContent);
 
   return (
-    <div className={useClasses('card', className, type ? 'color-' + type : null, { hoverable }, SCALE_CLASSES)} {...props}>
+    <div className={useClasses('card', className, type ? 'color-' + type : null, { hoverable }, CLASS_NAMES)} {...props}>
       {imageChildren}
       {hasContent ? withoutImageChildren : <CardContent>{withoutImageChildren}</CardContent>}
       {footerChildren}
@@ -83,12 +83,12 @@ const CardComponent: React.FC<React.PropsWithChildren<CardProps>> = ({
           border-bottom-right-radius: 0;
         }
 
-        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'card')}
-        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'card')}
-        ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto', 'card')}
-        ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'card')}
-        ${RESPONSIVE.r(1, value => `--card-border-radius: ${value};`, 'var(--layout-radius)', 'card')}
-        ${SCALER('card')}
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'card')}
+        ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'card')}
+        ${SCALE.w(1, value => `width: ${value};`, 'auto', 'card')}
+        ${SCALE.h(1, value => `height: ${value};`, 'auto', 'card')}
+        ${SCALE.r(1, value => `--card-border-radius: ${value};`, 'var(--layout-radius)', 'card')}
+        ${UNIT('card')}
       `}</style>
     </div>
   );

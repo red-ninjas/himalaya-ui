@@ -16,8 +16,8 @@ const PageHeaderComponent: React.FC<React.PropsWithChildren<PageHeaderProps>> = 
   className,
   ...props
 }: React.PropsWithChildren<PageHeaderProps>) => {
-  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
-  const classes = useClasses('page-header', { center }, className, SCALE_CLASSES);
+  const { SCALE, UNIT, CLASS_NAMES } = useScale();
+  const classes = useClasses('page-header', { center }, className, CLASS_NAMES);
 
   return (
     <header className={classes} {...props}>
@@ -29,13 +29,13 @@ const PageHeaderComponent: React.FC<React.PropsWithChildren<PageHeaderProps>> = 
           align-items: center;
         }
 
-        ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'page-header')}
-        ${RESPONSIVE.w(1, value => `width: ${value}};`, `100%`, 'page-header')}
+        ${SCALE.h(1, value => `height: ${value};`, 'auto', 'page-header')}
+        ${SCALE.w(1, value => `width: ${value}};`, `100%`, 'page-header')}
 
-        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'page-header')}
-        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'page-header')}
+        ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'page-header')}
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'page-header')}
 
-        ${SCALER('page-header')}
+        ${UNIT('page-header')}
       `}</style>
     </header>
   );

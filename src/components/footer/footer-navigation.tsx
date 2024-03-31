@@ -6,9 +6,9 @@ import { FooterNavigationProps } from '.';
 import useScale, { withScale } from '../use-scale';
 
 const FooterNavigation: React.FC<PropsWithChildren<FooterNavigationProps>> = ({ children, title, className, ...props }) => {
-  const { SCALER, RESPONSIVE, SCALE_CLASSES } = useScale();
+  const { UNIT, SCALE, CLASS_NAMES } = useScale();
   return (
-    <nav className={useClasses('footer-navigation', className, SCALE_CLASSES)} {...props}>
+    <nav className={useClasses('footer-navigation', className, CLASS_NAMES)} {...props}>
       {title && <div className="footer-navigation-title">{title}</div>}
       <ul className="footer-navigation-group">{children}</ul>
       <style jsx>{`
@@ -24,16 +24,16 @@ const FooterNavigation: React.FC<PropsWithChildren<FooterNavigationProps>> = ({ 
           font-weight: 500;
         }
 
-        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'footer-navigation-title')}
-        ${RESPONSIVE.padding(
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'footer-navigation-title')}
+        ${SCALE.padding(
           { left: 0, right: 0, top: 0.75, bottom: 0.75 },
           value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
           undefined,
           'footer-navigation-title',
         )}
-        ${RESPONSIVE.font(0.875, value => `font-size: ${value};`, undefined, 'footer-navigation-title')}
-        ${RESPONSIVE.lineHeight(1, value => `line-height: ${value};`, 'normal', 'footer-navigation-title')}
-        ${SCALER('footer-navigation')}
+        ${SCALE.font(0.875, value => `font-size: ${value};`, undefined, 'footer-navigation-title')}
+        ${SCALE.lineHeight(1, value => `line-height: ${value};`, 'normal', 'footer-navigation-title')}
+        ${UNIT('footer-navigation')}
       `}</style>
     </nav>
   );

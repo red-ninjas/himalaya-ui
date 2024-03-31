@@ -24,7 +24,7 @@ const InnerScrollComponent: React.FC<React.PropsWithChildren<InnerScrollProps>> 
   onScroll = () => {},
   ...props
 }) => {
-  const { SCALER, RESPONSIVE, SCALE_CLASSES } = useScale();
+  const { UNIT, SCALE, CLASS_NAMES } = useScale();
   const ref = createRef<HTMLDivElement>();
   const pathName = usePathname();
 
@@ -55,7 +55,7 @@ const InnerScrollComponent: React.FC<React.PropsWithChildren<InnerScrollProps>> 
           vertical: type == 'both' || type == 'vertical',
           horizontal: type == 'both' || type == 'horizontal',
         },
-        SCALE_CLASSES,
+        CLASS_NAMES,
       )}
       {...props}
     >
@@ -117,13 +117,13 @@ const InnerScrollComponent: React.FC<React.PropsWithChildren<InnerScrollProps>> 
           background: ${transparentBg ? 'transparent' : `var(--color-background-800)`};
         }
 
-        ${RESPONSIVE.w(1, value => `width: ${value};`, '100%', 'inner-scroll')}
-        ${RESPONSIVE.h(1, value => `height: ${value};`, '100%', 'inner-scroll')}
-        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'inner-scroll')}
-        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'inner-scroll')}
-        ${RESPONSIVE.r(1, value => `--scroll-border-radius: ${value};`, 'var(--layout-radius)', 'inner-scroll')}
+        ${SCALE.w(1, value => `width: ${value};`, '100%', 'inner-scroll')}
+        ${SCALE.h(1, value => `height: ${value};`, '100%', 'inner-scroll')}
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'inner-scroll')}
+        ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'inner-scroll')}
+        ${SCALE.r(1, value => `--scroll-border-radius: ${value};`, 'var(--layout-radius)', 'inner-scroll')}
 
-        ${SCALER('inner-scroll')}
+        ${UNIT('inner-scroll')}
       `}</style>
     </div>
   );

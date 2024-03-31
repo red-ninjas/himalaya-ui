@@ -23,11 +23,11 @@ const PopoverItemComponent: React.FC<React.PropsWithChildren<PopoverItemProps>> 
   disableAutoClose = false,
   ...props
 }: React.PropsWithChildren<PopoverItemProps>) => {
-  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
+  const { SCALE, UNIT, CLASS_NAMES } = useScale();
   const { disableItemsAutoClose, onItemClick } = usePopoverContext();
   const hasHandler = Boolean(onClick);
   const dontCloseByClick = disableAutoClose || disableItemsAutoClose || title || line;
-  const classes = useClasses('item', { line, title }, className, SCALE_CLASSES);
+  const classes = useClasses('item', { line, title }, className, CLASS_NAMES);
 
   const clickHandler = (event: React.MouseEvent<HTMLDivElement>) => {
     onClick && onClick(event);
@@ -71,11 +71,11 @@ const PopoverItemComponent: React.FC<React.PropsWithChildren<PopoverItemProps>> 
             color: var(--color-foreground-1000);
           }
 
-          ${RESPONSIVE.font(0.925, value => `font-size: ${value};`, undefined, 'title')}
+          ${SCALE.font(0.925, value => `font-size: ${value};`, undefined, 'title')}
 
-          ${RESPONSIVE.w(1, value => `width: ${value};`, '100%', 'line')}
-          ${RESPONSIVE.h(0.0625, value => `height: ${value};`, undefined, 'line')}
-          ${RESPONSIVE.margin(
+          ${SCALE.w(1, value => `width: ${value};`, '100%', 'line')}
+          ${SCALE.h(0.0625, value => `height: ${value};`, undefined, 'line')}
+          ${SCALE.margin(
             {
               top: 0.35,
               right: 0,
@@ -87,12 +87,12 @@ const PopoverItemComponent: React.FC<React.PropsWithChildren<PopoverItemProps>> 
             'line',
           )}
 
-          ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'item')}
-          ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto', 'item')}
+          ${SCALE.h(1, value => `height: ${value};`, 'auto', 'item')}
+          ${SCALE.w(1, value => `width: ${value};`, 'auto', 'item')}
 
-          ${RESPONSIVE.font(0.875, value => `font-size: ${value};`, undefined, 'item')}
-          ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'item')}
-          ${RESPONSIVE.padding(
+          ${SCALE.font(0.875, value => `font-size: ${value};`, undefined, 'item')}
+          ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'item')}
+          ${SCALE.padding(
             {
               top: 0.5,
               bottom: 0.5,
@@ -104,7 +104,7 @@ const PopoverItemComponent: React.FC<React.PropsWithChildren<PopoverItemProps>> 
             'item',
           )}
 
-          ${SCALER('item')}
+          ${UNIT('item')}
         `}</style>
       </div>
       {title && <PopoverItem line title={false} />}

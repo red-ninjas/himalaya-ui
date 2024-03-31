@@ -42,10 +42,10 @@ const ProgressComponent: React.FC<ProgressProps> = ({
   colors,
   ...props
 }: ProgressProps) => {
-  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
+  const { SCALE, UNIT, CLASS_NAMES } = useScale();
   const percentValue = useProportions(value, max);
   const fixed = fixedTop || fixedBottom;
-  const classes = useClasses('progress', { fixed }, className, type ? 'color-' + type : null, SCALE_CLASSES);
+  const classes = useClasses('progress', { fixed }, className, type ? 'color-' + type : null, CLASS_NAMES);
   const [, isMounted] = useIsMounted({
     rerender: true,
     delay: 100,
@@ -152,12 +152,12 @@ const ProgressComponent: React.FC<ProgressProps> = ({
         .progress.color-default .inner {
           --progress-background: var(--color-contrast);
         }
-        ${RESPONSIVE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'progress')}
-        ${RESPONSIVE.w(1, value => `width: ${value};`, '100%', 'progress')}
-        ${RESPONSIVE.h(0.625, value => `height: ${value};`, undefined, 'progress')}
-        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'progress')}
-        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'progress')}
-        ${SCALER('progress')}
+        ${SCALE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'progress')}
+        ${SCALE.w(1, value => `width: ${value};`, '100%', 'progress')}
+        ${SCALE.h(0.625, value => `height: ${value};`, undefined, 'progress')}
+        ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'progress')}
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'progress')}
+        ${UNIT('progress')}
       `}</style>
     </div>
   );

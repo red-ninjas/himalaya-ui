@@ -15,8 +15,8 @@ function EntityFormComponent({
   footerNote = null,
   footerSeparator = true,
 }: PropsWithChildren<EntityFormProps>) {
-  const { SCALER, RESPONSIVE, SCALE_CLASSES } = useScale();
-  const entityFormClasses = useClasses('entity-form-wrapper', SCALE_CLASSES);
+  const { UNIT, SCALE, CLASS_NAMES } = useScale();
+  const entityFormClasses = useClasses('entity-form-wrapper', CLASS_NAMES);
 
   const entityFooterClasses = useClasses('entity-form-footer', {
     separator: footerSeparator,
@@ -95,19 +95,19 @@ function EntityFormComponent({
           margin-left: var(--entity-form-ml);
         }
 
-        ${RESPONSIVE.padding(1, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, `entity-form-wrapper`)}
-        ${RESPONSIVE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', `entity-form-wrapper`)}
-        ${RESPONSIVE.mt(100, value => `margin-top: ${value}px;`, undefined, 'entity-footer-note-inline')}
-        ${RESPONSIVE.ml(1, value => `margin-right: ${value}px;`, undefined, 'entity-form-footer-primary-action')}
+        ${SCALE.padding(1, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, `entity-form-wrapper`)}
+        ${SCALE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', `entity-form-wrapper`)}
+        ${SCALE.mt(100, value => `margin-top: ${value}px;`, undefined, 'entity-footer-note-inline')}
+        ${SCALE.ml(1, value => `margin-right: ${value}px;`, undefined, 'entity-form-footer-primary-action')}
 
-        ${RESPONSIVE.padding(
+        ${SCALE.padding(
           { left: 0, right: 0, top: 1, bottom: 1 },
           value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
           undefined,
           'entity-form-title',
         )}
-        ${RESPONSIVE.font(0.875, value => `font-size: ${value}rem;`, undefined, 'entity-body-text')}
-        ${SCALER('entity-form-wrapper')}
+        ${SCALE.font(0.875, value => `font-size: ${value}rem;`, undefined, 'entity-body-text')}
+        ${UNIT('entity-form-wrapper')}
       `}</style>
     </>
   );

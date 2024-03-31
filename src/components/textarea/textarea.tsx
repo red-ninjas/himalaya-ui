@@ -45,13 +45,13 @@ const TextareaComponent = React.forwardRef<HTMLTextAreaElement, React.PropsWithC
     ref: React.Ref<HTMLTextAreaElement | null>,
   ) => {
     const theme = useTheme();
-    const { SCALER, RESPONSIVE, SCALE_CLASSES } = useScale();
+    const { UNIT, SCALE, CLASS_NAMES } = useScale();
     const textareaRef = useRef<HTMLTextAreaElement>(null);
     useImperativeHandle(ref, () => textareaRef.current);
     const isControlledComponent = useMemo(() => value !== undefined, [value]);
     const [selfValue, setSelfValue] = useState<string>(initialValue);
     const [hover, setHover] = useState<boolean>(false);
-    const classes = useClasses('wrapper', { hover, disabled }, className, type ? 'color-' + type : null, SCALE_CLASSES);
+    const classes = useClasses('wrapper', { hover, disabled }, className, type ? 'color-' + type : null, CLASS_NAMES);
 
     const changeHandler = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
       if (disabled || readOnly) return;
@@ -157,14 +157,14 @@ const TextareaComponent = React.forwardRef<HTMLTextAreaElement, React.PropsWithC
 
 
 
-          ${RESPONSIVE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'wrapper')}
-          ${RESPONSIVE.font(0.875, value => `--textarea-font-size: ${value};`, undefined, 'wrapper')}
-          ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'wrapper')}
-          ${RESPONSIVE.w(1, value => `width: ${value};`, 'initial', 'wrapper')}
-          ${RESPONSIVE.h(1, value => `--textarea-height: ${value};`, 'auto', 'wrapper')}
-          ${RESPONSIVE.padding(0.5, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'textarea')}
+          ${SCALE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'wrapper')}
+          ${SCALE.font(0.875, value => `--textarea-font-size: ${value};`, undefined, 'wrapper')}
+          ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'wrapper')}
+          ${SCALE.w(1, value => `width: ${value};`, 'initial', 'wrapper')}
+          ${SCALE.h(1, value => `--textarea-height: ${value};`, 'auto', 'wrapper')}
+          ${SCALE.padding(0.5, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'textarea')}
 
-          ${SCALER('wrapper')}
+          ${UNIT('wrapper')}
         `}</style>
       </div>
     );

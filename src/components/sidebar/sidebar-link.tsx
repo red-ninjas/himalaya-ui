@@ -18,10 +18,10 @@ const SidebarLink = React.forwardRef<HTMLAnchorElement, React.PropsWithChildren<
     { children, icon, isActive, activeColor, activeBackground, className, ...props }: React.PropsWithChildren<SideBarLinkProp>,
     ref: React.Ref<HTMLAnchorElement>,
   ) => {
-    const { SCALER, RESPONSIVE, SCALE_CLASSES } = useScale();
+    const { UNIT, SCALE, CLASS_NAMES } = useScale();
 
     return (
-      <a ref={ref} {...props} className={useClasses(`sidebar-link`, { active: isActive, className }, SCALE_CLASSES)}>
+      <a ref={ref} {...props} className={useClasses(`sidebar-link`, { active: isActive, className }, CLASS_NAMES)}>
         {icon && <span className="sidebar-link-icon">{icon}</span>}
         <span className="sidebar-link-title">{children}</span>
         <style jsx>{`
@@ -72,8 +72,8 @@ const SidebarLink = React.forwardRef<HTMLAnchorElement, React.PropsWithChildren<
             font-weight: 500;
           }
 
-          ${RESPONSIVE.font(0.85, value => `font-size: ${value};`, undefined, 'sidebar-link')}
-          ${RESPONSIVE.margin(
+          ${SCALE.font(0.85, value => `font-size: ${value};`, undefined, 'sidebar-link')}
+          ${SCALE.margin(
             0,
             value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
             {
@@ -84,16 +84,16 @@ const SidebarLink = React.forwardRef<HTMLAnchorElement, React.PropsWithChildren<
             },
             'sidebar-link',
           )}
-          ${RESPONSIVE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'sidebar-link')}
+          ${SCALE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'sidebar-link')}
 
-          ${RESPONSIVE.padding(
+          ${SCALE.padding(
             0.6,
             value => `--padding-top: ${value.top}; --padding-right: ${value.right}; --padding-bottom: ${value.bottom}; --padding-left: ${value.left};`,
             undefined,
             'sidebar-link',
           )}
 
-          ${SCALER('sidebar-link')}
+          ${UNIT('sidebar-link')}
         `}</style>
       </a>
     );

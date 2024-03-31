@@ -27,7 +27,7 @@ const NavigationItem = React.forwardRef<HTMLAnchorElement, React.PropsWithChildr
     const [isPopoverVisibile, setIsPopoverVisibile] = useState<boolean>(false);
     const [isHover, setIsHover] = useState<boolean>(false);
     const childExist = children !== undefined;
-    const { SCALER, RESPONSIVE, SCALE_CLASSES } = useScale();
+    const { UNIT, SCALE, CLASS_NAMES } = useScale();
 
     const btnClass = useClasses(
       'menu-item',
@@ -36,7 +36,7 @@ const NavigationItem = React.forwardRef<HTMLAnchorElement, React.PropsWithChildr
         'chevron-active': isPopoverVisibile,
         'is-hover': isHover,
       },
-      SCALE_CLASSES,
+      CLASS_NAMES,
     );
 
     const childs = () => (
@@ -222,11 +222,11 @@ const NavigationItem = React.forwardRef<HTMLAnchorElement, React.PropsWithChildr
             max-width: 600px;
           }
 
-          ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto', 'menu-item')}
-          ${RESPONSIVE.h(1, value => `height: ${value};`, '100%', 'menu-item')}
-          ${RESPONSIVE.font(0.9, value => `font-size: ${value};`, undefined, 'menu-item')}
-          ${RESPONSIVE.font(1, value => `--chevron-size: ${value};`, undefined, 'chevron')}
-          ${RESPONSIVE.padding(
+          ${SCALE.w(1, value => `width: ${value};`, 'auto', 'menu-item')}
+          ${SCALE.h(1, value => `height: ${value};`, '100%', 'menu-item')}
+          ${SCALE.font(0.9, value => `font-size: ${value};`, undefined, 'menu-item')}
+          ${SCALE.font(1, value => `--chevron-size: ${value};`, undefined, 'chevron')}
+          ${SCALE.padding(
             {
               top: 0.5,
               bottom: 0.5,
@@ -237,7 +237,7 @@ const NavigationItem = React.forwardRef<HTMLAnchorElement, React.PropsWithChildr
             undefined,
             'navigation-title',
           )}
-          ${RESPONSIVE.margin(
+          ${SCALE.margin(
             {
               top: 0,
               left: 0.2,
@@ -248,7 +248,7 @@ const NavigationItem = React.forwardRef<HTMLAnchorElement, React.PropsWithChildr
             undefined,
             'menu-item',
           )}
-          ${SCALER('menu-item')}
+          ${UNIT('menu-item')}
         `}</style>
       </a>
     );

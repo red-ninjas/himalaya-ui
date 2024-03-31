@@ -66,7 +66,7 @@ const SelectComponent = React.forwardRef<SelectRef, React.PropsWithChildren<Sele
     }: React.PropsWithChildren<SelectProps>,
     selectRef,
   ) => {
-    const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
+    const { SCALE, UNIT, CLASS_NAMES } = useScale();
     const ref = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
     const dropdownRef = useRef<HTMLDivElement>(null);
@@ -169,7 +169,7 @@ const SelectComponent = React.forwardRef<SelectRef, React.PropsWithChildren<Sele
       },
       className,
       type ? 'color-' + type : null,
-      SCALE_CLASSES,
+      CLASS_NAMES,
     );
 
     return (
@@ -304,8 +304,8 @@ const SelectComponent = React.forwardRef<SelectRef, React.PropsWithChildren<Sele
               color: var(--select-icon-color);
             }
 
-            ${RESPONSIVE.font(0.875, value => `--select-font-size: ${value};`, undefined, 'select')}
-            ${RESPONSIVE.padding(
+            ${SCALE.font(0.875, value => `--select-font-size: ${value};`, undefined, 'select')}
+            ${SCALE.padding(
               {
                 top: 0,
                 left: 0.667,
@@ -316,9 +316,9 @@ const SelectComponent = React.forwardRef<SelectRef, React.PropsWithChildren<Sele
               undefined,
               'select',
             )}
-            ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'select')}
+            ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'select')}
 
-            ${RESPONSIVE.padding(
+            ${SCALE.padding(
               {
                 top: 0.334,
                 left: 0.667,
@@ -329,11 +329,11 @@ const SelectComponent = React.forwardRef<SelectRef, React.PropsWithChildren<Sele
               undefined,
               'multiple',
             )}
-            ${RESPONSIVE.h(2.25, value => `--select-height: ${value};`, undefined, 'select')}
-            ${RESPONSIVE.w(1, value => `width: ${value};`, 'initial', 'select')}
-            ${RESPONSIVE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'select')}
+            ${SCALE.h(2.25, value => `--select-height: ${value};`, undefined, 'select')}
+            ${SCALE.w(1, value => `width: ${value};`, 'initial', 'select')}
+            ${SCALE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'select')}
 
-            ${SCALER('select')}
+            ${UNIT('select')}
           `}</style>
         </div>
       </SelectContext.Provider>

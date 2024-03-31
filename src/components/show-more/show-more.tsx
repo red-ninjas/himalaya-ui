@@ -56,7 +56,7 @@ const ShowMore: React.FC<PropsWithChildren<ShowMoreProps>> = ({
   ...props
 }) => {
   const [iconRotated, setIconRotated] = useState(false);
-  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
+  const { SCALE, UNIT, CLASS_NAMES } = useScale();
 
   const ref = React.createRef<HTMLDivElement>();
   const dimensions = useRefDimensions(ref);
@@ -69,14 +69,14 @@ const ShowMore: React.FC<PropsWithChildren<ShowMoreProps>> = ({
 
   return (
     <div
-      className={useClasses(`show-more`, expanded ? 'expanded' : 'collapsed', className, SCALE_CLASSES)}
+      className={useClasses(`show-more`, expanded ? 'expanded' : 'collapsed', className, CLASS_NAMES)}
       {...props}
       onClick={() => {
         onClick();
         toggleIconRotation();
       }}
     >
-      <div className="show-more-bar margin padding">
+      <div className="show-more-bar">
         {showLines && <div className="show-more-line" />}
 
         <Button
@@ -144,9 +144,9 @@ const ShowMore: React.FC<PropsWithChildren<ShowMoreProps>> = ({
           }
         }
 
-        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'show-more')}
-        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'show-more')}
-        ${SCALER('show-more')}
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'show-more')}
+        ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'show-more')}
+        ${UNIT('show-more')}
       `}</style>
     </div>
   );

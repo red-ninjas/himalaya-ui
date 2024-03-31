@@ -14,7 +14,7 @@ type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
 export type BreadcrumbsProps = Props & NativeAttrs;
 
 const BreadcrumbsComponent: React.FC<React.PropsWithChildren<BreadcrumbsProps>> = ({ separator = '/', children, className = '' }: BreadcrumbsProps) => {
-  const { SCALER, RESPONSIVE, SCALE_CLASSES } = useScale();
+  const { UNIT, SCALE, CLASS_NAMES } = useScale();
 
   const childrenArray = React.Children.toArray(children);
   const withSeparatorChildren = childrenArray.map((item, index) => {
@@ -34,7 +34,7 @@ const BreadcrumbsComponent: React.FC<React.PropsWithChildren<BreadcrumbsProps>> 
   });
 
   return (
-    <nav className={useClasses('nav', className, SCALE_CLASSES)}>
+    <nav className={useClasses('nav', className, CLASS_NAMES)}>
       {withSeparatorChildren}
       <style jsx>{`
         .nav {
@@ -68,13 +68,13 @@ const BreadcrumbsComponent: React.FC<React.PropsWithChildren<BreadcrumbsProps>> 
           align-items: center;
         }
 
-        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'nav')}
-        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'nav')}
-        ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto', 'nav')}
-        ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'nav')}
-        ${RESPONSIVE.font(1, value => `height: ${value};`, undefined, 'nav')}
+        ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'nav')}
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'nav')}
+        ${SCALE.w(1, value => `width: ${value};`, 'auto', 'nav')}
+        ${SCALE.h(1, value => `height: ${value};`, 'auto', 'nav')}
+        ${SCALE.font(1, value => `height: ${value};`, undefined, 'nav')}
 
-        ${SCALER('nav')}
+        ${UNIT('nav')}
       `}</style>
     </nav>
   );

@@ -13,11 +13,11 @@ const ModalTitleComponent: React.FC<React.PropsWithChildren<ModalTitleProps>> = 
   children,
   ...props
 }: React.PropsWithChildren<ModalTitleProps>) => {
-  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
+  const { SCALE, UNIT, CLASS_NAMES } = useScale();
 
   return (
     <>
-      <h2 className={useClasses('modal-title', className, SCALE_CLASSES)} {...props}>
+      <h2 className={useClasses('modal-title', className, CLASS_NAMES)} {...props}>
         {children}
       </h2>
       <style jsx>{`
@@ -33,13 +33,13 @@ const ModalTitleComponent: React.FC<React.PropsWithChildren<ModalTitleProps>> = 
           color: var(--color-foreground-1000);
         }
 
-        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'modal-title')}
-        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'modal-title')}
-        ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto', 'modal-title')}
-        ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'modal-title')}
-        ${RESPONSIVE.font(1.5, value => `font-size: ${value};`, undefined, 'modal-title')}
-        ${RESPONSIVE.lineHeight(2.4, value => `line-height: ${value};`, undefined, 'modal-title')}
-        ${SCALER('modal-title')}
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'modal-title')}
+        ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'modal-title')}
+        ${SCALE.w(1, value => `width: ${value};`, 'auto', 'modal-title')}
+        ${SCALE.h(1, value => `height: ${value};`, 'auto', 'modal-title')}
+        ${SCALE.font(1.5, value => `font-size: ${value};`, undefined, 'modal-title')}
+        ${SCALE.lineHeight(2.4, value => `line-height: ${value};`, undefined, 'modal-title')}
+        ${UNIT('modal-title')}
       `}</style>
     </>
   );

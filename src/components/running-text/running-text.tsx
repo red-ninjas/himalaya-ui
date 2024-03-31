@@ -11,10 +11,10 @@ const RunningText: React.FC<PropsWithChildren<RunningTextProps>> = ({
   gap = 3,
   ...props
 }: PropsWithChildren<RunningTextProps>) => {
-  const { SCALER, RESPONSIVE, SCALE_CLASSES } = useScale();
+  const { UNIT, SCALE, CLASS_NAMES } = useScale();
 
   return (
-    <div className={useClasses('running-outer', SCALE_CLASSES)} {...props}>
+    <div className={useClasses('running-outer', CLASS_NAMES)} {...props}>
       <div className="running-inner">
         <div className="running-text">{children}</div>
         <div className="running-text">{children}</div>
@@ -63,10 +63,10 @@ const RunningText: React.FC<PropsWithChildren<RunningTextProps>> = ({
           padding: 0 30px;
         }
 
-        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'running-outer')}
-        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'running-outer')}
+        ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'running-outer')}
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'running-outer')}
 
-        ${SCALER('running-outer')}
+        ${UNIT('running-outer')}
       `}</style>
     </div>
   );

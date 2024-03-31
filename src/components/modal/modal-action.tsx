@@ -22,7 +22,7 @@ const ModalActionComponent = React.forwardRef<HTMLButtonElement, React.PropsWith
     { className = undefined, children, onClick, passive = false, disabled = false, ...props }: React.PropsWithChildren<ModalActionProps>,
     ref: React.Ref<HTMLButtonElement | null>,
   ) => {
-    const { SCALER, RESPONSIVE, SCALE_CLASSES } = useScale();
+    const { UNIT, SCALE, CLASS_NAMES } = useScale();
     const btnRef = useRef<HTMLButtonElement>(null);
     const { close } = useModalContext();
     useImperativeHandle(ref, () => btnRef.current);
@@ -63,12 +63,12 @@ const ModalActionComponent = React.forwardRef<HTMLButtonElement, React.PropsWith
         background-color: ${disabled ? bgColor : `var(--color-background-800)`};
       }
 
-      ${RESPONSIVE.h(3.5625, value => `height: ${value};`, undefined, 'btn.action-btn')}
-      ${RESPONSIVE.font(0.75, value => `font-size: ${value};`, undefined, 'btn.action-btn')}
-      ${SCALER('btn.action-btn')}
+      ${SCALE.h(3.5625, value => `height: ${value};`, undefined, 'btn.action-btn')}
+      ${SCALE.font(0.75, value => `font-size: ${value};`, undefined, 'btn.action-btn')}
+      ${UNIT('btn.action-btn')}
     `;
 
-    const classes = useClasses('action-btn', className, resolveClassName, SCALE_CLASSES);
+    const classes = useClasses('action-btn', className, resolveClassName, CLASS_NAMES);
 
     const overrideProps = {
       ...props,

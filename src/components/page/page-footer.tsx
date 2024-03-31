@@ -14,10 +14,10 @@ const PageFooterComponent: React.FC<React.PropsWithChildren<PageFooterProps>> = 
   className = undefined,
   ...props
 }: React.PropsWithChildren<PageFooterProps>) => {
-  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
+  const { SCALE, UNIT, CLASS_NAMES } = useScale();
 
   return (
-    <footer className={useClasses('page-footer', className, SCALE_CLASSES)} {...props}>
+    <footer className={useClasses('page-footer', className, CLASS_NAMES)} {...props}>
       {children}
       <style jsx>{`
         .page-footer {
@@ -25,13 +25,13 @@ const PageFooterComponent: React.FC<React.PropsWithChildren<PageFooterProps>> = 
           bottom: 0;
         }
 
-        ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'page-footer')}
-        ${RESPONSIVE.w(1, value => `width: ${value}};`, `100%`, 'page-footer')}
+        ${SCALE.h(1, value => `height: ${value};`, 'auto', 'page-footer')}
+        ${SCALE.w(1, value => `width: ${value}};`, `100%`, 'page-footer')}
 
-        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'page-footer')}
-        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'page-footer')}
+        ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'page-footer')}
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'page-footer')}
 
-        ${SCALER('page-footer')}
+        ${UNIT('page-footer')}
       `}</style>
     </footer>
   );

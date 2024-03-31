@@ -14,7 +14,7 @@ type NativeAttrs = Omit<React.HTMLAttributes<HTMLAnchorElement>, keyof Props>;
 export type MobileNavigationGroupProps = Props & NativeAttrs;
 
 const MobileNavigationGroup: React.FC<PropsWithChildren<MobileNavigationGroupProps>> = ({ children, title, expanded = true, ...props }) => {
-  const { SCALER, RESPONSIVE, SCALE_CLASSES } = useScale();
+  const { UNIT, SCALE, CLASS_NAMES } = useScale();
   const ref = useRef<HTMLAnchorElement | null>(null);
   const [isExpanded, setIsExpanded] = useState(expanded);
 
@@ -23,7 +23,7 @@ const MobileNavigationGroup: React.FC<PropsWithChildren<MobileNavigationGroupPro
   const btnClass = useClasses({
     'mobile-navigation-item': true,
     'has-chevron': !!children,
-    SCALE_CLASSES,
+    CLASS_NAMES,
   });
 
   const childs = (childElements: ReactNode) => {
@@ -53,9 +53,9 @@ const MobileNavigationGroup: React.FC<PropsWithChildren<MobileNavigationGroupPro
             visibility: visible;
           }
 
-          ${RESPONSIVE.ml(1.5, value => `margin-right: ${value};`, undefined, 'sub-child-grid')}
+          ${SCALE.ml(1.5, value => `margin-right: ${value};`, undefined, 'sub-child-grid')}
 
-          ${RESPONSIVE.padding(
+          ${SCALE.padding(
             {
               top: 0.25,
               bottom: 0.25,
@@ -214,8 +214,8 @@ const MobileNavigationGroup: React.FC<PropsWithChildren<MobileNavigationGroupPro
           max-width: 600px;
         }
 
-        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'mobile-navigation-item')}
-        ${RESPONSIVE.padding(
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'mobile-navigation-item')}
+        ${SCALE.padding(
           {
             top: 0.7,
             bottom: 0.7,
@@ -226,13 +226,13 @@ const MobileNavigationGroup: React.FC<PropsWithChildren<MobileNavigationGroupPro
           undefined,
           'mobile-navigation-item',
         )}
-        ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto', 'mobile-navigation-item')}
-        ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'mobile-navigation-item')}
-        ${RESPONSIVE.font(0.85, value => `font-size: ${value};`, undefined, 'mobile-navigation-item')}
-        ${RESPONSIVE.mr(0.2, value => `margin-right: ${value};`, undefined, 'chevron-right')}
-        ${RESPONSIVE.pr(1.3, value => `padding-right: ${value};`, undefined, 'has-chevron')}
+        ${SCALE.w(1, value => `width: ${value};`, 'auto', 'mobile-navigation-item')}
+        ${SCALE.h(1, value => `height: ${value};`, 'auto', 'mobile-navigation-item')}
+        ${SCALE.font(0.85, value => `font-size: ${value};`, undefined, 'mobile-navigation-item')}
+        ${SCALE.mr(0.2, value => `margin-right: ${value};`, undefined, 'chevron-right')}
+        ${SCALE.pr(1.3, value => `padding-right: ${value};`, undefined, 'has-chevron')}
 
-        ${SCALER('mobile-navigation-item')}
+        ${UNIT('mobile-navigation-item')}
       `}</style>
     </div>
   );

@@ -11,7 +11,7 @@ export type SearchButtonProps = {
   mod?: KeyMod;
 };
 const SearchButtonComponent: React.FC<SearchButtonProps & keyboardiProps> = props => {
-  const { RESPONSIVE } = useScale();
+  const { SCALE } = useScale();
 
   const { setIsEnabled } = useSearch();
 
@@ -39,8 +39,8 @@ const SearchButtonComponent: React.FC<SearchButtonProps & keyboardiProps> = prop
           border: none;
         }
 
-        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'wrapper')}
-        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'wrapper')}
+        ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'wrapper')}
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'wrapper')}
       `}</style>
     </div>
   );

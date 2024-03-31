@@ -23,11 +23,11 @@ const FieldsetGroupComponent: React.FC<React.PropsWithChildren<FieldsetGroupProp
   onChange,
   ...props
 }: React.PropsWithChildren<FieldsetGroupProps>) => {
-  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
+  const { SCALE, UNIT, CLASS_NAMES } = useScale();
 
   const [selfVal, setSelfVal] = useState<string>(value);
   const [items, setItems, ref] = useCurrentState<FieldItem[]>([]);
-  const classes = useClasses('group', className, SCALE_CLASSES);
+  const classes = useClasses('group', className, CLASS_NAMES);
 
   const register = (newItem: FieldItem) => {
     const hasItem = ref.current.find(item => item.value === newItem.value);
@@ -125,13 +125,13 @@ const FieldsetGroupComponent: React.FC<React.PropsWithChildren<FieldsetGroupProp
             border-left: 0;
           }
 
-          ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'group')}
-          ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto', 'group')}
-          ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'group')}
-          ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'group')}
-          ${RESPONSIVE.font(1, value => `font-size: ${value};`, undefined, 'group-tabs')}
+          ${SCALE.h(1, value => `height: ${value};`, 'auto', 'group')}
+          ${SCALE.w(1, value => `width: ${value};`, 'auto', 'group')}
+          ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'group')}
+          ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'group')}
+          ${SCALE.font(1, value => `font-size: ${value};`, undefined, 'group-tabs')}
 
-          ${SCALER('group')}
+          ${UNIT('group')}
         `}</style>
       </div>
     </FieldsetContext.Provider>

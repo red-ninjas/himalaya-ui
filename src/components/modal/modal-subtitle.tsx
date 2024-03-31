@@ -13,11 +13,11 @@ const ModalSubtitleComponent: React.FC<React.PropsWithChildren<ModalSubtitleProp
   children,
   ...props
 }: React.PropsWithChildren<ModalSubtitleProps>) => {
-  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
+  const { SCALE, UNIT, CLASS_NAMES } = useScale();
 
   return (
     <>
-      <p className={useClasses('modal-sub-title', className, SCALE_CLASSES)} {...props}>
+      <p className={useClasses('modal-sub-title', className, CLASS_NAMES)} {...props}>
         {children}
       </p>
       <style jsx>{`
@@ -30,15 +30,15 @@ const ModalSubtitleComponent: React.FC<React.PropsWithChildren<ModalSubtitleProp
           color: var(--color-background-400);
         }
 
-        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'modal-sub-title')}
-        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'modal-sub-title')}
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'modal-sub-title')}
+        ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'modal-sub-title')}
 
-        ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto', 'modal-sub-title')}
-        ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'modal-sub-title')}
+        ${SCALE.w(1, value => `width: ${value};`, 'auto', 'modal-sub-title')}
+        ${SCALE.h(1, value => `height: ${value};`, 'auto', 'modal-sub-title')}
 
-        ${RESPONSIVE.font(0.875, value => `font-size: ${value};`, undefined, 'modal-sub-title')}
-        ${RESPONSIVE.lineHeight(1.32, value => `line-height: ${value};`, undefined, 'modal-sub-title')}
-        ${SCALER('modal-sub-title')}
+        ${SCALE.font(0.875, value => `font-size: ${value};`, undefined, 'modal-sub-title')}
+        ${SCALE.lineHeight(1.32, value => `line-height: ${value};`, undefined, 'modal-sub-title')}
+        ${UNIT('modal-sub-title')}
       `}</style>
     </>
   );

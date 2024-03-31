@@ -31,11 +31,11 @@ const SelectOptionComponent: React.FC<React.PropsWithChildren<SelectOptionProps>
   hasCheckmark = true,
   ...props
 }: React.PropsWithChildren<SelectOptionProps>) => {
-  const { SCALER, RESPONSIVE, SCALE_CLASSES } = useScale();
+  const { UNIT, SCALE, CLASS_NAMES } = useScale();
   const { updateValue, value, disableAll } = useSelectContext();
   const isDisabled = useMemo(() => disabled || disableAll, [disabled, disableAll]);
   const isLabel = useMemo(() => label || divider, [label, divider]);
-  const classes = useClasses('option', { divider, label }, className, { disabled: isDisabled }, SCALE_CLASSES);
+  const classes = useClasses('option', { divider, label }, className, { disabled: isDisabled }, CLASS_NAMES);
   if (!isLabel && identValue === undefined) {
     useWarning('The props "value" is required.', 'Select Option');
   }
@@ -139,15 +139,15 @@ const SelectOptionComponent: React.FC<React.PropsWithChildren<SelectOptionProps>
           font-size: var(--select-font-size);
         }
 
-        ${RESPONSIVE.font(1, value => `width: ${value}; height: ${value};`, undefined, 'option-check')}
-        ${RESPONSIVE.w(1, value => `width: ${value};`, '100%', 'label')}
+        ${SCALE.font(1, value => `width: ${value}; height: ${value};`, undefined, 'option-check')}
+        ${SCALE.w(1, value => `width: ${value};`, '100%', 'label')}
 
-        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'divider')}
-        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'divider')}
-        ${RESPONSIVE.w(1, value => `width: ${value};`, '100%', 'divider')}
-        ${RESPONSIVE.h(1, value => `height: ${value};`, 0, 'divider')}
+        ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'divider')}
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'divider')}
+        ${SCALE.w(1, value => `width: ${value};`, '100%', 'divider')}
+        ${SCALE.h(1, value => `height: ${value};`, 0, 'divider')}
 
-        ${RESPONSIVE.padding(
+        ${SCALE.padding(
           {
             top: 0,
             left: 0.667,
@@ -158,13 +158,13 @@ const SelectOptionComponent: React.FC<React.PropsWithChildren<SelectOptionProps>
           undefined,
           'option',
         )}
-        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'option')}
-        ${RESPONSIVE.font(0.875, value => `--select-font-size: ${value};`, undefined, 'option')}
-        ${RESPONSIVE.w(1, value => `width: ${value};`, '100%', 'option')}
-        ${RESPONSIVE.h(2.25, value => `height: ${value};`, undefined, 'item')}
-        ${RESPONSIVE.h(2.25, value => `--select-input-height: ${value};`, undefined, 'option-input')}
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'option')}
+        ${SCALE.font(0.875, value => `--select-font-size: ${value};`, undefined, 'option')}
+        ${SCALE.w(1, value => `width: ${value};`, '100%', 'option')}
+        ${SCALE.h(2.25, value => `height: ${value};`, undefined, 'item')}
+        ${SCALE.h(2.25, value => `--select-input-height: ${value};`, undefined, 'option-input')}
 
-        ${SCALER('option')}
+        ${UNIT('option')}
       `}</style>
     </div>
   );

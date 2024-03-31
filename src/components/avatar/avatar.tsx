@@ -20,8 +20,8 @@ const safeText = (text: string): string => {
 };
 
 const AvatarComponent: React.FC<AvatarProps> = ({ src, text = '', isSquare = false, className = '', ...props }: AvatarProps) => {
-  const { SCALER, RESPONSIVE, SCALE_CLASSES } = useScale();
-  const classes = useClasses('avatar', className, SCALE_CLASSES);
+  const { UNIT, SCALE, CLASS_NAMES } = useScale();
+  const classes = useClasses('avatar', className, CLASS_NAMES);
   const showText = !src;
   return (
     <span className={classes}>
@@ -62,12 +62,12 @@ const AvatarComponent: React.FC<AvatarProps> = ({ src, text = '', isSquare = fal
           white-space: nowrap;
           user-select: none;
         }
-        ${RESPONSIVE.font(1, value => `font-size: ${value};`, undefined, 'avatar-text')}
-        ${RESPONSIVE.w(1.75, value => `width: ${value};`, undefined, 'avatar')}
-        ${RESPONSIVE.h(1.75, value => `height: ${value};`, undefined, 'avatar')}
-        ${RESPONSIVE.r(1, value => `--border-radius: ${value};`, isSquare ? `var(--layout-radius)` : '50%', 'avatar')}
-        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'avatar')}
-        ${RESPONSIVE.margin(
+        ${SCALE.font(1, value => `font-size: ${value};`, undefined, 'avatar-text')}
+        ${SCALE.w(1.75, value => `width: ${value};`, undefined, 'avatar')}
+        ${SCALE.h(1.75, value => `height: ${value};`, undefined, 'avatar')}
+        ${SCALE.r(1, value => `--border-radius: ${value};`, isSquare ? `var(--layout-radius)` : '50%', 'avatar')}
+        ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'avatar')}
+        ${SCALE.margin(
           {
             top: 0,
             left: 0,
@@ -79,7 +79,7 @@ const AvatarComponent: React.FC<AvatarProps> = ({ src, text = '', isSquare = fal
           'avatar',
         )}
 
-        ${SCALER('avatar')}
+        ${UNIT('avatar')}
       `}</style>
     </span>
   );

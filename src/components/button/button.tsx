@@ -41,7 +41,7 @@ const ButtonComponent = React.forwardRef<HTMLButtonElement, React.PropsWithChild
   (btnProps: ButtonProps, ref: React.Ref<HTMLButtonElement | null>) => {
     const theme = useTheme();
     const layoutRoot = useLayout();
-    const { SCALER, RESPONSIVE, SCALE_CLASSES } = useScale();
+    const { UNIT, SCALE, CLASS_NAMES } = useScale();
     const buttonRef = useRef<HTMLButtonElement>(null);
     useImperativeHandle(ref, () => buttonRef.current);
 
@@ -105,7 +105,7 @@ const ButtonComponent = React.forwardRef<HTMLButtonElement, React.PropsWithChild
       <button
         ref={buttonRef}
         type={htmlType}
-        className={useClasses('btn', className, disabled, type ? 'color-' + type : null, { ghost }, SCALE_CLASSES)}
+        className={useClasses('btn', className, disabled, type ? 'color-' + type : null, { ghost }, CLASS_NAMES)}
         disabled={disabled}
         onClick={clickHandler}
         {...props}
@@ -223,23 +223,23 @@ const ButtonComponent = React.forwardRef<HTMLButtonElement, React.PropsWithChild
             value => `min-width: ${value ? 'min-content' : `var(--ui-button-min-width)`}; width: ${value ? 'auto' : 'initial'};`,
           )}
 
-          ${RESPONSIVE.padding(
+          ${SCALE.padding(
             { left: auto ? 1.15 : 1.375, right: auto ? 1.15 : 1.375, top: 0, bottom: 0 },
             value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
             undefined,
             'btn',
           )}
 
-          ${RESPONSIVE.pl(0.727, value => `--ui-button-icon-padding: ${value};`, undefined, 'btn')}
-          ${RESPONSIVE.w(10.5, value => `--ui-button-min-width: ${value};`, undefined, 'btn')}
-          ${RESPONSIVE.h(2.5, value => `height: ${value}; --ui-button-height: ${value};`, undefined, 'btn')}
-          ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'btn')}
-          ${RESPONSIVE.font(0.875, value => `font-size: ${value}; --button-font-size: ${value};`, undefined, 'btn')}
-          ${RESPONSIVE.lineHeight(0.875, value => `line-height: ${value};`, `var(--button-font-size)`, 'btn')}
-          ${RESPONSIVE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'btn')}
+          ${SCALE.pl(0.727, value => `--ui-button-icon-padding: ${value};`, undefined, 'btn')}
+          ${SCALE.w(10.5, value => `--ui-button-min-width: ${value};`, undefined, 'btn')}
+          ${SCALE.h(2.5, value => `height: ${value}; --ui-button-height: ${value};`, undefined, 'btn')}
+          ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'btn')}
+          ${SCALE.font(0.875, value => `font-size: ${value}; --button-font-size: ${value};`, undefined, 'btn')}
+          ${SCALE.lineHeight(0.875, value => `line-height: ${value};`, `var(--button-font-size)`, 'btn')}
+          ${SCALE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'btn')}
 
 
-          ${SCALER('btn')}
+          ${UNIT('btn')}
         `}</style>
       </button>
     );

@@ -14,7 +14,7 @@ const QuickBarAction = React.forwardRef<HTMLAnchorElement, React.PropsWithChildr
     { children, space = 0.625, tooltip, className, type = 'default' as UIColorTypes, active, ...props }: React.PropsWithChildren<QuickActionProps>,
     ref: React.Ref<HTMLAnchorElement>,
   ) => {
-    const { SCALER, RESPONSIVE, SCALE_CLASSES } = useScale();
+    const { UNIT, SCALE, CLASS_NAMES } = useScale();
     const layout = useLayout();
 
     return (
@@ -27,7 +27,7 @@ const QuickBarAction = React.forwardRef<HTMLAnchorElement, React.PropsWithChildr
             {
               'is-active': active,
             },
-            SCALE_CLASSES,
+            CLASS_NAMES,
             className,
             type ? 'color-' + type : null,
           )}
@@ -100,28 +100,18 @@ const QuickBarAction = React.forwardRef<HTMLAnchorElement, React.PropsWithChildr
               color: var(--quick-action-hover-color);
             }
 
-            ${RESPONSIVE.h(
-              1,
-              value => `height: ${value};`,
-              'calc(var(--quickbar-width) - var(--quick-action-space) - var(--quick-action-space))',
-              'quick-action',
-            )}
-            ${RESPONSIVE.w(
-              1,
-              value => `width: ${value};`,
-              'calc(var(--quickbar-width) - var(--quick-action-space) - var(--quick-action-space))',
-              'quick-action',
-            )}
+            ${SCALE.h(1, value => `height: ${value};`, 'calc(var(--quickbar-width) - var(--quick-action-space) - var(--quick-action-space))', 'quick-action')}
+            ${SCALE.w(1, value => `width: ${value};`, 'calc(var(--quickbar-width) - var(--quick-action-space) - var(--quick-action-space))', 'quick-action')}
 
             ${customResponsiveAttribute(space, 'quick-action', layout.breakpoints, value =>
               !isCSSNumberValue(value) ? `--quick-action-space: ${value};` : `--quick-action-space: calc(var(--scale-unit-scale) * ${value})`,
             )}
 
-            ${RESPONSIVE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'quick-action')}
-            ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'quick-action')}
-            ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'quick-action')}
+            ${SCALE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'quick-action')}
+            ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'quick-action')}
+            ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'quick-action')}
 
-            ${SCALER('quick-action')}
+            ${UNIT('quick-action')}
           `}</style>
         </a>
       </Tooltip>

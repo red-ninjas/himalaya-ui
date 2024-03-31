@@ -13,7 +13,7 @@ export interface BottomNavigationItemProps extends IBottomNavigationItem {
 
 const BottomNavigationItem: React.FC<PropsWithChildren<BottomNavigationItemProps>> = ({ exactMatch = true, url = '#', icon, onClick }) => {
   const pathname = usePathname();
-  const { SCALER, RESPONSIVE } = useScale();
+  const { UNIT, SCALE } = useScale();
   const ref = useRef<HTMLAnchorElement | null>(null);
 
   const isLinkActive = url ? (exactMatch ? pathname == url : pathname.startsWith(url)) : false;
@@ -86,13 +86,13 @@ const BottomNavigationItem: React.FC<PropsWithChildren<BottomNavigationItemProps
           font-weight: 500;
         }
 
-        ${SCALER('bottom-navigation-item')}
+        ${UNIT('bottom-navigation-item')}
 
-        ${RESPONSIVE.lineHeight(0.875, value => `font-size: ${value};`, 'normal', 'bottom-navigation-item')}
-        ${RESPONSIVE.font(0.875, value => `font-size: ${value};`, undefined, 'bottom-navigation-item')}
-        ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto', 'bottom-navigation-item')}
-        ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'bottom-navigation-item')}
-        ${RESPONSIVE.padding(
+        ${SCALE.lineHeight(0.875, value => `font-size: ${value};`, 'normal', 'bottom-navigation-item')}
+        ${SCALE.font(0.875, value => `font-size: ${value};`, undefined, 'bottom-navigation-item')}
+        ${SCALE.w(1, value => `width: ${value};`, 'auto', 'bottom-navigation-item')}
+        ${SCALE.h(1, value => `height: ${value};`, 'auto', 'bottom-navigation-item')}
+        ${SCALE.padding(
           {
             top: 0.875,
             left: 0.55,
@@ -103,7 +103,7 @@ const BottomNavigationItem: React.FC<PropsWithChildren<BottomNavigationItemProps
           undefined,
           'bottom-navigation-item',
         )}
-        ${RESPONSIVE.margin(
+        ${SCALE.margin(
           {
             top: 0,
             left: 0.2,

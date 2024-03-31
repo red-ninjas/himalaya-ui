@@ -14,10 +14,10 @@ const AutoCompleteSearchComponent: React.FC<React.PropsWithChildren<AutoComplete
   children,
   className = '',
 }: React.PropsWithChildren<AutoCompleteSearchProps>) => {
-  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
+  const { SCALE, UNIT, CLASS_NAMES } = useScale();
 
   return (
-    <div className={useClasses('searching', className, SCALE_CLASSES)}>
+    <div className={useClasses('searching', className, CLASS_NAMES)}>
       {children}
       <style jsx>{`
         .searching {
@@ -35,15 +35,15 @@ const AutoCompleteSearchComponent: React.FC<React.PropsWithChildren<AutoComplete
           border: 0;
         }
 
-        ${RESPONSIVE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'searching')}
-        ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto', 'searching')}
-        ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'searching')}
-        ${RESPONSIVE.padding(0.875, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'searching')}
-        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'searching')}
+        ${SCALE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'searching')}
+        ${SCALE.w(1, value => `width: ${value};`, 'auto', 'searching')}
+        ${SCALE.h(1, value => `height: ${value};`, 'auto', 'searching')}
+        ${SCALE.padding(0.875, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'searching')}
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'searching')}
 
-        ${RESPONSIVE.font(0.875, value => `font-size: ${value};`, undefined, 'searching')}
+        ${SCALE.font(0.875, value => `font-size: ${value};`, undefined, 'searching')}
 
-        ${SCALER('searching')}
+        ${UNIT('searching')}
       `}</style>
     </div>
   );

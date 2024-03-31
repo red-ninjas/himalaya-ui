@@ -14,10 +14,10 @@ type FixedHeaderPropsNative = Omit<React.HTMLAttributes<HTMLDivElement>, keyof P
 export type FixedHeaderProps = FixedHeaderPropsNative & Props;
 
 const FixedHeader: React.FC<React.PropsWithChildren<FixedHeaderProps>> = ({ children, hidden = false, className, ...props }) => {
-  const { SCALER, SCALE_CLASSES } = useScale();
+  const { UNIT, CLASS_NAMES } = useScale();
   const [, header] = pickChild(children, Header);
   return (
-    <div className={useClasses('fixed-header', { hidden }, className, SCALE_CLASSES)} {...props}>
+    <div className={useClasses('fixed-header', { hidden }, className, CLASS_NAMES)} {...props}>
       {header}
       <style jsx>{`
         .header-spacer {
@@ -42,7 +42,7 @@ const FixedHeader: React.FC<React.PropsWithChildren<FixedHeaderProps>> = ({ chil
           --translate-y: -100%;
         }
 
-        ${SCALER('fixed-header')}
+        ${UNIT('fixed-header')}
       `}</style>
     </div>
   );

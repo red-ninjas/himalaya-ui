@@ -98,8 +98,8 @@ const getSpans = () => {
 };
 
 const SpinnerComponent: React.FC<SpinnerProps> = ({ className, ...props }: SpinnerProps) => {
-  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
-  const classes = useClasses('spinner', className, SCALE_CLASSES);
+  const { SCALE, UNIT, CLASS_NAMES } = useScale();
+  const classes = useClasses('spinner', className, CLASS_NAMES);
 
   return (
     <div className={classes} {...props}>
@@ -118,11 +118,11 @@ const SpinnerComponent: React.FC<SpinnerProps> = ({ className, ...props }: Spinn
           left: 50%;
           top: 50%;
         }
-        ${RESPONSIVE.w(1.25, value => `width: ${value};`, undefined, 'spinner')}
-        ${RESPONSIVE.h(1.25, value => `height: ${value};`, undefined, 'spinner')}
-        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'spinner')}
-        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'spinner')}
-        ${SCALER('spinner')}
+        ${SCALE.w(1.25, value => `width: ${value};`, undefined, 'spinner')}
+        ${SCALE.h(1.25, value => `height: ${value};`, undefined, 'spinner')}
+        ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'spinner')}
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'spinner')}
+        ${UNIT('spinner')}
       `}</style>
     </div>
   );

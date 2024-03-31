@@ -4,10 +4,10 @@ import useScale, { withScale } from '../use-scale';
 import { MenuItemPropsNative } from './index';
 
 function MenuItemComponent({ children, icon, ...other }: PropsWithChildren<MenuItemPropsNative>) {
-  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
+  const { SCALE, UNIT, CLASS_NAMES } = useScale();
 
   return (
-    <div {...other} className={useClasses({ 'context-menu-item': true, 'has-icon': icon !== undefined }, SCALE_CLASSES)}>
+    <div {...other} className={useClasses({ 'context-menu-item': true, 'has-icon': icon !== undefined }, CLASS_NAMES)}>
       {icon && <span className="context-menu-icon">{icon}</span>}
       {children}
       <style jsx>{`
@@ -22,10 +22,10 @@ function MenuItemComponent({ children, icon, ...other }: PropsWithChildren<MenuI
           }
         }
 
-        ${RESPONSIVE.font(0.9, value => `font-size: ${value};`, undefined, 'context-menu-item')}
-        ${RESPONSIVE.padding(0.5, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'context-menu-item')}
-        ${RESPONSIVE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'context-menu-item')}
-        ${SCALER('context-menu-item')}
+        ${SCALE.font(0.9, value => `font-size: ${value};`, undefined, 'context-menu-item')}
+        ${SCALE.padding(0.5, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'context-menu-item')}
+        ${SCALE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'context-menu-item')}
+        ${UNIT('context-menu-item')}
       `}</style>
     </div>
   );

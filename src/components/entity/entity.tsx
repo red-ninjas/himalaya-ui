@@ -22,11 +22,11 @@ function EntityComponent({
   ...others
 }: PropsWithChildren<EntityProps>) {
   const classes = useClasses('entity-wrapper');
-  const { SCALER, RESPONSIVE, SCALE_CLASSES } = useScale();
+  const { UNIT, SCALE, CLASS_NAMES } = useScale();
   const layout = useLayout();
   const [, entityFields] = pickChild(children, EntityField);
 
-  const outerClasses = useClasses('entity-outer-wrapper', SCALE_CLASSES, {
+  const outerClasses = useClasses('entity-outer-wrapper', CLASS_NAMES, {
     disabled,
   });
 
@@ -140,16 +140,16 @@ function EntityComponent({
           }
         }
 
-        ${RESPONSIVE.font(0.9, value => `font-size: ${value};`, undefined, 'entity-outer-wrapper')}
-        ${RESPONSIVE.padding(1, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, `entity-outer-wrapper`)}
-        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, `entity-outer-wrapper`)}
-        ${RESPONSIVE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', `entity-outer-wrapper`)}
+        ${SCALE.font(0.9, value => `font-size: ${value};`, undefined, 'entity-outer-wrapper')}
+        ${SCALE.padding(1, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, `entity-outer-wrapper`)}
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, `entity-outer-wrapper`)}
+        ${SCALE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', `entity-outer-wrapper`)}
 
 
-        ${RESPONSIVE.mr(1, value => `--entity-mr: ${value};`, undefined, 'entity-thumbnail')}
-        ${RESPONSIVE.ml(0.5, value => `--entity-ml: ${value};`, undefined, 'entity-thumbnail')}
+        ${SCALE.mr(1, value => `--entity-mr: ${value};`, undefined, 'entity-thumbnail')}
+        ${SCALE.ml(0.5, value => `--entity-ml: ${value};`, undefined, 'entity-thumbnail')}
 
-        ${SCALER('entity-outer-wrapper')}
+        ${UNIT('entity-outer-wrapper')}
       `}</style>
     </>
   );

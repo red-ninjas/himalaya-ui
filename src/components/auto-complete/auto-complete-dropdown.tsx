@@ -26,12 +26,12 @@ const AutoCompleteDropdown: React.FC<React.PropsWithChildren<AutoCompleteDropdow
   ...props
 }: React.PropsWithChildren<AutoCompleteDropdownProps>) => {
   const { ref } = useAutoCompleteContext();
-  const { SCALER, RESPONSIVE, SCALE_CLASSES } = useScale();
+  const { UNIT, SCALE, CLASS_NAMES } = useScale();
 
   const isEmpty = useMemo(() => {
     return !visible || React.Children.count(children) === 0;
   }, [children, visible]);
-  const classes = useClasses('auto-complete-dropdown', className, { empty: isEmpty }, SCALE_CLASSES);
+  const classes = useClasses('auto-complete-dropdown', className, { empty: isEmpty }, CLASS_NAMES);
 
   const clickHandler = (event: React.MouseEvent<HTMLDivElement>) => {
     event.preventDefault();
@@ -56,8 +56,8 @@ const AutoCompleteDropdown: React.FC<React.PropsWithChildren<AutoCompleteDropdow
             box-shadow: none;
           }
 
-          ${RESPONSIVE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'auto-complete-dropdown')}
-          ${SCALER('auto-complete-dropdown')}
+          ${SCALE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'auto-complete-dropdown')}
+          ${UNIT('auto-complete-dropdown')}
         `}</style>
       </div>
     </Dropdown>

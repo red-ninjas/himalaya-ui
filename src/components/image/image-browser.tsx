@@ -101,7 +101,7 @@ const ImageBrowserComponent = React.forwardRef<HTMLDivElement, React.PropsWithCh
     ref: React.Ref<HTMLDivElement>,
   ) => {
     const theme = useTheme();
-    const { SCALER, RESPONSIVE, SCALE_CLASSES } = useScale();
+    const { UNIT, SCALE, CLASS_NAMES } = useScale();
     const colors = useMemo(() => getBrowserColors(invert), [invert]);
     const input = useMemo(() => {
       if (url) return getAddressInput(url, showFullLink, colors, anchorProps);
@@ -110,7 +110,7 @@ const ImageBrowserComponent = React.forwardRef<HTMLDivElement, React.PropsWithCh
     }, [url, showFullLink, title, colors, anchorProps]);
 
     return (
-      <div className={useClasses('browser', className, SCALE_CLASSES)} ref={ref} {...props}>
+      <div className={useClasses('browser', className, CLASS_NAMES)} ref={ref} {...props}>
         <header>
           <div className="traffic">
             <span className="close" />
@@ -175,7 +175,7 @@ const ImageBrowserComponent = React.forwardRef<HTMLDivElement, React.PropsWithCh
             background-color: #27c93f;
           }
 
-          ${RESPONSIVE.margin(
+          ${SCALE.margin(
             0,
             value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
             {
@@ -184,12 +184,12 @@ const ImageBrowserComponent = React.forwardRef<HTMLDivElement, React.PropsWithCh
             },
             'browser',
           )}
-          ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'browser')}
-          ${RESPONSIVE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'browser')}
-          ${RESPONSIVE.w(1, value => `width: ${value};`, 'max-content', 'browser')}
-          ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'browser')}
-          ${RESPONSIVE.font(1, value => `font-size: ${value};`, undefined, 'browser')}
-          ${SCALER('browser')}
+          ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'browser')}
+          ${SCALE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'browser')}
+          ${SCALE.w(1, value => `width: ${value};`, 'max-content', 'browser')}
+          ${SCALE.h(1, value => `height: ${value};`, 'auto', 'browser')}
+          ${SCALE.font(1, value => `font-size: ${value};`, undefined, 'browser')}
+          ${UNIT('browser')}
         `}</style>
       </div>
     );

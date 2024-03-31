@@ -50,7 +50,7 @@ const ButtonDropdownComponent: React.FC<React.PropsWithChildren<ButtonDropdownPr
   icon,
   ...props
 }) => {
-  const { SCALER, RESPONSIVE, SCALE_CLASSES } = useScale();
+  const { UNIT, SCALE, CLASS_NAMES } = useScale();
   const ref = useRef<HTMLDivElement>(null);
   const itemChildren = pickChild(children, ButtonDropdownItem)[1];
   const [itemChildrenWithoutMain, mainItemChildren] = pickChildByProps(itemChildren, 'main', true);
@@ -78,7 +78,7 @@ const ButtonDropdownComponent: React.FC<React.PropsWithChildren<ButtonDropdownPr
     <ButtonDropdownContext.Provider value={initialValue}>
       <div
         ref={ref}
-        className={useClasses('btn-dropdown', className, type ? 'color-' + type : null, { disabled, loading }, SCALE_CLASSES)}
+        className={useClasses('btn-dropdown', className, type ? 'color-' + type : null, { disabled, loading }, CLASS_NAMES)}
         onClick={stopPropagation}
         {...props}
       >
@@ -214,20 +214,20 @@ const ButtonDropdownComponent: React.FC<React.PropsWithChildren<ButtonDropdownPr
             color: var(--ui-dropdown-color);
           }
 
-          ${RESPONSIVE.r(1, value => `--ui-dropdown-radius: ${value};`, 'var(--layout-radius)', 'btn-dropdown')}
-          ${RESPONSIVE.h(2.5, value => `--ui-dropdown-height: ${value};`, undefined, 'btn-dropdown')}
-          ${RESPONSIVE.w(10.5, value => `--ui-dropdown-min-width: ${auto ? 'min-content' : value};`, undefined, 'btn-dropdown')}
-          ${RESPONSIVE.font(0.875, value => `--ui-dropdown-font-size: ${value};`, undefined, 'btn-dropdown')}
-          ${RESPONSIVE.lineHeight(0.875, value => `line-height: ${value};`, `var(--ui-dropdown-font-size)`, 'btn-dropdown')}
+          ${SCALE.r(1, value => `--ui-dropdown-radius: ${value};`, 'var(--layout-radius)', 'btn-dropdown')}
+          ${SCALE.h(2.5, value => `--ui-dropdown-height: ${value};`, undefined, 'btn-dropdown')}
+          ${SCALE.w(10.5, value => `--ui-dropdown-min-width: ${auto ? 'min-content' : value};`, undefined, 'btn-dropdown')}
+          ${SCALE.font(0.875, value => `--ui-dropdown-font-size: ${value};`, undefined, 'btn-dropdown')}
+          ${SCALE.lineHeight(0.875, value => `line-height: ${value};`, `var(--ui-dropdown-font-size)`, 'btn-dropdown')}
 
-          ${RESPONSIVE.padding(
+          ${SCALE.padding(
             { left: auto ? 1.15 : 1.375, right: auto ? 1.15 : 1.375, top: 0, bottom: 0 },
             value => `--ui-dropdown-padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
             undefined,
             'btn-dropdown',
           )}
 
-          ${SCALER('btn-dropdown')}
+          ${UNIT('btn-dropdown')}
         `}</style>
       </div>
     </ButtonDropdownContext.Provider>

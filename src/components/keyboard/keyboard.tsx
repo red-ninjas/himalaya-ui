@@ -23,10 +23,10 @@ const KeyboardComponent: React.FC<React.PropsWithChildren<KeyboardProps>> = ({
   className,
   ...props
 }: React.PropsWithChildren<KeyboardProps>) => {
-  const { SCALER, RESPONSIVE, SCALE_CLASSES } = useScale();
+  const { UNIT, SCALE, CLASS_NAMES } = useScale();
 
   return (
-    <kbd className={useClasses('kbd', className, SCALE_CLASSES)} {...props}>
+    <kbd className={useClasses('kbd', className, CLASS_NAMES)} {...props}>
       {command && <span>⌘</span>}
       {shift && <span>⇧</span>}
       {option && <span>⌥</span>}
@@ -56,7 +56,7 @@ const KeyboardComponent: React.FC<React.PropsWithChildren<KeyboardProps>> = ({
           margin-left: 0.3em;
         }
 
-        ${RESPONSIVE.padding(
+        ${SCALE.padding(
           {
             top: 0,
             right: 0.34,
@@ -67,13 +67,13 @@ const KeyboardComponent: React.FC<React.PropsWithChildren<KeyboardProps>> = ({
           undefined,
           'kbd',
         )}
-        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'kbd')}
-        ${RESPONSIVE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'kbd')}
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'kbd')}
+        ${SCALE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'kbd')}
 
-        ${RESPONSIVE.w(1, value => `width: ${value};`, 'fit-content', 'kbd')}
-        ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'kbd')}
-        ${RESPONSIVE.font(0.875, value => `font-size: ${value};`, undefined, 'kbd')}
-        ${SCALER('kbd')}
+        ${SCALE.w(1, value => `width: ${value};`, 'fit-content', 'kbd')}
+        ${SCALE.h(1, value => `height: ${value};`, 'auto', 'kbd')}
+        ${SCALE.font(0.875, value => `font-size: ${value};`, undefined, 'kbd')}
+        ${UNIT('kbd')}
       `}</style>
     </kbd>
   );

@@ -6,10 +6,10 @@ import { HeroCoreProps } from './share';
 import useClasses from '../use-classes';
 
 const HeroDesc: React.FC<PropsWithChildren<HeroCoreProps>> = ({ Tag = 'h2', children, ...props }: PropsWithChildren<HeroCoreProps>) => {
-  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
+  const { SCALE, UNIT, CLASS_NAMES } = useScale();
 
   return (
-    <Tag className={useClasses('desc', SCALE_CLASSES)} {...props}>
+    <Tag className={useClasses('desc', CLASS_NAMES)} {...props}>
       {children}
       <style jsx>{`
         .desc {
@@ -19,11 +19,11 @@ const HeroDesc: React.FC<PropsWithChildren<HeroCoreProps>> = ({ Tag = 'h2', chil
           color: var(--color-background-400);
         }
 
-        ${RESPONSIVE.font(1.3, value => `font-size: ${value};`, undefined, 'desc')}
-        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'desc')}
-        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, 'auto', 'desc')}
+        ${SCALE.font(1.3, value => `font-size: ${value};`, undefined, 'desc')}
+        ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'desc')}
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, 'auto', 'desc')}
 
-        ${SCALER('desc')}
+        ${UNIT('desc')}
       `}</style>
     </Tag>
   );

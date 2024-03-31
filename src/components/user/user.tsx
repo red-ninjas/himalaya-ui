@@ -24,11 +24,11 @@ const UserComponent: React.FC<React.PropsWithChildren<UserProps>> = ({
   altText,
   ...props
 }: React.PropsWithChildren<UserProps>) => {
-  const { getScaleProps, RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
+  const { getScaleProps, SCALE, UNIT, CLASS_NAMES } = useScale();
 
   const scale = getScaleProps('scale') as number | undefined;
   return (
-    <div className={useClasses('user', className, SCALE_CLASSES)} {...props}>
+    <div className={useClasses('user', className, CLASS_NAMES)} {...props}>
       <Avatar src={src} scale={scale} text={text} alt={altText} />
       <div className="names">
         <span className="name">{name}</span>
@@ -75,10 +75,10 @@ const UserComponent: React.FC<React.PropsWithChildren<UserProps>> = ({
           margin-bottom: 0;
         }
 
-        ${RESPONSIVE.font(1, value => `font-size: ${value};`, undefined, 'user')}
-        ${RESPONSIVE.w(1, value => `width: ${value};`, 'max-content', 'user')}
-        ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'user')}
-        ${RESPONSIVE.padding(
+        ${SCALE.font(1, value => `font-size: ${value};`, undefined, 'user')}
+        ${SCALE.w(1, value => `width: ${value};`, 'max-content', 'user')}
+        ${SCALE.h(1, value => `height: ${value};`, 'auto', 'user')}
+        ${SCALE.padding(
           {
             top: 0,
             right: 0.5,
@@ -89,8 +89,8 @@ const UserComponent: React.FC<React.PropsWithChildren<UserProps>> = ({
           undefined,
           'user',
         )}
-        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'user')}
-        ${SCALER('user')}
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'user')}
+        ${UNIT('user')}
       `}</style>
     </div>
   );

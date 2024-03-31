@@ -42,7 +42,7 @@ function TableComponent<TableDataItem extends TableDataItemBase>(tableProps: Rea
     ...props
   } = tableProps as React.PropsWithChildren<TableProps<TableDataItem>>;
   /* eslint-enable @typescript-eslint/no-unused-vars */
-  const { SCALER, SCALE_CLASSES, RESPONSIVE } = useScale();
+  const { UNIT, CLASS_NAMES, SCALE } = useScale();
   const ref = useRef<HTMLTableElement>(null);
   const [{ width }, updateShape] = useRealShape<HTMLTableElement>(ref);
   const [columns, setColumns] = useState<Array<TableAbstractColumn<TableDataItem>>>([]);
@@ -83,7 +83,7 @@ function TableComponent<TableDataItem extends TableDataItemBase>(tableProps: Rea
 
   return (
     <TableContext.Provider value={contextValue}>
-      <table ref={ref} className={useClasses('tbl', className, SCALE_CLASSES)} {...props}>
+      <table ref={ref} className={useClasses('tbl', className, CLASS_NAMES)} {...props}>
         <TableHead columns={columns} w={width} hasBorder={hasBorder} />
         <TableBody<TableDataItem> data={data} hover={hover} emptyText={emptyText} onRow={onRow} onCell={onCell} rowClassName={rowClassName} />
         {children}
@@ -95,14 +95,14 @@ function TableComponent<TableDataItem extends TableDataItemBase>(tableProps: Rea
             font-size: var(--table-font-size);
           }
 
-          ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'tbl')}
-          ${RESPONSIVE.w(1, value => `width: ${value};`, '100%', 'tbl')}
+          ${SCALE.h(1, value => `height: ${value};`, 'auto', 'tbl')}
+          ${SCALE.w(1, value => `width: ${value};`, '100%', 'tbl')}
 
-          ${RESPONSIVE.font(1, value => `--table-font-size: ${value};`, undefined, 'tbl')}
+          ${SCALE.font(1, value => `--table-font-size: ${value};`, undefined, 'tbl')}
 
-          ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'tbl')}
-          ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'tbl')}
-          ${SCALER('tbl')}
+          ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'tbl')}
+          ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'tbl')}
+          ${UNIT('tbl')}
         `}</style>
       </table>
     </TableContext.Provider>

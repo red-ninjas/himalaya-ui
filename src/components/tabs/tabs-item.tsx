@@ -21,7 +21,7 @@ const TabsItemComponent: React.FC<React.PropsWithChildren<TabsItemProps>> = ({
   style,
   ...props
 }: React.PropsWithChildren<TabsItemProps>) => {
-  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
+  const { SCALE, UNIT, CLASS_NAMES } = useScale();
   const { register, currentValue } = useTabsContext();
   const isActive = useMemo(() => currentValue === value, [currentValue, value]);
 
@@ -34,7 +34,7 @@ const TabsItemComponent: React.FC<React.PropsWithChildren<TabsItemProps>> = ({
       disabled,
       [activeClassName!]: active,
       'hide-border': hideBorder,
-      SCALE_CLASSES,
+      CLASS_NAMES,
     });
     const clickHandler = () => {
       if (disabled) return;
@@ -120,14 +120,14 @@ const TabsItemComponent: React.FC<React.PropsWithChildren<TabsItemProps>> = ({
             font-weight: 500;
           }
 
-          ${RESPONSIVE.padding(
+          ${SCALE.padding(
             0.875,
             value =>
               `padding: ${value.top} ${value.right} ${value.bottom} ${value.left}; --tabs-item-hover-left: calc(-1 * ${value.left}); --tabs-item-hover-right: calc(-1 * ${value.right});`,
             undefined,
             'tab',
           )}
-          ${RESPONSIVE.margin(
+          ${SCALE.margin(
             {
               top: 0,
               left: 0.2,
@@ -138,11 +138,11 @@ const TabsItemComponent: React.FC<React.PropsWithChildren<TabsItemProps>> = ({
             undefined,
             'tab',
           )}
-          ${RESPONSIVE.font(0.875, value => `font-size: ${value};`, undefined, 'tab')}
-          ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto', 'tab')}
-          ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'tab')}
+          ${SCALE.font(0.875, value => `font-size: ${value};`, undefined, 'tab')}
+          ${SCALE.w(1, value => `width: ${value};`, 'auto', 'tab')}
+          ${SCALE.h(1, value => `height: ${value};`, 'auto', 'tab')}
 
-          ${SCALER('tab')}
+          ${UNIT('tab')}
         `}</style>
       </div>
     );

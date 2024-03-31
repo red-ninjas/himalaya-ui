@@ -21,8 +21,8 @@ const LoadingSpinnerComponent: React.FC<React.PropsWithChildren<LoadingSpinnerPr
   spaceRatio = 1,
   ...props
 }: React.PropsWithChildren<LoadingSpinnerProps>) => {
-  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
-  const classes = useClasses('loading-container', className, type ? 'color-' + type : null, SCALE_CLASSES);
+  const { SCALE, UNIT, CLASS_NAMES } = useScale();
+  const classes = useClasses('loading-container', className, type ? 'color-' + type : null, CLASS_NAMES);
 
   return (
     <div className={classes} {...props}>
@@ -102,14 +102,14 @@ const LoadingSpinnerComponent: React.FC<React.PropsWithChildren<LoadingSpinnerPr
           }
         }
 
-        ${RESPONSIVE.h(1, value => `height: ${value};`, '100%', 'loading-container')}
-        ${RESPONSIVE.w(1, value => `width: ${value}};`, `100%`, 'loading-container')}
-        ${RESPONSIVE.font(1, value => `width: ${value}};`, undefined, 'loading-container')}
+        ${SCALE.h(1, value => `height: ${value};`, '100%', 'loading-container')}
+        ${SCALE.w(1, value => `width: ${value}};`, `100%`, 'loading-container')}
+        ${SCALE.font(1, value => `width: ${value}};`, undefined, 'loading-container')}
 
-        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'loading-container')}
-        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'loading-container')}
+        ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'loading-container')}
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'loading-container')}
 
-        ${SCALER('loading-container')}
+        ${UNIT('loading-container')}
       `}</style>
     </div>
   );

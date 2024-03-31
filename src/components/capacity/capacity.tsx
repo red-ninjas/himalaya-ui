@@ -21,9 +21,9 @@ const getColor = (val: number): string => {
 };
 
 const CapacityComponent: React.FC<CapacityProps> = ({ value = 0, limit = 100, color: userColor = '', className = '', ...props }: CapacityProps) => {
-  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
+  const { SCALE, UNIT, CLASS_NAMES } = useScale();
   const percentValue = useProportions(value, limit);
-  const classes = useClasses('capacity', className, SCALE_CLASSES);
+  const classes = useClasses('capacity', className, CLASS_NAMES);
   const color = useMemo(() => {
     if (userColor && userColor !== '') return userColor;
     return getColor(percentValue);
@@ -46,14 +46,14 @@ const CapacityComponent: React.FC<CapacityProps> = ({ value = 0, limit = 100, co
           padding: 0;
           display: block;
         }
-        ${RESPONSIVE.w(3.125, value => `width: ${value};`, undefined, 'capacity')}
-        ${RESPONSIVE.h(0.625, value => `height: ${value};`, undefined, 'capacity')}
-        ${RESPONSIVE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'capacity')}
+        ${SCALE.w(3.125, value => `width: ${value};`, undefined, 'capacity')}
+        ${SCALE.h(0.625, value => `height: ${value};`, undefined, 'capacity')}
+        ${SCALE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'capacity')}
 
-        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'capacity')}
-        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'capacity')}
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'capacity')}
+        ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'capacity')}
 
-        ${SCALER('capacity')}
+        ${UNIT('capacity')}
       `}</style>
     </div>
   );

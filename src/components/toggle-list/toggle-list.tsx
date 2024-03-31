@@ -23,7 +23,7 @@ const ToggleListComponent: React.FC<PropsWithChildren<ToggleListProps>> = ({
   className,
   ...props
 }: ToggleListProps) => {
-  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
+  const { SCALE, UNIT, CLASS_NAMES } = useScale();
 
   const [selfVal, setSelfVal] = useState<string | number | undefined>(initialValue);
   const updateState = (nextValue: string | number) => {
@@ -46,7 +46,7 @@ const ToggleListComponent: React.FC<PropsWithChildren<ToggleListProps>> = ({
 
   return (
     <ToggleListContext.Provider value={providerValue}>
-      <div className={useClasses('toggle-list', className, SCALE_CLASSES)} {...props}>
+      <div className={useClasses('toggle-list', className, CLASS_NAMES)} {...props}>
         {children}
       </div>
       <style jsx>{`
@@ -58,13 +58,13 @@ const ToggleListComponent: React.FC<PropsWithChildren<ToggleListProps>> = ({
           position: relative;
         }
 
-        ${RESPONSIVE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'toggle-list')}
-        ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto', 'toggle-list')}
-        ${RESPONSIVE.h(2, value => `height: ${value};`, 'auto', 'toggle-list')}
-        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'toggle-list')}
-        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'toggle-list')}
+        ${SCALE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'toggle-list')}
+        ${SCALE.w(1, value => `width: ${value};`, 'auto', 'toggle-list')}
+        ${SCALE.h(2, value => `height: ${value};`, 'auto', 'toggle-list')}
+        ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'toggle-list')}
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'toggle-list')}
 
-        ${SCALER('toggle-list')}
+        ${UNIT('toggle-list')}
       `}</style>
     </ToggleListContext.Provider>
   );

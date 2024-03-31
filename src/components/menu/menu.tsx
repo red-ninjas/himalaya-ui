@@ -7,7 +7,7 @@ import MenuItem from './menu-item';
 
 function MenuComponent({ content = 'Menu', placement = 'bottomStart', children, ...other }: PropsWithChildren<MenuProps>) {
   const [, menuItems] = pickChild(children, MenuItem);
-  const { RESPONSIVE, SCALER } = useScale();
+  const { SCALE, UNIT } = useScale();
 
   return (
     <>
@@ -28,8 +28,8 @@ function MenuComponent({ content = 'Menu', placement = 'bottomStart', children, 
           flex-direction: column;
         }
 
-        ${RESPONSIVE.w(8.75, value => `--menu-items-width: ${value};`, undefined, 'menu-items')}
-        ${RESPONSIVE.padding(
+        ${SCALE.w(8.75, value => `--menu-items-width: ${value};`, undefined, 'menu-items')}
+        ${SCALE.padding(
           {
             top: 0.5,
             right: 0.35,
@@ -40,7 +40,7 @@ function MenuComponent({ content = 'Menu', placement = 'bottomStart', children, 
           undefined,
           'menu-items',
         )}
-        ${SCALER('menu-items')}
+        ${UNIT('menu-items')}
       `}</style>
     </>
   );

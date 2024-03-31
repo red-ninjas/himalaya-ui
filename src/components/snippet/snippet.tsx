@@ -41,13 +41,13 @@ const SnippetComponent: React.FC<React.PropsWithChildren<SnippetProps>> = ({
   className = '',
   ...props
 }: React.PropsWithChildren<SnippetProps>) => {
-  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
+  const { SCALE, UNIT, CLASS_NAMES } = useScale();
 
   const { copy } = useClipboard();
   const { setToast } = useToasts();
   const ref = useRef<HTMLPreElement>(null);
   const isMultiLine = text && Array.isArray(text);
-  const classes = useClasses('snippet', className, type ? 'color-' + type : null, filled ? 'filled' : '', SCALE_CLASSES);
+  const classes = useClasses('snippet', className, type ? 'color-' + type : null, filled ? 'filled' : '', CLASS_NAMES);
 
   const showCopyIcon = useMemo(() => copyType !== 'prevent', [copyType]);
   const childText = useMemo<string | undefined | null>(() => {
@@ -144,10 +144,10 @@ const SnippetComponent: React.FC<React.PropsWithChildren<SnippetProps>> = ({
           opacity: 1;
         }
 
-        ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'snippet')}
-        ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto', 'snippet')}
-        ${RESPONSIVE.font(0.8125, value => `--snippet-font-size: ${value};`, undefined, 'snippet')}
-        ${RESPONSIVE.padding(
+        ${SCALE.h(1, value => `height: ${value};`, 'auto', 'snippet')}
+        ${SCALE.w(1, value => `width: ${value};`, 'auto', 'snippet')}
+        ${SCALE.font(0.8125, value => `--snippet-font-size: ${value};`, undefined, 'snippet')}
+        ${SCALE.padding(
           {
             top: 0.667,
             right: 2.667,
@@ -158,11 +158,11 @@ const SnippetComponent: React.FC<React.PropsWithChildren<SnippetProps>> = ({
           undefined,
           'snippet',
         )}
-        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'snippet')}
-        ${RESPONSIVE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'snippet')}
-        ${RESPONSIVE.pt(0.667, value => `--snippet-padding-top: ${value};`, undefined, 'snippet')}
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'snippet')}
+        ${SCALE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'snippet')}
+        ${SCALE.pt(0.667, value => `--snippet-padding-top: ${value};`, undefined, 'snippet')}
 
-        ${SCALER('snippet')}
+        ${UNIT('snippet')}
       `}</style>
     </div>
   );

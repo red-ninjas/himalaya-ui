@@ -21,10 +21,10 @@ const SelectDropdown = React.forwardRef<HTMLDivElement | null, React.PropsWithCh
     { visible, children, className = '', dropdownStyle = {}, disableMatchWidth, getPopupContainer }: React.PropsWithChildren<SelectDropdownProps>,
     dropdownRef,
   ) => {
-    const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
+    const { SCALE, UNIT, CLASS_NAMES } = useScale();
     const internalDropdownRef = useRef<HTMLDivElement | null>(null);
     const { ref } = useSelectContext();
-    const classes = useClasses('select-dropdown', className, SCALE_CLASSES);
+    const classes = useClasses('select-dropdown', className, CLASS_NAMES);
 
     useImperativeHandle<HTMLDivElement | null, HTMLDivElement | null>(dropdownRef, () => internalDropdownRef.current);
 
@@ -44,8 +44,8 @@ const SelectDropdown = React.forwardRef<HTMLDivElement | null, React.PropsWithCh
               box-shadow: 0 0 0 1px rgba(var(--color-background-800-rgb)}, 1);
             }
 
-            ${RESPONSIVE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'select-dropdown')}
-            ${SCALER('select-dropdown')}
+            ${SCALE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'select-dropdown')}
+            ${UNIT('select-dropdown')}
           `}</style>
         </div>
       </Dropdown>

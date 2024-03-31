@@ -64,7 +64,7 @@ const GridBasicItem: React.FC<React.PropsWithChildren<GridBasicItemProps>> = ({
   className = '',
 }: React.PropsWithChildren<GridBasicItemProps>) => {
   const layoutRoot = useLayout();
-  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
+  const { SCALE, UNIT, CLASS_NAMES } = useScale();
 
   const classes = useMemo(() => {
     const aligns: { [key: string]: any } = {
@@ -102,7 +102,7 @@ const GridBasicItem: React.FC<React.PropsWithChildren<GridBasicItemProps>> = ({
   );
 
   return (
-    <div className={useClasses('grid-item', classes, className, SCALE_CLASSES)}>
+    <div className={useClasses('grid-item', classes, className, CLASS_NAMES)}>
       {children}
       <style jsx>
         {`
@@ -146,8 +146,8 @@ const GridBasicItem: React.FC<React.PropsWithChildren<GridBasicItemProps>> = ({
             }
           }
 
-          ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'grid-item')}
-          ${RESPONSIVE.font(1, value => `font-size: ${value};`, 'inherit', 'grid-item')}
+          ${SCALE.h(1, value => `height: ${value};`, 'auto', 'grid-item')}
+          ${SCALE.font(1, value => `font-size: ${value};`, 'inherit', 'grid-item')}
 
           ${customResponsiveAttribute(order, 'grid-item', layoutRoot.breakpoints, value => `order: ${value};`)}
           ${customResponsiveAttribute(justify, 'grid-item', layoutRoot.breakpoints, value => `justify-content: ${value};`)}
@@ -155,7 +155,7 @@ const GridBasicItem: React.FC<React.PropsWithChildren<GridBasicItemProps>> = ({
           ${customResponsiveAttribute(alignContent, 'grid-item', layoutRoot.breakpoints, value => `align-content: ${value};`)}
           ${customResponsiveAttribute(alignItems, 'grid-item', layoutRoot.breakpoints, value => `align-items: ${value};`)}
 
-          ${SCALER('grid-item')}
+          ${UNIT('grid-item')}
         `}
       </style>
     </div>

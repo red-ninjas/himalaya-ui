@@ -21,10 +21,10 @@ const CollapseGroupComponent: React.FC<React.PropsWithChildren<CollapseGroupProp
   className = '',
   ...props
 }: React.PropsWithChildren<CollapseGroupProps>) => {
-  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
+  const { SCALE, UNIT, CLASS_NAMES } = useScale();
 
   const [state, setState, stateRef] = useCurrentState<Array<number>>([]);
-  const classes = useClasses('collapse-group', className, SCALE_CLASSES);
+  const classes = useClasses('collapse-group', className, CLASS_NAMES);
 
   const updateValues = (currentIndex: number, nextState: boolean) => {
     const hasChild = stateRef.current.find(val => val === currentIndex);
@@ -64,9 +64,9 @@ const CollapseGroupComponent: React.FC<React.PropsWithChildren<CollapseGroupProp
             border-top: none;
           }
 
-          ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto', 'collapse-group')}
-          ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'collapse-group')}
-          ${RESPONSIVE.padding(
+          ${SCALE.w(1, value => `width: ${value};`, 'auto', 'collapse-group')}
+          ${SCALE.h(1, value => `height: ${value};`, 'auto', 'collapse-group')}
+          ${SCALE.padding(
             {
               top: 0,
               right: 0.6,
@@ -77,8 +77,8 @@ const CollapseGroupComponent: React.FC<React.PropsWithChildren<CollapseGroupProp
             undefined,
             'collapse-group',
           )}
-          ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'collapse-group')}
-          ${SCALER('collapse-group')}
+          ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'collapse-group')}
+          ${UNIT('collapse-group')}
         `}</style>
       </div>
     </CollapseContext.Provider>

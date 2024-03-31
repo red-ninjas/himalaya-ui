@@ -25,7 +25,7 @@ const GridContainerComponent: React.FC<React.PropsWithChildren<GridContainerProp
   className = '',
   ...props
 }: React.PropsWithChildren<GridContainerProps>) => {
-  const { unit, RESPONSIVE } = useScale();
+  const { unit, SCALE } = useScale();
   const layout = useLayout();
   const { className: resolveClassName, styles } = css.resolve`
     .grid-item {
@@ -40,7 +40,7 @@ const GridContainerComponent: React.FC<React.PropsWithChildren<GridContainerProp
       value =>
         `--grid-gap-unit: calc(${value} * ${unit} * 1/3); --grid-container-margin: calc(-1 * var(--grid-gap-unit)); --grid-container-width: calc(100% + var(--grid-gap-unit) * 2);`,
     )}
-    ${RESPONSIVE.w(0, value => `width: ${value};`, 'var(--grid-container-width)')}
+    ${SCALE.w(0, value => `width: ${value};`, 'var(--grid-container-width)')}
     ${customResponsiveAttribute(
       rowGap ?? gap ?? 0,
       'grid-item',
@@ -49,7 +49,7 @@ const GridContainerComponent: React.FC<React.PropsWithChildren<GridContainerProp
     )}
 
     ${customResponsiveAttribute(wrap, 'grid-item', layout.breakpoints, value => `flex-wrap: ${value};`)}
-    ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, {
+    ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, {
       top: 'var(--grid-row-container-margin)',
       bottom: 'var(--grid-row-container-margin)',
       left: 'var(--grid-container-margin)',

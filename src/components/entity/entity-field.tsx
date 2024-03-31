@@ -15,14 +15,14 @@ function EntityFieldComponent({
   skeleton = null,
   ...props
 }: EntityFieldProps) {
-  const { SCALER, RESPONSIVE, SCALE_CLASSES } = useScale();
+  const { UNIT, SCALE, CLASS_NAMES } = useScale();
   const layout = useLayout();
 
   const wrapperClasses = useClasses({
     'field-wrapper': true,
     disabled: !active,
     right,
-    SCALE_CLASSES,
+    CLASS_NAMES,
   });
   return (
     <>
@@ -100,8 +100,8 @@ function EntityFieldComponent({
           }
         }
 
-        ${RESPONSIVE.ml(1, value => `--avatar-margin-left: ${value};`, undefined, 'avatar')}
-        ${SCALER('field-wrapper')}
+        ${SCALE.ml(1, value => `--avatar-margin-left: ${value};`, undefined, 'avatar')}
+        ${UNIT('field-wrapper')}
       `}</style>
     </>
   );

@@ -17,8 +17,8 @@ const CardFooterComponent: React.FC<React.PropsWithChildren<CardFooterProps>> = 
   disableAutoMargin = false,
   ...props
 }: CardFooterProps) => {
-  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
-  const classes = useClasses('card-footer', { 'auto-margin': !disableAutoMargin }, className, SCALE_CLASSES);
+  const { SCALE, UNIT, CLASS_NAMES } = useScale();
+  const classes = useClasses('card-footer', { 'auto-margin': !disableAutoMargin }, className, CLASS_NAMES);
 
   return (
     <footer className={classes} {...props}>
@@ -41,12 +41,12 @@ const CardFooterComponent: React.FC<React.PropsWithChildren<CardFooterProps>> = 
           margin-right: var(--layout-gap-quarter);
         }
 
-        ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto', 'card-footer')}
-        ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'card-footer')}
-        ${RESPONSIVE.h(3.3, value => `min-height: ${value};`, undefined, 'card-footer')}
-        ${RESPONSIVE.font(0.875, value => `font-size: ${value};`, undefined, 'card-footer')}
+        ${SCALE.w(1, value => `width: ${value};`, 'auto', 'card-footer')}
+        ${SCALE.h(1, value => `height: ${value};`, 'auto', 'card-footer')}
+        ${SCALE.h(3.3, value => `min-height: ${value};`, undefined, 'card-footer')}
+        ${SCALE.font(0.875, value => `font-size: ${value};`, undefined, 'card-footer')}
 
-        ${RESPONSIVE.padding(
+        ${SCALE.padding(
           {
             left: 1.31,
             right: 1.31,
@@ -57,8 +57,8 @@ const CardFooterComponent: React.FC<React.PropsWithChildren<CardFooterProps>> = 
           undefined,
           'card-footer',
         )}
-        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'card-footer')}
-        ${SCALER('card-footer')}
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'card-footer')}
+        ${UNIT('card-footer')}
       `}</style>
     </footer>
   );

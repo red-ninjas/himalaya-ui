@@ -18,8 +18,8 @@ const DescriptionComponent: React.FC<DescriptionProps> = ({
   className,
   ...props
 }: DescriptionProps) => {
-  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
-  const classes = useClasses('description', className, SCALE_CLASSES);
+  const { SCALE, UNIT, CLASS_NAMES } = useScale();
+  const classes = useClasses('description', className, CLASS_NAMES);
 
   return (
     <dl className={classes} {...props}>
@@ -51,15 +51,15 @@ const DescriptionComponent: React.FC<DescriptionProps> = ({
           margin: 0;
         }
 
-        ${RESPONSIVE.font(0.75, value => `font-size: ${value};`, undefined, 'description-title')}
-        ${RESPONSIVE.font(0.875, value => `font-size: ${value};`, undefined, 'description-desc')}
-        ${RESPONSIVE.font(1, value => `font-size: ${value};`, undefined, 'description')}
-        ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto', 'description')}
-        ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'description')}
-        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'description')}
-        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'description')}
+        ${SCALE.font(0.75, value => `font-size: ${value};`, undefined, 'description-title')}
+        ${SCALE.font(0.875, value => `font-size: ${value};`, undefined, 'description-desc')}
+        ${SCALE.font(1, value => `font-size: ${value};`, undefined, 'description')}
+        ${SCALE.w(1, value => `width: ${value};`, 'auto', 'description')}
+        ${SCALE.h(1, value => `height: ${value};`, 'auto', 'description')}
+        ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'description')}
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'description')}
 
-        ${SCALER('description')}
+        ${UNIT('description')}
       `}</style>
     </dl>
   );

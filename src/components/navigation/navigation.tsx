@@ -26,7 +26,7 @@ const NavigationComponent: React.FC<PropsWithChildren<NavigationPropsExternal>> 
   const [rect, setRect] = useState<ReactiveDomReact>(defaultRect);
   const [displayHighlight, setDisplayHighlight] = useState<boolean>(false);
 
-  const { SCALE_CLASSES, RESPONSIVE, SCALER } = useScale();
+  const { CLASS_NAMES, SCALE, UNIT } = useScale();
   const ref = useRef<HTMLDivElement | null>(null);
   const tabItemMouseOverHandler = (event: ReactiveDomReact) => {
     if (rect?.rect != event.rect) {
@@ -43,7 +43,7 @@ const NavigationComponent: React.FC<PropsWithChildren<NavigationPropsExternal>> 
 
   return (
     <NavigationContext.Provider value={{ onMouseOver: tabItemMouseOverHandler }}>
-      <div {...props} className={useClasses('navigation', SCALE_CLASSES)} ref={ref} onMouseLeave={() => setDisplayHighlight(false)}>
+      <div {...props} className={useClasses('navigation', CLASS_NAMES)} ref={ref} onMouseLeave={() => setDisplayHighlight(false)}>
         <Highlight
           background={'var(--color-background-900)'}
           activeOpacity={1}
@@ -71,9 +71,9 @@ const NavigationComponent: React.FC<PropsWithChildren<NavigationPropsExternal>> 
             position: relative;
           }
 
-          ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto', 'navigation')}
-          ${RESPONSIVE.h(1, value => `height: ${value};`, '100%', 'navigation')}
-          ${SCALER('navigation')}
+          ${SCALE.w(1, value => `width: ${value};`, 'auto', 'navigation')}
+          ${SCALE.h(1, value => `height: ${value};`, '100%', 'navigation')}
+          ${UNIT('navigation')}
         `}</style>
       </div>
     </NavigationContext.Provider>

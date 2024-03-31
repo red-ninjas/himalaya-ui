@@ -9,10 +9,10 @@ type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof GradientCont
 export type CardContentProps = GradientContentProps & NativeAttrs;
 
 const GradientContentComponent: React.FC<React.PropsWithChildren<CardContentProps>> = ({ children, maxHeight = '50vh', className, gradient, ...props }) => {
-  const { SCALER, RESPONSIVE, SCALE_CLASSES } = useScale();
+  const { UNIT, SCALE, CLASS_NAMES } = useScale();
   const defaultGradient = `linear-gradient(to bottom, rgba(var(--color-background-800-rgb), 0.5), var(--color-background-1000))`;
   return (
-    <div className={useClasses('gradient-layout', className, SCALE_CLASSES)} {...props}>
+    <div className={useClasses('gradient-layout', className, CLASS_NAMES)} {...props}>
       <div className="gradient-content">
         <div className="bg-gradient">{props.img}</div>
         <div className="gradient-space">
@@ -42,13 +42,13 @@ const GradientContentComponent: React.FC<React.PropsWithChildren<CardContentProp
           height: 100%;
         }
 
-        ${RESPONSIVE.h(1, value => `height: ${value};`, '100%', 'gradient-content')}
-        ${RESPONSIVE.w(1, value => `width: ${value}};`, `100%`, 'gradient-content')}
+        ${SCALE.h(1, value => `height: ${value};`, '100%', 'gradient-content')}
+        ${SCALE.w(1, value => `width: ${value}};`, `100%`, 'gradient-content')}
 
-        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'gradient-layout')}
-        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'gradient-content')}
+        ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'gradient-layout')}
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'gradient-content')}
 
-        ${SCALER('gradient-layout')}
+        ${UNIT('gradient-layout')}
       `}</style>
     </div>
   );

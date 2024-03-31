@@ -24,9 +24,9 @@ const CheckboxGroupComponent: React.FC<React.PropsWithChildren<CheckboxGroupProp
   className = '',
   ...props
 }: CheckboxGroupProps) => {
-  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
+  const { SCALE, UNIT, CLASS_NAMES } = useScale();
   const [selfVal, setSelfVal] = useState<string[]>([]);
-  const classes = useClasses('group', className, SCALE_CLASSES);
+  const classes = useClasses('group', className, CLASS_NAMES);
   if (!value) {
     value = [];
     useWarning('Props "value" is required.', 'Checkbox Group');
@@ -65,14 +65,14 @@ const CheckboxGroupComponent: React.FC<React.PropsWithChildren<CheckboxGroupProp
             margin-right: 0;
           }
 
-          ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'checkbox')}
-          ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'checkbox')}
+          ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'checkbox')}
+          ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'checkbox')}
 
-          ${RESPONSIVE.font(1, value => `--checkbox-label-size: ${value};`, undefined, 'group')}
+          ${SCALE.font(1, value => `--checkbox-label-size: ${value};`, undefined, 'group')}
 
-          ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto', 'group')}
-          ${RESPONSIVE.h(1, value => `width: ${value};`, 'height', 'group')}
-          ${SCALER('group')}
+          ${SCALE.w(1, value => `width: ${value};`, 'auto', 'group')}
+          ${SCALE.h(1, value => `width: ${value};`, 'height', 'group')}
+          ${UNIT('group')}
         `}</style>
       </div>
     </CheckboxContext.Provider>

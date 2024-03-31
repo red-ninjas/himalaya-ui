@@ -19,7 +19,7 @@ const QuickBarLayout: React.FC<React.PropsWithChildren<QuickBarLayoutProps>> = (
   ...props
 }) => {
   const [otherElements, quickBar] = pickChild(children, QuickBar);
-  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
+  const { SCALE, UNIT, CLASS_NAMES } = useScale();
   const { isEnabled } = useQuickBar();
   const layout = useLayout();
   return (
@@ -33,7 +33,7 @@ const QuickBarLayout: React.FC<React.PropsWithChildren<QuickBarLayoutProps>> = (
             enabled: isEnabled === true,
             disabled: isEnabled === false,
           },
-          SCALE_CLASSES,
+          CLASS_NAMES,
         )}
       >
         {quickBar && (
@@ -95,8 +95,8 @@ const QuickBarLayout: React.FC<React.PropsWithChildren<QuickBarLayoutProps>> = (
           --quickbar-side: calc(var(--quickbar-width) * -1);
         }
 
-        ${RESPONSIVE.w(3.75, value => `--quickbar-width: ${value};`, undefined, 'quickbar-layout')}
-        ${SCALER('quickbar-layout')}
+        ${SCALE.w(3.75, value => `--quickbar-width: ${value};`, undefined, 'quickbar-layout')}
+        ${UNIT('quickbar-layout')}
 
         ${customResponsiveAttribute(disabled, 'quickbar-layout', layout.breakpoints, (value, key) =>
           value === true

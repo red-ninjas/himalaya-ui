@@ -40,7 +40,7 @@ const RadioComponent: React.FC<React.PropsWithChildren<RadioProps>> = ({
   children,
   ...props
 }: React.PropsWithChildren<RadioProps>) => {
-  const { RESPONSIVE } = useScale();
+  const { SCALE } = useScale();
   const [selfChecked, setSelfChecked] = useState<boolean>(!!checked);
   const { value: groupValue, disabledAll, inGroup, updateState } = useRadioContext();
   const [withoutDescChildren, DescChildren] = pickChild(children, RadioDescription);
@@ -160,10 +160,10 @@ const RadioComponent: React.FC<React.PropsWithChildren<RadioProps>> = ({
           background-color: var(--radio-color-bg);
         }
 
-        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'radio')}
-        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'radio')}
-        ${RESPONSIVE.w(1, value => `--radio-size: ${value};`, undefined, 'radio')}
-        ${RESPONSIVE.font(0.875, value => `font-size: ${value};`, undefined, 'with-label')}
+        ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'radio')}
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'radio')}
+        ${SCALE.w(1, value => `--radio-size: ${value};`, undefined, 'radio')}
+        ${SCALE.font(0.875, value => `font-size: ${value};`, undefined, 'with-label')}
       `}</style>
     </div>
   );

@@ -8,7 +8,7 @@ import { useScale, withScale } from '../use-scale';
 import { HeroPropsNative } from './share';
 
 const Hero: React.FC<PropsWithChildren<HeroPropsNative>> = ({ children, withDownArrow = true, scrollToId, ...props }: PropsWithChildren<HeroPropsNative>) => {
-  const { SCALER, RESPONSIVE, SCALE_CLASSES } = useScale();
+  const { UNIT, SCALE, CLASS_NAMES } = useScale();
   const heroRef = useRef<HTMLDivElement | null>(null);
 
   const handleArrowSmoothScroll = () => {
@@ -33,7 +33,7 @@ const Hero: React.FC<PropsWithChildren<HeroPropsNative>> = ({ children, withDown
 
   return (
     <>
-      <div {...props} className={useClasses('hero', SCALE_CLASSES)} ref={heroRef}>
+      <div {...props} className={useClasses('hero', CLASS_NAMES)} ref={heroRef}>
         <PageWidth>
           <div className="hero-inner">{children}</div>
         </PageWidth>
@@ -126,9 +126,9 @@ const Hero: React.FC<PropsWithChildren<HeroPropsNative>> = ({ children, withDown
           margin-left: auto;
         }
 
-        ${RESPONSIVE.h(1, value => `--hero-min-height: ${value};`, '100vh', 'hero')}
-        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'hero')}
-        ${RESPONSIVE.margin(
+        ${SCALE.h(1, value => `--hero-min-height: ${value};`, '100vh', 'hero')}
+        ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'hero')}
+        ${SCALE.margin(
           0,
           value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
           {
@@ -138,7 +138,7 @@ const Hero: React.FC<PropsWithChildren<HeroPropsNative>> = ({ children, withDown
           'hero',
         )}
 
-        ${SCALER('hero')}
+        ${UNIT('hero')}
       `}</style>
     </>
   );

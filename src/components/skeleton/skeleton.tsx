@@ -28,8 +28,8 @@ const SkeletonComponent: React.FC<React.PropsWithChildren<SkeletonProps>> = ({
   ...props
 }: React.PropsWithChildren<SkeletonProps>) => {
   const Component = component;
-  const { SCALER, SCALE_CLASSES, RESPONSIVE } = useScale();
-  const classes = useClasses('skeleton', { show, stop: !animated, hasChildren: !!children }, className, SCALE_CLASSES);
+  const { UNIT, CLASS_NAMES, SCALE } = useScale();
+  const classes = useClasses('skeleton', { show, stop: !animated, hasChildren: !!children }, className, CLASS_NAMES);
 
   return (
     <Component className={classes} {...props}>
@@ -100,13 +100,13 @@ const SkeletonComponent: React.FC<React.PropsWithChildren<SkeletonProps>> = ({
           }
         }
 
-        ${RESPONSIVE.h(1, value => `height: ${value};`, 'initial', 'skeleton')}
-        ${RESPONSIVE.w(1, value => `width: ${value};`, 'initial', 'skeleton')}
-        ${RESPONSIVE.r(1, value => `--skeleton-radius: ${value};`, 'var(--layout-radius)', 'skeleton')}
+        ${SCALE.h(1, value => `height: ${value};`, 'initial', 'skeleton')}
+        ${SCALE.w(1, value => `width: ${value};`, 'initial', 'skeleton')}
+        ${SCALE.r(1, value => `--skeleton-radius: ${value};`, 'var(--layout-radius)', 'skeleton')}
 
-        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'skeleton')}
-        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'skeleton')}
-        ${SCALER('skeleton')}
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'skeleton')}
+        ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'skeleton')}
+        ${UNIT('skeleton')}
       `}</style>
     </Component>
   );

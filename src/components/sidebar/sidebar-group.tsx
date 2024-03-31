@@ -14,11 +14,11 @@ export interface SideItemProps {
 }
 
 const SidebarGroup: React.FC<React.PropsWithChildren<SideItemProps>> = ({ children, rowGap = 0.0625, ...props }) => {
-  const { SCALER, RESPONSIVE, SCALE_CLASSES } = useScale();
+  const { UNIT, SCALE, CLASS_NAMES } = useScale();
 
   const layout = useLayout();
   return (
-    <div className={useClasses('sidebar-group', SCALE_CLASSES)}>
+    <div className={useClasses('sidebar-group', CLASS_NAMES)}>
       <div className="sidebar-group-label">
         <span
           className={useClasses('sidebar-group-title ', {
@@ -64,7 +64,7 @@ const SidebarGroup: React.FC<React.PropsWithChildren<SideItemProps>> = ({ childr
           !isCSSNumberValue(value) ? `row-gap: ${value};` : `row-gap: calc(var(--scale-unit-scale) * ${value})`,
         )}
 
-        ${RESPONSIVE.margin(
+        ${SCALE.margin(
           0,
           value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
           {
@@ -76,7 +76,7 @@ const SidebarGroup: React.FC<React.PropsWithChildren<SideItemProps>> = ({ childr
           'sidebar-group',
         )}
 
-        ${RESPONSIVE.margin(
+        ${SCALE.margin(
           0,
           value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
           {
@@ -88,16 +88,16 @@ const SidebarGroup: React.FC<React.PropsWithChildren<SideItemProps>> = ({ childr
           'sidebar-group-label',
         )}
 
-        ${RESPONSIVE.padding(
+        ${SCALE.padding(
           0.6,
           value => `--padding-top: ${value.top}; --padding-right: ${value.right}; --padding-bottom: ${value.bottom}; --padding-left: ${value.left};`,
           undefined,
           'sidebar-group',
         )}
-        ${RESPONSIVE.font(0.85, value => `font-size: ${value};`, undefined, 'sidebar-group')}
-        ${RESPONSIVE.w(1, value => `width: ${value};`, '100%', 'sidebar-group')}
+        ${SCALE.font(0.85, value => `font-size: ${value};`, undefined, 'sidebar-group')}
+        ${SCALE.w(1, value => `width: ${value};`, '100%', 'sidebar-group')}
 
-        ${SCALER('sidebar-group')}
+        ${UNIT('sidebar-group')}
       `}</style>
     </div>
   );

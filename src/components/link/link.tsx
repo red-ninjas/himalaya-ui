@@ -21,18 +21,18 @@ const LinkComponent = React.forwardRef<HTMLAnchorElement, React.PropsWithChildre
     { href = '', color = false, underline = false, children, className = '', block = false, icon = false, ...props }: React.PropsWithChildren<LinkProps>,
     ref: React.Ref<HTMLAnchorElement>,
   ) => {
-    const { SCALER, RESPONSIVE, SCALE_CLASSES } = useScale();
+    const { UNIT, SCALE, CLASS_NAMES } = useScale();
     const linkColor = color || block ? `var(--color-link-1000)` : 'inherit';
     const hoverColor = color || block ? `var(--color-link-900)` : 'inherit';
     const classes = useClasses(
-      'link margin padding width height font',
+      'link',
       { block },
       className,
       {
         underline: underline === true,
         'underline-hover': underline === 'hover',
       },
-      SCALE_CLASSES,
+      CLASS_NAMES,
     );
 
     return (
@@ -65,9 +65,9 @@ const LinkComponent = React.forwardRef<HTMLAnchorElement, React.PropsWithChildre
             color: ${hoverColor};
           }
 
-          ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'link')}
-          ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'link')}
-          ${RESPONSIVE.padding(
+          ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'link')}
+          ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'link')}
+          ${SCALE.padding(
             {
               top: 0.125,
               bottom: 0.125,
@@ -78,7 +78,7 @@ const LinkComponent = React.forwardRef<HTMLAnchorElement, React.PropsWithChildre
             undefined,
             'block',
           )}
-          ${RESPONSIVE.margin(
+          ${SCALE.margin(
             {
               top: 0,
               bottom: 0,
@@ -89,12 +89,12 @@ const LinkComponent = React.forwardRef<HTMLAnchorElement, React.PropsWithChildre
             undefined,
             'block',
           )}
-          ${RESPONSIVE.w(1, value => `width: ${value};`, 'fit-content', 'link')}
-          ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'link')}
-          ${RESPONSIVE.font(1, value => `font-size: ${value};`, 'inherit', 'link')}
-          ${RESPONSIVE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'block')}
+          ${SCALE.w(1, value => `width: ${value};`, 'fit-content', 'link')}
+          ${SCALE.h(1, value => `height: ${value};`, 'auto', 'link')}
+          ${SCALE.font(1, value => `font-size: ${value};`, 'inherit', 'link')}
+          ${SCALE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'block')}
 
-          ${SCALER('link')}
+          ${UNIT('link')}
         `}</style>
       </a>
     );

@@ -22,19 +22,19 @@ export type BoxComponent = {
 export const Box: BoxComponent = React.forwardRef(
   <E extends React.ElementType = typeof defaultElement>({ as, children, className, ...restProps }: BoxProps<E>, ref: typeof restProps.ref | null) => {
     const Element = as || defaultElement;
-    const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
+    const { SCALE, UNIT, CLASS_NAMES } = useScale();
 
     return (
-      <Element className={useClasses('box', className, SCALE_CLASSES)} ref={ref} {...restProps}>
+      <Element className={useClasses('box', className, CLASS_NAMES)} ref={ref} {...restProps}>
         {children}
         <style jsx>{`
-          ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'box')}
-          ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'box')}
-          ${RESPONSIVE.w(0, value => `width: ${value};`, 'auto', 'box')}
-          ${RESPONSIVE.h(0, value => `height: ${value};`, 'auto', 'box')}
-          ${RESPONSIVE.font(1, value => `font-size: ${value};`, 'inherit', 'box')}
-          ${RESPONSIVE.lineHeight(1, value => `line-height: ${value};`, 'inherit', 'box')}
-          ${SCALER('box')}
+          ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'box')}
+          ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'box')}
+          ${SCALE.w(0, value => `width: ${value};`, 'auto', 'box')}
+          ${SCALE.h(0, value => `height: ${value};`, 'auto', 'box')}
+          ${SCALE.font(1, value => `font-size: ${value};`, 'inherit', 'box')}
+          ${SCALE.lineHeight(1, value => `line-height: ${value};`, 'inherit', 'box')}
+          ${UNIT('box')}
         `}</style>
       </Element>
     );

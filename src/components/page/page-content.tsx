@@ -14,25 +14,25 @@ const PageContentComponent: React.FC<React.PropsWithChildren<PageContentProps>> 
   children,
   ...props
 }: React.PropsWithChildren<PageContentProps>) => {
-  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
+  const { SCALE, UNIT, CLASS_NAMES } = useScale();
 
   return (
-    <main className={useClasses('page-content', className, SCALE_CLASSES)} {...props}>
+    <main className={useClasses('page-content', className, CLASS_NAMES)} {...props}>
       {children}
       <style jsx>{`
-        ${RESPONSIVE.h(1, value => `height: ${value};`, '100%', 'page-content')}
-        ${RESPONSIVE.w(1, value => `width: ${value}};`, `100%`, 'page-content')}
+        ${SCALE.h(1, value => `height: ${value};`, '100%', 'page-content')}
+        ${SCALE.w(1, value => `width: ${value}};`, `100%`, 'page-content')}
 
-        ${RESPONSIVE.padding(
+        ${SCALE.padding(
           { left: 0, right: 0, top: 3.125, bottom: 3.125 },
           value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
           undefined,
           'page-content',
         )}
 
-        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'page-section')}
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'page-section')}
 
-        ${SCALER('page-content')}
+        ${UNIT('page-content')}
       `}</style>
     </main>
   );

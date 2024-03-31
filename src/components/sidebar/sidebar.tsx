@@ -21,7 +21,7 @@ const Sidebar: React.FC<PropsWithChildren<SidebarPropsNative>> = ({ children, ha
   const pathname = usePathname();
   const boxRef = useRef<HTMLDivElement>(null);
   const { sidebarScrollHeight, updateSidebarScrollHeight } = useConfigs();
-  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
+  const { SCALE, UNIT, CLASS_NAMES } = useScale();
   const layout = useLayout();
 
   useEffect(() => {
@@ -35,7 +35,7 @@ const Sidebar: React.FC<PropsWithChildren<SidebarPropsNative>> = ({ children, ha
   }, [boxRef.current]);
 
   return (
-    <div ref={boxRef} {...props} className={useClasses('sidebar-inner', className, SCALE_CLASSES)}>
+    <div ref={boxRef} {...props} className={useClasses('sidebar-inner', className, CLASS_NAMES)}>
       {children}
       <style jsx>{`
         .sidebar-inner {
@@ -56,9 +56,9 @@ const Sidebar: React.FC<PropsWithChildren<SidebarPropsNative>> = ({ children, ha
           background-color: transparent;
         }
 
-        ${RESPONSIVE.w(1, value => `width: ${value};`, '100%', 'sidebar-inner')}
-        ${RESPONSIVE.h(1, value => `height: ${value};`, '100%', 'sidebar-inner')}
-        ${RESPONSIVE.padding(
+        ${SCALE.w(1, value => `width: ${value};`, '100%', 'sidebar-inner')}
+        ${SCALE.h(1, value => `height: ${value};`, '100%', 'sidebar-inner')}
+        ${SCALE.padding(
           {
             top: 1,
             right: 1,
@@ -69,13 +69,13 @@ const Sidebar: React.FC<PropsWithChildren<SidebarPropsNative>> = ({ children, ha
           `var(--layout-page-margin)`,
           `sidebar-inner`,
         )}
-        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, `sidebar-inner`)}
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, `sidebar-inner`)}
 
         ${customResponsiveAttribute(gap, 'sidebar-inner', layout.breakpoints, value =>
           !isCSSNumberValue(value) ? `gap: ${value};` : `gap: calc(var(--scale-unit-scale) * ${value})`,
         )}
 
-        ${SCALER('sidebar-inner')}
+        ${UNIT('sidebar-inner')}
       `}</style>
     </div>
   );

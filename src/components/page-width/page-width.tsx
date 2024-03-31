@@ -6,10 +6,10 @@ import useClasses from '../use-classes';
 
 export type PageWidthProps = React.HTMLAttributes<HTMLDivElement>;
 const PageWidthComponent: React.FC<React.PropsWithChildren<PageWidthProps>> = ({ children, className, ...props }) => {
-  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
+  const { SCALE, UNIT, CLASS_NAMES } = useScale();
 
   return (
-    <div className={useClasses('content-layout', className, SCALE_CLASSES)} {...props}>
+    <div className={useClasses('content-layout', className, CLASS_NAMES)} {...props}>
       {children}
       <style jsx>{`
         .content-layout {
@@ -20,10 +20,10 @@ const PageWidthComponent: React.FC<React.PropsWithChildren<PageWidthProps>> = ({
           flex-direction: column;
         }
 
-        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, `var(--layout-page-margin)`, 'content-layout')}
-        ${RESPONSIVE.w(1, value => `width: ${value};`, `100%`, 'content-layout')}
-        ${RESPONSIVE.h(1, value => `height: ${value};`, `auto`, 'content-layout')}
-        ${RESPONSIVE.margin(
+        ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, `var(--layout-page-margin)`, 'content-layout')}
+        ${SCALE.w(1, value => `width: ${value};`, `100%`, 'content-layout')}
+        ${SCALE.h(1, value => `height: ${value};`, `auto`, 'content-layout')}
+        ${SCALE.margin(
           0,
           value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
           {
@@ -35,7 +35,7 @@ const PageWidthComponent: React.FC<React.PropsWithChildren<PageWidthProps>> = ({
           'content-layout',
         )}
 
-        ${SCALER('content-layout')}
+        ${UNIT('content-layout')}
       `}</style>
     </div>
   );

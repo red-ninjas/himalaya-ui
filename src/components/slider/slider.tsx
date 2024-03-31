@@ -59,7 +59,7 @@ const SliderComponent: React.FC<React.PropsWithChildren<SliderProps>> = ({
   ...props
 }: React.PropsWithChildren<SliderProps>) => {
   const theme = useTheme();
-  const { RESPONSIVE, SCALE_CLASSES, SCALER } = useScale();
+  const { SCALE, CLASS_NAMES, UNIT } = useScale();
   const [value, setValue] = useState<number>(initialValue);
   const [, setSliderWidth, sideWidthRef] = useCurrentState<number>(0);
   const [, setLastDargOffset, lastDargOffsetRef] = useCurrentState<number>(0);
@@ -127,7 +127,7 @@ const SliderComponent: React.FC<React.PropsWithChildren<SliderProps>> = ({
   }, []);
 
   return (
-    <div className={useClasses('slider', className, SCALE_CLASSES)} onClick={clickHandler} ref={sliderRef} {...props}>
+    <div className={useClasses('slider', className, CLASS_NAMES)} onClick={clickHandler} ref={sliderRef} {...props}>
       <SliderDot disabled={disabled} ref={dotRef} isClick={isClick} left={currentRatio}>
         {hideValue || value}
       </SliderDot>
@@ -140,12 +140,12 @@ const SliderComponent: React.FC<React.PropsWithChildren<SliderProps>> = ({
           cursor: ${disabled ? 'not-allow' : 'pointer'};
         }
 
-        ${RESPONSIVE.h(0.5, value => `height: ${value};`, undefined, 'slider')}
-        ${RESPONSIVE.w(0, value => `width: ${value};`, '100%', 'slider')}
-        ${RESPONSIVE.font(1, value => `--slider-font-size: ${value};`, undefined, 'slider')}
-        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'slider')}
-        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'slider')}
-        ${SCALER('slider')}
+        ${SCALE.h(0.5, value => `height: ${value};`, undefined, 'slider')}
+        ${SCALE.w(0, value => `width: ${value};`, '100%', 'slider')}
+        ${SCALE.font(1, value => `--slider-font-size: ${value};`, undefined, 'slider')}
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'slider')}
+        ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'slider')}
+        ${UNIT('slider')}
       `}</style>
     </div>
   );

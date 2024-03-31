@@ -21,8 +21,8 @@ const BadgeComponent: React.FC<React.PropsWithChildren<BadgeProps>> = ({
   dot = false,
   ...props
 }: BadgeProps) => {
-  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
-  const classes = useClasses('badge', { dot }, className, type ? 'color-' + type : null, SCALE_CLASSES);
+  const { SCALE, UNIT, CLASS_NAMES } = useScale();
+  const classes = useClasses('badge', { dot }, className, type ? 'color-' + type : null, CLASS_NAMES);
 
   return (
     <span className={classes} {...props}>
@@ -51,28 +51,28 @@ const BadgeComponent: React.FC<React.PropsWithChildren<BadgeProps>> = ({
           user-select: none;
         }
 
-        ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'badge')}
-        ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto', 'badge')}
-        ${RESPONSIVE.font(0.875, value => `font-size: ${value};`, undefined, 'badge')}
-        ${RESPONSIVE.lineHeight(1, value => `line-height: ${value};`, undefined, 'badge')}
+        ${SCALE.h(1, value => `height: ${value};`, 'auto', 'badge')}
+        ${SCALE.w(1, value => `width: ${value};`, 'auto', 'badge')}
+        ${SCALE.font(0.875, value => `font-size: ${value};`, undefined, 'badge')}
+        ${SCALE.lineHeight(1, value => `line-height: ${value};`, undefined, 'badge')}
 
-        ${RESPONSIVE.padding(
+        ${SCALE.padding(
           { left: 0.4375, right: 0.4375, top: 0.25, bottom: 0.25 },
           value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
           undefined,
           'badge',
         )}
 
-        ${RESPONSIVE.padding(
+        ${SCALE.padding(
           { left: 0.25, right: 0.25, top: 0.25, bottom: 0.25 },
           value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
           undefined,
           'dot',
         )}
 
-        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'badge')}
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'badge')}
 
-        ${SCALER('badge')}
+        ${UNIT('badge')}
       `}</style>
     </span>
   );

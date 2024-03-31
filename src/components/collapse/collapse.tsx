@@ -31,7 +31,7 @@ const CollapseComponent: React.FC<React.PropsWithChildren<CollapseProps>> = ({
   ...props
 }: React.PropsWithChildren<CollapseProps>) => {
   const theme = useTheme();
-  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
+  const { SCALE, UNIT, CLASS_NAMES } = useScale();
 
   const { values, updateValues } = useCollapseContext();
   const [visible, setVisible, visibleRef] = useCurrentState<boolean>(initialVisible);
@@ -41,7 +41,7 @@ const CollapseComponent: React.FC<React.PropsWithChildren<CollapseProps>> = ({
       shadow,
     },
     className,
-    SCALE_CLASSES,
+    CLASS_NAMES,
   );
 
   if (!title) {
@@ -119,10 +119,10 @@ const CollapseComponent: React.FC<React.PropsWithChildren<CollapseProps>> = ({
         .content > :global(*:last-child) {
           margin-bottom: 0;
         }
-        ${RESPONSIVE.font(1, value => `width: ${value}; height: ${value};`, undefined, 'collapse')}
-        ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto', 'collapse')}
-        ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'collapse')}
-        ${RESPONSIVE.padding(
+        ${SCALE.font(1, value => `width: ${value}; height: ${value};`, undefined, 'collapse')}
+        ${SCALE.w(1, value => `width: ${value};`, 'auto', 'collapse')}
+        ${SCALE.h(1, value => `height: ${value};`, 'auto', 'collapse')}
+        ${SCALE.padding(
           {
             top: 1.2,
             right: 0,
@@ -133,9 +133,9 @@ const CollapseComponent: React.FC<React.PropsWithChildren<CollapseProps>> = ({
           undefined,
           'collapse',
         )}
-        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'collapse')}
-        ${RESPONSIVE.font(1.25, value => `font-size: ${value};`, undefined, 'title')}
-        ${RESPONSIVE.padding(
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'collapse')}
+        ${SCALE.font(1.25, value => `font-size: ${value};`, undefined, 'title')}
+        ${SCALE.padding(
           {
             top: 1.2,
             right: 0,
@@ -146,7 +146,7 @@ const CollapseComponent: React.FC<React.PropsWithChildren<CollapseProps>> = ({
           undefined,
           'content',
         )}
-        ${SCALER('collapse')}
+        ${UNIT('collapse')}
       `}</style>
     </div>
   );

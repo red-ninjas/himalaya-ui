@@ -15,9 +15,9 @@ const FieldsetContentComponent: React.FC<React.PropsWithChildren<FieldsetContent
   children,
   ...props
 }: React.PropsWithChildren<FieldsetContentProps>) => {
-  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
+  const { SCALE, UNIT, CLASS_NAMES } = useScale();
 
-  const classes = useClasses('content', className, SCALE_CLASSES);
+  const classes = useClasses('content', className, CLASS_NAMES);
 
   return (
     <div className={classes} {...props}>
@@ -32,12 +32,12 @@ const FieldsetContentComponent: React.FC<React.PropsWithChildren<FieldsetContent
           margin-bottom: 0;
         }
 
-        ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'content')}
-        ${RESPONSIVE.w(1, value => `width: ${value};`, '100%', 'content')}
-        ${RESPONSIVE.font(1, value => `--fieldset-font-size: ${value};`, undefined, 'content')}
-        ${RESPONSIVE.padding(1.3, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'content')}
-        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'content')}
-        ${SCALER('content')}
+        ${SCALE.h(1, value => `height: ${value};`, 'auto', 'content')}
+        ${SCALE.w(1, value => `width: ${value};`, '100%', 'content')}
+        ${SCALE.font(1, value => `--fieldset-font-size: ${value};`, undefined, 'content')}
+        ${SCALE.padding(1.3, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'content')}
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'content')}
+        ${UNIT('content')}
       `}</style>
     </div>
   );

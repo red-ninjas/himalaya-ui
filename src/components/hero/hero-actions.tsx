@@ -5,10 +5,10 @@ import { PropsWithChildren } from 'react';
 import useClasses from '../use-classes';
 
 const HeroActions: React.FC<PropsWithChildren> = ({ children, ...props }) => {
-  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
+  const { SCALE, UNIT, CLASS_NAMES } = useScale();
 
   return (
-    <div className={useClasses('actions', SCALE_CLASSES)} {...props}>
+    <div className={useClasses('actions', CLASS_NAMES)} {...props}>
       {children}
       <style jsx>{`
         .actions {
@@ -19,11 +19,11 @@ const HeroActions: React.FC<PropsWithChildren> = ({ children, ...props }) => {
           justify-content: center;
         }
 
-        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'actions')}
-        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, 'auto', 'actions')}
-        ${RESPONSIVE.mt(2, value => `margin-top: ${value}`, undefined, 'actions')}
+        ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'actions')}
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, 'auto', 'actions')}
+        ${SCALE.mt(2, value => `margin-top: ${value}`, undefined, 'actions')}
 
-        ${SCALER('actions')}
+        ${UNIT('actions')}
       `}</style>
     </div>
   );

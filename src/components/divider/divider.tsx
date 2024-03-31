@@ -20,8 +20,8 @@ const DividerComponent: React.FC<React.PropsWithChildren<DividerProps>> = ({
   className,
   ...props
 }: React.PropsWithChildren<DividerProps>) => {
-  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
-  const classes = useClasses('divider', className, type ? 'color-' + type : null, SCALE_CLASSES);
+  const { SCALE, UNIT, CLASS_NAMES } = useScale();
+  const classes = useClasses('divider', className, type ? 'color-' + type : null, CLASS_NAMES);
 
   const alignClassName = useMemo(() => {
     if (!align || align === 'center') return '';
@@ -77,12 +77,12 @@ const DividerComponent: React.FC<React.PropsWithChildren<DividerProps>> = ({
           right: 7%;
         }
 
-        ${RESPONSIVE.font(0.875, value => `font-size: ${value};`, undefined, 'divider')}
-        ${RESPONSIVE.w(1.75, value => `width: ${value};`, 'auto', 'divider')}
-        ${RESPONSIVE.h(0.0625, value => `height: ${value};`, undefined, 'divider')}
-        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'divider')}
-        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'divider')}
-        ${SCALER('divider')}
+        ${SCALE.font(0.875, value => `font-size: ${value};`, undefined, 'divider')}
+        ${SCALE.w(1.75, value => `width: ${value};`, 'auto', 'divider')}
+        ${SCALE.h(0.0625, value => `height: ${value};`, undefined, 'divider')}
+        ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'divider')}
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'divider')}
+        ${UNIT('divider')}
       `}</style>
     </div>
   );

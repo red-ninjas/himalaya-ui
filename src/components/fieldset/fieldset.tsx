@@ -29,11 +29,11 @@ const FieldsetComponent: React.FC<React.PropsWithChildren<FieldsetProps>> = ({
   label = '',
   ...props
 }: React.PropsWithChildren<FieldsetProps>) => {
-  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
+  const { SCALE, UNIT, CLASS_NAMES } = useScale();
 
   const { inGroup, currentValue, register } = useFieldset();
   const [hidden, setHidden] = useState<boolean>(inGroup);
-  const classes = useClasses('fieldset', className, SCALE_CLASSES);
+  const classes = useClasses('fieldset', className, CLASS_NAMES);
 
   const [withoutFooterChildren, FooterChildren] = pickChild(children, FieldsetFooter);
   const hasTitle = hasChild(withoutFooterChildren, FieldsetTitle);
@@ -85,12 +85,12 @@ const FieldsetComponent: React.FC<React.PropsWithChildren<FieldsetProps>> = ({
           display: ${hidden ? 'none' : 'block'};
         }
 
-        ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'fieldset')}
-        ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto', 'fieldset')}
-        ${RESPONSIVE.font(1, value => `--fieldset-font-size: ${value};`, undefined, 'fieldset')}
-        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'fieldset')}
-        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'fieldset')}
-        ${SCALER('fieldset')}
+        ${SCALE.h(1, value => `height: ${value};`, 'auto', 'fieldset')}
+        ${SCALE.w(1, value => `width: ${value};`, 'auto', 'fieldset')}
+        ${SCALE.font(1, value => `--fieldset-font-size: ${value};`, undefined, 'fieldset')}
+        ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'fieldset')}
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'fieldset')}
+        ${UNIT('fieldset')}
       `}</style>
     </div>
   );

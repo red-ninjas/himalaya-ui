@@ -21,7 +21,7 @@ type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof HeaderProps>
 export type HeaderPropsNative = HeaderProps & NativeAttrs;
 
 const HeaderComponent: React.FC<HeaderPropsNative> = ({ children, transcluent = true, className, transcluentColor, gap = 0.375, ...props }) => {
-  const { SCALER, RESPONSIVE, SCALE_CLASSES } = useScale();
+  const { UNIT, SCALE, CLASS_NAMES } = useScale();
   const layoutRoot = useLayout();
 
   const [, leftHeaderControl] = pickChild(children, LeftHeaderControl);
@@ -57,7 +57,7 @@ const HeaderComponent: React.FC<HeaderPropsNative> = ({ children, transcluent = 
         {
           transcluent: transcluent,
         },
-        SCALE_CLASSES,
+        CLASS_NAMES,
         className,
       )}
       {...props}
@@ -145,10 +145,10 @@ const HeaderComponent: React.FC<HeaderPropsNative> = ({ children, transcluent = 
           height: 100%;
         }
 
-        ${RESPONSIVE.h(3.75, value => `height: ${value};`, undefined, 'header-outer')}
-        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'header-navigation')}
-        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'header-navigation')}
-        ${RESPONSIVE.margin(
+        ${SCALE.h(3.75, value => `height: ${value};`, undefined, 'header-outer')}
+        ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'header-navigation')}
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'header-navigation')}
+        ${SCALE.margin(
           0,
           value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
           {
@@ -160,7 +160,7 @@ const HeaderComponent: React.FC<HeaderPropsNative> = ({ children, transcluent = 
           'header-inner',
         )}
 
-        ${SCALER('header-outer')}
+        ${UNIT('header-outer')}
         ${customResponsiveAttribute(gap, 'header-outer', layoutRoot.breakpoints, value =>
           !isCSSNumberValue(value) ? `--header-gap: ${value};` : `--header-gap: calc(var(--scale-unit-scale) * ${value});`,
         )}

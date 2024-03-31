@@ -80,7 +80,7 @@ const ChartComponent: React.FC<React.PropsWithChildren<ChartProps>> = ({
   const chartContainerRef = createRef<HTMLDivElement>();
   const chartOuterContainerRef = createRef<HTMLDivElement>();
   const width = useRefDimensions(chartOuterContainerRef);
-  const { SCALER, RESPONSIVE, SCALE_CLASSES } = useScale();
+  const { UNIT, SCALE, CLASS_NAMES } = useScale();
 
   let _chart: IChartApi | undefined = undefined;
   const [chart, setChart] = useState<IChartApi>();
@@ -316,7 +316,7 @@ const ChartComponent: React.FC<React.PropsWithChildren<ChartProps>> = ({
 
   return (
     <ChartContext.Provider value={config}>
-      <div className={useClasses('chart-container', SCALE_CLASSES)} {...props} ref={chartOuterContainerRef}>
+      <div className={useClasses('chart-container', CLASS_NAMES)} {...props} ref={chartOuterContainerRef}>
         <div className="chart-outer" style={{ display: _viewMode == 'graph' ? 'block' : 'none' }}>
           <div className="chart-inner" ref={chartContainerRef}></div>
           <div className="graph-tooltip" ref={tooltipRef}></div>
@@ -371,7 +371,7 @@ const ChartComponent: React.FC<React.PropsWithChildren<ChartProps>> = ({
           color: var(--color-background-400);
         }
 
-        ${RESPONSIVE.padding(
+        ${SCALE.padding(
           {
             top: 0.475,
             bottom: 0.475,
@@ -382,9 +382,9 @@ const ChartComponent: React.FC<React.PropsWithChildren<ChartProps>> = ({
           undefined,
           'chart-inner',
         )}
-        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'chart-container')}
-        ${RESPONSIVE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'chart-outer')}
-        ${SCALER('chart-container')}
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'chart-container')}
+        ${SCALE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'chart-outer')}
+        ${UNIT('chart-container')}
       `}</style>
     </ChartContext.Provider>
   );

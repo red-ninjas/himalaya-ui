@@ -11,10 +11,10 @@ type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
 export type CardContentProps = Props & NativeAttrs;
 
 const CardContentComponent: React.FC<React.PropsWithChildren<CardContentProps>> = ({ className = '', children, ...props }: CardContentProps) => {
-  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
+  const { SCALE, UNIT, CLASS_NAMES } = useScale();
 
   return (
-    <div className={useClasses('content', className, SCALE_CLASSES)} {...props}>
+    <div className={useClasses('content', className, CLASS_NAMES)} {...props}>
       {children}
       <style jsx>{`
         .content > :global(p:first-child) {
@@ -25,12 +25,12 @@ const CardContentComponent: React.FC<React.PropsWithChildren<CardContentProps>> 
           margin-bottom: 0;
         }
 
-        ${RESPONSIVE.padding(1, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'content')}
-        ${RESPONSIVE.margin(1, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, 0, 'content')}
-        ${RESPONSIVE.w(1, value => `width: ${value};`, '100%', 'content')}
-        ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'content')}
+        ${SCALE.padding(1, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'content')}
+        ${SCALE.margin(1, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, 0, 'content')}
+        ${SCALE.w(1, value => `width: ${value};`, '100%', 'content')}
+        ${SCALE.h(1, value => `height: ${value};`, 'auto', 'content')}
 
-        ${SCALER('content')}
+        ${UNIT('content')}
       `}</style>
     </div>
   );

@@ -21,7 +21,7 @@ const AutoCompleteItemComponent: React.FC<React.PropsWithChildren<AutoCompleteIt
   isLabelOnly,
   hasCheckmark = true,
 }: React.PropsWithChildren<AutoCompleteItemProps>) => {
-  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
+  const { SCALE, UNIT, CLASS_NAMES } = useScale();
   const { value, updateValue, updateVisible } = useAutoCompleteContext();
   const selectHandler = () => {
     updateValue && updateValue(identValue);
@@ -34,7 +34,7 @@ const AutoCompleteItemComponent: React.FC<React.PropsWithChildren<AutoCompleteIt
       active: isActive,
       'label-only': isLabelOnly,
     },
-    SCALE_CLASSES,
+    CLASS_NAMES,
   );
 
   return (
@@ -88,7 +88,7 @@ const AutoCompleteItemComponent: React.FC<React.PropsWithChildren<AutoCompleteIt
           height: 100%;
         }
 
-        ${RESPONSIVE.padding(
+        ${SCALE.padding(
           {
             top: 0,
             right: 0.75,
@@ -99,15 +99,15 @@ const AutoCompleteItemComponent: React.FC<React.PropsWithChildren<AutoCompleteIt
           undefined,
           'item',
         )}
-        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'item')}
-        ${RESPONSIVE.font(0.875, value => `font-size: ${value};`, undefined, 'item')}
-        ${RESPONSIVE.font(1, value => `width: ${value}; height: ${value};`, undefined, 'auto-check')}
-        ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto', 'item')}
-        ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'item')}
-        ${RESPONSIVE.h(2.5, value => `height: ${value};`, undefined, 'label-only')}
-        ${RESPONSIVE.h(2, value => `--ellipse-height: ${value};`, undefined, 'item')}
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'item')}
+        ${SCALE.font(0.875, value => `font-size: ${value};`, undefined, 'item')}
+        ${SCALE.font(1, value => `width: ${value}; height: ${value};`, undefined, 'auto-check')}
+        ${SCALE.w(1, value => `width: ${value};`, 'auto', 'item')}
+        ${SCALE.h(1, value => `height: ${value};`, 'auto', 'item')}
+        ${SCALE.h(2.5, value => `height: ${value};`, undefined, 'label-only')}
+        ${SCALE.h(2, value => `--ellipse-height: ${value};`, undefined, 'item')}
 
-        ${SCALER('item')}
+        ${UNIT('item')}
       `}</style>
     </div>
   );

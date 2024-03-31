@@ -21,7 +21,7 @@ type NativeAttrs = Omit<
 export type ImageProps = Props & NativeAttrs;
 
 const ImageComponent: React.FC<ImageProps> = ({ src = '', disableSkeleton = false, className = '', maxDelay = 3000, alt = '', ...props }: ImageProps) => {
-  const { getScaleProps, SCALER, RESPONSIVE, SCALE_CLASSES } = useScale();
+  const { getScaleProps, UNIT, SCALE, CLASS_NAMES } = useScale();
 
   const width = getScaleProps(['w']);
   const height = getScaleProps(['h']);
@@ -55,7 +55,7 @@ const ImageComponent: React.FC<ImageProps> = ({ src = '', disableSkeleton = fals
   }, [loading]);
 
   return (
-    <div className={useClasses('image', className, SCALE_CLASSES)}>
+    <div className={useClasses('image', className, CLASS_NAMES)}>
       {showSkeleton && showAnimation && <ImageSkeleton opacity={loading ? 0.5 : 0} />}
       <NextImage
         ref={imageRef}
@@ -77,14 +77,14 @@ const ImageComponent: React.FC<ImageProps> = ({ src = '', disableSkeleton = fals
           max-width: 100%;
         }
 
-        ${RESPONSIVE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'image')}
-        ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto', 'image')}
-        ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'image')}
-        ${RESPONSIVE.mx(0, value => `margin-left: ${value};margin-right: ${value}`, 'auto', 'image')}
-        ${RESPONSIVE.my(0, value => `margin-top: ${value};margin-bottom: ${value}`, undefined, 'image')}
-        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'image')}
+        ${SCALE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'image')}
+        ${SCALE.w(1, value => `width: ${value};`, 'auto', 'image')}
+        ${SCALE.h(1, value => `height: ${value};`, 'auto', 'image')}
+        ${SCALE.mx(0, value => `margin-left: ${value};margin-right: ${value}`, 'auto', 'image')}
+        ${SCALE.my(0, value => `margin-top: ${value};margin-bottom: ${value}`, undefined, 'image')}
+        ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'image')}
 
-        ${SCALER('image')}
+        ${UNIT('image')}
       `}</style>
     </div>
   );

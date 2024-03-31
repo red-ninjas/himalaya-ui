@@ -38,7 +38,7 @@ const RatingComponent: React.FC<RatingProps> = ({
   onLockedChange,
   ...props
 }: React.PropsWithChildren<RatingProps>) => {
-  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
+  const { SCALE, UNIT, CLASS_NAMES } = useScale();
   const [value, setValue] = useState<number>(initialValue);
   const [isLocked, setIsLocked] = useState<boolean>(locked);
 
@@ -82,7 +82,7 @@ const RatingComponent: React.FC<RatingProps> = ({
   }, [customValue]);
 
   return (
-    <div className={useClasses('rating', className, type ? 'color-' + type : null, SCALE_CLASSES)} {...props}>
+    <div className={useClasses('rating', className, type ? 'color-' + type : null, CLASS_NAMES)} {...props}>
       {[...Array(count)].map((_, index) => (
         <div
           className={useClasses('icon-box', {
@@ -137,12 +137,12 @@ const RatingComponent: React.FC<RatingProps> = ({
           transform: scale(0.9);
         }
 
-        ${RESPONSIVE.h(0.625, value => `height: ${value};`, 'auto', 'rating')}
-        ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto', 'rating')}
-        ${RESPONSIVE.font(1, value => `font-size: ${value};`, undefined, 'rating')}
-        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'rating')}
-        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'rating')}
-        ${SCALER('rating')}
+        ${SCALE.h(0.625, value => `height: ${value};`, 'auto', 'rating')}
+        ${SCALE.w(1, value => `width: ${value};`, 'auto', 'rating')}
+        ${SCALE.font(1, value => `font-size: ${value};`, undefined, 'rating')}
+        ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'rating')}
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'rating')}
+        ${UNIT('rating')}
       `}</style>
     </div>
   );

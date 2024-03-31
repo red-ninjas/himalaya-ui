@@ -3,29 +3,34 @@
 import React from 'react';
 import useLayout from '../use-layout';
 import useScale, { withScale } from '../use-scale';
+import useClasses from 'components/use-classes';
 
-interface SectionProps {
-  className?: string;
-}
+interface SectionProps {}
 
 type NativeAttrs = Omit<React.HTMLAttributes<HTMLElement>, keyof SectionProps>;
 export type SectionComponentProps = SectionProps & NativeAttrs;
 
-const SectionComponent: React.FC<SectionComponentProps> = ({ className = '', children, ...props }) => {
-  const { RESPONSIVE } = useScale();
+const SectionComponent: React.FC<SectionComponentProps> = ({ className, children, ...props }) => {
+  const { SCALE, CLASS_NAMES, UNIT } = useScale();
   const { sectionSpace } = useLayout();
 
   return (
-    <section className={`${className} padding margin width`} {...props}>
+    <section className={useClasses('section', className, CLASS_NAMES)} {...props}>
       {children}
 
       <style jsx>{`
-        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, {
-          top: sectionSpace,
-          bottom: sectionSpace,
-        })}
-        ${RESPONSIVE.margin(0, value => `margin:  ${value.top} ${value.right} ${value.bottom} ${value.left};`)}
-        ${RESPONSIVE.w(1, value => `width: ${value};`, '100%')}
+        ${SCALE.padding(
+          0,
+          value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
+          {
+            top: sectionSpace,
+            bottom: sectionSpace,
+          },
+          'section',
+        )}
+        ${SCALE.margin(0, value => `margin:  ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'section')}
+        ${SCALE.w(1, value => `width: ${value};`, '100%', 'section')}
+        ${UNIT('section')}
       `}</style>
     </section>
   );
