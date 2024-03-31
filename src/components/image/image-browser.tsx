@@ -101,9 +101,8 @@ const ImageBrowserComponent = React.forwardRef<HTMLDivElement, React.PropsWithCh
     ref: React.Ref<HTMLDivElement>,
   ) => {
     const theme = useTheme();
-    const layout = useLayout();
-    const { SCALES } = useScale();
-    const colors = useMemo(() => getBrowserColors(invert, theme.palette), [invert, theme.palette]);
+    const { SCALER, RESPONSIVE, SCALE_CLASSES } = useScale();
+    const colors = useMemo(() => getBrowserColors(invert), [invert]);
     const input = useMemo(() => {
       if (url) return getAddressInput(url, showFullLink, colors, anchorProps);
       if (title) return getTitle(title, colors);
@@ -111,7 +110,7 @@ const ImageBrowserComponent = React.forwardRef<HTMLDivElement, React.PropsWithCh
     }, [url, showFullLink, title, colors, anchorProps]);
 
     return (
-      <div className={useClasses('browser', className)} ref={ref} {...props}>
+      <div className={useClasses('browser', className, SCALE_CLASSES)} ref={ref} {...props}>
         <header>
           <div className="traffic">
             <span className="close" />
@@ -126,14 +125,9 @@ const ImageBrowserComponent = React.forwardRef<HTMLDivElement, React.PropsWithCh
             background-color: transparent;
             box-shadow: ${theme.expressiveness.shadowLarge};
             max-width: 100%;
-            border-radius: ${SCALES.r(1, `var(--layout-radius)`)};
             overflow: hidden;
-            font-size: ${SCALES.font(1)};
-            width: ${SCALES.w(1, 'max-content')};
-            height: ${SCALES.h(1, 'auto')};
-            margin: ${SCALES.mt(0)} ${SCALES.mr(0, 'auto')} ${SCALES.mb(0)} ${SCALES.ml(0, 'auto')};
-            padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
           }
+
           .browser :global(.image) {
             border-top-left-radius: 0;
             border-top-right-radius: 0;
@@ -180,6 +174,22 @@ const ImageBrowserComponent = React.forwardRef<HTMLDivElement, React.PropsWithCh
           .full {
             background-color: #27c93f;
           }
+
+          ${RESPONSIVE.margin(
+            0,
+            value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
+            {
+              right: 'auto',
+              left: 'auto',
+            },
+            'browser',
+          )}
+          ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'browser')}
+          ${RESPONSIVE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'browser')}
+          ${RESPONSIVE.w(1, value => `width: ${value};`, 'max-content', 'browser')}
+          ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'browser')}
+          ${RESPONSIVE.font(1, value => `font-size: ${value};`, undefined, 'browser')}
+          ${SCALER('browser')}
         `}</style>
       </div>
     );
