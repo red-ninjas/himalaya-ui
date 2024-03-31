@@ -21,12 +21,13 @@ const RadioGroupComponent: React.FC<React.PropsWithChildren<RadioGroupProps>> = 
   onChange,
   value,
   children,
-  className = '',
+  className,
   initialValue,
   useRow = false,
   ...props
 }: React.PropsWithChildren<RadioGroupProps>) => {
-  const { SCALES } = useScale();
+  const { SCALER, RESPONSIVE, SCALE_CLASSES } = useScale();
+
   const [selfVal, setSelfVal] = useState<string | number | undefined>(initialValue);
   const updateState = (nextValue: string | number) => {
     setSelfVal(nextValue);
@@ -49,29 +50,32 @@ const RadioGroupComponent: React.FC<React.PropsWithChildren<RadioGroupProps>> = 
 
   return (
     <RadioContext.Provider value={providerValue}>
-      <div className={useClasses('radio-group', className)} {...props}>
+      <div className={useClasses('radio-group', className, SCALE_CLASSES)} {...props}>
         {children}
       </div>
       <style jsx>{`
         .radio-group {
           display: flex;
           flex-direction: ${useRow ? 'col' : 'column'};
-          --radio-group-gap: ${SCALES.font(1)};
-          width: ${SCALES.w(1, 'auto')};
-          height: ${SCALES.h(1, 'auto')};
-          padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
-          margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
         }
 
         .radio-group :global(.radio) {
           margin-top: ${useRow ? 0 : 'var(--radio-group-gap)'};
           margin-left: ${useRow ? 'var(--radio-group-gap)' : 0};
-          --radio-size: ${SCALES.font(1)};
         }
 
         .radio-group :global(.radio:first-of-type) {
           margin: 0;
         }
+
+        ${RESPONSIVE.font(1, value => `--radio-group-gap: ${value};`, undefined, 'radio-group')}
+        ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'radio-group')}
+        ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto', 'radio-group')}
+        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'radio-group')}
+        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'radio-group')}
+        ${RESPONSIVE.font(1, value => `--radio-size: ${value};`, undefined, 'radio-group')}
+
+        ${SCALER('radio-group')}
       `}</style>
     </RadioContext.Provider>
   );
