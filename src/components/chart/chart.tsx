@@ -18,6 +18,7 @@ import ChartDataview from './chart-dataview';
 import { ChartPriceFormatter, ChartViewMode, DefaulTimeFormatter, ILegendStatesDictonary } from './shared';
 import { TimeFormatterFn } from '../use-charts/model/localization-options';
 import { TickMarkFormatter } from '../use-charts/model/horz-scale-behavior-time/horz-scale-behavior-time';
+import useClasses from '../use-classes';
 
 interface ChartProperties {
   height?: number;
@@ -79,7 +80,7 @@ const ChartComponent: React.FC<React.PropsWithChildren<ChartProps>> = ({
   const chartContainerRef = createRef<HTMLDivElement>();
   const chartOuterContainerRef = createRef<HTMLDivElement>();
   const width = useRefDimensions(chartOuterContainerRef);
-  const { SCALES } = useScale();
+  const { SCALER, RESPONSIVE, SCALE_CLASSES } = useScale();
 
   let _chart: IChartApi | undefined = undefined;
   const [chart, setChart] = useState<IChartApi>();
@@ -99,24 +100,24 @@ const ChartComponent: React.FC<React.PropsWithChildren<ChartProps>> = ({
       tickMarkFormatter: tickFormatter,
       fixLeftEdge: true,
       fixRightEdge: true,
-      borderColor: 'rgba(0,0,0,0.0)',
+      borderColor: 'rgba(0,0,0,0)',
     },
     rightPriceScale: {
-      borderColor: 'rgba(0,0,0,0.0)',
+      borderColor: 'rgba(0,0,0,0)',
       visible: hasSides == 'both' || hasSides == 'right',
     },
     leftPriceScale: {
-      borderColor: 'rgba(0,0,0,0.0)',
+      borderColor: 'rgba(0,0,0,0)',
       visible: hasSides == 'both' || hasSides == 'left',
     },
     grid: {
       vertLines: {
-        color: theme.type == 'dark' ? 'rgba(255,255,255,0.15)' : 'rgba(0,0,0,0.1)',
+        color: theme.palette.border.hex_1000,
         visible: true,
       },
       horzLines: {
         visible: true,
-        color: theme.type == 'dark' ? 'rgba(255,255,255,0.15)' : 'rgba(0,0,0,0.1)',
+        color: theme.palette.border.hex_1000,
       },
     },
 
@@ -315,7 +316,7 @@ const ChartComponent: React.FC<React.PropsWithChildren<ChartProps>> = ({
 
   return (
     <ChartContext.Provider value={config}>
-      <div className="chart-container" {...props} ref={chartOuterContainerRef}>
+      <div className={useClasses('chart-container', SCALE_CLASSES)} {...props} ref={chartOuterContainerRef}>
         <div className="chart-outer" style={{ display: _viewMode == 'graph' ? 'block' : 'none' }}>
           <div className="chart-inner" ref={chartContainerRef}></div>
           <div className="graph-tooltip" ref={tooltipRef}></div>
@@ -332,15 +333,11 @@ const ChartComponent: React.FC<React.PropsWithChildren<ChartProps>> = ({
           width: 100%;
           background: transparent;
           border: 1px solid var(--color-border-1000);
-          border-radius: ${SCALES.r(1, `var(--layout-radius)`)};
         }
-        .chart-inner {
-          padding: ${SCALES.pt(0.475)} ${SCALES.pr(0.875)} ${SCALES.pb(0.475)} ${SCALES.pl(0.875)};
-        }
+
         .chart-container {
           position: relative;
           width: 100%;
-          margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
         }
         .graph-tooltip {
           position: absolute;
@@ -373,6 +370,21 @@ const ChartComponent: React.FC<React.PropsWithChildren<ChartProps>> = ({
         :global(.series-checkbox .text) {
           color: var(--color-background-400);
         }
+
+        ${RESPONSIVE.padding(
+          {
+            top: 0.475,
+            bottom: 0.475,
+            right: 0.475,
+            left: 0.875,
+          },
+          value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
+          undefined,
+          'chart-inner',
+        )}
+        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'chart-container')}
+        ${RESPONSIVE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'chart-outer')}
+        ${SCALER('chart-container')}
       `}</style>
     </ChartContext.Provider>
   );
