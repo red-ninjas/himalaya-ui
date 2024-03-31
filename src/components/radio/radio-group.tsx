@@ -26,7 +26,6 @@ const RadioGroupComponent: React.FC<React.PropsWithChildren<RadioGroupProps>> = 
   useRow = false,
   ...props
 }: React.PropsWithChildren<RadioGroupProps>) => {
-  const { SCALES } = useScale();
   const { SCALER, RESPONSIVE, SCALE_CLASSES } = useScale();
 
   const [selfVal, setSelfVal] = useState<string | number | undefined>(initialValue);
