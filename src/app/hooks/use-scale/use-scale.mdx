@@ -33,8 +33,15 @@ Now we try to bind the component to the scale of Himalya:
 import { withScale, useScale } from '@himalaya-ui/core'
 
 const MyComponent = () => {
-  const { SCALES } = useScale()
-  return <div style={{ width: SCALES.w(1.25) }}>Scale Component</div>
+  const { RESPONSIVE, SCALER } = useScale()
+  return (<div className={'component'}>
+    <span>Scale Component</span>
+      <style jsx>{`
+      ${RESPONSIVE.w(1.25, value => `width: ${value};`, undefined, 'component')}
+      ${SCALER('component')}
+    `}</style>
+    </div>
+    );
 }
 
 export default withScale(MyComponent)

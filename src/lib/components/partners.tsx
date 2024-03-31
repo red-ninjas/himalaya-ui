@@ -1,12 +1,19 @@
 'use client';
-import { PageWidth, FadeInEffect, Text, useTheme } from 'components';
-import { RedNinjas, Striked } from './icons';
+import { PageWidth, Text, useTheme } from 'components';
 import Carousel from 'components/carousel';
+import { motion } from 'framer-motion';
+import { RedNinjas, Striked } from './icons';
 
 export default function Partners() {
   const theme = useTheme();
   return (
-    <FadeInEffect translateY="4rem">
+    <motion.div
+      style={{ width: '100%' }}
+      initial={{ opacity: 0, filter: 'blur(10px)' }}
+      whileInView={{ opacity: 1, filter: 'blur(0px)' }}
+      transition={{ duration: 1 }}
+      viewport={{ once: true }}
+    >
       <div className="carousel">
         <Text mb={1.2} small style={{ color: theme.palette.background.hex_500, textTransform: 'uppercase' }}>
           With heavy support from
@@ -82,6 +89,6 @@ export default function Partners() {
           }
         `}</style>
       </div>
-    </FadeInEffect>
+    </motion.div>
   );
 }

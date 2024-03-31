@@ -1,5 +1,6 @@
 'use client';
-import { Button, PageWidth, FadeInEffect, Grid, Hero, Link, Text, useTheme } from 'components';
+import { Button, Grid, Hero, Link, PageWidth, Text, useTheme } from 'components';
+import { motion } from 'framer-motion';
 
 export function PortfolioItem({
   image,
@@ -18,7 +19,12 @@ export function PortfolioItem({
 }) {
   const theme = useTheme();
   return (
-    <FadeInEffect translateY="4rem">
+    <motion.div
+      initial={{ opacity: 0, translateY: '4rem', filter: 'blur(10px)' }}
+      whileInView={{ opacity: 1, translateY: 0, filter: 'blur(0px)' }}
+      transition={{ duration: 1 }}
+      viewport={{ once: true }}
+    >
       <div className="portfolio">
         {image && (
           <div className="portfolio-image">
@@ -27,29 +33,23 @@ export function PortfolioItem({
             */}
           </div>
         )}
-        <FadeInEffect translateY="4rem">
-          <Link font={'24px'} style={{ fontWeight: 'bold' }} my={0}>
-            {title}
+        <Link font={'24px'} style={{ fontWeight: 'bold' }} my={0}>
+          {title}
+        </Link>
+        <Text mt={0} style={{ color: theme.palette.background.hex_300 }}>
+          {desc}
+        </Text>
+        {url && (
+          <Link target="_blank" href={url}>
+            <Button auto>Source code</Button>
           </Link>
-        </FadeInEffect>
-        <FadeInEffect translateY="4rem">
-          <Text mt={0} style={{ color: theme.palette.background.hex_300 }}>
-            {desc}
-          </Text>
-        </FadeInEffect>
-        <FadeInEffect translateY="4rem" blur={10}>
-          {url && (
-            <Link target="_blank" href={url}>
-              <Button auto>Source code</Button>
-            </Link>
-          )}
+        )}
 
-          {!url && (
-            <Button disabled auto>
-              Coming soon
-            </Button>
-          )}
-        </FadeInEffect>
+        {!url && (
+          <Button disabled auto>
+            Coming soon
+          </Button>
+        )}
         <style jsx>{`
           .img-link {
             width: 100%;
@@ -70,7 +70,7 @@ export function PortfolioItem({
           }
         `}</style>
       </div>
-    </FadeInEffect>
+    </motion.div>
   );
 }
 
@@ -78,26 +78,25 @@ export default function Portfolio() {
   const theme = useTheme();
   return (
     <PageWidth>
-      <FadeInEffect transition={1000} translateY="4rem">
+      <motion.div
+        initial={{ opacity: 0, translateY: '4rem', filter: 'blur(10px)' }}
+        whileInView={{ opacity: 1, translateY: 0, filter: 'blur(0px)' }}
+        transition={{ duration: 1 }}
+        viewport={{ once: true }}
+      >
         <div className="header">
-          <FadeInEffect translateY="4rem">
-            <Hero.Tag background={theme.palette.primary.hex_1000} textColor={theme.palette.primary.contrast}>
-              Projects
-            </Hero.Tag>
-          </FadeInEffect>
-          <FadeInEffect translateY="4rem">
-            <Text m={0} mt={'12px'} h4 font={'clamp(24px, 3.1vw, 48px)'} style={{ fontWeight: '700', lineHeight: '1.2' }}>
-              Diverse, dynamic, and innovative: Explore real projects made with Himalaya.
-            </Text>
-          </FadeInEffect>
-          <FadeInEffect translateY="4rem">
-            <Text m={0} mt={'24px'} font={'clamp(14px, 1.2vw, 16px)'} style={{ color: theme.palette.background.hex_300, fontWeight: 400 }}>
-              Our UI library stands out with over 3 fully functional demo projects, offering real-world application scenarios, and a rich repository of 100+
-              examples showcasing its extensive capabilities for diverse design and development needs.
-            </Text>
-          </FadeInEffect>
+          <Hero.Tag background={theme.palette.primary.hex_1000} textColor={theme.palette.primary.contrast}>
+            Projects
+          </Hero.Tag>
+          <Text m={0} mt={'12px'} h4 font={'clamp(24px, 3.1vw, 48px)'} style={{ fontWeight: '700', lineHeight: '1.2' }}>
+            Diverse, dynamic, and innovative: Explore real projects made with Himalaya.
+          </Text>
+          <Text m={0} mt={'24px'} font={'clamp(14px, 1.2vw, 16px)'} style={{ color: theme.palette.background.hex_300, fontWeight: 400 }}>
+            Our UI library stands out with over 3 fully functional demo projects, offering real-world application scenarios, and a rich repository of 100+
+            examples showcasing its extensive capabilities for diverse design and development needs.
+          </Text>
         </div>
-      </FadeInEffect>
+      </motion.div>
       <Grid.Container gap={5} justify="center">
         <Grid xs={24} md={12}>
           <div className="portfolio-list">

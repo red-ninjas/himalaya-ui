@@ -93,7 +93,6 @@ export type { PopoverProps, PopoverItemProps } from './popover';
 export { default as Progress } from './progress';
 export type { ProgressProps } from './progress';
 
-export { FadeInEffect } from './effects';
 export { default as Section } from './section';
 
 export { default as Radio } from './radio';

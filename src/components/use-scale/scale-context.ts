@@ -126,7 +126,6 @@ export type GetScalePropsFunction = (key: keyof ScaleProps | Array<keyof ScalePr
 export type GetAllScalePropsFunction = () => ScaleProps;
 
 export interface ScaleConfig {
-  SCALES: DynamicScales;
   RESPONSIVE: DynamicResponsiveScales;
   getScaleProps: GetScalePropsFunction;
   getAllScaleProps: GetAllScalePropsFunction;
@@ -135,40 +134,12 @@ export interface ScaleConfig {
   SCALE_CLASSES: string | undefined;
 }
 
-const defaultDynamicLayoutPipe: DynamicLayoutPipe = scale1x => {
-  return `${scale1x}`;
-};
-
-const defaultDynamicLayoutPipe4x: DynamicLayoutPipe4X = scale1x => {
-  return `${scale1x.top} ${scale1x.right} ${scale1x.bottom} ${scale1x.left}`;
-};
-
 const defaultDynamicResponsiveLayoutPipe = () => undefined;
 
 const defaultContext: ScaleConfig = {
   getScaleProps: () => undefined,
   getAllScaleProps: () => ({}),
-  SCALES: {
-    r: defaultDynamicLayoutPipe,
-    pl: defaultDynamicLayoutPipe,
-    pr: defaultDynamicLayoutPipe,
-    pb: defaultDynamicLayoutPipe,
-    pt: defaultDynamicLayoutPipe,
-    px: defaultDynamicLayoutPipe,
-    py: defaultDynamicLayoutPipe,
-    mb: defaultDynamicLayoutPipe,
-    ml: defaultDynamicLayoutPipe,
-    mr: defaultDynamicLayoutPipe,
-    mt: defaultDynamicLayoutPipe,
-    mx: defaultDynamicLayoutPipe,
-    my: defaultDynamicLayoutPipe,
-    w: defaultDynamicLayoutPipe,
-    h: defaultDynamicLayoutPipe,
-    font: defaultDynamicLayoutPipe,
-    lineHeight: defaultDynamicLayoutPipe,
-    margin: defaultDynamicLayoutPipe4x,
-    padding: defaultDynamicLayoutPipe4x,
-  },
+
   RESPONSIVE: {
     r: defaultDynamicResponsiveLayoutPipe,
     pl: defaultDynamicResponsiveLayoutPipe,

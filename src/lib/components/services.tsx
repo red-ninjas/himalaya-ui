@@ -3,75 +3,61 @@ import Activity from 'components/icons/activity';
 import FeatherIcon from 'components/icons/feather';
 import GitHubIcon from 'components/icons/github';
 import PackageIcon from 'components/icons/package';
-import { Button, PageWidth, FadeInEffect, Grid, Hero, Text, useTheme } from 'components';
+import { motion } from 'framer-motion';
+
+import { Button, Grid, Hero, PageWidth, Text, useTheme } from 'components';
 import { HomeCell } from '.';
 export default function Services() {
   const theme = useTheme();
+
   return (
     <PageWidth>
-      <FadeInEffect translateY="4rem">
+      <motion.div
+        whileInView={{ opacity: 1, translateY: 0, filter: 'blur(0px)' }}
+        initial={{ opacity: 0, translateY: '4rem', filter: 'blur(10px)' }}
+        transition={{ duration: 1 }}
+        viewport={{ once: true }}
+      >
         <div className="header">
-          <FadeInEffect translateY="4rem">
-            <Hero.Tag background={theme.palette.primary.hex_1000} textColor={theme.palette.primary.contrast}>
-              UI library
-            </Hero.Tag>
-          </FadeInEffect>
-          <FadeInEffect translateY="4rem">
-            <Text m={0} mt={'12px'} h4 font={'clamp(24px, 3.1vw, 48px)'} style={{ fontWeight: '700', lineHeight: '1.2' }}>
-              Scaling Excellence: UI Components Beyond Limits
-            </Text>
-          </FadeInEffect>
-          <FadeInEffect translateY="4rem">
-            <Text m={0} mt={'24px'} font={'clamp(14px, 1.2vw, 16px)'} style={{ color: theme.palette.background.hex_300, fontWeight: 400 }}>
-              Unlock unparalleled scalability and performance with our high-scalable UI components, designed to meet the demands of your most ambitious
-              projects.
-            </Text>
-          </FadeInEffect>
+          <Hero.Tag background={theme.palette.primary.hex_1000} textColor={theme.palette.primary.contrast}>
+            UI library
+          </Hero.Tag>
+          <Text m={0} mt={'12px'} h4 font={'clamp(24px, 3.1vw, 48px)'} style={{ fontWeight: '700', lineHeight: '1.2' }}>
+            Scaling Excellence: UI Components Beyond Limits
+          </Text>
+          <Text m={0} mt={'24px'} font={'clamp(14px, 1.2vw, 16px)'} style={{ color: theme.palette.background.hex_300, fontWeight: 400 }}>
+            Unlock unparalleled scalability and performance with our high-scalable UI components, designed to meet the demands of your most ambitious projects.
+          </Text>
         </div>
         <Grid.Container gap={2} justify="center">
           <Grid xs={24} md={6}>
-            <FadeInEffect w={'100%'} h={'100%'} translateY="4rem" startOpacity={1} blur={10}>
-              <HomeCell icon={<PackageIcon />} url="/components" title="100+ React components" desc="Over 100 React components, endless possibilities." />
-            </FadeInEffect>
+            <HomeCell icon={<PackageIcon />} url="/components" title="100+ React components" desc="Over 100 React components, endless possibilities." />
           </Grid>
           <Grid xs={24} md={6}>
-            <FadeInEffect w={'100%'} h={'100%'} translateY="4rem" startOpacity={1} blur={10}>
-              <HomeCell
-                icon={<FeatherIcon />}
-                url="/guide/themes"
-                title="Fully and easy customizable"
-                desc="Your design, your way – our UI library is fully customizable."
-              />
-            </FadeInEffect>
+            <HomeCell
+              icon={<FeatherIcon />}
+              url="/guide/themes"
+              title="Fully and easy customizable"
+              desc="Your design, your way – our UI library is fully customizable."
+            />
           </Grid>
           <Grid xs={24} md={6}>
-            <FadeInEffect w={'100%'} h={'100%'} translateY="4rem" startOpacity={1} blur={10}>
-              <HomeCell
-                icon={<GitHubIcon />}
-                url="https://github.com/red-ninjas/himalaya-ui/"
-                title="Maintained & open sourced"
-                desc="Embrace innovation with our fully open-source UI library."
-              />
-            </FadeInEffect>
+            <HomeCell
+              icon={<GitHubIcon />}
+              url="https://github.com/red-ninjas/himalaya-ui/"
+              title="Maintained & open sourced"
+              desc="Embrace innovation with our fully open-source UI library."
+            />
           </Grid>
           <Grid xs={24} md={6}>
-            <FadeInEffect w={'100%'} h={'100%'} translateY="4rem" startOpacity={1} blur={10}>
-              <HomeCell
-                icon={<Activity />}
-                url="/"
-                title="Performance optimized"
-                desc="Powerful UI, peak performance – experience excellence with our library"
-              />
-            </FadeInEffect>
+            <HomeCell icon={<Activity />} url="/" title="Performance optimized" desc="Powerful UI, peak performance – experience excellence with our library" />
           </Grid>
         </Grid.Container>
 
         <div className="action-button">
-          <FadeInEffect translateY="4rem" w={'auto'} blur={10}>
-            <Button type="secondary" auto scale={1.3}>
-              Read documentation
-            </Button>
-          </FadeInEffect>
+          <Button type="secondary" auto scale={1.3}>
+            Read documentation
+          </Button>
         </div>
 
         <style jsx>{`
@@ -92,7 +78,7 @@ export default function Services() {
             margin-bottom: 64px;
           }
         `}</style>
-      </FadeInEffect>
+      </motion.div>
     </PageWidth>
   );
 }

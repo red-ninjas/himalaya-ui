@@ -3,15 +3,12 @@
 import { PropsWithChildren, useRef } from 'react';
 import { ArrowDown } from '../icons';
 import PageWidth from '../page-width';
-import useLayout from '../use-layout';
+import useClasses from '../use-classes';
 import { useScale, withScale } from '../use-scale';
-import useTheme from '../use-theme';
 import { HeroPropsNative } from './share';
 
-const Hero: React.FC<PropsWithChildren<HeroPropsNative>> = ({ children, withDownArrow = true, scrollToId, ...props }) => {
-  const theme = useTheme();
-  const layout = useLayout();
-  const { SCALES } = useScale();
+const Hero: React.FC<PropsWithChildren<HeroPropsNative>> = ({ children, withDownArrow = true, scrollToId, ...props }: PropsWithChildren<HeroPropsNative>) => {
+  const { SCALER, RESPONSIVE, SCALE_CLASSES } = useScale();
   const heroRef = useRef<HTMLDivElement | null>(null);
 
   const handleArrowSmoothScroll = () => {
@@ -36,7 +33,7 @@ const Hero: React.FC<PropsWithChildren<HeroPropsNative>> = ({ children, withDown
 
   return (
     <>
-      <div {...props} className="hero" ref={heroRef}>
+      <div {...props} className={useClasses('hero', SCALE_CLASSES)} ref={heroRef}>
         <PageWidth>
           <div className="hero-inner">{children}</div>
         </PageWidth>
@@ -58,10 +55,9 @@ const Hero: React.FC<PropsWithChildren<HeroPropsNative>> = ({ children, withDown
           position: relative;
           display: flex;
           width: 100%;
-          min-height: calc(${SCALES.h(0, '100vh')} - ${withDownArrow ? 50 : 0}px);
-          padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
-          margin: ${SCALES.mt(0)} ${SCALES.mr(0, 'auto')} ${SCALES.mb(0)} ${SCALES.ml(0, 'auto')};
+          min-height: calc(var(--hero-min-height) - ${withDownArrow ? 50 : 0}px);
         }
+
         .actions {
           display: inline-flex;
           flex-wrap: wrap;
@@ -129,6 +125,20 @@ const Hero: React.FC<PropsWithChildren<HeroPropsNative>> = ({ children, withDown
           margin-right: auto;
           margin-left: auto;
         }
+
+        ${RESPONSIVE.h(1, value => `--hero-min-height: ${value};`, '100vh', 'hero')}
+        ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'hero')}
+        ${RESPONSIVE.margin(
+          0,
+          value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
+          {
+            right: 'auto',
+            left: 'auto',
+          },
+          'hero',
+        )}
+
+        ${SCALER('hero')}
       `}</style>
     </>
   );

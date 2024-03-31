@@ -1,7 +1,8 @@
 'use client';
 import axios from 'axios';
-import { CountUp, FadeInEffect, Grid, Hero, PageWidth, Text } from 'components';
+import { CountUp, Grid, Hero, PageWidth, Text } from 'components';
 import useVisible from 'components/utils/use-visibile';
+import { motion } from 'framer-motion';
 import { GITHUB_CONTRIBUTORS_URL } from 'lib/constants';
 import { useEffect, useRef, useState } from 'react';
 
@@ -16,7 +17,12 @@ export function FactItem({ amount = 0, title = '' }: { amount?: number; title: s
     }
   }, [isVisible]);
   return (
-    <FadeInEffect translateY="4rem" startOpacity={1} blur={10}>
+    <motion.div
+      initial={{ opacity: 0, translateY: '4rem', filter: 'blur(10px)' }}
+      whileInView={{ opacity: 1, translateY: 0, filter: 'blur(0px)' }}
+      transition={{ duration: 1 }}
+      viewport={{ once: true }}
+    >
       <div className="fact" ref={ref}>
         <CountUp start={0} end={amount} easing="linear" isCounting={isPlaying}>
           {({ value }) => (
@@ -37,7 +43,7 @@ export function FactItem({ amount = 0, title = '' }: { amount?: number; title: s
           }
         `}</style>
       </div>
-    </FadeInEffect>
+    </motion.div>
   );
 }
 
@@ -66,18 +72,19 @@ export default function Facts() {
 
   return (
     <PageWidth>
-      <FadeInEffect translateY="4rem">
+      <motion.div
+        initial={{ opacity: 0, translateY: '4rem', filter: 'blur(10px)' }}
+        whileInView={{ opacity: 1, translateY: 0, filter: 'blur(0px)' }}
+        transition={{ duration: 1 }}
+        viewport={{ once: true }}
+      >
         <div className="header" ref={ref}>
-          <FadeInEffect translateY="4rem">
-            <Hero.Tag background={`var(--color-primary-1000)`} textColor={`var(--color-primary-contrast)`}>
-              Our facts
-            </Hero.Tag>
-          </FadeInEffect>
-          <FadeInEffect translateY="4rem">
-            <Text m={0} mt={'12px'} h4 font={'clamp(24px, 3.1vw, 48px)'} style={{ fontWeight: '700', lineHeight: '1.2' }}>
-              We take pride in elegantly solving complex problems and releasing outstanding products for free to the market.
-            </Text>
-          </FadeInEffect>
+          <Hero.Tag background={`var(--color-primary-1000)`} textColor={`var(--color-primary-contrast)`}>
+            Our facts
+          </Hero.Tag>
+          <Text m={0} mt={'12px'} h4 font={'clamp(24px, 3.1vw, 48px)'} style={{ fontWeight: '700', lineHeight: '1.2' }}>
+            We take pride in elegantly solving complex problems and releasing outstanding products for free to the market.
+          </Text>
         </div>
         <Grid.Container gap={5} justify="center">
           <Grid xs={24} md={8} justify="center">
@@ -109,7 +116,7 @@ export default function Facts() {
             width: 100%;
           }
         `}</style>
-      </FadeInEffect>
+      </motion.div>
     </PageWidth>
   );
 }

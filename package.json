@@ -58,6 +58,7 @@
   "sideEffects": false,
   "type": "module",
   "devDependencies": {
+    "framer-motion": "^11.0.24",
     "@babel/cli": "^7.23.0",
     "@babel/core": "^7.23.0",
     "@babel/plugin-transform-block-scoping": "^7.23.0",

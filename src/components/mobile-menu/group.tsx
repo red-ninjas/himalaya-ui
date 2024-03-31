@@ -14,7 +14,7 @@ type NativeAttrs = Omit<React.HTMLAttributes<HTMLAnchorElement>, keyof Props>;
 export type MobileNavigationGroupProps = Props & NativeAttrs;
 
 const MobileNavigationGroup: React.FC<PropsWithChildren<MobileNavigationGroupProps>> = ({ children, title, expanded = true, ...props }) => {
-  const { SCALES } = useScale();
+  const { SCALER, RESPONSIVE, SCALE_CLASSES } = useScale();
   const ref = useRef<HTMLAnchorElement | null>(null);
   const [isExpanded, setIsExpanded] = useState(expanded);
 
@@ -23,16 +23,14 @@ const MobileNavigationGroup: React.FC<PropsWithChildren<MobileNavigationGroupPro
   const btnClass = useClasses({
     'mobile-navigation-item': true,
     'has-chevron': !!children,
+    SCALE_CLASSES,
   });
 
   const childs = (childElements: ReactNode) => {
     return (
-      <div className={useClasses({ 'child-grid': true, 'grid-show': isExpanded })}>
+      <div className={useClasses('child-grid', { 'grid-show': isExpanded })}>
         <div className="child-elements">{childElements}</div>
         <style jsx>{`
-          .child-elements {
-            padding: ${SCALES.pt(0.25)} ${SCALES.pr(0)} ${SCALES.pb(0.25)} ${SCALES.pl(0)};
-          }
           .child-grid {
             visibility: hidden;
             height: 0;
@@ -43,7 +41,6 @@ const MobileNavigationGroup: React.FC<PropsWithChildren<MobileNavigationGroupPro
           .sub-child-grid {
             display: grid;
             height: auto;
-            margin-left: ${SCALES.pr(1.5)};
             grid-template-rows: repeat(1, 1fr);
           }
 
@@ -55,6 +52,20 @@ const MobileNavigationGroup: React.FC<PropsWithChildren<MobileNavigationGroupPro
             height: auto;
             visibility: visible;
           }
+
+          ${RESPONSIVE.ml(1.5, value => `margin-right: ${value};`, undefined, 'sub-child-grid')}
+
+          ${RESPONSIVE.padding(
+            {
+              top: 0.25,
+              bottom: 0.25,
+              left: 0,
+              right: 0,
+            },
+            value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
+            undefined,
+            'child-element',
+          )}
         `}</style>
       </div>
     );
@@ -77,7 +88,7 @@ const MobileNavigationGroup: React.FC<PropsWithChildren<MobileNavigationGroupPro
           <span className={useClasses('has-childs', hasChildrens)}>{title}</span>
           {hasChildrens && (
             <span className="chevron-right">
-              <span className={useClasses({ chevron: true, 'chevron-expanded': isExpanded })}>
+              <span className={useClasses('chevron', { 'chevron-expanded': isExpanded })}>
                 <ChevronDown />
               </span>
             </span>
@@ -118,7 +129,6 @@ const MobileNavigationGroup: React.FC<PropsWithChildren<MobileNavigationGroupPro
         .chevron-right {
           position: relative;
           height: 100%;
-          margin-right: ${SCALES.pr(0.2)};
           bottom: 0;
           display: flex;
           align-items: center;
@@ -138,15 +148,9 @@ const MobileNavigationGroup: React.FC<PropsWithChildren<MobileNavigationGroupPro
           display: flex;
           align-items: center;
           user-select: none;
-          font-size: ${SCALES.font(0.85)};
           font-weight: 500;
           line-height: normal;
-          width: ${SCALES.w(1, 'auto')};
-          height: ${SCALES.h(1, 'auto')};
 
-          padding: ${SCALES.pt(0.7)} ${SCALES.pr(0.85)} ${SCALES.pb(0.7)} ${SCALES.pl(0.85)};
-
-          margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
           z-index: 1;
 
           animation: fadeIn 200ms ease;
@@ -166,7 +170,6 @@ const MobileNavigationGroup: React.FC<PropsWithChildren<MobileNavigationGroupPro
         }
 
         .has-chevron {
-          padding-right: ${SCALES.pr(1.3)};
           justify-content: space-between;
         }
 
@@ -210,10 +213,30 @@ const MobileNavigationGroup: React.FC<PropsWithChildren<MobileNavigationGroupPro
         :global(.tooltip-content.menu-popover-item) {
           max-width: 600px;
         }
+
+        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'mobile-navigation-item')}
+        ${RESPONSIVE.padding(
+          {
+            top: 0.7,
+            bottom: 0.7,
+            left: 0.85,
+            right: 0.85,
+          },
+          value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
+          undefined,
+          'mobile-navigation-item',
+        )}
+        ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto', 'mobile-navigation-item')}
+        ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'mobile-navigation-item')}
+        ${RESPONSIVE.font(0.85, value => `font-size: ${value};`, undefined, 'mobile-navigation-item')}
+        ${RESPONSIVE.mr(0.2, value => `margin-right: ${value};`, undefined, 'chevron-right')}
+        ${RESPONSIVE.pr(1.3, value => `padding-right: ${value};`, undefined, 'has-chevron')}
+
+        ${SCALER('mobile-navigation-item')}
       `}</style>
     </div>
   );
 };
-MobileNavigationGroup.displayName = 'HimalayaNavigationItem';
 
+MobileNavigationGroup.displayName = 'HimalayaMobileNavigationGroup';
 export default withScale(MobileNavigationGroup);

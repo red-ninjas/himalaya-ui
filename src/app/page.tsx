@@ -1,12 +1,13 @@
 'use client';
 
-import { Button, FadeInEffect, Footer, FooterNavigation, Hero, Link, Section, Text, useTheme } from 'components';
+import { Button, Footer, FooterNavigation, Hero, Link, Section, Text, useTheme } from 'components';
 import { Code } from 'components/icons';
 import { capitalize } from 'components/utils/collections';
 import { Facts, Partners, Portfolio, RunningSlogan, Services } from 'lib/components';
 import { BrandLogo } from 'lib/components/icons';
 import metaData from '../lib/data/metadata.json';
 import NextLink from 'next/link';
+import { motion } from 'framer-motion';
 
 export default function Index() {
   const theme = useTheme();
@@ -41,9 +42,14 @@ export default function Index() {
         </Section>
       </div>
 
-      <FadeInEffect blur={10} transition={1000}>
+      <motion.div
+        initial={{ opacity: 0, filter: 'blur(10px)' }}
+        whileInView={{ opacity: 1, filter: 'blur(0px)' }}
+        transition={{ duration: 1 }}
+        viewport={{ once: true }}
+      >
         <Partners></Partners>
-      </FadeInEffect>
+      </motion.div>
 
       <Section>
         <Portfolio></Portfolio>
