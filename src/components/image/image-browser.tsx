@@ -2,15 +2,14 @@
 import React, { useMemo } from 'react';
 import Link from '../link';
 import { Props as LinkProps } from '../link/link';
-import useTheme from '../use-theme';
-import ImageBrowserHttpsIcon from './image-browser-https-icon';
-import { getBrowserColors, BrowserColors } from './styles';
-import { getHostFromUrl } from './helpers';
-import useScale, { withScale } from '../use-scale';
 import useClasses from '../use-classes';
-import useLayout from '../use-layout';
+import useScale, { withScale } from '../use-scale';
+import useTheme from '../use-theme';
+import { getHostFromUrl } from './helpers';
+import ImageBrowserHttpsIcon from './image-browser-https-icon';
+import { BrowserColors, getBrowserColors } from './styles';
 
-export type ImageAnchorProps = Omit<React.AnchorHTMLAttributes<any>, keyof LinkProps>;
+export type ImageAnchorProps = Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, keyof LinkProps>;
 
 interface Props {
   title?: string;
@@ -21,7 +20,7 @@ interface Props {
   className?: string;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
 export type ImageBrowserProps = Props & NativeAttrs;
 
 const getTitle = (title: string, colors: BrowserColors) => (

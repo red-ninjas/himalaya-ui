@@ -1,10 +1,9 @@
 'use client';
 
+import NextLink from 'next/link';
 import React from 'react';
 import Card from '../card';
 import Link from '../link';
-import useTheme from '../use-theme';
-import NextLink from 'next/link';
 
 export type HomeCellProps = {
   url: string;
@@ -14,7 +13,6 @@ export type HomeCellProps = {
 };
 
 const UspCell: React.FC<HomeCellProps> = ({ url, title, desc, icon }) => {
-  const theme = useTheme();
   return (
     <>
       <NextLink href={url} passHref legacyBehavior>

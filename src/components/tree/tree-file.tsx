@@ -1,21 +1,19 @@
 'use client';
 import React, { useMemo } from 'react';
-import useTheme from '../use-theme';
-import TreeFileIcon from './tree-file-icon';
-import { useTreeContext } from './tree-context';
-import TreeIndents from './tree-indents';
-import { makeChildPath, stopPropagation } from './tree-help';
 import useClasses from '../use-classes';
+import { useTreeContext } from './tree-context';
+import TreeFileIcon from './tree-file-icon';
+import { makeChildPath, stopPropagation } from './tree-help';
+import TreeIndents from './tree-indents';
 
 interface Props {
   name: string;
   extra?: string;
   parentPath?: string;
   level?: number;
-  className?: string;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
 export type TreeFileProps = Props & NativeAttrs;
 
 const TreeFile: React.FC<React.PropsWithChildren<TreeFileProps>> = ({
@@ -23,10 +21,9 @@ const TreeFile: React.FC<React.PropsWithChildren<TreeFileProps>> = ({
   parentPath = '',
   level = 0,
   extra,
-  className = '',
+  className,
   ...props
 }: React.PropsWithChildren<TreeFileProps>) => {
-  const theme = useTheme();
   const { onFileClick } = useTreeContext();
   const currentPath = useMemo(() => makeChildPath(name, parentPath), []);
   const clickHandler = (event: React.MouseEvent) => {

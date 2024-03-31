@@ -1,12 +1,11 @@
 import Footer from './footer';
 import FooterBottomComponent from './footer-bottom';
 
+import { tuple } from '../utils/prop-types';
 import FooterBlock from './footer-block';
 import FooterBottomBlock from './footer-bottom-block';
 import FooterNavigationComponent from './footer-navigation';
 import FooterNavigationItem from './footer-navigation-item';
-import { tuple } from '../utils/prop-types';
-import { HTMLAttributeAnchorTarget } from 'react';
 
 const justify = tuple('flex-start', 'center', 'flex-end', 'space-between', 'space-around', 'space-evenly');
 export type FooterBlockJustify = (typeof justify)[number];

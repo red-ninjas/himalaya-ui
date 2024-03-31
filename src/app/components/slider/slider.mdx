@@ -55,7 +55,7 @@ Display the current value and an inputable range.
 />
 
 <Playground
-  title="Range"
+  title="Limit"
   desc="Specifies the maximum or minimum value of the Slider."
   scope={{ Slider, Spacer }}
   code={`
@@ -82,6 +82,23 @@ Display the current value and an inputable range.
 }
 `}
 />
+
+<Playground
+  title="Range"
+  desc="Set the `value` or `initialValue` prop to an array of two numbers, and the slider becomes a range slider."
+  scope={{ Slider, useState }}
+  code={`
+() => {
+  const [value, setValue] = useState([20 , 80])
+  const handler = val => {
+    console.log(val)
+    setValue(val)
+  }
+  return <Slider value={value} onChange={handler} w="75%" />
+}
+`}
+/>
+
 
 <Attributes edit="/app/components/slider.mdx">
 <Attributes.Title>Slider.Props</Attributes.Title>

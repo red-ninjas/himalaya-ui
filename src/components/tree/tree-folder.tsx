@@ -2,7 +2,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import Expand from '../shared/expand';
 import useClasses from '../use-classes';
-import useTheme from '../use-theme';
 import { setChildrenProps } from '../utils/collections';
 import { useTreeContext } from './tree-context';
 import TreeFile from './tree-file';
@@ -16,7 +15,6 @@ interface Props {
   extra?: string;
   parentPath?: string;
   level?: number;
-  className?: string;
 }
 
 type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
@@ -28,10 +26,9 @@ const TreeFolder: React.FC<React.PropsWithChildren<TreeFolderProps>> = ({
   parentPath = '',
   level: parentLevel = 0,
   extra,
-  className = '',
+  className,
   ...props
 }: React.PropsWithChildren<TreeFolderProps>) => {
-  const theme = useTheme();
   const { initialExpand, isImperative } = useTreeContext();
   const [expanded, setExpanded] = useState<boolean>(initialExpand);
   useEffect(() => setExpanded(initialExpand), []);

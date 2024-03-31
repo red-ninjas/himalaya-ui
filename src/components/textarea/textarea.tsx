@@ -1,10 +1,9 @@
 'use client';
 import React, { useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react';
+import { UIColorTypes } from '../themes/presets';
 import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';
-import useTheme from '../use-theme';
 import { tuple } from '../utils/prop-types';
-import { UIColorTypes } from '../themes/presets';
 
 const resizeTypes = tuple('none', 'both', 'horizontal', 'vertical', 'initial', 'inherit');
 export type TextareaResizes = (typeof resizeTypes)[number];
@@ -44,7 +43,6 @@ const TextareaComponent = React.forwardRef<HTMLTextAreaElement, React.PropsWithC
     }: React.PropsWithChildren<TextareaProps>,
     ref: React.Ref<HTMLTextAreaElement | null>,
   ) => {
-    const theme = useTheme();
     const { UNIT, SCALE, CLASS_NAMES } = useScale();
     const textareaRef = useRef<HTMLTextAreaElement>(null);
     useImperativeHandle(ref, () => textareaRef.current);

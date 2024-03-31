@@ -12,13 +12,6 @@ export type NavigationPropsExternal = NavigationSubItemProps & NativeAttrs;
 
 const NavigationSubItem = React.forwardRef<HTMLAnchorElement, NavigationPropsExternal>(
   ({ icon, title, desc, ...props }: NavigationPropsExternal, ref: React.Ref<HTMLAnchorElement>) => {
-    const handleClick = (e: any) => {
-      if (props.onClick) {
-        e.preventDefault();
-        props.onClick();
-      }
-    };
-
     return (
       <>
         <Popover.Item p="6px">

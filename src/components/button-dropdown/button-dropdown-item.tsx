@@ -1,9 +1,9 @@
 'use client';
 import React, { MouseEvent, useMemo } from 'react';
 import LoadingSpinner from '../loading-spinner';
+import useClasses from '../use-classes';
 import { NormalTypes } from '../utils/prop-types';
 import { useButtonDropdown } from './button-dropdown-context';
-import useClasses from '../use-classes';
 
 export type ButtonDropdownItemTypes = NormalTypes;
 
@@ -25,8 +25,7 @@ const ButtonDropdownItem: React.FC<React.PropsWithChildren<ButtonDropdownItemPro
   type: selfType = 'default' as ButtonDropdownItemTypes,
   ...props
 }: ButtonDropdownItemProps) => {
-  const { type: parentType, disabled, loading } = useButtonDropdown();
-  const type = main ? parentType : selfType;
+  const { disabled, loading } = useButtonDropdown();
   const clickHandler = (event: MouseEvent<HTMLButtonElement>) => {
     if (disabled || loading) return;
     onClick && onClick(event);
