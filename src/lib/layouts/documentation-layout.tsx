@@ -79,7 +79,9 @@ export default function DocumentationLayout({ children }) {
           {groups.map((item, index) => (
             <MobileMenu.Group key={index} title={item.title}>
               {item.children.map((subChild, subIndex) => (
-                <MobileMenu.Item title={subChild.name} key={subIndex} url={subChild.url}></MobileMenu.Item>
+                <NextLink key={subIndex} href={subChild.url ?? ''} legacyBehavior passHref>
+                  <MobileMenu.Item title={subChild.name}></MobileMenu.Item>
+                </NextLink>
               ))}
             </MobileMenu.Group>
           ))}

@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import useTheme from '../use-theme';
+import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';
 
 type iProps = {
@@ -11,7 +11,7 @@ type iProps = {
   className?: string;
 };
 
-type NativeAttrs = Omit<React.KeygenHTMLAttributes<any>, keyof iProps>;
+type NativeAttrs = Omit<React.KeygenHTMLAttributes<HTMLDivElement>, keyof iProps>;
 export type KeyboardProps = iProps & NativeAttrs;
 
 const KeyboardComponent: React.FC<React.PropsWithChildren<KeyboardProps>> = ({
@@ -20,14 +20,13 @@ const KeyboardComponent: React.FC<React.PropsWithChildren<KeyboardProps>> = ({
   option = false,
   ctrl = false,
   children,
-  className = '',
+  className,
   ...props
 }: React.PropsWithChildren<KeyboardProps>) => {
-  const theme = useTheme();
-  const { SCALES } = useScale();
+  const { SCALER, RESPONSIVE, SCALE_CLASSES } = useScale();
 
   return (
-    <kbd className={className} {...props}>
+    <kbd className={useClasses('kbd', className, SCALE_CLASSES)} {...props}>
       {command && <span>⌘</span>}
       {shift && <span>⇧</span>}
       {option && <span>⌥</span>}
@@ -35,22 +34,16 @@ const KeyboardComponent: React.FC<React.PropsWithChildren<KeyboardProps>> = ({
       {children && <span>{children}</span>}
 
       <style jsx>{`
-        kbd {
+        .kbd {
           line-height: 2em;
           text-align: center;
           display: inline-block;
           color: var(--color-background-400);
           background-color: var(--color-background-800);
           font-family: var(--theme-font-sans);
-          border-radius: ${SCALES.r(1, `var(--layout-radius)`)};
           border: 1px solid var(--color-background-700);
-          font-size: ${SCALES.font(0.875)};
-          width: ${SCALES.w(1, 'fit-content')};
-          height: ${SCALES.h(1, 'auto')};
           min-width: 2em;
           min-height: 2em;
-          padding: ${SCALES.pt(0)} ${SCALES.pr(0.34)} ${SCALES.pb(0)} ${SCALES.pl(0.34)};
-          margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
         }
 
         span {
@@ -62,6 +55,25 @@ const KeyboardComponent: React.FC<React.PropsWithChildren<KeyboardProps>> = ({
         span + span {
           margin-left: 0.3em;
         }
+
+        ${RESPONSIVE.padding(
+          {
+            top: 0,
+            right: 0.34,
+            left: 0.34,
+            bottom: 0,
+          },
+          value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
+          undefined,
+          'kbd',
+        )}
+        ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'kbd')}
+        ${RESPONSIVE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'kbd')}
+
+        ${RESPONSIVE.w(1, value => `width: ${value};`, 'fit-content', 'kbd')}
+        ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'kbd')}
+        ${RESPONSIVE.font(0.875, value => `font-size: ${value};`, undefined, 'kbd')}
+        ${SCALER('kbd')}
       `}</style>
     </kbd>
   );

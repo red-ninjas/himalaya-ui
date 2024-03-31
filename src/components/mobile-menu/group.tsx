@@ -1,5 +1,4 @@
 'use client';
-import { useRouter } from 'next/navigation';
 import React, { MouseEventHandler, PropsWithChildren, ReactNode, useRef, useState } from 'react';
 import { ChevronDown } from '../icons';
 import useClasses from '../use-classes';
@@ -16,7 +15,6 @@ export type MobileNavigationGroupProps = Props & NativeAttrs;
 
 const MobileNavigationGroup: React.FC<PropsWithChildren<MobileNavigationGroupProps>> = ({ children, title, expanded = true, ...props }) => {
   const { SCALES } = useScale();
-  const router = useRouter();
   const ref = useRef<HTMLAnchorElement | null>(null);
   const [isExpanded, setIsExpanded] = useState(expanded);
 
@@ -62,16 +60,10 @@ const MobileNavigationGroup: React.FC<PropsWithChildren<MobileNavigationGroupPro
     );
   };
   const handleGroupClick: MouseEventHandler<HTMLAnchorElement> = e => {
-    /* e.preventDefault();
-    e.stopPropagation();
-
     setIsExpanded(!isExpanded);
-
-    if (url) {
-      router.push(url);
-    }
-    */
   };
+
+  const hasChildrens = !!children;
 
   return (
     <div
@@ -82,8 +74,8 @@ const MobileNavigationGroup: React.FC<PropsWithChildren<MobileNavigationGroupPro
     >
       <div className="navigation-group">
         <a {...props} className={`${btnClass} ${props.className || ''}`} ref={ref} onClick={e => handleGroupClick(e)}>
-          <span>{title}</span>
-          {!!children && (
+          <span className={useClasses('has-childs', hasChildrens)}>{title}</span>
+          {hasChildrens && (
             <span className="chevron-right">
               <span className={useClasses({ chevron: true, 'chevron-expanded': isExpanded })}>
                 <ChevronDown />
@@ -100,6 +92,11 @@ const MobileNavigationGroup: React.FC<PropsWithChildren<MobileNavigationGroupPro
           width: 100%;
           position: relative;
           align-items: center;
+        }
+
+        .has-childs {
+          color: var(--color-foreground-1000);
+          font-weight: 600;
         }
 
         .navigation-group {

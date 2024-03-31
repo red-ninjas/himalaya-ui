@@ -88,7 +88,7 @@ const NavigationItem = React.forwardRef<HTMLAnchorElement, React.PropsWithChildr
             width: 100%;
           }
 
-          ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto', 'item')}
+          ${RESPONSIVE.w(1, value => `width: ${value};`, '100%', 'item')}
           ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'item')}
           ${RESPONSIVE.font(0.85, value => `font-size: ${value};`, undefined, 'item')}
           ${RESPONSIVE.padding(
