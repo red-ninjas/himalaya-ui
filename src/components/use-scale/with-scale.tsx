@@ -12,7 +12,31 @@ export type ContentScaleProps = {
 const withScale = <T, P = {}>(Render: React.ComponentType<P & { ref?: React.Ref<T> }>, className: string = 'component') => {
   const ScaleFC = forwardRef<T, P & ContentScaleProps>(({ children, ...props }, ref) => {
     const layout = useLayout();
-    const { r, pl, pr, pt, pb, mt, mr, mb, ml, px, py, mx, my, font, w, h, m, p, hideOn, lineHeight, unit = layout.unit, scale = 1, ...innerProps } = props;
+    const {
+      r,
+      pl,
+      pr,
+      pt,
+      pb,
+      mt,
+      mr,
+      mb,
+      ml,
+      px,
+      py,
+      mx,
+      my,
+      font,
+      w,
+      h,
+      m,
+      p,
+      hideOn,
+      lineHeight,
+      unit = 'var(--layout-unit)',
+      scale = 1,
+      ...innerProps
+    } = props;
 
     const value: ScaleConfig = {
       unit: unit,
