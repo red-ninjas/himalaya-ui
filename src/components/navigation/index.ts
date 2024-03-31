@@ -4,10 +4,9 @@ import Navigation from './navigation';
 
 export interface INavigationItem {
   title?: string;
-  url?: string;
   desc?: string;
   icon?: React.ReactNode;
-  exactMatch?: boolean;
+  active?: boolean;
 }
 
 export type NavigationItemComponentType = typeof NavigationItem & {

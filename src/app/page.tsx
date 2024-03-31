@@ -6,6 +6,7 @@ import { capitalize } from 'components/utils/collections';
 import { Facts, Partners, Portfolio, RunningSlogan, Services } from 'lib/components';
 import { BrandLogo } from 'lib/components/icons';
 import metaData from '../lib/data/metadata.json';
+import NextLink from 'next/link';
 
 export default function Index() {
   const theme = useTheme();
@@ -59,9 +60,9 @@ export default function Index() {
           {metaData.slice(0, 3).map((df, index) => (
             <FooterNavigation title={capitalize(df.name)} key={index}>
               {df.children.slice(0, 5).map((child, childIndex) => (
-                <FooterNavigation.Item key={childIndex} href={child.children[0].url || df.url}>
-                  {capitalize(child.name)}
-                </FooterNavigation.Item>
+                <NextLink key={childIndex} legacyBehavior passHref href={child.children[0].url || df.url}>
+                  <FooterNavigation.Item>{capitalize(child.name)}</FooterNavigation.Item>
+                </NextLink>
               ))}
             </FooterNavigation>
           ))}

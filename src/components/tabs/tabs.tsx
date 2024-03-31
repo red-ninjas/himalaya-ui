@@ -1,12 +1,11 @@
 'use client';
 import React, { CSSProperties, MouseEvent, useEffect, useMemo, useRef, useState } from 'react';
-import useTheme from '../use-theme';
-import { TabsHeaderItem, TabsConfig, TabsContext } from './tabs-context';
-import useScale, { withScale } from '../use-scale';
 import Highlight from '../shared/highlight';
-import { useRect } from '../utils/layouts';
-import { isUIElement } from '../utils/collections';
 import useClasses from '../use-classes';
+import useScale, { withScale } from '../use-scale';
+import { isUIElement } from '../utils/collections';
+import { useRect } from '../utils/layouts';
+import { TabsConfig, TabsContext, TabsHeaderItem } from './tabs-context';
 
 interface Props {
   initialValue?: string;
@@ -40,13 +39,12 @@ const TabsComponent: React.FC<React.PropsWithChildren<TabsProps>> = ({
   gap = '0px' as CSSProperties['gap'],
   highlight = true,
   hoverHeightRatio = 0.7,
-  hoverWidthRatio = 1.15,
+  hoverWidthRatio = 1,
   activeClassName = '',
   activeStyle = {},
   align = 'left',
   ...props
 }: React.PropsWithChildren<TabsProps>) => {
-  const theme = useTheme();
   const { RESPONSIVE } = useScale();
   const [tabs, setTabs] = useState<Array<TabsHeaderItem>>([]);
   const [selfValue, setSelfValue] = useState<string | undefined>(userCustomInitialValue);
@@ -100,7 +98,13 @@ const TabsComponent: React.FC<React.PropsWithChildren<TabsProps>> = ({
     <TabsContext.Provider value={initialValue}>
       <div className={useClasses('tabs padding margin font width height', className)} {...props}>
         <header ref={ref} onMouseLeave={() => setDisplayHighlight(false)}>
-          <Highlight rect={rect} visible={displayHighlight} hoverHeightRatio={hoverHeightRatio} hoverWidthRatio={hoverWidthRatio} />
+          <Highlight
+            background={'var(--color-background-900)'}
+            rect={rect}
+            visible={displayHighlight}
+            hoverHeightRatio={hoverHeightRatio}
+            hoverWidthRatio={hoverWidthRatio}
+          />
           <div className={useClasses('scroll-container', { 'hide-divider': hideDivider })}>
             {tabs.map(({ cell: Cell, value }, index) => (
               <Cell

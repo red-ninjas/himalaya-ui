@@ -4,7 +4,6 @@ import React, { MouseEventHandler, PropsWithChildren, ReactNode, useRef, useStat
 import { ChevronDown } from '../icons';
 import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';
-import useTheme from '../use-theme';
 import { pickChild } from '../utils/collections';
 import { INavigationItem } from './index';
 import MobileNavigationSubGroup from './subgroup';
@@ -15,8 +14,7 @@ export interface Props extends INavigationItem {
 type NativeAttrs = Omit<React.HTMLAttributes<HTMLAnchorElement>, keyof Props>;
 export type MobileNavigationGroupProps = Props & NativeAttrs;
 
-const MobileNavigationGroup: React.FC<PropsWithChildren<MobileNavigationGroupProps>> = ({ children, title, url, expanded = true, ...props }) => {
-  const theme = useTheme();
+const MobileNavigationGroup: React.FC<PropsWithChildren<MobileNavigationGroupProps>> = ({ children, title, expanded = true, ...props }) => {
   const { SCALES } = useScale();
   const router = useRouter();
   const ref = useRef<HTMLAnchorElement | null>(null);
@@ -64,7 +62,7 @@ const MobileNavigationGroup: React.FC<PropsWithChildren<MobileNavigationGroupPro
     );
   };
   const handleGroupClick: MouseEventHandler<HTMLAnchorElement> = e => {
-    e.preventDefault();
+    /* e.preventDefault();
     e.stopPropagation();
 
     setIsExpanded(!isExpanded);
@@ -72,6 +70,7 @@ const MobileNavigationGroup: React.FC<PropsWithChildren<MobileNavigationGroupPro
     if (url) {
       router.push(url);
     }
+    */
   };
 
   return (
@@ -87,7 +86,7 @@ const MobileNavigationGroup: React.FC<PropsWithChildren<MobileNavigationGroupPro
           {!!children && (
             <span className="chevron-right">
               <span className={useClasses({ chevron: true, 'chevron-expanded': isExpanded })}>
-                <ChevronDown size={SCALES.font(1)} />
+                <ChevronDown />
               </span>
             </span>
           )}

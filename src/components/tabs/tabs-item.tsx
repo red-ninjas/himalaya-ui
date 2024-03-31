@@ -21,7 +21,7 @@ const TabsItemComponent: React.FC<React.PropsWithChildren<TabsItemProps>> = ({
   style,
   ...props
 }: React.PropsWithChildren<TabsItemProps>) => {
-  const { RESPONSIVE } = useScale();
+  const { RESPONSIVE, SCALER, SCALE_CLASSES } = useScale();
   const { register, currentValue } = useTabsContext();
   const isActive = useMemo(() => currentValue === value, [currentValue, value]);
 
@@ -29,11 +29,12 @@ const TabsItemComponent: React.FC<React.PropsWithChildren<TabsItemProps>> = ({
     const ref = useRef<HTMLDivElement | null>(null);
     const { currentValue } = useTabsContext();
     const active = currentValue === value;
-    const classes = useClasses('tab padding margin font width height', {
+    const classes = useClasses('tab', {
       active,
       disabled,
       [activeClassName!]: active,
       'hide-border': hideBorder,
+      SCALE_CLASSES,
     });
     const clickHandler = () => {
       if (disabled) return;
@@ -46,6 +47,7 @@ const TabsItemComponent: React.FC<React.PropsWithChildren<TabsItemProps>> = ({
         {...props}
         className={classes}
         role="button"
+        data-ui={'true'}
         onMouseOver={onMouseOver}
         onClick={clickHandler}
         style={active ? { ...style, ...activeStyle } : style}
@@ -122,6 +124,8 @@ const TabsItemComponent: React.FC<React.PropsWithChildren<TabsItemProps>> = ({
             0.875,
             value =>
               `padding: ${value.top} ${value.right} ${value.bottom} ${value.left}; --tabs-item-hover-left: calc(-1 * ${value.left}); --tabs-item-hover-right: calc(-1 * ${value.right});`,
+            undefined,
+            'tab',
           )}
           ${RESPONSIVE.margin(
             {
@@ -130,11 +134,15 @@ const TabsItemComponent: React.FC<React.PropsWithChildren<TabsItemProps>> = ({
               right: 0.2,
               bottom: 0,
             },
-            value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left}; `,
+            value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
+            undefined,
+            'tab',
           )}
-          ${RESPONSIVE.font(0.875, value => `font-size: ${value};`)}
-          ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto')}
-          ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto')}
+          ${RESPONSIVE.font(0.875, value => `font-size: ${value};`, undefined, 'tab')}
+          ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto', 'tab')}
+          ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'tab')}
+
+          ${SCALER('tab')}
         `}</style>
       </div>
     );

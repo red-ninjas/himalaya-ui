@@ -25,15 +25,12 @@ type NavigationProps = {
   title?: string;
 };
 
-type FooterNavigationPropsNative = Omit<React.HTMLAttributes<HTMLDivElement>, keyof NavigationProps>;
+type FooterNavigationPropsNative = Omit<React.HTMLAttributes<HTMLAnchorElement>, keyof NavigationProps>;
 export type FooterNavigationProps = NavigationProps & FooterNavigationPropsNative;
 
-type NavigationItemProps = {
-  href: string;
-  target?: HTMLAttributeAnchorTarget;
-};
+type NavigationItemProps = {};
 
-type NativeAttrsNavigationItems = Omit<React.HTMLAttributes<HTMLLIElement>, keyof NavigationItemProps>;
+type NativeAttrsNavigationItems = Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, keyof NavigationItemProps>;
 export type FooterNavigationItemProps = NavigationItemProps & NativeAttrsNavigationItems;
 
 export type FooterNavigationType = typeof FooterNavigationComponent & {

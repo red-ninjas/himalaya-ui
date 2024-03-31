@@ -88,17 +88,22 @@ export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
                     </Header.Left>
                     <Header.Center>
                       <Navigation>
-                        <Navigation.Item title={'Home'} url={'/'}></Navigation.Item>
+                        <NextLink passHref legacyBehavior href={'/'}>
+                          <Navigation.Item title={'Home'} active={pathname == '/' || pathname == ''}></Navigation.Item>
+                        </NextLink>
                         {metaData.map((df, index) => (
-                          <Navigation.Item key={index} exactMatch={!df.children || df.children.length <= 0} title={capitalize(df.name)} url={df.url}>
-                            {df.children.map((child, childIndex) => (
-                              <Navigation.Item.Child
-                                key={childIndex}
-                                title={capitalize(child.name)}
-                                url={child.children[0].url || df.url}
-                              ></Navigation.Item.Child>
-                            ))}
-                          </Navigation.Item>
+                          <NextLink passHref key={index} legacyBehavior href={df.url}>
+                            <Navigation.Item
+                              active={!df.children || df.children.length <= 0 ? pathname == df.url : pathname.startsWith(df.url)}
+                              title={capitalize(df.name)}
+                            >
+                              {df.children.map((child, childIndex) => (
+                                <NextLink passHref key={childIndex} legacyBehavior href={child.children[0].url || df.url}>
+                                  <Navigation.Item.Child title={capitalize(child.name)}></Navigation.Item.Child>
+                                </NextLink>
+                              ))}
+                            </Navigation.Item>
+                          </NextLink>
                         ))}
                       </Navigation>
                     </Header.Center>
@@ -142,13 +147,17 @@ export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
             </QuickBarLayout>
           </QuickBarProvider>
           <MobileMenu>
-            <MobileMenu.Item url="/" title="Home" />
+            <NextLink passHref legacyBehavior href={'/'}>
+              <MobileMenu.Item active={pathname == '/' || pathname == ''} title="Home" />
+            </NextLink>
             {metaData.map((df, index) => (
               <MobileMenu.Group key={index} title={capitalize(df.name)} expanded={index < 1}>
                 {df.children.map((child, childIndex) => (
                   <MobileMenu.SubGroup key={childIndex} title={capitalize(child.name)}>
                     {child.children.map((item, itemIndex) => (
-                      <MobileMenu.Item key={itemIndex} url={item.url} title={item.name} />
+                      <NextLink passHref legacyBehavior href={item.url} key={itemIndex}>
+                        <MobileMenu.Item active={pathname == df.url} title={item.name} />
+                      </NextLink>
                     ))}
                   </MobileMenu.SubGroup>
                 ))}

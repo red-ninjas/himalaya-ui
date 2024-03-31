@@ -1,31 +1,33 @@
 'use client';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import React, { PropsWithChildren } from 'react';
+import React from 'react';
 import useClasses from '../use-classes';
 import { useMobileMenu } from '../use-mobile-menu/mobile-menu-context';
 import useScale, { withScale } from '../use-scale';
 import { INavigationItem } from './index';
 
-type NativeAttrs = Omit<React.HTMLAttributes<HTMLAnchorElement>, keyof INavigationItem>;
+type NativeAttrs = Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, keyof INavigationItem>;
 export type MobileNavigationItemProps = INavigationItem & NativeAttrs;
 
-const NavigationItem: React.FC<PropsWithChildren<MobileNavigationItemProps>> = ({ url = '/', icon, title, ...props }) => {
-  const { SCALES } = useScale();
-  const pathname = usePathname();
-  const { setIsEnabled } = useMobileMenu();
+const NavigationItem = React.forwardRef<HTMLAnchorElement, React.PropsWithChildren<MobileNavigationItemProps>>(
+  ({ icon, title, active = false, ...props }: React.PropsWithChildren<MobileNavigationItemProps>, ref: React.Ref<HTMLAnchorElement>) => {
+    const { RESPONSIVE, SCALE_CLASSES, SCALER } = useScale();
+    const { setIsEnabled } = useMobileMenu();
 
-  const handleInstantCloseMenu = () => {
-    setIsEnabled(false);
-  };
+    const handleInstantCloseMenu = () => {
+      setIsEnabled(false);
+    };
 
-  return (
-    <Link legacyBehavior href={url || ''}>
+    return (
       <a
+        ref={ref}
         {...props}
-        className={useClasses('item', {
-          'is-active': pathname == url,
-        })}
+        className={useClasses(
+          'item',
+          {
+            'is-active': active,
+          },
+          SCALE_CLASSES,
+        )}
         onClick={handleInstantCloseMenu}
       >
         <div className="icon-with-title">
@@ -44,12 +46,6 @@ const NavigationItem: React.FC<PropsWithChildren<MobileNavigationItemProps>> = (
               color,
               background-color 150ms linear;
             line-height: 1.25em;
-            font-size: ${SCALES.font(0.85)};
-            width: ${SCALES.w(1, 'auto')};
-            height: ${SCALES.h(1, 'auto')};
-            padding: ${SCALES.pt(0.7)} ${SCALES.pr(0.85)} ${SCALES.pb(0.7)} ${SCALES.pl(0.85)};
-            margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
-
             font-weight: 500;
             display: inline-flex;
             flex-direction: column;
@@ -91,10 +87,27 @@ const NavigationItem: React.FC<PropsWithChildren<MobileNavigationItemProps>> = (
           :global(.icon-holder > *) {
             width: 100%;
           }
+
+          ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto', 'item')}
+          ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto', 'item')}
+          ${RESPONSIVE.font(0.85, value => `font-size: ${value};`, undefined, 'item')}
+          ${RESPONSIVE.padding(
+            {
+              top: 0.7,
+              bottom: 0.7,
+              left: 0.85,
+              right: 0.85,
+            },
+            value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
+            undefined,
+            'item',
+          )}
+          ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'item')}
+          ${SCALER('item')}
         `}</style>
       </a>
-    </Link>
-  );
-};
+    );
+  },
+);
 NavigationItem.displayName = 'Item';
 export default withScale(NavigationItem);

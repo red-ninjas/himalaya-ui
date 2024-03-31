@@ -184,6 +184,7 @@
     "moment": "^2.29.4",
     "nextjs13-router-events": "^1.0.5",
     "nookies": "^2.5.2",
+    "react-sticky-box": "^2.0.5",
     "react-swipeable": ">=7.0.1",
     "release-it": "^17.1.1",
     "use-elapsed-time": "^3.0.4"

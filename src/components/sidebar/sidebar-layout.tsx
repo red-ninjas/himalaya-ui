@@ -18,17 +18,17 @@ export interface SidebarLayoutProps {
 }
 
 const useRefDimensions = (ref: React.RefObject<HTMLDivElement>) => {
-  const [yCoodinate, setYCoodinate] = useState<string | undefined>(undefined);
+  const [yCoodinate, setYCoodinate] = useState<number | undefined>(undefined);
 
   useEffect(() => {
     if (!ref.current) {
       return;
     }
+    setYCoodinate((ref.current as HTMLDivElement).offsetTop);
+
     const resizeObserver = new ResizeObserver(() => {
-      const boundingRect = ref?.current?.getBoundingClientRect();
-      if (boundingRect != undefined) {
-        const { y } = boundingRect;
-        setYCoodinate(y + 'px');
+      if (ref?.current) {
+        setYCoodinate((ref.current as HTMLDivElement).offsetTop);
       }
     });
 
@@ -50,8 +50,9 @@ const SidebarLayout: React.FC<React.PropsWithChildren<SidebarLayoutProps>> = ({ 
   const chartOuterContainerRef = createRef<HTMLDivElement>();
   const { isEnabled } = useSidebar();
 
-  const yCoordinate = useRefDimensions(chartOuterContainerRef);
+  const offset = useRefDimensions(chartOuterContainerRef);
   const layout = useLayout();
+
   return (
     <div
       ref={chartOuterContainerRef}
@@ -94,8 +95,7 @@ const SidebarLayout: React.FC<React.PropsWithChildren<SidebarLayoutProps>> = ({ 
           position: fixed;
           padding: 0;
           background: ${backgroundColor ? backgroundColor : 'transparent'};
-          top: var(--sidebar-top);
-          bottom: 0;
+          height: calc(100% - var(--sidebar-height));
           overflow: hidden;
           transition: transform var(--sidebar-transition) ease;
           transform: translateX(var(--sidebar-side));
@@ -111,7 +111,7 @@ const SidebarLayout: React.FC<React.PropsWithChildren<SidebarLayoutProps>> = ({ 
           width: 100%;
           position: relative;
           width: calc(100% - var(--sidebar-width));
-          --sidebar-top: ${yCoordinate};
+          --sidebar-height: ${offset}px;
 
           --sidebar-transition: 200ms;
           --sidebar-left: var(--sidebar-width);

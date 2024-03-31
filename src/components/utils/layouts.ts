@@ -18,7 +18,7 @@ export interface ReactiveDomReact {
   width: number;
   height: number;
   elementTop: number;
-  rect?: HTMLAnchorElement | null;
+  rect?: HTMLElement | null;
   deactive?: () => void;
 }
 const defaultRect: ReactiveDomReact = {
