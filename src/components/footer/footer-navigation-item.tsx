@@ -40,9 +40,9 @@ const FooterNavigationItem = React.forwardRef<HTMLAnchorElement, React.PropsWith
             )}
 
             ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'footer-navigation-item')}
-          ${RESPONSIVE.font(0.875, value => `font-size: ${value};`, undefined, 'footer-link')}
-          ${RESPONSIVE.lineHeight(1, value => `line-height: ${value};`, 'normal', 'footer-link')}
-          ${SCALER('footer-navigation-item')}
+            ${RESPONSIVE.font(0.875, value => `font-size: ${value};`, undefined, 'footer-link')}
+            ${RESPONSIVE.lineHeight(1, value => `line-height: ${value};`, 'normal', 'footer-link')}
+            ${SCALER('footer-navigation-item')}
           `}
         </style>
       </li>

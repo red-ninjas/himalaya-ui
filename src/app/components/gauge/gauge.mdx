@@ -14,7 +14,7 @@ Display `Gauge` UI component to show progress.
 <Playground
   scope={{ Gauge }}
   code={`
-<Gauge size={75} value={10} showValue={true} />
+<Gauge size={5} value={10} showValue={true} />
 `}
 />
 
@@ -23,11 +23,11 @@ Display `Gauge` UI component to show progress.
   scope={{ Gauge, Box }}
   code={`
 <Box style={{display: 'flex', gap: 15}}>
-  <Gauge value={20} size={25} type="primary" showValue={true} />
-  <Gauge value={40} size={50} type="error" showValue={true} />
-  <Gauge value={80} size={100} type="warning" showValue={true} />
-  <Gauge value={60} size={150} type="success" showValue={true} />
-  <Gauge value={80} size={200} type="tertiary" showValue={true} />
+  <Gauge value={20} size={5} type="primary" showValue={true} />
+  <Gauge value={40} size={5.5} type="error" showValue={true} />
+  <Gauge value={80} size={6} type="warning" showValue={true} />
+  <Gauge value={60} size={6.5} type="success" showValue={true} />
+  <Gauge value={80} size={7} type="tertiary" showValue={true} />
 </Box>
 `}
 />
@@ -37,11 +37,11 @@ Display `Gauge` UI component to show progress.
   scope={{ Gauge, Box }}
   code={`
 <Box style={{display: 'flex', gap: 15}}>
-  <Gauge value={20} size={25} type="primary" />
-  <Gauge value={40} size={50} type="error" />
-  <Gauge value={60} size={100} type="warning"  />
-  <Gauge value={80} size={150} type="success"  />
-  <Gauge value={80} size={200} type="tertiary"  />
+  <Gauge value={20} size={3} type="primary" />
+  <Gauge value={40} size={3.5} type="error" />
+  <Gauge value={60} size={4} type="warning"  />
+  <Gauge value={80} size={4.5} type="success"  />
+  <Gauge value={80} size={5} type="tertiary"  />
 </Box>
 `}
 />
@@ -61,7 +61,7 @@ Display `Gauge` UI component to show progress.
   }
   return (
     <>
-      <Gauge type="warning" colors={colors} value={value} showValue={true} size={100} />
+      <Gauge type="warning" colors={colors} value={value} showValue={true} size={5} />
       <Spacer />
       <Button onClick={() => setValue((value + 20) > 100 ? 20 : (value + 20))} auto scale={0.5}>Increase</Button>
       <Spacer w={.5} inline />

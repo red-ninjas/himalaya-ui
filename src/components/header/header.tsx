@@ -162,7 +162,7 @@ const HeaderComponent: React.FC<HeaderPropsNative> = ({ children, transcluent = 
 
         ${SCALER('header-outer')}
         ${customResponsiveAttribute(gap, 'header-outer', layoutRoot.breakpoints, value =>
-          !isCSSNumberValue(value) ? `--header-gap: ${value};` : `--header-gap: calc(var(--scale-unit-scale) * ${value})`,
+          !isCSSNumberValue(value) ? `--header-gap: ${value};` : `--header-gap: calc(var(--scale-unit-scale) * ${value});`,
         )}
       `}</style>
     </nav>
