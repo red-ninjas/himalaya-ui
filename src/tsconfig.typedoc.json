@@ -53,16 +53,21 @@
       }
     ]
   },
-  "files": [
-    "./components/index.ts",
-    "./components/button/index.ts",
-    "./components/constants/index.ts",
-    "./components/themes/presets/index.ts",
+  "include": [
+    "./components/**/*.tsx",
+    "./components/**/*.ts",
+    "./components/**/*.js",
   ],
   "exclude": [
     "node_modules",
-    "./lib",
     "lib",
-    "es"
-  ]
+    "app",
+    "dist",
+    "server",
+    "__tests__",
+    "**/*.spec.ts",
+    "**/*.test.ts",
+    "**/*.spec.tsx",
+    "**/*.test.tsx"
+  ],
 }

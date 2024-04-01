@@ -77,27 +77,4 @@ Show where users are in the application.
 `}
 />
 
-<Attributes edit="/app/components/breadcrumbs.mdx">
-<Attributes.Title>Breadcrumbs.Props</Attributes.Title>
-
-| Attribute     | Description      | Type             | Accepted values          | Default |
-| ------------- | ---------------- | ---------------- | ------------------------ | ------- |
-| **separator** | separator string | `string`         | -                        | `/`     |
-| ...           | native props     | `HTMLAttributes` | `'id', 'className', ...` | -       |
-
-<Attributes.Title>Breadcrumbs.Item.Props</Attributes.Title>
-
-| Attribute    | Description        | Type                          | Accepted values          | Default |
-| ------------ | ------------------ | ----------------------------- | ------------------------ | ------- |
-| **href**     | link address       | `string`                      | -                        | -       |
-| **nextLink** | in `next.js` route | `boolean`                     | -                        | `false` |
-| **onClick**  | click event        | `(event: MouseEvent) => void` | -                        | -       |
-| ...          | native props       | `AnchorHTMLAttributes`        | `'id', 'className', ...` | -       |
-
-<Attributes.Title>Breadcrumbs.Separator.Props</Attributes.Title>
-
-| Attribute | Description  | Type             | Accepted values          | Default |
-| --------- | ------------ | ---------------- | ------------------------ | ------- |
-| ...       | native props | `HTMLAttributes` | `'id', 'className', ...` | -       |
-
-</Attributes>
+<Attributes component="Breadcrumbs" edit="/app/components/breadcrumbs.mdx"></Attributes>

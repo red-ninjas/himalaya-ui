@@ -6,7 +6,6 @@ import { Providers } from '../lib/providers';
 
 import NextStyleRegistry from 'components/next/registry';
 import TilteInjector from 'lib/title-injector';
-import { getDocumentationFromJson } from 'lib/get-docs';
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   //const projectDoc = await getDocumentationFromJson();
@@ -21,9 +20,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       </head>
       <body>
         <NextStyleRegistry>
-          <Providers projectDoc={{}} defaultTheme="light">
-            {children}
-          </Providers>
+          <Providers defaultTheme="light">{children}</Providers>
         </NextStyleRegistry>
         <Analytics></Analytics>
       </body>

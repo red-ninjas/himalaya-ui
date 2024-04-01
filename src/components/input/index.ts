@@ -1,15 +1,19 @@
-import Input from './input';
+import { default as CoreInput } from './input';
 import Textarea from '../textarea';
 import InputPassword from './password';
 
-export type InputComponentType = typeof Input & {
+export type { InputProps } from './input';
+export type { InputInternalProps } from './input-props';
+export type { InputPasswordProps } from './password';
+export type { TextareaProps } from '../textarea/textarea';
+
+export type InputType = typeof CoreInput & {
   Textarea: typeof Textarea;
   Password: typeof InputPassword;
 };
-(Input as InputComponentType).Textarea = Textarea;
-(Input as InputComponentType).Password = InputPassword;
 
-export type { InputProps } from './input';
-export type { InputPasswordProps } from './password';
-export type { TextareaProps } from '../textarea/textarea';
-export default Input as InputComponentType;
+const Input: InputType = CoreInput as InputType;
+Input.Textarea = Textarea;
+Input.Password = InputPassword;
+
+export default Input;

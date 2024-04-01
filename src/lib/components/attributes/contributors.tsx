@@ -51,7 +51,7 @@ const getContributors = async (path: string): Promise<Array<ContributorWithDetai
 
 const Contributors: React.FC<Props> = ({ path }) => {
   const [users, setUsers] = useState<Array<ContributorWithDetails>>([]);
-  const link = useMemo(() => `${RepoMasterURL}/${path || '/components'}`, [path]);
+  const link = useMemo(() => `${RepoMasterURL}${path || '/components'}`, [path]);
 
   useEffect(() => {
     let unmount = false;

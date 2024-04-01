@@ -12,7 +12,6 @@ import { UIColorTypes } from '../themes/presets';
 
 /**
  * Properties for button
- * @interface
  */
 export type ButtonProps = {
   /**
@@ -31,7 +30,6 @@ export type ButtonProps = {
 
 /**
  * Properties for button with native
- * @interface
  */
 export type ButtonDropdownProps = ButtonProps & Omit<React.HTMLAttributes<HTMLDivElement>, keyof ButtonProps>;
 

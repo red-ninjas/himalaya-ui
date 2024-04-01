@@ -1,7 +1,10 @@
 import React from 'react';
 import { UIColorTypes } from '../themes/presets';
 
-export interface Props {
+/**
+ * Internal input props
+ */
+export type InputInternalProps = {
   value?: string;
   initialValue?: string;
   placeholder?: string;
@@ -23,4 +26,4 @@ export interface Props {
   onIconClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
   autoComplete?: string;
   hasBorder?: boolean;
-}
+};

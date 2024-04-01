@@ -1,3 +1,8 @@
+import { tuple } from 'components/utils/prop-types';
+
+export const UiOverrideColors = tuple('gray', 'secondary', 'tertiary', 'success', 'error', 'primary', 'warning', 'link', 'code');
+export const UiNotOverrideableColors = tuple('default', 'dark');
+
 export interface Gradient {
   from: string;
   to: string;
@@ -48,20 +53,24 @@ export interface UIColor {
 }
 
 /**
- * Possible color keys
- * @interface
+ * Overrideable color types
  */
-export type UIColorKeys = 'gray' | 'secondary' | 'tertiary' | 'success' | 'error' | 'primary' | 'warning' | 'link' | 'code';
+export type UIOverrideColorKeys = (typeof UiOverrideColors)[number];
+
+/**
+ * Extra color types (not-overrideable)
+ */
+
+export type UINotOverrideColorKeys = (typeof UiNotOverrideableColors)[number];
 
 /**
  * Possible color types
- * @interface
  */
-export type UIColorTypes = UIColorKeys | 'default' | 'dark' | string;
+export type UIColorTypes = UIOverrideColorKeys | UINotOverrideColorKeys | string;
 export type UIColorAcentKeys = 'background' | 'foreground' | 'border';
-export type UIColorAndAccentKeys = UIColorKeys | UIColorAcentKeys;
+export type UIColorAndAccentKeys = UIOverrideColorKeys | UIColorAcentKeys;
 export type UIColorAccents = Record<UIColorAcentKeys, UIColorAccent>;
-export type UIColors = Record<UIColorKeys, UIColor>;
+export type UIColors = Record<UIOverrideColorKeys, UIColor>;
 export type UIAllColors = UIColors & UIColorAccents;
 
 export interface UIThemesCore {

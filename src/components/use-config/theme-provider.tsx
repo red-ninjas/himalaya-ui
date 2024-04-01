@@ -7,6 +7,7 @@ import { UIThemes } from '../themes/presets';
 import { AllThemesConfig, AllThemesContext } from '../use-all-themes/all-themes-context';
 import { ThemeContext } from '../use-theme/theme-context';
 import { hexToRgb } from '../utils/color';
+import _ from 'lodash';
 
 export interface Props {
   themeType?: string;
@@ -36,18 +37,14 @@ const ThemeProvider: React.FC<PropsWithChildren<Props>> = ({ children, themeType
 
   const colorKeys = Object.keys(currentTheme.palette);
 
-  const [colorClasses, vars] = useMemo(() => {
-    let colorClasses: string = ``;
+  const [vars] = useMemo(() => {
     let vars: string = ``;
 
-    vars += `
-  --theme-font-sans: ${currentTheme.font.sans};
-  --theme-font-mono: ${currentTheme.font.mono};
-  --theme-font-prism: ${currentTheme.font.prism};
-  --theme-font-base-size: ${currentTheme.font.baseSize};
-  --theme-font-heading-factor: ${currentTheme.font.headingFactor};
-  --theme-font-line-height-base: ${currentTheme.font.baseLineHeight};
-`;
+    for (const key of Object.keys(currentTheme.font)) {
+      const kebabCaseString = _.kebabCase(key);
+      vars += `--theme-font-${kebabCaseString}: ${currentTheme.font[key]};`;
+    }
+
     for (const key of colorKeys) {
       const value = currentTheme.palette[key];
 
@@ -64,93 +61,11 @@ const ThemeProvider: React.FC<PropsWithChildren<Props>> = ({ children, themeType
           --color-${key}-${colorKey.replace('hex_', '')}-rgb: ${hexToRgb(value[colorKey])};
           `;
         }
-
-        if (key === 'background') {
-          colorClasses += `
-        .color-default {
-          --color-base: var(--color-background-1000);
-          --color-base-rgb: var(--color-background-1000-rgb);
-          --color-contrast: var(--color-foreground-1000);
-          --color-contrast-rgb: var(--color-foreground-1000-rgb);
-
-          --color-shade: var(--color-background-900);
-          --color-shade-rgb: var(--color-background-900-rgb);
-          --color-tint: var(--color-background-800);
-          --color-tint-rgb: var(--color-background-800-rgb);
-
-          --color-border:var(--color-border-1000);
-          --color-shade-border: var(--color-border-800);
-          --color-tint-border:var(--color-border-600);
-
-          --color-border-rgb:var(--color-border-1000-rgb);
-          --color-shade-border-rgb: var(--color-border-800-rgb);
-          --color-tint-border-rgb:var(--color-border-600-rgb);
-        }
-
-        .color-dark {
-          --color-base: var(--color-foreground-1000);
-          --color-base-rgb: var(--color-foreground-1000-rgb);
-          --color-contrast: var(--color-background-1000);
-          --color-contrast-rgb: var(--color-background-1000-rgb);
-
-          --color-shade: var(--color-foreground-900);
-          --color-shade-rgb: var(--color-foreground-900-rgb);
-          --color-tint: var(--color-foreground-700);
-          --color-tint-rgb: var(--color-foreground-700-rgb);
-
-          --color-border:var(--color-border-1000);
-          --color-shade-border: var(--color-border-800);
-          --color-tint-border:var(--color-border-600);
-
-          --color-border-rgb:var(--color-border-1000-rgb);
-          --color-shade-border-rgb: var(--color-border-800-rgb);
-          --color-tint-border-rgb:var(--color-border-600-rgb);
-        }
-
-        .color-abort {
-          --color-base: transparent;
-          --color-contrast: var(--color-foreground-1000);
-          --color-contrast-rgb: var(--color-foreground-1000-rgb);
-
-          --color-shade: var(--color-background-900);
-          --color-tint: var(--color-background-700);
-
-          --color-shade-rgb: var(--color-background-900-rgb);
-          --color-tint-rgb: var(--color-background-700-rgb);
-
-          --color-shade-border: var(--color-base);
-          --color-tint-border: var(--color-base);
-
-          --color-border: var( --color-base);
-        }
-      `;
-        }
-
-        if (value['hex_1200'] !== 'undefined') {
-          colorClasses += `
-          .color-${key} {
-            --color-base: var(--color-${key}-1000);
-            --color-base-rgb: var(--color-${key}-1000-rgb);
-            --color-contrast: var(--color-${key}-contrast);
-            --color-contrast-rgb: var(--color-${key}-contrast-rgb);
-            --color-shade: var(--color-${key}-1200);
-            --color-tint: var(--color-${key}-800);
-            --color-shade-rgb: var(--color-${key}-1200-rgb);
-            --color-tint-rgb: var(--color-${key}-800-rgb);
-            --color-shade-border: var(--color-shade);
-            --color-tint-border: var(--color-tint);
-            --color-border: var(--color-base);
-            --color-border-rgb:var(--color-base-rgb);
-            --color-shade-border-rgb:var(--color-shade-rgb);
-            --color-tint-border-rgb:var(--color-tint-rgb);
-          }
-        `;
-        }
       }
     }
 
-    return [colorClasses, vars];
-  }, [currentTheme]);
+    return [vars];
+  }, [currentTheme.font, currentTheme.palette]);
 
   return (
     <AllThemesContext.Provider value={allThemes}>
@@ -176,8 +91,6 @@ const ThemeProvider: React.FC<PropsWithChildren<Props>> = ({ children, themeType
                 html {
                   ${vars}
                 }
-
-                ${colorClasses}
               `}
             </style>
           </>

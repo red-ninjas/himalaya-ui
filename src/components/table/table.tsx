@@ -8,7 +8,7 @@ import TableColumn from './table-column';
 import { TableConfig, TableContext } from './table-context';
 import TableHead from './table-head';
 import { TableAbstractColumn, TableDataItemBase, TableOnCellClick, TableOnChange, TableOnRowClick, TableRowClassNameHandler } from './table-types';
-import { useClasses } from 'components';
+import useClasses from '../use-classes';
 
 interface Props<TableDataItem extends TableDataItemBase> {
   data?: Array<TableDataItem>;

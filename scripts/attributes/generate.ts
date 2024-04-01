@@ -1,9 +1,8 @@
-'use server';
 import _ from 'lodash';
 import { promises as fs } from 'node:fs';
-import { cache } from 'react';
 import {
   FunctionParser,
+  InterfaceParser,
   IntersectionTypeParser,
   IntrinsicTypeParser,
   LiteralTypeParser,
@@ -12,24 +11,29 @@ import {
   PropertyParser,
   ReferenceTypeParser,
   ReflectionTypeParser,
+  TypeAliasParser,
+  TypeOperatorTypeParser,
   TypeParser,
   UnionTypeParser,
 } from 'typedoc-json-parser';
 
-export type ProjectAttribute = {
+const data = await fs.readFile(process.cwd() + '/api-types.json', 'utf8');
+const project = new ProjectParser({ data: JSON.parse(data) });
+
+type ProjectAttribute = {
   name: string;
   optional: boolean;
   types: string[];
 };
-export type ProjectAttributeGroup = {
+type ProjectAttributeGroup = {
   name: string;
   attributes: ProjectAttribute[];
 };
-export type ProjectParams = {
+type ProjectParams = {
   [key: string]: ProjectAttributeGroup[];
 };
 
-export const extractTypes = (typeArgs: TypeParser[]) => {
+const extractTypes = (typeArgs: TypeParser[]) => {
   let types: string[] = [];
 
   for (const type of typeArgs) {
@@ -51,7 +55,7 @@ export const extractTypes = (typeArgs: TypeParser[]) => {
   return types;
 };
 
-export const exptractAttributes = (parser: PropertyParser[] | null): ProjectAttribute[] => {
+const exptractAttributes = (parser: PropertyParser[] | null): ProjectAttribute[] => {
   const attributes: ProjectAttribute[] = [];
 
   for (const parse of parser || []) {
@@ -61,45 +65,52 @@ export const exptractAttributes = (parser: PropertyParser[] | null): ProjectAttr
 
   return attributes;
 };
-export const extractParamsParsersTypes = (project: ProjectParser, parameters: TypeParser[]): ProjectAttributeGroup[] => {
-  let groups: ProjectAttributeGroup[] = [];
 
+const extractParamsParsersTypes = (parameters: TypeParser[], overrideName?: string): ProjectAttributeGroup[] => {
+  let groups: ProjectAttributeGroup[] = [];
   for (const param of parameters) {
     if (param instanceof ReferenceTypeParser) {
       if (param.id != null) {
-        const refArgumentTranslated = project.interfaces.find(df => df.id == param.id);
+        const refArgumentTranslated = project.find(param.id);
 
-        if (refArgumentTranslated !== undefined) {
-          groups.push({ name: param.name, attributes: exptractAttributes(refArgumentTranslated.properties) });
-        } else {
-          groups.push({ name: param.name, attributes: [] });
+        if (refArgumentTranslated) {
+          if (refArgumentTranslated instanceof TypeAliasParser) {
+            groups = [...groups, ...extractParamsParsersTypes([refArgumentTranslated.type], refArgumentTranslated.name)];
+          } else if (refArgumentTranslated instanceof InterfaceParser) {
+            const attributes = exptractAttributes(refArgumentTranslated.properties);
+            groups.push({
+              name: param.name,
+              attributes,
+            });
+          } else {
+            console.log('NOT IMPLEMENTED', refArgumentTranslated);
+          }
         }
-      } else {
-        groups = [...groups, ...extractParamsParsersTypes(project, param.typeArguments)];
+      }
+
+      if (param.typeArguments) {
+        groups = [...groups, ...extractParamsParsersTypes(param.typeArguments, overrideName)];
       }
     } else if (param instanceof IntersectionTypeParser) {
-      groups = [...groups, ...extractParamsParsersTypes(project, param.types)];
+      groups = [...groups, ...extractParamsParsersTypes(param.types, overrideName)];
     } else if (param instanceof ReflectionTypeParser) {
       const attributes = exptractAttributes(param.properties);
-      groups.push({ name: 'general', attributes: attributes });
+      groups.push({ name: overrideName ?? 'Default', attributes: attributes });
     }
   }
   return groups;
 };
 
-export const extractParamsParsers = (project: ProjectParser, parameters: ParameterParser[]): ProjectAttributeGroup[] => {
+const extractParamsParsers = (parameters: ParameterParser[]): ProjectAttributeGroup[] => {
   let groups: ProjectAttributeGroup[] = [];
 
   for (const param of parameters) {
-    groups = [...groups, ...extractParamsParsersTypes(project, [param.type])];
+    groups = [...groups, ...extractParamsParsersTypes([param.type], param.name)];
   }
   return groups;
 };
 
-export const getDocumentationFromJson = cache(async (): Promise<ProjectParams> => {
-  const data = await fs.readFile(process.cwd() + '/src/docs/types.json', 'utf8');
-  const project = new ProjectParser({ data: JSON.parse(data) });
-
+const getDocumentationFromJson = async () => {
   const interfaceChilds = project.children
     .filter(df => df.source?.path.startsWith('src/components/'))
     .filter(df => df instanceof FunctionParser)
@@ -108,9 +119,12 @@ export const getDocumentationFromJson = cache(async (): Promise<ProjectParams> =
   const projectParams: ProjectParams = {};
   for (const child of interfaceChilds) {
     let groups: ProjectAttributeGroup[] = [];
-
-    groups = extractParamsParsers(project, _.flatten(child.signatures.map(df => df.parameters)));
+    groups = extractParamsParsers(_.flatten(child.signatures.map(df => df.parameters)));
     projectParams[child.name] = groups;
   }
-  return projectParams;
-});
+  await fs.writeFile(process.cwd() + '/src/docs/types.json', JSON.stringify(projectParams), 'utf8');
+};
+
+await getDocumentationFromJson();
+
+console.log('HI');

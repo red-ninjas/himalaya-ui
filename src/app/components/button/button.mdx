@@ -136,29 +136,4 @@ The `Button` UI component is a versatile element for triggering various operatio
 `}
 />
 
-<Attributes edit="/app/en-us/components/button.mdx">
-<Attributes.Title>Button.Props</Attributes.Title>
-
-| Attribute     | Description                               | Type                             | Accepted values             | Default   |
-| ------------- | ----------------------------------------- | -------------------------------- | --------------------------- | --------- |
-| **type**      | button type                               | `ButtonTypes`                    | [ButtonTypes](#buttontypes) | `default` |
-| **ghost**     | the opposite color                        | `boolean`                        | -                           | `false`   |
-| **loading**   | display loading indicator                 | `boolean`                        | -                           | `false`   |
-| **shadow**    | display shadow                            | `boolean`                        | -                           | `false`   |
-| **auto**      | autoscale width                           | `boolean`                        | -                           | `false`   |
-| **effect**    | display animation                         | `boolean`                        | -                           | `true`    |
-| **disabled**  | disable button                            | `boolean`                        | -                           | `false`   |
-| **onClick**   | click handler                             | `MouseEventHandler`              | -                           | -         |
-| **icon**      | show icon in button                       | `ReactNode`                      | -                           | -         |
-| **iconRight** | show icon on the other side of the button | `ReactNode`                      | -                           | -         |
-| **htmlType**  | native type of button element             | `ButtonHTMLAttributes.type`      | -                           | `button`  |
-| **ref**       | forwardRef                                | `Ref<HTMLButtonElement or null>` | -                           | -         |
-| ...           | native props                              | `ButtonHTMLAttributes`           | `'id', 'className', ...`    | -         |
-
-<Attributes.Title>ButtonTypes</Attributes.Title>
-
-```ts
-type ButtonTypes = 'default' | 'primary' | 'tertiary' | 'secondary' | 'success' | 'warning' | 'error' | 'abort';
-```
-
-</Attributes>
+<Attributes component="Button" edit="/app/components/button.mdx"></Attributes>

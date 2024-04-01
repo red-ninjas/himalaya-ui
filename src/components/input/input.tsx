@@ -6,11 +6,13 @@ import InputBlockLabel from './input-block-label';
 import InputIcon from './input-icon';
 import InputClearIcon from './input-icon-clear';
 import InputLabel from './input-label';
-import { Props } from './input-props';
+import { InputInternalProps } from './input-props';
 import { UIColorTypes } from '../themes/presets';
 
-type NativeAttrs = Omit<React.InputHTMLAttributes<HTMLInputElement>, keyof Props>;
-export type InputProps = Props & NativeAttrs;
+/**
+ * Input Props
+ */
+export type InputProps = InputInternalProps & Omit<React.InputHTMLAttributes<HTMLInputElement>, keyof InputInternalProps>;
 
 const simulateChangeEvent = (el: HTMLInputElement, event: React.MouseEvent<HTMLDivElement>): React.ChangeEvent<HTMLInputElement> => {
   return {

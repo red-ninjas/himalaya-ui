@@ -16,7 +16,7 @@ export { default as Breadcrumbs } from './breadcrumbs';
 export type { BreadcrumbsProps, BreadcrumbsItemProps, BreadcrumbsSeparatorProps } from './breadcrumbs';
 
 export { default as Button } from './button';
-export type { ButtonProps, ButtonInternalProps } from './button';
+export type { ButtonProps } from './button';
 
 export { default as ButtonDropdown } from './button-dropdown';
 export type { ButtonDropdownProps, ButtonDropdownItemProps } from './button-dropdown';
@@ -64,7 +64,7 @@ export { default as Image } from './image';
 export type { ImageProps, ImageBrowserProps } from './image';
 
 export { default as Input } from './input';
-export type { InputProps, InputPasswordProps } from './input';
+export type { InputType, InputProps, InputInternalProps, InputPasswordProps } from './input';
 
 export { default as Keyboard } from './keyboard';
 export type { KeyboardProps } from './keyboard';
@@ -137,7 +137,7 @@ export { default as Textarea } from './textarea';
 export type { TextareaProps } from './textarea';
 
 export { default as Themes } from './themes';
-export type { UIThemes, UIUserTheme } from './themes';
+export type { UIThemes, UIUserTheme, UIColorTypes } from './themes';
 
 export { default as Toggle } from './toggle';
 export type { ToggleProps } from './toggle';
@@ -195,7 +195,17 @@ export { default as useTheme } from './use-theme';
 export { default as useClasses } from './use-classes';
 export { default as useScale } from './use-scale';
 export { withScale, ScalePropKeys, ScaleContext } from './use-scale';
-export type { ScaleProps, ScaleConfig, GetScalePropsFunction, GetAllScalePropsFunction } from './use-scale';
+
+export type {
+  ScaleProps,
+  ScaleInputKeys,
+  ScaleConfig,
+  GetScalePropsFunction,
+  GetAllScalePropsFunction,
+  ScaleResponsiveParameter,
+  HideInterface,
+  BreakpointInterface,
+} from './use-scale';
 
 export { useRect } from './utils/layouts';
 export type { ReactiveDomReact } from './utils/layouts';

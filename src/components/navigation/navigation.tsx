@@ -1,5 +1,5 @@
 'use client';
-import { useClasses } from 'components';
+import useClasses from '../use-classes';
 import React, { PropsWithChildren, useRef, useState } from 'react';
 import Highlight from '../shared/highlight';
 import useScale, { withScale } from '../use-scale';

@@ -14,7 +14,6 @@ import { filterPropsWithGroup, getButtonChildrenWithIcon } from './utils';
 
 /**
  * Button Internal Props
- * @interface
  */
 export type ButtonInternalProps = {
   type?: ButtonTypes;
@@ -33,7 +32,6 @@ export type ButtonInternalProps = {
 
 /**
  * Button Props
- * @interface
  */
 export type ButtonProps = ButtonInternalProps & Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, keyof ButtonInternalProps>;
 

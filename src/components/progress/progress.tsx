@@ -26,7 +26,6 @@ type NativeAttrs = Omit<React.ProgressHTMLAttributes<HTMLProgressElement>, keyof
 /**
  * This will be displayed as an interface
  * @indeterminate A infinite based progress bar
- * @interface
  */
 export type ProgressProps = Props & NativeAttrs;
 

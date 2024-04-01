@@ -1,5 +1,7 @@
 {
-  "json": "src/docs/types.json",
+  "$schema": "https://typedoc.org/schema.json",
+  "json": "api-types.json",
+  "out": "./api-docs",
   "readme": "none",
   "name": "Typedoc project reference documentation",
   "entryPoints": [

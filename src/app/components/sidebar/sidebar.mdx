@@ -1,5 +1,5 @@
 import { Layout, Playground, Attributes, MockPage } from 'lib/components';
-import { SidebarLayout, Sidebar, SidebarSwitcher, Page, Button, PageWidth, Text } from 'components';
+import { SidebarLayout, Sidebar, Page, Button, PageWidth, Text } from 'components';
 import { Home } from 'components/icons';
 import NextLink from 'next/link';
 
@@ -87,14 +87,6 @@ Display a sidebar
 `}
 />
 
-<Playground
-  title="Activate Sidebar (Mobile Only)"
-  desc="A button that allows users to activate the sidebar."
-  scope={{ SidebarSwitcher }}
-  code={`
-<SidebarSwitcher />
-`}
-/>
 
 <Attributes edit="/app/components/sidebar.mdx">
 <Attributes.Title>Sidebar.Props</Attributes.Title>
