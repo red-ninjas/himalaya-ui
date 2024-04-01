@@ -24,7 +24,7 @@ jobs:
       - name: Show Git Status
         run: git status
       - name: Release with release-it
-        run: npx release-it
+        run: npx release-it major --preRelease=alpha --ci
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   deploy:
