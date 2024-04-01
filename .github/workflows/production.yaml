@@ -25,8 +25,9 @@ jobs:
         run: git status
       - name: Release with release-it
         run: |
-          if [[ ${{ github.event.head_commit.message }} == *"[alpha]"* ]]; then
-            npx release-it major --preRelease=alpha --ci
+          commit_message="${{ github.event.head_commit.message }}"
+          if [[ "$commit_message" == *"[alpha]"* ]]; then
+            npx release-it minor --preRelease=alpha --ci
           else
             npx release-it --ci
           fi
@@ -60,7 +61,8 @@ jobs:
         run: npm run build
       - name: Release
         run: |
-          if [[ ${{ github.event.head_commit.message }} == *"[alpha]"* ]]; then
+          commit_message="${{ github.event.head_commit.message }}"
+          if [[ "$commit_message" == *"[alpha]"* ]]; then
             cd dist/bundle && npm publish --tag alpha --access public --non-interactive
           else
             cd dist/bundle && npm publish --access public --non-interactive
