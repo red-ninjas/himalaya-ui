@@ -1,5 +1,22 @@
 
 
+# [2.0.0-alpha.0](https://github.com/red-ninjas/himalaya-ui/compare/v1.15.1...v2.0.0-alpha.0) (2024-04-01)
+
+
+### Bug Fixes
+
+* move SCALER to end of styles ([227cac3](https://github.com/red-ninjas/himalaya-ui/commit/227cac397439005976103d45c473ed6343e328f1))
+* remove extra px and add media query with layout ([e67d119](https://github.com/red-ninjas/himalaya-ui/commit/e67d11996da3d475826dae36d38b5fe241b4e80c))
+* remove rating icon in favor of himalaya icon ([56e4b47](https://github.com/red-ninjas/himalaya-ui/commit/56e4b47e4d2ffa58ffaf7e88a9ff61a793b53342))
+
+
+### Features
+
+* **components:** add new styling to collapse, display, dot ([8d7b0fc](https://github.com/red-ninjas/himalaya-ui/commit/8d7b0fcedc8848f58cce25ef9a1a3b814e613612))
+* **components:** add new styling to divider, entity, fieldset, search, snippet ([791efb8](https://github.com/red-ninjas/himalaya-ui/commit/791efb879221e5de580dc91970e29d353cbaca12))
+* **components:** add new styling to hero, select ([f4ec748](https://github.com/red-ninjas/himalaya-ui/commit/f4ec74857f026f03c591138be0bbe955c053d670))
+* **components:** add new styling to progress, rating, spinner, toast ([312b1a8](https://github.com/red-ninjas/himalaya-ui/commit/312b1a8e018fb7925dc8d6d7c74593231bfa8907))
+
 ## [1.15.1](https://github.com/red-ninjas/himalaya-ui/compare/v1.15.0...v1.15.1) (2024-03-25)
 
 # [1.15.0](https://github.com/red-ninjas/himalaya-ui/compare/v1.14.2...v1.15.0) (2024-03-24)
