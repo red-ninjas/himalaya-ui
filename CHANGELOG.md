@@ -1,5 +1,18 @@
 
 
+# [2.0.0-alpha.1](https://github.com/red-ninjas/himalaya-ui/compare/v2.0.0-alpha.0...v2.0.0-alpha.1) (2024-04-01)
+
+
+### Bug Fixes
+
+* [alpha] workflow syntax ([9273b01](https://github.com/red-ninjas/himalaya-ui/commit/9273b01db50b3826a40916059c2021789cb9a450))
+
+
+### Features
+
+* support [alpha] release ([5678741](https://github.com/red-ninjas/himalaya-ui/commit/567874127cdc0694e17bbc0099ec444b4d3c6267))
+* support alpha release [alpha] ([9077bf7](https://github.com/red-ninjas/himalaya-ui/commit/9077bf70d7502a5b48a48a13af605cdef6fbe72f))
+
 # [2.0.0-alpha.0](https://github.com/red-ninjas/himalaya-ui/compare/v1.15.1...v2.0.0-alpha.0) (2024-04-01)
 
 
