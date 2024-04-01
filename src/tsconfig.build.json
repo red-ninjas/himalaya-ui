@@ -15,7 +15,6 @@
     },
     "typeRoots": [
       "./typings",
-      "node_modules/@types"
     ],
     "types": [
       "_global-types",
@@ -60,6 +59,7 @@
   "files": [
     "./components/index.ts",
     "./components/constants/index.ts",
+    "./components/themes/presets/index.ts",
     "./components/carousel/index.ts",
     "./components/chart/index.ts",
     "./components/swipe/index.ts"

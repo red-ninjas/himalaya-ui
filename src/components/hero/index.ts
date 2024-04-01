@@ -15,6 +15,6 @@ export type HeroType = typeof Hero & {
 (Hero as HeroType).Actions = HeroActions;
 (Hero as HeroType).Tag = HeroTag;
 
-export type { HeroProps } from './share';
+export type { HeroProps, HeroTagProps, HeroCoreProps } from './share';
 
 export default Hero as HeroType;

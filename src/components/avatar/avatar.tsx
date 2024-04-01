@@ -1,13 +1,11 @@
 'use client';
 
 import React from 'react';
-import useTheme from '../use-theme';
-import useScale, { withScale } from '../use-scale';
 import useClasses from '../use-classes';
+import useScale, { withScale } from '../use-scale';
 
 interface Props {
   src?: string;
-  stacked?: boolean;
   text?: string;
   isSquare?: boolean;
   className?: string;
@@ -21,14 +19,10 @@ const safeText = (text: string): string => {
   return text.slice(0, 3);
 };
 
-const AvatarComponent: React.FC<AvatarProps> = ({ src, stacked = false, text = '', isSquare = false, className = '', ...props }: AvatarProps) => {
-  const theme = useTheme();
-  const { SCALES } = useScale();
+const AvatarComponent: React.FC<AvatarProps> = ({ src, text = '', isSquare = false, className = '', ...props }: AvatarProps) => {
+  const { UNIT, SCALE, CLASS_NAMES } = useScale();
+  const classes = useClasses('avatar', className, CLASS_NAMES);
   const showText = !src;
-  const radius = isSquare ? theme.style.radius : '50%';
-  const marginLeft = stacked ? SCALES.ml(-0.625) : SCALES.ml(0);
-  const classes = useClasses('avatar', className);
-
   return (
     <span className={classes}>
       {!showText && <img alt="avatar" className="avatar-img" src={src} draggable={false} {...props} />}
@@ -43,15 +37,11 @@ const AvatarComponent: React.FC<AvatarProps> = ({ src, stacked = false, text = '
           display: inline-block;
           position: relative;
           overflow: hidden;
-          border: 1px solid ${theme.palette.border.value};
-          border-radius: ${radius};
+          border: 1px solid var(--color-border-1000);
           vertical-align: top;
-          background-color: ${theme.palette.background.value};
+          background-color: var(--color-background-1000);
           box-sizing: border-box;
-          width: ${SCALES.w(1.75) || SCALES.h(1.75)};
-          height: ${SCALES.h(1.75) || SCALES.w(1.75)};
-          padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
-          margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${marginLeft};
+          border-radius: var(--border-radius);
         }
 
         .avatar-img {
@@ -59,7 +49,7 @@ const AvatarComponent: React.FC<AvatarProps> = ({ src, stacked = false, text = '
           object-fit: cover;
           width: 100%;
           height: 100%;
-          border-radius: ${radius};
+          border-radius: var(--border-radius);
           user-select: none;
         }
 
@@ -67,12 +57,29 @@ const AvatarComponent: React.FC<AvatarProps> = ({ src, stacked = false, text = '
           position: absolute;
           left: 50%;
           top: 50%;
-          font-size: ${SCALES.font(1)};
           text-align: center;
           transform: translate(-50%, -50%) scale(0.65);
           white-space: nowrap;
           user-select: none;
         }
+        ${SCALE.font(1, value => `font-size: ${value};`, undefined, 'avatar-text')}
+        ${SCALE.w(1.75, value => `width: ${value};`, undefined, 'avatar')}
+        ${SCALE.h(1.75, value => `height: ${value};`, undefined, 'avatar')}
+        ${SCALE.r(1, value => `--border-radius: ${value};`, isSquare ? `var(--layout-radius)` : '50%', 'avatar')}
+        ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'avatar')}
+        ${SCALE.margin(
+          {
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+          },
+          value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
+          undefined,
+          'avatar',
+        )}
+
+        ${UNIT('avatar')}
       `}</style>
     </span>
   );

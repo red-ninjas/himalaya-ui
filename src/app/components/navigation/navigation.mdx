@@ -10,7 +10,7 @@ export const meta = {
 
 **Navigation**
 
-Effortlessly create navigation menus, including sub-menus and child items, using the `Navigation` UI component. 
+Effortlessly create navigation menus, including sub-menus and child items, using the `Navigation` UI component.
 
 <Playground
   scope={{ Navigation }}
@@ -18,11 +18,11 @@ Effortlessly create navigation menus, including sub-menus and child items, using
   desc={'Example of a navigation'}
   code={`
   <Navigation>
-   <Navigation.Item title={'Item'} url={'/'}></Navigation.Item>
-   <Navigation.Item title={'Item 2'} url={'/'}></Navigation.Item>
-   <Navigation.Item title={'Item with childs'} url={'/'}>
-      <Navigation.Item.Child title={'Home'} url={'/'}></Navigation.Item.Child>
-      <Navigation.Item.Child title={'Home'} url={'/'}></Navigation.Item.Child>
+   <Navigation.Item title={'Item'}></Navigation.Item>
+   <Navigation.Item title={'Item 2'}></Navigation.Item>
+   <Navigation.Item title={'Item with childs'} >
+      <Navigation.Item.Child title={'Home'}></Navigation.Item.Child>
+      <Navigation.Item.Child title={'Home'}></Navigation.Item.Child>
    </Navigation.Item>
   </Navigation>
 `}
@@ -33,7 +33,6 @@ Effortlessly create navigation menus, including sub-menus and child items, using
 
 | Attribute         | Description                            | Type             | Accepted values          | Default |
 | ----------------- | -------------------------------------- | ---------------- | ------------------------ | ------- |
-| hideOnMobile      | Hide navigation on mobile devices      | `boolean`        | `true`, `false`          | `true`  |
 | hoverHeightRatio  | Height ratio for hover effect          | `number`         | Any numeric value        | `0.7`   |
 | hoverWidthRatio   | Width ratio for hover effect           | `number`         | Any numeric value        | `1.05`  |
 | ...               | Native props                           | `HTMLAttributes` | `'id', 'className', ...` | -       |

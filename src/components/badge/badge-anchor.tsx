@@ -14,7 +14,7 @@ interface Props {
   className?: string;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
 export type BadgeAnchorProps = Props & NativeAttrs;
 
 type TransformStyles = {
@@ -56,12 +56,16 @@ const getTransform = (placement: BadgeAnchorPlacement): TransformStyles => {
   return styles[placement];
 };
 
-const BadgeAnchor: React.FC<React.PropsWithChildren<BadgeAnchorProps>> = ({ children, placement = 'topRight' as BadgeAnchorPlacement }: BadgeAnchorProps) => {
+const BadgeAnchor: React.FC<React.PropsWithChildren<BadgeAnchorProps>> = ({
+  children,
+  placement = 'topRight' as BadgeAnchorPlacement,
+  ...props
+}: BadgeAnchorProps) => {
   const [withoutBadgeChildren, badgeChldren] = pickChild(children, Badge);
   const { top, bottom, left, right, value, origin } = useMemo(() => getTransform(placement), [placement]);
 
   return (
-    <div className="anchor">
+    <div className="anchor" {...props}>
       {withoutBadgeChildren}
       <sup>{badgeChldren}</sup>
 

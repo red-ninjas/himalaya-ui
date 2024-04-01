@@ -1,12 +1,10 @@
 'use client';
 
 import React from 'react';
-import useTheme from '../use-theme';
-import { addColorAlpha } from '../utils/color';
 import useClasses from '../use-classes';
+import { useConfigs } from '../use-config/config-context';
 import { pickChild } from '../utils/collections';
 import BottomNavigationItem from './item';
-import { useConfigs } from '../use-config/config-context';
 
 export interface BottomNavigationProps {
   transcluent?: boolean;
@@ -14,7 +12,6 @@ export interface BottomNavigationProps {
 }
 
 const BottomNavigation: React.FC<React.PropsWithChildren<BottomNavigationProps>> = ({ transcluent = true, mobileOnly = true, children }) => {
-  const theme = useTheme();
   const [, navigationElement] = pickChild(children, BottomNavigationItem);
   const { isMobile } = useConfigs();
 
@@ -37,7 +34,7 @@ const BottomNavigation: React.FC<React.PropsWithChildren<BottomNavigationProps>>
           bottom: 0;
           left: 0;
           width: 100%;
-          background-color: ${theme.palette.background.value};
+          background-color: var(--color-background-1000);
           display: flex;
           justify-content: space-around;
           padding: 10px 0;
@@ -46,7 +43,7 @@ const BottomNavigation: React.FC<React.PropsWithChildren<BottomNavigationProps>>
         }
         .transcluent {
           backdrop-filter: saturate(180%) blur(5px);
-          background-color: ${addColorAlpha(theme.palette.background.value, 0.8)};
+          background-color: rgba(var(--color-background-1000-rgb), 0.8);
         }
       `}</style>
     </div>

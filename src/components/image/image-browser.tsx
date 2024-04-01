@@ -2,15 +2,14 @@
 import React, { useMemo } from 'react';
 import Link from '../link';
 import { Props as LinkProps } from '../link/link';
-import useTheme from '../use-theme';
-import ImageBrowserHttpsIcon from './image-browser-https-icon';
-import { getBrowserColors, BrowserColors } from './styles';
-import { getHostFromUrl } from './helpers';
-import useScale, { withScale } from '../use-scale';
 import useClasses from '../use-classes';
-import useLayout from '../use-layout';
+import useScale, { withScale } from '../use-scale';
+import useTheme from '../use-theme';
+import { getHostFromUrl } from './helpers';
+import ImageBrowserHttpsIcon from './image-browser-https-icon';
+import { BrowserColors, getBrowserColors } from './styles';
 
-export type ImageAnchorProps = Omit<React.AnchorHTMLAttributes<any>, keyof LinkProps>;
+export type ImageAnchorProps = Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, keyof LinkProps>;
 
 interface Props {
   title?: string;
@@ -21,7 +20,7 @@ interface Props {
   className?: string;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
 export type ImageBrowserProps = Props & NativeAttrs;
 
 const getTitle = (title: string, colors: BrowserColors) => (
@@ -101,9 +100,8 @@ const ImageBrowserComponent = React.forwardRef<HTMLDivElement, React.PropsWithCh
     ref: React.Ref<HTMLDivElement>,
   ) => {
     const theme = useTheme();
-    const layout = useLayout();
-    const { SCALES } = useScale();
-    const colors = useMemo(() => getBrowserColors(invert, theme.palette), [invert, theme.palette]);
+    const { UNIT, SCALE, CLASS_NAMES } = useScale();
+    const colors = useMemo(() => getBrowserColors(invert), [invert]);
     const input = useMemo(() => {
       if (url) return getAddressInput(url, showFullLink, colors, anchorProps);
       if (title) return getTitle(title, colors);
@@ -111,7 +109,7 @@ const ImageBrowserComponent = React.forwardRef<HTMLDivElement, React.PropsWithCh
     }, [url, showFullLink, title, colors, anchorProps]);
 
     return (
-      <div className={useClasses('browser', className)} ref={ref} {...props}>
+      <div className={useClasses('browser', className, CLASS_NAMES)} ref={ref} {...props}>
         <header>
           <div className="traffic">
             <span className="close" />
@@ -126,14 +124,9 @@ const ImageBrowserComponent = React.forwardRef<HTMLDivElement, React.PropsWithCh
             background-color: transparent;
             box-shadow: ${theme.expressiveness.shadowLarge};
             max-width: 100%;
-            border-radius: ${SCALES.r(1, theme.style.radius)};
             overflow: hidden;
-            font-size: ${SCALES.font(1)};
-            width: ${SCALES.w(1, 'max-content')};
-            height: ${SCALES.h(1, 'auto')};
-            margin: ${SCALES.mt(0)} ${SCALES.mr(0, 'auto')} ${SCALES.mb(0)} ${SCALES.ml(0, 'auto')};
-            padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
           }
+
           .browser :global(.image) {
             border-top-left-radius: 0;
             border-top-right-radius: 0;
@@ -152,7 +145,7 @@ const ImageBrowserComponent = React.forwardRef<HTMLDivElement, React.PropsWithCh
           .traffic {
             width: auto;
             position: absolute;
-            left: ${layout.gapHalf};
+            left: var(--layout-gap-half);
             top: 50%;
             transform: translateY(-50%);
             bottom: 0;
@@ -180,6 +173,22 @@ const ImageBrowserComponent = React.forwardRef<HTMLDivElement, React.PropsWithCh
           .full {
             background-color: #27c93f;
           }
+
+          ${SCALE.margin(
+            0,
+            value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
+            {
+              right: 'auto',
+              left: 'auto',
+            },
+            'browser',
+          )}
+          ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'browser')}
+          ${SCALE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'browser')}
+          ${SCALE.w(1, value => `width: ${value};`, 'max-content', 'browser')}
+          ${SCALE.h(1, value => `height: ${value};`, 'auto', 'browser')}
+          ${SCALE.font(1, value => `font-size: ${value};`, undefined, 'browser')}
+          ${UNIT('browser')}
         `}</style>
       </div>
     );

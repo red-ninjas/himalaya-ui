@@ -1,8 +1,8 @@
 'use client';
 
 import {
-  Divider,
   Header,
+  InnerScroll,
   MobileMenu,
   MobileMenuButton,
   MobileMenuProvider,
@@ -15,11 +15,14 @@ import {
   SearchProvider,
   ThemeSwitcher,
   useLayout,
-  useTheme,
 } from 'components';
+import Divider from 'components/divider';
 import FixedHeader from 'components/header/fixed-header';
-import { Anchor, Code, Github, Home, Layout } from 'components/icons';
-import ScrollableLayout from 'components/layout/scrollable-layout';
+import Anchor from 'components/icons/anchor';
+import Code from 'components/icons/code';
+import Github from 'components/icons/github';
+import Home from 'components/icons/home';
+import Layout from 'components/icons/layout';
 import Search, { SearchButton, SearchResult, SearchResults } from 'components/search';
 import { capitalize } from 'components/utils/collections';
 import { BrandLogo, BrandTitle } from 'lib/components/icons';
@@ -29,10 +32,9 @@ import React, { useState } from 'react';
 import { Seeds } from '../data';
 import metaData from '../data/metadata.json';
 export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
-  const theme = useTheme();
   const layout = useLayout();
   const pathname = usePathname();
-  const [isHidden, setIsHidden] = useState<boolean>(false);
+  const [isHidden] = useState<boolean>(false);
 
   async function doSearch(keyword: string): Promise<SearchResults> {
     const lowerCaseKeyword = keyword.toLowerCase();
@@ -66,9 +68,9 @@ export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
         <Search searchFunction={doSearch} placeholder="Search in documentation." />
         <MobileMenuProvider>
           <QuickBarProvider>
-            <QuickBarLayout>
-              <ScrollableLayout onScroll={event => setIsHidden(event.scrollTop >= 200)}>
-                <FixedHeader hide={pathname == '/' && isHidden} onDesktop={true} onMobile={pathname == '/'}>
+            <QuickBarLayout disabled={{ xs: true, md: false }}>
+              <InnerScroll style={{ display: 'flex', flexDirection: 'column' }}>
+                <FixedHeader hidden={pathname == '/' && isHidden} hideOn={{ xs: pathname != '/' }}>
                   <Header>
                     <Header.Left>
                       <MobileMenuButton></MobileMenuButton>
@@ -86,17 +88,22 @@ export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
                     </Header.Left>
                     <Header.Center>
                       <Navigation>
-                        <Navigation.Item title={'Home'} url={'/'}></Navigation.Item>
+                        <NextLink passHref legacyBehavior href={'/'}>
+                          <Navigation.Item title={'Home'} active={pathname == '/' || pathname == ''}></Navigation.Item>
+                        </NextLink>
                         {metaData.map((df, index) => (
-                          <Navigation.Item key={index} exactMatch={!df.children || df.children.length <= 0} title={capitalize(df.name)} url={df.url}>
-                            {df.children.map((child, childIndex) => (
-                              <Navigation.Item.Child
-                                key={childIndex}
-                                title={capitalize(child.name)}
-                                url={child.children[0].url || df.url}
-                              ></Navigation.Item.Child>
-                            ))}
-                          </Navigation.Item>
+                          <NextLink passHref key={index} legacyBehavior href={df.url}>
+                            <Navigation.Item
+                              active={!df.children || df.children.length <= 0 ? pathname == df.url : pathname.startsWith(df.url)}
+                              title={capitalize(df.name)}
+                            >
+                              {df.children.map((child, childIndex) => (
+                                <NextLink passHref key={childIndex} legacyBehavior href={child.children[0].url || df.url}>
+                                  <Navigation.Item.Child title={capitalize(child.name)}></Navigation.Item.Child>
+                                </NextLink>
+                              ))}
+                            </Navigation.Item>
+                          </NextLink>
                         ))}
                       </Navigation>
                     </Header.Center>
@@ -107,37 +114,50 @@ export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
                   </Header>
                 </FixedHeader>
                 {children}
-              </ScrollableLayout>
-              <QuickBar h={'100%'} w={'100%'}>
-                <QuickAction type="lite" href="/" radius={50} tooltip="Home">
-                  <Home size={20} />
-                </QuickAction>
+              </InnerScroll>
+              <QuickBar>
+                <NextLink href="/" passHref legacyBehavior>
+                  <QuickAction active={pathname == '/'} tooltip="Home">
+                    <Home size={20} />
+                  </QuickAction>
+                </NextLink>
                 <Divider w={'100%'}></Divider>
-                <QuickAction type="lite" radius={50} href="/guide" exactMatch={false} tooltip="Guide">
-                  <Code size={20} />
-                </QuickAction>
-                <QuickAction type="lite" radius={50} href="/components" exactMatch={false} tooltip="Components">
-                  <Layout size={20} />
-                </QuickAction>
-                <QuickAction type="lite" radius={50} href="/hooks" exactMatch={false} tooltip="Hooks">
-                  <Anchor size={20} />
-                </QuickAction>
+                <NextLink href="/guide" passHref legacyBehavior>
+                  <QuickAction active={pathname.startsWith('/guide')} tooltip="Guide">
+                    <Code size={20} />
+                  </QuickAction>
+                </NextLink>
+                <NextLink href="/components" passHref legacyBehavior>
+                  <QuickAction active={pathname.startsWith('/components')} tooltip="Components">
+                    <Layout size={20} />
+                  </QuickAction>
+                </NextLink>
+                <NextLink href="/hooks" passHref legacyBehavior>
+                  <QuickAction active={pathname.startsWith('/hooks')} tooltip="Hooks">
+                    <Anchor size={20} />
+                  </QuickAction>
+                </NextLink>
                 <Divider w={'100%'}></Divider>
-
-                <QuickAction href="https://github.com/red-ninjas/himalaya-ui" target="_blank" type="lite" radius={50} tooltip="On Github">
-                  <Github size={20} />
-                </QuickAction>
+                <NextLink href="https://github.com/red-ninjas/himalaya-ui" passHref legacyBehavior>
+                  <QuickAction target="_blank" tooltip="On Github">
+                    <Github size={20} />
+                  </QuickAction>
+                </NextLink>
               </QuickBar>
             </QuickBarLayout>
           </QuickBarProvider>
           <MobileMenu>
-            <MobileMenu.Item url="/" title="Home" />
+            <NextLink passHref legacyBehavior href={'/'}>
+              <MobileMenu.Item active={pathname == '/' || pathname == ''} title="Home" />
+            </NextLink>
             {metaData.map((df, index) => (
               <MobileMenu.Group key={index} title={capitalize(df.name)} expanded={index < 1}>
                 {df.children.map((child, childIndex) => (
                   <MobileMenu.SubGroup key={childIndex} title={capitalize(child.name)}>
                     {child.children.map((item, itemIndex) => (
-                      <MobileMenu.Item key={itemIndex} url={item.url} title={item.name} />
+                      <NextLink passHref legacyBehavior href={item.url} key={itemIndex}>
+                        <MobileMenu.Item active={pathname == df.url} title={item.name} />
+                      </NextLink>
                     ))}
                   </MobileMenu.SubGroup>
                 ))}
@@ -147,57 +167,57 @@ export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
         </MobileMenuProvider>
         <style global jsx>{`
           .attr-name {
-            color: ${theme.palette.background.accents.accents_6};
+            color: var(--color-background-300);
           }
           .attr-value {
-            color: ${theme.palette.background.accents.accents_4};
+            color: var(--color-background-500);
           }
           .language-javascript {
-            color: ${theme.palette.background.accents.accents_4};
+            color: var(--color-background-500);
           }
           .class-name {
-            color: ${theme.palette.warning.value};
+            color: var(--color-warning-1000);
           }
           .maybe-class-name {
-            color: ${theme.palette.code.value};
+            color: var(--color-code-1000);
           }
           .token.string {
-            color: ${theme.palette.success.value};
+            color: var(--color-success-1000);
           }
           .token.comment {
-            color: ${theme.palette.background.accents.accents_3};
+            color: var(--color-background-600);
           }
           .keyword {
-            color: ${theme.palette.code.value};
+            color: var(--color-code-1000);
           }
           .attr-name {
-            color: ${theme.palette.tertiary.value};
+            color: var(--color-tertiary-1000);
           }
           .punctuation {
-            color: ${theme.palette.foreground.accents.accents_3};
+            color: var(--color-foreground-600);
           }
           .property-access {
-            color: ${theme.palette.primary.darker};
+            color: var(--color-primary-1100);
           }
           .imports {
-            color: ${theme.palette.tertiary.value};
+            color: var(--color-tertiary-1000);
           }
           .plain-text {
-            color: ${theme.palette.background.accents.accents_6};
+            color: var(--color-background-300);
           }
           .tag {
-            color: ${theme.palette.primary.value};
+            color: var(--color-primary-1000);
           }
           .logo {
             padding-bottom: 6px;
-            color: ${theme.palette.foreground.value};
+            color: var(--color-foreground-1000);
           }
 
           .logo,
           .brand {
             display: inline-flex;
             align-items: center;
-            color: ${theme.palette.foreground.value};
+            color: var(--color-foreground-1000);
           }
 
           .brand {

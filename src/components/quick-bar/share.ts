@@ -1,16 +1,21 @@
-import { QuickActionTypes } from '../utils/prop-types';
-import { HTMLAttributeAnchorTarget } from 'react';
+import { UIColorTypes } from '../themes/presets';
+import { ScaleResponsiveParameter } from '../use-scale';
 
-export interface QuickBarLayoutProps {
+export interface LayoutProps {
   animationTime?: number;
+  hasBorder?: boolean;
+  disabled?: ScaleResponsiveParameter<boolean>;
 }
 
-export interface QuickActionProps {
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof LayoutProps>;
+export type QuickBarLayoutProps = LayoutProps & NativeAttrs;
+
+export interface ActionProps {
   tooltip?: string | React.ReactNode;
-  exactMatch?: boolean;
-  radius?: number;
-  target?: HTMLAttributeAnchorTarget | undefined;
-  highlightLeft?: number;
-  href?: string;
-  type?: QuickActionTypes;
+  active?: boolean;
+  type?: UIColorTypes;
+  space?: ScaleResponsiveParameter<number | string>;
 }
+
+type ActionPropsNative = Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, keyof ActionProps>;
+export type QuickActionProps = ActionProps & ActionPropsNative;

@@ -1,3 +1,5 @@
+import { Gradient } from '../themes/presets';
+
 export const hexToRgb = (color: string): [number, number, number] => {
   const fullReg = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
   const full = color.replace(fullReg, (_, r, g, b) => `${r}${r}${g}${g}${b}${b}`);
@@ -6,6 +8,23 @@ export const hexToRgb = (color: string): [number, number, number] => {
     throw new Error(`HimalayaUI: Unsupported ${color} color.`);
   }
   return [Number.parseInt(values[1], 16), Number.parseInt(values[2], 16), Number.parseInt(values[3], 16)];
+};
+export const isGradient = (obj: any): obj is Gradient => {
+  if (typeof obj === 'string') {
+    return false;
+  }
+  return obj && 'from' in obj && 'to' in obj;
+};
+
+export const isColorVariable = obj => {
+  if (typeof obj === 'string') {
+    return false;
+  }
+  return obj && 'hex_1000' in obj;
+};
+
+export const isSingleColor = obj => {
+  return typeof obj === 'string';
 };
 
 export const hexToRgbFallBack = (color: string): string => {

@@ -33,7 +33,7 @@ const Backdrop: React.FC<React.PropsWithChildren<BackdropProps>> = React.memo(
     transitionTime = 150,
     ...props
   }: React.PropsWithChildren<BackdropProps>) => {
-    const { RESPONSIVE } = useScale();
+    const { SCALE } = useScale();
     const theme = useTheme();
     const [, setIsContentMouseDown, IsContentMouseDownRef] = useCurrentState(false);
     const clickHandler = (event: MouseEvent<HTMLElement>) => {
@@ -110,7 +110,7 @@ const Backdrop: React.FC<React.PropsWithChildren<BackdropProps>> = React.memo(
               opacity: 0;
             }
 
-            ${RESPONSIVE.w(1, value => `width: ${value};`, '450px')}
+            ${SCALE.w(1, value => `width: ${value};`, '450px')}
           `}</style>
         </div>
       </CssTransition>

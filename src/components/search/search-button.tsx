@@ -10,8 +10,9 @@ export type SearchButtonProps = {
   key?: KeyCode;
   mod?: KeyMod;
 };
-const SearchButtonComponent: React.FC<SearchButtonProps & keyboardiProps> = React.memo(props => {
-  const { SCALES } = useScale();
+const SearchButtonComponent: React.FC<SearchButtonProps & keyboardiProps> = props => {
+  const { SCALE } = useScale();
+
   const { setIsEnabled } = useSearch();
 
   const keyCmd: KeyCode = props.key || KeyCode.KEY_K;
@@ -29,8 +30,6 @@ const SearchButtonComponent: React.FC<SearchButtonProps & keyboardiProps> = Reac
       <style jsx>{`
         .wrapper {
           display: inline-flex;
-          padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
-          margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
         }
 
         .wrapper :global(kbd.shortcuts) {
@@ -39,10 +38,13 @@ const SearchButtonComponent: React.FC<SearchButtonProps & keyboardiProps> = Reac
           opacity: 0.75;
           border: none;
         }
+
+        ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'wrapper')}
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'wrapper')}
       `}</style>
     </div>
   );
-});
+};
 SearchButtonComponent.displayName = 'HimalayaSearchButton';
-const SearchButton = withScale(SearchButtonComponent);
+const SearchButton = React.memo(withScale(SearchButtonComponent));
 export default SearchButton;

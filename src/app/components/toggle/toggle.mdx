@@ -1,10 +1,10 @@
-import { Layout, Playground, Attributes } from 'lib/components'
-import { Toggle, Spacer } from 'components'
+import { Layout, Playground, Attributes } from 'lib/components';
+import { Toggle, Spacer } from 'components';
 
 export const meta = {
   title: 'Toggle',
   group: 'Data Entry',
-}
+};
 
 # Toggle
 
@@ -27,6 +27,8 @@ Displays a boolean value.
   scope={{ Toggle, Spacer }}
   code={`
 <>
+  <Toggle type="primary" initialChecked />
+  <Spacer h={.5} />
   <Toggle type="default" initialChecked />
   <Spacer h={.5} />
   <Toggle type="secondary" initialChecked />
@@ -81,21 +83,21 @@ Displays a boolean value.
 
 ```ts
 interface ToggleEventTarget {
-  checked: boolean
+  checked: boolean;
 }
 
 export interface ToggleEvent {
-  target: ToggleEventTarget
-  stopPropagation: () => void
-  preventDefault: () => void
-  nativeEvent: React.ChangeEvent
+  target: ToggleEventTarget;
+  stopPropagation: () => void;
+  preventDefault: () => void;
+  nativeEvent: React.ChangeEvent;
 }
 ```
 
 <Attributes.Title>ToggleTypes</Attributes.Title>
 
 ```ts
-type ToggleTypes = 'default' | 'primary' | 'tertiary' | 'secondary' | 'success' | 'warning' | 'error'
+type ToggleTypes = 'default' | 'primary' | 'tertiary' | 'secondary' | 'success' | 'warning' | 'error';
 ```
 
 </Attributes>

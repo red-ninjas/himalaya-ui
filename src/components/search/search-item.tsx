@@ -1,5 +1,4 @@
 'use client';
-import useTheme from '../use-theme';
 import Text from '../text';
 import React, { FocusEvent, MouseEvent } from 'react';
 import { SearchResult } from '.';
@@ -13,13 +12,12 @@ export type SearchItemProps = {
 };
 
 const SearchItem: React.FC<SearchItemProps> = ({ data, onMouseOver, onSelect, onFocus, onBlur = () => {} }) => {
-  const theme = useTheme();
   const selectHandler = () => {
     onSelect(data.url);
   };
 
   return (
-    <li role="option">
+    <li role="option" aria-selected="true">
       <button className="container" onClick={selectHandler} onMouseOver={onMouseOver} onFocus={onFocus} onBlur={onBlur} data-search-item>
         <Text font="14px" className="value" span>
           {data.symbol} {data.name}
@@ -36,11 +34,11 @@ const SearchItem: React.FC<SearchItemProps> = ({ data, onMouseOver, onSelect, on
             transition: color 200ms ease;
             outline: none;
             border: 0;
-            color: ${theme.palette.background.accents.accents_4};
+            color: var(--color-background-500);
             background-color: transparent;
           }
           .container:focus {
-            color: ${theme.palette.foreground.value};
+            color: var(--color-foreground-1000);
           }
           .container :global(.value) {
           }

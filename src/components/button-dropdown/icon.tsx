@@ -1,18 +1,12 @@
 import React from 'react';
 
-interface Props {
-  color?: string;
-  height?: string;
-}
-
-const ButtonDropdownIcon: React.FC<Props> = ({ color, height }) => {
+const ButtonDropdownIcon: React.FC = () => {
   return (
     <svg
-      stroke={color}
-      style={{ color }}
+      stroke={`var(--ui-dropdown-color)`}
       viewBox="0 0 24 24"
-      width={height}
-      height={height}
+      width={`auto`}
+      height={`auto`}
       strokeWidth="1"
       strokeLinecap="round"
       strokeLinejoin="round"
@@ -24,6 +18,10 @@ const ButtonDropdownIcon: React.FC<Props> = ({ color, height }) => {
       <style jsx>{`
         svg {
           transform: scale(0.6);
+          width: var(--ui-dropdown-height);
+          height: var(--ui-dropdown-height);
+          color: var(--ui-dropdown-color);
+          stroke: var(--ui-dropdown-color);
         }
       `}</style>
     </svg>

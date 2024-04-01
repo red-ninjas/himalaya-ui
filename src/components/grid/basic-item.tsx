@@ -2,7 +2,7 @@
 import React, { useMemo } from 'react';
 import useClasses from '../use-classes';
 import useLayout from '../use-layout';
-import useScale, { ScaleResponsiveParameter, responsiveCss } from '../use-scale';
+import useScale, { ScaleResponsiveParameter, customResponsiveAttribute } from '../use-scale';
 import { GridAlignContent, GridAlignItems, GridDirection, GridJustify } from './grid-types';
 
 export type GridBreakpointsValue = number | boolean;
@@ -64,7 +64,7 @@ const GridBasicItem: React.FC<React.PropsWithChildren<GridBasicItemProps>> = ({
   className = '',
 }: React.PropsWithChildren<GridBasicItemProps>) => {
   const layoutRoot = useLayout();
-  const { RESPONSIVE } = useScale();
+  const { SCALE, UNIT, CLASS_NAMES } = useScale();
 
   const classes = useMemo(() => {
     const aligns: { [key: string]: any } = {
@@ -102,7 +102,7 @@ const GridBasicItem: React.FC<React.PropsWithChildren<GridBasicItemProps>> = ({
   );
 
   return (
-    <div className={useClasses('item height font', classes, className)}>
+    <div className={useClasses('grid-item', classes, className, CLASS_NAMES)}>
       {children}
       <style jsx>
         {`
@@ -146,14 +146,16 @@ const GridBasicItem: React.FC<React.PropsWithChildren<GridBasicItemProps>> = ({
             }
           }
 
-          ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto')}
-          ${RESPONSIVE.font(1, value => `font-size: ${value};`, 'inherit')}
+          ${SCALE.h(1, value => `height: ${value};`, 'auto', 'grid-item')}
+          ${SCALE.font(1, value => `font-size: ${value};`, 'inherit', 'grid-item')}
 
-          ${responsiveCss(order, 'order', layoutRoot.breakpoints, value => `order: ${value};`)}
-          ${responsiveCss(justify, 'justify', layoutRoot.breakpoints, value => `justify-content: ${value};`)}
-          ${responsiveCss(direction, 'direction', layoutRoot.breakpoints, value => `flex-direction: ${value};`)}
-          ${responsiveCss(alignContent, 'alignContent', layoutRoot.breakpoints, value => `align-content: ${value};`)}
-          ${responsiveCss(alignItems, 'alignItems', layoutRoot.breakpoints, value => `align-items: ${value};`)}
+          ${customResponsiveAttribute(order, 'grid-item', layoutRoot.breakpoints, value => `order: ${value};`)}
+          ${customResponsiveAttribute(justify, 'grid-item', layoutRoot.breakpoints, value => `justify-content: ${value};`)}
+          ${customResponsiveAttribute(direction, 'grid-item', layoutRoot.breakpoints, value => `flex-direction: ${value};`)}
+          ${customResponsiveAttribute(alignContent, 'grid-item', layoutRoot.breakpoints, value => `align-content: ${value};`)}
+          ${customResponsiveAttribute(alignItems, 'grid-item', layoutRoot.breakpoints, value => `align-items: ${value};`)}
+
+          ${UNIT('grid-item')}
         `}
       </style>
     </div>

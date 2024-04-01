@@ -1,7 +1,7 @@
 'use client';
-import React, { useRef, useState } from 'react';
-import { LivePreview, LiveProvider, LiveError } from 'react-live';
 import { useLayout, useTheme } from 'components';
+import React, { useRef, useState } from 'react';
+import { LiveError, LivePreview, LiveProvider } from 'react-live';
 import makeCodeTheme from './code-theme';
 import Editor from './editor';
 
@@ -13,9 +13,7 @@ export interface Props {
 }
 
 const DynamicLive: React.FC<Props> = ({ code, scope }) => {
-  const theme = useTheme();
-  const layout = useLayout();
-  const codeTheme = makeCodeTheme(theme);
+  const codeTheme = makeCodeTheme();
 
   scope['useState'] = useState;
   scope['useRef'] = useRef;
@@ -32,7 +30,7 @@ const DynamicLive: React.FC<Props> = ({ code, scope }) => {
       <style jsx>{`
         .wrapper {
           width: 100%;
-          padding: ${layout.pageMargin};
+          padding: var(--layout-page-margin);
           display: flex;
           flex-direction: column;
           box-sizing: border-box;
@@ -44,9 +42,9 @@ const DynamicLive: React.FC<Props> = ({ code, scope }) => {
         .wrapper > :global(.live-error) {
           padding: 10px 12px 0 12px;
           margin-bottom: 0;
-          border: 2px ${theme.palette.error.value} dotted;
+          border: 2px var(--color-error-1000) dotted;
           border-radius: 10px;
-          color: ${theme.palette.error.light};
+          color: var(--color-error-900);
           font-size: 13px;
         }
       `}</style>

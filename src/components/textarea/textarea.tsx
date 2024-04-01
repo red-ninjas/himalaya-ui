@@ -1,26 +1,23 @@
 'use client';
 import React, { useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react';
-import { getColors } from '../input/styles';
+import { UIColorTypes } from '../themes/presets';
 import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';
-import useTheme from '../use-theme';
-import { addColorAlpha } from '../utils/color';
-import { NormalTypes, tuple } from '../utils/prop-types';
+import { tuple } from '../utils/prop-types';
 
 const resizeTypes = tuple('none', 'both', 'horizontal', 'vertical', 'initial', 'inherit');
 export type TextareaResizes = (typeof resizeTypes)[number];
-export type TextareaTypes = NormalTypes;
 interface Props {
   value?: string;
   initialValue?: string;
   placeholder?: string;
-  type?: TextareaTypes;
+  type?: UIColorTypes;
   disabled?: boolean;
   readOnly?: boolean;
+  hasBorder?: boolean;
   onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   onFocus?: (e: React.FocusEvent<HTMLTextAreaElement>) => void;
   onBlur?: (e: React.FocusEvent<HTMLTextAreaElement>) => void;
-  className?: string;
   resize?: TextareaResizes;
 }
 
@@ -30,12 +27,13 @@ export type TextareaProps = Props & NativeAttrs;
 const TextareaComponent = React.forwardRef<HTMLTextAreaElement, React.PropsWithChildren<TextareaProps>>(
   (
     {
-      type = 'default' as TextareaTypes,
+      type = 'default' as UIColorTypes,
       disabled = false,
       readOnly = false,
       onFocus,
       onBlur,
-      className = '',
+      hasBorder = true,
+      className,
       initialValue = '',
       onChange,
       value,
@@ -45,15 +43,13 @@ const TextareaComponent = React.forwardRef<HTMLTextAreaElement, React.PropsWithC
     }: React.PropsWithChildren<TextareaProps>,
     ref: React.Ref<HTMLTextAreaElement | null>,
   ) => {
-    const theme = useTheme();
-    const { SCALES } = useScale();
+    const { UNIT, SCALE, CLASS_NAMES } = useScale();
     const textareaRef = useRef<HTMLTextAreaElement>(null);
     useImperativeHandle(ref, () => textareaRef.current);
     const isControlledComponent = useMemo(() => value !== undefined, [value]);
     const [selfValue, setSelfValue] = useState<string>(initialValue);
     const [hover, setHover] = useState<boolean>(false);
-    const { color, borderColor, hoverBorder } = useMemo(() => getColors(theme.palette, type), [theme.palette, type]);
-    const classes = useClasses('wrapper', { hover, disabled }, className);
+    const classes = useClasses('wrapper', { hover, disabled }, className, type ? 'color-' + type : null, CLASS_NAMES);
 
     const changeHandler = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
       if (disabled || readOnly) return;
@@ -84,6 +80,7 @@ const TextareaComponent = React.forwardRef<HTMLTextAreaElement, React.PropsWithC
     return (
       <div className={classes}>
         <textarea
+          className="textarea"
           ref={textareaRef}
           disabled={disabled}
           placeholder={placeholder}
@@ -98,41 +95,52 @@ const TextareaComponent = React.forwardRef<HTMLTextAreaElement, React.PropsWithC
             display: inline-flex;
             box-sizing: border-box;
             user-select: none;
-            border-radius: ${SCALES.r(1, theme.style.radius)};
-            border: 1px solid ${borderColor};
-            color: ${color};
+
+            border-color: var(--select-border-color);
+            border-width: ${hasBorder ? '1px' : '0'};
+            border-style: solid;
+
+            color: var(--select-color);
             transition:
               box-shadow 200ms ease 0s;
               border 0.2s ease 0s,
               color 0.2s ease 0s;
             min-width: 12.5rem;
             max-width: 95vw;
-            --textarea-font-size: ${SCALES.font(0.875)};
-            --textarea-height: ${SCALES.h(1, 'auto')};
-            width: ${SCALES.w(1, 'initial')};
             height: var(--textarea-height);
-            margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
+
+            --select-border-color: var(--color-border);
+            --select-border-color-hover: var(--color-shade-border);
+            --select-border-color-hover-rgb: var(--color-shade-border-rgb);
+            --select-color: var(--color-foreground-1000);
+            --select-background: var(--color-background-1000);
+
+            background: var(--select-background);
           }
+
           .wrapper.hover {
-            border-color: ${hoverBorder};
-            box-shadow: 0 0 0 4px ${addColorAlpha(hoverBorder, 0.2)};
+            border-color: var( --select-border-color-hover);
+            box-shadow: ${hasBorder ? `0 0 0 4px rgba(var(--select-border-color-hover-rgb), 0.2)` : `none`};
           }
           .wrapper.disabled {
-            background-color: ${theme.palette.background.accents.accents_1};
-            border-color: ${theme.palette.border.value};
+            --select-border-color: var(-color-border-1000);
+            --select-border-color-hover: var(-color-border-1000);
+            --select-border-color-hover-rgb: var(-color-border-1000);
+            --select-color: var(--color-foreground-1000);
+            --select-background: var(--color-background-900);
+
             cursor: not-allowed;
           }
-          textarea {
+          .textarea {
             background-color: transparent;
             box-shadow: none;
             display: block;
-            font-family: ${theme.font.sans};
+            font-family: var(--theme-font-sans);
             font-size: var(--textarea-font-size);
             width: 100%;
             height: var(--textarea-height);
             border: none;
             outline: none;
-            padding: ${SCALES.pt(0.5)} ${SCALES.pr(0.5)} ${SCALES.pb(0.5)} ${SCALES.pl(0.5)};
             resize: ${resize};
           }
           .disabled > textarea {
@@ -142,8 +150,19 @@ const TextareaComponent = React.forwardRef<HTMLTextAreaElement, React.PropsWithC
           textarea:-webkit-autofill:hover,
           textarea:-webkit-autofill:active,
           textarea:-webkit-autofill:focus {
-            -webkit-box-shadow: 0 0 0 30px ${theme.palette.background.value} inset !important;
+            -webkit-box-shadow: 0 0 0 30px var(--color-background-1000) inset !important;
           }
+
+
+
+          ${SCALE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'wrapper')}
+          ${SCALE.font(0.875, value => `--textarea-font-size: ${value};`, undefined, 'wrapper')}
+          ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'wrapper')}
+          ${SCALE.w(1, value => `width: ${value};`, 'initial', 'wrapper')}
+          ${SCALE.h(1, value => `--textarea-height: ${value};`, 'auto', 'wrapper')}
+          ${SCALE.padding(0.5, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'textarea')}
+
+          ${UNIT('wrapper')}
         `}</style>
       </div>
     );

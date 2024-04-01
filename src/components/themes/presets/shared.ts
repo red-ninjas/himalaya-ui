@@ -1,4 +1,4 @@
-import { UIStyling, UIThemesFont } from './index';
+import { UIThemesFont } from './index';
 
 export const defaultFont: UIThemesFont = {
   sans: '"Instrument Sans Variable", "Inter Variable", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif',
@@ -7,8 +7,4 @@ export const defaultFont: UIThemesFont = {
   baseSize: 16,
   headingFactor: 0.5,
   baseLineHeight: 24,
-};
-
-export const defaultStyles: UIStyling = {
-  radius: '6px',
 };

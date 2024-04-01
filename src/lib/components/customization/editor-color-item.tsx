@@ -1,4 +1,4 @@
-import { Popover, Themes, useLayout, useTheme } from 'components';
+import { Popover, Themes, useTheme } from 'components';
 import { UIThemesPalette } from 'components/themes';
 import React, { useMemo } from 'react';
 import { TwitterPicker } from 'react-color';
@@ -35,7 +35,6 @@ const getRandomColors = () => {
 
 const EditorColorItem: React.FC<React.PropsWithChildren<Props>> = ({ keyName }) => {
   const theme = useTheme();
-  const layout = useLayout();
   const label = `${keyName}`;
   const mainColor = useMemo(() => theme.palette[keyName], [theme.palette, keyName]);
   let mainColorConverted = '';
@@ -61,13 +60,13 @@ const EditorColorItem: React.FC<React.PropsWithChildren<Props>> = ({ keyName }) 
           .editor-item {
             background-color: transparent;
             width: auto;
-            padding: 0 ${layout.gapHalf};
+            padding: 0 var(--layout-gap-half);
             line-height: 2rem;
             display: inline-flex;
             align-items: center;
-            border: 1px solid ${theme.palette.border.value};
-            border-radius: ${theme.style.radius};
-            color: ${theme.palette.background.accents.accents_5};
+            border: 1px solid var(--color-border-1000);
+            border-radius: var(--layout-radius);
+            color: var(--color-background-400);
             margin-right: 0.75rem;
             margin-bottom: 0.5rem;
             cursor: pointer;
@@ -85,7 +84,7 @@ const EditorColorItem: React.FC<React.PropsWithChildren<Props>> = ({ keyName }) 
           }
 
           .editor-item:hover {
-            color: ${theme.palette.background.accents.accents_8};
+            color: var(--color-background-100);
           }
 
           .editor-item:hover .dot {

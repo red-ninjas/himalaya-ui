@@ -1,9 +1,9 @@
 'use client';
 import React from 'react';
-import useTheme from '../use-theme';
 import Grid from '../grid';
-import SelectClearIcon from './select-icon-clear';
+import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';
+import SelectClearIcon from './select-icon-clear';
 
 interface Props {
   disabled: boolean;
@@ -11,12 +11,11 @@ interface Props {
 }
 
 const SelectMultipleValue: React.FC<React.PropsWithChildren<Props>> = ({ disabled, onClear, children }) => {
-  const theme = useTheme();
-  const { SCALES } = useScale();
+  const { SCALE, UNIT, CLASS_NAMES } = useScale();
 
   return (
     <Grid>
-      <div className="item">
+      <div className={(useClasses('item', disabled), CLASS_NAMES)}>
         {children}
         {!!onClear && <SelectClearIcon onClick={onClear} />}
       </div>
@@ -29,9 +28,14 @@ const SelectMultipleValue: React.FC<React.PropsWithChildren<Props>> = ({ disable
           padding: 0 0.5em;
           font-size: var(--select-font-size);
           height: calc(var(--select-font-size) * 2);
-          border-radius: ${SCALES.r(1, theme.style.radius)};
-          background-color: ${theme.palette.background.accents.accents_0};
-          color: ${disabled ? theme.palette.background.accents.accents_4 : theme.palette.foreground.value};
+
+          --multi-option-color: var(--color-foreground-1000);
+          --multi-option-bg: var(--color-background-900);
+          background-color: var(--multi-option-bg);
+        }
+
+        .item.disabled {
+          --multi-option-color: var(--color-foreground-500);
         }
 
         .item > :global(div:not(.clear-icon)),
@@ -42,6 +46,8 @@ const SelectMultipleValue: React.FC<React.PropsWithChildren<Props>> = ({ disable
           margin: 0;
           color: inherit;
         }
+        ${SCALE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'item')}
+        ${UNIT('item')}
       `}</style>
     </Grid>
   );

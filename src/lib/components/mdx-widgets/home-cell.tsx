@@ -1,6 +1,6 @@
 'use client';
 
-import { Link, Text, useTheme } from 'components';
+import { Link, Text } from 'components';
 import NextLink from 'next/link';
 import React from 'react';
 
@@ -12,7 +12,6 @@ export type HomeCellProps = {
 };
 
 const HomeCell: React.FC<HomeCellProps> = ({ url, title, desc, icon }) => {
-  const theme = useTheme();
   return (
     <NextLink href={url} passHref legacyBehavior>
       <Link style={{ width: '100%', height: '100%' }}>
@@ -22,7 +21,7 @@ const HomeCell: React.FC<HomeCellProps> = ({ url, title, desc, icon }) => {
             {title}
           </Text>
 
-          <Text color={theme.palette.background.accents.accents_6} m={0} font={1} className="feature-desc">
+          <Text color={`var(--color-foreground-700)`} m={0} font={1} className="feature-desc">
             {desc}
           </Text>
 
@@ -32,7 +31,7 @@ const HomeCell: React.FC<HomeCellProps> = ({ url, title, desc, icon }) => {
           .feature {
             width: 100%;
             padding: 40px 40px;
-            border: 1px solid ${theme.palette.border.value};
+            border: 1px solid var(--color-border-1000);
             height: 100%;
             border-radius: 10px;
             display: flex;
@@ -43,17 +42,14 @@ const HomeCell: React.FC<HomeCellProps> = ({ url, title, desc, icon }) => {
             height: 40px;
             width: 40px;
             border-radius: 2rem;
-            background: ${theme.palette.background.accents.accents_0};
-            border: 1px solid ${theme.palette.border.value};
-            color: ${theme.palette.background.accents.accents_5};
+            background: var(--color-background-900);
+            border: 1px solid var(--color-border-1000);
+            color: var(--color-background-400);
             display: flex;
             align-items: center;
             justify-content: center;
             border-radius: 8px;
             padding: 8px;
-          }
-          :global(.feature-desc) {
-            color: ${theme.palette.background.accents.accents_6} !important;
           }
         `}</style>
       </Link>

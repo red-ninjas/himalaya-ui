@@ -42,7 +42,7 @@ const MobileMenuProvider: React.FC<React.PropsWithChildren<MobileMenuProviderPro
           transition: transform ${contentAnimationTime}ms ease-out;
         }
         .mobile-menu-active {
-          transition: all ${contentAnimationTime}ms ease-in;
+          transition: transform ${contentAnimationTime}ms ease-in;
         }
       `}</style>
     </MobileMenuContext.Provider>

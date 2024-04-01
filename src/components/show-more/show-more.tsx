@@ -2,9 +2,9 @@
 import React, { PropsWithChildren, useEffect, useState } from 'react';
 import Button from '../button';
 import { ChevronDown } from '../icons';
+import { UIColorTypes } from '../themes';
 import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';
-import useTheme from '../use-theme';
 
 interface Props {
   expanded: boolean;
@@ -12,6 +12,7 @@ interface Props {
   showLines?: boolean;
   showMoreTitle?: string;
   showLessTitle?: string;
+  type?: UIColorTypes;
 }
 
 const useRefDimensions = (ref: React.RefObject<HTMLDivElement>) => {
@@ -40,21 +41,22 @@ const useRefDimensions = (ref: React.RefObject<HTMLDivElement>) => {
   return height;
 };
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
 export type ShowMoreProps = Props & NativeAttrs;
 
 const ShowMore: React.FC<PropsWithChildren<ShowMoreProps>> = ({
   children,
   expanded,
   onClick,
+  className,
   showLines = true,
   showMoreTitle = 'Show more',
   showLessTitle = 'Show less',
+  type = 'secondary',
   ...props
 }) => {
-  const theme = useTheme();
   const [iconRotated, setIconRotated] = useState(false);
-  const { SCALES, RESPONSIVE } = useScale();
+  const { SCALE, UNIT, CLASS_NAMES } = useScale();
 
   const ref = React.createRef<HTMLDivElement>();
   const dimensions = useRefDimensions(ref);
@@ -67,18 +69,19 @@ const ShowMore: React.FC<PropsWithChildren<ShowMoreProps>> = ({
 
   return (
     <div
-      className={`show-more ${expanded ? 'expanded' : 'collapsed'}`}
+      className={useClasses(`show-more`, expanded ? 'expanded' : 'collapsed', className, CLASS_NAMES)}
+      {...props}
       onClick={() => {
         onClick();
         toggleIconRotation();
       }}
     >
-      <div className="show-more-bar margin padding">
+      <div className="show-more-bar">
         {showLines && <div className="show-more-line" />}
 
         <Button
-          type="secondary"
-          scale={0.9}
+          type={type}
+          scale={0.8}
           iconRight={
             <ChevronDown
               className={useClasses('chevon-icon', {
@@ -87,7 +90,6 @@ const ShowMore: React.FC<PropsWithChildren<ShowMoreProps>> = ({
             />
           }
           auto
-          {...props}
         >
           {buttonTitle}
         </Button>
@@ -107,33 +109,28 @@ const ShowMore: React.FC<PropsWithChildren<ShowMoreProps>> = ({
         .show-more {
           width: 100%;
           display: block;
-
-          .show-more-bar {
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-            width: 100%;
-            flex-wrap: nowrap;
-          }
-
-          .show-more-line {
-            width: 100%;
-            height: ${SCALES.h(0.08)};
-            background-color: ${theme.palette.border.value};
-          }
-
-          .show-more-content {
-            height: 0;
-            transition: height 0.3s ease;
-            overflow: hidden;
-            width: 100%;
-            display: block;
-          }
-
-          ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`)}
-          ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`)}
+        }
+        .show-more-bar {
+          display: flex;
+          align-items: center;
+          cursor: pointer;
+          width: 100%;
+          flex-wrap: nowrap;
         }
 
+        .show-more-line {
+          width: 100%;
+          height: 1.5px;
+          background-color: var(--color-border-1000);
+        }
+
+        .show-more-content {
+          height: 0;
+          transition: height 0.3s ease;
+          overflow: hidden;
+          width: 100%;
+          display: block;
+        }
         .show-more :global(.chevon-icon) {
           transition: transform 0.3s ease-in-out;
         }
@@ -146,6 +143,10 @@ const ShowMore: React.FC<PropsWithChildren<ShowMoreProps>> = ({
             height: ${dimensions}px;
           }
         }
+
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'show-more')}
+        ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'show-more')}
+        ${UNIT('show-more')}
       `}</style>
     </div>
   );

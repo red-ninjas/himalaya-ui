@@ -6,12 +6,11 @@ interface Props {
   x: number;
   y: number;
   onCompleted: () => void;
-  color: string;
 }
 
 export type ButtonDrip = Props;
 
-const ButtonDrip: React.FC<ButtonDrip> = ({ x = 0, y = 0, color, onCompleted }: ButtonDrip) => {
+const ButtonDrip: React.FC<ButtonDrip> = ({ x = 0, y = 0, onCompleted }: ButtonDrip) => {
   const dripRef = useRef<HTMLDivElement>(null);
   /* istanbul ignore next */
   const top = Number.isNaN(+y) ? 0 : y - 10;
@@ -33,7 +32,7 @@ const ButtonDrip: React.FC<ButtonDrip> = ({ x = 0, y = 0, color, onCompleted }: 
     <div ref={dripRef} className="drip">
       <svg width="20" height="20" viewBox="0 0 20 20" style={{ top, left }}>
         <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
-          <g fill={color}>
+          <g fill={'rgba(var(--color-background-600-rgb), 0.65)'}>
             <rect width="100%" height="100%" rx="10" />
           </g>
         </g>

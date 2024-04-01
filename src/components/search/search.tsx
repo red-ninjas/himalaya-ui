@@ -8,10 +8,9 @@ import useCurrentState from '../use-current-state';
 import useInput from '../use-input';
 import useKeyboard, { KeyCode } from '../use-keyboard';
 import useModal from '../use-modal';
-import useTheme from '../use-theme';
-import { SearchProps, SearchResults } from './utils';
-import SearchItems, { SearchItemsRef } from './search-items';
 import useSearch from '../use-search';
+import SearchItems, { SearchItemsRef } from './search-items';
+import { SearchProps, SearchResults } from './utils';
 
 const focusNextElement = (containerElement: HTMLElement | null, done: () => void, isBack?: boolean) => {
   const focusTo = (child?: HTMLElement) => {
@@ -41,7 +40,6 @@ const focusNextElement = (containerElement: HTMLElement | null, done: () => void
 };
 
 const Search: React.FC<SearchProps> = ({ searchFunction, visibile = false, placeholder, onClose }: SearchProps) => {
-  const theme = useTheme();
   const router = useRouter();
   const { isEnabled, setIsEnabled } = useSearch();
   const [preventHover, setPreventHover, preventHoverRef] = useCurrentState<boolean>(false);
@@ -153,7 +151,17 @@ const Search: React.FC<SearchProps> = ({ searchFunction, visibile = false, place
   return (
     <div className="container" {...KeyBindings}>
       <Modal {...bindings} py={0} px={0.75} wrapClassName="search-menu" backdropClassName="bg-drop" positionClassName="search-position">
-        <Input ref={ref} w="100%" font="1.125rem" py={0.75} placeholder={placeholder || ''} className="search-input" clearable {...inputBindings} />
+        <Input
+          hasBorder={false}
+          ref={ref}
+          w="100%"
+          font="1.125rem"
+          py={0.75}
+          placeholder={placeholder || ''}
+          className="search-input"
+          clearable
+          {...inputBindings}
+        />
         {results.length > 0 && (
           <>
             <Divider mt={0} mb={1} />
@@ -164,8 +172,8 @@ const Search: React.FC<SearchProps> = ({ searchFunction, visibile = false, place
       <style jsx>{`
         .title {
           width: 100%;
-          color: ${theme.palette.background.value};
-          background-color: ${theme.palette.tertiary.value};
+          color: var(--color-background-1000);
+          background-color: var(--color-tertiary-1000);
           display: flex;
           justify-content: flex-end;
           padding: 0 10px;
@@ -216,4 +224,4 @@ const Search: React.FC<SearchProps> = ({ searchFunction, visibile = false, place
   );
 };
 
-export default Search;
+export default React.memo(Search);

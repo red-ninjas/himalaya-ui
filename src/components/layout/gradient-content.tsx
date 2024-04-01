@@ -1,21 +1,18 @@
 'use client';
-import useScale, { withScale } from '../use-scale';
-import { hexToRgb } from '../utils/color';
 import React from 'react';
-import useTheme from '../use-theme';
-import PageWidth from '../page-width';
 import { GradientContentProps } from '.';
+import PageWidth from '../page-width';
+import useScale, { withScale } from '../use-scale';
+import useClasses from '../use-classes';
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof GradientContentProps>;
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof GradientContentProps>;
 export type CardContentProps = GradientContentProps & NativeAttrs;
 
-const GradientContentComponent: React.FC<React.PropsWithChildren<CardContentProps>> = ({ children, maxHeight = '50vh', ...props }) => {
-  const theme = useTheme();
-  const { SCALES } = useScale();
-  const rgba = `rgba(${hexToRgb(theme.palette.background.accents.accents_1)}, 0.5)`;
-  const defaultGradient = `linear-gradient(to bottom, ${rgba}, ${theme.palette.background.value})`;
+const GradientContentComponent: React.FC<React.PropsWithChildren<CardContentProps>> = ({ children, maxHeight = '50vh', className, gradient, ...props }) => {
+  const { UNIT, SCALE, CLASS_NAMES } = useScale();
+  const defaultGradient = `linear-gradient(to bottom, rgba(var(--color-background-800-rgb), 0.5), var(--color-background-1000))`;
   return (
-    <div className="gradient-layout" {...props}>
+    <div className={useClasses('gradient-layout', className, CLASS_NAMES)} {...props}>
       <div className="gradient-content">
         <div className="bg-gradient">{props.img}</div>
         <div className="gradient-space">
@@ -24,23 +21,19 @@ const GradientContentComponent: React.FC<React.PropsWithChildren<CardContentProp
       </div>
       <style jsx>{`
         .gradient-content {
-          width: ${SCALES.w(0, '100%')};
-          height: ${SCALES.h(0, '100%')};
-
-          margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
           position: relative;
         }
         .gradient-layout {
-          background: ${theme.palette.background.value};
+          background: var(--color-background-1000);
           height: 100%;
-          padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
         }
         .gradient-space {
           position: relative;
         }
+
         .bg-gradient {
           position: absolute;
-          background: ${props.gradient || defaultGradient};
+          background: ${gradient ?? defaultGradient};
           width: 100%;
           z-index: 0;
           max-height: ${maxHeight};
@@ -48,6 +41,14 @@ const GradientContentComponent: React.FC<React.PropsWithChildren<CardContentProp
           top: 0;
           height: 100%;
         }
+
+        ${SCALE.h(1, value => `height: ${value};`, '100%', 'gradient-content')}
+        ${SCALE.w(1, value => `width: ${value}};`, `100%`, 'gradient-content')}
+
+        ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'gradient-layout')}
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'gradient-content')}
+
+        ${UNIT('gradient-layout')}
       `}</style>
     </div>
   );

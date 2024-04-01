@@ -1,6 +1,5 @@
 'use client';
 import React from 'react';
-import useTheme from '../use-theme';
 
 export interface TreeFileIconProps {
   color?: string;
@@ -9,7 +8,6 @@ export interface TreeFileIconProps {
 }
 
 const TreeFileIcon: React.FC<TreeFileIconProps> = ({ color, width = 22, height = 22 }: TreeFileIconProps) => {
-  const theme = useTheme();
   return (
     <svg
       viewBox="0 0 24 24"
@@ -26,7 +24,7 @@ const TreeFileIcon: React.FC<TreeFileIconProps> = ({ color, width = 22, height =
       <path d="M13 2v7h7" />
       <style jsx>{`
         svg {
-          color: ${color || theme.palette.background.accents.accents_8};
+          color: ${color || `var(--color-background-100)`};
         }
       `}</style>
     </svg>

@@ -1,10 +1,8 @@
 'use client';
-import { useRouter } from 'next/navigation';
 import React, { MouseEventHandler, PropsWithChildren, ReactNode, useRef, useState } from 'react';
 import { ChevronDown } from '../icons';
 import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';
-import useTheme from '../use-theme';
 import { pickChild } from '../utils/collections';
 import { INavigationItem } from './index';
 import MobileNavigationSubGroup from './subgroup';
@@ -15,10 +13,8 @@ export interface Props extends INavigationItem {
 type NativeAttrs = Omit<React.HTMLAttributes<HTMLAnchorElement>, keyof Props>;
 export type MobileNavigationGroupProps = Props & NativeAttrs;
 
-const MobileNavigationGroup: React.FC<PropsWithChildren<MobileNavigationGroupProps>> = ({ children, title, url, expanded = true, ...props }) => {
-  const theme = useTheme();
-  const { SCALES } = useScale();
-  const router = useRouter();
+const MobileNavigationGroup: React.FC<PropsWithChildren<MobileNavigationGroupProps>> = ({ children, title, expanded = true, ...props }) => {
+  const { UNIT, SCALE, CLASS_NAMES } = useScale();
   const ref = useRef<HTMLAnchorElement | null>(null);
   const [isExpanded, setIsExpanded] = useState(expanded);
 
@@ -27,16 +23,14 @@ const MobileNavigationGroup: React.FC<PropsWithChildren<MobileNavigationGroupPro
   const btnClass = useClasses({
     'mobile-navigation-item': true,
     'has-chevron': !!children,
+    CLASS_NAMES,
   });
 
   const childs = (childElements: ReactNode) => {
     return (
-      <div className={useClasses({ 'child-grid': true, 'grid-show': isExpanded })}>
+      <div className={useClasses('child-grid', { 'grid-show': isExpanded })}>
         <div className="child-elements">{childElements}</div>
         <style jsx>{`
-          .child-elements {
-            padding: ${SCALES.pt(0.25)} ${SCALES.pr(0)} ${SCALES.pb(0.25)} ${SCALES.pl(0)};
-          }
           .child-grid {
             visibility: hidden;
             height: 0;
@@ -47,7 +41,6 @@ const MobileNavigationGroup: React.FC<PropsWithChildren<MobileNavigationGroupPro
           .sub-child-grid {
             display: grid;
             height: auto;
-            margin-left: ${SCALES.pr(1.5)};
             grid-template-rows: repeat(1, 1fr);
           }
 
@@ -59,20 +52,29 @@ const MobileNavigationGroup: React.FC<PropsWithChildren<MobileNavigationGroupPro
             height: auto;
             visibility: visible;
           }
+
+          ${SCALE.ml(1.5, value => `margin-right: ${value};`, undefined, 'sub-child-grid')}
+
+          ${SCALE.padding(
+            {
+              top: 0.25,
+              bottom: 0.25,
+              left: 0,
+              right: 0,
+            },
+            value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
+            undefined,
+            'child-element',
+          )}
         `}</style>
       </div>
     );
   };
   const handleGroupClick: MouseEventHandler<HTMLAnchorElement> = e => {
-    e.preventDefault();
-    e.stopPropagation();
-
     setIsExpanded(!isExpanded);
-
-    if (url) {
-      router.push(url);
-    }
   };
+
+  const hasChildrens = !!children;
 
   return (
     <div
@@ -83,11 +85,11 @@ const MobileNavigationGroup: React.FC<PropsWithChildren<MobileNavigationGroupPro
     >
       <div className="navigation-group">
         <a {...props} className={`${btnClass} ${props.className || ''}`} ref={ref} onClick={e => handleGroupClick(e)}>
-          <span>{title}</span>
-          {!!children && (
+          <span className={useClasses('has-childs', hasChildrens)}>{title}</span>
+          {hasChildrens && (
             <span className="chevron-right">
-              <span className={useClasses({ chevron: true, 'chevron-expanded': isExpanded })}>
-                <ChevronDown size={SCALES.font(1)} />
+              <span className={useClasses('chevron', { 'chevron-expanded': isExpanded })}>
+                <ChevronDown />
               </span>
             </span>
           )}
@@ -101,6 +103,11 @@ const MobileNavigationGroup: React.FC<PropsWithChildren<MobileNavigationGroupPro
           width: 100%;
           position: relative;
           align-items: center;
+        }
+
+        .has-childs {
+          color: var(--color-foreground-1000);
+          font-weight: 600;
         }
 
         .navigation-group {
@@ -122,7 +129,6 @@ const MobileNavigationGroup: React.FC<PropsWithChildren<MobileNavigationGroupPro
         .chevron-right {
           position: relative;
           height: 100%;
-          margin-right: ${SCALES.pr(0.2)};
           bottom: 0;
           display: flex;
           align-items: center;
@@ -136,21 +142,15 @@ const MobileNavigationGroup: React.FC<PropsWithChildren<MobileNavigationGroupPro
           gap: 3px;
           white-space: nowrap;
           background-color: transparent;
-          color: ${theme.palette.background.accents.accents_5};
-          border-bottom: 1px solid ${theme.palette.border.value};
+          color: var(--color-background-400);
+          border-bottom: 1px solid var(--color-border-1000);
           user-select: none;
           display: flex;
           align-items: center;
           user-select: none;
-          font-size: ${SCALES.font(0.85)};
           font-weight: 500;
           line-height: normal;
-          width: ${SCALES.w(1, 'auto')};
-          height: ${SCALES.h(1, 'auto')};
 
-          padding: ${SCALES.pt(0.7)} ${SCALES.pr(0.85)} ${SCALES.pb(0.7)} ${SCALES.pl(0.85)};
-
-          margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
           z-index: 1;
 
           animation: fadeIn 200ms ease;
@@ -170,7 +170,6 @@ const MobileNavigationGroup: React.FC<PropsWithChildren<MobileNavigationGroupPro
         }
 
         .has-chevron {
-          padding-right: ${SCALES.pr(1.3)};
           justify-content: space-between;
         }
 
@@ -184,7 +183,7 @@ const MobileNavigationGroup: React.FC<PropsWithChildren<MobileNavigationGroupPro
           height: 2px;
           border-radius: 4px;
           transform: scaleX(0.75);
-          background-color: ${theme.palette.foreground.value};
+          background-color: var(--color-foreground-1000);
           transition:
             opacity,
             transform 200ms ease-in;
@@ -197,7 +196,7 @@ const MobileNavigationGroup: React.FC<PropsWithChildren<MobileNavigationGroupPro
         }
 
         .backdrop {
-          background: ${theme.palette.background.accents.accents_2};
+          background: var(--color-background-700);
           position: absolute;
           border-radius: 5px;
           width: 100%;
@@ -214,10 +213,30 @@ const MobileNavigationGroup: React.FC<PropsWithChildren<MobileNavigationGroupPro
         :global(.tooltip-content.menu-popover-item) {
           max-width: 600px;
         }
+
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'mobile-navigation-item')}
+        ${SCALE.padding(
+          {
+            top: 0.7,
+            bottom: 0.7,
+            left: 0.85,
+            right: 0.85,
+          },
+          value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
+          undefined,
+          'mobile-navigation-item',
+        )}
+        ${SCALE.w(1, value => `width: ${value};`, 'auto', 'mobile-navigation-item')}
+        ${SCALE.h(1, value => `height: ${value};`, 'auto', 'mobile-navigation-item')}
+        ${SCALE.font(0.85, value => `font-size: ${value};`, undefined, 'mobile-navigation-item')}
+        ${SCALE.mr(0.2, value => `margin-right: ${value};`, undefined, 'chevron-right')}
+        ${SCALE.pr(1.3, value => `padding-right: ${value};`, undefined, 'has-chevron')}
+
+        ${UNIT('mobile-navigation-item')}
       `}</style>
     </div>
   );
 };
-MobileNavigationGroup.displayName = 'HimalayaNavigationItem';
 
+MobileNavigationGroup.displayName = 'HimalayaMobileNavigationGroup';
 export default withScale(MobileNavigationGroup);

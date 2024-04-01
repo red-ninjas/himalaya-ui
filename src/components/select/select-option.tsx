@@ -1,12 +1,11 @@
 'use client';
 import React, { useMemo } from 'react';
-import useTheme from '../use-theme';
-import { useSelectContext } from './select-context';
-import useWarning from '../utils/use-warning';
-import Ellipsis from '../shared/ellipsis';
-import useScale, { withScale } from '../use-scale';
-import useClasses from '../use-classes';
 import Check from '../icons/check';
+import Ellipsis from '../shared/ellipsis';
+import useClasses from '../use-classes';
+import useScale, { withScale } from '../use-scale';
+import useWarning from '../utils/use-warning';
+import { useSelectContext } from './select-context';
 
 interface Props {
   value?: string;
@@ -18,7 +17,7 @@ interface Props {
   hasCheckmark?: boolean;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
 export type SelectOptionProps = Props & NativeAttrs;
 
 const SelectOptionComponent: React.FC<React.PropsWithChildren<SelectOptionProps>> = ({
@@ -32,12 +31,11 @@ const SelectOptionComponent: React.FC<React.PropsWithChildren<SelectOptionProps>
   hasCheckmark = true,
   ...props
 }: React.PropsWithChildren<SelectOptionProps>) => {
-  const theme = useTheme();
-  const { SCALES } = useScale();
+  const { UNIT, SCALE, CLASS_NAMES } = useScale();
   const { updateValue, value, disableAll } = useSelectContext();
   const isDisabled = useMemo(() => disabled || disableAll, [disabled, disableAll]);
   const isLabel = useMemo(() => label || divider, [label, divider]);
-  const classes = useClasses('option', { divider, label }, className);
+  const classes = useClasses('option', { divider, label }, className, { disabled: isDisabled }, CLASS_NAMES);
   if (!isLabel && identValue === undefined) {
     useWarning('The props "value" is required.', 'Select Option');
   }
@@ -49,21 +47,6 @@ const SelectOptionComponent: React.FC<React.PropsWithChildren<SelectOptionProps>
     }
     return value.includes(`${identValue}`);
   }, [identValue, value]);
-
-  const bgColor = useMemo(() => {
-    if (isDisabled) return theme.palette.background.accents.accents_1;
-    return theme.palette.background.value;
-  }, [isDisabled, theme.palette]);
-
-  const hoverBgColor = useMemo(() => {
-    if (isDisabled || isLabel) return bgColor;
-    return theme.palette.background.accents.accents_0;
-  }, [isDisabled, theme.palette, isLabel, bgColor]);
-
-  const color = useMemo(() => {
-    if (isDisabled) return theme.palette.background.accents.accents_4;
-    return theme.palette.foreground.value;
-  }, [isDisabled, theme.palette]);
 
   const clickHandler = (event: React.MouseEvent<HTMLDivElement>) => {
     if (preventAllEvents) return;
@@ -77,10 +60,10 @@ const SelectOptionComponent: React.FC<React.PropsWithChildren<SelectOptionProps>
   return (
     <div className={classes} onClick={clickHandler} {...props}>
       <div className="option-input">
-        <Ellipsis height={SCALES.h(2.25)}>{children}</Ellipsis>
+        <Ellipsis height="var(--select-input-height)">{children}</Ellipsis>
         {selected && hasCheckmark && (
           <div className="option-check">
-            <Check size={SCALES.h(1)}></Check>
+            <Check></Check>
           </div>
         )}
       </div>
@@ -100,45 +83,88 @@ const SelectOptionComponent: React.FC<React.PropsWithChildren<SelectOptionProps>
           justify-content: flex-start;
           align-items: center;
           font-weight: normal;
-          background-color: ${bgColor};
-          color: ${color};
+
           user-select: none;
           border: 0;
-          cursor: ${isDisabled ? 'not-allowed' : 'pointer'};
+          cursor: pointer;
           transition:
             background 0.2s ease 0s,
             border-color 0.2s ease 0s;
-          --select-font-size: ${SCALES.font(0.875)};
           font-size: var(--select-font-size);
-          width: ${SCALES.w(1, '100%')};
-          height: ${SCALES.h(2.25)};
-          padding: ${SCALES.pt(0)} ${SCALES.pr(0.667)} ${SCALES.pb(0)} ${SCALES.pl(0.667)};
-          margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
+
+          --option-bg: var(--color-background-1000);
+          --option-color: var(--color-foreground-1000);
+
+          --option-bg-hover: var(--color-background-900);
+          --option-color-hover: var(--color-foreground-1000);
+
+          --option-bg-disabled: var(--color-background-1000);
+          --option-color-disabled: var(--color-foreground-600);
+
+          background-color: var(--option-bg);
+          color: var(--option-color);
+        }
+
+        .option-check :global(svg) {
+          width: 100%;
+          height: 100%;
         }
 
         .option:hover {
-          background-color: ${hoverBgColor};
-          color: ${theme.palette.foreground.value};
+          background-color: var(--option-bg-hover);
+          color: var(--option-color-hover);
+        }
+
+        .option.disabled {
+          background-color: var(--option-bg-disabled);
+          color: var(--option-color-disabled);
+          &:hover {
+            background-color: var(--option-bg-disabled);
+            color: var(--option-color-disabled);
+          }
+          cursor: not-allowed;
         }
 
         .divider {
           line-height: 0;
           overflow: hidden;
-          border-top: 1px solid ${theme.palette.border.value};
-          width: ${SCALES.w(1, '100%')};
-          height: ${SCALES.h(1, 0)};
-          padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
-          margin: ${SCALES.mt(0.5)} ${SCALES.mr(0)} ${SCALES.mb(0.5)} ${SCALES.ml(0)};
+          border-top: 1px solid var(--color-border-1000);
         }
 
         .label {
-          color: ${theme.palette.background.accents.accents_7};
-          border-bottom: 1px solid ${theme.palette.border.value};
+          color: var(--color-background-200);
+          border-bottom: 1px solid var(--color-border-1000);
           cursor: default;
-          font-size: ${SCALES.font(0.875)};
-          width: ${SCALES.w(1, '100%')};
           font-weight: 500;
+          font-size: var(--select-font-size);
         }
+
+        ${SCALE.font(1, value => `width: ${value}; height: ${value};`, undefined, 'option-check')}
+        ${SCALE.w(1, value => `width: ${value};`, '100%', 'label')}
+
+        ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'divider')}
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'divider')}
+        ${SCALE.w(1, value => `width: ${value};`, '100%', 'divider')}
+        ${SCALE.h(1, value => `height: ${value};`, 0, 'divider')}
+
+        ${SCALE.padding(
+          {
+            top: 0,
+            left: 0.667,
+            right: 0.667,
+            bottom: 0,
+          },
+          value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
+          undefined,
+          'option',
+        )}
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'option')}
+        ${SCALE.font(0.875, value => `--select-font-size: ${value};`, undefined, 'option')}
+        ${SCALE.w(1, value => `width: ${value};`, '100%', 'option')}
+        ${SCALE.h(2.25, value => `height: ${value};`, undefined, 'item')}
+        ${SCALE.h(2.25, value => `--select-input-height: ${value};`, undefined, 'option-input')}
+
+        ${UNIT('option')}
       `}</style>
     </div>
   );

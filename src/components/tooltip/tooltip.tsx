@@ -1,19 +1,19 @@
 'use client';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import TooltipContent, { TooltipIconOffset } from './tooltip-content';
-import useClickAway from '../utils/use-click-away';
-import { TriggerTypes, Placement, SnippetTypes } from '../utils/prop-types';
-import { withScale } from '../use-scale';
-import { getRect } from './helper';
 import useClasses from '../use-classes';
+import { withScale } from '../use-scale';
+import { Placement, TriggerTypes } from '../utils/prop-types';
+import useClickAway from '../utils/use-click-away';
+import { getRect } from './helper';
+import TooltipContent, { TooltipIconOffset } from './tooltip-content';
+import { UIColorTypes } from '../themes/presets';
 
 export type TooltipOnVisibleChange = (visible: boolean) => void;
-export type TooltipTypes = SnippetTypes;
 export type TooltipTriggers = TriggerTypes;
 export type TooltipPlacement = Placement;
 interface Props {
   text?: string | React.ReactNode;
-  type?: TooltipTypes;
+  type?: UIColorTypes;
   placement?: TooltipPlacement;
   visible?: boolean;
   initialVisible?: boolean;
@@ -40,7 +40,7 @@ const TooltipComponent: React.FC<React.PropsWithChildren<TooltipProps>> = ({
   enterDelay = 100,
   leaveDelay = 150,
   trigger = 'hover' as TooltipTriggers,
-  type = 'default' as TooltipTypes,
+  type = 'default' as UIColorTypes,
   className = '',
   onVisibleChange = (() => {}) as TooltipOnVisibleChange,
   hideArrow = false,

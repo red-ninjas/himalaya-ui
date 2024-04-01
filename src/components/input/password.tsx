@@ -1,15 +1,15 @@
 'use client';
 import React, { useImperativeHandle, useMemo, useRef, useState } from 'react';
-import { Props } from './input-props';
+import { InputInternalProps } from './input-props';
 import PasswordIcon from './password-icon';
 import Input from './input';
 import { useScale, withScale } from '../use-scale';
 
-interface PasswordProps extends Props {
+interface PasswordProps extends InputInternalProps {
   hideToggle?: boolean;
 }
 
-type NativeAttrs = Omit<React.InputHTMLAttributes<any>, keyof PasswordProps>;
+type NativeAttrs = Omit<React.InputHTMLAttributes<HTMLInputElement>, keyof PasswordProps>;
 export type InputPasswordProps = PasswordProps & NativeAttrs;
 
 const InputPasswordComponent = React.forwardRef<HTMLInputElement, React.PropsWithChildren<InputPasswordProps>>(

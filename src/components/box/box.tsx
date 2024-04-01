@@ -2,15 +2,12 @@
 
 import React from 'react';
 import useClasses from '../use-classes';
-import useLayout from '../use-layout';
-import useScale, { responsiveCss, ScaleProps, ScaleResponsiveParameter, withScale } from '../use-scale';
+import useScale, { ScaleProps, withScale } from '../use-scale';
 
 type PropsOf<E extends keyof JSX.IntrinsicElements | React.JSXElementConstructor<any>> = JSX.LibraryManagedAttributes<E, React.ComponentPropsWithRef<E>>;
 
 export interface BoxOwnProps<E extends React.ElementType = React.ElementType> {
   as?: E;
-  hide?: ScaleResponsiveParameter<boolean>;
-  show?: ScaleResponsiveParameter<boolean>;
 }
 
 export type BoxProps<E extends React.ElementType> = BoxOwnProps<E> & Omit<PropsOf<E>, keyof (BoxOwnProps & ScaleProps)> & ScaleProps;
@@ -23,27 +20,21 @@ export type BoxComponent = {
 };
 
 export const Box: BoxComponent = React.forwardRef(
-  <E extends React.ElementType = typeof defaultElement>(
-    { as, hide, show, children, className, ...restProps }: BoxProps<E>,
-    ref: typeof restProps.ref | null,
-  ) => {
+  <E extends React.ElementType = typeof defaultElement>({ as, children, className, ...restProps }: BoxProps<E>, ref: typeof restProps.ref | null) => {
     const Element = as || defaultElement;
-    const layout = useLayout();
-    const { RESPONSIVE } = useScale();
-    const { pl, pr, pt, pb, mt, mr, mb, ml, px, py, mx, my, font, w, h, m, lineHeight, p, unit = layout.unit, scale = 1, ...innerProps } = restProps;
+    const { SCALE, UNIT, CLASS_NAMES } = useScale();
 
     return (
-      <Element className={useClasses('box padding margin width height font lineHeight hide show', className)} ref={ref} {...innerProps}>
+      <Element className={useClasses('box', className, CLASS_NAMES)} ref={ref} {...restProps}>
         {children}
         <style jsx>{`
-          ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`)}
-          ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`)}
-          ${RESPONSIVE.w(0, value => `width: ${value};`, 'auto')}
-          ${RESPONSIVE.h(0, value => `height: ${value};`, 'auto')}
-          ${RESPONSIVE.font(1, value => `font-size: ${value};`, 'inherit')}
-          ${RESPONSIVE.lineHeight(1, value => `font-size: ${value};`, 'inherit')}
-          ${responsiveCss(hide, 'hide', layout.breakpoints, value => `display: ${value ? `none` : 'inherit'};`)}
-          ${responsiveCss(show, 'show', layout.breakpoints, value => `display: ${value ? `inherit` : 'none'};`)}
+          ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'box')}
+          ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'box')}
+          ${SCALE.w(0, value => `width: ${value};`, 'auto', 'box')}
+          ${SCALE.h(0, value => `height: ${value};`, 'auto', 'box')}
+          ${SCALE.font(1, value => `font-size: ${value};`, 'inherit', 'box')}
+          ${SCALE.lineHeight(1, value => `line-height: ${value};`, 'inherit', 'box')}
+          ${UNIT('box')}
         `}</style>
       </Element>
     );

@@ -18,6 +18,7 @@ import ChartDataview from './chart-dataview';
 import { ChartPriceFormatter, ChartViewMode, DefaulTimeFormatter, ILegendStatesDictonary } from './shared';
 import { TimeFormatterFn } from '../use-charts/model/localization-options';
 import { TickMarkFormatter } from '../use-charts/model/horz-scale-behavior-time/horz-scale-behavior-time';
+import useClasses from '../use-classes';
 
 interface ChartProperties {
   height?: number;
@@ -79,7 +80,7 @@ const ChartComponent: React.FC<React.PropsWithChildren<ChartProps>> = ({
   const chartContainerRef = createRef<HTMLDivElement>();
   const chartOuterContainerRef = createRef<HTMLDivElement>();
   const width = useRefDimensions(chartOuterContainerRef);
-  const { SCALES } = useScale();
+  const { UNIT, SCALE, CLASS_NAMES } = useScale();
 
   let _chart: IChartApi | undefined = undefined;
   const [chart, setChart] = useState<IChartApi>();
@@ -90,7 +91,7 @@ const ChartComponent: React.FC<React.PropsWithChildren<ChartProps>> = ({
   const defaultOptions: DeepPartial<ChartOptions> = {
     layout: {
       background: { type: ColorType.Solid, color: 'transparent' },
-      textColor: theme.palette.foreground.value,
+      textColor: theme.palette.foreground.hex_1000,
     },
     height: height,
     timeScale: {
@@ -99,24 +100,24 @@ const ChartComponent: React.FC<React.PropsWithChildren<ChartProps>> = ({
       tickMarkFormatter: tickFormatter,
       fixLeftEdge: true,
       fixRightEdge: true,
-      borderColor: 'rgba(0,0,0,0.0)',
+      borderColor: 'rgba(0,0,0,0)',
     },
     rightPriceScale: {
-      borderColor: 'rgba(0,0,0,0.0)',
+      borderColor: 'rgba(0,0,0,0)',
       visible: hasSides == 'both' || hasSides == 'right',
     },
     leftPriceScale: {
-      borderColor: 'rgba(0,0,0,0.0)',
+      borderColor: 'rgba(0,0,0,0)',
       visible: hasSides == 'both' || hasSides == 'left',
     },
     grid: {
       vertLines: {
-        color: theme.type == 'dark' ? 'rgba(255,255,255,0.15)' : 'rgba(0,0,0,0.1)',
+        color: theme.palette.border.hex_1000,
         visible: true,
       },
       horzLines: {
         visible: true,
-        color: theme.type == 'dark' ? 'rgba(255,255,255,0.15)' : 'rgba(0,0,0,0.1)',
+        color: theme.palette.border.hex_1000,
       },
     },
 
@@ -160,7 +161,7 @@ const ChartComponent: React.FC<React.PropsWithChildren<ChartProps>> = ({
         const options = api.options();
 
         const price = data && data['value'] !== undefined ? data['value'] : data ? data['close'] : '';
-        const color = data && data['color'] !== undefined ? data['color'] : data ? theme.palette.primary.value : '';
+        const color = data && data['color'] !== undefined ? data['color'] : data ? theme.palette.primary.hex_1000 : '';
 
         const fmt = options.priceFormat as PriceFormatCustom;
         const formatter = fmt.formatter;
@@ -279,7 +280,7 @@ const ChartComponent: React.FC<React.PropsWithChildren<ChartProps>> = ({
     if (chart !== undefined) {
       chart?.applyOptions({
         layout: {
-          textColor: theme.palette.foreground.value,
+          textColor: theme.palette.foreground.hex_1000,
         },
         grid: {
           vertLines: {
@@ -300,7 +301,7 @@ const ChartComponent: React.FC<React.PropsWithChildren<ChartProps>> = ({
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [theme.type, theme.palette.foreground.value, hasSides]);
+  }, [theme.type, theme.palette.foreground.hex_1000, hasSides]);
 
   useEffect(() => {
     _setViewMode(viewMode);
@@ -315,7 +316,7 @@ const ChartComponent: React.FC<React.PropsWithChildren<ChartProps>> = ({
 
   return (
     <ChartContext.Provider value={config}>
-      <div className="chart-container" {...props} ref={chartOuterContainerRef}>
+      <div className={useClasses('chart-container', CLASS_NAMES)} {...props} ref={chartOuterContainerRef}>
         <div className="chart-outer" style={{ display: _viewMode == 'graph' ? 'block' : 'none' }}>
           <div className="chart-inner" ref={chartContainerRef}></div>
           <div className="graph-tooltip" ref={tooltipRef}></div>
@@ -331,16 +332,12 @@ const ChartComponent: React.FC<React.PropsWithChildren<ChartProps>> = ({
           position: relative;
           width: 100%;
           background: transparent;
-          border: 1px solid ${theme.palette.border.value};
-          border-radius: ${SCALES.r(1, theme.style.radius)};
+          border: 1px solid var(--color-border-1000);
         }
-        .chart-inner {
-          padding: ${SCALES.pt(0.475)} ${SCALES.pr(0.875)} ${SCALES.pb(0.475)} ${SCALES.pl(0.875)};
-        }
+
         .chart-container {
           position: relative;
           width: 100%;
-          margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
         }
         .graph-tooltip {
           position: absolute;
@@ -354,13 +351,13 @@ const ChartComponent: React.FC<React.PropsWithChildren<ChartProps>> = ({
           left: 12px;
           pointer-events: none;
           border: 1px solid;
-          border-color: ${theme.palette.border.value};
+          border-color: var(--color-border-1000);
           border-radius: 6px;
           font-family: -apple-system, BlinkMacSystemFont, 'Trebuchet MS', Roboto, Ubuntu, sans-serif;
           -webkit-font-smoothing: antialiased;
           -moz-osx-font-smoothing: grayscale;
-          color: ${theme.palette.foreground.value};
-          background: ${theme.palette.background.value};
+          color: var(--color-foreground-1000);
+          background: var(--color-background-1000);
           font-size: calc(1 * 12px);
           padding: calc(0.65 * 12px) calc(0.9 * 12px) calc(0.65 * 12px) calc(0.9 * 12px);
         }
@@ -371,8 +368,23 @@ const ChartComponent: React.FC<React.PropsWithChildren<ChartProps>> = ({
         }
 
         :global(.series-checkbox .text) {
-          color: ${theme.palette.background.accents.accents_5};
+          color: var(--color-background-400);
         }
+
+        ${SCALE.padding(
+          {
+            top: 0.475,
+            bottom: 0.475,
+            right: 0.475,
+            left: 0.875,
+          },
+          value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
+          undefined,
+          'chart-inner',
+        )}
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'chart-container')}
+        ${SCALE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'chart-outer')}
+        ${UNIT('chart-container')}
       `}</style>
     </ChartContext.Provider>
   );

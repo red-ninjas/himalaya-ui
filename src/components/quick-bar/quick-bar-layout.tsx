@@ -2,65 +2,107 @@
 
 import React from 'react';
 import { QuickBarLayoutProps } from '.';
-import { useScale, withScale } from '../use-scale';
+import { InnerScroll } from '../scroll';
+import useClasses from '../use-classes';
+import useQuickBar from '../use-quickbar';
+import { customResponsiveAttribute, useScale, withScale } from '../use-scale';
 import { pickChild } from '../utils/collections';
 import { default as QuickBar } from './quick-bar';
-import useQuickBar from '../use-quickbar';
-import useClasses from '../use-classes';
+import useLayout from '../use-layout';
 
-const QuickBarLayout: React.FC<React.PropsWithChildren<QuickBarLayoutProps>> = ({ children, animationTime = 250 }) => {
+const QuickBarLayout: React.FC<React.PropsWithChildren<QuickBarLayoutProps>> = ({
+  children,
+  hasBorder = true,
+  disabled,
+  className,
+  animationTime = 200,
+  ...props
+}) => {
   const [otherElements, quickBar] = pickChild(children, QuickBar);
-  const { SCALES } = useScale();
+  const { SCALE, UNIT, CLASS_NAMES } = useScale();
   const { isEnabled } = useQuickBar();
-
+  const layout = useLayout();
   return (
     <>
       <div
-        className={useClasses('quickbar-layout', {
-          'quickbar-active': isEnabled,
-        })}
+        {...props}
+        className={useClasses(
+          'quickbar-layout',
+          className,
+          {
+            enabled: isEnabled === true,
+            disabled: isEnabled === false,
+          },
+          CLASS_NAMES,
+        )}
       >
-        <div className="quickbar-content">
-          <div className="quickbar-content-inner">{otherElements}</div>
-        </div>
-        {quickBar}
+        {quickBar && (
+          <div className="quickbar-inner">
+            <InnerScroll h={'100%'} w={'100%'} type="vertical">
+              {quickBar}
+            </InnerScroll>
+          </div>
+        )}
+        <div className="quickbar-content">{otherElements}</div>
       </div>
       <style jsx>{`
         .quickbar-layout {
           width: 100%;
-          height: 100%;
+          height: 100vh;
           position: relative;
-          --quickbar-width: ${SCALES.w(1, '60px')};
+          width: 100%;
+          overflow: hidden;
           --quickbar-transition: ${animationTime}ms;
-          --quickbar-position: -${SCALES.w(1, '60px')};
-          --quickbar-position-content: 0;
+          box-sizing: border-box;
+          --quickbar-left: var(--quickbar-width);
+          --quickbar-side: 0;
+          clip-path: inset(0);
         }
 
         .quickbar-content {
-          left: 0;
-          top: 0;
-          right: 0;
-          height: 100%;
-          position: absolute;
-          transition: all var(--quickbar-transition) ease;
-          transform: translate(0%, 0);
-          width: 100%;
-        }
-        .quickbar-content-inner {
           height: 100%;
           overflow: hidden;
+          transition: transform var(--quickbar-transition) ease;
+          width: calc(100% - var(--quickbar-left));
+          box-sizing: border-box;
+          transform: translate(var(--quickbar-left));
+          display: flex;
+          flex-direction: column;
         }
 
-        .quickbar-active {
-          --quickbar-position: 0;
-          --quickbar-position-content: calc(var(--quickbar-width));
-        }
-
-        .quickbar-active .quickbar-content {
+        .quickbar-inner {
+          position: fixed;
           left: 0;
-          width: calc(100% - var(--quickbar-width));
-          transform: translate(var(--quickbar-position-content), 0);
+          top: 0;
+          transition: transform var(--quickbar-transition) ease;
+          transform: translateX(var(--quickbar-side));
+          width: var(--quickbar-width);
+
+          height: 100%;
+
+          border-color: var(--color-border-1000);
+          border-width: ${hasBorder ? '1px' : '0'};
+          border-style: solid;
         }
+
+        quickbar-layout.enabled {
+          --quickbar-left: var(--quickbar-width);
+          --quickbar-side: 0;
+        }
+
+        quickbar-layout.disabled {
+          --quickbar-left: 0;
+          --quickbar-side: calc(var(--quickbar-width) * -1);
+        }
+
+        ${SCALE.w(3.75, value => `--quickbar-width: ${value};`, undefined, 'quickbar-layout')}
+        ${UNIT('quickbar-layout')}
+
+        ${customResponsiveAttribute(disabled, 'quickbar-layout', layout.breakpoints, (value, key) =>
+          value === true
+            ? `--quickbar-left: 0; --quickbar-side: calc(var(--quickbar-width) * -1);`
+            : `--quickbar-left: var(--quickbar-width);  --quickbar-side: 0;`,
+        )}
       `}</style>
     </>
   );

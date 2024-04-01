@@ -185,6 +185,11 @@ export class Color {
     return new Color(mixColors(this, base, amount));
   }
 
+  birthness = () => {
+    const brightness = (this.rgb.r * 299 + this.rgb.g * 587 + this.rgb.b * 114) / 1000;
+    return brightness;
+  };
+
   shade(weight = 0.15): Color {
     return this.mix({ r: 0, g: 0, b: 0 }, weight);
   }

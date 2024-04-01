@@ -19,61 +19,79 @@ If you want to customize your colors, please read [use-theme](/hooks/use-theme) 
 <Display w="90%" caption={<span>Get palette from <Code>useTheme</Code>.</span>}>
 
 ```jsx
-import { useTheme } from '@himalaya-ui/core';
+import useTheme from '@himalaya-ui/core/use-theme';
 
 const myComponent = () => {
   const { palette } = useTheme();
 
-  return <p style={{ color: palette.background.accents.accents_1 }}>myComponent</p>;
+  return <p style={{ color: palette.background.hex_800 }}>myComponent</p>;
+};
+```
+</Display>
+
+<Display w="90%" caption={<span>Get var from global css.</span>}>
+
+
+```jsx
+const myComponent = () => {
+  return <p style={{ color: `var(--color-background-800)` }}>myComponent</p>;
 };
 ```
 
 </Display>
 
-## Background
+## Accents
+
+### Background
 
 <Colors type="background" />
 
-## Foreground
+### Foreground
 
 <Colors type="foreground" />
 
-## Border
+### Border
 
 <Colors type="border" />
 
-## Gradient colors
+## Colors
 
-<Colors type="gradient" />
+### Gray
 
-## Primary
+<Colors type="gray" />
+
+### Primary
 
 <Colors type="primary" />
 
-## Secondary
+### Secondary
 
 <Colors type="secondary" />
 
-## Success
+### Success
 
 <Colors type="success" />
 
-## Error
+### Error
 
 <Colors type="error" />
 
-## Warning
+### Warning
 
 <Colors type="warning" />
 
-## Tertiary
+### Tertiary
 
 <Colors type="tertiary" />
 
-## Link
+### Link
 
 <Colors type="link" />
 
-## Code
+### Code
 
 <Colors type="code" />
+
+### Gradient colors
+
+<Colors type="gradient" />

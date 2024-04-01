@@ -1,10 +1,8 @@
 'use client';
 import React from 'react';
-import useTheme from '../use-theme';
-import LinkIcon from './icon';
-import { addColorAlpha } from '../utils/color';
-import useScale, { withScale } from '../use-scale';
 import useClasses from '../use-classes';
+import useScale, { withScale } from '../use-scale';
+import LinkIcon from './icon';
 
 export interface Props {
   href?: string;
@@ -15,7 +13,7 @@ export interface Props {
   className?: string;
 }
 
-type NativeAttrs = Omit<React.AnchorHTMLAttributes<any>, keyof Props>;
+type NativeAttrs = Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, keyof Props>;
 export type LinkProps = Props & NativeAttrs;
 
 const LinkComponent = React.forwardRef<HTMLAnchorElement, React.PropsWithChildren<LinkProps>>(
@@ -23,14 +21,19 @@ const LinkComponent = React.forwardRef<HTMLAnchorElement, React.PropsWithChildre
     { href = '', color = false, underline = false, children, className = '', block = false, icon = false, ...props }: React.PropsWithChildren<LinkProps>,
     ref: React.Ref<HTMLAnchorElement>,
   ) => {
-    const theme = useTheme();
-    const { RESPONSIVE } = useScale();
-    const linkColor = color || block ? theme.palette.link.value : 'inherit';
-    const hoverColor = color || block ? theme.palette.link.light : 'inherit';
-    const classes = useClasses('link margin padding width height font', { block }, className, {
-      underline: underline === true,
-      'underline-hover': underline === 'hover',
-    });
+    const { UNIT, SCALE, CLASS_NAMES } = useScale();
+    const linkColor = color || block ? `var(--color-link-1000)` : 'inherit';
+    const hoverColor = color || block ? `var(--color-link-900)` : 'inherit';
+    const classes = useClasses(
+      'link',
+      { block },
+      className,
+      {
+        underline: underline === true,
+        'underline-hover': underline === 'hover',
+      },
+      CLASS_NAMES,
+    );
 
     return (
       <a className={classes} href={href} {...props} ref={ref}>
@@ -43,7 +46,6 @@ const LinkComponent = React.forwardRef<HTMLAnchorElement, React.PropsWithChildre
             line-height: inherit;
             color: ${linkColor};
             text-decoration: none;
-            border-radius: ${block ? theme.style.radius : 0};
             transition: color 200ms ease 0ms;
             text-decoration: none;
           }
@@ -59,13 +61,13 @@ const LinkComponent = React.forwardRef<HTMLAnchorElement, React.PropsWithChildre
           }
 
           .link:hover {
-            background-color: ${block ? addColorAlpha(theme.palette.link.light, 0.1) : 'unset'};
+            background-color: ${block ? `rgba(var(--color-link-900-rgb), 0.9)` : 'unset'};
             color: ${hoverColor};
           }
 
-          ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`)}
-          ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`)}
-          ${RESPONSIVE.padding(
+          ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'link')}
+          ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'link')}
+          ${SCALE.padding(
             {
               top: 0.125,
               bottom: 0.125,
@@ -76,7 +78,7 @@ const LinkComponent = React.forwardRef<HTMLAnchorElement, React.PropsWithChildre
             undefined,
             'block',
           )}
-          ${RESPONSIVE.margin(
+          ${SCALE.margin(
             {
               top: 0,
               bottom: 0,
@@ -87,9 +89,12 @@ const LinkComponent = React.forwardRef<HTMLAnchorElement, React.PropsWithChildre
             undefined,
             'block',
           )}
-          ${RESPONSIVE.w(1, value => `width: ${value};`, 'fit-content')}
-          ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto')}
-          ${RESPONSIVE.font(1, value => `font-size: ${value};`, 'inherit')}
+          ${SCALE.w(1, value => `width: ${value};`, 'fit-content', 'link')}
+          ${SCALE.h(1, value => `height: ${value};`, 'auto', 'link')}
+          ${SCALE.font(1, value => `font-size: ${value};`, 'inherit', 'link')}
+          ${SCALE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'block')}
+
+          ${UNIT('link')}
         `}</style>
       </a>
     );

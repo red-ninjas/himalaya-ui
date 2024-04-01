@@ -3,15 +3,12 @@
 import { PropsWithChildren, useRef } from 'react';
 import { ArrowDown } from '../icons';
 import PageWidth from '../page-width';
-import useLayout from '../use-layout';
+import useClasses from '../use-classes';
 import { useScale, withScale } from '../use-scale';
-import useTheme from '../use-theme';
 import { HeroPropsNative } from './share';
 
-const Hero: React.FC<PropsWithChildren<HeroPropsNative>> = ({ children, withDownArrow = true, scrollToId, ...props }) => {
-  const theme = useTheme();
-  const layout = useLayout();
-  const { SCALES } = useScale();
+const Hero: React.FC<PropsWithChildren<HeroPropsNative>> = ({ children, withDownArrow = true, scrollToId, ...props }: PropsWithChildren<HeroPropsNative>) => {
+  const { UNIT, SCALE, CLASS_NAMES } = useScale();
   const heroRef = useRef<HTMLDivElement | null>(null);
 
   const handleArrowSmoothScroll = () => {
@@ -36,7 +33,7 @@ const Hero: React.FC<PropsWithChildren<HeroPropsNative>> = ({ children, withDown
 
   return (
     <>
-      <div {...props} className="hero" ref={heroRef}>
+      <div {...props} className={useClasses('hero', CLASS_NAMES)} ref={heroRef}>
         <PageWidth>
           <div className="hero-inner">{children}</div>
         </PageWidth>
@@ -57,10 +54,10 @@ const Hero: React.FC<PropsWithChildren<HeroPropsNative>> = ({ children, withDown
           align-items: center;
           position: relative;
           display: flex;
-          min-height: calc(${SCALES.h(0, '100vh')} - ${withDownArrow ? 50 : 0}px);
-          padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
-          margin: ${SCALES.mt(0)} ${SCALES.mr(0, 'auto')} ${SCALES.mb(0)} ${SCALES.ml(0, 'auto')};
+          width: 100%;
+          min-height: calc(var(--hero-min-height) - ${withDownArrow ? 50 : 0}px);
         }
+
         .actions {
           display: inline-flex;
           flex-wrap: wrap;
@@ -74,7 +71,7 @@ const Hero: React.FC<PropsWithChildren<HeroPropsNative>> = ({ children, withDown
           height: 100px;
           cursor: pointer;
           text-align: center;
-          border: 1px solid ${theme.palette.border.value};
+          border: 1px solid var(--color-border-1000);
           border-radius: 50%;
           position: absolute;
           bottom: -50px;
@@ -82,7 +79,7 @@ const Hero: React.FC<PropsWithChildren<HeroPropsNative>> = ({ children, withDown
           display: flex;
           align-items: center;
           justify-content: center;
-          background-color: ${theme.palette.background.value};
+          background-color: var(--color-background-1000);
         }
         .arrow-down-inner {
           display: flex;
@@ -101,7 +98,7 @@ const Hero: React.FC<PropsWithChildren<HeroPropsNative>> = ({ children, withDown
           right: -10px;
           bottom: -10px;
           border-radius: 50%;
-          border-left: 1px dashed ${theme.palette.background.accents.accents_4};
+          border-left: 1px dashed var(--color-background-500);
           opacity: 0.4;
           -webkit-transform: rotate(90deg);
           -ms-transform: rotate(90deg);
@@ -118,7 +115,7 @@ const Hero: React.FC<PropsWithChildren<HeroPropsNative>> = ({ children, withDown
           margin-top: ${withDownArrow ? 50 : 0}px;
           margin-bottom: ${withDownArrow ? 100 : 0}px;
           text-align: center;
-          gap: ${layout.gap};
+          gap: var(--layout-gap);
           flex-direction: column;
         }
         .container {
@@ -128,6 +125,20 @@ const Hero: React.FC<PropsWithChildren<HeroPropsNative>> = ({ children, withDown
           margin-right: auto;
           margin-left: auto;
         }
+
+        ${SCALE.h(1, value => `--hero-min-height: ${value};`, '100vh', 'hero')}
+        ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'hero')}
+        ${SCALE.margin(
+          0,
+          value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
+          {
+            right: 'auto',
+            left: 'auto',
+          },
+          'hero',
+        )}
+
+        ${UNIT('hero')}
       `}</style>
     </>
   );

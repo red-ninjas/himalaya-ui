@@ -1,13 +1,12 @@
 import Checkbox from '../checkbox';
 import Text from '../text';
+import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';
-import useTheme from '../use-theme';
 import { useChart } from './chart-context';
 
 const ChartLegends: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({ ...props }) => {
   const { series } = useChart();
-  const theme = useTheme();
-  const { SCALES } = useScale();
+  const { SCALE, CLASS_NAMES, UNIT } = useScale();
 
   const onVisibleChanged = (legendIds: string[]) => {
     for (const serie of series) {
@@ -20,8 +19,8 @@ const ChartLegends: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({ ...props
   return (
     series &&
     series.length > 0 && (
-      <div {...props} className="chart-legends">
-        <Text pr={1.5} small style={{ color: theme.palette.background.accents.accents_3 }}>
+      <div {...props} className={useClasses('chart-legends', CLASS_NAMES)}>
+        <Text pr={1.5} small style={{ color: `var(--color-background-600)` }}>
           Legend
         </Text>
         <Checkbox.Group scale={0.75} className="legends" onChange={onVisibleChanged} value={series.filter(df => df.visible).map(df => df.key)}>
@@ -37,11 +36,26 @@ const ChartLegends: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({ ...props
             display: flex;
             flex-wrap: wrap;
             align-items: center;
-            background: ${theme.palette.background.accents.accents_0};
-            border-radius: 0 0 ${theme.style.radius} ${theme.style.radius};
-            padding: ${SCALES.pt(0.475)} ${SCALES.pr(0.875)} ${SCALES.pb(0.475)} ${SCALES.pl(0.875)};
-            margin: ${SCALES.mt(1)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
+            background: var(--color-background-900);
           }
+
+          ${SCALE.margin(
+            { left: 0, right: 0, top: 1, bottom: 0 },
+            value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
+            undefined,
+            'chart-legends',
+          )}
+
+          ${SCALE.padding(
+            { left: 0.875, right: 0.875, top: 0.475, bottom: 0.475 },
+            value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
+            undefined,
+            'chart-legends',
+          )}
+          ${SCALE.r(1, value => `border-radius: 0 0 ${value} ${value};`, 'var(--layout-radius)', 'chart-legends')}
+
+
+          ${UNIT('chart-legends')}
         `}</style>
       </div>
     )

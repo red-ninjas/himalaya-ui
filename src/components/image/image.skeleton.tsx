@@ -1,6 +1,5 @@
 'use client';
 import React from 'react';
-import useTheme from '../use-theme';
 
 interface Props {
   opacity?: number;
@@ -9,7 +8,6 @@ interface Props {
 export type ImageSkeletonProps = Props;
 
 const ImageSkeleton: React.FC<ImageSkeletonProps> = React.memo(({ opacity = 0.5, ...props }: ImageSkeletonProps) => {
-  const theme = useTheme();
   return (
     <div className="skeleton" {...props}>
       <style jsx>{`
@@ -23,10 +21,10 @@ const ImageSkeleton: React.FC<ImageSkeletonProps> = React.memo(({ opacity = 0.5,
           height: 100%;
           background-image: linear-gradient(
             270deg,
-            ${theme.palette.background.accents.accents_1},
-            ${theme.palette.background.accents.accents_2},
-            ${theme.palette.background.accents.accents_2},
-            ${theme.palette.background.accents.accents_1}
+            var(--color-background-800),
+            var(--color-background-700),
+            var(--color-background-700),
+            var(--color-background-800)
           );
           background-size: 400% 100%;
           animation: loading 3s ease-in-out infinite;

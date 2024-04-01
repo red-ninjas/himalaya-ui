@@ -1,11 +1,11 @@
-import { Layout, Playground, Attributes } from 'lib/components'
-import { Text } from 'components'
+import { Layout, Playground, Attributes } from 'lib/components';
+import { Text } from 'components';
 
 export const meta = {
   title: 'Text',
   group: 'General',
   index: 10,
-}
+};
 
 # Text
 
@@ -110,7 +110,7 @@ The `Text` component allows you to display text with standardized typographic st
   scope={{ Text }}
   code={`
 <>
-  <Text lineHeight={1} font={{ xs: 1, sm: 2, md: 3, xl: 4 }}>Font Size: Responsive</Text>
+  <Text  font={{ xs: 1, sm: 1.5, md: 2, xl: 2 }}>Font Size: Responsive</Text>
 </>
 `}
 />
@@ -147,11 +147,11 @@ The `Text` component allows you to display text with standardized typographic st
   code={`() => {
     const theme = useTheme();
     return (
-      <>
-        <Text font="1rem" mt={0} color={theme.palette.gradient_1}>Gradient 1</Text>
-        <Text font="2rem" gradientDegress={'bottom'} color={theme.palette.gradient_2}>Gradient 2 with Bottom Direction</Text>
-        <Text font="3rem" mt={0} mb={0} gradientDegress={140} color={theme.palette.gradient_3}>Gradient 3 with 140 Degress Direction</Text>
-      </>
+     <>
+      <Text font="1rem" mt={0} style={{ color: 'var(--gradient-1-from)' }}>Gradient 1</Text>
+      <Text font="2rem"  style={{ color: 'var(--gradient-2-from)' }}>Gradient 2 with Bottom Direction</Text>
+      <Text font="3rem" mt={0} mb={0}  style={{ color: 'var(--gradient-3-from)' }}>Gradient 3 with 140 Degrees Direction</Text>
+    </>
     )
 }
 `}
@@ -176,38 +176,38 @@ The `Text` component allows you to display text with standardized typographic st
 <Attributes edit="/app/components/text.mdx">
 <Attributes.Title>Text.Props</Attributes.Title>
 
-| Attribute           | Description                                                | Type                | Accepted values                         | Default   |
-| ------------------- | ---------------------------------------------------------- | ------------------- | --------------------------------------- | --------- |
-| **h1 - h6**         | component name                                             | `boolean`           | -                                       | `false`   |
-| **small**           | component name                                             | `boolean`           | -                                       | `false`   |
-| **span**            | component name                                             | `boolean`           | -                                       | `false`   |
-| **del**             | component name                                             | `boolean`           | -                                       | `false`   |
-| **i**               | component name                                             | `boolean`           | -                                       | `false`   |
-| **em**              | component name                                             | `boolean`           | -                                       | `false`   |
-| **b**               | component name                                             | `boolean`           | -                                       | `false`   |
-| **blockquote**      | component name                                             | `boolean`           | -                                       | `false`   |
-| **stroke**          | stroke the text                                            | `number`            | -                                       | -         |
-| **color**           | color of text                                              | `TextColor`         | [TextColor](#textcolor)                 | -         |
-| **gradientDegress** | degress of gradient                                        | `GradientPositions` | [GradientPositions](#gradientpositions) | `right`   |
-| **type**            | text type                                                  | `TextTypes`         | [TextTypes](#texttypes)                 | `default` |
-| ...                 | native props                                               | `HTMLAttributes`    | `'id', 'className', ...`                | -         |
+| Attribute           | Description         | Type                | Accepted values                         | Default   |
+| ------------------- | ------------------- | ------------------- | --------------------------------------- | --------- |
+| **h1 - h6**         | component name      | `boolean`           | -                                       | `false`   |
+| **small**           | component name      | `boolean`           | -                                       | `false`   |
+| **span**            | component name      | `boolean`           | -                                       | `false`   |
+| **del**             | component name      | `boolean`           | -                                       | `false`   |
+| **i**               | component name      | `boolean`           | -                                       | `false`   |
+| **em**              | component name      | `boolean`           | -                                       | `false`   |
+| **b**               | component name      | `boolean`           | -                                       | `false`   |
+| **blockquote**      | component name      | `boolean`           | -                                       | `false`   |
+| **stroke**          | stroke the text     | `number`            | -                                       | -         |
+| **color**           | color of text       | `TextColor`         | [TextColor](#textcolor)                 | -         |
+| **gradientDegress** | degress of gradient | `GradientPositions` | [GradientPositions](#gradientpositions) | `right`   |
+| **type**            | text type           | `TextTypes`         | [TextTypes](#texttypes)                 | `default` |
+| ...                 | native props        | `HTMLAttributes`    | `'id', 'className', ...`                | -         |
 
 <Attributes.Title>TextColor</Attributes.Title>
 
 ```ts
-type TextColor = string | Gradient
+type TextColor = string | Gradient;
 ```
 
 <Attributes.Title>TextTypes</Attributes.Title>
 
 ```ts
-type TextTypes = 'default' | 'secondary' | 'success' | 'warning' | 'error'
+type TextTypes = 'default' | 'secondary' | 'success' | 'warning' | 'error';
 ```
 
 <Attributes.Title>GradientPositions</Attributes.Title>
 
 ```ts
-type GradientPositions = 'top' | 'left' | 'right' | 'bottom' | number
+type GradientPositions = 'top' | 'left' | 'right' | 'bottom' | number;
 ```
 
 </Attributes>

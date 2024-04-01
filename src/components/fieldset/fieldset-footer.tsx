@@ -1,52 +1,59 @@
 'use client';
+import useClasses from '../use-classes';
 import React from 'react';
-import useTheme from '../use-theme';
 import useScale, { withScale } from '../use-scale';
-import useLayout from '../use-layout';
 
-interface Props {
-  className?: string;
-}
+interface Props {}
 
 type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
 export type FieldsetFooterProps = Props & NativeAttrs;
 
 const FieldsetFooterComponent: React.FC<React.PropsWithChildren<FieldsetFooterProps>> = ({
-  className = '',
+  className,
   children,
   ...props
 }: React.PropsWithChildren<FieldsetFooterProps>) => {
-  const theme = useTheme();
-  const layout = useLayout();
-  const { SCALES } = useScale();
+  const { SCALE, UNIT, CLASS_NAMES } = useScale();
 
   return (
-    <footer className={className} {...props}>
+    <footer className={useClasses('footer', className, CLASS_NAMES)} {...props}>
       {children}
       <style jsx>{`
-        footer {
-          background-color: ${theme.palette.background.accents.accents_1};
-          border-top: 1px solid ${theme.palette.border.value};
-          border-bottom-left-radius: ${theme.style.radius};
-          border-bottom-right-radius: ${theme.style.radius};
+        .footer {
+          background-color: var(--color-background-900);
+          border-top: 1px solid var(--color-border-1000);
+          border-bottom-left-radius: var(--layout-radius);
+          border-bottom-right-radius: var(--layout-radius);
           display: flex;
           justify-content: space-between;
           align-items: center;
           overflow: hidden;
-          color: ${theme.palette.background.accents.accents_6};
-          padding: ${layout.gapHalf} ${layout.gap};
+          color: var(--color-background-300);
+          padding: var(--layout-gap-half) var(--layout-gap);
           box-sizing: border-box;
-          font-size: ${SCALES.font(0.875)};
-          width: ${SCALES.w(1, 'auto')};
-          height: ${SCALES.h(2.875)};
-          padding: ${SCALES.pt(0.625)} ${SCALES.pr(1.31)} ${SCALES.pb(0.625)} ${SCALES.pl(1.31)};
-          margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
         }
+
+        ${SCALE.h(2.875, value => `height: ${value};`, undefined, 'footer')}
+        ${SCALE.w(1, value => `width: ${value};`, 'auto', 'footer')}
+        ${SCALE.font(0.875, value => `font-size: ${value};`, undefined, 'footer')}
+        ${SCALE.padding(
+          {
+            top: 0.625,
+            right: 1.31,
+            bottom: 0.625,
+            left: 1.31,
+          },
+          value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
+          undefined,
+          'footer',
+        )}
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'footer')}
+        ${UNIT('footer')}
       `}</style>
     </footer>
   );
 };
 
 FieldsetFooterComponent.displayName = 'HimalayaFieldsetFooter';
-const FieldsetFooter = withScale(FieldsetFooterComponent);
+const FieldsetFooter = React.memo(withScale(FieldsetFooterComponent));
 export default FieldsetFooter;

@@ -16,5 +16,4 @@ export type CardComponentType = typeof Card & {
 export type { CardProps } from './card';
 export type { CardContentProps } from './card-content';
 export type { CardFooterProps } from './card-footer';
-export type { CardTypes } from '../utils/prop-types';
 export default Card as CardComponentType;

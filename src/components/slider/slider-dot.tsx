@@ -1,6 +1,5 @@
 'use client';
 import React from 'react';
-import useTheme from '../use-theme';
 import useClasses from '../use-classes';
 
 interface Props {
@@ -9,16 +8,15 @@ interface Props {
   isClick?: boolean;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
 export type SliderDotProps = Props & NativeAttrs;
 
 const SliderDot = React.forwardRef<HTMLDivElement, React.PropsWithChildren<SliderDotProps>>(
   ({ children, disabled = false, left = 0, isClick = false, ...props }: React.PropsWithChildren<SliderDotProps>, ref: React.Ref<HTMLDivElement>) => {
-    const theme = useTheme();
     const classes = useClasses('dot', { disabled, click: isClick });
 
     return (
-      <div {...props} className={`${classes} ${props.className || ''}`} ref={ref}>
+      <div className={classes} ref={ref} {...props}>
         {children}
         <style jsx>{`
           .dot {
@@ -34,16 +32,14 @@ const SliderDot = React.forwardRef<HTMLDivElement, React.PropsWithChildren<Slide
             font-weight: 700;
             font-size: calc(var(--slider-font-size) * 0.75);
             z-index: 100;
-            background-color: ${theme.palette.primary.value};
-            color: ${theme.palette.background.value};
+            background-color: var(--slider-bg);
+            color: var(--slider-color);
             text-align: center;
             padding: 0 calc(0.57 * var(--slider-font-size));
           }
 
           .dot.disabled {
             cursor: not-allowed !important;
-            background-color: ${theme.palette.background.accents.accents_2};
-            color: ${theme.palette.background.accents.accents_4};
           }
 
           .dot.click {

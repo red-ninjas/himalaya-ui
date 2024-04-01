@@ -1,260 +1,258 @@
 'use client';
-import { isArray } from 'lodash';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import React, { MouseEventHandler, PropsWithChildren, useRef, useState } from 'react';
+import React, { MouseEvent as ReactMouseEvent, useState } from 'react';
 import { INavigationItem } from '.';
-import { ChevronUp } from '../icons';
+import { ReactiveDomReact } from '../utils/layouts';
+
+import ChevronUp from 'components/icons/chevronUp';
 import Popover from '../popover';
 import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';
-import useTheme from '../use-theme';
-import { pickChild } from '../utils/collections';
-import { ReactiveDomReact } from '../utils/layouts';
 import { useNavigation } from './navigation-context';
-import NavigationSubItem from './sub-item';
 
 interface NavigationItemProps extends INavigationItem {
-  exactMatch?: boolean;
   columns?: number;
   transcluent?: boolean;
-  onClick?: () => void;
+  offset?: number;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<HTMLAnchorElement>, keyof NavigationItemProps>;
+type NativeAttrs = Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, keyof NavigationItemProps>;
 export type NavigationPropsExternal = NavigationItemProps & NativeAttrs;
 
-const NavigationItem: React.FC<PropsWithChildren<NavigationPropsExternal>> = ({
-  children,
-  exactMatch = true,
-  url = '/',
-  columns = 2,
-  transcluent = true,
-  onClick,
-  title,
-  ...props
-}) => {
-  const theme = useTheme();
-  const { onMouseOver } = useNavigation();
-  const pathname = usePathname();
-  const [isPopoverVisibile, setIsPopoverVisibile] = useState<boolean>(false);
-  const [isHover, setIsHover] = useState<boolean>(false);
-  const [, childElements] = pickChild(children, NavigationSubItem);
-  const { SCALES } = useScale();
-  const ref = useRef<HTMLAnchorElement | null>(null);
+const NavigationItem = React.forwardRef<HTMLAnchorElement, React.PropsWithChildren<NavigationPropsExternal>>(
+  (
+    { children, columns = 2, transcluent = true, active = false, offset = 6, title, ...props }: React.PropsWithChildren<NavigationPropsExternal>,
+    ref: React.Ref<HTMLAnchorElement>,
+  ) => {
+    const { onMouseOver } = useNavigation();
+    const [isPopoverVisibile, setIsPopoverVisibile] = useState<boolean>(false);
+    const [isHover, setIsHover] = useState<boolean>(false);
+    const childExist = children !== undefined;
+    const { UNIT, SCALE, CLASS_NAMES } = useScale();
 
-  const isLinkActive = url ? (exactMatch ? pathname == url : pathname.startsWith(url)) : false;
+    const btnClass = useClasses(
+      'menu-item',
+      {
+        active,
+        'chevron-active': isPopoverVisibile,
+        'is-hover': isHover,
+      },
+      CLASS_NAMES,
+    );
 
-  const btnClass = useClasses({
-    'menu-item': true,
-    active: isLinkActive,
-    'chevron-active': isPopoverVisibile,
-    'is-hover': isHover,
-    'has-chevron': childElements && isArray(childElements) && childElements?.length > 0,
-  });
+    const childs = () => (
+      <div className="sub-child-grid">
+        {children}
+        <style jsx>{`
+          .sub-child-grid {
+            display: inline-grid;
+            height: auto;
+            grid-template-columns: repeat(${columns || '1'}, 1fr);
+          }
+        `}</style>
+      </div>
+    );
 
-  const childs = () => (
-    <div className="sub-child-grid">
-      {childElements}
-      <style jsx>{`
-        .sub-child-grid {
-          display: inline-grid;
-          height: auto;
-          grid-template-columns: repeat(${columns || '1'}, 1fr);
-        }
-      `}</style>
-    </div>
-  );
+    const onChildMouseOver = (ev: ReactMouseEvent<HTMLDivElement, MouseEvent>) => {
+      if (ev.target) {
+        const coreRect = (ev.target as HTMLDivElement).getBoundingClientRect();
+        const newValue: ReactiveDomReact = {
+          left: coreRect.left,
+          right: coreRect.right,
+          rect: ev.target as HTMLDivElement,
+          deactive: () => setIsHover(false),
+          elementTop: coreRect.top,
+          height: coreRect.height,
+          width: coreRect.width,
+          top: coreRect.top,
+        };
 
-  const handleClick: MouseEventHandler<HTMLAnchorElement> = e => {
-    if (onClick) {
-      e.preventDefault();
-      onClick();
-    }
-  };
-
-  const onChildMouseOver = () => {
-    const coreRect = (ref?.current as HTMLElement)?.getBoundingClientRect();
-    const newValue: ReactiveDomReact = {
-      left: coreRect.left,
-      right: coreRect.right,
-      rect: ref?.current,
-      deactive: () => setIsHover(false),
-      elementTop: coreRect.top,
-      height: coreRect.height,
-      width: coreRect.width,
-      top: coreRect.bottom,
+        onMouseOver(newValue);
+        setIsHover(true);
+      }
     };
 
-    onMouseOver(newValue);
-    setIsHover(true);
-  };
-
-  return (
-    <div className="navigation-item-outer">
-      <div className="navigation-item" onMouseLeave={() => setIsHover(false)} onMouseOut={() => setIsHover(false)} onMouseOver={onChildMouseOver}>
-        {childElements && isArray(childElements) && childElements?.length > 0 ? (
+    return (
+      <a {...props} className={useClasses('navigation-item', btnClass, props.className)} ref={ref}>
+        {childExist ? (
           <Popover
             onVisibleChange={visible => setIsPopoverVisibile(visible)}
             className="menu-popover"
-            offset={16}
+            offset={offset}
             placement="bottomStart"
             trigger="hover"
-            portalClassName={useClasses({
-              'menu-popover-item': true,
+            hideArrow={true}
+            portalClassName={useClasses('menu-popover-item', {
               'transcluent-popover': transcluent,
             })}
             enterDelay={0}
             leaveDelay={0}
             content={childs}
           >
-            <Link passHref legacyBehavior href={url || ''}>
-              <a {...props} className={`${btnClass} ${props.className || ''}`} ref={ref} onClick={handleClick}>
-                <span>{title}</span>
-                <span className="chevron-outer">
-                  <span className={useClasses({ chevron: true, rotated: isPopoverVisibile })}>
-                    <ChevronUp size={14} />
-                  </span>
+            <div
+              onMouseLeave={() => setIsHover(false)}
+              onMouseOut={() => setIsHover(false)}
+              onMouseOver={event => onChildMouseOver(event)}
+              className="navigation-title has-chevron"
+            >
+              <span className="navigation-title-inner">{title}</span>
+              <span className="chevron-outer">
+                <span className={useClasses('chevron', { rotated: isPopoverVisibile })}>
+                  <ChevronUp />
                 </span>
-              </a>
-            </Link>
+              </span>
+            </div>
           </Popover>
         ) : (
-          <Link passHref legacyBehavior href={url || ''}>
-            <a {...props} className={`${btnClass} ${props.className || ''}`} ref={ref} onClick={handleClick}>
-              <span>{title}</span>
-            </a>
-          </Link>
+          <div
+            onMouseLeave={() => setIsHover(false)}
+            onMouseOut={() => setIsHover(false)}
+            onMouseOver={event => onChildMouseOver(event)}
+            className="navigation-title"
+          >
+            <span className="navigation-title-inner">{title}</span>
+          </div>
         )}
-      </div>
-      <style jsx>{`
-        .navigation-item-outer {
-          display: inline-flex;
-          height: auto;
-          align-items: center;
-        }
-        .navigation-item :global(.menu-popover) {
-          display: inline-flex !important;
-          height: 100%;
-          left: 0;
-          top: 0;
-          z-index: 0;
-          box-shadow: none;
-        }
+        <style jsx>{`
+          .navigation-item :global(.menu-popover) {
+            display: inline-flex !important;
+            height: 100%;
+            left: 0;
+            top: 0;
+            z-index: 0;
+            box-shadow: none;
+          }
 
-        .navigation-item {
-          display: inline-flex;
-          position: relative;
-          height: auto;
-        }
+          .navigation-title {
+            display: inline-flex;
+            position: relative;
+            align-items: center;
+            align-self: center;
 
-        .chevron-outer {
-          position: absolute;
-          height: 100%;
-          right: ${SCALES.pr(0.2)};
-          bottom: 0;
-          display: flex;
-          align-items: center;
-        }
+            * {
+              pointer-events: none;
+            }
+          }
 
-        .chevron {
-          transform: rotate(180deg);
-          transition: all 0.3s;
-          display: inline-flex;
-        }
+          .navigation-item {
+            display: inline-flex;
+            position: relative;
+            height: auto;
+            align-items: center;
+          }
 
-        .rotated {
-          transform: rotate(0deg);
-        }
+          .chevron-outer {
+            position: absolute;
+            height: 100%;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            right: calc(var(--item-right) * 0.5);
+          }
+          .has-chevron {
+            padding-right: calc(var(--item-right) * 2.5) !important;
+          }
 
-        .menu-item {
-          position: relative;
-          box-sizing: border-box;
-          cursor: pointer;
-          outline: 0;
-          gap: 3px;
-          white-space: nowrap;
-          background-color: transparent;
-          color: ${theme.palette.background.accents.accents_5};
-          user-select: none;
-          display: flex;
-          align-items: center;
-          user-select: none;
-          font-size: ${SCALES.font(0.9)};
-          line-height: normal;
-          font-weight: 500;
-          width: ${SCALES.w(1, 'auto')};
-          height: ${SCALES.h(1, 'auto')};
-          padding: ${SCALES.pt(0.875)} ${SCALES.pr(0.55)} ${SCALES.pb(0.875)} ${SCALES.pl(0.55)};
-          margin: ${SCALES.mt(0)} ${SCALES.mr(0.2)} ${SCALES.mb(0)} ${SCALES.ml(0.2)};
-          z-index: 1;
-          transition: color 0.2s ease;
-        }
+          .chevron {
+            transform: rotate(180deg);
+            transition: all 0.3s;
+            display: inline-flex;
+            height: var(--chevron-size);
+            width: var(--chevron-size);
 
-        .has-chevron {
-          padding-right: ${SCALES.pr(1.3)};
-        }
+            align-items: center;
+          }
 
-        .menu-item:after {
-          position: absolute;
-          content: '';
-          bottom: -1px;
-          left: 0;
-          right: 0;
-          width: 100%;
-          height: 2px;
-          border-radius: 4px;
-          transform: scaleX(0.75);
-          background-color: ${theme.palette.foreground.value};
-          transition:
-            opacity,
-            transform 200ms ease-in;
-          opacity: 0;
-        }
+          .rotated {
+            transform: rotate(0deg);
+          }
 
-        :global(.menu-item) span.label {
-          z-index: 1;
-          padding: 8px 12px;
-        }
+          .menu-item {
+            position: relative;
+            box-sizing: border-box;
+            cursor: pointer;
+            outline: 0;
+            gap: 3px;
+            white-space: nowrap;
+            background-color: transparent;
+            color: var(--color-background-400);
+            user-select: none;
+            display: flex;
+            align-items: center;
+            user-select: none;
+            line-height: normal;
+            font-weight: 500;
+            z-index: 1;
+            transition: color 0.2s ease;
+          }
 
-        .backdrop {
-          background: ${theme.palette.background.accents.accents_2};
-          position: absolute;
-          border-radius: 5px;
-          width: 100%;
-          height: 100%;
-          left: 0;
-          z-index: 0;
-          bottom: 0;
-        }
+          :global(.menu-item) span.label {
+            z-index: 1;
+            padding: 8px 12px;
+          }
 
-        .menu-item:hover {
-          color: ${theme.palette.foreground.value};
-        }
+          .backdrop {
+            background: var(--color-background-700);
+            position: absolute;
+            border-radius: 5px;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            z-index: 0;
+            bottom: 0;
+          }
 
-        .menu-item.active {
-          color: ${theme.palette.foreground.value};
-          font-weight: 600;
-        }
-        .menu-item.is-hover {
-          color: ${theme.palette.background.value} !important;
-        }
+          .menu-item:hover {
+            color: var(--color-foreground-1000);
+          }
 
-        .menu-item.chevron-active {
-          color: ${theme.palette.foreground.value};
-        }
+          .menu-item.active {
+            color: var(--color-foreground-1000);
+            font-weight: 600;
+          }
 
-        :global(.tooltip-content.menu-popover-item > .inner) {
-          padding: 0 !important;
-        }
+          .menu-item.chevron-active {
+            color: var(--color-foreground-1000);
+          }
 
-        :global(.tooltip-content.menu-popover-item) {
-          max-width: 600px;
-        }
-      `}</style>
-    </div>
-  );
-};
+          :global(.tooltip-content.menu-popover-item > .inner) {
+            padding: 0 !important;
+          }
+
+          :global(.tooltip-content.menu-popover-item) {
+            max-width: 600px;
+          }
+
+          ${SCALE.w(1, value => `width: ${value};`, 'auto', 'menu-item')}
+          ${SCALE.h(1, value => `height: ${value};`, '100%', 'menu-item')}
+          ${SCALE.font(0.9, value => `font-size: ${value};`, undefined, 'menu-item')}
+          ${SCALE.font(1, value => `--chevron-size: ${value};`, undefined, 'chevron')}
+          ${SCALE.padding(
+            {
+              top: 0.5,
+              bottom: 0.5,
+              left: 0.7,
+              right: 0.7,
+            },
+            value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left}; --item-right: ${value.right};`,
+            undefined,
+            'navigation-title',
+          )}
+          ${SCALE.margin(
+            {
+              top: 0,
+              left: 0.2,
+              right: 0.2,
+              bottom: 0,
+            },
+            value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
+            undefined,
+            'menu-item',
+          )}
+          ${UNIT('menu-item')}
+        `}</style>
+      </a>
+    );
+  },
+);
 NavigationItem.displayName = 'HimalayaNavigationItem';
-
 export default withScale(NavigationItem);

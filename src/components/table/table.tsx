@@ -8,6 +8,7 @@ import TableColumn from './table-column';
 import { TableConfig, TableContext } from './table-context';
 import TableHead from './table-head';
 import { TableAbstractColumn, TableDataItemBase, TableOnCellClick, TableOnChange, TableOnRowClick, TableRowClassNameHandler } from './table-types';
+import useClasses from '../use-classes';
 
 interface Props<TableDataItem extends TableDataItemBase> {
   data?: Array<TableDataItem>;
@@ -17,12 +18,11 @@ interface Props<TableDataItem extends TableDataItemBase> {
   onRow?: TableOnRowClick<TableDataItem>;
   onCell?: TableOnCellClick<TableDataItem>;
   onChange?: TableOnChange<TableDataItem>;
-  className?: string;
   rowClassName?: TableRowClassNameHandler<TableDataItem>;
   hasBorder?: boolean;
 }
 
-type NativeAttrs = Omit<React.TableHTMLAttributes<any>, keyof Props<any>>;
+type NativeAttrs = Omit<React.TableHTMLAttributes<HTMLTableElement>, keyof Props<HTMLTableElement>>;
 export type TableProps<TableDataItem extends TableDataItemBase> = Props<TableDataItem> & NativeAttrs;
 
 function TableComponent<TableDataItem extends TableDataItemBase>(tableProps: React.PropsWithChildren<TableProps<TableDataItem>>) {
@@ -37,12 +37,12 @@ function TableComponent<TableDataItem extends TableDataItemBase>(tableProps: Rea
     onRow,
     onCell,
     onChange,
-    className = '',
+    className,
     rowClassName = () => '',
     ...props
   } = tableProps as React.PropsWithChildren<TableProps<TableDataItem>>;
   /* eslint-enable @typescript-eslint/no-unused-vars */
-  const { SCALES } = useScale();
+  const { UNIT, CLASS_NAMES, SCALE } = useScale();
   const ref = useRef<HTMLTableElement>(null);
   const [{ width }, updateShape] = useRealShape<HTMLTableElement>(ref);
   const [columns, setColumns] = useState<Array<TableAbstractColumn<TableDataItem>>>([]);
@@ -83,22 +83,26 @@ function TableComponent<TableDataItem extends TableDataItemBase>(tableProps: Rea
 
   return (
     <TableContext.Provider value={contextValue}>
-      <table ref={ref} className={className} {...props}>
+      <table ref={ref} className={useClasses('tbl', className, CLASS_NAMES)} {...props}>
         <TableHead columns={columns} w={width} hasBorder={hasBorder} />
         <TableBody<TableDataItem> data={data} hover={hover} emptyText={emptyText} onRow={onRow} onCell={onCell} rowClassName={rowClassName} />
         {children}
 
         <style jsx>{`
-          table {
+          .tbl {
             border-collapse: separate;
             border-spacing: 0;
-            --table-font-size: ${SCALES.font(1)};
             font-size: var(--table-font-size);
-            width: ${SCALES.w(1, '100%')};
-            height: ${SCALES.h(1, 'auto')};
-            padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
-            margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
           }
+
+          ${SCALE.h(1, value => `height: ${value};`, 'auto', 'tbl')}
+          ${SCALE.w(1, value => `width: ${value};`, '100%', 'tbl')}
+
+          ${SCALE.font(1, value => `--table-font-size: ${value};`, undefined, 'tbl')}
+
+          ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'tbl')}
+          ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'tbl')}
+          ${UNIT('tbl')}
         `}</style>
       </table>
     </TableContext.Provider>

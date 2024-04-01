@@ -12,9 +12,7 @@ export type HeaderComponentType = typeof Header & {
 (Header as HeaderComponentType).Center = CenterHeaderControl;
 (Header as HeaderComponentType).Right = RightHeaderControl;
 
-export type { HeaderProps } from './header';
-export type { LogoProps } from './logo';
-export { default as Logo } from './logo';
-export { default as Title } from './title';
 export { default as FixedHeader } from './fixed-header';
+export type { HeaderProps } from './header';
+export { default as Title } from './title';
 export default Header as HeaderComponentType;

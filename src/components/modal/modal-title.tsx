@@ -1,32 +1,28 @@
 'use client';
+import useClasses from '../use-classes';
 import React from 'react';
-import useTheme from '../use-theme';
 import useScale, { withScale } from '../use-scale';
 
-interface Props {
-  className?: string;
-}
+interface Props {}
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLHeadingElement>, keyof Props>;
 export type ModalTitleProps = Props & NativeAttrs;
 
 const ModalTitleComponent: React.FC<React.PropsWithChildren<ModalTitleProps>> = ({
-  className = '',
+  className = undefined,
   children,
   ...props
 }: React.PropsWithChildren<ModalTitleProps>) => {
-  const theme = useTheme();
-  const { SCALES } = useScale();
+  const { SCALE, UNIT, CLASS_NAMES } = useScale();
 
   return (
     <>
-      <h2 className={className} {...props}>
+      <h2 className={useClasses('modal-title', className, CLASS_NAMES)} {...props}>
         {children}
       </h2>
       <style jsx>{`
-        h2 {
-          line-height: 1.6;
-          font-weight: normal;
+        .modal-title {
+          font-weight: 500;
           text-align: center;
           display: inline-flex;
           flex-shrink: 0;
@@ -34,13 +30,16 @@ const ModalTitleComponent: React.FC<React.PropsWithChildren<ModalTitleProps>> = 
           align-items: center;
           word-break: break-word;
           text-transform: capitalize;
-          font-size: ${SCALES.font(1.5)};
-          color: ${theme.palette.foreground.value};
-          width: ${SCALES.w(1, 'auto')};
-          height: ${SCALES.h(1, 'auto')};
-          padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
-          margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
+          color: var(--color-foreground-1000);
         }
+
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'modal-title')}
+        ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'modal-title')}
+        ${SCALE.w(1, value => `width: ${value};`, 'auto', 'modal-title')}
+        ${SCALE.h(1, value => `height: ${value};`, 'auto', 'modal-title')}
+        ${SCALE.font(1.5, value => `font-size: ${value};`, undefined, 'modal-title')}
+        ${SCALE.lineHeight(2.4, value => `line-height: ${value};`, undefined, 'modal-title')}
+        ${UNIT('modal-title')}
       `}</style>
     </>
   );

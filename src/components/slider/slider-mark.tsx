@@ -1,6 +1,5 @@
 'use client';
 import React, { useMemo } from 'react';
-import useTheme from '../use-theme';
 
 interface Props {
   max: number;
@@ -22,7 +21,6 @@ const getMarks = (min: number, max: number, step: number): Marks => {
 };
 
 const SliderMark: React.FC<React.PropsWithChildren<Props>> = ({ step, max, min }) => {
-  const theme = useTheme();
   const marks = useMemo(() => getMarks(min, max, step), [min, max, step]);
 
   return (
@@ -37,7 +35,7 @@ const SliderMark: React.FC<React.PropsWithChildren<Props>> = ({ step, max, min }
           height: 100%;
           top: 50%;
           transform: translate(-50%, -50%);
-          background-color: ${theme.palette.background.value};
+          background-color: var(--color-background-1000);
         }
       `}</style>
     </>

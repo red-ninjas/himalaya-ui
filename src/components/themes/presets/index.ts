@@ -1,4 +1,7 @@
-import { ColorVariable } from '../utils/color-variable';
+import { tuple } from 'components/utils/prop-types';
+
+export const UiOverrideColors = tuple('gray', 'secondary', 'tertiary', 'success', 'error', 'primary', 'warning', 'link', 'code');
+export const UiNotOverrideableColors = tuple('default', 'dark');
 
 export interface Gradient {
   from: string;
@@ -13,40 +16,69 @@ export enum GradientPositionsEnum {
 }
 
 export type GradientPositions = GradientPositionsEnum | number;
-export interface UIThemesAccents {
-  accents_darker: string;
-  accents_0: string;
-  accents_1: string;
-  accents_2: string;
-  accents_3: string;
-  accents_4: string;
-  accents_5: string;
-  accents_6: string;
-  accents_7: string;
-  accents_8: string;
+export interface UIColorAccent {
+  hex_100: string;
+  hex_200: string;
+  hex_300: string;
+  hex_400: string;
+  hex_500: string;
+  hex_600: string;
+  hex_700: string;
+  hex_800: string;
+  hex_900: string;
+  hex_1000: string;
 }
-export interface UIThemesColors {
-  background: ColorVariable;
-  foreground: ColorVariable;
-  secondary: ColorVariable;
-  tertiary: ColorVariable;
-  success: ColorVariable;
-  error: ColorVariable;
-  primary: ColorVariable;
-  warning: ColorVariable;
-  link: ColorVariable;
-  code: ColorVariable;
-  paragraph: ColorVariable;
-  codeBg: ColorVariable;
-  border: ColorVariable;
+
+export interface UIColor {
+  contrast: string;
+  hex_100: string;
+  hex_200: string;
+  hex_300: string;
+  hex_400: string;
+  hex_500: string;
+  hex_600: string;
+  hex_700: string;
+  hex_800: string;
+  hex_900: string;
+  hex_1000: string;
+  hex_1100: string;
+  hex_1200: string;
+  hex_1300: string;
+  hex_1400: string;
+  hex_1500: string;
+  hex_1600: string;
+  hex_1700: string;
+  hex_1800: string;
+  hex_1900: string;
 }
+
+/**
+ * Overrideable color types
+ */
+export type UIOverrideColorKeys = (typeof UiOverrideColors)[number];
+
+/**
+ * Extra color types (not-overrideable)
+ */
+
+export type UINotOverrideColorKeys = (typeof UiNotOverrideableColors)[number];
+
+/**
+ * Possible color types
+ */
+export type UIColorTypes = UIOverrideColorKeys | UINotOverrideColorKeys | string;
+export type UIColorAcentKeys = 'background' | 'foreground' | 'border';
+export type UIColorAndAccentKeys = UIOverrideColorKeys | UIColorAcentKeys;
+export type UIColorAccents = Record<UIColorAcentKeys, UIColorAccent>;
+export type UIColors = Record<UIOverrideColorKeys, UIColor>;
+export type UIAllColors = UIColors & UIColorAccents;
 
 export interface UIThemesCore {
   gradient_1: Gradient;
   gradient_2: Gradient;
   gradient_3: Gradient;
 }
-export type UIThemesPalette = UIThemesCore & UIThemesColors;
+export type UIThemesPalette = UIThemesCore & UIAllColors;
 
 export interface UIThemesExpressiveness {
   linkStyle: string;
@@ -58,10 +90,6 @@ export interface UIThemesExpressiveness {
   shadowMedium: string;
   shadowLarge: string;
   portalOpacity: number;
-}
-
-export interface UIStyling {
-  radius: string;
 }
 
 export interface UIThemesFont {
@@ -76,7 +104,6 @@ export interface UIThemesFont {
 export interface UIThemes {
   type: string;
   font: UIThemesFont;
-  style: UIStyling;
   palette: UIThemesPalette;
   expressiveness: UIThemesExpressiveness;
 }

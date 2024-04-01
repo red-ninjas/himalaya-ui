@@ -1,21 +1,19 @@
 'use client';
 import React, { useMemo } from 'react';
-import useTheme from '../use-theme';
-import TreeFileIcon from './tree-file-icon';
-import { useTreeContext } from './tree-context';
-import TreeIndents from './tree-indents';
-import { makeChildPath, stopPropagation } from './tree-help';
 import useClasses from '../use-classes';
+import { useTreeContext } from './tree-context';
+import TreeFileIcon from './tree-file-icon';
+import { makeChildPath, stopPropagation } from './tree-help';
+import TreeIndents from './tree-indents';
 
 interface Props {
   name: string;
   extra?: string;
   parentPath?: string;
   level?: number;
-  className?: string;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
 export type TreeFileProps = Props & NativeAttrs;
 
 const TreeFile: React.FC<React.PropsWithChildren<TreeFileProps>> = ({
@@ -23,10 +21,9 @@ const TreeFile: React.FC<React.PropsWithChildren<TreeFileProps>> = ({
   parentPath = '',
   level = 0,
   extra,
-  className = '',
+  className,
   ...props
 }: React.PropsWithChildren<TreeFileProps>) => {
-  const theme = useTheme();
   const { onFileClick } = useTreeContext();
   const currentPath = useMemo(() => makeChildPath(name, parentPath), []);
   const clickHandler = (event: React.MouseEvent) => {
@@ -67,7 +64,7 @@ const TreeFile: React.FC<React.PropsWithChildren<TreeFileProps>> = ({
           transform: translateY(-50%);
           width: 1px;
           height: 100%;
-          background-color: ${theme.palette.background.accents.accents_2};
+          background-color: var(--color-background-700);
           margin-left: -1px;
         }
 
@@ -81,7 +78,7 @@ const TreeFile: React.FC<React.PropsWithChildren<TreeFileProps>> = ({
 
         .name {
           transition: opacity 100ms ease 0ms;
-          color: ${theme.palette.background.accents.accents_8};
+          color: var(--color-background-100);
           white-space: nowrap;
           font-size: 0.875rem;
         }
@@ -90,7 +87,7 @@ const TreeFile: React.FC<React.PropsWithChildren<TreeFileProps>> = ({
           font-size: 0.75rem;
           align-self: baseline;
           padding-left: 4px;
-          color: ${theme.palette.background.accents.accents_5};
+          color: var(--color-background-400);
         }
 
         .name:hover {

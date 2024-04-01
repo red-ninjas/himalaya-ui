@@ -1,11 +1,11 @@
-import { Layout, Playground, Attributes } from 'lib/components'
-import { Progress, Spacer, useTheme, Button } from 'components'
-import { useState } from 'react'
+import { Layout, Playground, Attributes } from 'lib/components';
+import { Progress, Spacer, Button } from 'components';
+import { useState } from 'react';
 
 export const meta = {
   title: 'Progress',
   group: 'Feedback',
-}
+};
 
 # Progress
 
@@ -19,6 +19,13 @@ Display progress relative to a limit or related to a task.
 />
 
 <Playground
+  title="Indeterminate"
+  scope={{ Progress }}
+  code={`
+<Progress indeterminate />
+`} />
+
+<Playground
   title="Custom Max"
   desc="Modify the maximum value of progress."
   scope={{ Progress }}
@@ -30,16 +37,16 @@ Display progress relative to a limit or related to a task.
 <Playground
   title="Dynamic Colors"
   desc="You can specify the color of the progress in any range."
-  scope={{ Progress, useState, useTheme, Button, Spacer }}
+  scope={{ Progress, useState, Button, Spacer }}
   code={`
 () => {
-  const theme = useTheme()
   const [value, setValue] = useState(20)
   const colors = {
-    20: theme.palette.error.value,
-    40: theme.palette.warning.value,
-    60: theme.palette.success.value,
-    80: '#000',
+    20: 'var(--color-error-1000)',
+    40: 'var(--color-warning-1000)',
+    60: 'var(--color-success-1000)',
+    80: 'var(--color-tertiary-700)',
+    100: 'var(--color-primary-700)',
   }
   return (
     <>
@@ -87,7 +94,7 @@ Display progress relative to a limit or related to a task.
 <Attributes.Title>ProgressTypes</Attributes.Title>
 
 ```ts
-type ProgressTypes = 'default' | 'secondary' | 'success' | 'warning' | 'error'
+type ProgressTypes = 'default' | 'secondary' | 'success' | 'warning' | 'error';
 ```
 
 </Attributes>

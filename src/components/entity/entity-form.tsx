@@ -3,7 +3,6 @@
 import { EntityFormProps } from './index';
 import useScale, { withScale } from '../use-scale';
 import useClasses from '../use-classes';
-import useTheme from '../use-theme';
 import { PropsWithChildren } from 'react';
 
 function EntityFormComponent({
@@ -16,19 +15,14 @@ function EntityFormComponent({
   footerNote = null,
   footerSeparator = true,
 }: PropsWithChildren<EntityFormProps>) {
-  const theme = useTheme();
-  const { SCALES } = useScale();
-  const entityFormClasses = useClasses({
-    'entity-form-wrapper': true,
-  });
+  const { UNIT, SCALE, CLASS_NAMES } = useScale();
+  const entityFormClasses = useClasses('entity-form-wrapper', CLASS_NAMES);
 
-  const entityFooterClasses = useClasses({
-    'entity-form-footer': true,
+  const entityFooterClasses = useClasses('entity-form-footer', {
     separator: footerSeparator,
   });
 
-  const footerNoteInlineClasses = useClasses({
-    'entity-footer-note-inline': true,
+  const footerNoteInlineClasses = useClasses('entity-footer-note-inline', {
     separator: footerSeparator,
   });
 
@@ -61,13 +55,10 @@ function EntityFormComponent({
         .entity-form-wrapper {
           position: relative;
           box-sizing: border-box;
-          padding: ${SCALES.pt(1)} ${SCALES.pr(1)} ${SCALES.pb(1)} ${SCALES.pl(1)};
-          border: 1px solid ${theme.palette.background.accents.accents_2};
-          border-radius: ${SCALES.r(1, theme.style.radius)};
+          border: 1px solid var(--color-border-1000);
 
           .entity-body-text {
             font-weight: 600;
-            font-size: ${SCALES.font(0.875)};
             line-height: 1.6;
           }
 
@@ -76,42 +67,47 @@ function EntityFormComponent({
             flex-direction: row;
             flex-wrap: nowrap;
             align-items: center;
-            padding-bottom: ${SCALES.pb(1)};
-            margin-bottom: ${SCALES.mb(1)};
-            border-bottom: 1px solid ${theme.palette.background.accents.accents_3};
+            border-bottom: 1px solid var(--color-border);
+            margin-bottom: 23px;
 
             .entity-title {
               self-align: 'flex-start';
               margin-top: 0;
               margin-bottom: 0;
               font-weight: 600;
-              color: ${theme.palette.background.accents.accents_8};
+              color: var(--color-background-100);
               flex: 1 1;
             }
           }
+        }
 
-          .entity-form-footer {
-            display: flex;
-            box-sizing: content-box;
-            align-items: center;
-            justify-content: center;
-            min-height: ${SCALES.h(2)};
-            padding-top: ${SCALES.pt(1)};
-
-            .entity-form-spacer {
-              margin-top: ${SCALES.mt(0.9375)};
-            }
-
-            .entity-form-footer-primary-action {
-              margin-left: ${SCALES.ml(1)};
-            }
-          }
-
-          .separator {
-            margin-top: ${SCALES.mt(1)};
-            border-top: 1px solid ${theme.palette.background.accents.accents_3};
+        .entity-form-footer {
+          display: flex;
+          box-sizing: content-box;
+          align-items: center;
+          justify-content: center;
+          .entity-footer-note-inline {
+            margin-top: var(--entity-form-mt);
           }
         }
+
+        .entity-form-footer-primary-action {
+          margin-left: var(--entity-form-ml);
+        }
+
+        ${SCALE.padding(1, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, `entity-form-wrapper`)}
+        ${SCALE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', `entity-form-wrapper`)}
+        ${SCALE.mt(100, value => `margin-top: ${value}px;`, undefined, 'entity-footer-note-inline')}
+        ${SCALE.ml(1, value => `margin-right: ${value}px;`, undefined, 'entity-form-footer-primary-action')}
+
+        ${SCALE.padding(
+          { left: 0, right: 0, top: 1, bottom: 1 },
+          value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
+          undefined,
+          'entity-form-title',
+        )}
+        ${SCALE.font(0.875, value => `font-size: ${value}rem;`, undefined, 'entity-body-text')}
+        ${UNIT('entity-form-wrapper')}
       `}</style>
     </>
   );

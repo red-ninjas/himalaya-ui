@@ -1,6 +1,7 @@
-import { QuickBar, QuickAction, QuickBarLayout, QuickBarProvider, Divider } from 'components';
+import { QuickBar, QuickAction, QuickBarLayout, QuickBarProvider, Divider, Box } from 'components';
 import { Playground, Attributes } from 'lib/components';
 import { Anchor, Code, Github, Home, Layout } from 'components/icons';
+import NextLink from 'next/link';
 
 export const meta = {
   title: 'Quick Bar',
@@ -24,20 +25,57 @@ QuickBar is a customizable sidebar component designed for navigation .
     QuickBarLayout,
     QuickBarProvider,
     Divider,
+    Box,
   }}
+  style={{ position: 'relative' }}
   desc={'A fully example of using the QuickBar'}
   code={`
-<QuickBarProvider>
-    <QuickBarLayout>
-        <QuickBar style={{  position: 'relative'  }}>
-            <QuickAction type='lite' radius={50} href='#'  tooltip='Home'><Home size={20} /></QuickAction>
-            <Divider w={'100%'}></Divider>
-            <QuickAction type='lite' radius={50} href='#' tooltip='Guide'><Code size={20} /></QuickAction>
-            <Divider w={'100%'}></Divider>
-            <QuickAction type='lite' radius={50} href='#' tooltip='Components'><Layout size={20} /></QuickAction>
-        </QuickBar>
-    </QuickBarLayout>
-</QuickBarProvider>
+<Box w={60} h={12} style={{ position: 'relative' }}>
+  <QuickBarProvider>
+      <QuickBarLayout>
+          <QuickBar>
+              <QuickAction active r={50}  tooltip='Home'><Home size={20} /></QuickAction>
+              <Divider w={'100%'}></Divider>
+              <QuickAction r={50} tooltip='Guide'><Code size={20} /></QuickAction>
+              <Divider w={'100%'}></Divider>
+              <QuickAction r={50}  tooltip='Components'><Layout size={20} /></QuickAction>
+          </QuickBar>
+      </QuickBarLayout>
+  </QuickBarProvider>
+</Box>
+  `}
+/>
+
+<Playground
+  title="Example NextJS"
+  scope={{
+    QuickAction,
+    Code,
+    Home,
+    Anchor,
+    Github,
+    Box,
+    Layout,
+    QuickBar,
+    QuickBarLayout,
+    QuickBarProvider,
+    Divider,
+    NextLink,
+  }}
+  style={{ position: 'relative' }}
+  desc={'A fully example of using the QuickBar'}
+  code={`
+<Box w={60} h={12} style={{ position: 'relative' }}>
+  <QuickBarProvider>
+      <QuickBarLayout>
+          <QuickBar>
+              <NextLink href={'#'} passHref legacyBehavior>
+                <QuickAction active r={50} tooltip='Home'><Home size={20} /></QuickAction>
+              </NextLink>
+          </QuickBar>
+      </QuickBarLayout>
+  </QuickBarProvider>
+</Box>
   `}
 />
 
@@ -47,7 +85,6 @@ QuickBar is a customizable sidebar component designed for navigation .
 
 | Attribute                 | Description                                                       | Type      | Accepted values | Default |
 | ------------------------- | ----------------------------------------------------------------- | --------- | --------------- | ------- |
-| `hideOnMobile` (optional) | Boolean indicating whether to hide the QuickBar on mobile devices | `boolean` | -               | true    |
 
 <Attributes.Title>QuickBarLayout.Props</Attributes.Title>
 
@@ -66,11 +103,9 @@ QuickBar is a customizable sidebar component designed for navigation .
 | Attribute                  | Description                                                             | Type                                           | Accepted values | Default |
 | -------------------------- | ----------------------------------------------------------------------- | ---------------------------------------------- | --------------- | ------- |
 | `tooltip` (optional)       | Tooltip text or React node to be displayed on hover.                    | `string , React.ReactNode`                     | -               | -       |
-| `exactMatch` (optional)    | Boolean value indicating whether the link should match the URL exactly. | `boolean`                                      | -               | true    |
 | `radius` (optional)        | Number indicating the border-radius of the QuickActionButton component. | `number`                                       | -               | -       |
 | `target` (optional)        | HTML anchor target attribute value                                      | `HTMLAttributeAnchorTarget , undefined`        | -               | \_self  |
 | `highlightLeft` (optional) | Number indicating the highlight position from the left side.            | `number`                                       | -               | -10     |
-| `href` (optional)          | URL to navigate when the QuickActionButton is clicked.                  | `string`                                       | -               | -       |
 | `type` (optional)          | URL to navigate when the QuickActionButton is clicked.                  | `default, success, warning, error, dark, lite` | -               | default |
 
 </Attributes>

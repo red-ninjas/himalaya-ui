@@ -1,5 +1,5 @@
 'use client';
-import React, { ReactNode, useMemo } from 'react';
+import React, { ReactNode } from 'react';
 import useTheme from '../use-theme';
 import useScale, { withScale } from '../use-scale';
 import useClasses from '../use-classes';
@@ -10,7 +10,7 @@ interface Props {
   className?: string;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
 export type DisplayProps = Props & NativeAttrs;
 
 const DisplayComponent: React.FC<React.PropsWithChildren<DisplayProps>> = ({
@@ -21,9 +21,8 @@ const DisplayComponent: React.FC<React.PropsWithChildren<DisplayProps>> = ({
   ...props
 }: React.PropsWithChildren<DisplayProps>) => {
   const theme = useTheme();
-  const { SCALES } = useScale();
-  const classes = useClasses('display', className);
-  const showShadow = useMemo(() => shadow && theme.type !== 'dark', [theme.type, shadow]);
+  const { SCALE, UNIT, CLASS_NAMES } = useScale();
+  const classes = useClasses('display', className, CLASS_NAMES);
 
   return (
     <div className={classes} {...props}>
@@ -35,11 +34,6 @@ const DisplayComponent: React.FC<React.PropsWithChildren<DisplayProps>> = ({
         .display {
           display: block;
           max-width: 100%;
-          font-size: ${SCALES.font(0.875)};
-          width: ${SCALES.w(1, '100%')};
-          height: ${SCALES.h(1, 'auto')};
-          padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
-          margin: ${SCALES.mt(2.5)} ${SCALES.mr(0, 'auto')} ${SCALES.mb(2.5)} ${SCALES.ml(0, 'auto')};
         }
 
         .content {
@@ -47,8 +41,7 @@ const DisplayComponent: React.FC<React.PropsWithChildren<DisplayProps>> = ({
           margin: 0 auto;
           border-radius: 4px;
           overflow: hidden;
-          width: ${SCALES.w(1, 'max-content')};
-          box-shadow: ${showShadow ? theme.expressiveness.shadowLarge : 'none'};
+          box-shadow: ${theme.expressiveness.shadowLarge};
           max-width: 100%;
           width: 100%;
         }
@@ -65,11 +58,20 @@ const DisplayComponent: React.FC<React.PropsWithChildren<DisplayProps>> = ({
         .caption {
           font-size: inherit;
           line-height: 1.5em;
-          color: ${theme.palette.background.accents.accents_5};
+          color: var(--color-background-400);
           margin: ${shadow ? '2.5em' : '1.3em'} auto 0;
           text-align: center;
           max-width: 85%;
         }
+
+        ${SCALE.font(0.875, value => `width: ${value}; height: ${value};`, undefined, 'display')}
+        ${SCALE.w(1, value => `width: ${value};`, '100%', 'display')}
+        ${SCALE.h(1, value => `height: ${value};`, 'auto', 'display')}
+        ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'display')}
+        ${SCALE.mx(1, value => `margin-left: ${value};margin-right: ${value}`, 'auto', 'display')}
+        ${SCALE.my(2.25, value => `margin-top: ${value};margin-bottom: ${value}`, undefined, 'display')}
+        ${SCALE.w(1, value => `width: ${value};`, 'max-content', 'content')}
+        ${UNIT('display')}
       `}</style>
     </div>
   );

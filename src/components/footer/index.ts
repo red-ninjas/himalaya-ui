@@ -1,33 +1,36 @@
 import Footer from './footer';
 import FooterBottomComponent from './footer-bottom';
 
+import { tuple } from '../utils/prop-types';
 import FooterBlock from './footer-block';
 import FooterBottomBlock from './footer-bottom-block';
 import FooterNavigationComponent from './footer-navigation';
 import FooterNavigationItem from './footer-navigation-item';
-import { tuple } from '../utils/prop-types';
-import { HTMLAttributeAnchorTarget } from 'react';
 
 const justify = tuple('flex-start', 'center', 'flex-end', 'space-between', 'space-around', 'space-evenly');
 export type FooterBlockJustify = (typeof justify)[number];
+type FooterProps = {};
+type FooterPropsNative = Omit<React.HTMLAttributes<HTMLDivElement>, keyof FooterProps>;
+export type FooterPropsNativeProps = FooterPropsNative & FooterProps;
 
-export interface FooterProps {}
-export interface FooterBlockProps {
+type BottomItemProps = {
   justify?: FooterBlockJustify;
-}
+};
 
-export interface FooterBottomItemProps {
-  justify?: FooterBlockJustify;
-}
+type BottomItemPropsNative = Omit<React.HTMLAttributes<HTMLDivElement>, keyof BottomItemProps>;
+export type FooterBottomItemProps = BottomItemProps & BottomItemPropsNative;
 
-export interface FooterNavigationProps {
+type NavigationProps = {
   title?: string;
-}
+};
 
-export interface FooterNavigationItemProps {
-  href: string;
-  target?: HTMLAttributeAnchorTarget;
-}
+type FooterNavigationPropsNative = Omit<React.HTMLAttributes<HTMLAnchorElement>, keyof NavigationProps>;
+export type FooterNavigationProps = NavigationProps & FooterNavigationPropsNative;
+
+type NavigationItemProps = {};
+
+type NativeAttrsNavigationItems = Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, keyof NavigationItemProps>;
+export type FooterNavigationItemProps = NavigationItemProps & NativeAttrsNavigationItems;
 
 export type FooterNavigationType = typeof FooterNavigationComponent & {
   Item: typeof FooterNavigationItem;

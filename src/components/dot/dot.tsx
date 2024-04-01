@@ -1,55 +1,39 @@
 'use client';
-import React, { useMemo } from 'react';
-import useTheme from '../use-theme';
-import { NormalTypes } from '../utils/prop-types';
-import { UIThemes } from '../themes/presets';
-import useScale, { withScale } from '../use-scale';
+import React from 'react';
 import useClasses from '../use-classes';
+import useScale, { withScale } from '../use-scale';
+import { UIColorTypes } from '../themes/presets';
 
-export type DotTypes = NormalTypes;
 interface Props {
-  type?: DotTypes;
+  type?: UIColorTypes;
   className?: string;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
 export type DotProps = Props & NativeAttrs;
 
-const getColor = (type: DotTypes, theme: UIThemes): string => {
-  const colors: { [key in DotTypes]?: string } = {
-    default: theme.palette.background.accents.accents_2,
-    success: theme.palette.success.value,
-    warning: theme.palette.warning.value,
-    error: theme.palette.error.value,
-    primary: theme.palette.primary.value,
-    tertiary: theme.palette.tertiary.value,
-    secondary: theme.palette.secondary.value,
-  };
-  return colors[type] || (colors.default as string);
-};
-
 const DotComponent: React.FC<React.PropsWithChildren<DotProps>> = ({
-  type = 'default' as DotTypes,
+  type = 'default' as UIColorTypes,
   children,
   className = '',
   ...props
 }: React.PropsWithChildren<DotProps>) => {
-  const theme = useTheme();
-  const { SCALES } = useScale();
-  const color = useMemo(() => getColor(type, theme), [type, theme]);
+  const { SCALE, UNIT, CLASS_NAMES } = useScale();
+  const classes = useClasses('dot', className, CLASS_NAMES, type ? 'color-' + type : null);
+
   return (
-    <span className={useClasses('dot', className)} {...props}>
+    <span className={classes} {...props}>
       <span className="icon" />
       <span className="label">{children}</span>
       <style jsx>{`
         .dot {
           display: inline-flex;
           align-items: center;
-          font-size: ${SCALES.font(1)};
-          width: ${SCALES.w(1, 'auto')};
-          height: ${SCALES.h(1, 'auto')};
-          padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
-          margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
+
+          --dot-background: var(--color-base);
+          &.color-default {
+            --dot-background: var(--color-contrast);
+          }
         }
         .icon {
           width: 0.625em;
@@ -58,15 +42,24 @@ const DotComponent: React.FC<React.PropsWithChildren<DotProps>> = ({
           min-height: calc(0.625 * 12px);
           line-height: 0.625em;
           border-radius: 50%;
-          background-color: ${color};
+          background-color: var(--dot-background);
+
           user-select: none;
         }
+
         .label {
           margin-left: 0.5em;
           font-size: 1em;
           line-height: 1em;
           text-transform: capitalize;
         }
+
+        ${SCALE.font(1, value => `width: ${value}; height: ${value};`, undefined, 'dot')}
+        ${SCALE.w(1, value => `width: ${value};`, 'auto', 'dot')}
+        ${SCALE.h(1, value => `height: ${value};`, 'auto', 'dot')}
+        ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'dot')}
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'dot')}
+        ${UNIT('dot')}
       `}</style>
     </span>
   );

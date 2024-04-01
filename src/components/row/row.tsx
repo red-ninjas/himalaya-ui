@@ -54,9 +54,9 @@ const Container: React.FC<React.PropsWithChildren<RowProps>> = ({
           display: flex;
           position: relative;
           box-sizing: border-box;
-          margin-left: calc(${gap} * ${layout.gap} / 2);
-          margin-right: calc(${gap} * ${layout.gap} / 2);
-          --row-gap: calc(${gap} * ${layout.gap});
+          margin-left: calc(${gap} * var(--layout-gap) / 2);
+          margin-right: calc(${gap} * var(--layout-gap) / 2);
+          --row-gap: calc(${gap} * var(--layout-gap));
           justify-content: ${justifyValue};
           align-items: ${alignValue};
         }

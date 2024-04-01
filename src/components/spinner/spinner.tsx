@@ -1,30 +1,26 @@
 'use client';
 
 import React from 'react';
-import useTheme from '../use-theme';
-import { UIThemes } from '../themes/presets';
 import useScale, { withScale } from '../use-scale';
 import useClasses from '../use-classes';
 
-interface Props {
-  className?: string;
-}
+interface Props {}
 
 type NativeAttrs = Omit<React.HTMLAttributes<HTMLSpanElement>, keyof Props>;
 export type SpinnerProps = Props & NativeAttrs;
 
-const getSpans = (theme: UIThemes) => {
+const getSpans = () => {
   return [...new Array(12)].map((_, index) => (
     <span key={`spinner-${index}`}>
-      <style jsx>{`
+      <style jsx={true}>{`
         span {
-          background-color: ${theme.palette.foreground.value};
+          background-color: var(--color-foreground-1000);
           position: absolute;
           top: -3.9%;
           width: 24%;
           height: 8%;
           left: -10%;
-          border-radius: ${theme.style.radius};
+          border-radius: var(--layout-radius);
           animation: spinner 1.2s linear 0s infinite normal none running;
         }
 
@@ -101,23 +97,18 @@ const getSpans = (theme: UIThemes) => {
   ));
 };
 
-const SpinnerComponent: React.FC<SpinnerProps> = ({ className = '', ...props }: SpinnerProps) => {
-  const theme = useTheme();
-  const { SCALES } = useScale();
-  const classes = useClasses('spinner', className);
+const SpinnerComponent: React.FC<SpinnerProps> = ({ className, ...props }: SpinnerProps) => {
+  const { SCALE, UNIT, CLASS_NAMES } = useScale();
+  const classes = useClasses('spinner', className, CLASS_NAMES);
 
   return (
     <div className={classes} {...props}>
-      <div className="container">{getSpans(theme)}</div>
+      <div className="container">{getSpans()}</div>
 
       <style jsx>{`
         .spinner {
           display: block;
           box-sizing: border-box;
-          width: ${SCALES.w(1.25)};
-          height: ${SCALES.h(1.25)};
-          padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
-          margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
         }
 
         .container {
@@ -127,6 +118,11 @@ const SpinnerComponent: React.FC<SpinnerProps> = ({ className = '', ...props }: 
           left: 50%;
           top: 50%;
         }
+        ${SCALE.w(1.25, value => `width: ${value};`, undefined, 'spinner')}
+        ${SCALE.h(1.25, value => `height: ${value};`, undefined, 'spinner')}
+        ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'spinner')}
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'spinner')}
+        ${UNIT('spinner')}
       `}</style>
     </div>
   );

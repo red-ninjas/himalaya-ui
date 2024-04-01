@@ -1,16 +1,11 @@
 'use client';
 import React from 'react';
-import useTheme from '../use-theme';
-import useLayout from '../use-layout';
 
 export interface InputLabel {
   isRight?: boolean;
 }
 
 const InputLabel: React.FC<React.PropsWithChildren<InputLabel>> = ({ children, isRight }) => {
-  const theme = useTheme();
-  const layout = useLayout();
-
   return (
     <span className={isRight ? 'right' : ''}>
       {children}
@@ -22,14 +17,14 @@ const InputLabel: React.FC<React.PropsWithChildren<InputLabel>> = ({ children, i
           align-items: center;
           pointer-events: none;
           margin: 0;
-          padding: 0 ${layout.gapHalf};
-          color: ${theme.palette.background.accents.accents_4};
-          background-color: ${theme.palette.background.accents.accents_1};
-          border-top-left-radius: ${theme.style.radius};
-          border-bottom-left-radius: ${theme.style.radius};
-          border-top: 1px solid ${theme.palette.border.value};
-          border-left: 1px solid ${theme.palette.border.value};
-          border-bottom: 1px solid ${theme.palette.border.value};
+          padding: 0 var(--layout-gap-half);
+          color: var(--color-background-500);
+          background-color: var(--color-background-800);
+          border-top-left-radius: var(--layout-radius);
+          border-bottom-left-radius: var(--layout-radius);
+          border-top: 1px solid var(--color-border-1000);
+          border-left: 1px solid var(--color-border-1000);
+          border-bottom: 1px solid var(--color-border-1000);
           font-size: inherit;
           line-height: 1;
         }
@@ -37,10 +32,10 @@ const InputLabel: React.FC<React.PropsWithChildren<InputLabel>> = ({ children, i
         span.right {
           border-top-left-radius: 0;
           border-bottom-left-radius: 0;
-          border-top-right-radius: ${theme.style.radius};
-          border-bottom-right-radius: ${theme.style.radius};
+          border-top-right-radius: var(--layout-radius);
+          border-bottom-right-radius: var(--layout-radius);
           border-left: 0;
-          border-right: 1px solid ${theme.palette.border.value};
+          border-right: 1px solid var(--color-border-1000);
         }
       `}</style>
     </span>

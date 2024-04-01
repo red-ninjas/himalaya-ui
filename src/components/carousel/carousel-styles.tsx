@@ -1,24 +1,21 @@
 'use client';
 
 import React, { PropsWithChildren } from 'react';
-import useTheme from '../use-theme';
 
 const CarouseStyles: React.FC<
   PropsWithChildren<{
     arrowSize?: number;
   }>
 > = ({ children, arrowSize = 36 }) => {
-  const theme = useTheme();
-
   return (
     <div className="carousel-wrapper">
       {children}
       <style jsx>{`
         .carousel-wrapper {
-          --carousel-pagination-item-bg: ${theme.palette.foreground.value};
-          --carousel-arrow-bg: ${theme.palette.background.accents.accents_4};
-          --carousel-arrow-bg-color: ${theme.palette.background.accents.accents_7};
-          --carousel-arrow-hover: ${theme.palette.background.accents.accents_6};
+          --carousel-pagination-item-bg: var(--color-foreground-1000);
+          --carousel-arrow-bg: var(--color-background-500);
+          --carousel-arrow-bg-color: var(--color-background-200);
+          --carousel-arrow-hover: var(--color-background-300);
           --carousel-arrow-size: ${arrowSize}px;
         }
       `}</style>

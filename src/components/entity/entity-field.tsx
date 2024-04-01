@@ -1,8 +1,8 @@
 'use client';
 
+import useLayout from 'components/use-layout';
 import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';
-import useTheme from '../use-theme';
 import { EntityFieldProps } from './index';
 
 function EntityFieldComponent({
@@ -13,18 +13,20 @@ function EntityFieldComponent({
   right = false,
   avatar = null,
   skeleton = null,
-  ...others
+  ...props
 }: EntityFieldProps) {
-  const theme = useTheme();
-  const { SCALES } = useScale();
+  const { UNIT, SCALE, CLASS_NAMES } = useScale();
+  const layout = useLayout();
+
   const wrapperClasses = useClasses({
     'field-wrapper': true,
     disabled: !active,
     right,
+    CLASS_NAMES,
   });
   return (
     <>
-      <div className={wrapperClasses} {...others}>
+      <div className={wrapperClasses} {...props}>
         {skeleton}
         {!skeleton && (
           <>
@@ -48,7 +50,7 @@ function EntityFieldComponent({
           .desc {
             margin-top: 0px;
             margin-bottom: 0px;
-            color: ${theme.palette.background.accents.accents_5};
+            color: var(--color-background-400);
           }
 
           display: flex;
@@ -58,7 +60,7 @@ function EntityFieldComponent({
           width: ${width};
 
           &.disabled * {
-            color: ${theme.palette.background.accents.accents_4};
+            color: var(--color-background-500);
             pointer-events: none;
           }
 
@@ -75,17 +77,17 @@ function EntityFieldComponent({
           }
 
           .avatar {
-            margin-left: ${SCALES.ml(1)};
+            margin-left: var(--avatar-margin-left);
             .image {
               width: 24px !important;
               height: 24px !important;
               border-radius: 50%;
-              background: ${theme.palette.background.accents.accents_8};
+              background: var(--color-background-100);
             }
           }
         }
 
-        @media screen and (max-width: 600px) {
+        @media only screen and (max-width: ${layout.breakpoints.xs.max}) {
           .field-wrapper {
             flex-wrap: wrap;
             width: 100%;
@@ -97,6 +99,9 @@ function EntityFieldComponent({
             }
           }
         }
+
+        ${SCALE.ml(1, value => `--avatar-margin-left: ${value};`, undefined, 'avatar')}
+        ${UNIT('field-wrapper')}
       `}</style>
     </>
   );

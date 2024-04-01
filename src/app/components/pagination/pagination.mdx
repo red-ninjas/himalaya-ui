@@ -1,16 +1,16 @@
-import { Layout, Playground, Attributes } from 'lib/components'
-import { Pagination, Spacer } from 'components'
-import ChevronRight from 'components/icons/chevronRight'
-import ChevronLeft from 'components/icons/chevronLeft'
-import ChevronRightCircle from 'components/icons/chevronRightCircle'
-import ChevronLeftCircle from 'components/icons/chevronLeftCircle'
-import ChevronRightCircleFill from 'components/icons/chevronRightCircleFill'
-import ChevronLeftCircleFill from 'components/icons/chevronLeftCircleFill'
+import { Layout, Playground, Attributes } from 'lib/components';
+import { Pagination, Spacer } from 'components';
+import ChevronRight from 'components/icons/chevronRight';
+import ChevronLeft from 'components/icons/chevronLeft';
+import ChevronRightCircle from 'components/icons/chevronRightCircle';
+import ChevronLeftCircle from 'components/icons/chevronLeftCircle';
+import ChevronRightCircleFill from 'components/icons/chevronRightCircleFill';
+import ChevronLeftCircleFill from 'components/icons/chevronLeftCircleFill';
 
 export const meta = {
   title: 'Pagination',
   group: 'Navigation',
-}
+};
 
 # Pagination
 
@@ -20,6 +20,18 @@ Navigation and identification between multiple pages.
   scope={{ Pagination }}
   code={`
 <Pagination count={20} initialPage={3} />
+`}
+/>
+
+<Playground
+  title="Use type"
+  scope={{ Pagination }}
+  code={`
+  <>
+<Pagination type={'warning'} count={20} initialPage={3} />
+<Pagination type={'error'} count={20} initialPage={3} />
+<Pagination type={'primary'} count={20} initialPage={3} />
+</>
 `}
 />
 

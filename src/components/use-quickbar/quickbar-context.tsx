@@ -2,8 +2,8 @@
 import React from 'react';
 
 export interface QuickBarContextProps {
-  isEnabled: boolean;
-  setIsEnabled: (value: boolean) => void;
+  isEnabled: boolean | undefined;
+  setIsEnabled: (value: boolean | undefined) => void;
 }
 
 export const defaultConfigs: QuickBarContextProps = {

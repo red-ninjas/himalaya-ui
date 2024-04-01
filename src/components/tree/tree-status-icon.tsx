@@ -1,6 +1,5 @@
 'use client';
 import React from 'react';
-import useTheme from '../use-theme';
 
 export interface TreeStatusIconProps {
   color?: string;
@@ -10,7 +9,6 @@ export interface TreeStatusIconProps {
 }
 
 const TreeStatusIcon: React.FC<TreeStatusIconProps> = ({ color, width = 12, height = 12, active = false }: TreeStatusIconProps) => {
-  const theme = useTheme();
   return (
     <svg
       viewBox="0 0 24 24"
@@ -29,7 +27,7 @@ const TreeStatusIcon: React.FC<TreeStatusIconProps> = ({ color, width = 12, heig
 
       <style jsx>{`
         svg {
-          color: ${color || theme.palette.background.accents.accents_8};
+          color: ${color || `var(--color-background-100)`};
         }
       `}</style>
     </svg>

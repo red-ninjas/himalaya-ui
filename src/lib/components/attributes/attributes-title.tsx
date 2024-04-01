@@ -36,23 +36,23 @@ const AttributesTitle: React.FC<React.PropsWithChildren<AttributesTitleProps>> =
         h4 {
           display: inline-flex;
           align-items: center;
-          padding-left: ${layout.gapQuarter};
-          padding-right: ${layout.gapHalf};
-          background-color: ${theme.palette.background.accents.accents_1};
-          border-radius: ${theme.style.radius};
+          padding-left: var(--layout-gap-quarter);
+          padding-right: var(--layout-gap-half);
+          background-color: var(--color-background-800);
+          border-radius: var(--layout-radius);
           margin-bottom: 0;
         }
 
         h4 :global(small) {
           font-size: 0.65em;
           padding-left: 0.65rem;
-          color: ${theme.palette.background.accents.accents_4};
+          color: var(--color-background-500);
           align-self: flex-end;
           line-height: 1.6rem;
         }
 
         h4 :global(span) {
-          color: ${theme.palette.background.accents.accents_6};
+          color: var(--color-background-300);
         }
       `}</style>
     </>

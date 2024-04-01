@@ -1,33 +1,38 @@
 'use client';
 
+import useClasses from '../use-classes';
 import React from 'react';
 import useScale, { withScale } from '../use-scale';
 
-interface Props {
-  className?: string;
-}
+interface Props {}
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
 export type PageContentProps = Props & NativeAttrs;
 
 const PageContentComponent: React.FC<React.PropsWithChildren<PageContentProps>> = ({
-  className = '',
+  className = undefined,
   children,
   ...props
 }: React.PropsWithChildren<PageContentProps>) => {
-  const { SCALES } = useScale();
+  const { SCALE, UNIT, CLASS_NAMES } = useScale();
 
   return (
-    <main className={className} {...props}>
+    <main className={useClasses('page-content', className, CLASS_NAMES)} {...props}>
       {children}
       <style jsx>{`
-        main {
-          font-size: ${SCALES.font(1)};
-          width: ${SCALES.w(1, '100%')};
-          height: ${SCALES.h(1, '100%')};
-          padding: ${SCALES.pt(3.125)} ${SCALES.pr(0)} ${SCALES.pb(3.125)} ${SCALES.pl(0)};
-          margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
-        }
+        ${SCALE.h(1, value => `height: ${value};`, '100%', 'page-content')}
+        ${SCALE.w(1, value => `width: ${value}};`, `100%`, 'page-content')}
+
+        ${SCALE.padding(
+          { left: 0, right: 0, top: 3.125, bottom: 3.125 },
+          value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
+          undefined,
+          'page-content',
+        )}
+
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'page-section')}
+
+        ${UNIT('page-content')}
       `}</style>
     </main>
   );

@@ -1,12 +1,11 @@
 'use client';
 import React, { CSSProperties, MouseEvent, useEffect, useMemo, useRef, useState } from 'react';
-import useTheme from '../use-theme';
-import { TabsHeaderItem, TabsConfig, TabsContext } from './tabs-context';
-import useScale, { withScale } from '../use-scale';
 import Highlight from '../shared/highlight';
-import { useRect } from '../utils/layouts';
-import { isUIElement } from '../utils/collections';
 import useClasses from '../use-classes';
+import useScale, { withScale } from '../use-scale';
+import { isUIElement } from '../utils/collections';
+import { useRect } from '../utils/layouts';
+import { TabsConfig, TabsContext, TabsHeaderItem } from './tabs-context';
 
 interface Props {
   initialValue?: string;
@@ -15,7 +14,6 @@ interface Props {
   hideBorder?: boolean;
   highlight?: boolean;
   onChange?: (val: string) => void;
-  className?: string;
   leftSpace?: CSSProperties['marginLeft'];
   gap?: CSSProperties['gap'];
   hoverHeightRatio?: number;
@@ -35,19 +33,18 @@ const TabsComponent: React.FC<React.PropsWithChildren<TabsProps>> = ({
   hideBorder,
   children,
   onChange,
-  className = '',
+  className,
   leftSpace = '12px' as CSSProperties['marginLeft'],
   gap = '0px' as CSSProperties['gap'],
   highlight = true,
   hoverHeightRatio = 0.7,
-  hoverWidthRatio = 1.15,
+  hoverWidthRatio = 1,
   activeClassName = '',
   activeStyle = {},
   align = 'left',
   ...props
 }: React.PropsWithChildren<TabsProps>) => {
-  const theme = useTheme();
-  const { RESPONSIVE } = useScale();
+  const { SCALE, UNIT, CLASS_NAMES } = useScale();
   const [tabs, setTabs] = useState<Array<TabsHeaderItem>>([]);
   const [selfValue, setSelfValue] = useState<string | undefined>(userCustomInitialValue);
   const ref = useRef<HTMLDivElement | null>(null);
@@ -98,9 +95,15 @@ const TabsComponent: React.FC<React.PropsWithChildren<TabsProps>> = ({
 
   return (
     <TabsContext.Provider value={initialValue}>
-      <div className={useClasses('tabs padding margin font width height', className)} {...props}>
+      <div className={useClasses('tabs', CLASS_NAMES, className)} {...props}>
         <header ref={ref} onMouseLeave={() => setDisplayHighlight(false)}>
-          <Highlight rect={rect} visible={displayHighlight} hoverHeightRatio={hoverHeightRatio} hoverWidthRatio={hoverWidthRatio} />
+          <Highlight
+            background={'var(--color-background-900)'}
+            rect={rect}
+            visible={displayHighlight}
+            hoverHeightRatio={hoverHeightRatio}
+            hoverWidthRatio={hoverWidthRatio}
+          />
           <div className={useClasses('scroll-container', { 'hide-divider': hideDivider })}>
             {tabs.map(({ cell: Cell, value }, index) => (
               <Cell
@@ -132,7 +135,7 @@ const TabsComponent: React.FC<React.PropsWithChildren<TabsProps>> = ({
             flex-wrap: nowrap;
             align-items: center;
             justify-content: ${align};
-            border-bottom: 1px solid ${theme.palette.border.value};
+            border-bottom: 1px solid var(--color-border-1000);
             padding-left: ${leftSpace};
             gap: ${gap};
           }
@@ -146,11 +149,12 @@ const TabsComponent: React.FC<React.PropsWithChildren<TabsProps>> = ({
             padding-top: 0.625rem;
           }
 
-          ${RESPONSIVE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`)}
-          ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`)}
-          ${RESPONSIVE.font(1, value => `font-size: ${value};`)}
-          ${RESPONSIVE.w(1, value => `width: ${value};`, 'initial')}
-          ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto')}
+          ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'tabs')}
+          ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'tabs')}
+          ${SCALE.font(1, value => `font-size: ${value};`, undefined, 'tabs')}
+          ${SCALE.w(1, value => `width: ${value};`, 'initial', 'tabs')}
+          ${SCALE.h(1, value => `height: ${value};`, 'auto', 'tabs')}
+          ${UNIT('tabs')}
         `}</style>
       </div>
     </TabsContext.Provider>

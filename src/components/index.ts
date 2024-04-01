@@ -60,11 +60,11 @@ export type { FieldsetProps, FieldsetTitleProps, FieldsetSubtitleProps, Fieldset
 export { default as Grid } from './grid';
 export type { GridProps, GridContainerProps } from './grid';
 
-export { default as Image, ResponsiveImage } from './image';
+export { default as Image } from './image';
 export type { ImageProps, ImageBrowserProps } from './image';
 
 export { default as Input } from './input';
-export type { InputProps, InputPasswordProps } from './input';
+export type { InputType, InputProps, InputInternalProps, InputPasswordProps } from './input';
 
 export { default as Keyboard } from './keyboard';
 export type { KeyboardProps } from './keyboard';
@@ -81,7 +81,7 @@ export type { ModalProps, ModalTitleProps, ModalSubtitleProps, ModalContentProps
 export { default as Note } from './note';
 export type { NoteProps } from './note';
 
-export { default as Page, MobilePage, ErrorPage404 } from './page';
+export { default as Page, ErrorPage404 } from './page';
 export type { PageProps, PageHeaderProps, PageContentProps, PageFooterProps } from './page';
 
 export { default as Pagination } from './pagination';
@@ -93,7 +93,6 @@ export type { PopoverProps, PopoverItemProps } from './popover';
 export { default as Progress } from './progress';
 export type { ProgressProps } from './progress';
 
-export { FadeInEffect } from './effects';
 export { default as Section } from './section';
 
 export { default as Radio } from './radio';
@@ -138,7 +137,7 @@ export { default as Textarea } from './textarea';
 export type { TextareaProps } from './textarea';
 
 export { default as Themes } from './themes';
-export type { UIThemes, UIUserTheme } from './themes';
+export type { UIThemes, UIUserTheme, UIColorTypes } from './themes';
 
 export { default as Toggle } from './toggle';
 export type { ToggleProps } from './toggle';
@@ -157,7 +156,6 @@ export type { AllThemesConfig } from './use-all-themes';
 export { default as useSearch } from './use-search';
 export { default as useSidebar, SidebarProvider } from './use-sidebar';
 export { default as useQuickBar, QuickBarProvider } from './use-quickbar';
-export { default as SidebarSwitcher } from './sidebar/sidebar-switcher';
 
 export { Sidebar } from './sidebar';
 export { default as SidebarLayout } from './sidebar/sidebar-layout';
@@ -197,15 +195,25 @@ export { default as useTheme } from './use-theme';
 export { default as useClasses } from './use-classes';
 export { default as useScale } from './use-scale';
 export { withScale, ScalePropKeys, ScaleContext } from './use-scale';
-export type { ScaleProps, ScaleConfig, GetScalePropsFunction, GetAllScalePropsFunction } from './use-scale';
+
+export type {
+  ScaleProps,
+  ScaleInputKeys,
+  ScaleConfig,
+  GetScalePropsFunction,
+  GetAllScalePropsFunction,
+  ScaleResponsiveParameter,
+  HideInterface,
+  BreakpointInterface,
+} from './use-scale';
 
 export { useRect } from './utils/layouts';
 export type { ReactiveDomReact } from './utils/layouts';
 export { default as Highlight } from './shared/highlight';
 export type { HighlightProps } from './shared/highlight';
 
-export { default as Header, Logo, FixedHeader } from './header';
-export type { HeaderProps, LogoProps } from './header';
+export { default as Header, FixedHeader } from './header';
+export type { HeaderProps } from './header';
 
 export { default as Navigation } from './navigation';
 export type { INavigationItem } from './navigation';
@@ -227,14 +235,13 @@ export { default as SearchProvider } from './use-search/search-provider';
 export { InnerScroll } from './scroll';
 export type { InnerScrollProps } from './scroll';
 
-export { PageLayout, ScrollableLayout, GradientContent, LayoutProvider } from './layout';
+export { GradientContent, LayoutProvider } from './layout';
 
 export { default as PageWidth } from './page-width';
 export type { PageWidthProps } from './page-width';
 
 export type { GradientContentProps } from './layout';
 export { default as RoutingIndicator } from './routing-indicator';
-export type { ScrollableLayoutProps } from './layout';
 
 export { default as MobileMenu, MobileMenuButton } from './mobile-menu';
 export type { MobileMenuProps } from './mobile-menu';

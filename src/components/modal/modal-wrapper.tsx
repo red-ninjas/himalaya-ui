@@ -20,7 +20,7 @@ const ModalWrapper: React.FC<React.PropsWithChildren<ModalWrapperProps>> = ({
   ...props
 }: React.PropsWithChildren<ModalWrapperProps>) => {
   const theme = useTheme();
-  const { SCALES } = useScale();
+  const { SCALE, UNIT, CLASS_NAMES } = useScale();
   const modalContent = useRef<HTMLDivElement>(null);
   const tabStart = useRef<HTMLDivElement>(null);
   const tabEnd = useRef<HTMLDivElement>(null);
@@ -50,7 +50,7 @@ const ModalWrapper: React.FC<React.PropsWithChildren<ModalWrapperProps>> = ({
 
   return (
     <CssTransition name="wrapper" visible={visible} clearTime={300}>
-      <div className={useClasses('wrapper', className)} role="dialog" tabIndex={-1} onKeyDown={onKeyDown} ref={modalContent} {...props}>
+      <div className={useClasses('wrapper', className, CLASS_NAMES)} role="dialog" tabIndex={-1} onKeyDown={onKeyDown} ref={modalContent} {...props}>
         <div tabIndex={0} className="hide-tab" aria-hidden="true" ref={tabStart} />
         {children}
         <div tabIndex={0} className="hide-tab" aria-hidden="true" ref={tabEnd} />
@@ -63,9 +63,8 @@ const ModalWrapper: React.FC<React.PropsWithChildren<ModalWrapperProps>> = ({
             flex-direction: column;
             position: relative;
             box-sizing: border-box;
-            background-color: ${theme.palette.background.value};
-            color: ${theme.palette.foreground.value};
-            border-radius: ${SCALES.r(1, theme.style.radius)};
+            background-color: var(--color-background-1000);
+            color: var(--color-foreground-1000);
             box-shadow: ${theme.expressiveness.shadowLarge};
             opacity: 0;
             outline: none;
@@ -73,13 +72,10 @@ const ModalWrapper: React.FC<React.PropsWithChildren<ModalWrapperProps>> = ({
             transition:
               opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1) 0s,
               transform 0.35s cubic-bezier(0.4, 0, 0.2, 1) 0s;
-            width: 100%;
-            font-size: ${SCALES.font(1)};
-            height: ${SCALES.h(1, 'auto')};
-            --modal-wrapper-padding-left: ${SCALES.pl(1.3125)};
-            --modal-wrapper-padding-right: ${SCALES.pr(1.3125)};
-            padding: ${SCALES.pt(1.3125)} var(--modal-wrapper-padding-right) ${SCALES.pb(1.3125)} var(--modal-wrapper-padding-left);
-            margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
+            padding-top: var(--modal-wrapper-padding-top);
+            padding-bottom: var(--modal-wrapper-padding-bottom);
+            padding-left: var(--modal-wrapper-padding-left);
+            padding-right: var(--modal-wrapper-padding-right);
           }
 
           .wrapper-enter {
@@ -109,6 +105,25 @@ const ModalWrapper: React.FC<React.PropsWithChildren<ModalWrapperProps>> = ({
             height: 0;
             opacity: 0;
           }
+
+          ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'wrapper')}
+          ${SCALE.padding(
+            1.3125,
+            value => `
+            --modal-wrapper-padding-right: ${value.right};
+            --modal-wrapper-padding-top: ${value.top};
+            --modal-wrapper-padding-bottom: ${value.bottom};
+            --modal-wrapper-padding-left: ${value.left};
+            `,
+            undefined,
+            'wrapper',
+          )}
+
+          ${SCALE.w(1, value => `width: ${value};`, '100%', 'wrapper')}
+          ${SCALE.font(1, value => `font-size: ${value};`, undefined, 'wrapper')}
+          ${SCALE.h(1, value => `height: ${value};`, 'auto', 'wrapper')}
+          ${SCALE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'wrapper')}
+          ${UNIT('wrapper')}
         `}</style>
       </div>
     </CssTransition>

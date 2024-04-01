@@ -1,14 +1,13 @@
 'use client';
 
-import { Card, useTheme, useLayout } from 'components';
+import { Card, useLayout } from 'components';
 import React from 'react';
 
 const AttributesTable: React.FC<React.PropsWithChildren<unknown>> = ({ children }) => {
-  const theme = useTheme();
   const layout = useLayout();
 
   return (
-    <Card className="attr">
+    <Card hoverable={false} className="attr">
       {children}
       <style jsx global>{`
         .attr .pre {
@@ -16,12 +15,12 @@ const AttributesTable: React.FC<React.PropsWithChildren<unknown>> = ({ children 
         }
         .attr table {
           margin-top: 12px;
-          margin-right: ${layout.gap};
+          margin-right: var(--layout-gap);
         }
         .attr h4.title {
-          margin-top: calc(${layout.gap} * 2.2);
-          background-color: ${theme.palette.codeBg.value};
-          color: ${theme.palette.code.value};
+          margin-top: calc(var(--layout-gap) * 2.2);
+          background-color: transparent;
+          color: var(--color-code-1000);
           border-radius: 0;
         }
         .attr h4.title:first-of-type {
@@ -45,29 +44,29 @@ const AttributesTable: React.FC<React.PropsWithChildren<unknown>> = ({ children 
         }
         .attr th {
           height: 2.5rem;
-          color: ${theme.palette.background.accents.accents_5};
+          color: var(--color-background-400);
           font-size: 0.75rem;
           font-weight: 400;
           letter-spacing: 0;
-          background: ${theme.palette.background.accents.accents_0};
-          border-bottom: 1px solid ${theme.palette.border.value};
-          border-top: 1px solid ${theme.palette.border.value};
+          background: var(--color-background-900);
+          border-bottom: 1px solid var(--color-border-1000);
+          border-top: 1px solid var(--color-border-1000);
         }
         .attr th:nth-child(1) {
-          border-bottom: 1px solid ${theme.palette.border.value};
-          border-left: 1px solid ${theme.palette.border.value};
+          border-bottom: 1px solid var(--color-border-1000);
+          border-left: 1px solid var(--color-border-1000);
           border-radius: 4px 0 0 4px;
-          border-top: 1px solid ${theme.palette.border.value};
+          border-top: 1px solid var(--color-border-1000);
         }
         .attr th:last-child {
-          border-bottom: 1px solid ${theme.palette.border.value};
+          border-bottom: 1px solid var(--color-border-1000);
           border-radius: 0 4px 4px 0;
-          border-right: 1px solid ${theme.palette.border.value};
-          border-top: 1px solid ${theme.palette.border.value};
+          border-right: 1px solid var(--color-border-1000);
+          border-top: 1px solid var(--color-border-1000);
         }
         .attr tr td {
-          border-bottom: 1px solid ${theme.palette.border.value};
-          color: ${theme.palette.background.accents.accents_6};
+          border-bottom: 1px solid var(--color-border-1000);
+          color: var(--color-background-300);
           font-size: 0.875rem;
           height: 2.5rem;
         }

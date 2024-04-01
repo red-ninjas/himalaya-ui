@@ -1,11 +1,11 @@
-import { hexToRgb } from '../utils/color';
 import { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
 import { LineType, UTCTimestamp } from '../use-charts';
 import { ISeriesApi } from '../use-charts/api/iseries-api';
 import { AreaSeriesPartialOptions } from '../use-charts/model/series-options';
-import useTheme from '../use-theme';
+import { hexToRgb } from '../utils/color';
 import { useChart } from './chart-context';
 import { ChartAreaProp, ChartPriceFormatter, ThemedChartDataRecord } from './shared';
+import { palette } from 'components/themes/presets/default';
 
 const ChartArea = forwardRef(
   (
@@ -23,9 +23,7 @@ const ChartArea = forwardRef(
     }: ChartAreaProp,
     ref,
   ) => {
-    const theme = useTheme();
     const { chart } = useChart();
-
     const [serie, setSerie] = useState<ISeriesApi<'Area'>>();
 
     useImperativeHandle(ref, () => ({
@@ -40,7 +38,9 @@ const ChartArea = forwardRef(
     }));
 
     const getPropertes = (): AreaSeriesPartialOptions => {
-      const currentColor = color ? color : theme.palette.primary.value;
+      const currentColor = color ? color : palette.primary.hex_1000;
+      const currentColorStart = color ? `rgba(${hexToRgb(color)}, 0.6)` : palette.primary.hex_600;
+      const currentColorEnd = color ? `rgba(${hexToRgb(color)}, 0.2)` : palette.primary.hex_200;
       return {
         title: showTitle ? title : undefined,
         visible: visible,
@@ -50,8 +50,8 @@ const ChartArea = forwardRef(
         priceLineVisible: priceLineVisible || false,
         lastValueVisible: lastValueVisible || false,
         lineType: lineType,
-        topColor: `rgba(${hexToRgb(currentColor)}, 0.6)`,
-        bottomColor: `rgba(${hexToRgb(currentColor)}, 0.2)`,
+        topColor: currentColorStart,
+        bottomColor: currentColorEnd,
         priceFormat: {
           type: 'custom',
           formatter: priceFormatter,
@@ -85,7 +85,7 @@ const ChartArea = forwardRef(
         serie.applyOptions(getPropertes());
       }
       // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [side, color, title, data, showTitle, visible, lineType, priceLineVisible, lastValueVisible, priceFormatter, theme.palette.primary.value]);
+    }, [side, color, title, data, showTitle, visible, lineType, priceLineVisible, lastValueVisible, priceFormatter]);
 
     useEffect(() => {
       if (serie) {

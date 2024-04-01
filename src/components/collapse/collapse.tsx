@@ -8,8 +8,6 @@ import useCurrentState from '../utils/use-current-state';
 import useWarning from '../utils/use-warning';
 import useScale, { withScale } from '../use-scale';
 import useClasses from '../use-classes';
-import useLayout from '../use-layout';
-
 interface Props {
   title: string;
   subtitle?: React.ReactNode | string;
@@ -33,8 +31,8 @@ const CollapseComponent: React.FC<React.PropsWithChildren<CollapseProps>> = ({
   ...props
 }: React.PropsWithChildren<CollapseProps>) => {
   const theme = useTheme();
-  const layout = useLayout();
-  const { SCALES } = useScale();
+  const { SCALE, UNIT, CLASS_NAMES } = useScale();
+
   const { values, updateValues } = useCollapseContext();
   const [visible, setVisible, visibleRef] = useCurrentState<boolean>(initialVisible);
   const classes = useClasses(
@@ -43,6 +41,7 @@ const CollapseComponent: React.FC<React.PropsWithChildren<CollapseProps>> = ({
       shadow,
     },
     className,
+    CLASS_NAMES,
   );
 
   if (!title) {
@@ -74,20 +73,15 @@ const CollapseComponent: React.FC<React.PropsWithChildren<CollapseProps>> = ({
       </Expand>
       <style jsx>{`
         .collapse {
-          border-top: 1px solid ${theme.palette.border.value};
-          border-bottom: 1px solid ${theme.palette.border.value};
-          font-size: ${SCALES.font(1)};
-          width: ${SCALES.w(1, 'auto')};
-          height: ${SCALES.h(1, 'auto')};
-          padding: ${SCALES.pt(1.2)} ${SCALES.pr(0)} ${SCALES.pb(1.2)} ${SCALES.pl(0)};
-          margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
+          border-top: 1px solid var(--color-border-1000);
+          border-bottom: 1px solid var(--color-border-1000);
         }
 
         .shadow {
           box-shadow: ${theme.expressiveness.shadowSmall};
           border: none;
-          border-radius: ${SCALES.r(1, theme.style.radius)};
-          padding: ${layout.gap};
+          border-radius: var(--layout-radius);
+          padding: var(--layout-gap);
         }
 
         .view {
@@ -99,14 +93,13 @@ const CollapseComponent: React.FC<React.PropsWithChildren<CollapseProps>> = ({
           display: flex;
           justify-content: space-between;
           align-items: center;
-          color: ${theme.palette.foreground.value};
+          color: var(--color-foreground-1000);
           font-weight: bold;
           margin: 0;
-          font-size: ${SCALES.font(1.25)};
         }
 
         .subtitle {
-          color: ${theme.palette.background.accents.accents_5};
+          color: var(--color-background-400);
           margin: 0;
         }
 
@@ -117,7 +110,6 @@ const CollapseComponent: React.FC<React.PropsWithChildren<CollapseProps>> = ({
         .content {
           font-size: inherit;
           line-height: 1.6em;
-          padding: ${SCALES.pt(1.2)} ${SCALES.pr(0)} ${SCALES.pb(1.2)} ${SCALES.pl(0)};
         }
 
         .content > :global(*:first-child) {
@@ -127,6 +119,34 @@ const CollapseComponent: React.FC<React.PropsWithChildren<CollapseProps>> = ({
         .content > :global(*:last-child) {
           margin-bottom: 0;
         }
+        ${SCALE.font(1, value => `width: ${value}; height: ${value};`, undefined, 'collapse')}
+        ${SCALE.w(1, value => `width: ${value};`, 'auto', 'collapse')}
+        ${SCALE.h(1, value => `height: ${value};`, 'auto', 'collapse')}
+        ${SCALE.padding(
+          {
+            top: 1.2,
+            right: 0,
+            left: 0,
+            bottom: 1.2,
+          },
+          value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
+          undefined,
+          'collapse',
+        )}
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'collapse')}
+        ${SCALE.font(1.25, value => `font-size: ${value};`, undefined, 'title')}
+        ${SCALE.padding(
+          {
+            top: 1.2,
+            right: 0,
+            left: 0,
+            bottom: 1.2,
+          },
+          value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
+          undefined,
+          'content',
+        )}
+        ${UNIT('collapse')}
       `}</style>
     </div>
   );

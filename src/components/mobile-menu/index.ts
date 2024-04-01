@@ -6,10 +6,9 @@ import MobileNavigationSubGroup from './subgroup';
 
 export type INavigationItem = {
   title?: string;
-  url?: string;
   desc?: string;
   icon?: React.ReactNode;
-  exactMatch?: boolean;
+  active?: boolean;
 };
 
 export type MobileMenuProps = {

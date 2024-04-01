@@ -2,7 +2,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import Expand from '../shared/expand';
 import useClasses from '../use-classes';
-import useTheme from '../use-theme';
 import { setChildrenProps } from '../utils/collections';
 import { useTreeContext } from './tree-context';
 import TreeFile from './tree-file';
@@ -16,7 +15,6 @@ interface Props {
   extra?: string;
   parentPath?: string;
   level?: number;
-  className?: string;
 }
 
 type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
@@ -28,10 +26,9 @@ const TreeFolder: React.FC<React.PropsWithChildren<TreeFolderProps>> = ({
   parentPath = '',
   level: parentLevel = 0,
   extra,
-  className = '',
+  className,
   ...props
 }: React.PropsWithChildren<TreeFolderProps>) => {
-  const theme = useTheme();
   const { initialExpand, isImperative } = useTreeContext();
   const [expanded, setExpanded] = useState<boolean>(initialExpand);
   useEffect(() => setExpanded(initialExpand), []);
@@ -92,7 +89,7 @@ const TreeFolder: React.FC<React.PropsWithChildren<TreeFolderProps>> = ({
           transform: translateY(-50%);
           width: 1px;
           height: 100%;
-          background-color: ${theme.palette.background.accents.accents_2};
+          background-color: var(--color-background-700);
           margin-left: -1px;
         }
 
@@ -104,7 +101,7 @@ const TreeFolder: React.FC<React.PropsWithChildren<TreeFolderProps>> = ({
           width: 0.875rem;
           height: 0.875rem;
           z-index: 10;
-          background-color: ${theme.palette.background.value};
+          background-color: var(--color-background-1000);
         }
 
         .icon {
@@ -122,7 +119,7 @@ const TreeFolder: React.FC<React.PropsWithChildren<TreeFolderProps>> = ({
 
         .name {
           transition: opacity 100ms ease 0ms;
-          color: ${theme.palette.background.accents.accents_8};
+          color: var(--color-background-100);
           white-space: nowrap;
           font-size: 0.875rem;
         }
@@ -131,7 +128,7 @@ const TreeFolder: React.FC<React.PropsWithChildren<TreeFolderProps>> = ({
           font-size: 0.75rem;
           align-self: baseline;
           padding-left: 4px;
-          color: ${theme.palette.background.accents.accents_5};
+          color: var(--color-background-400);
         }
 
         .name:hover {

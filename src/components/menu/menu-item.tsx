@@ -1,32 +1,31 @@
 import { PropsWithChildren } from 'react';
 import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';
-import useTheme from '../use-theme';
 import { MenuItemPropsNative } from './index';
 
 function MenuItemComponent({ children, icon, ...other }: PropsWithChildren<MenuItemPropsNative>) {
-  const theme = useTheme();
-  const { SCALES } = useScale();
+  const { SCALE, UNIT, CLASS_NAMES } = useScale();
+
   return (
-    <div {...other} className={useClasses({ 'context-menu-item': true, 'has-icon': icon !== undefined })}>
+    <div {...other} className={useClasses({ 'context-menu-item': true, 'has-icon': icon !== undefined }, CLASS_NAMES)}>
       {icon && <span className="context-menu-icon">{icon}</span>}
       {children}
       <style jsx>{`
-        .context-menu-icon {
-        }
         .context-menu-item {
           display: flex;
           gap: 8px;
           justify-content: flex-start;
           align-items: center;
-          font-size: ${SCALES.font(0.9)};
-          padding: ${SCALES.pt(0.5)} ${SCALES.pr(0.5)} ${SCALES.pb(0.5)} ${SCALES.pl(0.5)};
-          border-radius: ${SCALES.r(1, theme.style.radius)};
 
           &:hover {
-            background: ${theme.palette.background.accents.accents_0};
+            background: var(--color-background-900);
           }
         }
+
+        ${SCALE.font(0.9, value => `font-size: ${value};`, undefined, 'context-menu-item')}
+        ${SCALE.padding(0.5, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'context-menu-item')}
+        ${SCALE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'context-menu-item')}
+        ${UNIT('context-menu-item')}
       `}</style>
     </div>
   );

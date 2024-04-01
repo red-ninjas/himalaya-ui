@@ -29,6 +29,5 @@ export type { PageHeaderProps } from './page-header';
 export type { PageContentProps } from './page-content';
 export type { PageFooterProps } from './page-footer';
 export { default as ErrorPage404 } from './404';
-export { default as MobilePage } from './mobile-page';
 
 export default Page as PageComponentType;

@@ -1,29 +1,28 @@
 'use client';
 
-import useClasses from '../use-classes';
 import React, { ReactNode, useEffect, useState } from 'react';
 import PageWidth from '../page-width';
-import useScale, { withScale } from '../use-scale';
-import useTheme from '../use-theme';
-import { pickChild } from '../utils/collections';
-import { addColorAlpha } from '../utils/color';
+import useClasses from '../use-classes';
+import useLayout from '../use-layout';
+import useScale, { ScaleResponsiveParameter, customResponsiveAttribute, withScale } from '../use-scale';
+import { isCSSNumberValue, pickChild } from '../utils/collections';
 import CenterHeaderControl from './controls/center-control';
 import { default as LeftHeaderControl } from './controls/left-control';
 import RightHeaderControl from './controls/right-control';
-import useLayout from '../use-layout';
 
 export interface HeaderProps {
   children?: ReactNode | undefined;
   transcluent?: boolean;
+  transcluentColor?: string;
+  gap?: ScaleResponsiveParameter<string | number>;
 }
 
 type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof HeaderProps>;
 export type HeaderPropsNative = HeaderProps & NativeAttrs;
 
-const HeaderComponent: React.FC<HeaderPropsNative> = ({ children, transcluent = true, ...props }) => {
-  const theme = useTheme();
-  const layout = useLayout();
-  const { SCALES } = useScale();
+const HeaderComponent: React.FC<HeaderPropsNative> = ({ children, transcluent = true, className, transcluentColor, gap = 0.375, ...props }) => {
+  const { UNIT, SCALE, CLASS_NAMES } = useScale();
+  const layoutRoot = useLayout();
 
   const [, leftHeaderControl] = pickChild(children, LeftHeaderControl);
   const [, rightHeaderControl] = pickChild(children, RightHeaderControl);
@@ -52,54 +51,55 @@ const HeaderComponent: React.FC<HeaderPropsNative> = ({ children, transcluent = 
   }, []);
 
   return (
-    <>
-      <nav
-        className={useClasses({
-          'header-outer': true,
+    <nav
+      className={useClasses(
+        'header-outer',
+        {
           transcluent: transcluent,
-        })}
-        {...props}
-      >
-        <PageWidth pt={0} pb={0}>
-          <div className="navigation">
-            <div className="left-controls">
-              <div className="left-controls-inner">{leftHeaderControl}</div>
-            </div>
-            {centerHeaderControl && centerHeaderControl.length > 0 && (
-              <div className="center-controls">
-                <div className="center-controls-inner">{centerHeaderControl}</div>
-              </div>
-            )}
-            <div className="right-controls">
-              <div className="right-controls-inner">{rightHeaderControl}</div>
-            </div>
+        },
+        CLASS_NAMES,
+        className,
+      )}
+      {...props}
+    >
+      <PageWidth h={'100%'} pt={0} pb={0}>
+        <div className="header-navigation">
+          <div className="left-controls">
+            <div className="left-controls-inner">{leftHeaderControl}</div>
           </div>
-        </PageWidth>
-      </nav>
+          {centerHeaderControl && centerHeaderControl.length > 0 && (
+            <div className="center-controls">
+              <div className="center-controls-inner">{centerHeaderControl}</div>
+            </div>
+          )}
+          <div className="right-controls">
+            <div className="right-controls-inner">{rightHeaderControl}</div>
+          </div>
+        </div>
+      </PageWidth>
       <style jsx>{`
         .header-outer {
-          border-bottom: 1px solid ${theme.palette.border.value};
+          border-bottom: 1px solid var(--color-border-1000);
+          display: flex;
         }
         .transcluent {
           backdrop-filter: saturate(180%) blur(5px);
-          background-color: ${addColorAlpha(theme.palette.background.value, 0.8)};
+          background-color: ${transcluentColor ?? `rgba(var(--color-background-1000-rgb), 0.7)`};
         }
         .header-inner {
           display: flex;
           flex-direction: column;
           height: 100%;
-          max-width: ${layout.pageWidthWithMargin};
-          margin: 0 auto;
+          max-width: var(--layout-page-width-with-margin);
         }
-        .header-outer .navigation {
+        .header-navigation {
           display: flex;
           align-items: center;
           justify-content: space-between;
           height: 100%;
           user-select: none;
-          padding: 0;
-          height: ${SCALES.h(1, '60px')};
-          gap: 12px;
+          width: 100%;
+          gap: calc(var(--header-gap) * 2);
         }
 
         .left-controls {
@@ -112,7 +112,7 @@ const HeaderComponent: React.FC<HeaderPropsNative> = ({ children, transcluent = 
         .left-controls-inner {
           display: flex;
           align-items: center;
-          gap: 6px;
+          gap: var(--header-gap);
           height: 100%;
           width: 100%;
         }
@@ -128,7 +128,7 @@ const HeaderComponent: React.FC<HeaderPropsNative> = ({ children, transcluent = 
         .center-controls-inner {
           display: flex;
           align-items: center;
-          gap: 6px;
+          gap: var(--header-gap);
           height: 100%;
         }
 
@@ -141,11 +141,31 @@ const HeaderComponent: React.FC<HeaderPropsNative> = ({ children, transcluent = 
         .right-controls-inner {
           display: flex;
           align-items: center;
-          gap: 6px;
+          gap: var(--header-gap);
           height: 100%;
         }
+
+        ${SCALE.h(3.75, value => `height: ${value};`, undefined, 'header-outer')}
+        ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'header-navigation')}
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'header-navigation')}
+        ${SCALE.margin(
+          0,
+          value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
+          {
+            top: undefined,
+            right: 'auto',
+            left: 'auto',
+            bottom: undefined,
+          },
+          'header-inner',
+        )}
+
+        ${UNIT('header-outer')}
+        ${customResponsiveAttribute(gap, 'header-outer', layoutRoot.breakpoints, value =>
+          !isCSSNumberValue(value) ? `--header-gap: ${value};` : `--header-gap: calc(var(--scale-unit-scale) * ${value});`,
+        )}
       `}</style>
-    </>
+    </nav>
   );
 };
 

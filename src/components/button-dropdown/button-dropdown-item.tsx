@@ -1,10 +1,9 @@
 'use client';
 import React, { MouseEvent, useMemo } from 'react';
-import useTheme from '../use-theme';
-import { getColor } from './styles';
-import { useButtonDropdown } from './button-dropdown-context';
 import LoadingSpinner from '../loading-spinner';
+import useClasses from '../use-classes';
 import { NormalTypes } from '../utils/prop-types';
+import { useButtonDropdown } from './button-dropdown-context';
 
 export type ButtonDropdownItemTypes = NormalTypes;
 
@@ -26,10 +25,7 @@ const ButtonDropdownItem: React.FC<React.PropsWithChildren<ButtonDropdownItemPro
   type: selfType = 'default' as ButtonDropdownItemTypes,
   ...props
 }: ButtonDropdownItemProps) => {
-  const theme = useTheme();
-  const { type: parentType, disabled, loading } = useButtonDropdown();
-  const type = main ? parentType : selfType;
-  const colors = getColor(theme.palette, type, disabled);
+  const { disabled, loading } = useButtonDropdown();
   const clickHandler = (event: MouseEvent<HTMLButtonElement>) => {
     if (disabled || loading) return;
     onClick && onClick(event);
@@ -41,7 +37,7 @@ const ButtonDropdownItem: React.FC<React.PropsWithChildren<ButtonDropdownItemPro
   }, [loading, disabled]);
 
   return (
-    <button className={className} onClick={clickHandler} {...props}>
+    <button className={useClasses(className, { loading, disabled })} onClick={clickHandler} {...props}>
       {loading ? <LoadingSpinner /> : children}
       <style jsx>{`
         button {
@@ -58,18 +54,28 @@ const ButtonDropdownItem: React.FC<React.PropsWithChildren<ButtonDropdownItemPro
           box-sizing: border-box;
           margin: 0;
           border: none;
-          background-color: ${colors.bgColor};
-          color: ${colors.color};
+          font-weight: ${main ? '500' : 'inherit'};
+          background-color: var(--ui-button-bg);
+          color: var(--ui-dropdown-color);
           width: 100%;
           height: var(--ui-dropdown-height);
           min-width: var(--ui-dropdown-min-width);
           padding: var(--ui-dropdown-padding);
           font-size: var(--ui-dropdown-font-size);
+
+          transition-property: border-color, background, color, transform, box-shadow;
+          transition-duration: 0.15s;
+          transition-timing-function: ease;
         }
 
         button:hover {
-          border-color: ${colors.hoverBorder};
-          background-color: ${colors.hoverBgColor};
+          border-color: var(--ui-button-hover-border-color);
+          background-color: var(--ui-button-hover-bg);
+        }
+
+        button.disabled,
+        button.loading {
+          cursor: not-allowed;
         }
       `}</style>
     </button>

@@ -1,24 +1,26 @@
 'use client';
 
+import useClasses from '../use-classes';
 import React, { useEffect, useMemo } from 'react';
-import PaginationPrevious from './pagination-previous';
+import useScale, { withScale } from '../use-scale';
+import { pickChild } from '../utils/collections';
+import useCurrentState from '../utils/use-current-state';
+import { PaginationConfig, PaginationContext, PaginationUpdateType } from './pagination-context';
 import PaginationNext from './pagination-next';
 import PaginationPages from './pagination-pages';
-import { PaginationContext, PaginationConfig, PaginationUpdateType } from './pagination-context';
-import useCurrentState from '../utils/use-current-state';
-import { pickChild } from '../utils/collections';
-import useScale, { withScale } from '../use-scale';
+import PaginationPrevious from './pagination-previous';
+import { UIColorTypes } from '../themes/presets';
 
 interface Props {
   page?: number;
   initialPage?: number;
   count?: number;
   limit?: number;
+  type?: UIColorTypes;
   onChange?: (val: number) => void;
-  className?: string;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
 export type PaginationProps = Props & NativeAttrs;
 
 const PaginationComponent: React.FC<React.PropsWithChildren<PaginationProps>> = ({
@@ -28,10 +30,11 @@ const PaginationComponent: React.FC<React.PropsWithChildren<PaginationProps>> = 
   limit = 7,
   children,
   onChange,
-  className = '',
+  type = 'default',
+  className = undefined,
   ...props
 }: React.PropsWithChildren<PaginationProps>) => {
-  const { SCALES } = useScale();
+  const { UNIT, SCALE, CLASS_NAMES } = useScale();
   const [page, setPage, pageRef] = useCurrentState(initialPage);
   const [, prevChildren] = pickChild(children, PaginationPrevious);
   const [, nextChildren] = pickChild(children, PaginationNext);
@@ -71,26 +74,35 @@ const PaginationComponent: React.FC<React.PropsWithChildren<PaginationProps>> = 
 
   return (
     <PaginationContext.Provider value={values}>
-      <nav className={className} {...props}>
+      <nav className={useClasses('pagination', className, type ? 'color-' + type : null, CLASS_NAMES)} {...props}>
         {prevItem}
         <PaginationPages count={count} current={page} limit={limit} setPage={setPage} />
         {nextItem}
       </nav>
       <style jsx>{`
-        nav {
+        .pagination {
           font-variant: tabular-nums;
           font-feature-settings: 'tnum';
-          --pagination-size: ${SCALES.font(2)};
-          font-size: ${SCALES.font(0.875)};
-          width: ${SCALES.w(1, 'auto')};
-          height: ${SCALES.h(1, 'auto')};
-          padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
-          margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
         }
 
-        nav :global(button:last-of-type) {
+        .pagination :global(button:last-of-type) {
           margin-right: 0;
         }
+
+        .pagination.color-default {
+          --color-base: var(--color-foreground-1000);
+          --color-contrast: var(--color-background-1000);
+          --color-shade: var(--color-foreground-800);
+          --color-tint: var(--color-foreground-600);
+        }
+
+        ${SCALE.font(2, value => `--pagination-size: ${value};`, undefined, 'pagination')}
+        ${SCALE.font(0.875, value => `font-size: ${value};`, undefined, 'pagination')}
+        ${SCALE.w(1, value => `width: ${value};`, 'auto', 'pagination')}
+        ${SCALE.h(1, value => `height: ${value};`, 'auto', 'pagination')}
+        ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'pagination')}
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'pagination')}
+        ${UNIT('pagination')}
       `}</style>
     </PaginationContext.Provider>
   );

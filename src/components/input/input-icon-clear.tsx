@@ -1,6 +1,5 @@
 'use client';
 import React from 'react';
-import useTheme from '../use-theme';
 import useClasses from '../use-classes';
 
 interface Props {
@@ -10,7 +9,6 @@ interface Props {
 }
 
 const InputIconClear: React.FC<Props> = ({ onClick, disabled, visible }) => {
-  const theme = useTheme();
   const classes = useClasses('clear-icon', { visible });
 
   const clickHandler = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -47,7 +45,7 @@ const InputIconClear: React.FC<Props> = ({ onClick, disabled, visible }) => {
           transition: color 150ms ease 0s;
           margin: 0;
           padding: 0;
-          color: ${theme.palette.background.accents.accents_3};
+          color: var(--color-background-600);
           visibility: hidden;
           opacity: 0;
         }
@@ -58,7 +56,7 @@ const InputIconClear: React.FC<Props> = ({ onClick, disabled, visible }) => {
         }
 
         .clear-icon:hover {
-          color: ${disabled ? theme.palette.background.accents.accents_3 : theme.palette.foreground.value};
+          color: ${disabled ? 'var(--color-background-600)' : 'var(--color-foreground-1000)'};
         }
 
         svg {

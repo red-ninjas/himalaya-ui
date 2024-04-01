@@ -10,39 +10,39 @@ export type InputColor = {
 export const getColors = (palette: UIThemesPalette, status?: NormalTypes): InputColor => {
   const colors: { [key in NormalTypes]: InputColor } = {
     default: {
-      color: palette.foreground.value,
-      borderColor: palette.border.value,
-      hoverBorder: palette.border.dark,
+      color: palette.foreground.hex_1000,
+      borderColor: palette.border.hex_1000,
+      hoverBorder: palette.border.hex_900,
     },
     secondary: {
-      color: palette.foreground.value,
-      borderColor: palette.secondary.light,
-      hoverBorder: palette.secondary.value,
+      color: palette.foreground.hex_1000,
+      borderColor: palette.secondary.hex_900,
+      hoverBorder: palette.secondary.hex_1000,
     },
     success: {
-      color: palette.foreground.value,
-      borderColor: palette.success.light,
-      hoverBorder: palette.success.value,
+      color: palette.foreground.hex_1000,
+      borderColor: palette.success.hex_900,
+      hoverBorder: palette.success.hex_1000,
     },
     primary: {
-      color: palette.foreground.value,
-      borderColor: palette.primary.light,
-      hoverBorder: palette.primary.value,
+      color: palette.foreground.hex_1000,
+      borderColor: palette.primary.hex_900,
+      hoverBorder: palette.primary.hex_1000,
     },
     tertiary: {
-      color: palette.foreground.value,
-      borderColor: palette.tertiary.light,
-      hoverBorder: palette.tertiary.value,
+      color: palette.foreground.hex_1000,
+      borderColor: palette.tertiary.hex_900,
+      hoverBorder: palette.tertiary.hex_1000,
     },
     warning: {
-      color: palette.foreground.value,
-      borderColor: palette.warning.light,
-      hoverBorder: palette.warning.value,
+      color: palette.foreground.hex_1000,
+      borderColor: palette.warning.hex_900,
+      hoverBorder: palette.warning.hex_1000,
     },
     error: {
-      color: palette.foreground.value,
-      borderColor: palette.error.light,
-      hoverBorder: palette.error.value,
+      color: palette.foreground.hex_1000,
+      borderColor: palette.error.hex_900,
+      hoverBorder: palette.error.hex_1000,
     },
   };
 

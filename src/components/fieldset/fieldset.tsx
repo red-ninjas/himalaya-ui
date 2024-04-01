@@ -1,6 +1,5 @@
 'use client';
 import React, { ReactNode, useEffect, useMemo, useState } from 'react';
-import useTheme from '../use-theme';
 import FieldsetTitle from './fieldset-title';
 import FieldsetSubtitle from './fieldset-subtitle';
 import FieldsetFooter from './fieldset-footer';
@@ -16,14 +15,13 @@ interface Props {
   label?: string;
   title?: string | ReactNode;
   subtitle?: string | ReactNode;
-  className?: string;
 }
 
 type NativeAttrs = Omit<React.FieldsetHTMLAttributes<any>, keyof Props>;
 export type FieldsetProps = Props & NativeAttrs;
 
 const FieldsetComponent: React.FC<React.PropsWithChildren<FieldsetProps>> = ({
-  className = '',
+  className,
   title = '' as string | ReactNode,
   subtitle = '' as string | ReactNode,
   children,
@@ -31,11 +29,11 @@ const FieldsetComponent: React.FC<React.PropsWithChildren<FieldsetProps>> = ({
   label = '',
   ...props
 }: React.PropsWithChildren<FieldsetProps>) => {
-  const theme = useTheme();
-  const { SCALES } = useScale();
+  const { SCALE, UNIT, CLASS_NAMES } = useScale();
+
   const { inGroup, currentValue, register } = useFieldset();
   const [hidden, setHidden] = useState<boolean>(inGroup);
-  const classes = useClasses('fieldset', className);
+  const classes = useClasses('fieldset', className, CLASS_NAMES);
 
   const [withoutFooterChildren, FooterChildren] = pickChild(children, FieldsetFooter);
   const hasTitle = hasChild(withoutFooterChildren, FieldsetTitle);
@@ -80,22 +78,24 @@ const FieldsetComponent: React.FC<React.PropsWithChildren<FieldsetProps>> = ({
       {FooterChildren && FooterChildren}
       <style jsx>{`
         .fieldset {
-          background-color: ${theme.palette.background.value};
-          border: 1px solid ${theme.palette.border.value};
-          border-radius: ${SCALES.r(1, theme.style.radius)};
+          background-color: var(--color-background-1000);
+          border: 1px solid var(--color-border-1000);
+          border-radius: var(--layout-radius);
           overflow: hidden;
           display: ${hidden ? 'none' : 'block'};
-          font-size: ${SCALES.font(1)};
-          width: ${SCALES.w(1, 'auto')};
-          height: ${SCALES.h(1, 'auto')};
-          padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
-          margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
         }
+
+        ${SCALE.h(1, value => `height: ${value};`, 'auto', 'fieldset')}
+        ${SCALE.w(1, value => `width: ${value};`, 'auto', 'fieldset')}
+        ${SCALE.font(1, value => `--fieldset-font-size: ${value};`, undefined, 'fieldset')}
+        ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'fieldset')}
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'fieldset')}
+        ${UNIT('fieldset')}
       `}</style>
     </div>
   );
 };
 
 FieldsetComponent.displayName = 'HimalayaFieldset';
-const Fieldset = withScale(FieldsetComponent);
+const Fieldset = React.memo(withScale(FieldsetComponent));
 export default Fieldset;

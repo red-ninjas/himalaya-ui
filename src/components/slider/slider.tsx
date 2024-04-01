@@ -1,20 +1,17 @@
 'use client';
+import { UIColorTypes } from 'components/themes';
 import React, { RefObject, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import useTheme from '../use-theme';
-import useDrag, { DraggingEvent } from '../utils/use-drag';
+import useClasses from '../use-classes';
+import useScale, { withScale } from '../use-scale';
 import useCurrentState from '../utils/use-current-state';
+import useDrag, { DraggingEvent } from '../utils/use-drag';
 import SliderDot from './slider-dot';
 import SliderMark from './slider-mark';
-import { getColors } from './styles';
-import { NormalTypes } from '../utils/prop-types';
-import useScale, { withScale } from '../use-scale';
-import useClasses from '../use-classes';
 
-export type SliderTypes = NormalTypes;
 interface Props {
   hideValue?: boolean;
-  value?: number | [number, number];
-  type?: SliderTypes;
+  value?: number;
+  type?: UIColorTypes;
   initialValue?: number | [number, number];
   step?: number;
   max?: number;
@@ -25,7 +22,7 @@ interface Props {
   className?: string;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
 export type SliderProps = Props & NativeAttrs;
 
 const getRefWidth = (elementRef: RefObject<HTMLElement> | null): number => {
@@ -47,7 +44,7 @@ const getValue = (max: number, min: number, step: number, offsetX: number, railW
 const SliderComponent: React.FC<React.PropsWithChildren<SliderProps>> = ({
   hideValue = false,
   disabled = false,
-  type = 'default' as SliderTypes,
+  type = 'default' as UIColorTypes,
   step = 1,
   max = 100,
   min = 0,
@@ -58,10 +55,8 @@ const SliderComponent: React.FC<React.PropsWithChildren<SliderProps>> = ({
   showMarkers = false,
   ...props
 }: React.PropsWithChildren<SliderProps>) => {
-  const theme = useTheme();
-  const { SCALES } = useScale();
+  const { SCALE, CLASS_NAMES, UNIT } = useScale();
   const [value, setValue] = useState<number | [number, number]>(initialValue);
-
   const [, setSliderWidth, sideWidthRef] = useCurrentState<number>(0);
 
   const [, setLastDargOffset1, lastDargOffsetRef1] = useCurrentState<number>(0);
@@ -73,7 +68,6 @@ const SliderComponent: React.FC<React.PropsWithChildren<SliderProps>> = ({
   const sliderRef = useRef<HTMLDivElement>(null);
   const dotRef1 = useRef<HTMLDivElement>(null);
   const dotRef2 = useRef<HTMLDivElement>(null);
-
   const currentRatio1 = useMemo(() => {
     const val = Array.isArray(value) ? value[0] : value;
     return ((val - min) / (max - min)) * 100;
@@ -122,8 +116,6 @@ const SliderComponent: React.FC<React.PropsWithChildren<SliderProps>> = ({
     },
     [max, min, step, sideWidthRef],
   );
-
-  const { bg } = useMemo(() => getColors(theme.palette, type), [theme.palette, type]);
 
   const dragHandler = (event: DraggingEvent, index: number) => {
     if (disabled || !sliderRef.current) return;
@@ -194,8 +186,18 @@ const SliderComponent: React.FC<React.PropsWithChildren<SliderProps>> = ({
     }
   }, []);
 
+  const isNotRange = currentRatio2 <= currentRatio1;
+
+  const leftStart = isNotRange ? 0 : currentRatio1;
+  const leftEnd = isNotRange ? currentRatio1 : currentRatio2;
+
   return (
-    <div className={useClasses('slider', className)} onClick={clickHandler} ref={sliderRef} {...props}>
+    <div
+      className={useClasses('slider', className, CLASS_NAMES, type ? 'color-' + type : null, { disabled })}
+      onClick={clickHandler}
+      ref={sliderRef}
+      {...props}
+    >
       <SliderDot disabled={disabled} ref={dotRef1} isClick={isClick} left={currentRatio1}>
         {hideValue ? undefined : Array.isArray(value) ? value[0] : value}
       </SliderDot>
@@ -203,18 +205,43 @@ const SliderComponent: React.FC<React.PropsWithChildren<SliderProps>> = ({
         {hideValue ? undefined : value[1]}
       </SliderDot>
       {showMarkers && <SliderMark max={max} min={min} step={step} />}
+      <div className="slider-value"></div>
       <style jsx>{`
         .slider {
-          border-radius: 50px;
-          background-color: ${disabled ? theme.palette.background.accents.accents_2 : bg};
+          border-radius: var(--border-radius);
+          --slider-bg: var(--color-base);
+          --slider-bg-tint: var(--color-tint);
+          --slider-color: var(--color-contrast);
+          background-color: ${disabled ? `var(--color-background-800)` : 'var(--color-background-900)'};
           position: relative;
           cursor: ${disabled ? 'not-allow' : 'pointer'};
-          --slider-font-size: ${SCALES.font(1)};
-          width: ${SCALES.w(1, '100%')};
-          height: ${SCALES.h(0.5)};
-          padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
-          margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
         }
+        .slider.color-default {
+          --slider-bg: var(--color-foreground-1000);
+          --slider-bg-tint: var(--color-foreground-900);
+          --slider-color: var(--color-background-1000);
+        }
+        .slider.disabled {
+          --slider-bg: var(--color-background-900);
+          --slider-bg-tint: var(--color-background-700);
+          --slider-color: var(--color-foreground-800);
+        }
+        .slider-value {
+          position: absolute;
+          left: ${leftStart}%;
+          right: calc(100% - ${leftEnd}%);
+          height: 100%;
+          background: var(--slider-bg-tint);
+          border-radius: var(--border-radius);
+        }
+        ${SCALE.h(0.5, value => `height: ${value};`, undefined, 'slider')}
+        ${SCALE.w(0, value => `width: ${value};`, '100%', 'slider')}
+        ${SCALE.font(1, value => `--slider-font-size: ${value};`, undefined, 'slider')}
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'slider')}
+        ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'slider')}
+        ${SCALE.r(1, value => `--border-radius: ${value};`, 'var(--layout-radius)', 'slider')}
+
+        ${UNIT('slider')}
       `}</style>
     </div>
   );

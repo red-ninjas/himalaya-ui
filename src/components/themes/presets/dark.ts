@@ -1,21 +1,20 @@
-import { generateColors } from '../utils';
+import { makeColors } from '../utils';
 import { UIThemes, UIThemesExpressiveness, UIThemesPalette } from './index';
-import { defaultFont, defaultStyles } from './shared';
+import { defaultFont } from './shared';
 
-const colors = generateColors({
-  background: '#000000',
-  border: '#242424',
+const colors = makeColors({
+  gray: '#7d7d7d',
   foreground: '#ededed',
+  border: '#242424',
   secondary: '#7d7d7d',
   primary: '#0062d1',
   tertiary: '#763da9',
-  paragraph: '#a1a1a1',
   warning: '#ff990a',
   error: '#d93036',
   success: '#398e4a',
   link: '#0070f3',
   code: '#d73a49',
-  codeBg: '#0a0a0a',
+  background: '#000000',
 });
 export const palette: UIThemesPalette = Object.assign(
   {
@@ -32,7 +31,6 @@ export const palette: UIThemesPalette = Object.assign(
       to: '#fd9746',
     },
   },
-
   colors,
 );
 
@@ -49,7 +47,6 @@ export const expressiveness: UIThemesExpressiveness = {
 };
 
 export const font = defaultFont;
-export const style = defaultStyles;
 
 export const darkTheme = (): UIThemes => {
   return {
@@ -57,7 +54,6 @@ export const darkTheme = (): UIThemes => {
     font,
     palette,
     expressiveness,
-    style,
   };
 };
 

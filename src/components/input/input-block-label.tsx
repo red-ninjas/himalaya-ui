@@ -1,12 +1,9 @@
 'use client';
 import React from 'react';
-import useTheme from '../use-theme';
 
 export interface InputBlockLabelLabel {}
 
 const InputBlockLabelComponent: React.FC<React.PropsWithChildren<InputBlockLabelLabel>> = ({ children }) => {
-  const theme = useTheme();
-
   return (
     <label>
       {children}
@@ -14,7 +11,7 @@ const InputBlockLabelComponent: React.FC<React.PropsWithChildren<InputBlockLabel
         label {
           display: block;
           font-weight: normal;
-          color: ${theme.palette.background.accents.accents_6};
+          color: var(--color-background-300);
           padding: 0 0 0 1px;
           margin-bottom: 0.5em;
           font-size: 1em;

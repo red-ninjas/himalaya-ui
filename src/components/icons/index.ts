@@ -305,6 +305,7 @@ export { default as Sort } from './sort';
 export { default as Speaker } from './speaker';
 export { default as Square } from './square';
 export { default as Star } from './star';
+export { default as StarFill } from './starFill';
 export { default as Static } from './static';
 export { default as StopCircle } from './stopCircle';
 export { default as Sun } from './sun';

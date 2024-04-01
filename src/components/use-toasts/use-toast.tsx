@@ -4,14 +4,13 @@ import React, { CSSProperties, useEffect } from 'react';
 import { useConfigs, defaultToastLayout } from '../use-config';
 import { ToastPlacement } from '../use-toasts/helpers';
 import { getId } from '../utils/collections';
-import type { NormalTypes } from '../utils/prop-types';
+import { UIColorTypes } from '../themes/presets';
 
 export interface ToastAction {
   name: string;
   handler: (event: React.MouseEvent<HTMLButtonElement>, cancel: () => void) => void;
   passive?: boolean;
 }
-export type ToastTypes = NormalTypes;
 export type ToastLayout = {
   padding?: CSSProperties['padding'];
   r?: CSSProperties['borderRadius'];
@@ -23,7 +22,7 @@ export type ToastLayout = {
 };
 export interface ToastInput {
   text: string | React.ReactNode;
-  type?: ToastTypes;
+  type?: UIColorTypes;
   id?: string;
   delay?: number;
   actions?: Array<ToastAction>;
@@ -39,7 +38,7 @@ export type Toast = Required<ToastInput> & ToastInstance;
 
 const defaultToast = {
   delay: 2000,
-  type: 'default' as ToastTypes,
+  type: 'default' as UIColorTypes,
 };
 
 export type ToastHooksResult = {

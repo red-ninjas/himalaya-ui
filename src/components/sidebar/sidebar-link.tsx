@@ -1,77 +1,103 @@
 'use client';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import React, { PropsWithChildren } from 'react';
+import React from 'react';
+import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';
-import useTheme from '../use-theme';
 
 export interface Props {
   icon?: React.ReactNode;
   activeColor?: string;
   activeBackground?: string;
+  isActive?: boolean;
 }
 
 type NativeAttrs = Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, keyof Props>;
 export type SideBarLinkProp = Props & NativeAttrs;
 
-const SidebarLink: React.FC<PropsWithChildren<SideBarLinkProp>> = ({ children, icon, activeColor, activeBackground, href, ...props }) => {
-  const theme = useTheme();
-  const pathname = usePathname();
-  const { SCALES } = useScale();
+const SidebarLink = React.forwardRef<HTMLAnchorElement, React.PropsWithChildren<SideBarLinkProp>>(
+  (
+    { children, icon, isActive, activeColor, activeBackground, className, ...props }: React.PropsWithChildren<SideBarLinkProp>,
+    ref: React.Ref<HTMLAnchorElement>,
+  ) => {
+    const { UNIT, SCALE, CLASS_NAMES } = useScale();
 
-  const isActive = pathname === href;
-
-  return (
-    <Link legacyBehavior href={href || ''}>
-      <a {...props} className={`sidebar-link ${isActive ? 'active' : ''}`}>
+    return (
+      <a ref={ref} {...props} className={useClasses(`sidebar-link`, { active: isActive, className }, CLASS_NAMES)}>
         {icon && <span className="sidebar-link-icon">{icon}</span>}
         <span className="sidebar-link-title">{children}</span>
         <style jsx>{`
           .sidebar-link-title {
+            padding-top: var(--padding-top);
+            padding-bottom: var(--padding-bottom);
+            padding-left: var(--padding-left);
+            padding-right: var(--padding-right);
           }
+
           .sidebar-link .sidebar-link-icon {
             margin-right: 12px;
-            color: ${theme.palette.background.accents.accents_3};
-            transition: all 200ms ease;
+            color: var(--color-foreground-600);
+            transition:
+              color 200ms ease,
+              background 200ms ease;
             display: inline-flex;
           }
 
           .sidebar-link {
             display: flex;
             align-items: baseline;
-            font-size: ${SCALES.font(0.85)};
-            color: ${theme.palette.background.accents.accents_5};
-            margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
-            padding: ${SCALES.pt(0.6)} 0 ${SCALES.pb(0.6)} 0;
-
-            padding-left: ${SCALES.pl(0.6)};
-            padding-right: ${SCALES.pl(0.6)};
+            color: var(--color-foreground-700);
             box-sizing: border-box;
             align-self: stretch;
-            transition: all 200ms ease;
+            transition:
+              color 200ms ease,
+              background 200ms ease;
             align-items: center;
           }
 
           .sidebar-link:hover {
-            color: ${theme.palette.foreground.value};
+            color: var(--color-foreground-1000);
+            background: ${activeBackground || `var(--color-background-900)`};
           }
 
           .sidebar-link:hover .sidebar-link-icon {
-            color: ${theme.palette.foreground.value};
+            color: var(--color-foreground-1000);
           }
 
           .sidebar-link.active {
-            background: ${activeBackground || theme.palette.foreground.accents.accents_8};
+            background: ${activeBackground || `var(--color-background-900)`};
           }
 
           .sidebar-link.active .sidebar-link-title,
           .sidebar-link.active .sidebar-link-icon {
-            color: ${activeColor || theme.palette.background.contrast};
+            color: ${activeColor || `var(--color-foreground-1000)`};
+            font-weight: 500;
           }
+
+          ${SCALE.font(0.85, value => `font-size: ${value};`, undefined, 'sidebar-link')}
+          ${SCALE.margin(
+            0,
+            value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
+            {
+              top: undefined,
+              bottom: undefined,
+              left: `calc(var(--padding-left) * -1)`,
+              right: `calc(var(--padding-right) * -1)`,
+            },
+            'sidebar-link',
+          )}
+          ${SCALE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'sidebar-link')}
+
+          ${SCALE.padding(
+            0.6,
+            value => `--padding-top: ${value.top}; --padding-right: ${value.right}; --padding-bottom: ${value.bottom}; --padding-left: ${value.left};`,
+            undefined,
+            'sidebar-link',
+          )}
+
+          ${UNIT('sidebar-link')}
         `}</style>
       </a>
-    </Link>
-  );
-};
-
+    );
+  },
+);
+SidebarLink.displayName = 'HimalayaSidebarLink';
 export default withScale(SidebarLink);

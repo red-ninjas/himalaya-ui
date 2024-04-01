@@ -2,11 +2,13 @@
 
 import useScale, { withScale } from '../use-scale';
 import { PropsWithChildren } from 'react';
+import useClasses from '../use-classes';
 
 const HeroActions: React.FC<PropsWithChildren> = ({ children, ...props }) => {
-  const { SCALES } = useScale();
+  const { SCALE, UNIT, CLASS_NAMES } = useScale();
+
   return (
-    <div className="actions" {...props}>
+    <div className={useClasses('actions', CLASS_NAMES)} {...props}>
       {children}
       <style jsx>{`
         .actions {
@@ -14,10 +16,14 @@ const HeroActions: React.FC<PropsWithChildren> = ({ children, ...props }) => {
           flex-wrap: wrap;
           gap: 12px;
           align-items: center;
-          padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
-          margin: ${SCALES.mt(2)} ${SCALES.mr(0, 'auto')} ${SCALES.mb(0, 'auto')} ${SCALES.ml(0, 'auto')};
           justify-content: center;
         }
+
+        ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'actions')}
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, 'auto', 'actions')}
+        ${SCALE.mt(2, value => `margin-top: ${value}`, undefined, 'actions')}
+
+        ${UNIT('actions')}
       `}</style>
     </div>
   );

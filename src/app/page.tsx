@@ -1,17 +1,19 @@
 'use client';
 
-import { Button, FadeInEffect, Footer, FooterBottom, FooterNavigation, Hero, Link, PageLayout, Section, Text, useTheme } from 'components';
+import { Button, Footer, FooterNavigation, Hero, Link, Section, Text, useTheme } from 'components';
 import { Code } from 'components/icons';
 import { capitalize } from 'components/utils/collections';
 import { Facts, Partners, Portfolio, RunningSlogan, Services } from 'lib/components';
 import { BrandLogo } from 'lib/components/icons';
 import metaData from '../lib/data/metadata.json';
+import NextLink from 'next/link';
+import { motion } from 'framer-motion';
 
 export default function Index() {
   const theme = useTheme();
   return (
     <>
-      <Hero scrollToId="services" style={{ background: theme.type == 'dark' ? '#141415' : theme.palette.background.darker }}>
+      <Hero scrollToId="services" style={{ background: theme.type == 'dark' ? '#141415' : '#ffffff' }}>
         <Hero.Tag>HIMALAYA UI</Hero.Tag>
         <Hero.Title>
           Scaling Heights of Design Excellence: Your UI Journey <span style={{ textDecoration: 'underline', fontWeight: 300 }}>Begins Here!</span>
@@ -40,33 +42,33 @@ export default function Index() {
         </Section>
       </div>
 
-      <PageLayout>
-        <FadeInEffect blur={10} transition={1000}>
-          <Partners></Partners>
-        </FadeInEffect>
-      </PageLayout>
+      <motion.div
+        initial={{ opacity: 0, filter: 'blur(10px)' }}
+        whileInView={{ opacity: 1, filter: 'blur(0px)' }}
+        transition={{ duration: 1 }}
+        viewport={{ once: true }}
+      >
+        <Partners></Partners>
+      </motion.div>
 
-      <PageLayout>
-        <Section>
-          <Portfolio></Portfolio>
-        </Section>
-      </PageLayout>
+      <Section>
+        <Portfolio></Portfolio>
+      </Section>
 
       <Section>
         <Facts></Facts>
       </Section>
-      <PageLayout>
-        <RunningSlogan></RunningSlogan>
-      </PageLayout>
+
+      <RunningSlogan></RunningSlogan>
 
       <Footer>
         <Footer.Block justify="space-between">
           {metaData.slice(0, 3).map((df, index) => (
             <FooterNavigation title={capitalize(df.name)} key={index}>
               {df.children.slice(0, 5).map((child, childIndex) => (
-                <FooterNavigation.Item key={childIndex} href={child.children[0].url || df.url}>
-                  {capitalize(child.name)}
-                </FooterNavigation.Item>
+                <NextLink key={childIndex} legacyBehavior passHref href={child.children[0].url || df.url}>
+                  <FooterNavigation.Item>{capitalize(child.name)}</FooterNavigation.Item>
+                </NextLink>
               ))}
             </FooterNavigation>
           ))}
@@ -74,25 +76,25 @@ export default function Index() {
         <Footer.Block justify="flex-end"></Footer.Block>
       </Footer>
 
-      <FooterBottom>
-        <FooterBottom.Block>
+      <Footer.Bottom>
+        <Footer.Bottom.Block>
           <div className="logo-footer">
             <BrandLogo size={35}></BrandLogo>
           </div>
-        </FooterBottom.Block>
-        <FooterBottom.Block justify="flex-end">
-          <Text span font={'12px'} style={{ color: theme.palette.background.accents.accents_5 }}>
+        </Footer.Bottom.Block>
+        <Footer.Bottom.Block justify="flex-end">
+          <Text span font={'12px'} style={{ color: 'var(--color-foreground-700)' }}>
             With support of{' '}
             <Link color href="https://redninjas.dev" target="_blank">
               RedNinjas LTD
             </Link>
           </Text>
-        </FooterBottom.Block>
-      </FooterBottom>
+        </Footer.Bottom.Block>
+      </Footer.Bottom>
 
       <style jsx>{`
         .logo-footer {
-          color: ${theme.palette.foreground.value};
+          color: var(--color-foreground-1000);
         }
 
         section {

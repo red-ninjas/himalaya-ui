@@ -1,44 +1,43 @@
 'use client';
 
+import { isCSSNumberValue } from 'components/utils/collections';
 import React, { PropsWithChildren } from 'react';
-import useScale from '../use-scale';
+import useClasses from '../use-classes';
+import useLayout from '../use-layout';
+import useScale, { ScaleResponsiveParameter, customResponsiveAttribute } from '../use-scale';
 import withScale from '../use-scale/with-scale';
-import useTheme from '../use-theme';
 interface NativeQuickBarProps {
   header?: React.ReactNode;
+  gap?: ScaleResponsiveParameter<number | string>;
 }
 
 type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof NativeQuickBarProps>;
 export type QuickBarProps = NativeQuickBarProps & NativeAttrs;
 
-const QuickBarComponent: React.FC<PropsWithChildren<QuickBarProps>> = ({ children, ...props }) => {
-  const theme = useTheme();
-  const { SCALES } = useScale();
+const QuickBarComponent: React.FC<PropsWithChildren<QuickBarProps>> = ({ children, gap = 0.375, className, ...props }) => {
+  const { UNIT, SCALE, CLASS_NAMES } = useScale();
+  const layout = useLayout();
 
   return (
-    <div className="quick-bar" {...props}>
-      <div className="quick-bar-inner">{children}</div>
+    <div className={useClasses('quickbar', className, CLASS_NAMES)} {...props}>
+      {children}
       <style jsx>{`
-        .quick-bar-inner {
+        .quickbar {
           display: flex;
           flex-direction: column;
           align-items: center;
-          gap: 6px;
-          height: ${SCALES.h(1, 'auto')};
-          margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
-          padding: ${SCALES.pt(0.75)} ${SCALES.pr(0.75)} ${SCALES.pb(0.75)} ${SCALES.pl(0.75)};
         }
 
-        .quick-bar {
-          width: calc(var(--quickbar-width) - 1px);
-          left: var(--quickbar-position);
-          top: 0;
-          height: 100%;
-          position: fixed;
-          border-right: 1px solid ${theme.palette.border.value};
-          transition: all var(--quickbar-transition) ease;
-          transform: translateX(var(--quickbar-position, 0));
-        }
+        ${SCALE.h(1, value => `height: ${value};`, 'auto', 'quickbar')}
+        ${SCALE.w(1, value => `width: ${value};`, 'auto', 'quickbar')}
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'quickbar')}
+        ${SCALE.padding(0.75, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'quickbar')}
+
+        ${customResponsiveAttribute(gap, 'quickbar', layout.breakpoints, value =>
+          !isCSSNumberValue(value) ? `gap: ${value};` : `gap: calc(var(--scale-unit-scale) * ${value})`,
+        )}
+
+        ${UNIT('quickbar')}
       `}</style>
     </div>
   );

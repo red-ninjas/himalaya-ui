@@ -1,9 +1,8 @@
 'use client';
 
-import React, { useMemo } from 'react';
-import useTheme from '../use-theme';
-import { addColorAlpha } from '../utils/color';
+import React from 'react';
 import useClasses from '../use-classes';
+import useTheme from '../use-theme';
 
 interface Props {
   active?: boolean;
@@ -11,15 +10,12 @@ interface Props {
   onClick?: (e: React.MouseEvent) => void;
 }
 
-type NativeAttrs = Omit<React.ButtonHTMLAttributes<any>, keyof Props>;
+type NativeAttrs = Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, keyof Props>;
 export type PaginationItemProps = Props & NativeAttrs;
 
 const PaginationItem: React.FC<React.PropsWithChildren<PaginationItemProps>> = ({ active, children, disabled, onClick, ...props }) => {
   const theme = useTheme();
-  const [hover, activeHover] = useMemo(
-    () => [addColorAlpha(theme.palette.primary.value, 0.1), addColorAlpha(theme.palette.primary.value, 0.8)],
-    [theme.palette.primary.value],
-  );
+
   const classes = useClasses({
     active,
     disabled,
@@ -57,35 +53,37 @@ const PaginationItem: React.FC<React.PropsWithChildren<PaginationItemProps>> = (
           min-width: var(--pagination-size);
           font-size: inherit;
           cursor: pointer;
-          color: ${theme.palette.primary.value};
-          border-radius: ${theme.style.radius};
-          background-color: ${theme.palette.background.value};
+          color: var(--color-foreground-1000);
+          background-color: var(--color-background-1000);
+          border-radius: var(--layout-radius);
           transition: all linear 200ms 0ms;
         }
 
         button:hover {
-          background-color: ${hover};
+          background-color: var(--color-tint);
+          color: var(--color-contrast);
         }
 
         .active {
-          font-weight: bold;
-          background-color: ${theme.palette.primary.value};
-          color: ${theme.palette.background.value};
+          background-color: var(--color-base);
+          color: var(--color-contrast);
+          font-weight: 500;
           box-shadow: ${theme.expressiveness.shadowSmall};
         }
 
         .active:hover {
-          background-color: ${activeHover};
+          background-color: var(--color-shade);
+          color: var(--color-contrast);
           box-shadow: ${theme.expressiveness.shadowMedium};
         }
 
         .disabled {
-          color: ${theme.palette.background.accents.accents_4};
+          color: var(--color-background-500);
           cursor: not-allowed;
         }
 
         .disabled:hover {
-          background-color: ${theme.palette.background.accents.accents_2};
+          background-color: var(--color-background-700);
         }
 
         button :global(svg) {

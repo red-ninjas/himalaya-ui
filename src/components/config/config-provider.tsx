@@ -1,36 +1,31 @@
 'use client';
 
-import { parseCookies, setCookie } from 'nookies';
 import React, { useEffect, useMemo, useState } from 'react';
 import CssBaseline from '../css-baseline';
 import { LayoutProvider } from '../layout';
-import Themes, { UIThemes } from '../themes';
+import { UIThemes } from '../themes';
 import {
   ConfigContext,
   ConfigProviderContextParams,
   UpdateToastsFunction,
   UpdateToastsIDFunction,
   UpdateToastsLayoutFunction,
+  defaultLayout,
   defaultToastLayout,
 } from '../use-config/config-context';
 import useMediaQuery from '../use-media-query';
 
+import { LayoutPropsContext } from 'components/use-layout/layout-context';
+import _ from 'lodash';
 import { RouteChangeProvider } from 'nextjs13-router-events';
-import { CUSTOM_THEME_TYPE, THEME_COOKIE_NAME } from '../constants';
 import ThemeProvider from '../use-config/theme-provider';
 import useCurrentState from '../use-current-state';
-import useTheme from '../use-theme';
 import ToastContainer from '../use-toasts/toast-container';
-import { DeepPartial } from '../utils/types';
 
 export interface ConfigProps {
   themeType?: string | 'dark' | 'light';
-  detectTheme?: boolean;
   themes?: Array<UIThemes>;
-}
-
-export function detectTheme(fallBackTheme: string = 'dark') {
-  return typeof window !== 'undefined' ? window.localStorage.getItem(THEME_COOKIE_NAME) || fallBackTheme : fallBackTheme;
+  layout?: LayoutPropsContext;
 }
 
 type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof ConfigProps>;
@@ -39,28 +34,17 @@ export type NativeConfigProps = ConfigProps & NativeAttrs;
 const ConfigProvider: React.FC<React.PropsWithChildren<NativeConfigProps>> = ({
   children,
   themeType = 'dark',
-  detectTheme = false,
   themes = [],
+  layout,
 }: React.PropsWithChildren<NativeConfigProps>) => {
   const [scrollHeight, setScrollHeight] = useState<number>(0);
   const mediaQuery = useMediaQuery('xs', { match: 'down' });
   const [isMobile, setIsMobile] = useState<boolean>();
-  const theme = useTheme();
   const [_themeType, setThemeType] = useState<string>(themeType);
-  const [customTheme, setCustomTheme] = useState<UIThemes>(theme);
 
   useEffect(() => {
     setIsMobile(mediaQuery);
   }, [mediaQuery]);
-
-  useEffect(() => {
-    if (detectTheme) {
-      const cookies = parseCookies();
-      if (cookies && cookies[THEME_COOKIE_NAME] && cookies[THEME_COOKIE_NAME] != _themeType) {
-        setThemeType(cookies[THEME_COOKIE_NAME]);
-      }
-    }
-  }, []);
 
   const [lastUpdateToastId, setLastUpdateToastId] = useState<ConfigProviderContextParams['lastUpdateToastId']>(null);
   const [toasts, setToasts, toastsRef] = useCurrentState<ConfigProviderContextParams['toasts']>([]);
@@ -83,23 +67,10 @@ const ConfigProvider: React.FC<React.PropsWithChildren<NativeConfigProps>> = ({
 
   const setTheme = (type: string) => {
     setThemeType(type);
-    if (detectTheme) {
-      setCookie(null, THEME_COOKIE_NAME, type, {
-        maxAge: 30 * 24 * 60 * 60,
-        path: '/',
-      });
-    }
   };
-  const updateCustomTheme = (nextTheme: DeepPartial<UIThemes>) => {
-    const mergedTheme = Themes.create(theme, { ...nextTheme, type: CUSTOM_THEME_TYPE });
-    setCustomTheme(mergedTheme);
-    setCustomTheme && setCustomTheme(mergedTheme);
-  };
-
   const config: ConfigProviderContextParams = useMemo(
     () => ({
-      customTheme,
-      updateCustomTheme,
+      layout: _.merge(defaultLayout, layout),
       sidebarScrollHeight: scrollHeight,
       updateSidebarScrollHeight,
       isMobile,
@@ -113,14 +84,14 @@ const ConfigProvider: React.FC<React.PropsWithChildren<NativeConfigProps>> = ({
       updateToastLayout,
       updateLastToastId,
     }),
-    [isMobile, scrollHeight, _themeType, toasts, toastLayout, lastUpdateToastId],
+    [isMobile, scrollHeight, _themeType, toasts, layout, toastLayout, lastUpdateToastId],
   );
 
   return (
     <RouteChangeProvider>
-      <LayoutProvider>
+      <LayoutProvider layout={config.layout} inline={false}>
         <ConfigContext.Provider value={config}>
-          <ThemeProvider themes={config.themes} themeType={_themeType}>
+          <ThemeProvider inline={false} themes={config.themes} themeType={config.themeType}>
             <CssBaseline />
             {children}
             <ToastContainer />

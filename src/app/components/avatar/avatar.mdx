@@ -1,10 +1,10 @@
-import { Layout, Playground, Attributes } from 'lib/components'
-import { Avatar, Spacer } from 'components'
+import { Layout, Playground, Attributes } from 'lib/components';
+import { Avatar, Spacer } from 'components';
 
 export const meta = {
   title: 'Avatar',
   group: 'Data Display',
-}
+};
 
 # Avatar
 
@@ -57,16 +57,16 @@ Avatars represent a user or a team. Stacked avatars represent a group of people.
   return (
     <>
       <Avatar.Group>
-        <Avatar src={url} stacked />
-        <Avatar src={url} stacked />
-        <Avatar src={url} stacked />
-        <Avatar src={url} stacked />
+        <Avatar src={url}  />
+        <Avatar src={url}  />
+        <Avatar src={url}  />
+        <Avatar src={url}  />
       </Avatar.Group>
       <Spacer />
       <Avatar.Group count={12}>
-        <Avatar src={url} stacked />
-        <Avatar text="W" stacked />
-        <Avatar text="Ana" stacked />
+        <Avatar src={url}  />
+        <Avatar text="W"  />
+        <Avatar text="Ana"  />
       </Avatar.Group>
     </>
   )
@@ -80,7 +80,6 @@ Avatars represent a user or a team. Stacked avatars represent a group of people.
 | Attribute    | Description                        | Type                | Accepted values                          | Default |
 | ------------ | ---------------------------------- | ------------------- | ---------------------------------------- | ------- |
 | **src**      | image src                          | `string`            | -                                        | -       |
-| **stacked**  | stacked display group              | `boolean`           | -                                        | `false` |
 | **text**     | display text when image is missing | `string`            | -                                        | -       |
 | **isSquare** | avatar shape                       | `boolean`           | -                                        | `false` |
 | ...          | native props                       | `ImgHTMLAttributes` | `'alt', 'crossOrigin', 'className', ...` | -       |

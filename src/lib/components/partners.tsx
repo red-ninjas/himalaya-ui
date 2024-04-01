@@ -1,13 +1,21 @@
-import { PageWidth, FadeInEffect, Text, useTheme } from 'components';
-import { RedNinjas, Striked } from './icons';
+'use client';
+import { PageWidth, Text, useTheme } from 'components';
 import Carousel from 'components/carousel';
+import { motion } from 'framer-motion';
+import { RedNinjas, Striked } from './icons';
 
 export default function Partners() {
   const theme = useTheme();
   return (
-    <FadeInEffect translateY="4rem">
+    <motion.div
+      style={{ width: '100%' }}
+      initial={{ opacity: 0, filter: 'blur(10px)' }}
+      whileInView={{ opacity: 1, filter: 'blur(0px)' }}
+      transition={{ duration: 1 }}
+      viewport={{ once: true }}
+    >
       <div className="carousel">
-        <Text mb={1.2} small style={{ color: theme.palette.background.accents.accents_4, textTransform: 'uppercase' }}>
+        <Text mb={1.2} small style={{ color: theme.palette.background.hex_500, textTransform: 'uppercase' }}>
           With heavy support from
         </Text>
         <PageWidth>
@@ -67,7 +75,7 @@ export default function Partners() {
             align-items: center;
             justify-items: center;
             font-size: clamp(24px, 21vw, 36px);
-            color: ${theme.palette.background.accents.accents_6};
+            color: var(--color-background-300);
             width: 100%;
             height: 100%;
           }
@@ -77,10 +85,10 @@ export default function Partners() {
           }
 
           :global(a.partner:hover) {
-            color: ${theme.palette.foreground.value};
+            color: var(--color-foreground-1000);
           }
         `}</style>
       </div>
-    </FadeInEffect>
+    </motion.div>
   );
 }

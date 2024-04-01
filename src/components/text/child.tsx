@@ -1,16 +1,15 @@
 'use client';
 
 import React, { useMemo } from 'react';
-import { GradientPositions, GradientPositionsEnum, UIThemesPalette } from '../themes/presets';
+import { GradientPositions, GradientPositionsEnum } from '../themes/presets';
 import useClasses from '../use-classes';
 import useScale from '../use-scale';
-import useTheme from '../use-theme';
-import { NormalTypes } from '../utils/prop-types';
+import { ButtonTypes } from '../utils/prop-types';
 import { TextColor } from './shared';
 
 export interface Props {
   tag: keyof React.JSX.IntrinsicElements;
-  type?: NormalTypes;
+  type?: ButtonTypes;
   stroke?: number | string;
   className?: string;
   color?: TextColor;
@@ -23,20 +22,6 @@ export interface Props {
   xl?: number;
 }
 
-const getTypeColor = (type: NormalTypes, palette: UIThemesPalette) => {
-  const colors: { [key in NormalTypes]: string } = {
-    default: 'inherit',
-    secondary: palette.secondary.value,
-    success: palette.success.value,
-    warning: palette.warning.value,
-    error: palette.error.value,
-    primary: palette.primary.value,
-    tertiary: palette.tertiary.value,
-  };
-
-  return colors[type] || colors.default;
-};
-
 type NativeAttrs = Omit<React.DetailsHTMLAttributes<any>, keyof Props>;
 export type TextChildProps = Props & NativeAttrs;
 
@@ -47,17 +32,16 @@ const TextChild: React.FC<React.PropsWithChildren<TextChildProps>> = ({
   stroke,
   color,
   gradientDegress = GradientPositionsEnum.right,
-  type = 'default' as NormalTypes,
+  type = 'default' as ButtonTypes,
   ...props
 }: React.PropsWithChildren<TextChildProps>) => {
   const Component = tag;
-  const theme = useTheme();
 
-  const { getScaleProps, RESPONSIVE } = useScale();
+  const { getScaleProps, SCALE } = useScale();
   const font = getScaleProps('font');
   const lineHeight = getScaleProps('lineHeight');
 
-  const mx = getScaleProps(['m', 'ml', 'mr', 'mx', 'ml', 'mr']);
+  const mx = getScaleProps(['m', 'ml', 'mr', 'mx', 'ml', 'mr', 'font']);
   const my = getScaleProps(['m', 'mt', 'mb', 'my', 'mt', 'mb']);
   const px = getScaleProps(['p', 'pl', 'pr', 'pl', 'pr', 'px']);
   const py = getScaleProps(['p', 'pt', 'pb', 'pt', 'pb', 'py']);
@@ -69,22 +53,26 @@ const TextChild: React.FC<React.PropsWithChildren<TextChildProps>> = ({
       const gradientDirection = typeof gradientDegress === 'number' ? gradientDegress + 'deg' : 'to ' + gradientDegress;
 
       return `background: linear-gradient(
-        ${gradientDirection},
-        ${color['from']},
-        ${color['to']}
-      );
-      background-size: 100%;
-      background-repeat: repeat;
-      background-clip: text;
-      text-fill-color: transparent;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      -moz-background-clip: text;
-      -moz-text-fill-color: transparent;`;
+            ${gradientDirection},
+            ${color['from']},
+            ${color['to']}
+          );
+          background-size: 100%;
+          background-repeat: repeat;
+          background-clip: text;
+          text-fill-color: transparent;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          -moz-background-clip: text;
+          -moz-text-fill-color: transparent;`;
     }
 
-    return `color: ` + getTypeColor(type, theme.palette) + ';';
-  }, [type, theme.palette, color, gradientDegress]);
+    if (type === 'default') {
+      return ``;
+    }
+
+    return `color: var(--color-base);`;
+  }, [type, color, gradientDegress]);
   const classNames = useMemo<string>(() => {
     const keys = [
       { value: mx, className: 'mx' },
@@ -103,35 +91,30 @@ const TextChild: React.FC<React.PropsWithChildren<TextChildProps>> = ({
   }, [mx, my, px, py, font, className, stroke, lineHeight]);
 
   return (
-    <Component className={useClasses(classNames, 'width height')} {...props}>
+    <Component className={useClasses(classNames, 'width height', type ? 'color-' + type : null)} {...props}>
       {children}
       <style jsx>{`
         .stroke {
           color: transparent;
-          -webkit-text-stroke: ${Number(stroke) ? stroke + 'px' : stroke} ${defaultColor !== 'inherit' ? theme.palette.foreground.value : defaultColor};
+          -webkit-text-stroke: ${Number(stroke) ? stroke + 'px' : stroke} ${defaultColor !== 'inherit' ? `var(--color-foreground-1000)` : defaultColor};
         }
 
         ${tag} {
           ${defaultColor}
         }
 
-        ${RESPONSIVE.ml(0, value => `margin-left: ${value};`, 'revert', 'mx')}
-        ${RESPONSIVE.mr(0, value => `margin-right: ${value};`, 'revert', 'mx')}
-
-        ${RESPONSIVE.mt(0, value => `margin-top: ${value};`, 'revert', 'my')}
-        ${RESPONSIVE.mb(0, value => `margin-bottom: ${value};`, 'revert', 'my')}
-
-        ${RESPONSIVE.pl(0, value => `padding-left: ${value};`, 'revert', 'px')}
-        ${RESPONSIVE.pr(0, value => `padding-right: ${value};`, 'revert', 'px')}
-
-        ${RESPONSIVE.pt(0, value => `padding-top: ${value};`, 'revert', 'py')}
-        ${RESPONSIVE.pb(0, value => `padding-bottom: ${value};`, 'revert', 'py')}
-
-        ${RESPONSIVE.w(1, value => `width: ${value};`, 'auto')}
-        ${RESPONSIVE.h(1, value => `height: ${value};`, 'auto')}
-
-        ${RESPONSIVE.font(1, value => `font-size: ${value}; --font-size: ${value};`, 'inherit')}
-        ${RESPONSIVE.lineHeight(1, value => `line-height: ${value};`, 'inherit')}
+        ${SCALE.ml(0, value => `margin-left: ${value};`, 'revert', 'mx')}
+        ${SCALE.mr(0, value => `margin-right: ${value};`, 'revert', 'mx')}
+        ${SCALE.mt(0, value => `margin-top: ${value};`, 'revert', 'my')}
+        ${SCALE.mb(0, value => `margin-bottom: ${value};`, 'revert', 'my')}
+        ${SCALE.pl(0, value => `padding-left: ${value};`, 'revert', 'px')}
+        ${SCALE.pr(0, value => `padding-right: ${value};`, 'revert', 'px')}
+        ${SCALE.pt(0, value => `padding-top: ${value};`, 'revert', 'py')}
+        ${SCALE.pb(0, value => `padding-bottom: ${value};`, 'revert', 'py')}
+        ${SCALE.w(1, value => `width: ${value};`, 'auto')}
+        ${SCALE.h(1, value => `height: ${value};`, 'auto')}
+        ${SCALE.font(1, value => `font-size: ${value}; --font-size: ${value};`, 'inherit')}
+        ${SCALE.lineHeight(1, value => `line-height: ${value};`, 'inherit')}
       `}</style>
     </Component>
   );

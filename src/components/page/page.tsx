@@ -1,69 +1,28 @@
 'use client';
-import React, { CSSProperties, useEffect, useMemo, useState } from 'react';
-import { tuple } from '../utils/prop-types';
-import useTheme from '../use-theme';
-import PageContent from './page-content';
-import { hasChild } from '../utils/collections';
+import useClasses from '../use-classes';
+import React, { useEffect, useState } from 'react';
 import useScale, { withScale } from '../use-scale';
+import { hasChild } from '../utils/collections';
+import { tuple } from '../utils/prop-types';
+import PageContent from './page-content';
 
 const renderMode = tuple('default', 'effect', 'effect-seo');
-
 export type PageRenderMode = (typeof renderMode)[number];
 
 interface Props {
   render?: PageRenderMode;
-  dotBackdrop?: boolean;
-  dotSize?: CSSProperties['fontSize'];
-  dotSpace?: number;
 }
 
-export type DotStylesProps = {
-  dotSize: CSSProperties['fontSize'];
-  dotSpace: number;
-};
-
-const DotStyles: React.FC<DotStylesProps> = ({ dotSpace, dotSize }) => {
-  const background = useMemo(
-    () => ({
-      position: `calc(${dotSpace} * 25px)`,
-      size: `calc(${dotSpace} * 50px)`,
-    }),
-    [dotSpace],
-  );
-  return (
-    <span>
-      <style jsx>{`
-        :global(body) {
-          background-image: radial-gradient(#e3e3e3 ${dotSize}, transparent 0), radial-gradient(#e3e3e3 ${dotSize}, transparent 0);
-          background-position:
-            0 0,
-            ${background.position} ${background.position};
-          background-attachment: fixed;
-          background-size: ${background.size} ${background.size};
-        }
-      `}</style>
-    </span>
-  );
-};
-
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
 export type PageProps = Props & NativeAttrs;
 
 const PageComponent: React.FC<React.PropsWithChildren<PageProps>> = ({
   children,
   render = 'default' as PageRenderMode,
-  dotBackdrop = false,
   className,
-  dotSize = '1px' as CSSProperties['fontSize'],
-  dotSpace = 1,
   ...props
 }: React.PropsWithChildren<PageProps>) => {
-  const theme = useTheme();
-  const { SCALES } = useScale();
-  const showDot = useMemo<boolean>(() => {
-    if (theme.type === 'dark') return false;
-    return dotBackdrop;
-  }, [dotBackdrop, theme.type]);
+  const { SCALE, UNIT, CLASS_NAMES } = useScale();
   const [preventRender, setPreventRender] = useState<boolean>(render !== 'default');
 
   useEffect(() => {
@@ -89,21 +48,39 @@ const PageComponent: React.FC<React.PropsWithChildren<PageProps>> = ({
   const hasContent = hasChild(children, PageContent);
 
   return (
-    <section className={className} {...props}>
+    <section className={useClasses('page-section', className, CLASS_NAMES)} {...props}>
       {hasContent ? children : <PageContent>{children}</PageContent>}
-      {showDot && <DotStyles dotSize={dotSize} dotSpace={dotSpace} />}
       <style jsx>{`
-        section {
+        .page-section {
           max-width: 100vw;
           min-height: 100vh;
           box-sizing: border-box;
           position: relative;
-          font-size: ${SCALES.font(1)};
-          width: ${SCALES.w(1, 'calc(100% - 100pt)')};
-          height: ${SCALES.h(1, 'auto')};
-          padding: ${SCALES.pt(0)} ${SCALES.pr(1.34)} ${SCALES.pb(0)} ${SCALES.pl(1.34)};
-          margin: ${SCALES.mt(0)} ${SCALES.mr(0, 'auto')} ${SCALES.mb(0)} ${SCALES.ml(0, 'auto')};
         }
+
+        ${SCALE.h(1, value => `height: ${value};`, 'auto', 'page-section')}
+        ${SCALE.w(1, value => `width: ${value}};`, `calc(100% - 100pt)`, 'page-section')}
+
+        ${SCALE.padding(
+          { left: 1.34, right: 1.34, top: 0, bottom: 0 },
+          value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
+          undefined,
+          'page-section',
+        )}
+
+        ${SCALE.margin(
+          0,
+          value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
+          {
+            top: undefined,
+            right: 'auto',
+            left: 'auto',
+            bottom: undefined,
+          },
+          'page-section',
+        )}
+
+        ${UNIT('page-section')}
       `}</style>
     </section>
   );

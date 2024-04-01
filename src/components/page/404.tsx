@@ -2,11 +2,8 @@
 
 import React from 'react';
 import Text from '../text';
-import useLayout from '../use-layout';
 
-const ErrorPage404: React.FC<React.PropsWithChildren<{}>> = () => {
-  const layout = useLayout();
-
+const ErrorPage404: React.FC = () => {
   return (
     <div className="error-404">
       <div className="error-message">
@@ -23,12 +20,12 @@ const ErrorPage404: React.FC<React.PropsWithChildren<{}>> = () => {
           height: 100%;
           display: flex;
           align-items: center;
-          max-width: ${layout.pageWidthWithMargin};
+          max-width: var(--layout-page-width-with-margin);
           margin: 0 auto;
           margin: 0 auto;
         }
         .error-message {
-          padding: 0 ${layout.gap};
+          padding: 0 var(--layout-gap);
           display: flex;
           align-items: center;
           justify-items: center;

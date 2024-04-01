@@ -1,32 +1,28 @@
 'use client';
 import React, { MouseEvent, useImperativeHandle, useMemo, useRef } from 'react';
 import css from 'styled-jsx/css';
-import useTheme from '../use-theme';
-import { useModalContext } from './modal-context';
 import Button, { ButtonProps } from '../button/button';
-import useScale, { withScale } from '../use-scale';
 import useClasses from '../use-classes';
+import useScale, { withScale } from '../use-scale';
+import { useModalContext } from './modal-context';
 
 type ModalActionEvent = MouseEvent<HTMLButtonElement> & {
   close: () => void;
 };
 
 interface Props {
-  className?: string;
   passive?: boolean;
   disabled?: boolean;
   onClick?: (event: ModalActionEvent) => void;
 }
 
 export type ModalActionProps = Props & Omit<ButtonProps, keyof Props>;
-
 const ModalActionComponent = React.forwardRef<HTMLButtonElement, React.PropsWithChildren<ModalActionProps>>(
   (
-    { className = '', children, onClick, passive = false, disabled = false, ...props }: React.PropsWithChildren<ModalActionProps>,
+    { className = undefined, children, onClick, passive = false, disabled = false, ...props }: React.PropsWithChildren<ModalActionProps>,
     ref: React.Ref<HTMLButtonElement | null>,
   ) => {
-    const theme = useTheme();
-    const { SCALES } = useScale();
+    const { UNIT, SCALE, CLASS_NAMES } = useScale();
     const btnRef = useRef<HTMLButtonElement>(null);
     const { close } = useModalContext();
     useImperativeHandle(ref, () => btnRef.current);
@@ -40,36 +36,39 @@ const ModalActionComponent = React.forwardRef<HTMLButtonElement, React.PropsWith
     };
 
     const color = useMemo(() => {
-      return passive ? theme.palette.background.accents.accents_5 : theme.palette.foreground.value;
-    }, [theme.palette, passive, disabled]);
+      return passive ? `var(--color-background-700)` : `var(--color-foreground-1000)`;
+    }, [passive, disabled]);
 
     const bgColor = useMemo(() => {
-      return disabled ? theme.palette.background.accents.accents_1 : theme.palette.background.value;
-    }, [theme.palette, disabled]);
+      return disabled ? `var(--color-background-800)` : `var(--color-background-1000)`;
+    }, [disabled]);
 
     const { className: resolveClassName, styles } = css.resolve`
-      button.btn {
-        font-size: ${SCALES.font(0.75)};
+      .btn.action-btn {
         border: none;
         color: ${color};
-        background-color: ${theme.palette.background.value};
+        background-color: var(--color-background-1000);
         display: flex;
         -webkit-box-align: center;
         align-items: center;
         -webkit-box-pack: center;
         justify-content: center;
         flex: 1;
-        height: ${SCALES.h(3.5625)};
         border-radius: 0;
         min-width: 0;
       }
-      button.btn:hover,
-      button.btn:focus {
-        color: ${disabled ? color : theme.palette.foreground.value};
-        background-color: ${disabled ? bgColor : theme.palette.background.accents.accents_1};
+      .btn.action-btn:hover,
+      .btn.action-btn:focus {
+        color: ${disabled ? color : `var(--color-foreground-1000)`};
+        background-color: ${disabled ? bgColor : `var(--color-background-800)`};
       }
+
+      ${SCALE.h(3.5625, value => `height: ${value};`, undefined, 'btn.action-btn')}
+      ${SCALE.font(0.75, value => `font-size: ${value};`, undefined, 'btn.action-btn')}
+      ${UNIT('btn.action-btn')}
     `;
-    const classes = useClasses(resolveClassName, className);
+
+    const classes = useClasses('action-btn', className, resolveClassName, CLASS_NAMES);
 
     const overrideProps = {
       ...props,

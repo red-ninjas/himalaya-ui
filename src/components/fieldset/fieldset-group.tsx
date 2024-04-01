@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useCallback, useMemo, useState } from 'react';
-import useTheme from '../use-theme';
 import useCurrentState from '../utils/use-current-state';
 import { FieldsetContext, FieldItem } from './fieldset-context';
 import useWarning from '../utils/use-warning';
@@ -14,7 +13,7 @@ interface Props {
   onChange?: (value: string) => void;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
 export type FieldsetGroupProps = Props & NativeAttrs;
 
 const FieldsetGroupComponent: React.FC<React.PropsWithChildren<FieldsetGroupProps>> = ({
@@ -24,11 +23,11 @@ const FieldsetGroupComponent: React.FC<React.PropsWithChildren<FieldsetGroupProp
   onChange,
   ...props
 }: React.PropsWithChildren<FieldsetGroupProps>) => {
-  const theme = useTheme();
-  const { SCALES } = useScale();
+  const { SCALE, UNIT, CLASS_NAMES } = useScale();
+
   const [selfVal, setSelfVal] = useState<string>(value);
   const [items, setItems, ref] = useCurrentState<FieldItem[]>([]);
-  const classes = useClasses('group', className);
+  const classes = useClasses('group', className, CLASS_NAMES);
 
   const register = (newItem: FieldItem) => {
     const hasItem = ref.current.find(item => item.value === newItem.value);
@@ -65,28 +64,23 @@ const FieldsetGroupComponent: React.FC<React.PropsWithChildren<FieldsetGroupProp
             </button>
           ))}
         </div>
-        <div className="group-content">{children}</div>
+        <div className="group-group">{children}</div>
         <style jsx>{`
           .group {
-            width: ${SCALES.w(1, 'auto')};
-            height: ${SCALES.h(1, 'auto')};
-            padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
-            margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0, 0)} ${SCALES.ml(0)};
           }
           .group-tabs {
             white-space: nowrap;
             overflow-y: hidden;
             overflow-x: auto;
-            font-size: ${SCALES.font(1)};
             margin-bottom: -1px;
           }
 
-          .group-content {
+          .group-group {
             border-top-left-radius: 0;
             overflow: hidden;
           }
 
-          .group-content :global(.fieldset) {
+          .group-group :global(.fieldset) {
             border-top-left-radius: 0;
           }
 
@@ -95,8 +89,8 @@ const FieldsetGroupComponent: React.FC<React.PropsWithChildren<FieldsetGroupProp
             line-height: 2.7em;
             text-align: center;
             user-select: none;
-            color: ${theme.palette.background.accents.accents_3};
-            background-color: ${theme.palette.background.accents.accents_1};
+            color: var(--color-foreground-700);
+            background-color: var(--color-background-900);
             font-size: 0.875em;
             white-space: nowrap;
             text-transform: capitalize;
@@ -107,29 +101,37 @@ const FieldsetGroupComponent: React.FC<React.PropsWithChildren<FieldsetGroupProp
             overflow: hidden;
             transition: all 0.2s ease 0s;
             border-radius: 0;
-            border: 1px solid ${theme.palette.border.value};
+            border: 1px solid var(--color-border-1000);
             text-decoration: none;
             outline: none;
           }
 
           button.active {
             border-bottom-color: transparent;
-            background-color: ${theme.palette.background.value};
-            color: ${theme.palette.foreground.value};
+            background-color: var(--color-background-1000);
+            color: var(--color-foreground-1000);
             cursor: default;
           }
 
           button:first-of-type {
-            border-top-left-radius: ${theme.style.radius};
+            border-top-left-radius: var(--layout-radius);
           }
 
           button:last-of-type {
-            border-top-right-radius: ${theme.style.radius};
+            border-top-right-radius: var(--layout-radius);
           }
 
           button + button {
             border-left: 0;
           }
+
+          ${SCALE.h(1, value => `height: ${value};`, 'auto', 'group')}
+          ${SCALE.w(1, value => `width: ${value};`, 'auto', 'group')}
+          ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'group')}
+          ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'group')}
+          ${SCALE.font(1, value => `font-size: ${value};`, undefined, 'group-tabs')}
+
+          ${UNIT('group')}
         `}</style>
       </div>
     </FieldsetContext.Provider>
@@ -137,5 +139,5 @@ const FieldsetGroupComponent: React.FC<React.PropsWithChildren<FieldsetGroupProp
 };
 
 FieldsetGroupComponent.displayName = 'HimalayaFieldsetGroup';
-const FieldsetGroup = withScale(FieldsetGroupComponent);
+const FieldsetGroup = React.memo(withScale(FieldsetGroupComponent));
 export default FieldsetGroup;

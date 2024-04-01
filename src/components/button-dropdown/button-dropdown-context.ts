@@ -1,17 +1,17 @@
 'use client';
 
 import React from 'react';
-import { NormalTypes } from '../utils/prop-types';
+import { UIColorTypes } from '../themes/presets';
 
 export interface ButtonDropdownConfig {
-  type?: NormalTypes;
+  type?: UIColorTypes;
   auto?: boolean;
   disabled?: boolean;
   loading?: boolean;
 }
 
 const defaultContext = {
-  type: 'default' as NormalTypes,
+  type: 'default' as UIColorTypes,
   auto: false,
   disabled: false,
   loading: false,

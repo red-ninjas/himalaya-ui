@@ -1,6 +1,5 @@
 'use client';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import useTheme from '../use-theme';
 import ImageSkeleton from './image.skeleton';
 import { transformDataSource } from './helpers';
 import useScale, { withScale } from '../use-scale';
@@ -21,21 +20,13 @@ type NativeAttrs = Omit<
 >;
 export type ImageProps = Props & NativeAttrs;
 
-const ImageComponent: React.FC<ImageProps> = ({
-  src = '',
-  disableSkeleton = false,
-  className = '',
-  maxDelay = 3000,
-  alt = '',
-  radius,
-  ...props
-}: ImageProps) => {
-  const { SCALES, getScaleProps } = useScale();
+const ImageComponent: React.FC<ImageProps> = ({ src = '', disableSkeleton = false, className = '', maxDelay = 3000, alt = '', ...props }: ImageProps) => {
+  const { getScaleProps, UNIT, SCALE, CLASS_NAMES } = useScale();
+
   const width = getScaleProps(['w']);
   const height = getScaleProps(['h']);
   const showAnimation = !disableSkeleton && width && height;
 
-  const theme = useTheme();
   const [loading, setLoading] = useState<boolean>(true);
   const [showSkeleton, setShowSkeleton] = useState<boolean>(true);
   const imageRef = useRef<HTMLImageElement>(null);
@@ -64,7 +55,7 @@ const ImageComponent: React.FC<ImageProps> = ({
   }, [loading]);
 
   return (
-    <div className={useClasses('image', className)}>
+    <div className={useClasses('image', className, CLASS_NAMES)}>
       {showSkeleton && showAnimation && <ImageSkeleton opacity={loading ? 0.5 : 0} />}
       <NextImage
         ref={imageRef}
@@ -82,14 +73,18 @@ const ImageComponent: React.FC<ImageProps> = ({
         .image {
           line-height: 0;
           position: relative;
-          border-radius: ${radius === undefined ? theme.style.radius : radius};
           overflow: hidden;
           max-width: 100%;
-          width: ${SCALES.w(1, 'auto')};
-          height: ${SCALES.h(1, 'auto')};
-          margin: ${SCALES.mt(0)} ${SCALES.mr(0, 'auto')} ${SCALES.mb(0)} ${SCALES.ml(0, 'auto')};
-          padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
         }
+
+        ${SCALE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'image')}
+        ${SCALE.w(1, value => `width: ${value};`, 'auto', 'image')}
+        ${SCALE.h(1, value => `height: ${value};`, 'auto', 'image')}
+        ${SCALE.mx(0, value => `margin-left: ${value};margin-right: ${value}`, 'auto', 'image')}
+        ${SCALE.my(0, value => `margin-top: ${value};margin-bottom: ${value}`, undefined, 'image')}
+        ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'image')}
+
+        ${UNIT('image')}
       `}</style>
     </div>
   );

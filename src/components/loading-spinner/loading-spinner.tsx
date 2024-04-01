@@ -1,49 +1,28 @@
 'use client';
 
-import React, { useMemo } from 'react';
-import useTheme from '../use-theme';
-import { NormalTypes } from '../utils/prop-types';
-import { UIThemesPalette } from '../themes/presets';
-import useScale, { withScale } from '../use-scale';
+import React from 'react';
 import useClasses from '../use-classes';
+import useScale, { withScale } from '../use-scale';
+import { UIColorTypes } from '../themes/presets';
 
-export type LoadingSpinnerTypes = NormalTypes;
 interface Props {
-  type?: LoadingSpinnerTypes;
-  color?: string;
+  type?: UIColorTypes;
   className?: string;
   spaceRatio?: number;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
 export type LoadingSpinnerProps = Props & NativeAttrs;
-
-const getIconBgColor = (type: LoadingSpinnerTypes, palette: UIThemesPalette, color?: string) => {
-  const colors: { [key in LoadingSpinnerTypes]: string } = {
-    default: palette.background.accents.accents_6,
-    secondary: palette.secondary.value,
-    primary: palette.primary.value,
-    tertiary: palette.tertiary.value,
-    success: palette.success.value,
-    warning: palette.warning.value,
-    error: palette.error.value,
-  };
-
-  return color ? color : colors[type];
-};
 
 const LoadingSpinnerComponent: React.FC<React.PropsWithChildren<LoadingSpinnerProps>> = ({
   children,
-  type = 'default' as LoadingSpinnerTypes,
-  color,
+  type = 'default' as UIColorTypes,
   className = '',
   spaceRatio = 1,
   ...props
 }: React.PropsWithChildren<LoadingSpinnerProps>) => {
-  const theme = useTheme();
-  const { SCALES } = useScale();
-  const classes = useClasses('loading-container', className);
-  const bgColor = useMemo(() => getIconBgColor(type, theme.palette, color), [type, theme.palette, color]);
+  const { SCALE, UNIT, CLASS_NAMES } = useScale();
+  const classes = useClasses('loading-container', className, type ? 'color-' + type : null, CLASS_NAMES);
 
   return (
     <div className={classes} {...props}>
@@ -58,17 +37,18 @@ const LoadingSpinnerComponent: React.FC<React.PropsWithChildren<LoadingSpinnerPr
           display: inline-flex;
           align-items: center;
           position: relative;
-          font-size: ${SCALES.font(1)};
-          width: ${SCALES.w(1, '100%')};
-          height: ${SCALES.h(1, '100%')};
+
           min-height: 1em;
-          padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
-          margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
+          --spinner-color: var(--color-base);
+
+          &.color-default {
+            --spinner-color: var(--color-contrast);
+          }
         }
 
         label {
           margin-right: 0.5em;
-          color: ${theme.palette.background.accents.accents_5};
+          color: var(--color-background-400);
           line-height: 1;
         }
 
@@ -94,7 +74,7 @@ const LoadingSpinnerComponent: React.FC<React.PropsWithChildren<LoadingSpinnerPr
           width: 0.25em;
           height: 0.25em;
           border-radius: 50%;
-          background-color: ${bgColor};
+          background-color: var(--spinner-color);
           margin: 0 calc(0.25em / 2 * ${spaceRatio});
           display: inline-block;
           animation: loading-blink 1.4s infinite both;
@@ -121,6 +101,15 @@ const LoadingSpinnerComponent: React.FC<React.PropsWithChildren<LoadingSpinnerPr
             opacity: 0.2;
           }
         }
+
+        ${SCALE.h(1, value => `height: ${value};`, '100%', 'loading-container')}
+        ${SCALE.w(1, value => `width: ${value}};`, `100%`, 'loading-container')}
+        ${SCALE.font(1, value => `width: ${value}};`, undefined, 'loading-container')}
+
+        ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'loading-container')}
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'loading-container')}
+
+        ${UNIT('loading-container')}
       `}</style>
     </div>
   );

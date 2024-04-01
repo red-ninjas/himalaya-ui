@@ -2,30 +2,36 @@
 
 import React from 'react';
 import useScale, { withScale } from '../use-scale';
+import useClasses from '../use-classes';
 
-interface Props {
-  className?: string;
-}
+interface Props {}
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
 export type PageFooterProps = Props & NativeAttrs;
 
-const PageFooterComponent: React.FC<React.PropsWithChildren<PageFooterProps>> = ({ children, ...props }: React.PropsWithChildren<PageFooterProps>) => {
-  const { SCALES } = useScale();
+const PageFooterComponent: React.FC<React.PropsWithChildren<PageFooterProps>> = ({
+  children,
+  className = undefined,
+  ...props
+}: React.PropsWithChildren<PageFooterProps>) => {
+  const { SCALE, UNIT, CLASS_NAMES } = useScale();
 
   return (
-    <footer {...props}>
+    <footer className={useClasses('page-footer', className, CLASS_NAMES)} {...props}>
       {children}
       <style jsx>{`
-        footer {
+        .page-footer {
           position: absolute;
           bottom: 0;
-          font-size: ${SCALES.font(1)};
-          width: ${SCALES.w(1, '100%')};
-          height: ${SCALES.h(1, 'auto')};
-          padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
-          margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
         }
+
+        ${SCALE.h(1, value => `height: ${value};`, 'auto', 'page-footer')}
+        ${SCALE.w(1, value => `width: ${value}};`, `100%`, 'page-footer')}
+
+        ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'page-footer')}
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'page-footer')}
+
+        ${UNIT('page-footer')}
       `}</style>
     </footer>
   );

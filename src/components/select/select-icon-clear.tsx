@@ -1,13 +1,11 @@
 'use client';
 import React from 'react';
-import useTheme from '../use-theme';
 
 interface Props {
   onClick?: (event: React.MouseEvent<HTMLDivElement>) => void;
 }
 
 const SelectIconClear: React.FC<Props> = ({ onClick }) => {
-  const theme = useTheme();
   const clickHandler = (event: React.MouseEvent<HTMLDivElement>) => {
     event.preventDefault();
     event.stopPropagation();
@@ -39,13 +37,13 @@ const SelectIconClear: React.FC<Props> = ({ onClick }) => {
           cursor: pointer;
           box-sizing: border-box;
           transition: color 150ms ease 0s;
-          color: ${theme.palette.background.accents.accents_3};
+          color: var(--color-background-600);
           visibility: visible;
           opacity: 1;
         }
 
         .clear-icon:hover {
-          color: ${theme.palette.foreground.value};
+          color: var(--color-foreground-1000);
         }
 
         svg {

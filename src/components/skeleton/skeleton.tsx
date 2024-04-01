@@ -3,7 +3,6 @@
 import React from 'react';
 import useClasses from '../use-classes';
 import { useScale, withScale } from '../use-scale';
-import useTheme from '../use-theme';
 
 interface Props {
   squared?: boolean;
@@ -21,8 +20,7 @@ export type SkeletonProps = Props & NativeAttrs;
 const SkeletonComponent: React.FC<React.PropsWithChildren<SkeletonProps>> = ({
   component = 'span' as keyof React.JSX.IntrinsicElements,
   children,
-  squared = false,
-  rounded = false,
+
   show = false,
   minHeight = 24,
   className = '',
@@ -30,32 +28,28 @@ const SkeletonComponent: React.FC<React.PropsWithChildren<SkeletonProps>> = ({
   ...props
 }: React.PropsWithChildren<SkeletonProps>) => {
   const Component = component;
-  const theme = useTheme();
-  const { SCALES } = useScale();
-  const classes = useClasses('skeleton', { rounded, squared, show, stop: !animated, hasChildren: !!children }, className);
+  const { UNIT, CLASS_NAMES, SCALE } = useScale();
+  const classes = useClasses('skeleton', { show, stop: !animated, hasChildren: !!children }, className, CLASS_NAMES);
 
   return (
     <Component className={classes} {...props}>
       {children}
       <style jsx>{`
         .skeleton {
-          width: ${SCALES.w(1, 'initial')};
-          height: ${SCALES.h(1, 'initial')};
           display: block;
           min-height: ${minHeight}px;
           position: relative;
           overflow: hidden;
-          padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
-          margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
         }
+
         .skeleton,
         .skeleton:before {
           background-image: linear-gradient(
             270deg,
-            ${theme.palette.background.accents.accents_1},
-            ${theme.palette.background.accents.accents_2},
-            ${theme.palette.background.accents.accents_2},
-            ${theme.palette.background.accents.accents_1}
+            var(--color-background-900),
+            var(--color-background-800),
+            var(--color-background-800),
+            var(--color-background-900)
           );
           background-size: 400% 100%;
           -webkit-animation: loading 8s ease-in-out infinite;
@@ -75,16 +69,14 @@ const SkeletonComponent: React.FC<React.PropsWithChildren<SkeletonProps>> = ({
         .skeleton.stop:before {
           -webkit-animation: none;
           animation: none;
-          background: ${theme.palette.background.accents.accents_2};
+          background: var(--color-background-800);
         }
-        .skeleton.rounded,
-        .skeleton.rounded:before {
-          border-radius: 100%;
+
+        .skeleton,
+        .skeleton:before {
+          border-radius: var(--skeleton-radius);
         }
-        .skeleton.squared,
-        .skeleton.squared:before {
-          border-radius: 0;
-        }
+
         .skeleton.show,
         .skeleton.show:before {
           background: transparent;
@@ -107,6 +99,14 @@ const SkeletonComponent: React.FC<React.PropsWithChildren<SkeletonProps>> = ({
             background-position: -200% 0;
           }
         }
+
+        ${SCALE.h(1, value => `height: ${value};`, 'initial', 'skeleton')}
+        ${SCALE.w(1, value => `width: ${value};`, 'initial', 'skeleton')}
+        ${SCALE.r(1, value => `--skeleton-radius: ${value};`, 'var(--layout-radius)', 'skeleton')}
+
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'skeleton')}
+        ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'skeleton')}
+        ${UNIT('skeleton')}
       `}</style>
     </Component>
   );

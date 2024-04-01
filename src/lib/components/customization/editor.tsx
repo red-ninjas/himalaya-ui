@@ -1,5 +1,5 @@
+import { Button, Text } from 'components';
 import RotateCcwIcon from 'components/icons/rotateCcw';
-import { Button, Text, useLayout, useTheme } from 'components';
 import { UIThemesExpressiveness, UIThemesPalette } from 'components/themes';
 import EditorColorItem from './editor-color-item';
 import EditorInputItem from './editor-input-item';
@@ -10,9 +10,6 @@ const otherColors: Array<keyof UIThemesPalette> = ['primary', 'tertiary', 'secon
 const expressiveness: Array<keyof UIThemesExpressiveness> = ['linkStyle', 'linkHoverStyle', 'dropdownBoxShadow', 'shadowSmall', 'shadowMedium', 'shadowLarge'];
 
 const Editor = () => {
-  const theme = useTheme();
-  const layout = useLayout();
-
   const restColors = () => {};
   const resetExpressiveness = () => {};
 
@@ -59,11 +56,11 @@ const Editor = () => {
           flex-wrap: wrap;
           width: auto;
           margin: 0 auto;
-          padding-left: ${layout.gapQuarter};
+          padding-left: var(--layout-gap-quarter);
         }
 
         .subtitle {
-          color: ${theme.palette.background.accents.accents_4};
+          color: var(--color-background-500);
           text-transform: uppercase;
           font-size: 0.75rem;
           margin-top: 2rem;

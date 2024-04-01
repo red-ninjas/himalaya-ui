@@ -1,16 +1,14 @@
 'use client';
 import React from 'react';
-import useTheme from '../use-theme';
-import useScale, { withScale } from '../use-scale';
 import useClasses from '../use-classes';
-import useLayout from '../use-layout';
+import useScale, { withScale } from '../use-scale';
 
 interface Props {
   disableAutoMargin?: boolean;
   className?: string;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
 export type CardFooterProps = Props & NativeAttrs;
 
 const CardFooterComponent: React.FC<React.PropsWithChildren<CardFooterProps>> = ({
@@ -19,37 +17,48 @@ const CardFooterComponent: React.FC<React.PropsWithChildren<CardFooterProps>> = 
   disableAutoMargin = false,
   ...props
 }: CardFooterProps) => {
-  const theme = useTheme();
-  const { SCALES } = useScale();
-  const layout = useLayout();
-  const classes = useClasses({ 'auto-margin': !disableAutoMargin }, className);
+  const { SCALE, UNIT, CLASS_NAMES } = useScale();
+  const classes = useClasses('card-footer', { 'auto-margin': !disableAutoMargin }, className, CLASS_NAMES);
 
   return (
     <footer className={classes} {...props}>
       {children}
       <style jsx>{`
-        footer {
-          padding: ${SCALES.py(0.66)} ${SCALES.px(1.31)};
+        .card-footer {
           display: flex;
           align-items: center;
           overflow: hidden;
           color: inherit;
           background-color: inherit;
-          font-size: ${SCALES.font(0.875)};
-          border-top: 1px solid ${theme.palette.border.value};
-          border-bottom-left-radius: ${theme.style.radius};
-          border-bottom-right-radius: ${theme.style.radius};
-          min-height: ${SCALES.h(3.3)};
-          width: ${SCALES.w(1, 'auto')};
-          height: ${SCALES.h(1, 'auto')};
-          margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
+          border-top: 1px solid var(--color-border);
+          border-bottom-left-radius: var(--card-border-radius);
+          border-bottom-right-radius: var(--card-border-radius);
         }
 
         .auto-margin :global(*) {
           margin-top: 0;
           margin-bottom: 0;
-          margin-right: ${layout.gapQuarter};
+          margin-right: var(--layout-gap-quarter);
         }
+
+        ${SCALE.w(1, value => `width: ${value};`, 'auto', 'card-footer')}
+        ${SCALE.h(1, value => `height: ${value};`, 'auto', 'card-footer')}
+        ${SCALE.h(3.3, value => `min-height: ${value};`, undefined, 'card-footer')}
+        ${SCALE.font(0.875, value => `font-size: ${value};`, undefined, 'card-footer')}
+
+        ${SCALE.padding(
+          {
+            left: 1.31,
+            right: 1.31,
+            top: 0.66,
+            bottom: 0.66,
+          },
+          value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
+          undefined,
+          'card-footer',
+        )}
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'card-footer')}
+        ${UNIT('card-footer')}
       `}</style>
     </footer>
   );

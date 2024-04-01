@@ -1,5 +1,3 @@
-import { UIThemesPalette } from '../themes/presets';
-
 export type BrowserColors = {
   color: string;
   barBgColor: string;
@@ -8,20 +6,20 @@ export type BrowserColors = {
   titleColor: string;
 };
 
-export const getBrowserColors = (invert: boolean, palette: UIThemesPalette): BrowserColors => {
+export const getBrowserColors = (invert: boolean): BrowserColors => {
   return invert
     ? {
-        color: palette.background.value,
-        barBgColor: palette.foreground.value,
-        inputBgColor: palette.background.accents.accents_8,
-        borderColor: palette.background.accents.accents_7,
-        titleColor: palette.background.accents.accents_2,
+        color: `var(--color-background-1000)`,
+        barBgColor: `var(--color-foreground-1000)`,
+        inputBgColor: `var(--color-background-100)`,
+        borderColor: `var(--color-background-200)`,
+        titleColor: `var(--color-background-700)`,
       }
     : {
-        color: palette.foreground.value,
-        barBgColor: palette.background.value,
-        inputBgColor: palette.background.accents.accents_1,
-        borderColor: palette.border.value,
-        titleColor: palette.background.accents.accents_5,
+        color: `var(--color-foreground-1000)`,
+        barBgColor: `var(--color-background-1000)`,
+        inputBgColor: `var(--color-background-800)`,
+        borderColor: `var(--color-border-1000)`,
+        titleColor: `var(--color-foreground-700)`,
       };
 };

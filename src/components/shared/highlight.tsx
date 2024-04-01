@@ -1,9 +1,8 @@
 'use client';
 import React, { useMemo, useRef } from 'react';
-import { isUnplacedRect, ReactiveDomReact } from '../utils/layouts';
-import usePrevious from '../utils/use-previous';
-import useTheme from '../use-theme';
 import useClasses from '../use-classes';
+import { ReactiveDomReact, isUnplacedRect } from '../utils/layouts';
+import usePrevious from '../utils/use-previous';
 
 type Props = {
   rect: ReactiveDomReact;
@@ -23,7 +22,7 @@ type HighlightPosition = {
   transition: string;
 };
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
 export type HighlightProps = Props & NativeAttrs;
 
 const Highlight: React.FC<HighlightProps> = ({
@@ -37,7 +36,6 @@ const Highlight: React.FC<HighlightProps> = ({
   background,
   ...props
 }) => {
-  const theme = useTheme();
   const ref = useRef<HTMLDivElement | null>(null);
   const isFirstVisible = usePrevious<boolean>(isUnplacedRect(rect));
   const position = useMemo<HighlightPosition>(() => {
@@ -56,7 +54,7 @@ const Highlight: React.FC<HighlightProps> = ({
     <div ref={ref} className={useClasses('highlight', className)} {...props}>
       <style jsx>{`
         .highlight {
-          background: ${background === undefined ? theme.palette.background.accents.accents_2 : background};
+          background: ${background === undefined ? `var(--color-background-700)` : background};
           position: absolute;
           border-radius: ${radius + 'px' || '5px'};
           width: ${position.width};

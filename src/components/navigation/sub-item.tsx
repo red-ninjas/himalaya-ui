@@ -1,78 +1,70 @@
 'use client';
-import Popover from '../popover';
-import Link from 'next/link';
-import React, { PropsWithChildren } from 'react';
+import React from 'react';
 import { INavigationItem } from '.';
-import useTheme from '../use-theme';
-import { addColorAlpha } from '../utils/color';
+import Popover from '../popover';
 
 export interface NavigationSubItemProps extends INavigationItem {
   onClick?: () => void;
 }
 
-const NavigationSubItem: React.FC<PropsWithChildren<NavigationSubItemProps>> = ({ url = '/', ...props }) => {
-  const theme = useTheme();
+type NativeAttrs = Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, keyof NavigationSubItemProps>;
+export type NavigationPropsExternal = NavigationSubItemProps & NativeAttrs;
 
-  const handleClick = (e: any) => {
-    if (props.onClick) {
-      e.preventDefault();
-      props.onClick();
-    }
-  };
-
-  return (
-    <>
-      <Popover.Item p="6px">
-        <Link legacyBehavior passHref href={url || ''}>
-          <a onClick={e => handleClick(e)} className="sub-item">
+const NavigationSubItem = React.forwardRef<HTMLAnchorElement, NavigationPropsExternal>(
+  ({ icon, title, desc, ...props }: NavigationPropsExternal, ref: React.Ref<HTMLAnchorElement>) => {
+    return (
+      <>
+        <Popover.Item p="6px">
+          <a ref={ref} className="sub-item" {...props}>
             <div className="icon-with-title">
-              {props.icon && <span className="icon-holder">{props.icon}</span>}
-              <span>{props.title}</span>
+              {icon && <span className="icon-holder">{icon}</span>}
+              <span>{title}</span>
             </div>
-            {props.desc && <div className="description">{props.desc}</div>}
+            {desc && <div className="description">{desc}</div>}
           </a>
-        </Link>
-      </Popover.Item>
-      <style jsx>{`
-        .description {
-          font-weight: 14px;
-          color: ${theme.palette.background.accents.accents_5};
-          overflow-wrap: anywhere;
-        }
-        .sub-item {
-          color: ${theme.palette.foreground.value};
-          font-weight: 500;
-          min-width: 120px;
-          padding: 6px 12px;
-          font-size: 14px;
-          display: inline-flex;
-          flex-direction: column;
-          align-items: flex-start;
-          gap: 8px;
-          width: 100%;
-        }
+        </Popover.Item>
+        <style jsx>{`
+          .description {
+            font-weight: 14px;
+            color: var(--color-background-400);
+            overflow-wrap: anywhere;
+          }
+          .sub-item {
+            color: var(--color-foreground-1000);
+            font-weight: 500;
+            min-width: 120px;
+            padding: 6px 12px;
+            font-size: 14px;
+            display: inline-flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 8px;
+            width: 100%;
+          }
 
-        .icon-holder {
-          width: 16px;
-          display: inline-flex;
-          align-items: center;
-        }
+          .icon-holder {
+            width: 16px;
+            display: inline-flex;
+            align-items: center;
+          }
 
-        :global(.icon-holder > *) {
-          width: 100%;
-        }
-        .sub-item:hover {
-          background: ${addColorAlpha(theme.palette.background.accents.accents_2, 0.5)};
-          border-radius: 5px;
-        }
-        .icon-with-title {
-          display: inline-flex;
-          gap: 6px;
-          align-items: center;
-        }
-      `}</style>
-    </>
-  );
-};
+          :global(.icon-holder > *) {
+            width: 100%;
+          }
+          .sub-item:hover {
+            background-color: rgba(var(--color-background-700-rgb), 0.5);
+
+            border-radius: 5px;
+          }
+          .icon-with-title {
+            display: inline-flex;
+            gap: 6px;
+            align-items: center;
+          }
+        `}</style>
+      </>
+    );
+  },
+);
 NavigationSubItem.displayName = 'SubItem';
 export default NavigationSubItem;

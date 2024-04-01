@@ -1,9 +1,8 @@
 'use client';
 import React from 'react';
-import useTheme from '../use-theme';
+import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';
 import { usePopoverContext } from './popover-context';
-import useClasses from '../use-classes';
 
 interface Props {
   line?: boolean;
@@ -12,24 +11,23 @@ interface Props {
   onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
 export type PopoverItemProps = Props & NativeAttrs;
 
 const PopoverItemComponent: React.FC<React.PropsWithChildren<PopoverItemProps>> = ({
   children,
   line = false,
   title = false,
-  className = '',
+  className,
   onClick,
   disableAutoClose = false,
   ...props
 }: React.PropsWithChildren<PopoverItemProps>) => {
-  const theme = useTheme();
-  const { SCALES } = useScale();
+  const { SCALE, UNIT, CLASS_NAMES } = useScale();
   const { disableItemsAutoClose, onItemClick } = usePopoverContext();
   const hasHandler = Boolean(onClick);
   const dontCloseByClick = disableAutoClose || disableItemsAutoClose || title || line;
-  const classes = useClasses('item', { line, title }, className);
+  const classes = useClasses('item', { line, title }, className, CLASS_NAMES);
 
   const clickHandler = (event: React.MouseEvent<HTMLDivElement>) => {
     onClick && onClick(event);
@@ -49,37 +47,64 @@ const PopoverItemComponent: React.FC<React.PropsWithChildren<PopoverItemProps>> 
             box-sizing: border-box;
             justify-content: flex-start;
             align-items: center;
-            color: ${theme.palette.background.accents.accents_5};
+            color: var(--color-background-400);
             transition:
               color,
               background-color 150ms linear;
             line-height: 1.25em;
-            font-size: ${SCALES.font(0.875)};
-            width: ${SCALES.w(1, 'auto')};
-            height: ${SCALES.h(1, 'auto')};
-            margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
-            padding: ${SCALES.pt(0.5)} ${SCALES.pr(0.75)} ${SCALES.pb(0.5)} ${SCALES.pl(0.75)};
+
             cursor: ${hasHandler ? 'pointer' : 'default'};
           }
 
           .item:hover {
-            color: ${theme.palette.foreground.value};
+            color: var(--color-foreground-1000);
           }
 
-          .item.line {
+          .line {
             line-height: 0;
             padding: 0;
-            background-color: ${theme.palette.border.value};
-            height: ${SCALES.h(0.0625)};
-            margin: ${SCALES.mt(0.35)} ${SCALES.mr(0)} ${SCALES.mb(0.35)} ${SCALES.ml(0)};
-            width: ${SCALES.w(1, '100%')};
+            background-color: var(--color-border-1000);
           }
 
-          .item.title {
+          .title {
             font-weight: 500;
-            font-size: ${SCALES.font(0.925)};
-            color: ${theme.palette.foreground.value};
+            color: var(--color-foreground-1000);
           }
+
+          ${SCALE.font(0.925, value => `font-size: ${value};`, undefined, 'title')}
+
+          ${SCALE.w(1, value => `width: ${value};`, '100%', 'line')}
+          ${SCALE.h(0.0625, value => `height: ${value};`, undefined, 'line')}
+          ${SCALE.margin(
+            {
+              top: 0.35,
+              right: 0,
+              bottom: 0.35,
+              left: 0,
+            },
+            value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
+            undefined,
+            'line',
+          )}
+
+          ${SCALE.h(1, value => `height: ${value};`, 'auto', 'item')}
+          ${SCALE.w(1, value => `width: ${value};`, 'auto', 'item')}
+
+          ${SCALE.font(0.875, value => `font-size: ${value};`, undefined, 'item')}
+          ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'item')}
+          ${SCALE.padding(
+            {
+              top: 0.5,
+              bottom: 0.5,
+              right: 0.75,
+              left: 0.75,
+            },
+            value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
+            undefined,
+            'item',
+          )}
+
+          ${UNIT('item')}
         `}</style>
       </div>
       {title && <PopoverItem line title={false} />}

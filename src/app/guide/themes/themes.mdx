@@ -134,12 +134,10 @@ const myPalette: Partial<UIThemesPalette> = {
 You can override the style by defining a `className` on the component.
 
 ```jsx
-import { Button, Row } from '@himalaya-ui/core'
+import Button from '@himalaya-ui/core/button';
 
 const MyPage = () => (
-  <Row>
-    <Button className="page-button">Click me!</Button>
-  </Row>
+  <><Button className="page-button">Click me!</Button></>
 )
 
 // in css file:
@@ -171,7 +169,7 @@ import { useTheme } from '@himalaya-ui/core';
 const MyComponent = () => {
   const theme = useTheme();
   return (
-    <div style={{ color: theme.palette.success.value }}>
+    <div style={{ color: theme.palette.success.hex_1000 }}>
       <span>hello world!</span>
     </div>
   );
@@ -191,5 +189,4 @@ const MyComponent = () => {
 - `Themes.hasUserCustomTheme` - Check if a list of themes has a custom.
 - `Themes.getPresets` - Get a default list of themes.
 - `Themes.getPresetStaticTheme` - Get the theme loaded by Himalaya default.
-- `Themes.generateAccents` - Generate background, forground and accents colors.
-- `Themes.generateColors` - Generate any type color such as primary, secondary, etc.
+- `Themes.makeColors` - Generate any type color such as primary, secondary, etc.

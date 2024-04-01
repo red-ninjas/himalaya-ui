@@ -1,19 +1,11 @@
 'use client';
-import { LoadingSpinner, useTheme } from 'components';
-import dynamic from 'next/dynamic';
-import React from 'react';
+import { LoadingSpinner } from 'components';
+import React, { Suspense, lazy } from 'react';
 import Title from './title';
 
-const DynamicLive = dynamic(() => import('./dynamic-live'), {
-  ssr: false,
-  loading: () => (
-    <div style={{ padding: '20pt 0' }}>
-      <LoadingSpinner />
-    </div>
-  ),
-});
+const LayzPreview = lazy(() => import('./dynamic-live'));
 
-export type PlaygroundProps = {
+type Props = {
   title?: React.ReactNode | string;
   desc?: React.ReactNode | string;
   code: string;
@@ -22,21 +14,31 @@ export type PlaygroundProps = {
   };
 };
 
-const Playground: React.FC<PlaygroundProps> = React.memo(({ title: inputTitle, code: inputCode = '', desc = '', scope }: PlaygroundProps) => {
-  const theme = useTheme();
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
+export type PlaygroundProps = Props & NativeAttrs;
+
+const Playground: React.FC<PlaygroundProps> = React.memo(({ title: inputTitle, code: inputCode = '', desc = '', scope, ...props }: PlaygroundProps) => {
   const code = inputCode.trim();
   const title = inputTitle || 'General';
 
   return (
     <>
       <Title title={title} desc={desc} />
-      <div className="playground">
-        <DynamicLive code={code} scope={scope} />
+      <div {...props} className="playground">
+        <Suspense
+          fallback={
+            <div style={{ padding: '20pt 0' }}>
+              <LoadingSpinner />
+            </div>
+          }
+        >
+          <LayzPreview code={code} scope={scope} />
+        </Suspense>
         <style jsx>{`
           .playground {
             width: 100%;
-            border-radius: ${theme.style.radius};
-            border: 1px solid ${theme.palette.border.value};
+            border-radius: var(--layout-radius);
+            border: 1px solid var(--color-border-1000);
           }
         `}</style>
       </div>

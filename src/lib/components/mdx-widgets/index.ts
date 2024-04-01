@@ -4,6 +4,5 @@ export { default as MockPage } from './mock-page';
 export { default as Colors } from './colors';
 export { default as HomeCell } from './home-cell';
 export { default as IconsGallery } from './icons-gallery';
-export { default as ExampleBlock } from './example-block';
 export { default as GridDemo } from './grid-demo';
 export * as ParsedCodes from './parsed-codes';

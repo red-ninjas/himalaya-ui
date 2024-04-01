@@ -4,14 +4,12 @@ import React, { useEffect, useMemo } from 'react';
 import { createPortal } from 'react-dom';
 import useClasses from '../use-classes';
 import { useConfigs } from '../use-config/config-context';
-import useLayout from '../use-layout';
 import useCurrentState from '../utils/use-current-state';
 import usePortal from '../utils/use-portal';
 import { isLeftPlacement, isTopPlacement } from './helpers';
 import ToastItem from './toast-item';
 
 const ToastContainer: React.FC<React.PropsWithChildren<unknown>> = () => {
-  const layout = useLayout();
   const portal = usePortal('toast');
   const [, setHovering, hoveringRef] = useCurrentState<boolean>(false);
   const { toasts, updateToasts, toastLayout, lastUpdateToastId } = useConfigs();
@@ -98,8 +96,8 @@ const ToastContainer: React.FC<React.PropsWithChildren<unknown>> = () => {
           position: fixed;
           width: auto;
           max-width: 100%;
-          right: ${layout.gap};
-          bottom: ${layout.gap};
+          right: var(--layout-gap);
+          bottom: var(--layout-gap);
           z-index: 2000;
           transition: all 400ms ease;
           box-sizing: border-box;
@@ -109,11 +107,11 @@ const ToastContainer: React.FC<React.PropsWithChildren<unknown>> = () => {
         .top {
           bottom: unset;
           flex-direction: column-reverse;
-          top: ${layout.gap};
+          top: var(--layout-gap);
         }
         .left {
           right: unset;
-          left: ${layout.gap};
+          left: var(--layout-gap);
         }
       `}</style>
     </div>,

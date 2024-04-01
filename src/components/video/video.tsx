@@ -1,8 +1,8 @@
 'use client';
 import React, { useRef, useState } from 'react';
-import { PlayFill, PauseFill, Minimize, Maximize, Volume2, VolumeX } from '../icons';
-import useTheme from '../use-theme';
+import { Maximize, Minimize, PauseFill, PlayFill, Volume2, VolumeX } from '../icons';
 import useScale, { withScale } from '../use-scale';
+import useClasses from '../use-classes';
 
 interface Props {
   src: string;
@@ -13,12 +13,11 @@ interface Props {
   poster?: string;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLVideoElement>, keyof Props>;
 export type VideoProps = Props & NativeAttrs;
 
-const Video: React.FC<VideoProps> = ({ src, controls, poster, loop = false, autoplay = false, muted = false }) => {
-  const theme = useTheme();
-  const { SCALES } = useScale();
+const Video: React.FC<VideoProps> = ({ src, controls, poster, loop = false, autoplay = false, muted = false, ...props }) => {
+  const { UNIT, SCALE, CLASS_NAMES } = useScale();
 
   const [isPlaying, setIsPlaying] = useState(autoplay);
   const [isMuted, setIsMuted] = useState(muted);
@@ -73,16 +72,15 @@ const Video: React.FC<VideoProps> = ({ src, controls, poster, loop = false, auto
   };
 
   return (
-    <div className="video-player">
+    <div className={useClasses('video-player', CLASS_NAMES)}>
       <div className="video-container">
         <video
+          {...props}
           ref={videoRef}
           onPlay={() => setIsPlaying(true)}
           onPause={() => setIsPlaying(false)}
           autoPlay={autoplay}
           muted={muted}
-          width={SCALES.w(1, '100%')}
-          height={SCALES.h(1, 'auto')}
           loop={loop}
           poster={poster}
           onClick={() => {
@@ -129,8 +127,8 @@ const Video: React.FC<VideoProps> = ({ src, controls, poster, loop = false, auto
           position: relative;
           max-width: 100%;
           margin: 0 auto;
-          width: ${SCALES.w(1, '100%')};
-          height: ${SCALES.h(1, 'auto')};
+          width: var(--video-width);
+          height: var(--video-height);
         }
         .video-player video {
           width: 100%;
@@ -143,14 +141,13 @@ const Video: React.FC<VideoProps> = ({ src, controls, poster, loop = false, auto
         .controls {
           position: absolute;
           bottom: 5%;
-          background-color: ${theme.palette.background.value};
+          background-color: var(--color-background-1000);
           height: 56px;
           display: flex;
           opacity: 0;
           align-items: center;
           justify-content: center;
           padding: 0 8px;
-          border-radius: ${SCALES.r(1)};
           width: 85%;
           transform: translate3d(0, 6px, 0);
           transition: all 0.2s cubic-bezier(0.25, 0.57, 0.45, 0.94);
@@ -161,7 +158,7 @@ const Video: React.FC<VideoProps> = ({ src, controls, poster, loop = false, auto
           display: flex;
         }
         .controls .progress-bar {
-          background-color: ${theme.palette.background.accents.accents_6};
+          background-color: var(--color-background-300);
           height: 4px;
           cursor: pointer;
           width: 100%;
@@ -174,7 +171,7 @@ const Video: React.FC<VideoProps> = ({ src, controls, poster, loop = false, auto
         }
         .controls button,
         .controls span {
-          color: ${theme.palette.foreground.value};
+          color: var(--color-foreground-1000);
           font-size: 16px;
           margin-right: 10px;
           border: none;
@@ -196,6 +193,14 @@ const Video: React.FC<VideoProps> = ({ src, controls, poster, loop = false, auto
         .controls span {
           font-weight: bold;
         }
+
+        ${SCALE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'controls')}
+
+        ${SCALE.h(1, value => `--video-height: ${value};`, 'auto', 'video-player')}
+        ${SCALE.w(1, value => `--video-width: ${value};`, '100%', 'video-player')}
+
+
+        ${UNIT('video-player')}
       `}</style>
     </div>
   );

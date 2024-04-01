@@ -4,16 +4,18 @@ import React, { MouseEvent, useImperativeHandle, useMemo, useRef, useState } fro
 import { useButtonGroupContext } from '../button-group/button-group-context';
 import useClasses from '../use-classes';
 import useLayout from '../use-layout';
-import useScale, { ScaleResponsiveParameter, responsiveCss, withScale } from '../use-scale';
+import useScale, { ScaleResponsiveParameter, customResponsiveAttribute, withScale } from '../use-scale';
 import useTheme from '../use-theme';
-import { addColorAlpha } from '../utils/color';
 import { ButtonTypes } from '../utils/prop-types';
 import ButtonLoading from './button-loading';
 import ButtonDrip from './button.drip';
-import { getButtonActivatedColors, getButtonColors, getButtonCursor, getButtonDripColor, getButtonHoverColors } from './styles';
+import { getButtonCursor } from './styles';
 import { filterPropsWithGroup, getButtonChildrenWithIcon } from './utils';
 
-export interface bProps {
+/**
+ * Button Internal Props
+ */
+export type ButtonInternalProps = {
   type?: ButtonTypes;
   ghost?: boolean;
   loading?: boolean;
@@ -26,16 +28,18 @@ export interface bProps {
   iconRight?: React.ReactNode;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   className?: string;
-}
+};
 
-type NativeAttrs = Omit<React.ButtonHTMLAttributes<any>, keyof bProps>;
-export type ButtonProps = bProps & NativeAttrs;
+/**
+ * Button Props
+ */
+export type ButtonProps = ButtonInternalProps & Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, keyof ButtonInternalProps>;
 
 const ButtonComponent = React.forwardRef<HTMLButtonElement, React.PropsWithChildren<ButtonProps>>(
   (btnProps: ButtonProps, ref: React.Ref<HTMLButtonElement | null>) => {
     const theme = useTheme();
     const layoutRoot = useLayout();
-    const { SCALES, RESPONSIVE } = useScale();
+    const { UNIT, SCALE, CLASS_NAMES } = useScale();
     const buttonRef = useRef<HTMLButtonElement>(null);
     useImperativeHandle(ref, () => buttonRef.current);
 
@@ -63,12 +67,7 @@ const ButtonComponent = React.forwardRef<HTMLButtonElement, React.PropsWithChild
     } = filteredProps;
     /* eslint-enable @typescript-eslint/no-unused-vars */
 
-    const { bg, border, color } = useMemo(() => getButtonColors(theme.palette, filteredProps), [theme.palette, filteredProps]);
-    const hover = useMemo(() => getButtonHoverColors(theme.palette, filteredProps), [theme.palette, filteredProps]);
-
-    const activated = useMemo(() => getButtonActivatedColors(theme.palette, filteredProps), [theme.palette, filteredProps]);
     const { cursor, events } = useMemo(() => getButtonCursor(disabled, loading), [disabled, loading]);
-    const dripColor = useMemo(() => getButtonDripColor(theme.palette), [theme.palette]);
 
     /* istanbul ignore next */
     const dripCompletedHandle = () => {
@@ -104,22 +103,19 @@ const ButtonComponent = React.forwardRef<HTMLButtonElement, React.PropsWithChild
       <button
         ref={buttonRef}
         type={htmlType}
-        className={useClasses('btn padding margin height font auto', className)}
+        className={useClasses('btn', className, disabled, type ? 'color-' + type : null, { ghost }, CLASS_NAMES)}
         disabled={disabled}
         onClick={clickHandler}
         {...props}
       >
-        {loading && <ButtonLoading color={color} />}
+        {loading && <ButtonLoading />}
         {childrenWithIcon}
-        {dripShow && <ButtonDrip x={dripX} y={dripY} color={dripColor} onCompleted={dripCompletedHandle} />}
+        {dripShow && <ButtonDrip x={dripX} y={dripY} onCompleted={dripCompletedHandle} />}
         <style jsx>{`
           .btn {
             box-sizing: border-box;
             display: inline-block;
-            line-height: ${SCALES.lineHeight(0.875, SCALES.font(0.875))};
-            border-radius: ${SCALES.r(1, theme.style.radius)};
             font-weight: 500;
-            font-size: ${SCALES.font(0.875)};
             user-select: none;
             outline: none;
             justify-content: center;
@@ -136,21 +132,16 @@ const ButtonComponent = React.forwardRef<HTMLButtonElement, React.PropsWithChild
             cursor: ${cursor};
             pointer-events: ${events};
 
-            --ui-button-icon-padding: ${SCALES.pl(0.727)};
-            --ui-button-height: ${SCALES.h(2.5)};
-            --ui-button-color: ${color};
-            --ui-button-bg: ${bg};
-            --ui-button-border: ${border};
-            --ui-button-hover-color: ${hover.color};
-            --ui-button-hover-bg: ${hover.bg};
-            --ui-button-hover-border-color: ${hover.border};
-            --ui-button-hover-border-color-shade: ${addColorAlpha(hover.border, 0.2)};
-            --ui-button-activated-color: ${activated.color};
-            --ui-button-activated-bg: ${activated.bg};
-            --ui-button-activated-border-color: ${activated.border};
-            --ui-button-activated-border-color-shade: ${addColorAlpha(activated.border, 0.2)};
+            --ui-button-color: var(--color-contrast);
+            --ui-button-bg: var(--color-base);
+            --ui-button-border: var(--color-border);
+            --ui-button-hover-color: var(--color-contrast);
+            --ui-button-hover-bg: var(--color-shade);
+            --ui-button-hover-border-color: var(--color-shade-border);
+            --ui-button-activated-color: var(--color-contrast);
+            --ui-button-activated-bg: var(--color-tint);
+            --ui-button-activated-border-color: var(--color-tint-border);
 
-            height: ${SCALES.h(2.5)};
             border: 1px solid var(--ui-button-border);
             box-shadow: ${shadow ? theme.expressiveness.shadowSmall : `none`};
 
@@ -160,6 +151,29 @@ const ButtonComponent = React.forwardRef<HTMLButtonElement, React.PropsWithChild
             transition-property: border-color, background, color, transform, box-shadow;
             transition-duration: 0.15s;
             transition-timing-function: ease;
+
+            &.ghost {
+              --ui-button-color: var(--color-base);
+              --ui-button-bg: transparent;
+            }
+            &.ghost.color-default {
+              --ui-button-color: var(--color-contrast);
+              --ui-button-bg: var(--color-base);
+            }
+          }
+
+          .btn:disabled,
+          .btn[disabled],
+          .btn.disabled {
+            --ui-button-color: var(--color-foreground-500);
+            --ui-button-bg: var(--color-background-900);
+            --ui-button-border: var(--color-border-1000);
+            --ui-button-hover-color: var(--color-foreground-500);
+            --ui-button-hover-bg: var(--color-background-900);
+            --ui-button-hover-border-color: var(--color-border-1000);
+            --ui-button-activated-color: var(--color-foreground-900);
+            --ui-button-activated-bg: var(--color-background-500);
+            --ui-button-activated-border-color: var(--color-border-1000);
           }
 
           .btn:hover:not([disabled]) {
@@ -200,20 +214,30 @@ const ButtonComponent = React.forwardRef<HTMLButtonElement, React.PropsWithChild
             margin: 0;
           }
 
-          ${responsiveCss(
+          ${customResponsiveAttribute(
             auto,
-            'auto',
+            'btn',
             layoutRoot.breakpoints,
-            value => `min-width: ${value ? 'min-content' : SCALES.w(10.5)}; width: ${value ? 'auto' : 'initial'};`,
+            value => `min-width: ${value ? 'min-content' : `var(--ui-button-min-width)`}; width: ${value ? 'auto' : 'initial'};`,
           )}
 
-          ${RESPONSIVE.padding(
+          ${SCALE.padding(
             { left: auto ? 1.15 : 1.375, right: auto ? 1.15 : 1.375, top: 0, bottom: 0 },
             value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
+            undefined,
+            'btn',
           )}
 
-          ${RESPONSIVE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`)}
-          ${RESPONSIVE.font(0.875, value => `font-size: ${value};`)}
+          ${SCALE.pl(0.727, value => `--ui-button-icon-padding: ${value};`, undefined, 'btn')}
+          ${SCALE.w(10.5, value => `--ui-button-min-width: ${value};`, undefined, 'btn')}
+          ${SCALE.h(2.5, value => `height: ${value}; --ui-button-height: ${value};`, undefined, 'btn')}
+          ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'btn')}
+          ${SCALE.font(0.875, value => `font-size: ${value}; --button-font-size: ${value};`, undefined, 'btn')}
+          ${SCALE.lineHeight(0.875, value => `line-height: ${value};`, `var(--button-font-size)`, 'btn')}
+          ${SCALE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'btn')}
+
+
+          ${UNIT('btn')}
         `}</style>
       </button>
     );

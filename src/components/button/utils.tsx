@@ -4,7 +4,7 @@ import React, { ReactNode } from 'react';
 import { ButtonGroupConfig } from '../button-group/button-group-context';
 import useClasses from '../use-classes';
 import { UIThemesBreakpoints } from '../use-layout/shared';
-import { ScaleResponsiveParameter, responsiveCss } from '../use-scale';
+import { ScaleResponsiveParameter, customResponsiveAttribute } from '../use-scale';
 import { ButtonProps } from './button';
 import ButtonIcon from './button-icon';
 
@@ -37,14 +37,14 @@ export const getButtonChildrenWithIcon = (
       <div className={classes}>
         {children}
         <style jsx>{`
-          ${responsiveCss(
+          ${customResponsiveAttribute(
             auto,
             'right',
             breakpoints,
             value => `padding-right: ${value ? `calc(var(--ui-button-height) / 2 + var(--ui-button-icon-padding) * .5)` : 0};`,
           )}
 
-          ${responsiveCss(
+          ${customResponsiveAttribute(
             auto,
             'left',
             breakpoints,

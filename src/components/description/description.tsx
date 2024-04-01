@@ -1,66 +1,65 @@
 'use client';
 
 import React, { ReactNode } from 'react';
-import useTheme from '../use-theme';
-import useScale, { withScale } from '../use-scale';
 import useClasses from '../use-classes';
+import useScale, { withScale } from '../use-scale';
 
 interface Props {
   title?: ReactNode | string;
   content?: ReactNode | string;
-  className?: string;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLDListElement>, keyof Props>;
 export type DescriptionProps = Props & NativeAttrs;
 
 const DescriptionComponent: React.FC<DescriptionProps> = ({
   title = 'Title' as ReactNode | string,
   content = '' as ReactNode | string,
-  className = '',
+  className,
   ...props
 }: DescriptionProps) => {
-  const theme = useTheme();
-  const { SCALES } = useScale();
-  const classes = useClasses('description', className);
+  const { SCALE, UNIT, CLASS_NAMES } = useScale();
+  const classes = useClasses('description', className, CLASS_NAMES);
 
   return (
     <dl className={classes} {...props}>
-      <dt>{title}</dt>
-      <dd>{content}</dd>
+      <dt className="description-title">{title}</dt>
+      <dd className="description-desc">{content}</dd>
 
       <style jsx>{`
-        .description {
-          font-size: ${SCALES.font(1)};
-          width: ${SCALES.w(1, 'auto')};
-          height: ${SCALES.h(1, 'auto')};
-          padding: ${SCALES.pt(0)} ${SCALES.pr(0)} ${SCALES.pb(0)} ${SCALES.pl(0)};
-          margin: ${SCALES.mt(0)} ${SCALES.mr(0)} ${SCALES.mb(0)} ${SCALES.ml(0)};
-        }
-
-        dt {
+        .description-title {
           font-size: 0.75em;
           line-height: 1em;
           margin-bottom: 0.5em;
           text-transform: uppercase;
           white-space: nowrap;
-          color: ${theme.palette.background.accents.accents_5};
+          color: var(--color-background-400);
           font-weight: 500;
           display: flex;
         }
 
-        dd {
+        .description-desc {
           font-size: 0.875em;
           margin: 0;
           line-height: 1.1em;
-          color: ${theme.palette.foreground.value};
+          color: var(--color-foreground-1000);
           font-weight: 500;
         }
 
-        dd :global(p),
-        dt :global(p) {
+        .description-desc :global(p),
+        .description-title :global(p) {
           margin: 0;
         }
+
+        ${SCALE.font(0.75, value => `font-size: ${value};`, undefined, 'description-title')}
+        ${SCALE.font(0.875, value => `font-size: ${value};`, undefined, 'description-desc')}
+        ${SCALE.font(1, value => `font-size: ${value};`, undefined, 'description')}
+        ${SCALE.w(1, value => `width: ${value};`, 'auto', 'description')}
+        ${SCALE.h(1, value => `height: ${value};`, 'auto', 'description')}
+        ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'description')}
+        ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'description')}
+
+        ${UNIT('description')}
       `}</style>
     </dl>
   );

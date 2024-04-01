@@ -56,16 +56,16 @@ const Editor: React.FC<Props> = ({ code }) => {
 
       <style jsx>{`
         .editor {
-          border-bottom-left-radius: ${theme.style.radius};
-          border-bottom-right-radius: ${theme.style.radius};
+          border-bottom-left-radius: var(--layout-radius);
+          border-bottom-right-radius: var(--layout-radius);
         }
 
         details {
           transition: all 0.2s ease;
           overflow: hidden;
-          border-bottom-left-radius: ${theme.style.radius};
-          border-bottom-right-radius: ${theme.style.radius};
-          background-color: ${theme.palette.background.accents.accents_0};
+          border-bottom-left-radius: var(--layout-radius);
+          border-bottom-right-radius: var(--layout-radius);
+          background-color: var(--color-background-900);
         }
 
         details summary::-webkit-details-marker {
@@ -74,8 +74,8 @@ const Editor: React.FC<Props> = ({ code }) => {
 
         summary {
           box-sizing: border-box;
-          border-top: 1px solid ${theme.palette.border.value};
-          color: ${theme.palette.background.accents.accents_5};
+          border-top: 1px solid var(--color-border-1000);
+          color: var(--color-background-400);
           width: 100%;
           list-style: none;
           user-select: none;
@@ -89,7 +89,7 @@ const Editor: React.FC<Props> = ({ code }) => {
           align-items: center;
           width: 100%;
           height: 2.875rem;
-          padding: 0 ${layout.gap};
+          padding: 0 var(--layout-gap);
         }
 
         summary :global(svg) {
@@ -107,13 +107,13 @@ const Editor: React.FC<Props> = ({ code }) => {
           position: relative;
           box-sizing: border-box;
           white-space: pre;
-          font-family: ${theme.font.mono};
-          color: ${theme.palette.foreground.value};
-          background-color: ${theme.palette.background.value};
+          font-family: var(--theme-font-mono)
+          color: var(--color-foreground-hex_1000);
+          background-color: var(--color-background-1000);
           font-size: 1em;
           overflow: hidden;
-          border-top: 1px solid ${theme.palette.border.value};
-          padding: ${layout.gapHalf};
+          border-top: 1px solid var(--color-border-1000);
+          padding: var(--layout-gap-half);
         }
 
         .arrow {
@@ -129,12 +129,12 @@ const Editor: React.FC<Props> = ({ code }) => {
         .copy {
           display: inline-flex;
           align-items: center;
-          color: ${theme.palette.background.accents.accents_4};
+          color: var(--color-background-500);
           transition: color 0.2s ease;
         }
 
         .copy:hover {
-          color: ${theme.palette.background.accents.accents_6};
+          color: var(--color-background-300);
         }
       `}</style>
     </div>
