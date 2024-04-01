@@ -24,7 +24,12 @@ jobs:
       - name: Show Git Status
         run: git status
       - name: Release with release-it
-        run: npx release-it major --preRelease=alpha --ci
+        run: |
+          if [[ ${{ github.event.head_commit.message }} == *"[alpha]"* ]]; then
+            npx release-it major --preRelease=alpha --ci
+          else
+            npx release-it --ci
+          fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   deploy:
@@ -54,6 +59,12 @@ jobs:
       - name: Build
         run: npm run build
       - name: Release
-        run: cd dist/bundle && npm publish --access public --non-interactive
+        run: cd dist/bundle && npm publish --tag alpha --access public --non-interactive
+        run: |
+          if [[ ${{ github.event.head_commit.message }} == *"[alpha]"* ]]; then
+            cd dist/bundle && npm publish --tag alpha --access public --non-interactive
+          else
+            cd dist/bundle && npm publish --access public --non-interactive
+          fi
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

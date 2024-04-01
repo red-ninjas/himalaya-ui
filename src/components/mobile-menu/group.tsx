@@ -70,7 +70,7 @@ const MobileNavigationGroup: React.FC<PropsWithChildren<MobileNavigationGroupPro
       </div>
     );
   };
-  const handleGroupClick: MouseEventHandler<HTMLAnchorElement> = e => {
+  const handleGroupClick: MouseEventHandler<HTMLAnchorElement> = () => {
     setIsExpanded(!isExpanded);
   };
 
@@ -84,7 +84,7 @@ const MobileNavigationGroup: React.FC<PropsWithChildren<MobileNavigationGroupPro
       })}
     >
       <div className="navigation-group">
-        <a {...props} className={`${btnClass} ${props.className || ''}`} ref={ref} onClick={e => handleGroupClick(e)}>
+        <a {...props} className={`${btnClass} ${props.className || ''}`} ref={ref} onClick={handleGroupClick}>
           <span className={useClasses('has-childs', hasChildrens)}>{title}</span>
           {hasChildrens && (
             <span className="chevron-right">
