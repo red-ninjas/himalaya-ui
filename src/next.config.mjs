@@ -20,6 +20,9 @@ const withBundleAnalyzer = anylizer({
 });
 
 const nextConfig = {
+  experimental: {
+    missingSuspenseWithCSRBailout: false,
+  },
   generateEtags: false,
   poweredByHeader: false,
   pageExtensions: ['jsx', 'js', 'mdx', 'md', 'ts', 'tsx'],

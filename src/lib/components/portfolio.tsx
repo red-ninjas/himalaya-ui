@@ -2,21 +2,7 @@
 import { Button, Grid, Hero, Link, PageWidth, Text } from 'components';
 import { motion } from 'framer-motion';
 
-export function PortfolioItem({
-  image,
-  title = '',
-  desc = '',
-  url,
-  w,
-  h,
-}: {
-  image?: string;
-  title: string;
-  desc: string;
-  w: number;
-  h: number;
-  url?: string;
-}) {
+export function PortfolioItem({ image, title = '', desc = '', url }: { image?: string; title: string; desc: string; w: number; h: number; url?: string }) {
   return (
     <motion.div
       initial={{ opacity: 0, translateY: '4rem', filter: 'blur(10px)' }}

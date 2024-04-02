@@ -1,5 +1,5 @@
 'use client';
-import { Card, Code, Divider, Spacer, Table, Tag, Text } from 'components';
+import { Card, Code, Divider, Spacer, Table, Text } from 'components';
 import { getAttributeTableData } from 'lib/get-attribute-data';
 import React, { useMemo } from 'react';
 import { VirtualAnchor } from '../pures';
