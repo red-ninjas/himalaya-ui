@@ -18,7 +18,7 @@ type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
 export type DrawerWrapperProps = Props & NativeAttrs;
 
 const DrawerWrapper: React.FC<React.PropsWithChildren<DrawerWrapperProps>> = ({
-  className = '',
+  className,
   children,
   visible = false,
   placement = 'right' as DrawerPlacement,

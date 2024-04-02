@@ -146,6 +146,8 @@ const SliderComponent: React.FC<React.PropsWithChildren<SliderProps>> = ({
   };
 
   const clickHandler = (event: React.MouseEvent<HTMLDivElement>) => {
+    event.preventDefault();
+    event.stopPropagation();
     if (disabled) return;
     if (!sliderRef || !sliderRef.current) return;
     setIsClick(true);

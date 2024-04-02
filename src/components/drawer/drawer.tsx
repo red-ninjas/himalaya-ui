@@ -18,6 +18,7 @@ interface Props {
   wrapClassName?: string;
   placement?: DrawerPlacement;
   backdropBackground?: string;
+  backdropClassName?: string;
   transitionTime?: number;
 }
 
@@ -30,9 +31,10 @@ const DrawerComponent: React.FC<React.PropsWithChildren<DrawerProps>> = ({
   disableBackdropClick = false,
   onClose,
   onContentClick,
-  wrapClassName = '',
+  wrapClassName,
   children,
   backdropBackground,
+  backdropClassName,
   transitionTime = 300,
   ...props
 }: React.PropsWithChildren<DrawerProps>) => {
@@ -75,6 +77,7 @@ const DrawerComponent: React.FC<React.PropsWithChildren<DrawerProps>> = ({
       onClick={closeFromBackdrop}
       onContentClick={onContentClick}
       visible={visible}
+      backdropClassName={backdropClassName}
       {...bindings}
     >
       <DrawerWrapper leaveTime={transitionTime} enterTime={transitionTime} visible={visible} className={wrapClassName} {...props}>
