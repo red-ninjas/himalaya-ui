@@ -16,11 +16,10 @@ export interface GridBasicComponentProps {
   direction?: ScaleResponsiveParameter<GridDirection>;
   alignItems?: ScaleResponsiveParameter<GridAlignItems>;
   alignContent?: ScaleResponsiveParameter<GridAlignContent>;
-  className?: string;
   order?: ScaleResponsiveParameter<number>;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof GridBasicComponentProps>;
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof GridBasicComponentProps>;
 export type GridBasicItemProps = GridBasicComponentProps & NativeAttrs;
 
 type ItemLayoutValue = {
@@ -61,7 +60,8 @@ const GridBasicItem: React.FC<React.PropsWithChildren<GridBasicItemProps>> = ({
   alignItems,
   alignContent,
   children,
-  className = '',
+  className,
+  ...props
 }: React.PropsWithChildren<GridBasicItemProps>) => {
   const layoutRoot = useLayout();
   const { SCALE, UNIT, CLASS_NAMES } = useScale();
@@ -102,7 +102,7 @@ const GridBasicItem: React.FC<React.PropsWithChildren<GridBasicItemProps>> = ({
   );
 
   return (
-    <div className={useClasses('grid-item', classes, className, CLASS_NAMES)}>
+    <div className={useClasses(classes, className, CLASS_NAMES, 'grid-item')} {...props}>
       {children}
       <style jsx>
         {`

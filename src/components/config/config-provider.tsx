@@ -3,7 +3,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import CssBaseline from '../css-baseline';
 import { LayoutProvider } from '../layout';
-import { UIThemes } from '../themes';
+import Themes, { UIThemes } from '../themes';
 import {
   ConfigContext,
   ConfigProviderContextParams,
@@ -21,6 +21,7 @@ import { RouteChangeProvider } from 'nextjs13-router-events';
 import ThemeProvider from '../use-config/theme-provider';
 import useCurrentState from '../use-current-state';
 import ToastContainer from '../use-toasts/toast-container';
+import { AllThemesConfig } from 'components';
 
 export interface ConfigProps {
   themeType?: string | 'dark' | 'light';
@@ -41,6 +42,7 @@ const ConfigProvider: React.FC<React.PropsWithChildren<NativeConfigProps>> = ({
   const mediaQuery = useMediaQuery('xs', { match: 'down' });
   const [isMobile, setIsMobile] = useState<boolean>();
   const [_themeType, setThemeType] = useState<string>(themeType);
+  const allThemes = themes && themes.length > 0 ? themes : Themes.getPresets();
 
   useEffect(() => {
     setIsMobile(mediaQuery);
@@ -68,6 +70,13 @@ const ConfigProvider: React.FC<React.PropsWithChildren<NativeConfigProps>> = ({
   const setTheme = (type: string) => {
     setThemeType(type);
   };
+
+  const currentTheme = useMemo<UIThemes>(() => {
+    const theme = themes.find(item => item.type === themeType);
+    if (theme) return theme;
+    return Themes.getPresetStaticTheme();
+  }, [themes, themeType]);
+
   const config: ConfigProviderContextParams = useMemo(
     () => ({
       layout: _.merge(defaultLayout, layout),
@@ -76,7 +85,8 @@ const ConfigProvider: React.FC<React.PropsWithChildren<NativeConfigProps>> = ({
       isMobile,
       themeType: _themeType,
       setTheme,
-      themes,
+      theme: currentTheme,
+      themes: allThemes,
       toasts,
       toastLayout,
       updateToasts,
@@ -84,20 +94,16 @@ const ConfigProvider: React.FC<React.PropsWithChildren<NativeConfigProps>> = ({
       updateToastLayout,
       updateLastToastId,
     }),
-    [isMobile, scrollHeight, _themeType, toasts, layout, toastLayout, lastUpdateToastId],
+    [isMobile, scrollHeight, _themeType, toasts, layout, toastLayout, lastUpdateToastId, currentTheme, allThemes],
   );
 
   return (
     <RouteChangeProvider>
-      <LayoutProvider layout={config.layout} inline={false}>
-        <ConfigContext.Provider value={config}>
-          <ThemeProvider inline={false} themes={config.themes} themeType={config.themeType}>
-            <CssBaseline />
-            {children}
-            <ToastContainer />
-          </ThemeProvider>
-        </ConfigContext.Provider>
-      </LayoutProvider>
+      <ConfigContext.Provider value={config}>
+        <CssBaseline />
+        {children}
+        <ToastContainer />
+      </ConfigContext.Provider>
     </RouteChangeProvider>
   );
 };

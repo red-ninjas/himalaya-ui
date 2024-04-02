@@ -9,15 +9,17 @@ export type BreakpointInterface<T = number | string> = {
   xl?: T;
 };
 
+export type HideUpOrDown = 'up' | 'down';
 export type HideInterface =
   | {
-      xs?: boolean;
-      sm?: boolean;
-      md?: boolean;
-      lg?: boolean;
-      xl?: boolean;
+      xs?: boolean | HideUpOrDown;
+      sm?: boolean | HideUpOrDown;
+      md?: boolean | HideUpOrDown;
+      lg?: boolean | HideUpOrDown;
+      xl?: boolean | HideUpOrDown;
     }
-  | boolean;
+  | boolean
+  | HideUpOrDown;
 
 export type ScaleResponsiveParameter<T = number | string> = T | BreakpointInterface<T>;
 
@@ -41,6 +43,7 @@ export const ScalePropKeys = [
   'my',
   'font',
   'hideOn',
+  'showOn',
   'lineHeight',
   'unit',
   'scale',
@@ -68,6 +71,7 @@ export type ScaleProps = {
   mx?: ScaleResponsiveParameter;
   my?: ScaleResponsiveParameter;
   hideOn?: HideInterface;
+  showOn?: HideInterface;
   font?: ScaleResponsiveParameter;
   lineHeight?: ScaleResponsiveParameter;
   unit?: string;

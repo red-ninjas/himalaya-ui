@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { UIThemes } from '../themes';
+import Themes, { UIThemes } from '../themes';
 import { LayoutProps, defaultBreakpoints } from '../use-layout';
 import { Toast, ToastLayout } from '../use-toasts';
 
@@ -10,6 +10,9 @@ export type UpdateToastsIDFunction = (fn: () => string | null) => any;
 
 export const defaultLayout: LayoutProps = {
   pageWidth: '1200px',
+  pageScrollWidth: '8px',
+  pageScrollHeight: '8px',
+  pageScrollRadius: '0px',
   pageMargin: '24px',
   pageWidthWithMargin: '1248px',
   gap: '16pt',
@@ -35,13 +38,15 @@ export const defaultToastLayout: Required<ToastLayout> = {
   maxHeight: '75px',
   placement: 'bottomRight',
 };
+const defaultTheme = Themes.getPresetStaticTheme();
 
 export interface ConfigProviderContextParams {
   sidebarScrollHeight?: number;
   updateSidebarScrollHeight?: (height: number) => void;
   setTheme: (type: string) => void;
   isMobile?: boolean;
-  themes?: Array<UIThemes>;
+  themes: Array<UIThemes>;
+  theme: UIThemes;
   themeType?: string | 'dark' | 'light';
   toasts: Array<Toast>;
   updateToasts: UpdateToastsFunction;
@@ -57,6 +62,8 @@ export const defaultConfigs: ConfigProviderContextParams = {
   updateSidebarScrollHeight: () => {},
   setTheme: () => {},
   isMobile: false,
+  themes: Themes.getPresets(),
+  theme: defaultTheme,
   themeType: 'dark',
   toasts: [],
   layout: defaultLayout,

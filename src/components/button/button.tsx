@@ -230,7 +230,8 @@ const ButtonComponent = React.forwardRef<HTMLButtonElement, React.PropsWithChild
 
           ${SCALE.pl(0.727, value => `--ui-button-icon-padding: ${value};`, undefined, 'btn')}
           ${SCALE.w(10.5, value => `--ui-button-min-width: ${value};`, undefined, 'btn')}
-          ${SCALE.h(2.5, value => `height: ${value}; --ui-button-height: ${value};`, undefined, 'btn')}
+          ${SCALE.h(2.5, value => `height: ${value};`, undefined, 'btn')}
+          ${SCALE.h(2.5, value => `--ui-button-height: ${value};`, undefined, 'btn')}
           ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'btn')}
           ${SCALE.font(0.875, value => `font-size: ${value}; --button-font-size: ${value};`, undefined, 'btn')}
           ${SCALE.lineHeight(0.875, value => `line-height: ${value};`, `var(--button-font-size)`, 'btn')}

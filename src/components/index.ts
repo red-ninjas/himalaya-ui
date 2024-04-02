@@ -158,7 +158,6 @@ export { default as useSidebar, SidebarProvider } from './use-sidebar';
 export { default as useQuickBar, QuickBarProvider } from './use-quickbar';
 
 export { Sidebar } from './sidebar';
-export { default as SidebarLayout } from './sidebar/sidebar-layout';
 export type { SidebarProps } from './sidebar';
 
 export { default as useLayout, defaultBreakpoints } from './use-layout';
@@ -191,7 +190,6 @@ export { default as useTabs } from './use-tabs';
 export { default as useClickAway } from './use-click-away';
 export { default as useCurrentState } from './use-current-state';
 export { default as CssBaseline } from './css-baseline';
-export { default as useTheme } from './use-theme';
 export { default as useClasses } from './use-classes';
 export { default as useScale } from './use-scale';
 export { withScale, ScalePropKeys, ScaleContext } from './use-scale';

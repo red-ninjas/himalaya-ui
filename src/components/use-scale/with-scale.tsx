@@ -32,6 +32,7 @@ const withScale = <T, P = {}>(Render: React.ComponentType<P & { ref?: React.Ref<
       m,
       p,
       hideOn,
+      showOn,
       lineHeight,
       unit = 'var(--layout-unit)',
       scale = 1,
@@ -42,7 +43,7 @@ const withScale = <T, P = {}>(Render: React.ComponentType<P & { ref?: React.Ref<
       unit: unit,
 
       UNIT: scaleAttribute(scale, unit, layout.breakpoints, className),
-      CLASS_NAMES: hideAttribute(hideOn),
+      CLASS_NAMES: hideAttribute(hideOn, showOn),
       SCALE: {
         r: scaleHandler1X(r, layout.breakpoints, className),
         pt: scaleHandler1X(pt ?? py ?? p, layout.breakpoints, className),

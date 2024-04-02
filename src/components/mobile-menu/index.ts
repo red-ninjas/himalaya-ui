@@ -17,10 +17,7 @@ export type MobileMenuProps = {
   animationTime?: number;
 };
 
-export type MobileMenuButtonProps = {
-  notHiding?: boolean;
-  toggleMenu?: () => void;
-};
+export type MobileMenuButtonProps = {};
 
 export type MobileNavigationComponentType = typeof MobileMenu & {
   Item: MobileNavigationItemComponentType;

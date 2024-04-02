@@ -22,8 +22,7 @@ const SwipeProvider: React.FC<React.PropsWithChildren> = ({ children, ...props }
       <style jsx>{`
         .swiper-portal {
           width: 100%;
-          height: 100vh;
-          position: relative;
+          height: 100%;
         }
       `}</style>
     </div>

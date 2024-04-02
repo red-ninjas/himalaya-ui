@@ -50,52 +50,22 @@ const InnerScrollComponent: React.FC<React.PropsWithChildren<InnerScrollProps>> 
       onScroll={onScrollHandler}
       className={useClasses(
         'inner-scroll',
+        'scroll',
+
         className,
         {
           vertical: type == 'both' || type == 'vertical',
           horizontal: type == 'both' || type == 'horizontal',
         },
         CLASS_NAMES,
+        {
+          'scroll-hover': transparentBg,
+        },
       )}
       {...props}
     >
       {children}
       <style jsx>{`
-        .inner-scroll::-webkit-scrollbar-track {
-          border-radius: var(--scroll-border-radius);
-          cursor: pointer;
-        }
-
-        .inner-scroll::-webkit-scrollbar-thumb {
-          border-radius: var(--scroll-border-radius);
-          cursor: pointer;
-        }
-
-        .inner-scroll::-webkit-scrollbar-corner,
-        .inner-scroll::-webkit-resizer {
-          background: transparent;
-          border: 0px solid transparent;
-          width: 0;
-          height: 0;
-        }
-
-        .inner-scroll:hover::-webkit-scrollbar-track {
-          z-index: 9999;
-        }
-
-        .inner-scroll:hover::-webkit-scrollbar-thumb {
-          background: var(--color-background-700);
-        }
-
-        .inner-scroll:hover::-webkit-scrollbar-corner,
-        .inner-scroll:hover::-webkit-resizer {
-          background: var(--color-background-700);
-        }
-
-        .inner-scroll:hover::-webkit-scrollbar-corner {
-          background: transparent;
-        }
-
         .inner-scroll {
           overflow: hidden;
           width: 100%;
@@ -109,12 +79,6 @@ const InnerScrollComponent: React.FC<React.PropsWithChildren<InnerScrollProps>> 
 
         .horizontal {
           overflow-x: overlay;
-        }
-
-        .inner-scroll::-webkit-scrollbar {
-          width: var(--page-scrollbar-width, 6px);
-          height: var(--page-scrollbar-width, 6px);
-          background: ${transparentBg ? 'transparent' : `var(--color-background-800)`};
         }
 
         ${SCALE.w(1, value => `width: ${value};`, '100%', 'inner-scroll')}

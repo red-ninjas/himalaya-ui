@@ -18,7 +18,7 @@ const QuickBarAction = React.forwardRef<HTMLAnchorElement, React.PropsWithChildr
     const layout = useLayout();
 
     return (
-      <Tooltip placement="right" text={tooltip} p={0.3} font="12px" type="dark" leaveDelay={0} enterDelay={0}>
+      <Tooltip placement="right" text={tooltip} p={0.3} type="dark" leaveDelay={0} enterDelay={0}>
         <a
           ref={ref}
           {...props}

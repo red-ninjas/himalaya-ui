@@ -9,7 +9,6 @@ import { isCSSNumberValue } from '../utils/collections';
 
 export interface SidebarProps {
   header?: React.ReactNode;
-  hasBorder?: boolean;
   gap?: ScaleResponsiveParameter<number | string>;
   enabled?: ScaleResponsiveParameter<boolean>;
 }
@@ -17,7 +16,7 @@ export interface SidebarProps {
 type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof SidebarProps>;
 export type SidebarPropsNative = SidebarProps & NativeAttrs;
 
-const Sidebar: React.FC<PropsWithChildren<SidebarPropsNative>> = ({ children, hasBorder = true, gap = 1, className, ...props }) => {
+const Sidebar: React.FC<PropsWithChildren<SidebarPropsNative>> = ({ children, gap = 1, className, ...props }) => {
   const pathname = usePathname();
   const boxRef = useRef<HTMLDivElement>(null);
   const { sidebarScrollHeight, updateSidebarScrollHeight } = useConfigs();
@@ -46,10 +45,6 @@ const Sidebar: React.FC<PropsWithChildren<SidebarPropsNative>> = ({ children, ha
           flex-direction: column;
           align-items: center;
           gap: var(--layout-gap);
-
-          border-color: var(--color-border-1000);
-          border-width: 0 ${hasBorder ? '1px' : '0'} 0 0;
-          border-style: solid;
         }
         .sidebar-inner::-webkit-scrollbar {
           width: 0;

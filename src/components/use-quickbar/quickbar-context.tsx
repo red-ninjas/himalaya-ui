@@ -2,13 +2,17 @@
 import React from 'react';
 
 export interface QuickBarContextProps {
-  isEnabled: boolean | undefined;
-  setIsEnabled: (value: boolean | undefined) => void;
+  isQuickbarEnabled: boolean | undefined;
+  setQuickBarEnabled: (value: boolean | undefined) => void;
+  isSidebarEnabled: boolean | undefined;
+  setSideBarEnabled: (value: boolean | undefined) => void;
 }
 
 export const defaultConfigs: QuickBarContextProps = {
-  setIsEnabled: () => {},
-  isEnabled: false,
+  setQuickBarEnabled: () => {},
+  isQuickbarEnabled: true,
+  setSideBarEnabled: () => {},
+  isSidebarEnabled: true,
 };
 
 export const QuickBarContext = React.createContext<QuickBarContextProps>(defaultConfigs);

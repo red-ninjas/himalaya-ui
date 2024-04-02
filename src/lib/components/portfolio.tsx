@@ -1,5 +1,5 @@
 'use client';
-import { Button, Grid, Hero, Link, PageWidth, Text, useTheme } from 'components';
+import { Button, Grid, Hero, Link, PageWidth, Text } from 'components';
 import { motion } from 'framer-motion';
 
 export function PortfolioItem({
@@ -17,7 +17,6 @@ export function PortfolioItem({
   h: number;
   url?: string;
 }) {
-  const theme = useTheme();
   return (
     <motion.div
       initial={{ opacity: 0, translateY: '4rem', filter: 'blur(10px)' }}
@@ -36,7 +35,7 @@ export function PortfolioItem({
         <Link font={'24px'} style={{ fontWeight: 'bold' }} my={0}>
           {title}
         </Link>
-        <Text mt={0} style={{ color: theme.palette.background.hex_300 }}>
+        <Text mt={0} style={{ color: 'var(--color-background-300)' }}>
           {desc}
         </Text>
         {url && (
@@ -75,7 +74,6 @@ export function PortfolioItem({
 }
 
 export default function Portfolio() {
-  const theme = useTheme();
   return (
     <PageWidth>
       <motion.div
@@ -85,13 +83,13 @@ export default function Portfolio() {
         viewport={{ once: true }}
       >
         <div className="header">
-          <Hero.Tag background={theme.palette.primary.hex_1000} textColor={theme.palette.primary.contrast}>
+          <Hero.Tag background={`var(--color-primary-1000)`} textColor={'var(--color-primary-contrast)'}>
             Projects
           </Hero.Tag>
           <Text m={0} mt={'12px'} h4 font={'clamp(24px, 3.1vw, 48px)'} style={{ fontWeight: '700', lineHeight: '1.2' }}>
             Diverse, dynamic, and innovative: Explore real projects made with Himalaya.
           </Text>
-          <Text m={0} mt={'24px'} font={'clamp(14px, 1.2vw, 16px)'} style={{ color: theme.palette.background.hex_300, fontWeight: 400 }}>
+          <Text m={0} mt={'24px'} font={'clamp(14px, 1.2vw, 16px)'} style={{ color: `var(--color-background-300)`, fontWeight: 400 }}>
             Our UI library stands out with over 3 fully functional demo projects, offering real-world application scenarios, and a rich repository of 100+
             examples showcasing its extensive capabilities for diverse design and development needs.
           </Text>

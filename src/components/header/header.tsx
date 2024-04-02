@@ -107,7 +107,6 @@ const HeaderComponent: React.FC<HeaderPropsNative> = ({ children, transcluent = 
           align-items: center;
           justify-content: flex-start;
           align-self: stretch;
-          overflow: hidden;
         }
         .left-controls-inner {
           display: flex;

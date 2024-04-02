@@ -1,5 +1,5 @@
 import { Layout, Playground, Attributes, MockPage } from 'lib/components';
-import { SidebarLayout, Sidebar, Page, Button, PageWidth, Text } from 'components';
+import { Sidebar, Page, Button, PageWidth, Text } from 'components';
 import { Home } from 'components/icons';
 import NextLink from 'next/link';
 
@@ -38,52 +38,6 @@ Display a sidebar
     </NextLink>
   </Sidebar.Group>
 </Sidebar>
-`}
-/>
-
-<Playground
-  title="SidebarLayout"
-  desc="Create a layout with a sidebar and content."
-  scope={{ Page, MockPage, Button, Sidebar, SidebarLayout, PageWidth, Text }}
-  code={`
-() => {
-  const Child = () => (
-    <>
-<SidebarLayout>
-  <Sidebar>
-    <Sidebar.Group title="Group 1">
-      <Sidebar.Item>Link 1</Sidebar.Link>
-      <Sidebar.Item>Link 2</Sidebar.Link>
-    </Sidebar.Group>
-      <Sidebar.Group title="Group 2">
-      <Sidebar.Item>Link 3</Sidebar.Link>
-      <Sidebar.Item>Link 4</Sidebar.Link>
-    </Sidebar.Group>
-  </Sidebar>
-  <PageWidth>
-   <Text h4>
-    Fast Web sites:
-    </Text>
-    <Text >
-    Caching is very important for fast Web sites. This article describes different methods of caching and how to use HTTP Headers to control them.
-    </Text>
-    <Text b>
-    A brief description of the changes between the early versions of HTTP, to the modern HTTP/2, the emergent HTTP/3 and beyond.
-    </Text>
-  </PageWidth>
-</SidebarLayout>
-    </>
-  )
-  const [visible, setVisible] = React.useState(false)
-  return (
-    <>
-      <Button onClick={() => setVisible(true)} auto>Show SidebarLayout</Button>
-      <MockPage visible={visible} onClose={() => setVisible(false)}>
-        <Page><Child /></Page>
-      </MockPage>
-    </>
-  )
-}
 `}
 />
 

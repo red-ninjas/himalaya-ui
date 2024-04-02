@@ -22,18 +22,23 @@ const SidebarLink = React.forwardRef<HTMLAnchorElement, React.PropsWithChildren<
 
     return (
       <a ref={ref} {...props} className={useClasses(`sidebar-link`, { active: isActive, className }, CLASS_NAMES)}>
-        {icon && <span className="sidebar-link-icon">{icon}</span>}
-        <span className="sidebar-link-title">{children}</span>
+        <span className="sidebar-link-title">
+          {icon && <span className="sidebar-link-icon">{icon}</span>}
+          <span>{children}</span>
+        </span>
         <style jsx>{`
           .sidebar-link-title {
             padding-top: var(--padding-top);
             padding-bottom: var(--padding-bottom);
             padding-left: var(--padding-left);
             padding-right: var(--padding-right);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: no-wrap;
           }
 
           .sidebar-link .sidebar-link-icon {
-            margin-right: 12px;
             color: var(--color-foreground-600);
             transition:
               color 200ms ease,

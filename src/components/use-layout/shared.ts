@@ -36,6 +36,9 @@ export const defaultBreakpoints: UIThemesBreakpoints = {
 
 export interface LayoutProps {
   pageWidth: string;
+  pageScrollWidth: string;
+  pageScrollHeight: string;
+  pageScrollRadius: string;
   pageMargin: string;
   pageWidthWithMargin: string;
   gap: string;

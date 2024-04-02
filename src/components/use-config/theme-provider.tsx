@@ -35,67 +35,9 @@ const ThemeProvider: React.FC<PropsWithChildren<Props>> = ({ children, themeType
     setAllThemes({ themes: currentThemes });
   }, [currentThemes]);
 
-  const colorKeys = Object.keys(currentTheme.palette);
-
-  const [vars] = useMemo(() => {
-    let vars: string = ``;
-
-    for (const key of Object.keys(currentTheme.font)) {
-      const kebabCaseString = _.kebabCase(key);
-      vars += `--theme-font-${kebabCaseString}: ${currentTheme.font[key]};`;
-    }
-
-    for (const key of colorKeys) {
-      const value = currentTheme.palette[key];
-
-      if (key.startsWith('gradient_')) {
-        const gradientIndex = key.replace('gradient_', '');
-        vars += `
-        --gradient-${gradientIndex}-from: ${value.from};
-        --gradient-${gradientIndex}-to: ${value.to};
-      `;
-      } else {
-        for (const colorKey of Object.keys(value)) {
-          vars += `
-          --color-${key}-${colorKey.replace('hex_', '')}: ${value[colorKey]};
-          --color-${key}-${colorKey.replace('hex_', '')}-rgb: ${hexToRgb(value[colorKey])};
-          `;
-        }
-      }
-    }
-
-    return [vars];
-  }, [currentTheme.font, currentTheme.palette]);
-
   return (
     <AllThemesContext.Provider value={allThemes}>
-      <ThemeContext.Provider value={currentTheme}>
-        {inline ? (
-          <div className="theme">
-            {children}
-            <style jsx>
-              {`
-                .theme {
-                  width: 100%;
-                  height: 100%;
-                  ${vars}
-                }
-              `}
-            </style>
-          </div>
-        ) : (
-          <>
-            {children}
-            <style jsx global>
-              {`
-                html {
-                  ${vars}
-                }
-              `}
-            </style>
-          </>
-        )}
-      </ThemeContext.Provider>
+      <ThemeContext.Provider value={currentTheme}>{children}</ThemeContext.Provider>
     </AllThemesContext.Provider>
   );
 };
