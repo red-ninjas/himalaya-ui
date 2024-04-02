@@ -58,11 +58,9 @@ const SliderComponent: React.FC<React.PropsWithChildren<SliderProps>> = ({
   const { SCALE, CLASS_NAMES, UNIT } = useScale();
   const [value, setValue] = useState<number | [number, number]>(initialValue);
   const [, setSliderWidth, sideWidthRef] = useCurrentState<number>(0);
-
   const [, setLastDargOffset1, lastDargOffsetRef1] = useCurrentState<number>(0);
   const [, setLastDargOffset2, lastDargOffsetRef2] = useCurrentState<number>(0);
   const [pendingValue, setPendingValue] = useState<number | [number, number] | null>(null);
-
   const [isClick, setIsClick] = useState<boolean>(false);
 
   const sliderRef = useRef<HTMLDivElement>(null);
@@ -188,10 +186,10 @@ const SliderComponent: React.FC<React.PropsWithChildren<SliderProps>> = ({
     }
   }, []);
 
-  const isNotRange = currentRatio2 <= currentRatio1;
-
-  const leftStart = isNotRange ? 0 : currentRatio1;
-  const leftEnd = isNotRange ? currentRatio1 : currentRatio2;
+  const isRange = Array.isArray(value);
+  const isNotRange = isRange && currentRatio2 === currentRatio1;
+  const leftStart = isRange ? (isNotRange ? currentRatio1 : Math.min(currentRatio1, currentRatio2)) : 0;
+  const leftEnd = isRange ? (isNotRange ? currentRatio1 : Math.max(currentRatio1, currentRatio2)) : currentRatio1;
 
   return (
     <div
@@ -231,7 +229,7 @@ const SliderComponent: React.FC<React.PropsWithChildren<SliderProps>> = ({
         .slider-value {
           position: absolute;
           left: ${leftStart}%;
-          right: calc(100% - ${leftEnd}%);
+          right: ${`calc(100% - ${leftEnd}%)`};
           height: 100%;
           background: var(--slider-bg-tint);
           border-radius: var(--border-radius);

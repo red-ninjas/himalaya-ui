@@ -46,11 +46,16 @@ const Backdrop: React.FC<React.PropsWithChildren<BackdropProps>> = React.memo(
       }, 0);
     };
 
+    const ContentClickHandler = (event: MouseEvent<HTMLElement>) => {
+      event.stopPropagation();
+      onContentClick(event);
+    };
+
     return (
       <CssTransition name="backdrop-wrapper" visible={visible} clearTime={300}>
         <div className={useClasses('backdrop', backdropClassName)} onClick={clickHandler} onMouseUp={mouseUpHandler} {...props}>
           <div className={useClasses('layer', layerClassName)} />
-          <div onClick={onContentClick} className={useClasses('position width', positionClassName)} onMouseDown={() => setIsContentMouseDown(true)}>
+          <div onClick={ContentClickHandler} className={useClasses('position width', positionClassName)} onMouseDown={() => setIsContentMouseDown(true)}>
             {children}
           </div>
           <style jsx>{`
