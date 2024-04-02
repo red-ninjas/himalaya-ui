@@ -5,11 +5,9 @@ import GitHubIcon from 'components/icons/github';
 import PackageIcon from 'components/icons/package';
 import { motion } from 'framer-motion';
 
-import { Button, Grid, Hero, PageWidth, Text, useTheme } from 'components';
+import { Button, Grid, Hero, PageWidth, Text } from 'components';
 import { HomeCell } from '.';
 export default function Services() {
-  const theme = useTheme();
-
   return (
     <PageWidth>
       <motion.div
@@ -19,13 +17,13 @@ export default function Services() {
         viewport={{ once: true }}
       >
         <div className="header">
-          <Hero.Tag background={theme.palette.primary.hex_1000} textColor={theme.palette.primary.contrast}>
+          <Hero.Tag background={`var(--color-primary-1000)`} textColor={`var(--color-primary-contrast)`}>
             UI library
           </Hero.Tag>
           <Text m={0} mt={'12px'} h4 font={'clamp(24px, 3.1vw, 48px)'} style={{ fontWeight: '700', lineHeight: '1.2' }}>
             Scaling Excellence: UI Components Beyond Limits
           </Text>
-          <Text m={0} mt={'24px'} font={'clamp(14px, 1.2vw, 16px)'} style={{ color: theme.palette.background.hex_300, fontWeight: 400 }}>
+          <Text m={0} mt={'24px'} font={'clamp(14px, 1.2vw, 16px)'} style={{ color: `var(--color-background-300)`, fontWeight: 400 }}>
             Unlock unparalleled scalability and performance with our high-scalable UI components, designed to meet the demands of your most ambitious projects.
           </Text>
         </div>

@@ -1,13 +1,13 @@
 'use client';
 import React, { PropsWithChildren, createRef, useEffect, useMemo, useState } from 'react';
 import useClasses from '../use-classes';
+import useConfig from '../use-config';
 import useScale, { ScaleResponsiveParameter, customResponsiveAttribute, withScale } from '../use-scale';
+import { isCSSNumberValue } from '../utils/collections';
 import useWarning from '../utils/use-warning';
 import { ToggleListEvent } from './shared';
 import ToggleListIcon from './toggle-list-icon';
 import { useToggleListContext } from './toggle-list-provider';
-import useLayout from '../use-layout';
-import { isCSSNumberValue } from '../utils/collections';
 
 interface Props {
   checked?: boolean;
@@ -35,7 +35,7 @@ const ToggleListItemComponent: React.FC<PropsWithChildren<ToggleProps>> = ({
   const isDisabled = useMemo(() => disabled || disabledAll, [disabled, disabledAll]);
   const [selfChecked, setSelfChecked] = useState<boolean>(false);
 
-  const layoutRoot = useLayout();
+  const { layout: layoutRoot } = useConfig();
   const optionRef = createRef<HTMLInputElement>();
 
   const changeHandler = (event: React.ChangeEvent) => {

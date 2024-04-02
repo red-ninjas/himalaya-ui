@@ -1,8 +1,8 @@
 'use client';
 
+import { Code } from 'components';
 import React from 'react';
 import { VirtualAnchor } from '../pures';
-import { Code, useLayout, useTheme } from 'components';
 
 export interface AttributesTitleProps {
   alias?: string;
@@ -20,9 +20,6 @@ const getAlias = (alias?: string) => {
 };
 
 const AttributesTitle: React.FC<React.PropsWithChildren<AttributesTitleProps>> = React.memo(({ children, alias }) => {
-  const theme = useTheme();
-  const layout = useLayout();
-
   return (
     <>
       <h4 className="title">

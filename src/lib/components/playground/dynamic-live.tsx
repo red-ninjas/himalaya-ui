@@ -1,5 +1,5 @@
 'use client';
-import { useLayout, useTheme } from 'components';
+import { useConfig } from 'components';
 import React, { useRef, useState } from 'react';
 import { LiveError, LivePreview, LiveProvider } from 'react-live';
 import makeCodeTheme from './code-theme';
@@ -17,8 +17,7 @@ const DynamicLive: React.FC<Props> = ({ code, scope }) => {
 
   scope['useState'] = useState;
   scope['useRef'] = useRef;
-  scope['useLayout'] = useLayout;
-  scope['useTheme'] = useTheme;
+  scope['useConfig'] = useConfig;
 
   return (
     <LiveProvider code={code} scope={scope} theme={codeTheme}>

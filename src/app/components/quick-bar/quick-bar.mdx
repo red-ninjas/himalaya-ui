@@ -1,4 +1,4 @@
-import { QuickBar, QuickAction, QuickBarLayout, QuickBarProvider, Divider, Box } from 'components';
+import { QuickBar, QuickAction, Divider, Box } from 'components';
 import { Playground, Attributes } from 'lib/components';
 import { Anchor, Code, Github, Home, Layout } from 'components/icons';
 import NextLink from 'next/link';
@@ -22,8 +22,6 @@ QuickBar is a customizable sidebar component designed for navigation .
     Github,
     Layout,
     QuickBar,
-    QuickBarLayout,
-    QuickBarProvider,
     Divider,
     Box,
   }}
@@ -31,17 +29,13 @@ QuickBar is a customizable sidebar component designed for navigation .
   desc={'A fully example of using the QuickBar'}
   code={`
 <Box w={60} h={12} style={{ position: 'relative' }}>
-  <QuickBarProvider>
-      <QuickBarLayout>
-          <QuickBar>
-              <QuickAction active r={50}  tooltip='Home'><Home size={20} /></QuickAction>
-              <Divider w={'100%'}></Divider>
-              <QuickAction r={50} tooltip='Guide'><Code size={20} /></QuickAction>
-              <Divider w={'100%'}></Divider>
-              <QuickAction r={50}  tooltip='Components'><Layout size={20} /></QuickAction>
-          </QuickBar>
-      </QuickBarLayout>
-  </QuickBarProvider>
+      <QuickBar>
+          <QuickAction active r={50}  tooltip='Home'><Home size={20} /></QuickAction>
+          <Divider w={'100%'}></Divider>
+          <QuickAction r={50} tooltip='Guide'><Code size={20} /></QuickAction>
+          <Divider w={'100%'}></Divider>
+          <QuickAction r={50}  tooltip='Components'><Layout size={20} /></QuickAction>
+      </QuickBar>
 </Box>
   `}
 />
@@ -57,8 +51,6 @@ QuickBar is a customizable sidebar component designed for navigation .
     Box,
     Layout,
     QuickBar,
-    QuickBarLayout,
-    QuickBarProvider,
     Divider,
     NextLink,
   }}
@@ -66,46 +58,13 @@ QuickBar is a customizable sidebar component designed for navigation .
   desc={'A fully example of using the QuickBar'}
   code={`
 <Box w={60} h={12} style={{ position: 'relative' }}>
-  <QuickBarProvider>
-      <QuickBarLayout>
-          <QuickBar>
-              <NextLink href={'#'} passHref legacyBehavior>
-                <QuickAction active r={50} tooltip='Home'><Home size={20} /></QuickAction>
-              </NextLink>
-          </QuickBar>
-      </QuickBarLayout>
-  </QuickBarProvider>
+    <QuickBar>
+        <NextLink href={'#'} passHref legacyBehavior>
+          <QuickAction active r={50} tooltip='Home'><Home size={20} /></QuickAction>
+        </NextLink>
+    </QuickBar>
 </Box>
   `}
 />
 
-<Attributes edit="/app/components/quick-bar.mdx">
-
-<Attributes.Title>QuickBarProvider.Props</Attributes.Title>
-
-| Attribute                 | Description                                                       | Type      | Accepted values | Default |
-| ------------------------- | ----------------------------------------------------------------- | --------- | --------------- | ------- |
-
-<Attributes.Title>QuickBarLayout.Props</Attributes.Title>
-
-| Attribute                  | Description                        | Type     | Accepted values | Default |
-| -------------------------- | ---------------------------------- | -------- | --------------- | ------- |
-| `animationTime` (optional) | Animation duration in milliseconds | `number` | -               | 250     |
-
-<Attributes.Title>QuickBar.Props</Attributes.Title>
-
-| Attribute           | Description                                               | Type        | Accepted values | Default |
-| ------------------- | --------------------------------------------------------- | ----------- | --------------- | ------- |
-| `header` (optional) | React node to be displayed as the header of the QuickBar. | `ReactNode` | -               | -       |
-
-<Attributes.Title>QuickAction.Props</Attributes.Title>
-
-| Attribute                  | Description                                                             | Type                                           | Accepted values | Default |
-| -------------------------- | ----------------------------------------------------------------------- | ---------------------------------------------- | --------------- | ------- |
-| `tooltip` (optional)       | Tooltip text or React node to be displayed on hover.                    | `string , React.ReactNode`                     | -               | -       |
-| `radius` (optional)        | Number indicating the border-radius of the QuickActionButton component. | `number`                                       | -               | -       |
-| `target` (optional)        | HTML anchor target attribute value                                      | `HTMLAttributeAnchorTarget , undefined`        | -               | \_self  |
-| `highlightLeft` (optional) | Number indicating the highlight position from the left side.            | `number`                                       | -               | -10     |
-| `type` (optional)          | URL to navigate when the QuickActionButton is clicked.                  | `default, success, warning, error, dark, lite` | -               | default |
-
-</Attributes>
+<Attributes edit="/app/components/quick-bar.mdx"></Attributes>

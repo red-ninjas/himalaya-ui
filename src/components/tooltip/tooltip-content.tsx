@@ -2,9 +2,9 @@
 import React, { MutableRefObject, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import CssTransition from '../shared/css-transition';
+import { UIColorTypes } from '../themes/presets';
 import useClasses from '../use-classes';
 import useScale from '../use-scale';
-import useTheme from '../use-theme';
 import { Placement } from '../utils/prop-types';
 import useClickAnyWhere from '../utils/use-click-anywhere';
 import usePortal from '../utils/use-portal';
@@ -12,7 +12,6 @@ import useResize from '../utils/use-resize';
 import { getRect } from './helper';
 import { TooltipPosition, defaultTooltipPosition, getPosition } from './placement';
 import TooltipIcon from './tooltip-icon';
-import { UIColorTypes } from '../themes/presets';
 
 interface Props {
   parent?: MutableRefObject<HTMLElement | null> | undefined;
@@ -40,7 +39,6 @@ const TooltipContent: React.FC<React.PropsWithChildren<Props>> = ({
   className,
   hideArrow,
 }) => {
-  const theme = useTheme();
   const { SCALE, UNIT, CLASS_NAMES } = useScale();
   const el = usePortal('tooltip');
   const selfRef = useRef<HTMLDivElement>(null);
@@ -88,7 +86,7 @@ const TooltipContent: React.FC<React.PropsWithChildren<Props>> = ({
             color: var(--color-contrast);
             padding: 0;
             z-index: 1000;
-            box-shadow: ${hasShadow ? theme.expressiveness.shadowMedium : 'none'};
+            box-shadow: ${hasShadow ? 'var(--theme-expressiveness-shadow-medium)' : 'none'};
             border: 1px solid var(--color-border);
           }
 

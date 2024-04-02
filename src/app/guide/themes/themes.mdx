@@ -161,13 +161,13 @@ const MyPage = () => (
 ## Build components
 
 You can use the Himalya preset Hooks to get the theme states to create your own components.
-For more information, please refer to [useTheme](/hooks/use-theme) documentation.
+For more information, please refer to [useConfig](/hooks/use-config) documentation.
 
 ```jsx
-import { useTheme } from '@himalaya-ui/core';
+import { useConfig } from '@himalaya-ui/core/use-config';
 
 const MyComponent = () => {
-  const theme = useTheme();
+  const useConfig = useConfig();
   return (
     <div style={{ color: theme.palette.success.hex_1000 }}>
       <span>hello world!</span>

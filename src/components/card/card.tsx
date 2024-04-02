@@ -1,13 +1,12 @@
 'use client';
 import React from 'react';
 import Image from '../image';
+import { UIColorTypes } from '../themes/presets';
 import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';
-import useTheme from '../use-theme';
 import { hasChild, pickChild } from '../utils/collections';
 import CardContent from './card-content';
 import CardFooter from './card-footer';
-import { UIColorTypes } from '../themes/presets';
 
 interface Props {
   hoverable?: boolean;
@@ -29,7 +28,6 @@ const CardComponent: React.FC<React.PropsWithChildren<CardProps>> = ({
   type = 'default' as UIColorTypes,
   ...props
 }: CardProps) => {
-  const theme = useTheme();
   const { UNIT, SCALE, CLASS_NAMES } = useScale();
 
   const [withoutFooterChildren, footerChildren] = pickChild(children, CardFooter);
@@ -45,7 +43,7 @@ const CardComponent: React.FC<React.PropsWithChildren<CardProps>> = ({
         .card {
           background: var(--color-background-1000);
           transition: all 0.2s ease;
-          box-shadow: ${shadow ? theme.expressiveness.shadowSmall : 'none'};
+          box-shadow: ${shadow ? `var(--theme-expressiveness-shadow-small)` : 'none'};
           box-sizing: border-box;
 
           --card-bg: var(--color-base);

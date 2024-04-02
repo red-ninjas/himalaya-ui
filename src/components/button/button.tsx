@@ -3,14 +3,13 @@
 import React, { MouseEvent, useImperativeHandle, useMemo, useRef, useState } from 'react';
 import { useButtonGroupContext } from '../button-group/button-group-context';
 import useClasses from '../use-classes';
-import useLayout from '../use-layout';
 import useScale, { ScaleResponsiveParameter, customResponsiveAttribute, withScale } from '../use-scale';
-import useTheme from '../use-theme';
 import { ButtonTypes } from '../utils/prop-types';
 import ButtonLoading from './button-loading';
 import ButtonDrip from './button.drip';
 import { getButtonCursor } from './styles';
 import { filterPropsWithGroup, getButtonChildrenWithIcon } from './utils';
+import { useConfig } from '../use-config';
 
 /**
  * Button Internal Props
@@ -37,8 +36,7 @@ export type ButtonProps = ButtonInternalProps & Omit<React.ButtonHTMLAttributes<
 
 const ButtonComponent = React.forwardRef<HTMLButtonElement, React.PropsWithChildren<ButtonProps>>(
   (btnProps: ButtonProps, ref: React.Ref<HTMLButtonElement | null>) => {
-    const theme = useTheme();
-    const layoutRoot = useLayout();
+    const { layout: layoutRoot } = useConfig();
     const { UNIT, SCALE, CLASS_NAMES } = useScale();
     const buttonRef = useRef<HTMLButtonElement>(null);
     useImperativeHandle(ref, () => buttonRef.current);
@@ -143,7 +141,7 @@ const ButtonComponent = React.forwardRef<HTMLButtonElement, React.PropsWithChild
             --ui-button-activated-border-color: var(--color-tint-border);
 
             border: 1px solid var(--ui-button-border);
-            box-shadow: ${shadow ? theme.expressiveness.shadowSmall : `none`};
+            box-shadow: ${shadow ? `var(--theme-expressiveness-shadow-small)` : `none`};
 
             color: var(--ui-button-color);
             background-color: var(--ui-button-bg);
@@ -184,7 +182,7 @@ const ButtonComponent = React.forwardRef<HTMLButtonElement, React.PropsWithChild
 
             cursor: ${cursor};
             pointer-events: ${events};
-            box-shadow: ${shadow ? theme.expressiveness.shadowMedium : `none`};
+            box-shadow: ${shadow ? `var(--theme-expressiveness-shadow-medium)` : `none`};
           }
 
           .btn:focus {
@@ -195,7 +193,7 @@ const ButtonComponent = React.forwardRef<HTMLButtonElement, React.PropsWithChild
 
             cursor: ${cursor};
             pointer-events: ${events};
-            box-shadow: ${shadow ? theme.expressiveness.shadowMedium : `none`};
+            box-shadow: ${shadow ? `var(--theme-expressiveness-shadow-medium)` : `none`};
           }
 
           .btn :global(.text) {

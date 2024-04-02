@@ -2,7 +2,6 @@
 
 import React, { useEffect, useMemo, useState } from 'react';
 import CssBaseline from '../css-baseline';
-import { LayoutProvider } from '../layout';
 import Themes, { UIThemes } from '../themes';
 import {
   ConfigContext,
@@ -15,29 +14,18 @@ import {
 } from '../use-config/config-context';
 import useMediaQuery from '../use-media-query';
 
-import { LayoutPropsContext } from 'components/use-layout/layout-context';
 import _ from 'lodash';
 import { RouteChangeProvider } from 'nextjs13-router-events';
-import ThemeProvider from '../use-config/theme-provider';
+import { ConfigProps } from '../use-config';
 import useCurrentState from '../use-current-state';
 import ToastContainer from '../use-toasts/toast-container';
-import { AllThemesConfig } from 'components';
 
-export interface ConfigProps {
-  themeType?: string | 'dark' | 'light';
-  themes?: Array<UIThemes>;
-  layout?: LayoutPropsContext;
-}
-
-type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof ConfigProps>;
-export type NativeConfigProps = ConfigProps & NativeAttrs;
-
-const ConfigProvider: React.FC<React.PropsWithChildren<NativeConfigProps>> = ({
+const ConfigProvider: React.FC<React.PropsWithChildren<ConfigProps>> = ({
   children,
   themeType = 'dark',
   themes = [],
   layout,
-}: React.PropsWithChildren<NativeConfigProps>) => {
+}: React.PropsWithChildren<ConfigProps>) => {
   const [scrollHeight, setScrollHeight] = useState<number>(0);
   const mediaQuery = useMediaQuery('xs', { match: 'down' });
   const [isMobile, setIsMobile] = useState<boolean>();

@@ -4,7 +4,6 @@ import Link from '../link';
 import { Props as LinkProps } from '../link/link';
 import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';
-import useTheme from '../use-theme';
 import { getHostFromUrl } from './helpers';
 import ImageBrowserHttpsIcon from './image-browser-https-icon';
 import { BrowserColors, getBrowserColors } from './styles';
@@ -99,7 +98,6 @@ const ImageBrowserComponent = React.forwardRef<HTMLDivElement, React.PropsWithCh
     }: React.PropsWithChildren<ImageBrowserProps>,
     ref: React.Ref<HTMLDivElement>,
   ) => {
-    const theme = useTheme();
     const { UNIT, SCALE, CLASS_NAMES } = useScale();
     const colors = useMemo(() => getBrowserColors(invert), [invert]);
     const input = useMemo(() => {
@@ -122,7 +120,7 @@ const ImageBrowserComponent = React.forwardRef<HTMLDivElement, React.PropsWithCh
         <style jsx>{`
           .browser {
             background-color: transparent;
-            box-shadow: ${theme.expressiveness.shadowLarge};
+            box-shadow: var(--theme-expressiveness-shadow-large);
             max-width: 100%;
             overflow: hidden;
           }

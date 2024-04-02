@@ -7,13 +7,13 @@ import {
   MobileMenuButton,
   MobileMenuProvider,
   Navigation,
+  PageLayoutProvider,
   QuickAction,
   QuickBar,
-  QuickBarLayout,
-  QuickBarProvider,
   RoutingIndicator,
   SearchProvider,
   Sidebar,
+  PageLayout,
   ThemeSwitcher,
 } from 'components';
 import Divider from 'components/divider';
@@ -194,8 +194,8 @@ export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
         </MobileMenu>
         <SearchProvider>
           <Search searchFunction={doSearch} placeholder="Search in documentation." />
-          <QuickBarProvider>
-            <QuickBarLayout
+          <PageLayoutProvider>
+            <PageLayout
               sidebarContent={!isHome ? sidebar : undefined}
               headerContent={header}
               withPageMargin={!isHome}
@@ -205,8 +205,8 @@ export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
               sidebarVisible={{ xs: false, sm: false, md: true, lg: true, xl: true }}
             >
               {children}
-            </QuickBarLayout>
-          </QuickBarProvider>
+            </PageLayout>
+          </PageLayoutProvider>
 
           <style global jsx>{`
             .attr-name {

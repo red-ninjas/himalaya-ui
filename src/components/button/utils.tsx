@@ -3,7 +3,7 @@
 import React, { ReactNode } from 'react';
 import { ButtonGroupConfig } from '../button-group/button-group-context';
 import useClasses from '../use-classes';
-import { UIThemesBreakpoints } from '../use-layout/shared';
+import { UIThemesBreakpoints } from '../use-config/shared';
 import { ScaleResponsiveParameter, customResponsiveAttribute } from '../use-scale';
 import { ButtonProps } from './button';
 import ButtonIcon from './button-icon';

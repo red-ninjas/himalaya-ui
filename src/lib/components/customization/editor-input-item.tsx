@@ -1,4 +1,4 @@
-import { Input, UIThemes, useTheme } from 'components';
+import { Input, UIThemes, useConfig } from 'components';
 import React, { useMemo } from 'react';
 
 type Props = {
@@ -8,7 +8,7 @@ type Props = {
 };
 
 const EditorInputItem: React.FC<React.PropsWithChildren<Props>> = ({ groupName, keyName }) => {
-  const theme = useTheme();
+  const { theme } = useConfig();
   const currentVal = useMemo(() => {
     const group = theme[groupName];
     const key = keyName as keyof typeof group;

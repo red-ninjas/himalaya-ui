@@ -1,5 +1,5 @@
 import { Layout, Playground, Attributes } from 'lib/components';
-import { Badge, Spacer, Avatar, Button, Link, useTheme } from 'components';
+import { Badge, Spacer, Avatar, Button, Link } from 'components';
 import NextLink from 'next/link';
 
 export const meta = {
@@ -49,10 +49,9 @@ Display an indicator that requires attention.
       .
     </>
   }
-  scope={{ Badge, Spacer, useTheme }}
+  scope={{ Badge, Spacer }}
   code={`
 () => {
-  const theme = useTheme()
   return (
     <>
       <Badge style={{ backgroundColor: 'var(--color-success-900)' }}>Success Light</Badge> <Spacer h={.5} />

@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import css from 'styled-jsx/css';
-import { UIThemesBreakpoints } from '../use-layout/shared';
+import { UIThemesBreakpoints } from '../use-config/shared';
 import { isCSSNumberValue } from '../utils/collections';
 import {
   BreakpointInterface,

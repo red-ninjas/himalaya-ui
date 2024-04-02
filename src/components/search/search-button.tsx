@@ -5,7 +5,7 @@ import Keyboard, { KeyboardProps as keyboardiProps } from '../keyboard';
 import useScale, { withScale } from '../use-scale';
 import React from 'react';
 import useSearch from '../use-search';
-import { useClasses } from 'components';
+import useClasses from '../use-classes';
 export type SearchButtonProps = {
   title?: string;
   key?: KeyCode;

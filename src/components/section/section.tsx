@@ -1,9 +1,8 @@
 'use client';
 
+import useClasses from '../use-classes';
 import React from 'react';
-import useLayout from '../use-layout';
 import useScale, { withScale } from '../use-scale';
-import useClasses from 'components/use-classes';
 
 interface SectionProps {}
 
@@ -12,7 +11,6 @@ export type SectionComponentProps = SectionProps & NativeAttrs;
 
 const SectionComponent: React.FC<SectionComponentProps> = ({ className, children, ...props }) => {
   const { SCALE, CLASS_NAMES, UNIT } = useScale();
-  const { sectionSpace } = useLayout();
 
   return (
     <section className={useClasses('section', className, CLASS_NAMES)} {...props}>
@@ -23,8 +21,8 @@ const SectionComponent: React.FC<SectionComponentProps> = ({ className, children
           0,
           value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
           {
-            top: sectionSpace,
-            bottom: sectionSpace,
+            top: 'var(--layout-section-space)',
+            bottom: 'var(--layout-section-space)',
           },
           'section',
         )}

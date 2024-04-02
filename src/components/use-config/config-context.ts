@@ -1,8 +1,8 @@
 'use client';
 import React from 'react';
 import Themes, { UIThemes } from '../themes';
-import { LayoutProps, defaultBreakpoints } from '../use-layout';
 import { Toast, ToastLayout } from '../use-toasts';
+import { LayoutProps, defaultBreakpoints } from './shared';
 
 export type UpdateToastsFunction = (fn: (toasts: Array<Toast>) => Array<Toast>) => any;
 export type UpdateToastsLayoutFunction = (fn: (layout: Required<ToastLayout>) => Required<ToastLayout>) => any;
@@ -75,4 +75,4 @@ export const defaultConfigs: ConfigProviderContextParams = {
 };
 
 export const ConfigContext = React.createContext<ConfigProviderContextParams>(defaultConfigs);
-export const useConfigs = (): ConfigProviderContextParams => React.useContext(ConfigContext);
+export const useConfig = (): ConfigProviderContextParams => React.useContext(ConfigContext);

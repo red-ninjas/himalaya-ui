@@ -1,18 +1,16 @@
 'use client';
 
+import { useClipboard, useToasts } from 'components';
+import RightIcon from 'components/icons/chevronRight';
+import CopyIcon from 'components/icons/copy';
 import React, { useState } from 'react';
 import { LiveEditor } from 'react-live';
-import { useTheme, useToasts, useClipboard, useLayout } from 'components';
-import CopyIcon from 'components/icons/copy';
-import RightIcon from 'components/icons/chevronRight';
 
 interface Props {
   code: string;
 }
 
 const Editor: React.FC<Props> = ({ code }) => {
-  const theme = useTheme();
-  const layout = useLayout();
   const { copy } = useClipboard();
   const [visible, setVisible] = useState(false);
   const { setToast } = useToasts();

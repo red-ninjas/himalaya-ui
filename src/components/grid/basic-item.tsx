@@ -1,7 +1,7 @@
 'use client';
 import React, { useMemo } from 'react';
 import useClasses from '../use-classes';
-import useLayout from '../use-layout';
+import useConfig from '../use-config';
 import useScale, { ScaleResponsiveParameter, customResponsiveAttribute } from '../use-scale';
 import { GridAlignContent, GridAlignItems, GridDirection, GridJustify } from './grid-types';
 
@@ -63,7 +63,7 @@ const GridBasicItem: React.FC<React.PropsWithChildren<GridBasicItemProps>> = ({
   className,
   ...props
 }: React.PropsWithChildren<GridBasicItemProps>) => {
-  const layoutRoot = useLayout();
+  const { layout: layoutRoot } = useConfig();
   const { SCALE, UNIT, CLASS_NAMES } = useScale();
 
   const classes = useMemo(() => {

@@ -2,23 +2,23 @@
 
 import { ColorType, createChart } from '../use-charts';
 
+import { useConfig } from '../use-config';
 import React, { createRef, useEffect, useMemo, useState } from 'react';
 import { InnerScroll } from '../scroll';
 import { ChartOptions, IChartApi } from '../use-charts/api/create-chart';
 import { MouseEventHandler, OnSerieOptionsChangedHandler } from '../use-charts/api/ichart-api';
 import { ISeriesApi } from '../use-charts/api/iseries-api';
+import { TickMarkFormatter } from '../use-charts/model/horz-scale-behavior-time/horz-scale-behavior-time';
 import { Time } from '../use-charts/model/horz-scale-behavior-time/types';
+import { TimeFormatterFn } from '../use-charts/model/localization-options';
 import { PriceFormatCustom, SeriesType } from '../use-charts/model/series-options';
+import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';
-import useTheme from '../use-theme';
 import { hasChild, pickChild } from '../utils/collections';
 import { DeepPartial } from '../utils/types';
 import { ChartConfig, ChartContext } from './chart-context';
 import ChartDataview from './chart-dataview';
 import { ChartPriceFormatter, ChartViewMode, DefaulTimeFormatter, ILegendStatesDictonary } from './shared';
-import { TimeFormatterFn } from '../use-charts/model/localization-options';
-import { TickMarkFormatter } from '../use-charts/model/horz-scale-behavior-time/horz-scale-behavior-time';
-import useClasses from '../use-classes';
 
 interface ChartProperties {
   height?: number;
@@ -76,7 +76,7 @@ const ChartComponent: React.FC<React.PropsWithChildren<ChartProps>> = ({
   viewMode = 'graph',
   ...props
 }) => {
-  const theme = useTheme();
+  const { theme } = useConfig();
   const chartContainerRef = createRef<HTMLDivElement>();
   const chartOuterContainerRef = createRef<HTMLDivElement>();
   const width = useRefDimensions(chartOuterContainerRef);

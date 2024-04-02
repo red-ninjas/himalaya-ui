@@ -1,9 +1,9 @@
 'use client';
 
-import { isCSSNumberValue } from 'components/utils/collections';
+import { isCSSNumberValue } from '../utils/collections';
 import React, { PropsWithChildren } from 'react';
 import useClasses from '../use-classes';
-import useLayout from '../use-layout';
+import { useConfig } from '../use-config';
 import useScale, { ScaleResponsiveParameter, customResponsiveAttribute } from '../use-scale';
 import withScale from '../use-scale/with-scale';
 interface NativeQuickBarProps {
@@ -16,7 +16,7 @@ export type QuickBarProps = NativeQuickBarProps & NativeAttrs;
 
 const QuickBarComponent: React.FC<PropsWithChildren<QuickBarProps>> = ({ children, gap = 0.375, className, ...props }) => {
   const { UNIT, SCALE, CLASS_NAMES } = useScale();
-  const layout = useLayout();
+  const { layout } = useConfig();
 
   return (
     <div className={useClasses('quickbar', className, CLASS_NAMES)} {...props}>

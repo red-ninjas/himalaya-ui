@@ -1,13 +1,13 @@
 'use client';
+import useConfig from '../use-config';
 import React from 'react';
+import { UIColorTypes } from '../themes/presets';
 import Tooltip from '../tooltip';
 import useClasses from '../use-classes';
-import useLayout from '../use-layout';
 import useScale, { customResponsiveAttribute } from '../use-scale';
 import withScale from '../use-scale/with-scale';
 import { isCSSNumberValue } from '../utils/collections';
 import { QuickActionProps } from './share';
-import { UIColorTypes } from '../themes/presets';
 
 const QuickBarAction = React.forwardRef<HTMLAnchorElement, React.PropsWithChildren<QuickActionProps>>(
   (
@@ -15,7 +15,7 @@ const QuickBarAction = React.forwardRef<HTMLAnchorElement, React.PropsWithChildr
     ref: React.Ref<HTMLAnchorElement>,
   ) => {
     const { UNIT, SCALE, CLASS_NAMES } = useScale();
-    const layout = useLayout();
+    const { layout } = useConfig();
 
     return (
       <Tooltip placement="right" text={tooltip} p={0.3} type="dark" leaveDelay={0} enterDelay={0}>

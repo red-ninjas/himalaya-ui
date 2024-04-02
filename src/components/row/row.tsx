@@ -1,6 +1,6 @@
 'use client';
 import React, { useMemo } from 'react';
-import useLayout from '../use-layout';
+import { useConfig } from '../use-config';
 
 type Justify = 'start' | 'end' | 'center' | 'space-around' | 'space-between';
 type Align = 'top' | 'middle' | 'bottom';
@@ -43,7 +43,7 @@ const Container: React.FC<React.PropsWithChildren<RowProps>> = ({
   ...props
 }: React.PropsWithChildren<RowProps>) => {
   const Component = component;
-  const layout = useLayout();
+  const { layout } = useConfig();
   const { justifyValue, alignValue } = useMemo(() => getFlexAlignment(justify, align), [justify, align]);
 
   return (

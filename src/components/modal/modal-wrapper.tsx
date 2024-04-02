@@ -1,10 +1,9 @@
 'use client';
 import React, { useEffect, useRef } from 'react';
-import useTheme from '../use-theme';
 import CssTransition from '../shared/css-transition';
-import { isChildElement } from '../utils/collections';
-import useScale from '../use-scale';
 import useClasses from '../use-classes';
+import useScale from '../use-scale';
+import { isChildElement } from '../utils/collections';
 
 interface Props {
   className?: string;
@@ -19,7 +18,6 @@ const ModalWrapper: React.FC<React.PropsWithChildren<ModalWrapperProps>> = ({
   visible = false,
   ...props
 }: React.PropsWithChildren<ModalWrapperProps>) => {
-  const theme = useTheme();
   const { SCALE, UNIT, CLASS_NAMES } = useScale();
   const modalContent = useRef<HTMLDivElement>(null);
   const tabStart = useRef<HTMLDivElement>(null);
@@ -65,7 +63,7 @@ const ModalWrapper: React.FC<React.PropsWithChildren<ModalWrapperProps>> = ({
             box-sizing: border-box;
             background-color: var(--color-background-1000);
             color: var(--color-foreground-1000);
-            box-shadow: ${theme.expressiveness.shadowLarge};
+            box-shadow: var(--theme-expressiveness-shadow-large);
             opacity: 0;
             outline: none;
             transform: translate3d(0px, -30px, 0px);

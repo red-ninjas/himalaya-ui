@@ -1,14 +1,15 @@
 'use client';
 
-import { InnerScroll, MobileMenu, useClasses, MobileMenuProvider } from 'components';
 import React from 'react';
-import { QuickBarLayoutProps } from '.';
-import useLayout from '../use-layout';
-import useQuickBar from '../use-quickbar';
+import useConfig from '../use-config';
 import { customResponsiveAttribute, useScale, withScale } from '../use-scale';
 import { isCSSNumberValue } from '../utils/collections';
+import { PageLayoutProps } from './shared';
+import { usePageLayout } from './page-layout-context';
+import { InnerScroll } from '../scroll';
+import useClasses from '../use-classes';
 
-const QuickBarLayout: React.FC<React.PropsWithChildren<QuickBarLayoutProps>> = ({
+const PageLayout: React.FC<React.PropsWithChildren<PageLayoutProps>> = ({
   children,
   className,
   quickbarContent,
@@ -25,9 +26,9 @@ const QuickBarLayout: React.FC<React.PropsWithChildren<QuickBarLayoutProps>> = (
   maximalContentWidth = 'var(--layout-page-width-with-margin)',
   ...props
 }) => {
-  const { SCALE, UNIT, CLASS_NAMES } = useScale();
-  const { isQuickbarEnabled, isSidebarEnabled } = useQuickBar();
-  const layout = useLayout();
+  const { UNIT, CLASS_NAMES } = useScale();
+  const { isQuickbarEnabled, isSidebarEnabled } = usePageLayout();
+  const { layout } = useConfig();
   return (
     <>
       <div
@@ -211,5 +212,5 @@ const QuickBarLayout: React.FC<React.PropsWithChildren<QuickBarLayoutProps>> = (
   );
 };
 
-QuickBarLayout.displayName = 'HimalayaQuickBarLayout';
-export default withScale(QuickBarLayout);
+PageLayout.displayName = 'HimalayaPageLayout';
+export default withScale(PageLayout);

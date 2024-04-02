@@ -2,7 +2,7 @@
 import React from 'react';
 import css from 'styled-jsx/css';
 import useClasses from '../use-classes';
-import useLayout from '../use-layout';
+import useConfig from '../use-config';
 import useScale, { ScaleResponsiveParameter, customResponsiveAttribute, withScale } from '../use-scale';
 import GridBasicItem, { GridBasicItemProps } from './basic-item';
 import { GridWrap } from './grid-types';
@@ -26,7 +26,7 @@ const GridContainerComponent: React.FC<React.PropsWithChildren<GridContainerProp
   ...props
 }: React.PropsWithChildren<GridContainerProps>) => {
   const { unit, SCALE } = useScale();
-  const layout = useLayout();
+  const { layout } = useConfig();
   const { className: resolveClassName, styles } = css.resolve`
     .grid-container {
       display: flex;

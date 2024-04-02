@@ -1,7 +1,31 @@
-export interface BreakpointsItem {
+import { UIThemes } from '../themes/presets';
+
+export type LayoutPropsContext = {
+  pageWidth?: string;
+  pageMargin?: string;
+  pageWidthWithMargin?: string;
+  gap?: string;
+  gapNegative?: string;
+  gapHalf?: string;
+  gapHalfNegative?: string;
+  gapQuarter?: string;
+  gapQuarterNegative?: string;
+  breakpoints?: UIThemesBreakpoints;
+  radius?: string;
+  unit?: string;
+  sectionSpace?: string;
+};
+
+export type ConfigProps = {
+  themeType?: string | 'dark' | 'light';
+  themes?: Array<UIThemes>;
+  layout?: LayoutPropsContext;
+};
+
+export type BreakpointsItem = {
   min: string;
   max: string;
-}
+};
 export type UIThemesBreakpoints = {
   xs: BreakpointsItem;
   sm: BreakpointsItem;

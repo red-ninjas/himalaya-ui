@@ -1,7 +1,7 @@
 'use client';
 
 import React, { forwardRef } from 'react';
-import useLayout from '../use-layout';
+import { useConfig } from '../use-config';
 import { ScaleConfig, ScaleContext, ScaleProps } from './scale-context';
 import { generateGetAllScaleProps, generateGetScaleProps, hideAttribute, scaleAttribute, scaleHandler1X, scaleHandler4X } from './utils';
 
@@ -11,7 +11,7 @@ export type ContentScaleProps = {
 
 const withScale = <T, P = {}>(Render: React.ComponentType<P & { ref?: React.Ref<T> }>, className: string = 'component') => {
   const ScaleFC = forwardRef<T, P & ContentScaleProps>(({ children, ...props }, ref) => {
-    const layout = useLayout();
+    const { layout } = useConfig();
     const {
       r,
       pl,

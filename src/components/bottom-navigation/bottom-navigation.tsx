@@ -2,7 +2,7 @@
 
 import React from 'react';
 import useClasses from '../use-classes';
-import { useConfigs } from '../use-config/config-context';
+import { useConfig } from '../use-config/config-context';
 import { pickChild } from '../utils/collections';
 import BottomNavigationItem from './item';
 
@@ -13,7 +13,7 @@ export interface BottomNavigationProps {
 
 const BottomNavigation: React.FC<React.PropsWithChildren<BottomNavigationProps>> = ({ transcluent = true, mobileOnly = true, children }) => {
   const [, navigationElement] = pickChild(children, BottomNavigationItem);
-  const { isMobile } = useConfigs();
+  const { isMobile } = useConfig();
 
   if (mobileOnly && isMobile) {
     return null;

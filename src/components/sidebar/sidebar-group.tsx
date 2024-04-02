@@ -5,7 +5,7 @@ import { ScaleResponsiveParameter, useScale } from '../use-scale/scale-context';
 import withScale from '../use-scale/with-scale';
 import { customResponsiveAttribute } from '../use-scale';
 import { isCSSNumberValue } from '../utils/collections';
-import useLayout from '../use-layout';
+import { useConfig } from '../use-config';
 
 export interface SideItemProps {
   title: string;
@@ -15,8 +15,7 @@ export interface SideItemProps {
 
 const SidebarGroup: React.FC<React.PropsWithChildren<SideItemProps>> = ({ children, rowGap = 0.0625, ...props }) => {
   const { UNIT, SCALE, CLASS_NAMES } = useScale();
-
-  const layout = useLayout();
+  const { layout } = useConfig();
   return (
     <div className={useClasses('sidebar-group', CLASS_NAMES)}>
       <div className="sidebar-group-label">

@@ -1,6 +1,6 @@
 'use client';
 
-import { useConfigs } from 'components';
+import { useConfig } from '../use-config';
 import { UIColorTypes, UiOverrideColors } from '../themes/presets';
 import _ from 'lodash';
 import React, { useMemo } from 'react';
@@ -8,7 +8,7 @@ import { hexToRgb } from '../utils/color';
 export const tuple = <T extends UIColorTypes[]>(...args: T) => args;
 
 const CssBaseline: React.FC = () => {
-  const { themes, layout, theme } = useConfigs();
+  const { themes, layout, theme } = useConfig();
 
   const [COLOR_CLASS_NAMES] = useMemo(() => {
     let vars: string = `  .color-default {
@@ -157,6 +157,11 @@ const CssBaseline: React.FC = () => {
         vars += `--theme-font-${kebabCaseString}: ${currentTheme.font[key]};`;
       }
 
+      for (const key of Object.keys(currentTheme.expressiveness)) {
+        const kebabCaseString = _.kebabCase(key);
+        vars += `--theme-expressiveness-${kebabCaseString}: ${currentTheme.expressiveness[key]};`;
+      }
+
       for (const key of colorKeys) {
         const value = currentTheme.palette[key];
 
@@ -268,10 +273,10 @@ const CssBaseline: React.FC = () => {
           -webkit-box-align: center;
           align-items: center;
           color: var(--color-link-1000);
-          text-decoration: ${theme.expressiveness.linkStyle};
+          text-decoration: var(--theme-expressiveness-link-style);
 
           &:hover {
-            text-decoration: ${theme.expressiveness.linkHoverStyle};
+            text-decoration: var(--theme-expressiveness-link-hover-style);
           }
         }
 

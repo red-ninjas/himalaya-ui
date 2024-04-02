@@ -1,4 +1,4 @@
-import { tuple } from 'components/utils/prop-types';
+import { tuple } from '../../utils/prop-types';
 
 export const UiOverrideColors = tuple('gray', 'secondary', 'tertiary', 'success', 'error', 'primary', 'warning', 'link', 'code');
 export const UiNotOverrideableColors = tuple('default', 'dark');

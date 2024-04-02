@@ -1,13 +1,12 @@
 'use client';
 import React, { useEffect } from 'react';
-import CollapseIcon from './collapse-icon';
-import useTheme from '../use-theme';
 import Expand from '../shared/expand';
-import { useCollapseContext } from './collapse-context';
+import useClasses from '../use-classes';
+import useScale, { withScale } from '../use-scale';
 import useCurrentState from '../utils/use-current-state';
 import useWarning from '../utils/use-warning';
-import useScale, { withScale } from '../use-scale';
-import useClasses from '../use-classes';
+import { useCollapseContext } from './collapse-context';
+import CollapseIcon from './collapse-icon';
 interface Props {
   title: string;
   subtitle?: React.ReactNode | string;
@@ -30,7 +29,6 @@ const CollapseComponent: React.FC<React.PropsWithChildren<CollapseProps>> = ({
   index,
   ...props
 }: React.PropsWithChildren<CollapseProps>) => {
-  const theme = useTheme();
   const { SCALE, UNIT, CLASS_NAMES } = useScale();
 
   const { values, updateValues } = useCollapseContext();
@@ -78,7 +76,7 @@ const CollapseComponent: React.FC<React.PropsWithChildren<CollapseProps>> = ({
         }
 
         .shadow {
-          box-shadow: ${theme.expressiveness.shadowSmall};
+          box-shadow: var(--theme-expressiveness-shadow-small);
           border: none;
           border-radius: var(--layout-radius);
           padding: var(--layout-gap);

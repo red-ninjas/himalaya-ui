@@ -1,6 +1,6 @@
 'use client';
 
-import { Code, Grid, Tooltip, useClasses, useClipboard, useTheme, useToasts } from 'components';
+import { Code, Grid, Tooltip, useClasses, useClipboard, useConfig, useToasts } from 'components';
 import { UIThemesPalette } from 'components/themes';
 import { getContrast } from 'components/themes/utils';
 import { isColorVariable, isGradient } from 'components/utils/color';
@@ -83,7 +83,7 @@ const getColorItem = (type: string, palette: UIThemesPalette, copy: (text: strin
 };
 
 const Colors: React.FC<Props> = ({ type }) => {
-  const theme = useTheme();
+  const { theme } = useConfig();
   const { copy } = useClipboard();
   const { setToast } = useToasts();
   const copyText = (text: string) => {
