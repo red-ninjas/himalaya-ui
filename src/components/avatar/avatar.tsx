@@ -8,10 +8,9 @@ interface Props {
   src?: string;
   text?: string;
   isSquare?: boolean;
-  className?: string;
 }
 
-type NativeAttrs = Omit<Partial<React.ImgHTMLAttributes<any> & React.HTMLAttributes<any>>, keyof Props>;
+type NativeAttrs = Omit<Partial<React.ImgHTMLAttributes<HTMLImageElement> & React.HTMLAttributes<HTMLImageElement>>, keyof Props>;
 export type AvatarProps = Props & NativeAttrs;
 
 const safeText = (text: string): string => {

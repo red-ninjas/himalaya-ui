@@ -16,7 +16,7 @@ interface Props {
   transitionTime?: number;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
 export type BackdropProps = Props & NativeAttrs;
 
 const Backdrop: React.FC<React.PropsWithChildren<BackdropProps>> = React.memo(

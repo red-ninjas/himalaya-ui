@@ -4,20 +4,17 @@ import React from 'react';
 import useScale, { withScale } from '../use-scale';
 import useClasses from '../use-classes';
 
-interface Props {
-  className?: string;
-}
-
-export type AutoCompleteSearchProps = Props & React.HTMLAttributes<any>;
+export type AutoCompleteSearchProps = React.HTMLAttributes<HTMLDivElement>;
 
 const AutoCompleteSearchComponent: React.FC<React.PropsWithChildren<AutoCompleteSearchProps>> = ({
   children,
-  className = '',
+  className,
+  ...props
 }: React.PropsWithChildren<AutoCompleteSearchProps>) => {
   const { SCALE, UNIT, CLASS_NAMES } = useScale();
 
   return (
-    <div className={useClasses('searching', className, CLASS_NAMES)}>
+    <div className={useClasses('searching', className, CLASS_NAMES)} {...props}>
       {children}
       <style jsx>{`
         .searching {

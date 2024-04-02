@@ -17,7 +17,7 @@ interface Props {
   subtitle?: string | ReactNode;
 }
 
-type NativeAttrs = Omit<React.FieldsetHTMLAttributes<any>, keyof Props>;
+type NativeAttrs = Omit<React.FieldsetHTMLAttributes<HTMLDivElement>, keyof Props>;
 export type FieldsetProps = Props & NativeAttrs;
 
 const FieldsetComponent: React.FC<React.PropsWithChildren<FieldsetProps>> = ({
