@@ -15,7 +15,7 @@ const SelectMultipleValue: React.FC<React.PropsWithChildren<Props>> = ({ disable
 
   return (
     <Grid>
-      <div className={(useClasses('item', disabled), CLASS_NAMES)}>
+      <div className={useClasses('item', disabled, CLASS_NAMES)}>
         {children}
         {!!onClear && <SelectClearIcon onClick={onClear} />}
       </div>
