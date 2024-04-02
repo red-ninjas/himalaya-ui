@@ -221,7 +221,7 @@ export const getResponsiveValues = (
         if (!isCSSNumberValue(value)) {
           result[key] = value;
         } else {
-          result.xs = `calc(var(--scale-unit-scale) * ${Number(value)} * ${scale1x})`;
+          result[key] = `calc(var(--scale-unit-scale) * ${Number(value)} * ${scale1x})`;
         }
       }
     }

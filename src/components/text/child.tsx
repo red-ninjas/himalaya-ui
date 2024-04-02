@@ -89,7 +89,6 @@ const TextChild: React.FC<React.PropsWithChildren<TextChildProps>> = ({
     }, '');
     return `${scaleClassNames} ${className}`.trim();
   }, [mx, my, px, py, font, className, stroke, lineHeight]);
-
   return (
     <Component className={useClasses('text', classNames, CLASS_NAMES, type ? 'color-' + type : null)} {...props}>
       {children}
