@@ -46,16 +46,16 @@ const CheckboxComponent: React.FC<CheckboxProps> = ({
   const { updateState, inGroup, disabledAll, values } = useCheckbox();
   const isDisabled = inGroup ? disabledAll || disabled : disabled;
   const classes = useClasses('checkbox', className, type ? 'color-' + type : null, CLASS_NAMES);
-
-  if (inGroup && checked) {
-    useWarning('Remove props "checked" when [Checkbox] component is in the group.', 'Checkbox');
-  }
-  if (inGroup) {
-    useEffect(() => {
+  useEffect(() => {
+    if (inGroup) {
       const next = values.includes(value);
       if (next === selfChecked) return;
       setSelfChecked(next);
-    }, [values.join(',')]);
+    }
+  }, [inGroup, values.join(',')]);
+
+  if (inGroup && checked) {
+    useWarning('Remove props "checked" when [Checkbox] component is in the group.', 'Checkbox');
   }
 
   const changeHandle = useCallback(

@@ -26,9 +26,7 @@ const IconsCell: React.FC<Props> = ({ component: Component, name, onClick }) => 
   return (
     <div className="icon-item" key={name} onClick={() => onClick(name)}>
       <Component />
-      <Text type="secondary" small>
-        {name}
-      </Text>
+      <Text small>{name}</Text>
       <style jsx>{`
         .icon-item {
           display: flex;
@@ -45,6 +43,7 @@ const IconsCell: React.FC<Props> = ({ component: Component, name, onClick }) => 
           cursor: pointer;
           user-select: none;
           transition: all 150ms ease-in-out;
+          color: var(--color-foreground-1000);
         }
 
         .icon-item > :global(small) {
@@ -53,7 +52,6 @@ const IconsCell: React.FC<Props> = ({ component: Component, name, onClick }) => 
           text-align: center;
           overflow: hidden;
           text-overflow: ellipsis;
-          color: var(--color-background-600);
         }
 
         .icon-item:hover {
