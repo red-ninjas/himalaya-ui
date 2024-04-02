@@ -1,5 +1,12 @@
 
 
+# [2.2.0-alpha.8](https://github.com/red-ninjas/himalaya-ui/compare/v2.2.0-alpha.7...v2.2.0-alpha.8) (2024-04-02)
+
+
+### Bug Fixes
+
+* [alpha] fix slider and responsive ([3f0c127](https://github.com/red-ninjas/himalaya-ui/commit/3f0c12708dffedf9884bbc134ee00975ac599510))
+
 # [2.2.0-alpha.7](https://github.com/red-ninjas/himalaya-ui/compare/v2.2.0-alpha.6...v2.2.0-alpha.7) (2024-04-02)
 
 
