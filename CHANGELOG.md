@@ -1,5 +1,7 @@
 
 
+# [2.2.0-alpha.0](https://github.com/red-ninjas/himalaya-ui/compare/v2.1.0...v2.2.0-alpha.0) (2024-04-02)
+
 # [2.1.0](https://github.com/red-ninjas/himalaya-ui/compare/v2.1.0-alpha.0...v2.1.0) (2024-04-02)
 
 # [2.1.0-alpha.0](https://github.com/red-ninjas/himalaya-ui/compare/v2.0.2...v2.1.0-alpha.0) (2024-04-02)
