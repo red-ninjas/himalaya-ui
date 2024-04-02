@@ -1,5 +1,12 @@
 
 
+# [2.2.0-alpha.1](https://github.com/red-ninjas/himalaya-ui/compare/v2.2.0-alpha.0...v2.2.0-alpha.1) (2024-04-02)
+
+
+### Bug Fixes
+
+* [alpha] sitemap, unused imports, experimental suspense false ([c749daa](https://github.com/red-ninjas/himalaya-ui/commit/c749daa3e0d31800304c367a6d743cf817340063))
+
 # [2.2.0-alpha.0](https://github.com/red-ninjas/himalaya-ui/compare/v2.1.0...v2.2.0-alpha.0) (2024-04-02)
 
 # [2.1.0](https://github.com/red-ninjas/himalaya-ui/compare/v2.1.0-alpha.0...v2.1.0) (2024-04-02)
