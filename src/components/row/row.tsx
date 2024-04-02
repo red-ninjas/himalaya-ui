@@ -1,6 +1,5 @@
 'use client';
 import React, { useMemo } from 'react';
-import { useConfig } from '../use-config';
 
 type Justify = 'start' | 'end' | 'center' | 'space-around' | 'space-between';
 type Align = 'top' | 'middle' | 'bottom';
