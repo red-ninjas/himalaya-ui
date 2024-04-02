@@ -28,7 +28,7 @@
     "experimentalDecorators": true,
     "jsx": "preserve",
     "noUnusedParameters": false,
-    "noUnusedLocals": true,
+    "noUnusedLocals": false,
     "noImplicitAny": false,
     "target": "esnext",
     "lib": [

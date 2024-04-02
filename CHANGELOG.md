@@ -1,5 +1,37 @@
 
 
+# [2.2.0-alpha.4](https://github.com/red-ninjas/himalaya-ui/compare/v2.2.0-alpha.2...v2.2.0-alpha.4) (2024-04-02)
+
+
+### Bug Fixes
+
+* update alpha commit logic ([9b6aeaa](https://github.com/red-ninjas/himalaya-ui/commit/9b6aeaa83ef00f5f7844d5a25d7289e7198dec68))
+
+# [2.2.0-alpha.3](https://github.com/red-ninjas/himalaya-ui/compare/v2.2.0-alpha.2...v2.2.0-alpha.3) (2024-04-02)
+
+
+### Bug Fixes
+
+* update alpha commit logic ([9b6aeaa](https://github.com/red-ninjas/himalaya-ui/commit/9b6aeaa83ef00f5f7844d5a25d7289e7198dec68))
+
+# [2.2.0-alpha.2](https://github.com/red-ninjas/himalaya-ui/compare/v2.2.0-alpha.1...v2.2.0-alpha.2) (2024-04-02)
+
+
+### Bug Fixes
+
+* [alpha] npm deployment version ([b7a9dcf](https://github.com/red-ninjas/himalaya-ui/commit/b7a9dcf1dc12af69a9176e56e264043e680824d3))
+
+# [2.2.0-alpha.1](https://github.com/red-ninjas/himalaya-ui/compare/v2.2.0-alpha.0...v2.2.0-alpha.1) (2024-04-02)
+
+
+### Bug Fixes
+
+* [alpha] sitemap, unused imports, experimental suspense false ([c749daa](https://github.com/red-ninjas/himalaya-ui/commit/c749daa3e0d31800304c367a6d743cf817340063))
+
+# [2.2.0-alpha.0](https://github.com/red-ninjas/himalaya-ui/compare/v2.1.0...v2.2.0-alpha.0) (2024-04-02)
+
+# [2.1.0](https://github.com/red-ninjas/himalaya-ui/compare/v2.1.0-alpha.0...v2.1.0) (2024-04-02)
+
 # [2.1.0-alpha.0](https://github.com/red-ninjas/himalaya-ui/compare/v2.0.2...v2.1.0-alpha.0) (2024-04-02)
 
 ## [2.0.2](https://github.com/red-ninjas/himalaya-ui/compare/v2.0.1...v2.0.2) (2024-04-02)
