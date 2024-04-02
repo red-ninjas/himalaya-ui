@@ -20,7 +20,7 @@ const BackButton: React.FC<
   };
   return (
     <Button
-      style={{ '--ui-button-height': 'calc(var(--scale-unit-scale) * 4)' }}
+      style={{ '--ui-button-height': 'calc(var(--scale-unit-scale) * 4)' } as React.CSSProperties}
       {...props}
       auto
       ml={'calc(var(--scale-unit-scale) * -0.8)'}
