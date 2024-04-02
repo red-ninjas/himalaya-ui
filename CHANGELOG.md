@@ -1,5 +1,12 @@
 
 
+# [2.2.0-alpha.6](https://github.com/red-ninjas/himalaya-ui/compare/v2.2.0-alpha.5...v2.2.0-alpha.6) (2024-04-02)
+
+
+### Bug Fixes
+
+* [alpha] multiple-select ([b992e74](https://github.com/red-ninjas/himalaya-ui/commit/b992e7462797044394ad4b861fc22c806f420983))
+
 # [2.2.0-alpha.5](https://github.com/red-ninjas/himalaya-ui/compare/v2.2.0-alpha.4...v2.2.0-alpha.5) (2024-04-02)
 
 # [2.2.0-alpha.4](https://github.com/red-ninjas/himalaya-ui/compare/v2.2.0-alpha.2...v2.2.0-alpha.4) (2024-04-02)
