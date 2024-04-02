@@ -43,7 +43,6 @@ const Container: React.FC<React.PropsWithChildren<RowProps>> = ({
   ...props
 }: React.PropsWithChildren<RowProps>) => {
   const Component = component;
-  const { layout } = useConfig();
   const { justifyValue, alignValue } = useMemo(() => getFlexAlignment(justify, align), [justify, align]);
 
   return (
