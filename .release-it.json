@@ -7,7 +7,7 @@
     "push": true
   },
   "npm": {
-    "publish": true
+    "publish": false
   },
   "plugins": {
     "@release-it/conventional-changelog": {
@@ -16,6 +16,6 @@
     }
   },
   "hooks": {
-    "after:bump": "npm run build && cd dist/bundle"
+    "after:bump": "npm run release"
   }
 }
