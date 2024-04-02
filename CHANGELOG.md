@@ -1,5 +1,12 @@
 
 
+# [2.2.0-alpha.7](https://github.com/red-ninjas/himalaya-ui/compare/v2.2.0-alpha.6...v2.2.0-alpha.7) (2024-04-02)
+
+
+### Bug Fixes
+
+* [alpha] drawer propagation & slider range calculation issue ([66e44e9](https://github.com/red-ninjas/himalaya-ui/commit/66e44e927082e2ce3da3d66d76921af44d52b03b))
+
 # [2.2.0-alpha.6](https://github.com/red-ninjas/himalaya-ui/compare/v2.2.0-alpha.5...v2.2.0-alpha.6) (2024-04-02)
 
 
