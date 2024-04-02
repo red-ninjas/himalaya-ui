@@ -31,7 +31,7 @@
     "build:bundle": "node scripts/build-bundle.mjs",
     "build:esm": "ttsc -p ./src/tsconfig.build.json --outDir ./dist/bundle",
     "build": "npm run build:esm &&  npm run build:bundle",
-    "release": "npm run build && npm run build:bundle && cd dist/bundle && npm run build:bundle && npm run publish --access public --non-interactive",
+    "release": "npm run build && npm run build:bundle && cd dist/bundle && npm run publish --access public --non-interactive",
     "prepare": "husky install",
     "attributes:generate": "node --loader ts-node/esm scripts/attributes/generate.ts",
     "attributes:build": "npm run typedoc && npm run attributes:generate"
