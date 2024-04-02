@@ -9,8 +9,6 @@ on:
 jobs:
   versioning:
     runs-on: ubuntu-latest
-    outputs:
-      commit_message: ${{ steps.capture_commit_message.outputs.commit_message }}
     steps:
       - uses: actions/checkout@v2
         with:
@@ -25,13 +23,10 @@ jobs:
           git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
       - name: Show Git Status
         run: git status
-      - name: Capture Commit Message 
-        id: capture_commit_message
-        run: echo "::set-output name=commit_message::$(git log -1 --pretty=%B)"
       - name: Release with release-it
         run: |
-          commit_message="${{ steps.capture_commit_message.outputs.commit_message }}"
-          if [[ "$commit_message" == *"[alpha]"* ]]; then
+          commit_message=$(git log -1 --pretty=%B)
+          if [[ "$commit_message" == *"alpha"* ]]; then
             npx release-it minor --preRelease=alpha --ci
           else
             npx release-it --ci
@@ -61,7 +56,7 @@ jobs:
         run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
 
   release-npm:
-    needs: deploy
+    needs: versioning
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -81,8 +76,9 @@ jobs:
         run: npm run build
       - name: Release
         run: |
-          commit_message="${{ needs.versioning.outputs.commit_message }}"
-          if [[ "$commit_message" == *"[alpha]"* ]]; then
+          commit_message=$(git log -1 --pretty=%B)
+          echo "Commit message: $commit_message"
+          if [[ "$commit_message" == *"alpha"* ]]; then
             cd dist/bundle && npm publish --tag alpha --access public --non-interactive
           else
             cd dist/bundle && npm publish --access public --non-interactive
