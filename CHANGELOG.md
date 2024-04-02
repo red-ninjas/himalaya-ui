@@ -1,5 +1,12 @@
 
 
+# [2.2.0-alpha.2](https://github.com/red-ninjas/himalaya-ui/compare/v2.2.0-alpha.1...v2.2.0-alpha.2) (2024-04-02)
+
+
+### Bug Fixes
+
+* [alpha] npm deployment version ([b7a9dcf](https://github.com/red-ninjas/himalaya-ui/commit/b7a9dcf1dc12af69a9176e56e264043e680824d3))
+
 # [2.2.0-alpha.1](https://github.com/red-ninjas/himalaya-ui/compare/v2.2.0-alpha.0...v2.2.0-alpha.1) (2024-04-02)
 
 
