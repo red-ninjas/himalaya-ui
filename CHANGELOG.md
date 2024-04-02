@@ -1,5 +1,12 @@
 
 
+# [2.2.0-alpha.4](https://github.com/red-ninjas/himalaya-ui/compare/v2.2.0-alpha.2...v2.2.0-alpha.4) (2024-04-02)
+
+
+### Bug Fixes
+
+* update alpha commit logic ([9b6aeaa](https://github.com/red-ninjas/himalaya-ui/commit/9b6aeaa83ef00f5f7844d5a25d7289e7198dec68))
+
 # [2.2.0-alpha.3](https://github.com/red-ninjas/himalaya-ui/compare/v2.2.0-alpha.2...v2.2.0-alpha.3) (2024-04-02)
 
 
