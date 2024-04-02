@@ -1,4 +1,4 @@
-name: Vercel Production Deployment
+name: Release & Production Deployment
 env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
@@ -7,34 +7,38 @@ on:
     branches:
       - master
 jobs:
-  versioning:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-      - name: Install dependencies
-        run: npm install
-      - name: Setup Git user
-        run: |
-          git config user.name "${GITHUB_ACTOR}"
-          git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
-      - name: Show Git Status
-        run: git status
-      - name: Release with release-it
-        run: |
-          commit_message="${{ github.event.head_commit.message }}"
-          if [[ "$commit_message" == *"[alpha]"* ]]; then
-            npx release-it minor --preRelease=alpha --ci
-          else
-            npx release-it --ci
-          fi
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  release:
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v2
+          with:
+            fetch-depth: 0
+        - name: Setup Node.js
+          uses: actions/setup-node@v3
+          with:
+            registry-url: "https://registry.npmjs.org"
+        - name: Install dependencies
+          run: npm install
+        - name: Setup Git user
+          run: |
+            git config user.name "${GITHUB_ACTOR}"
+            git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+        - name: Show Git Status
+          run: git status
+        - name: Release with release-it
+          run: |
+            commit_message="${{ github.event.head_commit.message }}"
+            if [[ "$commit_message" == *"[alpha]"* ]]; then
+              npx release-it minor --preRelease=alpha --ci
+            elif [[ "$commit_message" == *"[major-alpha]"* ]]; then
+              npx release-it major --preRelease=alpha --ci
+            else
+              npx release-it --ci
+            fi
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
   deploy:
-    needs: versioning
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -46,26 +50,3 @@ jobs:
         run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
       - name: Deploy Project Artifacts to Vercel
         run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
-  release-npm:
-    needs: versioning
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      # Setup .npmrc file to publish to npm
-      - uses: actions/setup-node@v3
-        with:
-          registry-url: 'https://registry.npmjs.org'
-      - name: Install Deps
-        run: npm install
-      - name: Build
-        run: npm run build
-      - name: Release
-        run: |
-          commit_message="${{ github.event.head_commit.message }}"
-          if [[ "$commit_message" == *"[alpha]"* ]]; then
-            cd dist/bundle && npm publish --tag alpha --access public --non-interactive
-          else
-            cd dist/bundle && npm publish --access public --non-interactive
-          fi
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
