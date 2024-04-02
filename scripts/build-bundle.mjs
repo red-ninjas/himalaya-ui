@@ -23,7 +23,7 @@ const moveFiles = async () => {
       main: 'index.js',
       module: 'index.js',
       types: 'index.d.ts',
-      exports: 'index.js',
+      exports: './index.js',
       files: ['*'],
     },
   });
