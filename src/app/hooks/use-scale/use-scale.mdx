@@ -1,5 +1,5 @@
 import { Layout, Playground, Attributes } from 'lib/components'
-import { Button, useTheme } from 'components'
+import { Button} from 'components'
 
 export const meta = {
   title: 'useScale',
@@ -11,12 +11,12 @@ export const meta = {
 
 Remember the elastic scaling feature mentioned in the [scale](/guide/scale 'Scale') subsection,
 which gave the Himalya components amazing imagination and extensibility,
-and now you can add elastic scaling features to your own components with the help of the `useScale` hooks. It provides 
+and now you can add elastic scaling features to your own components with the help of the `useScale` hooks. It provides
 several key functionalities: `SCALE`, `UNIT`, `CLASS_NAMES`, and `customResponsiveAttribute`, each designed to simplify the development of adaptable UI elements.
 
 ## Scale
 
-The `SCALE` object facilitates responsive design by allowing dynamic scaling of component styles based on specified scale factors. 
+The `SCALE` object facilitates responsive design by allowing dynamic scaling of component styles based on specified scale factors.
 
 As a first example, let's prepare a simple component with a fixed width:
 ```tsx
@@ -24,7 +24,7 @@ const MyComponent = ({ width: string = '20px' }) => {
   return <div style={{ width }}>Scale Component</div>
 }
 ```
-Although the component accepts a string parameter to define the width, we can't control the multiplier of the width, say 1.35 times the width, 
+Although the component accepts a string parameter to define the width, we can't control the multiplier of the width, say 1.35 times the width,
 unless it's manually calculated and then filled in, which seems fine, but when our component can set more than 10 styles, the calculation of these values is very tedious.
 
 Now we try to bind the component to the Scale of himalaya-ui:
@@ -66,7 +66,7 @@ The component of the above example should be used as follows:
 ```
 
 ## Unit
-The `UNIT` utility is a function that generates CSS variables for scaling based on the provided scale factor and the current unit. 
+The `UNIT` utility is a function that generates CSS variables for scaling based on the provided scale factor and the current unit.
 
 ```tsx
 import { useScale } from '@himalaya-ui/core';
@@ -86,7 +86,7 @@ const MyComponent = () => {
   );
 };
 ```
-In this example, `UNIT('component')` generates CSS variables like `--scale-unit-scale`, which can be used for styling the `.component` class. 
+In this example, `UNIT('component')` generates CSS variables like `--scale-unit-scale`, which can be used for styling the `.component` class.
 The generated CSS variables are based on the current scale factor and unit defined in the `ScaleConfig`.
 
 The component of the above example should be used as follows:
@@ -111,7 +111,7 @@ const MyComponent = () => {
   );
 };
 ```
-`CLASS_NAMES` applies classes like hide-xs based on hideOn to adjust visibility responsively. Use `hideOn={{ xs: true, md: false, xl: true }}` 
+`CLASS_NAMES` applies classes like hide-xs based on hideOn to adjust visibility responsively. Use `hideOn={{ xs: true, md: false, xl: true }}`
 for conditional visibility at xs and xl breakpoints.
 
 The component of the above example should be used as follows:
@@ -127,20 +127,20 @@ This advanced feature allows you to apply responsive logic to any styling aspect
 
 ```tsx
 import { useScale } from '@himalaya-ui/core';
-import useLayout from '@himalaya-ui/core/use-layout';
+import useConfig from '@himalaya-ui/core/use-config';
 
 const MyComponent = () => {
   const { customResponsiveAttribute } = useScale();
-  const layout = useLayout();
+  const {layout} = useConfig()
 
   return (
     <>
       <div className="my-component">Custom Responsive Component</div>
       <style jsx>{`
         ${customResponsiveAttribute(
-          'margin-top', 
+          'margin-top',
           'my-component'
-          layout.breakpoints, 
+          layout.breakpoints,
           (value) => `margin-top: ${value};`
         )}
       `}</style>
@@ -154,7 +154,7 @@ beyond the built-in `SCALE` properties.
 
 ## Unconventional defaults
 
-Sometimes, components require non-scalable defaults like `auto` for width, which don't align with typical scaling operations. 
+Sometimes, components require non-scalable defaults like `auto` for width, which don't align with typical scaling operations.
 Here's how we accommodate such scenarios:
 
 - **Non-Scalable Defaults**: If a component starts with a value like `auto` or `initial`, it won't respond to scaling factors.

@@ -9,7 +9,7 @@ import useScale, { withScale } from '../use-scale';
 import { pickChild } from '../utils/collections';
 import EntityField from './entity-field';
 import { EntityProps } from './index';
-import useLayout from '../use-layout';
+import { useConfig } from '../use-config';
 
 function EntityComponent({
   children,
@@ -23,7 +23,7 @@ function EntityComponent({
 }: PropsWithChildren<EntityProps>) {
   const classes = useClasses('entity-wrapper');
   const { UNIT, SCALE, CLASS_NAMES } = useScale();
-  const layout = useLayout();
+  const { layout } = useConfig();
   const [, entityFields] = pickChild(children, EntityField);
 
   const outerClasses = useClasses('entity-outer-wrapper', CLASS_NAMES, {

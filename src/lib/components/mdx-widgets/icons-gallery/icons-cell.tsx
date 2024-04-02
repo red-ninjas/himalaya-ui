@@ -1,5 +1,5 @@
+import { Text, useConfig } from 'components';
 import React from 'react';
-import { Text, useLayout, useTheme } from 'components';
 
 export const getFileName = (name: string): string => {
   return name.replace(/^(.)/, g => g.toLowerCase());
@@ -22,8 +22,7 @@ interface Props {
 }
 
 const IconsCell: React.FC<Props> = ({ component: Component, name, onClick }) => {
-  const theme = useTheme();
-  const layout = useLayout();
+  const { layout } = useConfig();
   return (
     <div className="icon-item" key={name} onClick={() => onClick(name)}>
       <Component />
@@ -58,7 +57,7 @@ const IconsCell: React.FC<Props> = ({ component: Component, name, onClick }) => 
         }
 
         .icon-item:hover {
-          box-shadow: ${theme.expressiveness.shadowMedium};
+          box-shadow: var(--theme-expressiveness-shadow-medium);
         }
 
         @media only screen and (max-width: ${layout.breakpointMobile}) {

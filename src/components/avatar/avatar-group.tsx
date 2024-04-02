@@ -6,17 +6,16 @@ import useClasses from '../use-classes';
 
 interface Props {
   count?: number;
-  className?: string;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
 export type AvatarGroupProps = Props & NativeAttrs;
 
-const AvatarGroupComponent: React.FC<React.PropsWithChildren<AvatarGroupProps>> = ({ count, className = '', children }: AvatarGroupProps) => {
+const AvatarGroupComponent: React.FC<React.PropsWithChildren<AvatarGroupProps>> = ({ count, className, children, ...props }: AvatarGroupProps) => {
   const { UNIT, SCALE, CLASS_NAMES } = useScale();
 
   return (
-    <div className={useClasses('avatar-group', className, CLASS_NAMES)}>
+    <div className={useClasses('avatar-group', className, CLASS_NAMES)} {...props}>
       {children}
       {count && <span className="count">+{count}</span>}
       <style jsx>{`

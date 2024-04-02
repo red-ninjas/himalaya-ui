@@ -37,7 +37,7 @@ const TextChild: React.FC<React.PropsWithChildren<TextChildProps>> = ({
 }: React.PropsWithChildren<TextChildProps>) => {
   const Component = tag;
 
-  const { getScaleProps, SCALE } = useScale();
+  const { getScaleProps, CLASS_NAMES, UNIT, SCALE } = useScale();
   const font = getScaleProps('font');
   const lineHeight = getScaleProps('lineHeight');
 
@@ -91,7 +91,7 @@ const TextChild: React.FC<React.PropsWithChildren<TextChildProps>> = ({
   }, [mx, my, px, py, font, className, stroke, lineHeight]);
 
   return (
-    <Component className={useClasses(classNames, 'width height', type ? 'color-' + type : null)} {...props}>
+    <Component className={useClasses('text', classNames, CLASS_NAMES, type ? 'color-' + type : null)} {...props}>
       {children}
       <style jsx>{`
         .stroke {
@@ -111,10 +111,12 @@ const TextChild: React.FC<React.PropsWithChildren<TextChildProps>> = ({
         ${SCALE.pr(0, value => `padding-right: ${value};`, 'revert', 'px')}
         ${SCALE.pt(0, value => `padding-top: ${value};`, 'revert', 'py')}
         ${SCALE.pb(0, value => `padding-bottom: ${value};`, 'revert', 'py')}
-        ${SCALE.w(1, value => `width: ${value};`, 'auto')}
-        ${SCALE.h(1, value => `height: ${value};`, 'auto')}
-        ${SCALE.font(1, value => `font-size: ${value}; --font-size: ${value};`, 'inherit')}
-        ${SCALE.lineHeight(1, value => `line-height: ${value};`, 'inherit')}
+        ${SCALE.w(1, value => `width: ${value};`, 'auto', 'text')}
+        ${SCALE.h(1, value => `height: ${value};`, 'auto', 'text')}
+        ${SCALE.font(1, value => `font-size: ${value}; --font-size: ${value};`, 'inherit', 'font')}
+        ${SCALE.lineHeight(1, value => `line-height: ${value};`, 'inherit', 'lineHeight')}
+
+        ${UNIT('text')}
       `}</style>
     </Component>
   );

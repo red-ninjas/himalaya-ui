@@ -1,11 +1,10 @@
 'use client';
 import React, { useEffect, useMemo, useRef } from 'react';
-import useScale from '../use-scale';
-import useTheme from '../use-theme';
 import CssTransition from '../shared/css-transition';
+import useClasses from '../use-classes';
+import useScale from '../use-scale';
 import { isChildElement } from '../utils/collections';
 import { DrawerPlacement, getDrawerTransform } from './helper';
-import useClasses from '../use-classes';
 
 interface Props {
   className?: string;
@@ -27,7 +26,6 @@ const DrawerWrapper: React.FC<React.PropsWithChildren<DrawerWrapperProps>> = ({
   enterTime = 300,
   ...props
 }: React.PropsWithChildren<DrawerWrapperProps>) => {
-  const theme = useTheme();
   const { SCALE, CLASS_NAMES, UNIT } = useScale();
   const modalContent = useRef<HTMLDivElement>(null);
   const tabStart = useRef<HTMLDivElement>(null);
@@ -79,7 +77,7 @@ const DrawerWrapper: React.FC<React.PropsWithChildren<DrawerWrapperProps>> = ({
             box-sizing: border-box;
             background-color: var(--color-background-1000);
             color: var(--color-foreground-1000);
-            box-shadow: ${theme.expressiveness.shadowLarge};
+            box-shadow: var(--theme-expressiveness-shadow-large);
             opacity: 0;
             outline: none;
             transform: ${transform.initial};

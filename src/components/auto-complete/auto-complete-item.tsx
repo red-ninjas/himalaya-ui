@@ -5,7 +5,7 @@ import Ellipsis from '../shared/ellipsis';
 import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';
 import { useAutoCompleteContext } from './auto-complete-context';
-import Check from 'components/icons/check';
+import Check from '../icons/check';
 
 interface Props {
   value: string;

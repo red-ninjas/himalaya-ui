@@ -5,7 +5,7 @@ import { AreaSeriesPartialOptions } from '../use-charts/model/series-options';
 import { hexToRgb } from '../utils/color';
 import { useChart } from './chart-context';
 import { ChartAreaProp, ChartPriceFormatter, ThemedChartDataRecord } from './shared';
-import { palette } from 'components/themes/presets/default';
+import { useConfig } from '../use-config';
 
 const ChartArea = forwardRef(
   (
@@ -24,6 +24,7 @@ const ChartArea = forwardRef(
     ref,
   ) => {
     const { chart } = useChart();
+    const { theme } = useConfig();
     const [serie, setSerie] = useState<ISeriesApi<'Area'>>();
 
     useImperativeHandle(ref, () => ({
@@ -38,9 +39,9 @@ const ChartArea = forwardRef(
     }));
 
     const getPropertes = (): AreaSeriesPartialOptions => {
-      const currentColor = color ? color : palette.primary.hex_1000;
-      const currentColorStart = color ? `rgba(${hexToRgb(color)}, 0.6)` : palette.primary.hex_600;
-      const currentColorEnd = color ? `rgba(${hexToRgb(color)}, 0.2)` : palette.primary.hex_200;
+      const currentColor = color ? color : theme.palette.primary.hex_1000;
+      const currentColorStart = color ? `rgba(${hexToRgb(color)}, 0.6)` : theme.palette.primary.hex_600;
+      const currentColorEnd = color ? `rgba(${hexToRgb(color)}, 0.2)` : theme.palette.primary.hex_200;
       return {
         title: showTitle ? title : undefined,
         visible: visible,

@@ -1,4 +1,4 @@
-import { Popover, Themes, useTheme } from 'components';
+import { Popover, Themes, useConfig } from 'components';
 import { UIThemesPalette } from 'components/themes';
 import React, { useMemo } from 'react';
 import { TwitterPicker } from 'react-color';
@@ -34,7 +34,7 @@ const getRandomColors = () => {
 };
 
 const EditorColorItem: React.FC<React.PropsWithChildren<Props>> = ({ keyName }) => {
-  const theme = useTheme();
+  const { theme } = useConfig();
   const label = `${keyName}`;
   const mainColor = useMemo(() => theme.palette[keyName], [theme.palette, keyName]);
   let mainColorConverted = '';

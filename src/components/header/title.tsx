@@ -1,11 +1,13 @@
 'use client';
 
 import React, { PropsWithChildren } from 'react';
-import { withScale } from '../use-scale';
+import useScale, { withScale } from '../use-scale';
+import useClasses from '../use-classes';
 
 const Logo: React.FC<PropsWithChildren<{}>> = ({ children }) => {
+  const { CLASS_NAMES, UNIT } = useScale();
   return (
-    <div draggable={false} className="title">
+    <div draggable={false} className={useClasses('title', CLASS_NAMES)}>
       {children}
       <style jsx>{`
         .title {
@@ -16,6 +18,7 @@ const Logo: React.FC<PropsWithChildren<{}>> = ({ children }) => {
           overflow: hidden;
           text-overflow: ellipsis;
         }
+        ${UNIT('title')}
       `}</style>
     </div>
   );

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { CSSProperties, useEffect } from 'react';
-import { useConfigs, defaultToastLayout } from '../use-config';
+import { useConfig, defaultToastLayout } from '../use-config';
 import { ToastPlacement } from '../use-toasts/helpers';
 import { getId } from '../utils/collections';
 import { UIColorTypes } from '../themes/presets';
@@ -50,7 +50,7 @@ export type ToastHooksResult = {
 };
 
 const useToasts = (layout?: ToastLayout): ToastHooksResult => {
-  const { updateToasts, toasts, updateToastLayout, updateLastToastId } = useConfigs();
+  const { updateToasts, toasts, updateToastLayout, updateLastToastId } = useConfig();
 
   useEffect(() => {
     if (!layout) return;

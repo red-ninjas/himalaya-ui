@@ -1,5 +1,5 @@
 'use client';
-import { UIColorTypes } from 'components/themes';
+import { UIColorTypes } from '../themes';
 import React, { RefObject, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';

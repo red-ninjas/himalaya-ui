@@ -93,7 +93,7 @@ const Dropdown: React.FC<React.PropsWithChildren<Props>> = React.memo(({ childre
             position: absolute;
             top: ${rect.top + 2}px;
             left: ${rect.left}px;
-            z-index: 1100;
+            z-index: 980;
           }
           .width-match {
             width: ${rect.width}px;

@@ -1,10 +1,10 @@
 'use client';
 
-import { Card, useLayout } from 'components';
+import { Card, useConfig } from 'components';
 import React from 'react';
 
 const AttributesTable: React.FC<React.PropsWithChildren<unknown>> = ({ children }) => {
-  const layout = useLayout();
+  const { layout } = useConfig();
 
   return (
     <Card hoverable={false} className="attr">

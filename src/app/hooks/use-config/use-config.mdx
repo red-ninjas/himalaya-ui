@@ -1,0 +1,47 @@
+import { Layout, Playground, Attributes } from 'lib/components';
+import { Button, useConfig} from 'components';
+
+export const meta = {
+  title: 'useConfig',
+  group: 'Development',
+  index: 100,
+};
+
+# useConfig
+
+This hooks can get the theme states of Himalya within any component, and can track changes in states.
+In the default scenario (you haven't changed the `themeType`), hooks gets the same value as `Themes.getPresets`.
+
+Usually the components from Himalya are already added with theme states, you don't need to change it,
+this hooks just helps you to build your own components using Himalya's themes.
+
+Notice in the example below that after we define the component using Theme,
+the properties of the custom component will change according to the current Himalya's theme,
+switching themes in the upper right corner of the website, the color of the components we create will also change with the theme.
+
+<Playground
+  scope={{ useConfig, Button }}
+  desc=""
+  code={`
+() => {
+  const {theme, layout} = useConfig()
+  return (
+    <div style={{
+        width: '200px',
+        height: '50px',
+        borderRadius: 'var(--layout-radius),
+        background: theme.palette.background.hex_700
+      }}
+    >
+      <span style={{
+          color: theme.palette.background.hex_200,
+          pl: layout.gapQuarter
+        }}
+      >My first component.</span>
+    </div>
+  )
+}
+`}
+/>
+
+<Attributes edit="/app/hooks/use-config.mdx"></Attributes>

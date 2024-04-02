@@ -2,9 +2,9 @@ import { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
 import { UTCTimestamp } from '../use-charts';
 import { ISeriesApi } from '../use-charts/api/iseries-api';
 import { HistogramSeriesPartialOptions } from '../use-charts/model/series-options';
+import { useConfig } from '../use-config';
 import { useChart } from './chart-context';
 import { ChartBarProp, ChartPriceFormatter, ThemedChartDataRecord } from './shared';
-import { palette } from 'components/themes/presets/default';
 
 const ChartBar = forwardRef(
   (
@@ -23,6 +23,7 @@ const ChartBar = forwardRef(
   ) => {
     const { chart } = useChart();
     const [serie, setSerie] = useState<ISeriesApi<'Histogram'>>();
+    const { theme } = useConfig();
 
     useImperativeHandle(ref, () => ({
       update(item: ThemedChartDataRecord) {
@@ -36,7 +37,7 @@ const ChartBar = forwardRef(
     }));
 
     const getPropertes = (): HistogramSeriesPartialOptions => {
-      const currentColor = color ? color : palette.primary.hex_1000;
+      const currentColor = color ? color : theme.palette.primary.hex_1000;
 
       return {
         title: showTitle ? title : undefined,

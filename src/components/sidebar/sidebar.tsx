@@ -1,15 +1,13 @@
 'use client';
 import { usePathname } from 'next/navigation';
 import React, { PropsWithChildren, useEffect, useRef } from 'react';
-import { useConfigs } from '../use-config/config-context';
-import useScale, { ScaleResponsiveParameter, customResponsiveAttribute, withScale } from '../use-scale';
 import useClasses from '../use-classes';
-import useLayout from '../use-layout';
+import useConfig from '../use-config';
+import useScale, { ScaleResponsiveParameter, customResponsiveAttribute, withScale } from '../use-scale';
 import { isCSSNumberValue } from '../utils/collections';
 
 export interface SidebarProps {
   header?: React.ReactNode;
-  hasBorder?: boolean;
   gap?: ScaleResponsiveParameter<number | string>;
   enabled?: ScaleResponsiveParameter<boolean>;
 }
@@ -17,12 +15,12 @@ export interface SidebarProps {
 type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof SidebarProps>;
 export type SidebarPropsNative = SidebarProps & NativeAttrs;
 
-const Sidebar: React.FC<PropsWithChildren<SidebarPropsNative>> = ({ children, hasBorder = true, gap = 1, className, ...props }) => {
+const Sidebar: React.FC<PropsWithChildren<SidebarPropsNative>> = ({ children, gap = 1, className, ...props }) => {
   const pathname = usePathname();
   const boxRef = useRef<HTMLDivElement>(null);
-  const { sidebarScrollHeight, updateSidebarScrollHeight } = useConfigs();
+  const { sidebarScrollHeight, updateSidebarScrollHeight } = useConfig();
   const { SCALE, UNIT, CLASS_NAMES } = useScale();
-  const layout = useLayout();
+  const { layout } = useConfig();
 
   useEffect(() => {
     if (!boxRef.current) return;
@@ -46,10 +44,6 @@ const Sidebar: React.FC<PropsWithChildren<SidebarPropsNative>> = ({ children, ha
           flex-direction: column;
           align-items: center;
           gap: var(--layout-gap);
-
-          border-color: var(--color-border-1000);
-          border-width: 0 ${hasBorder ? '1px' : '0'} 0 0;
-          border-style: solid;
         }
         .sidebar-inner::-webkit-scrollbar {
           width: 0;

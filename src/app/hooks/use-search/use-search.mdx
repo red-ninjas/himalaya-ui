@@ -1,5 +1,5 @@
 import { Layout, Playground, Attributes } from 'lib/components'
-import { Spacer, Search, Button, useConfigs, ConfigProvider } from 'components'
+import { Spacer, Search, Button, useConfig, ConfigProvider } from 'components'
 import { SearchProvider } from 'components/use-search'
 import useSearch from 'components/use-search'
 import React, { useState } from 'react'
@@ -13,7 +13,7 @@ export const meta = {
 
 # useSearch
 
-The `useSearch` utility provides a flexible way to manage and control search functionality. 
+The `useSearch` utility provides a flexible way to manage and control search functionality.
 
 <SearchProvider>
   <Playground

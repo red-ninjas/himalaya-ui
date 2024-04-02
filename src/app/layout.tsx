@@ -18,7 +18,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <meta name="robots" content="index,follow" />
       </head>
-      <body>
+      <body className="scroll">
         <NextStyleRegistry>
           <Providers defaultTheme="light">{children}</Providers>
         </NextStyleRegistry>

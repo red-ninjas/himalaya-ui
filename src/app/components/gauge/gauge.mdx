@@ -1,5 +1,5 @@
 import { Layout, Playground, Attributes } from 'lib/components';
-import { Gauge, Progress, Spacer, Grid, Box, useTheme, Button } from 'components';
+import { Gauge, Progress, Spacer, Grid, Box, Button } from 'components';
 import { useState } from 'react';
 
 export const meta = {
@@ -51,7 +51,6 @@ Display `Gauge` UI component to show progress.
   scope={{ Gauge, Grid, Spacer, Button }}
   code={`
 () => {
-  const theme = useTheme()
   const [value, setValue] = useState(20)
   const colors = {
     20: 'var(--color-error-1000)',

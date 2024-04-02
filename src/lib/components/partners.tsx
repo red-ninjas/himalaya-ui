@@ -1,11 +1,10 @@
 'use client';
-import { PageWidth, Text, useTheme } from 'components';
+import { PageWidth, Text } from 'components';
 import Carousel from 'components/carousel';
 import { motion } from 'framer-motion';
 import { RedNinjas, Striked } from './icons';
 
 export default function Partners() {
-  const theme = useTheme();
   return (
     <motion.div
       style={{ width: '100%' }}
@@ -15,7 +14,7 @@ export default function Partners() {
       viewport={{ once: true }}
     >
       <div className="carousel">
-        <Text mb={1.2} small style={{ color: theme.palette.background.hex_500, textTransform: 'uppercase' }}>
+        <Text mb={1.2} small style={{ color: 'var(--color-background-500)', textTransform: 'uppercase' }}>
           With heavy support from
         </Text>
         <PageWidth>

@@ -14,23 +14,8 @@ Default colors for themes.
 ## How to
 
 You can use any color anywhere, all colors change with the theme.
-If you want to customize your colors, please read [use-theme](/hooks/use-theme) to learn more.
-
-<Display w="90%" caption={<span>Get palette from <Code>useTheme</Code>.</span>}>
-
-```jsx
-import useTheme from '@himalaya-ui/core/use-theme';
-
-const myComponent = () => {
-  const { palette } = useTheme();
-
-  return <p style={{ color: palette.background.hex_800 }}>myComponent</p>;
-};
-```
-</Display>
 
 <Display w="90%" caption={<span>Get var from global css.</span>}>
-
 
 ```jsx
 const myComponent = () => {

@@ -3,7 +3,7 @@
 import React, { ReactNode, useEffect, useState } from 'react';
 import PageWidth from '../page-width';
 import useClasses from '../use-classes';
-import useLayout from '../use-layout';
+import useConfig from '../use-config';
 import useScale, { ScaleResponsiveParameter, customResponsiveAttribute, withScale } from '../use-scale';
 import { isCSSNumberValue, pickChild } from '../utils/collections';
 import CenterHeaderControl from './controls/center-control';
@@ -22,7 +22,7 @@ export type HeaderPropsNative = HeaderProps & NativeAttrs;
 
 const HeaderComponent: React.FC<HeaderPropsNative> = ({ children, transcluent = true, className, transcluentColor, gap = 0.375, ...props }) => {
   const { UNIT, SCALE, CLASS_NAMES } = useScale();
-  const layoutRoot = useLayout();
+  const { layout: layoutRoot } = useConfig();
 
   const [, leftHeaderControl] = pickChild(children, LeftHeaderControl);
   const [, rightHeaderControl] = pickChild(children, RightHeaderControl);
@@ -107,7 +107,6 @@ const HeaderComponent: React.FC<HeaderPropsNative> = ({ children, transcluent = 
           align-items: center;
           justify-content: flex-start;
           align-self: stretch;
-          overflow: hidden;
         }
         .left-controls-inner {
           display: flex;

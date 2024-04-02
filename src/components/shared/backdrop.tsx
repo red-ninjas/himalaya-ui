@@ -2,7 +2,6 @@
 import React, { MouseEvent } from 'react';
 import useClasses from '../use-classes';
 import useScale from '../use-scale';
-import useTheme from '../use-theme';
 import useCurrentState from '../utils/use-current-state';
 import CssTransition from './css-transition';
 
@@ -17,7 +16,7 @@ interface Props {
   transitionTime?: number;
 }
 
-type NativeAttrs = Omit<React.HTMLAttributes<any>, keyof Props>;
+type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
 export type BackdropProps = Props & NativeAttrs;
 
 const Backdrop: React.FC<React.PropsWithChildren<BackdropProps>> = React.memo(
@@ -34,7 +33,6 @@ const Backdrop: React.FC<React.PropsWithChildren<BackdropProps>> = React.memo(
     ...props
   }: React.PropsWithChildren<BackdropProps>) => {
     const { SCALE } = useScale();
-    const theme = useTheme();
     const [, setIsContentMouseDown, IsContentMouseDownRef] = useCurrentState(false);
     const clickHandler = (event: MouseEvent<HTMLElement>) => {
       if (IsContentMouseDownRef.current) return;
@@ -91,7 +89,7 @@ const Backdrop: React.FC<React.PropsWithChildren<BackdropProps>> = React.memo(
               bottom: 0;
               width: 100%;
               height: 100%;
-              opacity: ${theme.expressiveness.portalOpacity};
+              opacity: var(--theme-expressiveness-portal-opacity);
               background-color: ${background};
               transition: opacity ${transitionTime}ms cubic-bezier(0.4, 0, 0.2, 1);
               pointer-events: none;
@@ -101,10 +99,10 @@ const Backdrop: React.FC<React.PropsWithChildren<BackdropProps>> = React.memo(
               opacity: 0;
             }
             .backdrop-wrapper-enter-active .layer {
-              opacity: ${theme.expressiveness.portalOpacity};
+              opacity: var(--theme-expressiveness-portal-opacity);
             }
             .backdrop-wrapper-leave .layer {
-              opacity: ${theme.expressiveness.portalOpacity};
+              opacity: var(--theme-expressiveness-portal-opacity);
             }
             .backdrop-wrapper-leave-active .layer {
               opacity: 0;

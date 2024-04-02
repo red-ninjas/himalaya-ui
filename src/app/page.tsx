@@ -1,16 +1,16 @@
 'use client';
 
-import { Button, Footer, FooterNavigation, Hero, Link, Section, Text, useTheme } from 'components';
+import { Button, Footer, FooterNavigation, Hero, Link, Section, Text, useConfig } from 'components';
 import { Code } from 'components/icons';
 import { capitalize } from 'components/utils/collections';
+import { motion } from 'framer-motion';
 import { Facts, Partners, Portfolio, RunningSlogan, Services } from 'lib/components';
 import { BrandLogo } from 'lib/components/icons';
-import metaData from '../lib/data/metadata.json';
 import NextLink from 'next/link';
-import { motion } from 'framer-motion';
+import metaData from '../lib/data/metadata.json';
 
 export default function Index() {
-  const theme = useTheme();
+  const { theme } = useConfig();
   return (
     <>
       <Hero scrollToId="services" style={{ background: theme.type == 'dark' ? '#141415' : '#ffffff' }}>

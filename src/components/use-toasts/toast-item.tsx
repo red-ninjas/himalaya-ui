@@ -1,20 +1,18 @@
 'use client';
 
+import { useConfig } from '../use-config';
 import React, { useMemo } from 'react';
-import useTheme from '../use-theme';
-import type { Toast, ToastLayout } from './use-toast';
 import CssTransition from '../shared/css-transition';
-import { makeToastActions, getTranslateByPlacement } from './helpers';
-import useLayout from '../use-layout';
 import useClasses from '../use-classes';
+import { getTranslateByPlacement, makeToastActions } from './helpers';
+import type { Toast, ToastLayout } from './use-toast';
 export interface ToastItemProps {
   toast: Toast;
   layout: Required<ToastLayout>;
 }
 
 const ToastItemComponent: React.FC<ToastItemProps> = ({ toast, layout }) => {
-  const theme = useTheme();
-  const coreLayout = useLayout();
+  const { layout: coreLayout } = useConfig();
   const isReactNode = typeof toast.text !== 'string';
   const { padding, margin, r, maxHeight, maxWidth, width, placement } = layout;
   const { enter, leave } = useMemo(() => getTranslateByPlacement(placement), [placement]);
@@ -45,7 +43,7 @@ const ToastItemComponent: React.FC<ToastItemProps> = ({ toast, layout }) => {
             border: 0;
             border-radius: ${r ?? `var(--layout-radius)`};
             opacity: 1;
-            box-shadow: ${theme.expressiveness.shadowSmall};
+            box-shadow: var(--theme-expressiveness-shadow-small);
             transition: all 350ms cubic-bezier(0.1, 0.2, 0.1, 1);
             overflow: hidden;
           }

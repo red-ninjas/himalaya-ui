@@ -1,8 +1,7 @@
 'use client';
 import React, { ReactNode } from 'react';
-import useTheme from '../use-theme';
-import useScale, { withScale } from '../use-scale';
 import useClasses from '../use-classes';
+import useScale, { withScale } from '../use-scale';
 
 interface Props {
   caption?: ReactNode | string;
@@ -20,7 +19,6 @@ const DisplayComponent: React.FC<React.PropsWithChildren<DisplayProps>> = ({
   className = '',
   ...props
 }: React.PropsWithChildren<DisplayProps>) => {
-  const theme = useTheme();
   const { SCALE, UNIT, CLASS_NAMES } = useScale();
   const classes = useClasses('display', className, CLASS_NAMES);
 
@@ -41,7 +39,7 @@ const DisplayComponent: React.FC<React.PropsWithChildren<DisplayProps>> = ({
           margin: 0 auto;
           border-radius: 4px;
           overflow: hidden;
-          box-shadow: ${theme.expressiveness.shadowLarge};
+          box-shadow: var(--theme-expressiveness-shadow-large);
           max-width: 100%;
           width: 100%;
         }

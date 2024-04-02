@@ -1,42 +1,35 @@
 'use client';
 
-import { ChevronLeft } from '../icons';
 import { useRouter } from 'next/navigation';
 import React from 'react';
-import Button from '../button';
+import Button, { ButtonProps } from '../button';
+import { ChevronLeft } from '../icons';
+import { ScaleProps } from '../use-scale';
 
-const BackButton: React.FC<{
-  onClick?: () => void;
-  url?: string;
-}> = ({ ...props }) => {
+const BackButton: React.FC<
+  {
+    url?: string;
+  } & ButtonProps &
+    ScaleProps
+> = ({ onClick, url, ...props }) => {
   const router = useRouter();
-  const onClick = () => {
-    if (props.url) {
-      router.replace(props.url);
-    } else if (props.onClick) {
-      props.onClick();
+  const onClickAction = () => {
+    if (url) {
+      router.replace(url);
     }
   };
   return (
-    <div className="back-menu-button-outer">
-      <Button className="menu-back-button" auto type="abort" onClick={onClick}>
-        <ChevronLeft size="1.5rem" />
-      </Button>
-
-      <style jsx>{`
-        .back-menu-button-outer {
-          display: inline-block;
-        }
-        .back-menu-button-outer :global(.menu-back-button) {
-          display: flex;
-          align-items: center;
-          min-width: 40px;
-          height: 40px;
-          padding: 0;
-          justify-content: center;
-        }
-      `}</style>
-    </div>
+    <Button
+      style={{ '--ui-button-height': 'calc(var(--scale-unit-scale) * 4)' } as React.CSSProperties}
+      {...props}
+      auto
+      ml={'calc(var(--scale-unit-scale) * -0.8)'}
+      px={0.4}
+      type="abort"
+      scale={2 / 3}
+      iconRight={<ChevronLeft />}
+      onClick={onClick ?? onClickAction}
+    ></Button>
   );
 };
 

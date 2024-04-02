@@ -5,13 +5,14 @@ import Keyboard, { KeyboardProps as keyboardiProps } from '../keyboard';
 import useScale, { withScale } from '../use-scale';
 import React from 'react';
 import useSearch from '../use-search';
+import useClasses from '../use-classes';
 export type SearchButtonProps = {
   title?: string;
   key?: KeyCode;
   mod?: KeyMod;
 };
 const SearchButtonComponent: React.FC<SearchButtonProps & keyboardiProps> = props => {
-  const { SCALE } = useScale();
+  const { SCALE, UNIT, CLASS_NAMES } = useScale();
 
   const { setIsEnabled } = useSearch();
 
@@ -22,8 +23,8 @@ const SearchButtonComponent: React.FC<SearchButtonProps & keyboardiProps> = prop
     setIsEnabled(true);
   }, [keyMod, keyCmd]);
   return (
-    <div className="wrapper">
-      <Keyboard {...props} h="30px" font="12px" command={true} className="shortcuts" title={props.title}>
+    <div className={useClasses('wrapper', CLASS_NAMES)}>
+      <Keyboard {...props} h="32px" font="12px" command={true} className="shortcuts" title={props.title}>
         K
       </Keyboard>
 
@@ -33,7 +34,7 @@ const SearchButtonComponent: React.FC<SearchButtonProps & keyboardiProps> = prop
         }
 
         .wrapper :global(kbd.shortcuts) {
-          line-height: 30px !important;
+          line-height: 32px !important;
           cursor: help;
           opacity: 0.75;
           border: none;
@@ -41,6 +42,8 @@ const SearchButtonComponent: React.FC<SearchButtonProps & keyboardiProps> = prop
 
         ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'wrapper')}
         ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'wrapper')}
+
+        ${UNIT('wrapper')}
       `}</style>
     </div>
   );

@@ -1,6 +1,6 @@
 'use client';
 
-import useLayout from 'components/use-layout';
+import { useConfig } from '../use-config';
 import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';
 import { EntityFieldProps } from './index';
@@ -16,7 +16,7 @@ function EntityFieldComponent({
   ...props
 }: EntityFieldProps) {
   const { UNIT, SCALE, CLASS_NAMES } = useScale();
-  const layout = useLayout();
+  const { layout } = useConfig();
 
   const wrapperClasses = useClasses({
     'field-wrapper': true,

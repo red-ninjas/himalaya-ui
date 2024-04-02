@@ -2,7 +2,6 @@
 
 import React from 'react';
 import useClasses from '../use-classes';
-import useTheme from '../use-theme';
 
 interface Props {
   active?: boolean;
@@ -14,8 +13,6 @@ type NativeAttrs = Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, keyof Pro
 export type PaginationItemProps = Props & NativeAttrs;
 
 const PaginationItem: React.FC<React.PropsWithChildren<PaginationItemProps>> = ({ active, children, disabled, onClick, ...props }) => {
-  const theme = useTheme();
-
   const classes = useClasses({
     active,
     disabled,
@@ -68,13 +65,13 @@ const PaginationItem: React.FC<React.PropsWithChildren<PaginationItemProps>> = (
           background-color: var(--color-base);
           color: var(--color-contrast);
           font-weight: 500;
-          box-shadow: ${theme.expressiveness.shadowSmall};
+          box-shadow: var(--theme-expressiveness-shadow-small);
         }
 
         .active:hover {
           background-color: var(--color-shade);
           color: var(--color-contrast);
-          box-shadow: ${theme.expressiveness.shadowMedium};
+          box-shadow: var(--theme-expressiveness-shadow-medium);
         }
 
         .disabled {

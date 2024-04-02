@@ -1,5 +1,5 @@
 import { Layout, Playground, Attributes } from 'lib/components';
-import { Capacity, Spacer, useTheme } from 'components';
+import { Capacity, Spacer} from 'components';
 
 export const meta = {
   title: 'Capacity',
@@ -24,10 +24,9 @@ Display an capacity indicator.
 <Playground
   title="Fixed Color"
   desc="Specify a color to override the default."
-  scope={{ Capacity, Spacer, useTheme }}
+  scope={{ Capacity, Spacer}}
   code={`
 () => {
-  const theme = useTheme()
   return <Capacity value={75} color='var(--color-primary-1000)' />
 }
 `}

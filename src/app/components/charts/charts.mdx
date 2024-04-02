@@ -1,5 +1,5 @@
 import { Layout, Playground, Attributes } from 'lib/components';
-import { Link, Text, Code, Button, ToggleList, Spacer, useTheme, GraphDataView } from 'components';
+import { Link, Text, Code, Button, ToggleList, Spacer,  GraphDataView } from 'components';
 import Chart from 'components/chart';
 import NextLink from 'next/link';
 import { useRef, useEffect, createRef, useState } from 'react';
@@ -16,7 +16,7 @@ Charts creates interactive financial charts.
 <Playground
   title="Line chart example"
   desc="A line chart exmaple"
-  scope={{ Chart, useTheme }}
+  scope={{ Chart }}
   code={`
     () => {
       return (
@@ -42,7 +42,7 @@ Charts creates interactive financial charts.
 <Playground
   title="Area chart example"
   desc="A area chart example"
-  scope={{ Chart, useTheme }}
+  scope={{ Chart }}
   code={`
     () => {
       return (
@@ -70,7 +70,7 @@ Charts creates interactive financial charts.
 <Playground
   title="Bar chart example"
   desc="A bar chart example"
-  scope={{ Chart, useTheme }}
+  scope={{ Chart }}
   code={`
     () => {
       return (
@@ -96,7 +96,7 @@ Charts creates interactive financial charts.
 <Playground
   title="Candlestick Chart"
   desc="A candlestick chart shows price movements in the form of candlesticks. On the candlestick chart, open & close values form a solid body of a candle while wicks show high & low values for a candlestick's time intervas"
-  scope={{ Chart, useTheme }}
+  scope={{ Chart }}
   code={`
     () => {
       return (
@@ -117,9 +117,8 @@ Charts creates interactive financial charts.
 <Playground
   title="Multi-Line chart example"
   desc="A multi line chart example with different colors and legends"
-  scope={{ Chart, useTheme }}
+  scope={{ Chart}}
   code={`() => {
-      const theme = useTheme();
       return (
           <Chart>
             <Chart.Line color='#0062d1' title="Test Line" data={[
@@ -156,11 +155,10 @@ Charts creates interactive financial charts.
 <Playground
   title="Title or Data change example"
   desc="A multi line chart example with different colors and legends"
-  scope={{ Chart, useTheme, Button, useState, ToggleList }}
+  scope={{ Chart, Button, useState, ToggleList }}
   code={`() => {
       const min = 1;
       const max = 100;
-      const theme = useTheme();
       const [enabled, setEnabled] = useState<boolean>(false);
       const generateData = () => {
         return [{ value: Math.random() * (max - min) + min, time: 1642425322 },
@@ -210,7 +208,7 @@ Charts creates interactive financial charts.
 <Playground
   title="Update example"
   desc="A time based update example"
-  scope={{ Chart, useTheme, useRef, useEffect, createRef }}
+  scope={{ Chart,  useRef, useEffect, createRef }}
   code={`() => {
         const chartRef = React.createRef();
         const data = [
@@ -260,7 +258,7 @@ Charts creates interactive financial charts.
 | **showSeconds**     | show seconds      | `boolean`           | -               | `false` |
 | **timeFormatter**   | format time       | `TimeFormatterFn`   | -               | -       |
 | **tickFormatter**   | format tick       | `TickMarkFormatter` | -               | -       |
-| **hasSides**        | chart sides       | `'right'            | 'left'          | 'both'` | 
+| **hasSides**        | chart sides       | `'right'            | 'left'          | 'both'` |
 | **viewMode**        | chart view mode   | `ChartViewMode`     | -               | -       |
 
 <Attributes.Title>ChartSeriesProps</Attributes.Title>
@@ -280,4 +278,3 @@ type ChartSeriesProps = {
 ```
 
 </Attributes>
-

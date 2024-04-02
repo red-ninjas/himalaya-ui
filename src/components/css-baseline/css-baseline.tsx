@@ -1,15 +1,16 @@
 'use client';
 
-import { UIColorTypes, UiOverrideColors } from 'components/themes/presets';
+import { useConfig } from '../use-config';
+import { UIColorTypes, UiOverrideColors } from '../themes/presets';
 import _ from 'lodash';
 import React, { useMemo } from 'react';
-import useTheme from '../use-theme';
+import { hexToRgb } from '../utils/color';
 export const tuple = <T extends UIColorTypes[]>(...args: T) => args;
 
 const CssBaseline: React.FC = () => {
-  const theme = useTheme();
+  const { themes, layout, theme } = useConfig();
 
-  const [colorClasses] = useMemo(() => {
+  const [COLOR_CLASS_NAMES] = useMemo(() => {
     let vars: string = `  .color-default {
       --color-base: var(--color-background-1000);
       --color-base-rgb: var(--color-background-1000-rgb);
@@ -80,9 +81,124 @@ const CssBaseline: React.FC = () => {
     return [vars];
   }, []);
 
+  const layoutVars: string = useMemo(() => {
+    let cssCode: string = ``;
+
+    for (const key of Object.keys(layout)) {
+      const value = layout[key];
+      const kebabCaseString = _.kebabCase(key);
+
+      if (key !== 'breakpoints') {
+        cssCode += `--layout-${kebabCaseString}: ${value};`;
+      }
+    }
+    return cssCode;
+  }, [layout]);
+
+  const [BREAKPOINT_CLASSES, BREAKPOINT_TOGGLE] = useMemo(() => {
+    let breakpointCode: string = `
+      .hide { display: none !important; }
+      .show { display: inherit !important; }
+    `;
+    let breakPointsVars: string = ``;
+
+    const breakpoints = layout.breakpoints;
+
+    for (const breakpointKey of Object.keys(breakpoints)) {
+      const breakPointValue = breakpoints[breakpointKey];
+      const breakpointKeyCase = _.kebabCase(breakpointKey);
+
+      for (const responsiveKey of Object.keys(breakPointValue)) {
+        const responsiveValue = breakPointValue[responsiveKey];
+        const responsiveCaseKey = _.kebabCase(responsiveKey);
+
+        breakPointsVars += `--layout-breakpoint-${breakpointKeyCase}-${responsiveCaseKey}: ${responsiveValue};`;
+      }
+
+      breakpointCode += `
+      @media only screen and (max-width: ${breakpoints[breakpointKey].max}) {
+        .hide-${breakpointKey}-down {
+          display: none !important;
+        }
+        .show-${breakpointKey}-down {
+          display: block !important;
+        }
+      }
+      @media only screen and (min-width: ${breakpoints[breakpointKey].min}) {
+        .hide-${breakpointKey}-up {
+          display: none !important;
+        }
+        .show-${breakpointKey}-up {
+          display: block !important;
+        }
+      }
+      @media only screen and (min-width: ${breakpoints[breakpointKey].min}) and (max-width: ${breakpoints[breakpointKey].max}) {
+        .hide-${breakpointKey} {
+          display: none !important;
+        }
+        .show-${breakpointKey} {
+          display: block !important;
+        }
+      }
+      `;
+    }
+    return [breakPointsVars, breakpointCode];
+  }, [layout.breakpoints]);
+
+  const [THEME_CLASS_NAMES, THEME_MEDIA_QUERY] = useMemo(() => {
+    let totalVars: string = ``;
+    let colorCss: string = ``;
+    for (const currentTheme of themes) {
+      let vars: string = ``;
+
+      const colorKeys = Object.keys(currentTheme.palette);
+      for (const key of Object.keys(currentTheme.font)) {
+        const kebabCaseString = _.kebabCase(key);
+        vars += `--theme-font-${kebabCaseString}: ${currentTheme.font[key]};`;
+      }
+
+      for (const key of Object.keys(currentTheme.expressiveness)) {
+        const kebabCaseString = _.kebabCase(key);
+        vars += `--theme-expressiveness-${kebabCaseString}: ${currentTheme.expressiveness[key]};`;
+      }
+
+      for (const key of colorKeys) {
+        const value = currentTheme.palette[key];
+
+        if (key.startsWith('gradient_')) {
+          const gradientIndex = key.replace('gradient_', '');
+          vars += `--gradient-${gradientIndex}-from: ${value.from}; --gradient-${gradientIndex}-to: ${value.to}; `;
+        } else {
+          for (const colorKey of Object.keys(value)) {
+            vars += `--color-${key}-${colorKey.replace('hex_', '')}: ${value[colorKey]}; --color-${key}-${colorKey.replace('hex_', '')}-rgb: ${hexToRgb(value[colorKey])};`;
+          }
+        }
+      }
+
+      colorCss += `
+        .${currentTheme.type} {
+          ${vars}
+        }
+      `;
+
+      totalVars += `
+        @media (prefers-color-scheme: ${currentTheme.type}) {
+         ${vars}
+       }`;
+    }
+
+    return [totalVars, colorCss];
+  }, [themes]);
+
   return (
-    <>
-      <style jsx global>{`
+    <style jsx global>
+      {`
+        html {
+          ${layoutVars}
+        }
+
+        ${THEME_MEDIA_QUERY}
+
         body {
           background-color: var(--color-background-1000);
           color: var(--color-foreground-1000);
@@ -93,23 +209,26 @@ const CssBaseline: React.FC = () => {
 
           margin: 0;
           padding: 0;
-          min-height: 100%;
-          position: relative;
           font-family: var(--theme-font-sans);
           font-size: var(--theme-font-base-size) px;
           --ui-icon-background: var(--color-background-1000);
           --ui-icon-foreground: var(--color-foreground-1000);
+
+          ${THEME_CLASS_NAMES}
+          ${COLOR_CLASS_NAMES}
+          ${BREAKPOINT_CLASSES}
+          ${BREAKPOINT_TOGGLE}
         }
 
         html,
         body {
-          overflow: initial;
+          height: 100%;
         }
 
         *,
         *:before,
         *:after {
-          box-sizing: inherit;
+          box-sizing: border-box;
           text-rendering: optimizeLegibility;
           -webkit-tap-highlight-color: transparent;
         }
@@ -154,10 +273,10 @@ const CssBaseline: React.FC = () => {
           -webkit-box-align: center;
           align-items: center;
           color: var(--color-link-1000);
-          text-decoration: ${theme.expressiveness.linkStyle};
+          text-decoration: var(--theme-expressiveness-link-style);
 
           &:hover {
-            text-decoration: ${theme.expressiveness.linkHoverStyle};
+            text-decoration: var(--theme-expressiveness-link-hover-style);
           }
         }
 
@@ -420,14 +539,70 @@ const CssBaseline: React.FC = () => {
             transform: rotate(1turn);
           }
         }
-        .hide {
-          display: none !important;
+
+        .scroll {
+          &::-webkit-scrollbar {
+            width: var(--layout-page-scroll-width, ${layout.pageScrollWidth});
+            height: var(--layout-page-scroll-height, ${layout.pageScrollHeight});
+            background: transparent;
+          }
+
+          &::-webkit-scrollbar-track {
+            border-radius: var(--layout-page-scroll-radius);
+            cursor: pointer;
+            background: var(--color-background-600, ${theme.palette.background.hex_600});
+          }
+
+          &::-webkit-scrollbar-thumb {
+            border-radius: var(--layout-page-scroll-radius);
+            background: var(--color-background-400, ${theme.palette.background.hex_400});
+          }
+
+          &::-webkit-scrollbar-corner,
+          &::-webkit-resizer {
+            background: transparent;
+            border: 0px solid transparent;
+            width: 0;
+            height: 0;
+          }
         }
-      `}</style>
-      <style jsx global>
-        {colorClasses}
-      </style>
-    </>
+
+        .scroll-hover {
+          &::-webkit-scrollbar,
+          &::-webkit-scrollbar-track {
+            background: transparent;
+          }
+
+          &:hover::-webkit-scrollbar-corner {
+            background: transparent;
+          }
+
+          &:hover::-webkit-scrollbar-track {
+            z-index: 9999;
+          }
+
+          &::-webkit-scrollbar-thumb {
+            background: transparent;
+          }
+
+          &::-webkit-scrollbar-corner {
+            background: transparent;
+          }
+
+          &::-webkit-scrollbar-resizer {
+            background: transparent;
+          }
+
+          &:hover::-webkit-scrollbar-thumb {
+            background: var(--color-background-400, ${theme.palette.background.hex_400});
+          }
+
+          &:hover::-webkit-resizer {
+            background: var(--color-background-700);
+          }
+        }
+      `}
+    </style>
   );
 };
 

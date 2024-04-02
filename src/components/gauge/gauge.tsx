@@ -4,7 +4,7 @@ import { UIColorTypes } from '../themes/presets';
 import useClasses from '../use-classes';
 import useScale, { ScaleResponsiveParameter, customResponsiveAttribute, withScale } from '../use-scale';
 import { useProportions } from '../utils/calculations';
-import useLayout from '../use-layout';
+import { useConfig } from '../use-config';
 import { isCSSNumberValue } from '../utils/collections';
 
 export type GaugeColors = {
@@ -37,7 +37,7 @@ const GaugeComponent: React.FC<GaugeProps> = ({
 
   const percentValue = useProportions(value, max);
   const classes = useClasses('gauge', className, CLASS_NAMES, type ? 'color-' + type : null);
-  const layout = useLayout();
+  const { layout } = useConfig();
   const radius = 24 / 2;
   const strokeWidth = radius / 7;
   const circumference = 2 * Math.PI * (radius - strokeWidth / 2);

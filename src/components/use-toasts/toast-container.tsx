@@ -3,7 +3,7 @@
 import React, { useEffect, useMemo } from 'react';
 import { createPortal } from 'react-dom';
 import useClasses from '../use-classes';
-import { useConfigs } from '../use-config/config-context';
+import { useConfig } from '../use-config/config-context';
 import useCurrentState from '../utils/use-current-state';
 import usePortal from '../utils/use-portal';
 import { isLeftPlacement, isTopPlacement } from './helpers';
@@ -12,7 +12,7 @@ import ToastItem from './toast-item';
 const ToastContainer: React.FC<React.PropsWithChildren<unknown>> = () => {
   const portal = usePortal('toast');
   const [, setHovering, hoveringRef] = useCurrentState<boolean>(false);
-  const { toasts, updateToasts, toastLayout, lastUpdateToastId } = useConfigs();
+  const { toasts, updateToasts, toastLayout, lastUpdateToastId } = useConfig();
   const memoizedLayout = useMemo(() => toastLayout, [toastLayout]);
   const toastElements = useMemo(
     () => toasts.map(toast => <ToastItem toast={toast} layout={memoizedLayout} key={toast._internalIdent} />),

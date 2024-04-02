@@ -14,7 +14,7 @@ export type GridProps = Props & GridBasicItemProps;
 const GridComponent: React.FC<React.PropsWithChildren<GridProps>> = ({ children, className = '', ...props }: React.PropsWithChildren<GridProps>) => {
   const { SCALE } = useScale();
   const { className: resolveClassName, styles } = css.resolve`
-    div {
+    .grid-item-inner {
       box-sizing: border-box;
     }
 
@@ -29,10 +29,10 @@ const GridComponent: React.FC<React.PropsWithChildren<GridProps>> = ({ children,
       },
       'grid-item-inner',
     )}
-    ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom}  ${value.left};`, 'grid-item-inner')}
+    ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom}  ${value.left};`, undefined, 'grid-item-inner')}
   `;
 
-  const classes = useClasses('grid-item-inner', resolveClassName, className);
+  const classes = useClasses(resolveClassName, 'grid-item-inner', className);
 
   return (
     <GridBasicItem className={classes} {...props}>

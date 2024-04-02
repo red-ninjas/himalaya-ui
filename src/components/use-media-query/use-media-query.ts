@@ -1,8 +1,7 @@
 'use client';
 import { useEffect, useMemo, useState } from 'react';
 import { tuple } from '../utils/prop-types';
-import { BreakpointsItem, UIThemesBreakpoints } from '../use-layout';
-import useLayout from '../use-layout';
+import { useConfig, BreakpointsItem, UIThemesBreakpoints } from '../use-config';
 
 const breakpoints = tuple('xs', 'sm', 'md', 'lg', 'xl', 'mobile');
 export type ResponsiveBreakpoint = (typeof breakpoints)[number];
@@ -45,14 +44,14 @@ const useMediaQuery = (breakpoint: ResponsiveBreakpoint, options: ResponsiveOpti
   const { match: matchType = 'default', ssrMatchMedia = null } = options;
   const supportMedia = typeof window !== 'undefined' && typeof window.matchMedia !== 'undefined';
 
-  const theme = useLayout();
+  const { layout } = useConfig();
   const mediaQueries: {
     [key in ResponsiveBreakpoint]: string;
   } = useMemo(() => {
     const up = matchType === 'up';
     const down = matchType === 'down';
-    return makeQueries(theme.breakpoints, up, down);
-  }, [theme.breakpoints, options]);
+    return makeQueries(layout.breakpoints, up, down);
+  }, [layout.breakpoints, options]);
   const query = useMemo(() => mediaQueries[breakpoint], [mediaQueries, breakpoint]);
   const matchQuery = (q: string) => window.matchMedia(q);
 

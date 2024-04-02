@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import css from 'styled-jsx/css';
-import { UIThemesBreakpoints } from '../use-layout/shared';
+import { UIThemesBreakpoints } from '../use-config/shared';
 import { isCSSNumberValue } from '../utils/collections';
 import {
   BreakpointInterface,
@@ -12,6 +12,7 @@ import {
   GetAllScalePropsFunction,
   GetScalePropsFunction,
   HideInterface,
+  HideUpOrDown,
   ScalePropKeys,
   ScaleProps,
   ScaleResponsiveParameter,
@@ -379,6 +380,36 @@ export const scaleAttribute =
     return responsiveContent;
   };
 
+export const extractHideAttributeClassName = (className: string, value: HideInterface | undefined): string[] => {
+  const classNames: string[] = [];
+
+  if (value === false || value === undefined) {
+    return [];
+  } else if (value === true) {
+    return [className];
+  } else if (value === 'up') {
+    return [className + '-up'];
+  } else if (value === 'down') {
+    return [className + '-down'];
+  } else if (typeof value === 'object') {
+    for (const key of Object.keys(value)) {
+      const brValue: boolean | HideUpOrDown | undefined = value[key];
+      if (brValue === undefined || brValue === false) {
+        continue;
+      }
+      if (brValue === true) {
+        classNames.push(className + '-' + key);
+      } else if (brValue === 'up') {
+        classNames.push(className + '-' + key + '-up');
+      } else if (brValue === 'down') {
+        classNames.push(className + '-' + key + '-down');
+      }
+    }
+  }
+
+  return classNames;
+};
+
 /**
  * Create hide attribute classes
  * @param scale
@@ -387,19 +418,8 @@ export const scaleAttribute =
  * @param className
  * @returns
  */
-export const hideAttribute = (hideOn?: HideInterface): string | undefined => {
-  let hideClasses: string[] = [];
-
-  if (hideOn) {
-    if (typeof hideOn === 'boolean' && hideOn) {
-      hideClasses.push('hide');
-    } else {
-      hideClasses = Object.entries(hideOn)
-        .filter(df => df[1] === true)
-        .map(df => 'hide-' + df[0]);
-    }
-  }
-
+export const hideAttribute = (hideOn?: HideInterface, showOn?: HideInterface): string | undefined => {
+  const hideClasses: string[] = [...extractHideAttributeClassName('hide', hideOn), ...extractHideAttributeClassName('show', showOn)];
   return hideClasses.length > 0 ? hideClasses.join(' ') : undefined;
 };
 

@@ -3,7 +3,7 @@ import React, { MouseEvent as ReactMouseEvent, useState } from 'react';
 import { INavigationItem } from '.';
 import { ReactiveDomReact } from '../utils/layouts';
 
-import ChevronUp from 'components/icons/chevronUp';
+import ChevronUp from '../icons/chevronUp';
 import Popover from '../popover';
 import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';
