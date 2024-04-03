@@ -1,4 +1,4 @@
-import { Layout, Playground, Attributes } from 'lib/components'
+import { Playground, Attributes } from 'lib/components'
 import { User, Spacer } from 'components'
 
 export const meta = {
@@ -40,22 +40,5 @@ Display user profile or social information.
 `}
 />
 
-<Attributes edit="/app/components/user.mdx">
-<Attributes.Title>User.Props</Attributes.Title>
+<Attributes component="User" edit="/app/components/user.mdx"></Attributes>
 
-| Attribute          | Description                              | Type                   | Accepted values                  | Default |
-| ------------------ | ---------------------------------------- | ---------------------- | -------------------------------- | ------- |
-| **name**(required) | user name                                | `ReactNode` / `string` | -                                | -       |
-| **src**            | avatar url                               | `string`               | -                                | -       |
-| **text**           | display text when image is missing       | `string`               | -                                | -       |
-| **altText**        | alt attribute used by inner avatar image | `string`               | -                                | -       |
-| ...                | native props                             | `HTMLAttributes`       | `'id', 'name', 'className', ...` | -       |
-
-<Attributes.Title>User.Link.Props</Attributes.Title>
-
-| Attribute | Description  | Type                   | Accepted values                  | Default |
-| --------- | ------------ | ---------------------- | -------------------------------- | ------- |
-| **href**  | link address | `string`               | -                                | -       |
-| ...       | native props | `AnchorHTMLAttributes` | `'id', 'name', 'className', ...` | -       |
-
-</Attributes>

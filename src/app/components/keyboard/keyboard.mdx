@@ -1,4 +1,4 @@
-import { Layout, Playground, Attributes } from 'lib/components'
+import { Playground, Attributes } from 'lib/components'
 import { Keyboard } from 'components'
 
 export const meta = {
@@ -44,15 +44,4 @@ The `Keyboard` can only display layout styles, if you need to bind the keyboard 
 `}
 />
 
-<Attributes edit="/app/components/keyboard.mdx">
-<Attributes.Title>Keyboard.Props</Attributes.Title>
-
-| Attribute   | Description      | Type                   | Accepted values               | Default |
-| ----------- | ---------------- | ---------------------- | ----------------------------- | ------- |
-| **command** | show command key | `boolean`              | -                             | `false` |
-| **shift**   | show shift key   | `boolean`              | -                             | `false` |
-| **option**  | show option key  | `boolean`              | -                             | `false` |
-| **ctrl**    | show ctrl key    | `boolean`              | -                             | `false` |
-| ...         | native props     | `KeygenHTMLAttributes` | `'keyType', 'className', ...` | -       |
-
-</Attributes>
+<Attributes component="Keyboard" edit="/app/components/keyboard.mdx"></Attributes>

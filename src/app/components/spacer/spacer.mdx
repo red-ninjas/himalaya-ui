@@ -1,4 +1,4 @@
-import { Layout, Playground, Attributes } from 'lib/components'
+import { Playground, Attributes } from 'lib/components'
 import { Spacer, Grid, Card } from 'components'
 
 export const meta = {
@@ -50,14 +50,4 @@ Provide empty space.
 `}
 />
 
-<Attributes edit="/app/components/spacer.mdx">
-<Attributes.Title>Spacer.Props</Attributes.Title>
-
-| Attribute  | Description    | Type               | Accepted values          | Default |
-| ---------- | -------------- | ------------------ | ------------------------ | ------- |
-| **w**      | x-axis spacing | `number` / `float` | -                        | 1       |
-| **h**      | y-axis spacing | `number` / `float` | -                        | 1       |
-| **inline** | inline space   | `boolean`          | -                        | `false` |
-| ...        | native props   | `HTMLAttributes`   | `'id', 'className', ...` | -       |
-
-</Attributes>
+<Attributes component="Spacer" edit="/app/components/spacer.mdx"></Attributes>

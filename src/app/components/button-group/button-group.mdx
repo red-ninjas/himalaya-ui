@@ -1,4 +1,4 @@
-import { Layout, Playground, Attributes } from 'lib/components'
+import { Playground, Attributes } from 'lib/components'
 import { Button, Spacer, ButtonGroup } from 'components'
 
 export const meta = {
@@ -95,28 +95,7 @@ A set of related buttons.
     <Button scale={0.5}>Three</Button>
   </ButtonGroup>
 </>
-`} />
-<Attributes edit="/app/components/button-group.mdx">
-<Attributes.Title>ButtonGroup.Props</Attributes.Title>
+`} 
+/>
 
-| Attribute    | Description                 | Type                   | Accepted values             | Default   |
-| ------------ | --------------------------- | ---------------------- | --------------------------- | --------- |
-| **type**     | button type                 | `ButtonTypes`          | [ButtonTypes](#buttontypes) | `default` |
-| **ghost**    | the opposite color          | `boolean`              | -                           | `false`   |
-| **vertical** | show all buttons vertically | `boolean`              | -                           | `false`   |
-| **disabled** | disable all buttons         | `boolean`              | -                           | `false`   |
-| ...          | native props                | `ButtonHTMLAttributes` | `'id', 'className', ...`    | -         |
-
-<Attributes.Title>ButtonTypes</Attributes.Title>
-
-```ts
-type ButtonTypes =
-  | 'default'
-  | 'secondary'
-  | 'success'
-  | 'warning'
-  | 'error'
-  | 'abort'
-```
-
-</Attributes>
+<Attributes component="ButtonGroup" edit="/app/components/button-group.mdx"></Attributes>

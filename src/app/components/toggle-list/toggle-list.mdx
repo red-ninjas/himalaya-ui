@@ -1,4 +1,4 @@
-import { Layout, Playground, Attributes } from 'lib/components';
+import { Playground, Attributes } from 'lib/components';
 import { ToggleList } from 'components';
 import { List } from 'components/icons';
 
@@ -49,42 +49,4 @@ Displays a toggle list event
 `}
 />
 
-<Attributes edit="/app/components/toggle-list.mdx">
-<Attributes.Title>ToggleList.Props</Attributes.Title>
-
-| Attribute          | Description               | Type                  | Accepted values                    | Default   |
-| ------------------ | ------------------------- | --------------------- | ---------------------------------- | --------- |
-| **checked**        | checked or not            | `boolean`             | -                                  | -         |
-| **initialChecked** | checked or not on initial | `boolean`             | -                                  | `false`   |
-| **onChange**       | change event handler      | `ToggleEvent`         | -                                  | -         |
-| **type**           | current type              | `ToggleTypes`         | [ToggleTypes](#toggletypes)        | `default` |
-| **disabled**       | disable toggle            | `boolean`             | -                                  | `false`   |
-| ...                | native props              | `LabelHTMLAttributes` | `'from', 'name', 'className', ...` | -         |
-
-<Attributes.Title>ToggleListEvent</Attributes.Title>
-
-```ts
-interface ToggleListEventTarget {
-  checked: boolean;
-}
-
-export interface ToggleListEvent {
-  target: ToggleEventTarget;
-  stopPropagation: () => void;
-  preventDefault: () => void;
-  nativeEvent: React.ChangeEvent;
-}
-```
-
-<Attributes.Title>ToggleListItem.Props</Attributes.Title>
-
-| Attribute          | Description               | Type                  | Accepted values                    | Default   |
-| ------------------ | ------------------------- | --------------------- | ---------------------------------- | --------- |
-| **checked**        | checked or not            | `boolean`             | -                                  | -         |
-| **initialChecked** | checked or not on initial | `boolean`             | -                                  | `false`   |
-| **onChange**       | change event handler      | `ToggleEvent`         | -                                  | -         |
-| **type**           | current type              | `ToggleTypes`         | [ToggleTypes](#toggletypes)        | `default` |
-| **disabled**       | disable toggle            | `boolean`             | -                                  | `false`   |
-| ...                | native props              | `LabelHTMLAttributes` | `'from', 'name', 'className', ...` | -         |
-
-</Attributes>
+<Attributes component="ToggleList" edit="/app/components/toggle-list.mdx"></Attributes>

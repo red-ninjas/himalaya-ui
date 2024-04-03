@@ -1,4 +1,4 @@
-import { Layout, Playground, Attributes } from 'lib/components'
+import { Playground, Attributes } from 'lib/components'
 import { useModal, Modal, Button } from 'components'
 
 export const meta = {
@@ -37,21 +37,4 @@ This hooks also supports use on [Select component](/components/select 'Select Co
 }`}
 />
 
-<Attributes edit="/app/hooks/use-modal.mdx" >
-<Attributes.Title>useModal</Attributes.Title>
-
-```ts
-type useModal = (initialVisible: boolean) => {
-  visible: boolean
-  setVisible: Dispatch<SetStateAction<boolean>>
-  currentRef: MutableRefObject<boolean>
-  bindings: {
-    visible: boolean
-    onClose: () => void
-  }
-}
-```
-
-</Attributes>
-
-;
+<Attributes component="useModal" edit="/app/hooks/use-modal.mdx"></Attributes>

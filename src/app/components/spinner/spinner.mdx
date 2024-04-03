@@ -1,4 +1,4 @@
-import { Layout, Playground, Attributes } from 'lib/components'
+import { Playground, Attributes } from 'lib/components'
 import { Spinner } from 'components'
 
 export const meta = {
@@ -19,11 +19,5 @@ As an indicator of load waiting, see also component [Loading](/components/loadin
 `}
 />
 
-<Attributes edit="/app/components/spinner.mdx">
-<Attributes.Title>Spinner.Props</Attributes.Title>
+<Attributes component="Spinner" edit="/app/components/spinner.mdx"></Attributes>
 
-| Attribute | Description  | Type             | Accepted values          | Default |
-| --------- | ------------ | ---------------- | ------------------------ | ------- |
-| ...       | native props | `HTMLAttributes` | `'id', 'className', ...` | -       |
-
-</Attributes>

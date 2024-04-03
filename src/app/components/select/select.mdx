@@ -1,4 +1,4 @@
-import { Layout, Playground, Attributes } from 'lib/components'
+import { Playground, Attributes } from 'lib/components'
 import { Select, Spacer, Code, Modal, useModal, Button } from 'components'
 
 export const meta = {
@@ -223,54 +223,4 @@ The Select contain an additional Hooks, see subsection [useModal](/hooks/use-mod
 }`}
 />
 
-<Attributes edit="/app/components/select.mdx">
-<Attributes.Title>Select.Props</Attributes.Title>
-
-| Attribute                   | Description                                              | Type                         | Accepted values             | Default         |
-| --------------------------- | -------------------------------------------------------- | ---------------------------- | --------------------------- | --------------- |
-| **value**                   | selected value                                           | `string`, `string[]`         | -                           | -               |
-| **initialValue**            | initial value                                            | `string`, `string[]`         | -                           | -               |
-| **placeholder**             | placeholder string                                       | `string`                     | -                           | -               |
-| **width**                   | css width value of select                                | `string`                     | -                           | `initial`       |
-| **type**                    | current type                                             | `SelectTypes`                | [SelectTypes](#selecttypes) | `default`       |
-| **icon**                    | icon component                                           | `ComponentType`              | -                           | `SVG Component` |
-| **pure**                    | remove icon component                                    | `boolean`                    | -                           | `false`         |
-| **multiple**                | support multiple selection                               | `boolean`                    | -                           | `false`         |
-| **clearable**               | add clear icon on multiple selection (ignored otherwise) | `boolean`                    | -                           | `true`          |
-| **disabled**                | disable current radio                                    | `boolean`                    | -                           | `false`         |
-| **onChange**                | selected value                                           | `(val: string                | string[]) => void`          | -               |
-| **dropdownClassName**       | className of dropdown menu                               | `string`                     | -                           | -               |
-| **dropdownStyle**           | style of dropdown menu                                   | `object`                     | -                           | -               |
-| **disableMatchWidth**       | disable Option from follow Select width                  | `boolean`                    | -                           | `false`         |
-| **getPopupContainer**       | dropdown render parent element, the default is `body`    | `() => HTMLElement`          | -                           | -               |
-| **onDropdownVisibleChange** | dropdown change events                                   | `(visible: boolean) => void` | -                           | -               |
-| **ref**                     | forwardRef                                               | `SelectRef`                  | [SelectRef](#selectref)     | -               |
-| ...                         | native props                                             | `HTMLAttributes`             | `'name', 'alt', ...`        | -               |
-
-<Attributes.Title>Select.Option.Props</Attributes.Title>
-
-| Attribute           | Description            | Type             | Accepted values     | Default |
-| ------------------- | ---------------------- | ---------------- | ------------------- | ------- |
-| **value**(required) | unique ident value     | `string`         | -                   | -       |
-| **disabled**        | disable current option | `boolean`        | -                   | `false` |
-| **divider**         | display a line         | `boolean`        | -                   | `false` |
-| **label**           | display a group title  | `boolean`        | -                   | `false` |
-| ...                 | native props           | `HTMLAttributes` | `'name', 'id', ...` | -       |
-
-<Attributes.Title>SelectRef</Attributes.Title>
-
-```ts
-type SelectRef = {
-  focus: () => void
-  blur: () => void
-  scrollTo?: (options?: ScrollToOptions) => void
-}
-```
-
-<Attributes.Title>SelectTypes</Attributes.Title>
-
-```ts
-type SelectTypes = 'default' | 'primary' | 'tertiary' | 'secondary' | 'success' | 'warning' | 'error'
-```
-
-</Attributes>
+<Attributes component="Select" edit="/app/components/select.mdx"></Attributes>

@@ -1,4 +1,4 @@
-import { Layout, Playground, Attributes } from 'lib/components';
+import { Playground, Attributes } from 'lib/components';
 import { Footer, FooterNavigation, FooterBottom, Link } from 'components';
 
 export const meta = {
@@ -40,27 +40,4 @@ The `Footer` UI component is a versatile element designed to be placed at the bo
   `}
 />
 
-<Attributes edit="/app/components/footer.mdx">
-<Attributes.Title>Footer.Block.Props & Footer.Bottom.Block.Props</Attributes.Title>
-
-| Attribute | Description       | Type             | Accepted values                                                                        | Default      |
-| --------- | ----------------- | ---------------- | -------------------------------------------------------------------------------------- | ------------ |
-| justify?  | position of block | `string`         | `'flex-start', 'center', 'flex-end', 'space-between', 'space-around', 'space-evenly',` | `flex-start` |
-| ...       | native props      | `HTMLAttributes` | `'id', 'className', ...`                                                               | -            |
-
-<Attributes.Title>FooterNavigation.Props</Attributes.Title>
-
-| Attribute | Description                  | Type             | Accepted values          | Default |
-| --------- | ---------------------------- | ---------------- | ------------------------ | ------- |
-| title     | Heading of Footer Navigation | `string`         | -                        | -       |
-| ...       | native props                 | `HTMLAttributes` | `'id', 'className', ...` | -       |
-
-<Attributes.Title>FooterNavigation.Item.Props</Attributes.Title>
-
-| Attribute | Description                     | Type             | Accepted values                | Default |
-| --------- | ------------------------------- | ---------------- | ------------------------------ | ------- |
-| href      | Link for navigation item        | `string`         | -                              | -       |
-| target    | Target property for anchor link | `string`         | `_blank, _self, _parent, _top` | `_self` |
-| ...       | native props                    | `HTMLAttributes` | `'id', 'className', ...`       | -       |
-
-</Attributes>
+<Attributes component="Footer" edit="/app/components/footer.mdx"></Attributes>

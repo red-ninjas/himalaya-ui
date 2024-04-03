@@ -1,5 +1,5 @@
 import { PageWidth, Button } from 'components'
-import { Layout, Playground, Attributes, MockPage } from 'lib/components'
+import { Playground, Attributes, MockPage } from 'lib/components'
 
 export const meta = {
   title: 'Page width',
@@ -34,11 +34,4 @@ Displays the content with maximum page width given by the ui provider with equal
 `}
 />
 
-<Attributes edit="/app/components/note.mdx">
-<Attributes.Title>PageWidth.PageWidthProps</Attributes.Title>
-
-| Attribute  | Description  | Type                         | Accepted values          | Default   |
-| ---------- | ------------ | ---------------------------- | ------------------------ | --------- |
-| ...        | native props | `HTMLDivAttributes`             | `'id', 'className', ...` | -         |
-
-</Attributes>
+<Attributes component="PageWidth" edit="/app/components/page-width.mdx"></Attributes>

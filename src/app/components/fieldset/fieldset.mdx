@@ -1,4 +1,4 @@
-import { Layout, Playground, Attributes } from 'lib/components'
+import { Playground, Attributes } from 'lib/components'
 import { Card, Fieldset, Button, Text, Divider } from 'components'
 
 export const meta = {
@@ -103,35 +103,4 @@ Display a collection of related information in a single unit.
 `}
 />
 
-<Attributes edit="/app/components/fieldset.mdx">
-<Attributes.Title>Fieldset.Props</Attributes.Title>
-
-| Attribute    | Description                        | Type                     | Accepted values            | Default |
-| ------------ | ---------------------------------- | ------------------------ | -------------------------- | ------- |
-| **value**    | unique ident value (only in group) | `string`                 | -                          | -       |
-| **label**    | group tab text (only in group)     | `string`                 | -                          | -       |
-| **title**    | title of fieldset                  | `ReactNode` / `string`   | -                          | -       |
-| **subtitle** | subtitle of fieldset               | `ReactNode` / `string`   | -                          | -       |
-| ...          | native props                       | `FieldsetHTMLAttributes` | `'name', 'className', ...` | -       |
-
-<Attributes.Title alias="Fieldset.Body">Fieldset.Content.Props</Attributes.Title>
-
-| Attribute | Description  | Type             | Accepted values | Default |
-| --------- | ------------ | ---------------- | --------------- | ------- |
-| ...       | native props | `HTMLAttributes` | -               | -       |
-
-<Attributes.Title>Fieldset.Footer.Props</Attributes.Title>
-
-| Attribute | Description  | Type             | Accepted values | Default |
-| --------- | ------------ | ---------------- | --------------- | ------- |
-| ...       | native props | `HTMLAttributes` | -               | -       |
-
-<Attributes.Title>Fieldset.Group.Props</Attributes.Title>
-
-| Attribute    | Description        | Type                      | Accepted values | Default |
-| ------------ | ------------------ | ------------------------- | --------------- | ------- |
-| **value**    | selected tab value | `string`                  | -               | -       |
-| **onChange** | change tab event   | `(value: string) => void` | -               | -       |
-| ...          | native props       | `HTMLAttributes`          | -               | -       |
-
-</Attributes>
+<Attributes component="Fieldset" edit="/app/components/fieldset.mdx"></Attributes>

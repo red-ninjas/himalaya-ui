@@ -1,4 +1,4 @@
-import { Layout, Playground, Attributes } from 'lib/components'
+import { Playground, Attributes } from 'lib/components'
 import { Spacer, Search, Button, useConfig, ConfigProvider } from 'components'
 import { SearchProvider } from 'components/use-search'
 import useSearch from 'components/use-search'
@@ -51,14 +51,4 @@ The `useSearch` utility provides a flexible way to manage and control search fun
   />
 </SearchProvider>
 
-<Attributes edit="/app/hooks/use-search.mdx">
-<Attributes.Title>useSearch</Attributes.Title>
-
-```ts
-type useSearch = (initialValue: string) => {
-  isEnabled: boolean
-  setIsEnabled: (value: boolean) => void
-}
-```
-
-</Attributes>
+<Attributes component="useSearch" edit="/app/hooks/use-search.mdx"></Attributes>

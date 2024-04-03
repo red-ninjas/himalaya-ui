@@ -1,4 +1,4 @@
-import { Layout, Playground, Attributes } from 'lib/components'
+import { Playground, Attributes } from 'lib/components'
 import { ShowMore, Skeleton } from 'components'
 import { useState } from 'react'
 
@@ -51,17 +51,4 @@ Styling component to show expanded or collapsed content.
 `}
 />
 
-
-<Attributes edit="/app/components/show-more.mdx">
-  <Attributes.Title>ShowMore.Props</Attributes.Title>
-
-| Attribute       | Description                                          | Type              | Accepted Values                        | Default          |
-|-----------------|------------------------------------------------------|-------------------|----------------------------------------|------------------|
-| **expanded**    | Indicates whether content is expanded or collapsed.  | `boolean`         | `true` (expanded), `false` (collapsed) | `false`          |
-| **onClick**     | Callback function to handle the click event.         | `() => void`      | -                                      | -                |
-| **showLines**   | Controls the visibility of lines around the button.  | `boolean`         | `true`, `false`                        | `true`           |
-| **showMoreTitle** | Title for the button when content is collapsed.   | `string`          | Any string                             | `"Show more"`    |
-| **showLessTitle** | Title for the button when content is expanded.    | `string`          | Any string                             | `"Show less"`    |
-| ...              | native props         | `HTMLAttributes`          | `'id', 'className', ...` | -       |
-
-</Attributes>
+<Attributes component="ShowMore" edit="/app/components/show-more.mdx"></Attributes>

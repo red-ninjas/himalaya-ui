@@ -1,7 +1,7 @@
 import Title from 'lib/components/playground/title';
 import Github from 'components/icons/github';
 import { Spacer, Tabs, Snippet } from 'components';
-import { Layout, Playground, Attributes, IconsGallery } from 'lib/components';
+import { Playground, Attributes, IconsGallery } from 'lib/components';
 
 export const meta = {
   title: 'Icons',
@@ -53,13 +53,5 @@ The `Icon` component is a dynamic tool for effortlessly incorporating over 350 s
 
 <IconsGallery />
 
-<Attributes edit="/app/components/icons.mdx">
-<Attributes.Title>Icon.Props</Attributes.Title>
+<Attributes component="Icons" edit="/app/components/icons.mdx"></Attributes>
 
-| Attribute | Description  | Type            | Accepted values                  | Default |
-| --------- | ------------ | --------------- | -------------------------------- | ------- |
-| **color** | Icon color   | `string`        | -                                | -       |
-| **size**  | Icon size    | `number`        | -                                | -       |
-| ...       | Native props | `SVGAttributes` | `'id', 'name', 'className', ...` | -       |
-
-</Attributes>

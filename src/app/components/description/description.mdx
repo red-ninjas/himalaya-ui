@@ -1,4 +1,4 @@
-import { Layout, Playground, Attributes } from 'lib/components'
+import { Playground, Attributes } from 'lib/components'
 import { Description, Code } from 'components'
 
 export const meta = {
@@ -27,13 +27,4 @@ Display brief information with a title and description.
 `}
 />
 
-<Attributes edit="/app/components/description.mdx">
-<Attributes.Title>Description.Props</Attributes.Title>
-
-| Attribute   | Description  | Type                   | Accepted values | Default |
-| ----------- | ------------ | ---------------------- | --------------- | ------- |
-| **title**   | title text   | `ReactNode` / `string` | -               | -       |
-| **content** | title text   | `ReactNode` / `string` | -               | -       |
-| ...         | native props | `HTMLAttributes`       | -               | -       |
-
-</Attributes>
+<Attributes component="Description" edit="/app/components/description.mdx"></Attributes>

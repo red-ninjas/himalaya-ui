@@ -1,4 +1,4 @@
-import { Layout, Playground, Attributes } from 'lib/components'
+import { Playground, Attributes } from 'lib/components'
 import { useCurrentState, Link, Button, Spacer } from 'components'
 
 export const meta = {
@@ -37,19 +37,5 @@ This is custom React hooks, you need to follow the <Link target="_blank" color h
 `}
 />
 
-<Attributes edit="/app/hooks/use-current-state.mdx">
-<Attributes.Title>useCurrentState</Attributes.Title>
+<Attributes component="useCurrentState" edit="/app/hooks/use-current-state.mdx"></Attributes>
 
-```ts
-type CurrentStateType<S> = [
-  S,
-  Dispatch<SetStateAction<S>>,
-  MutableRefObject<S>,
-]
-
-const useCurrentState<S> = (
-  initialState: S | () => S,
-) => CurrentStateType<S>
-```
-
-</Attributes>

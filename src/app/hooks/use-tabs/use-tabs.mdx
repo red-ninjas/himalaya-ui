@@ -1,4 +1,4 @@
-import { Layout, Playground, Attributes } from 'lib/components'
+import { Playground, Attributes } from 'lib/components'
 import { useTabs, Tabs, Button, Spacer } from 'components'
 
 export const meta = {
@@ -34,19 +34,5 @@ Using this hooks behaves the same as if you had added `React.useState` manually.
 `}
 />
 
-<Attributes edit="/app/hooks/use-tabs.mdx" >
-<Attributes.Title>useTabs</Attributes.Title>
+<Attributes component="useTabs" edit="/app/hooks/use-tabs.mdx"></Attributes>
 
-```ts
-type useTabs = (initialValue: string) => {
-  state: string
-  setState: Dispatch<SetStateAction<string>>
-  currentRef: MutableRefObject<string>
-  bindings: {
-    value: string
-    onChange: (val: string) => void
-  }
-}
-```
-
-</Attributes>

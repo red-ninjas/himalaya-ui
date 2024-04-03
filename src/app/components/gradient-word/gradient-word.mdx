@@ -1,4 +1,4 @@
-import { Layout, Playground, Attributes } from 'lib/components'
+import { Playground, Attributes } from 'lib/components'
 import { GradientWord } from 'components'
 
 export const meta = {
@@ -22,13 +22,4 @@ The `GradientWord UI` component adds captivating gradient effects to text, enhan
   `}
 />
 
-<Attributes edit="/app/components/gradient-word.mdx">
-<Attributes.Title>GradientWord.Props</Attributes.Title>
-
-| Attribute      | Description                        | Type             | Accepted values                    | Default                                                 |
-| -------------- | ---------------------------------- | ---------------- | ---------------------------------- | ------------------------------------------------------- |
-| gradient?      | degrees, starting and ending color | `object`         | `{ from: '', to: '', degrees: ''}` | `{ from: 'red', to: 'blue', degrees: 'to left bottom'}` |
-| animationTime? | time to complete the animation     | `string`         | -                                  | `8000` (in milliseconds)                                |
-| ...            | native props                       | `HTMLAttributes` | `'id', 'className', ...`           | -                                                       |
-
-</Attributes>
+<Attributes component="GradientWord" edit="/app/components/gradient-word.mdx"></Attributes>

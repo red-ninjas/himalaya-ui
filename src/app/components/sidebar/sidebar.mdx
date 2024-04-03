@@ -1,4 +1,4 @@
-import { Layout, Playground, Attributes, MockPage } from 'lib/components';
+import { Playground, Attributes, MockPage } from 'lib/components';
 import { Sidebar, Page, Button, PageWidth, Text } from 'components';
 import { Home } from 'components/icons';
 import NextLink from 'next/link';
@@ -41,28 +41,4 @@ Display a sidebar
 `}
 />
 
-
-<Attributes edit="/app/components/sidebar.mdx">
-<Attributes.Title>Sidebar.Props</Attributes.Title>
-
-| Attribute  | Description    | Type              | Accepted values          | Default |
-| ---------- | -------------- | ----------------- | ------------------------ | ------- |
-| **header** | Header content | `React.ReactNode` | -                        | -       |
-| ...        | native props   | `HTMLAttributes`  | `'id', 'className', ...` | -       |
-
-<Attributes.Title>SidebarGroup.Props</Attributes.Title>
-
-| Attribute    | Description                    | Type             | Accepted values          | Default |
-| ------------ | ------------------------------ | ---------------- | ------------------------ | ------- |
-| **title**    | The title of the sidebar group | `string`         | -                        | -       |
-| **isActive** | Whether the group is active    | `boolean`        | -                        | -       |
-| ...          | native props                   | `HTMLAttributes` | `'id', 'className', ...` | -       |
-
-<Attributes.Title>SidebarLink.Props</Attributes.Title>
-
-| Attribute | Description        | Type             | Accepted values          | Default |
-| --------- | ------------------ | ---------------- | ------------------------ | ------- |
-| **href**  | The URL to link to | `string`         | -                        | -       |
-| ...       | native props       | `HTMLAttributes` | `'id', 'className', ...` | -       |
-
-</Attributes>
+<Attributes component="Sidebar" edit="/app/components/sidebar.mdx"></Attributes>

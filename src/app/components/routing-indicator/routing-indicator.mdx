@@ -1,4 +1,4 @@
-import { Layout, Playground, Attributes } from 'lib/components'
+import { Playground, Attributes } from 'lib/components'
 import { RoutingIndicator } from 'components'
 
 export const meta = {
@@ -21,19 +21,4 @@ The `RoutingIndicator` UI component provides visual feedback during page transit
   `}
 />
 
-<Attributes edit="/app/components/routing-indicator.mdx" >
-<Attributes.Title>RoutingIndicator.Props</Attributes.Title>
-
-| Attribute | Description        | Type        | Accepted values | Default |
-| --------- | ------------------ | ----------- | --------------- | ------- |
-| children  | Content to display | `ReactNode` | -               | -       |
-
-{' '}
-
-<Attributes.Title>Example Usage</Attributes.Title>
-
-```jsx
-<RoutingIndicator>{/* Your content */}</RoutingIndicator>
-```
-
-</Attributes >
+<Attributes component="RoutingIndicator" edit="/app/components/routing-indicator.mdx"></Attributes>

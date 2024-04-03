@@ -1,4 +1,4 @@
-import { Layout, Playground, Attributes } from 'lib/components'
+import { Playground, Attributes } from 'lib/components'
 import { Modal, Button, Code, useModal } from 'components'
 import { useState } from 'react'
 
@@ -222,67 +222,5 @@ The Modal contain an additional Hooks, see subsection [useModal](/hooks/use-moda
 `}
 />
 
-<Attributes edit="/app/components/modal.mdx">
-<Attributes.Title>Modal.Props</Attributes.Title>
 
-| Attribute                | Description                      | Type                      | Accepted values                         | Default |
-| ------------------------ | -------------------------------- | ------------------------- | --------------------------------------- | ------- |
-| **visible**              | open or close                    | `boolean`                 | -                                       | `false` |
-| **onClose**              | open event                       | `() => void`              | -                                       | -       |
-| **onContentClick**       | event from modal content         | `(e: MouseEvent) => void` | -                                       | -       |
-| **wrapClassName**        | className of the modal dialog    | `string`                  | -                                       | -       |
-| **keyboard**             | press Esc to close modal         | `boolean`                 | -                                       | `true`  |
-| **disableBackdropClick** | click background and don't close | `boolean`                 | -                                       | `false` |
-| ...                      | native props                     | `HTMLAttributes`          | `'autoFocus', 'name', 'className', ...` | -       |
-
-<Attributes.Title>Modal.Title.Props</Attributes.Title>
-
-| Attribute | Description  | Type             | Accepted values          | Default |
-| --------- | ------------ | ---------------- | ------------------------ | ------- |
-| ...       | native props | `HTMLAttributes` | `'id', 'className', ...` | -       |
-
-<Attributes.Title>Modal.Subtitle.Props</Attributes.Title>
-
-| Attribute | Description  | Type             | Accepted values          | Default |
-| --------- | ------------ | ---------------- | ------------------------ | ------- |
-| ...       | native props | `HTMLAttributes` | `'id', 'className', ...` | -       |
-
-<Attributes.Title>Modal.Content.Props</Attributes.Title>
-
-| Attribute | Description  | Type             | Accepted values          | Default |
-| --------- | ------------ | ---------------- | ------------------------ | ------- |
-| ...       | native props | `HTMLAttributes` | `'id', 'className', ...` | -       |
-
-<Attributes.Title>Modal.Action.Props</Attributes.Title>
-
-| Attribute    | Description            | Type                                               | Accepted values          | Default |
-| ------------ | ---------------------- | -------------------------------------------------- | ------------------------ | ------- |
-| **passive**  | display passive mode   | `boolean`                                          | -                        | `false` |
-| **disabled** | disable current action | `boolean`                                          | -                        | `false` |
-| **onClick**  | click handler          | [(e: ModalActionEvent) => void](#modalactionevent) | -                        | -       |
-| **loading**  | show loading           | `boolean`                                          | -                        | `false` |
-| ...          | native props           | `ButtonHTMLAttributes`                             | `'id', 'className', ...` | -       |
-
-<Attributes.Title>useModal</Attributes.Title>
-
-```ts
-type useModal = (initialVisible: boolean) => {
-  visible: boolean
-  setVisible: Dispatch<SetStateAction<boolean>>
-  currentRef: MutableRefObject<boolean>
-  bindings: {
-    visible: boolean
-    onClose: () => void
-  }
-}
-```
-
-<Attributes.Title>ModalActionEvent</Attributes.Title>
-
-```ts
-type ModalActionEvent = MouseEvent<HTMLButtonElement> & {
-  close: () => void
-}
-```
-
-</Attributes>
+<Attributes component="Modal" edit="/app/components/modal.mdx"></Attributes>

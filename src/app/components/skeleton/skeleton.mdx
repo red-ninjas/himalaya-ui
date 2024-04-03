@@ -1,5 +1,5 @@
 import { Skeleton, Button, Grid } from 'components'
-import { Layout, Playground, Attributes } from 'lib/components'
+import { Playground, Attributes } from 'lib/components'
 
 export const meta = {
   title: 'Skeleton',
@@ -58,13 +58,4 @@ Show a placeholder in place of content that is loading.
 `}
 />
 
-<Attributes edit="/pagFes/components/skeleton.mdx">
-<Attributes.Title>Skeleton.Props</Attributes.Title>
-
-| Attribute   | Description              | Type             | Accepted values    | Default |
-| ----------- | ------------------------ | ---------------- | ------------------ | ------- |
-| **animated** | enable animation         | `boolean`        | -                  | `true`  |
-| **show**    | show children            | `boolean`        | -                  | `false` |
-| ...         | native props             | `HTMLAttributes` | `'className', ...` | -       |
-
-</Attributes>
+<Attributes component="Skeleton" edit="/app/components/skeleton.mdx"></Attributes>

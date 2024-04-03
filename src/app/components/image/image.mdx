@@ -1,4 +1,4 @@
-import { Layout, Playground, Attributes } from 'lib/components'
+import { Playground, Attributes } from 'lib/components'
 import { Image, Display, Code } from 'components'
 
 export const meta = {
@@ -73,26 +73,4 @@ Display image content.
 `}
 />
 
-<Attributes edit="/app/components/image.mdx">
-<Attributes.Title>Image.Props</Attributes.Title>
-
-| Attribute             | Description                             | Type                | Accepted values           | Default |
-| --------------------- | --------------------------------------- | ------------------- | ------------------------- | ------- |
-| **src**               | image src                               | `string`            | -                         | -       |
-| **disableSkeleton**   | disable skeleton animation when loading | `boolean`           | -                         | `false` |
-| **disableAutoResize** | disable zooming when width is too small | `boolean`           | -                         | `false` |
-| **maxDelay**(ms)      | max duration of animation               | `number`            | -                         | `3000`  |
-| ...                   | native props                            | `ImgHTMLAttributes` | `'alt', 'className', ...` | -       |
-
-<Attributes.Title>Image.Browser.Props</Attributes.Title>
-
-| Attribute        | Description                           | Type                   | Accepted values          | Default |
-| ---------------- | ------------------------------------- | ---------------------- | ------------------------ | ------- |
-| **title**        | show text title (when "url" is unset) | `string`               | -                        | -       |
-| **url**          | show url on browser address input     | `string`               | -                        | -       |
-| **showFullLink** | show full url                         | `boolean`              | -                        | `false` |
-| **invert**       | invert colors                         | `boolean`              | -                        | `false` |
-| **anchorProps**  | props of element `a`                  | `AnchorHTMLAttributes` | -                        | `{}`    |
-| ...              | native props                          | `HTMLAttributes`       | `'id', 'className', ...` | -       |
-
-</Attributes>
+<Attributes component="Image" edit="/app/components/image.mdx"></Attributes>

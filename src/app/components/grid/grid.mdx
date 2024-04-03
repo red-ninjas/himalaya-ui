@@ -1,4 +1,4 @@
-import { Layout, Playground, Attributes } from 'lib/components'
+import { Playground, Attributes } from 'lib/components'
 import { Grid, Card, ConfigProvider } from 'components'
 import PlaygroundTitle from 'lib/components/playground/title'
 
@@ -150,71 +150,4 @@ const App = () => {
 }
 ```
 
-<Attributes edit="/app/components/grid.mdx">
-<Attributes.Title>Grid.Props</Attributes.Title>
-
-| Attribute        | Description                                           | Type             | Accepted values               | Default      |
-| ---------------- | ----------------------------------------------------- | ---------------- | ----------------------------- | ------------ |
-| **justify**      | CSS "justify-content" property                        | `Justify`        | [Justify](#justify)           | `flex-start` |
-| **alignItems**   | CSS "align-items" property                            | `AlignItems`     | [AlignItems](#alignitems)     | `stretch`    |
-| **alignContent** | CSS "align-content" property                          | `AlignContent`   | [AlignContent](#aligncontent) | `flex-start` |
-| **direction**    | CSS "flex-direction" property                         | `Direction`      | [Direction](#direction)       | `row`        |
-| **xs**           | width of grid, for `xs` breakpoints and wider screens | `number`         | `0 - 24`, `boolean`           | `false`      |
-| **sm**           | width of grid, for `sm` breakpoints and wider screens | `number`         | `0 - 24`, `boolean`           | `false`      |
-| **md**           | width of grid, for `md` breakpoints and wider screens | `number`         | `0 - 24`, `boolean`           | `false`      |
-| **lg**           | width of grid, for `lg` breakpoints and wider screens | `number`         | `0 - 24`, `boolean`           | `false`      |
-| **xl**           | width of grid, for `xl` breakpoints and wider screens | `number`         | `0 - 24`, `boolean`           | `false`      |
-| ...              | native props                                          | `HTMLAttributes` | `'id', 'className', ...`      | -            |
-
-<Attributes.Title>Grid.Container.Props</Attributes.Title>
-
-| Attribute | Description              | Type               | Accepted values           | Default |
-| --------- | ------------------------ | ------------------ | ------------------------- | ------- |
-| **gap**   | spacing of children  xAxis    | `number` / `float` | -                         | 0       |
-| **rowGap**   | spacing of children  yAxis    | `number` / `float` | -                         | 0       |
-| **wrap**  | CSS "flex-wrap" property | `Wrap`             | [Wrap](#wrap)             | `wrap`  |
-| ...       | Grid props               | `Grid.Props`       | [Grid.Props](#grid.props) | -       |
-
-<Attributes.Title>Justify</Attributes.Title>
-
-```ts
-type Justify =
-  | 'flex-start'
-  | 'center'
-  | 'flex-end'
-  | 'space-between'
-  | 'space-around'
-  | 'space-evenly'
-```
-
-<Attributes.Title>AlignItems</Attributes.Title>
-
-```ts
-type AlignItems = 'flex-start' | 'center' | 'flex-end' | 'stretch' | 'baseline'
-```
-
-<Attributes.Title>AlignContent</Attributes.Title>
-
-```ts
-type AlignContent =
-  | 'stretch'
-  | 'center'
-  | 'flex-start'
-  | 'flex-end'
-  | 'space-between'
-  | 'space-around'
-```
-
-<Attributes.Title>Direction</Attributes.Title>
-
-```ts
-type Direction = 'row' | 'row-reverse' | 'column' | 'column-reverse'
-```
-
-<Attributes.Title>Wrap</Attributes.Title>
-
-```ts
-type Wrap = 'nowrap' | 'wrap' | 'wrap-reverse'
-```
-
-</Attributes>
+<Attributes component="Grid" edit="/app/components/grid.mdx"></Attributes>

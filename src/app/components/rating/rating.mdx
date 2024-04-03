@@ -1,4 +1,4 @@
-import { Layout, Playground, Attributes } from 'lib/components'
+import { Playground, Attributes } from 'lib/components'
 import { Rating, Grid, Spacer } from 'components'
 import { useState } from 'react'
 import { Award, Github } from 'components/icons'
@@ -78,37 +78,5 @@ Display an indicator of rankings with stars.
 `}
 />
 
-<Attributes edit="/app/components/rating.mdx">
-<Attributes.Title>Rating.Props</Attributes.Title>
 
-| Attribute          | Description         | Type                    | Accepted values             | Default   |
-| ------------------ | ------------------- | ----------------------- | --------------------------- | --------- |
-| **type**           | rating type         | `RatingTypes`           | [RatingTypes](#ratingtypes) | `default` |
-| **icon**           | custom icon         | `JSX.Element`           | -                           | -         |
-| **count**          | rating star count   | `number`                | [RatingCount](#ratingcount) | `5`       |
-| **value**          | star values         | `number`                | [RatingValue](#ratingvalue) | -         |
-| **initialValue**   | initial star values | `number`                | [RatingValue](#ratingvalue) | `1`       |
-| **onValueChange**  | value change event  | `(value?: any) => void` | -                           | -         |
-| **locked**         | lock state          | `boolean`               | -                           | `false`   |
-| **onLockedChange** | locked change event | `(value?: any) => void` | -                           | -         |
-| ...                | native props        | `HTMLAttributes`        | -                           | -         |
-
-<Attributes.Title>RatingTypes</Attributes.Title>
-
-```ts
-type RatingTypes = 'default' | 'tertiary' | 'primary' | 'secondary' | 'success' | 'warning' | 'error'
-```
-
-<Attributes.Title>RatingCount</Attributes.Title>
-
-```ts
-type RatingCount = 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10
-```
-
-<Attributes.Title>RatingValue</Attributes.Title>
-
-```ts
-type RatingValue = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10
-```
-
-</Attributes>
+<Attributes component="Rating" edit="/app/components/rating.mdx"></Attributes>

@@ -1,4 +1,4 @@
-import { Layout, Playground, Attributes } from 'lib/components';
+import { Playground, Attributes } from 'lib/components';
 import { Progress, Spacer, Button } from 'components';
 import { useState } from 'react';
 
@@ -78,23 +78,4 @@ Display progress relative to a limit or related to a task.
 `}
 />
 
-<Attributes edit="/app/components/progress.mdx">
-<Attributes.Title>Progress.Props</Attributes.Title>
-
-| Attribute       | Description            | Type                        | Accepted values                 | Default   |
-| --------------- | ---------------------- | --------------------------- | ------------------------------- | --------- |
-| **value**       | current value          | `number`                    | -                               | 0         |
-| **max**         | max value              | `number`                    | -                               | 100       |
-| **fixedTop**    | fix progress to top    | `boolean`                   | -                               | `false`   |
-| **fixedBottom** | fix progress to bottom | `boolean`                   | -                               | `false`   |
-| **colors**      | custom colors          | `{ [key: number]: string }` | -                               | -         |
-| **type**        | predefined state types | `ProgressTypes`             | [ProgressTypes](#progresstypes) | `default` |
-| ...             | native props           | `ProgressHTMLAttributes`    | `'aria-busy', ...`              | -         |
-
-<Attributes.Title>ProgressTypes</Attributes.Title>
-
-```ts
-type ProgressTypes = 'default' | 'secondary' | 'success' | 'warning' | 'error';
-```
-
-</Attributes>
+<Attributes component="Progress" edit="/app/components/progress.mdx"></Attributes>

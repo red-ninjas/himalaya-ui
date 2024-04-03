@@ -1,4 +1,4 @@
-import { Layout, Playground, Attributes } from 'lib/components'
+import { Playground, Attributes } from 'lib/components'
 import { Button } from 'components'
 
 export const meta = {
@@ -76,11 +76,4 @@ useClasses(0) // output -> ""
 useClasses(false, 'btn', '') // output -> "btn"
 ```
 
-<Attributes edit="/app/hooks/use-classes.mdx">
-<Attributes.Title>useClasses</Attributes.Title>
-
-```ts
-type useClasses = (input: string | Object | null | undefined | boolean | number) => string
-```
-
-</Attributes>
+<Attributes component="useClasses" edit="/app/hooks/use-classes.mdx"></Attributes>

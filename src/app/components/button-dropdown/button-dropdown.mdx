@@ -102,31 +102,4 @@ Display related but alternate actions for a button.
 `}
 />
 
-<Attributes edit="/app/components/button-dropdown.mdx">
-<Attributes.Title>ButtonDropdown.Props</Attributes.Title>
-
-| Attribute    | Description               | Type                  | Accepted values                             | Default              |
-| ------------ | ------------------------- | --------------------- | ------------------------------------------- | -------------------- |
-| **type**     | button type               | `ButtonDropdownTypes` | [ButtonDropdownTypes](#buttondropdowntypes) | `default`            |
-| **loading**  | display loading indicator | `boolean`             | -                                           | `false`              |
-| **auto**     | autoscale width           | `boolean`             | -                                           | `false`              |
-| **disabled** | disable button            | `boolean`             | -                                           | `false`              |
-| **icon**     | custom right icon         | `ReactNode`           | -                                           | `ButtonDropdownIcon` |
-| ...          | native props              | `HTMLAttributes`      | `'autoFocus', 'name', 'className', ...`     | -                    |
-
-<Attributes.Title>ButtonDropdown.Item.Props</Attributes.Title>
-
-| Attribute   | Description     | Type                   | Accepted values                             | Default   |
-| ----------- | --------------- | ---------------------- | ------------------------------------------- | --------- |
-| **type**    | button type     | `ButtonDropdownTypes`  | [ButtonDropdownTypes](#buttondropdowntypes) | `default` |
-| **main**    | the main action | `boolean`              | -                                           | `false`   |
-| **onClick** | event handler   | `MouseEventHandler`    | -                                           | -         |
-| ...         | native props    | `ButtonHTMLAttributes` | `'id', 'name', 'className', ...`            | -         |
-
-<Attributes.Title>ButtonDropdownTypes</Attributes.Title>
-
-```ts
-type ButtonDropdownTypes = 'default' | 'secondary' | 'success' | 'warning' | 'error'
-```
-
-</Attributes>
+<Attributes component="ButtonDropdown" edit="/app/components/button-dropdown.mdx"></Attributes>

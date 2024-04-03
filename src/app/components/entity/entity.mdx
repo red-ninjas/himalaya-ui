@@ -1,4 +1,4 @@
-import { Layout, Playground, Attributes } from 'lib/components';
+import { Playground, Attributes } from 'lib/components';
 import { Entity, Link, Image, Checkbox, Button, Footer, Avatar, FooterNavigation, FooterBottom, Input, Skeleton, Menu, Divider } from 'components';
 import Logo from 'components/header/title';
 
@@ -274,43 +274,4 @@ The `Entity` UI component is designed to display a collection of related informa
 `}
 />
 
-<Attributes edit="/app/components/entity.mdx">
-<Attributes.Title>Entity.Props</Attributes.Title>
-
-| Attribute  | Description                                           | Type             | Accepted values            | Default |
-| ---------- | ----------------------------------------------------- | ---------------- | -------------------------- | ------- |
-| thumbnail? | To add a thumbnail on left side                       | `ReactElement`   | -                          | null    |
-| footer?    | To add elements at the footer of entity.              | `ReactElement`   | -                          | null    |
-| actions?   | To add action buttons in the entity                   | `ReactElement`   | -                          | null    |
-| checkbox?  | To add a checkbox on left side                        | `ReactElement`   | -                          | null    |
-| menuItems? | To add a menu item with three dots icon on right side | `ReactElement`   | -                          | null    |
-| disable?   | To disable the entity entity                          | `ReactElement`   | -                          | null    |
-| ...        | native props                                          | `HTMLAttributes` | `'name', 'className', ...` | -       |
-
-<Attributes.Title>Entity.Field.Props</Attributes.Title>
-
-| Attribute    | Description                                    | Type                     | Accepted values          | Default |
-| ------------ | ---------------------------------------------- | ------------------------ | ------------------------ | ------- |
-| title?       | To add title for entity field                  | `string`                 | -                        | null    |
-| description? | To add description for entity field            | `string`/ `ReactElement` | -                        | null    |
-| active?      | To enable or disable the state of entity field | `boolean`                | `true` / `false`         | `true`  |
-| width?       | To set the width of entity field               | `string`                 | -                        | `auto`  |
-| right?       | To right align the entity field                | `boolean`                | `true` / `false`         | `false` |
-| avatar?      | To add any avatar in the entity field          | `ReactElement`           | -                        | null    |
-| skeleton?    | To show skeleton in the entity field           | `ReactElement`           | -                        | null    |
-| ...          | native props                                   | `HTMLAttributes`         | `'id', 'className', ...` | -       |
-
-<Attributes.Title>Entity.Form.Props</Attributes.Title>
-
-| Attribute          | Description                           | Type                      | Accepted values          | Default   |
-| ------------------ | ------------------------------------- | ------------------------- | ------------------------ | --------- |
-| title?             | To add title for entity form          | `ReactElement` / `string` | -                        | `Add New` |
-| primaryAction?     | To add actions on the bottom right    | `ReactElement`            | -                        | `null`    |
-| secondaryAction?   | To add actions on the bottom right    | `ReactElement`            | -                        | `null`    |
-| destructiveAction? | To add actions on the bottom left     | `ReactElement`            | -                        | `null`    |
-| extraActions?      | To add actions on the top left        | `ReactElement`            | -                        | `null`    |
-| footerNote?        | To add note in the entity form footer | `ReactElement` / `string` | -                        | `null`    |
-| footerSeparator?   | To have a separator line for footer   | `boolean`                 | `true` / `false`         | `true`    |
-| ...                | native props                          | `HTMLAttributes`          | `'id', 'className', ...` | -         |
-
-</Attributes>
+<Attributes component="Entity" edit="/app/components/entity.mdx"></Attributes>

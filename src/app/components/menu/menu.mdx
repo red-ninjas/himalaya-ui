@@ -1,4 +1,4 @@
-import { Layout, Playground, Attributes } from 'lib/components';
+import { Playground, Attributes } from 'lib/components';
 import { Menu, Link } from 'components';
 import MoreHorizontal from 'components/icons/moreHorizontal';
 import { Home } from 'components/icons';
@@ -54,36 +54,4 @@ Easily create and customize menus for your applications with the `Menu` UI compo
   `}
 />
 
-<Attributes edit="/app/components/menu.mdx">
-<Attributes.Title>Menu.Props</Attributes.Title>
-
-| Attribute  | Description       | Type                      | Accepted values          | Default       |
-| ---------- | ----------------- | ------------------------- | ------------------------ | ------------- |
-| placement? | Placement of menu | `Placement`               | -                        | `startBottom` |
-| content?:  | Content           | `ReactElement` / `string` | -                        | `Menu`        |
-| ...        | native props      | `HTMLAttributes`          | `'id', 'className', ...` | -             |
-
-<Attributes.Title>Menu.Item.Props</Attributes.Title>
-
-| Attribute | Description  | Type             | Accepted values          | Default |
-| --------- | ------------ | ---------------- | ------------------------ | ------- |
-| ...       | native props | `HTMLAttributes` | `'id', 'className', ...` | -       |
-
-<Attributes.Title>Placement</Attributes.Title>
-
-```ts
-type Placement = 'top'
-  | 'topStart',
-  | 'topEnd',
-  | 'left',
-  | 'leftStart',
-  | 'leftEnd',
-  | 'bottom',
-  | 'bottomStart',
-  | 'bottomEnd',
-  | 'right',
-  | 'rightStart',
-  | 'rightEnd',
-```
-
-</Attributes>
+<Attributes component="Menu" edit="/app/components/menu.mdx"></Attributes>

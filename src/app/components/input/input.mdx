@@ -1,4 +1,4 @@
-import { Layout, Playground, Attributes } from 'lib/components';
+import { Playground, Attributes } from 'lib/components';
 import GitIcon from 'components/icons/github';
 import { Input, Spacer, Button, Code, Text, Dot } from 'components';
 
@@ -182,20 +182,4 @@ The Input contain an additional Hooks, see subsection [useInput](/hooks/use-inpu
 `}
 />
 
-<Attributes component="Input" edit="/app/components/input.mdx">
-
-<Attributes.Title>useInput</Attributes.Title>
-
-```ts
-type useInput = (initialValue: string) => {
-  state: string;
-  setState: Dispatch<SetStateAction<string>>;
-  currentRef: MutableRefObject<string>;
-  reset: () => void;
-  bindings: {
-    value: string;
-    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  };
-};
-```
-</Attributes>
+<Attributes component="Input" edit="/app/components/input.mdx"></Attributes>

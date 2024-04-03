@@ -1,4 +1,4 @@
-import { Layout, Playground, Attributes } from 'lib/components'
+import { Playground, Attributes } from 'lib/components'
 import { AutoComplete, Spacer, Badge, Grid, Text, Code } from 'components'
 import { useState, useRef, useEffect } from 'react'
 
@@ -262,66 +262,4 @@ AutoComplete control of input field.
 `}
 />
 
-<Attributes edit="/app/components/auto-complete.mdx">
-<Attributes.Title>AutoComplete.Props</Attributes.Title>
-
-| Attribute             | Description                                           | Type                            | Accepted values                                  | Default   |
-| --------------------- | ----------------------------------------------------- | ------------------------------- | ------------------------------------------------ | --------- |
-| **options**           | options of input                                      | `AutoCompleteOptions`           | [AutoCompleteOptions](#type-autocompleteoptions) | -         |
-| **type**              | input type                                            | `AutoCompleteTypes`             | [AutoCompleteTypes](#autocompletetypes)          | `default` |
-| **initialValue**      | initial value                                         | `string`                        | -                                                | -         |
-| **value**             | current value                                         | `string`                        | -                                                | -         |
-| **width**             | container width                                       | `string`                        | -                                                | -         |
-| **clearable**         | show clear icon                                       | `boolean`                       | -                                                | `false`   |
-| **searching**         | show loading icon for search                          | `boolean`                       | -                                                | `false`   |
-| **onChange**          | value of input is changed                             | `(value: string) => void`       | -                                                | -         |
-| **onSearch**          | called when searching items                           | `(value: string) => void`       | -                                                | -         |
-| **onSelect**          | called when a option is selected                      | `(value: string) => void`       | -                                                | -         |
-| **dropdownClassName** | className of dropdown box                             | `string`                        | -                                                | -         |
-| **dropdownStyle**     | style of dropdown box                                 | `object`                        | -                                                | -         |
-| **disableMatchWidth** | disable Option from follow parent width               | `boolean`                       | -                                                | `false`   |
-| **disableFreeSolo**   | only values can be changed through Select             | `boolean`                       | -                                                | `false`   |
-| **getPopupContainer** | dropdown render parent element, the default is `body` | `() => HTMLElement`             | -                                                | `body`    |
-| **hasBorder**         | Whether the input field should have a border or not    | `boolean`                       | `true`, `false`                                  | `false`   |
-| **ref**               | forwardRef                                            | `Ref<HTMLInputElement or null>` | -                                                | -         |
-| ...                   | native props                                          | `InputHTMLAttributes`           | `'id', ...`                                      | -         |
-
-<Attributes.Title alias="AutoComplete.Option">AutoComplete.Item</Attributes.Title>
-
-| Attribute | Description          | Type             | Accepted values          | Default |
-| --------- | -------------------- | ---------------- | ------------------------ | ------- |
-| **value** | a unique ident value | `string`         | -                        | -       |
-| ...       | native props         | `HTMLAttributes` | `'id', 'className', ...` | -       |
-
-<Attributes.Title>AutoComplete.Searching</Attributes.Title>
-
-| Attribute | Description  | Type             | Accepted values          | Default |
-| --------- | ------------ | ---------------- | ------------------------ | ------- |
-| ...       | native props | `HTMLAttributes` | `'id', 'className', ...` | -       |
-
-<Attributes.Title>AutoComplete.Empty</Attributes.Title>
-
-| Attribute | Description    | Type             | Accepted values          | Default |
-| --------- | -------------- | ---------------- | ------------------------ | ------- |
-| hidden    | hide empty box | `boolean`        | -                        | `false` |
-| ...       | native props   | `HTMLAttributes` | `'id', 'className', ...` | -       |
-
-<Attributes.Title>type AutoCompleteOptions</Attributes.Title>
-
-```ts
-Array<
-  | {
-      label: string
-      value: string
-    }
-  | AutoComplete.Item
->
-```
-
-<Attributes.Title>AutoCompleteTypes</Attributes.Title>
-
-```ts
-type AutoCompleteTypes = 'default' | 'secondary' | 'success' | 'warning' | 'error'
-```
-
-</Attributes>
+<Attributes component="AutoComplete" edit="/app/components/auto-complete.mdx"></Attributes>

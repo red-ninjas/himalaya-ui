@@ -1,4 +1,4 @@
-import { Layout, Playground, Attributes } from 'lib/components'
+import { Playground, Attributes } from 'lib/components'
 import { Button, Spacer, Text, useBodyScroll } from 'components'
 
 export const meta = {
@@ -32,18 +32,5 @@ If the page's scrollbar is set to a user-defined `width` before scrolling is dis
 `}
 />
 
-<Attributes edit="/app/hooks/use-body-scroll.mdx">
-<Attributes.Title>useBodyScroll</Attributes.Title>
+<Attributes component="useBodyScroll" edit="/app/hooks/use-body-scroll.mdx"></Attributes>
 
-```ts
-type BodyScrollOptions = {
-  delayReset: number // resume scrolling after a delay, default is 0
-}
-
-const useBodyScroll = (
-  elementRef?: RefObject<HTMLElement> | null,
-  options?: BodyScrollOptions,
-) => [boolean, Dispatch<SetStateAction<boolean>>]
-```
-
-</Attributes>
