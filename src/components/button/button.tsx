@@ -153,10 +153,18 @@ const ButtonComponent = React.forwardRef<HTMLButtonElement, React.PropsWithChild
             &.ghost {
               --ui-button-color: var(--color-base);
               --ui-button-bg: transparent;
+
+              --ui-button-hover-color: var(--color-contrast);
+              --ui-button-hover-bg: var(--color-base);
+              --ui-button-hover-border-color: var(--color-border);
             }
             &.ghost.color-default {
               --ui-button-color: var(--color-contrast);
               --ui-button-bg: var(--color-base);
+
+              --ui-button-hover-color: var(--color-contrast);
+              --ui-button-hover-bg: var(--color-shade);
+              --ui-button-hover-border-color: var(--color-shade-border);
             }
           }
 

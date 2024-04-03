@@ -45,7 +45,7 @@ const NavigationComponent: React.FC<PropsWithChildren<NavigationPropsExternal>> 
     <NavigationContext.Provider value={{ onMouseOver: tabItemMouseOverHandler }}>
       <div {...props} className={useClasses('navigation', CLASS_NAMES)} ref={ref} onMouseLeave={() => setDisplayHighlight(false)}>
         <Highlight
-          background={'var(--color-background-900)'}
+          background={'var(--color-background-800)'}
           activeOpacity={1}
           hoverHeightRatio={hoverHeightRatio}
           hoverWidthRatio={hoverWidthRatio}
