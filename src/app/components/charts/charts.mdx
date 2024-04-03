@@ -1,4 +1,4 @@
-import { Layout, Playground, Attributes } from 'lib/components';
+import { Playground, Attributes } from 'lib/components';
 import { Link, Text, Code, Button, ToggleList, Spacer,  GraphDataView } from 'components';
 import Chart from 'components/chart';
 import NextLink from 'next/link';
@@ -246,35 +246,4 @@ Charts creates interactive financial charts.
 `}
 />
 
-<Attributes edit="/app/components/charts.mdx">
-<Attributes.Title>Chart.Props</Attributes.Title>
-
-| Attribute           | Description       | Type                | Accepted values | Default |
-| ------------------- | ----------------- | ------------------- | --------------- | ------- |
-| **height**          | chart height      | `number`            | -               | -       |
-| **showTime**        | show time         | `boolean`           | -               | `false` |
-| **showBottomHover** | show bottom hover | `boolean`           | -               | `false` |
-| **showPopover**     | show popover      | `boolean`           | -               | `false` |
-| **showSeconds**     | show seconds      | `boolean`           | -               | `false` |
-| **timeFormatter**   | format time       | `TimeFormatterFn`   | -               | -       |
-| **tickFormatter**   | format tick       | `TickMarkFormatter` | -               | -       |
-| **hasSides**        | chart sides       | `'right'            | 'left'          | 'both'` |
-| **viewMode**        | chart view mode   | `ChartViewMode`     | -               | -       |
-
-<Attributes.Title>ChartSeriesProps</Attributes.Title>
-
-```ts
-type ChartSeriesProps = {
-  data: ChartItem[];
-  type: 'line' | 'area' | 'bar' | 'candle';
-  side?: 'left' | 'right';
-  showTitle?: boolean;
-  visible?: boolean;
-  color: string;
-  priceLineVisible?: boolean;
-  lastValueVisible?: boolean;
-  priceFormatter?: ChartPriceFormatter;
-};
-```
-
-</Attributes>
+<Attributes component="Charts" edit="/app/components/charts.mdx"></Attributes>

@@ -1,4 +1,4 @@
-import { Layout, Playground, Attributes } from 'lib/components'
+import { Playground, Attributes } from 'lib/components'
 import { LoadingSpinner, Spacer, Grid } from 'components'
 
 export const meta = {
@@ -64,20 +64,4 @@ Indicate an action running in the background.
 `}
 />
 
-<Attributes edit="/app/components/loading-spinner.mdx">
-<Attributes.Title>LoadingSpinner.Props</Attributes.Title>
-
-| Attribute      | Description                        | Type                  | Accepted values                             | Default   |
-| -------------- | ---------------------------------- | --------------------- | ------------------------------------------- | --------- |
-| **type**       | bg-color type                      | `LoadingSpinnerTypes` | [LoadingSpinnerTypes](#loadingSpinnerTypes) | `default` |
-| **color**      | custom bg color                    | `string`              | -                                           | -         |
-| **spaceRatio** | percentage of space between points | `number`              | -                                           | 1         |
-| ...            | native props                       | `HTMLAttributes`      | `'id', 'title', 'className', ...`           | -         |
-
-<Attributes.Title>LoadingSpinnerTypes</Attributes.Title>
-
-```ts
-type loadingSpinnerTypes = 'default' | 'primary' | 'tertiary' | 'secondary' | 'success' | 'warning' | 'error'
-```
-
-</Attributes>
+<Attributes component="LoadingSpinner" edit="/app/components/loading-spinner.mdx"></Attributes>

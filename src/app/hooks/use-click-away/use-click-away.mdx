@@ -1,4 +1,4 @@
-import { Layout, Playground, Attributes } from 'lib/components'
+import { Playground, Attributes } from 'lib/components'
 import { Link, Card, Spacer, useClickAway } from 'components'
 
 export const meta = {
@@ -29,14 +29,4 @@ This is custom React hooks, you need to follow the <Link target="_blank" color h
 `}
 />
 
-<Attributes edit="/app/hooks/use-click-away.mdx">
-<Attributes.Title>useClickAway</Attributes.Title>
-
-```ts
-const useClickAway = (
-  ref: MutableRefObject<HTMLElement | null>,
-  handler: (event: MouseEvent) => void,
-) => void
-```
-
-</Attributes>
+<Attributes component="useClickAway" edit="/app/hooks/use-click-away.mdx"></Attributes>

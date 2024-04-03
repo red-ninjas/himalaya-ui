@@ -1,4 +1,4 @@
-import { Layout, Playground, Attributes } from 'lib/components';
+import { Playground, Attributes } from 'lib/components';
 import { Video } from 'components';
 
 export const meta = {
@@ -23,16 +23,5 @@ The `Video` UI component provides a versatile way to display video content on yo
 />
 `}
 />
-<Attributes edit="/app/components/video.mdx">
-  <Attributes.Title>Video.Props</Attributes.Title>
 
-| Attribute    | Description                              | Type      | Accepted Values            | Default |
-| ------------ | ---------------------------------------- | --------- | -------------------------- | ------- |
-| **src**      | The source URL of the video.             | `string`  | -                          | -       |
-| **controls** | Determines if video controls are shown.  | `boolean` | `false` (to hide controls) | `true`  |
-| **poster**   | Poster image for video.                  | `string`  | -                          | -       |
-| **loop**     | Play video in loop.                      | `boolean` | `true` to start loop       | `false` |
-| **autoplay** | Determines if the video should autoplay. | `boolean` | `true` (to autoplay)       | `false` |
-| **muted**    | Determines if the video should be muted. | `boolean` | `true` (to mute)           | `false` |
-
-</Attributes>
+<Attributes component="Video" edit="/app/components/video.mdx"></Attributes>

@@ -1,4 +1,4 @@
-import { Layout, Playground, Attributes } from 'lib/components'
+import { Playground, Attributes } from 'lib/components'
 import { Navigation } from 'components'
 
 export const meta = {
@@ -28,35 +28,4 @@ Effortlessly create navigation menus, including sub-menus and child items, using
 `}
 />
 
-<Attributes edit="/app/components/navigation.mdx">
-<Attributes.Title>Navigation.Props</Attributes.Title>
-
-| Attribute         | Description                            | Type             | Accepted values          | Default |
-| ----------------- | -------------------------------------- | ---------------- | ------------------------ | ------- |
-| hoverHeightRatio  | Height ratio for hover effect          | `number`         | Any numeric value        | `0.7`   |
-| hoverWidthRatio   | Width ratio for hover effect           | `number`         | Any numeric value        | `1.05`  |
-| ...               | Native props                           | `HTMLAttributes` | `'id', 'className', ...` | -       |
-
-<Attributes.Title>Navigation.Item.Props</Attributes.Title>
-
-| Attribute   | Description                     | Type              | Accepted values          | Default |
-| ----------- | ------------------------------- | ----------------- | ------------------------ | ------- |
-| title       | Title of the navigation element | `string`          | -                        | -       |
-| url         | Link for the navigation element | `string`          | -                        | -       |
-| icon        | Icon for this menu item         | `React.ReactNode` | -                        | -       |
-| exactMatch  | Matching url exactly            | `boolean`         | -                        | `true`  |
-| columns     | number of columns for sub menu  | `boolean`         | -                        | `2`     |
-| transcluent | transcluent effect              | `boolean`         | -                        | `true`  |
-| ...         | native props                    | `HTMLAttributes`  | `'id', 'className', ...` | -       |
-
-<Attributes.Title>Navigation.Item.Child.Props</Attributes.Title>
-
-| Attribute | Description                     | Type              | Accepted values          | Default |
-| --------- | ------------------------------- | ----------------- | ------------------------ | ------- |
-| title     | Title of the navigation element | `string`          | -                        | -       |
-| url       | Link for the navigation element | `string`          | -                        | -       |
-| desc      | Description                     | `string`          | -                        | -       |
-| icon      | Icon for this menu item         | `React.ReactNode` | -                        | -       |
-| ...       | native props                    | `HTMLAttributes`  | `'id', 'className', ...` | -       |
-
-</Attributes>
+<Attributes component="Navigation" edit="/app/components/navigation.mdx"></Attributes>

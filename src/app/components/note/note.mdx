@@ -1,4 +1,4 @@
-import { Layout, Playground, Attributes } from 'lib/components'
+import { Playground, Attributes } from 'lib/components'
 import { Note } from 'components'
 
 export const meta = {
@@ -68,20 +68,4 @@ Display text that requires attention or provides additional information.
 `}
 />
 
-<Attributes edit="/app/components/note.mdx">
-<Attributes.Title>Note.Props</Attributes.Title>
-
-| Attribute  | Description  | Type                         | Accepted values          | Default   |
-| ---------- | ------------ | ---------------------------- | ------------------------ | --------- |
-| **type**   | note type    | `NoteTypes`                  | [NoteTypes](#nodetypes)  | `default` |
-| **icon**   | show icon    | `React.ReactNode` | -                        | -   |
-| **filled** | fill color   | `boolean`                    | -                        | `false`   |
-| ...        | native props | `HTMLAttributes`             | `'id', 'className', ...` | -         |
-
-<Attributes.Title>NoteTypes</Attributes.Title>
-
-```ts
-type NoteTypes = 'default' | 'primary' | 'tertiary' | 'secondary' | 'success' | 'warning' | 'error'
-```
-
-</Attributes>
+<Attributes component="Note" edit="/app/components/note.mdx"></Attributes>

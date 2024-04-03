@@ -1,4 +1,4 @@
-import { Layout, Playground, Attributes } from 'lib/components'
+import { Playground, Attributes } from 'lib/components'
 import { Section, Text } from 'components'
 
 export const meta = {
@@ -32,11 +32,5 @@ The `Section` UI component offers a versatile container for organizing and struc
   `}
 />
 
-<Attributes edit="/app/components/section.mdx">
-<Attributes.Title>Section.Props</Attributes.Title>
+<Attributes component="Section" edit="/app/components/section.mdx"></Attributes>
 
-| Attribute | Description  | Type             | Accepted values          | Default |
-| --------- | ------------ | ---------------- | ------------------------ | ------- |
-| ...       | native props | `HTMLAttributes` | `'id', 'className', ...` | -       |
-
-</Attributes>

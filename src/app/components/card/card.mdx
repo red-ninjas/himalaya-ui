@@ -1,4 +1,4 @@
-import { Layout, Playground, Attributes } from 'lib/components';
+import { Playground, Attributes } from 'lib/components';
 import { Card, Spacer, Link, Image, Text, Divider, Code, Grid } from 'components';
 
 export const meta = {
@@ -125,33 +125,4 @@ A common container component.
 `}
 />
 
-<Attributes edit="/app/components/card.mdx">
-<Attributes.Title>Card.Props</Attributes.Title>
-
-| Attribute     | Description         | Type                  | Accepted values         | Default   |
-| ------------- | ------------------- | --------------------- | ----------------------- | --------- |
-| **hoverable** | add effect on hover | `boolean`             | -                       | `false`   |
-| **shadow**    | show shadow         | `boolean`             | -                       | `false`   |
-| **type**      | card type           | [CardType](#cardtype) | -                       | `default` |
-| ...           | native props        | `HTMLAttributes`      | `'id', className', ...` | -         |
-
-<Attributes.Title alias="Card.Body">Card.Content.Props</Attributes.Title>
-
-| Attribute | Description  | Type             | Accepted values         | Default |
-| --------- | ------------ | ---------------- | ----------------------- | ------- |
-| ...       | native props | `HTMLAttributes` | `'id', className', ...` | -       |
-
-<Attributes.Title alias="Card.Actions">Card.Footer.Props</Attributes.Title>
-
-| Attribute             | Description                   | Type             | Accepted values         | Default |
-| --------------------- | ----------------------------- | ---------------- | ----------------------- | ------- |
-| **disableAutoMargin** | cancel automatic margin value | `boolean`        | -                       | `false` |
-| ...                   | native props                  | `HTMLAttributes` | `'id', className', ...` | -       |
-
-<Attributes.Title>CardType</Attributes.Title>
-
-```ts
-type CardType = 'default' | 'secondary' | 'success' | 'warning' | 'error' | 'tertiary' | 'primary';
-```
-
-</Attributes>
+<Attributes component="Card" edit="/app/components/card.mdx"></Attributes>

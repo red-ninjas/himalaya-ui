@@ -1,4 +1,4 @@
-import { Layout, Playground, Attributes } from 'lib/components';
+import { Playground, Attributes } from 'lib/components';
 import { Tooltip, Spacer, Button, Link, Badge, Code, Text, Grid } from 'components';
 
 export const meta = {
@@ -168,46 +168,4 @@ Displays additional information on hover.
 `}
 />
 
-<Attributes edit="/app/components/tooltip.mdx">
-<Attributes.Title>Tooltip.Props</Attributes.Title>
-
-| Attribute           | Description                                                | Type                          | Accepted values | Default   |
-| ------------------- | ---------------------------------------------------------- | ----------------------------- | --------------- | --------- |
-| **text**            | text of pop-up                                             | `string` `React.ReactNode`    | -               | -         |
-| **visible**         | visible or not                                             | `boolean`                     | -               | `false`   |
-| **initialVisible**  | visible on initial                                         | `boolean`                     | -               | `false`   |
-| **hideArrow**       | hide arrow icon                                            | `boolean`                     | -               | `false`   |
-| **type**            | preset style type                                          | [TooltipTypes](#tooltiptypes) | -               | `default` |
-| **placement**       | position of the tooltip relative to the target             | [Placement](#placement)       | -               | `top`     |
-| **trigger**         | tooltip trigger mode                                       | `'click' / 'hover'`           | -               | `hover`   |
-| **enterDelay**(ms)  | delay before tooltip is shown                              | `number`                      | -               | `100`     |
-| **leaveDelay**(ms)  | delay before tooltip is hidden (only work in 'hover' mode) | `number`                      | -               | `150`     |
-| **offset**(px)      | distance between pop-up and target                         | `number`                      | -               | `12`      |
-| **portalClassName** | className of pop-up box                                    | `string`                      | -               | -         |
-| **onVisibleChange** | call when visibility of the tooltip is changed             | `(visible: boolean) => void`  | -               | -         |
-| ...                 | native props                                               | `HTMLAttributes`              | `'id' ...`      | -         |
-
-<Attributes.Title>TooltipTypes</Attributes.Title>
-
-```ts
-type TooltipTypes = 'default' | 'secondary' | 'success' | 'warning' | 'error';
-```
-
-<Attributes.Title>Placement</Attributes.Title>
-
-```ts
-type Placement = 'top'
-  | 'topStart',
-  | 'topEnd',
-  | 'left',
-  | 'leftStart',
-  | 'leftEnd',
-  | 'bottom',
-  | 'bottomStart',
-  | 'bottomEnd',
-  | 'right',
-  | 'rightStart',
-  | 'rightEnd',
-```
-
-</Attributes>
+<Attributes component="Tooltip" edit="/app/components/tooltip.mdx"></Attributes>

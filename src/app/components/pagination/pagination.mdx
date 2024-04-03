@@ -1,4 +1,4 @@
-import { Layout, Playground, Attributes } from 'lib/components';
+import { Playground, Attributes } from 'lib/components';
 import { Pagination, Spacer } from 'components';
 import ChevronRight from 'components/icons/chevronRight';
 import ChevronLeft from 'components/icons/chevronLeft';
@@ -83,28 +83,4 @@ Navigation and identification between multiple pages.
 `}
 />
 
-<Attributes edit="/app/components/pagination.mdx">
-<Attributes.Title>Pagination.Props</Attributes.Title>
-
-| Attribute       | Description                  | Type                     | Accepted values          | Default |
-| --------------- | ---------------------------- | ------------------------ | ------------------------ | ------- |
-| **initialPage** | the page selected by default | `number`                 | -                        | 1       |
-| **page**        | current page                 | `number`                 | -                        | 1       |
-| **count**       | the total number of pages    | `number`                 | -                        | 1       |
-| **limit**       | limit of display page        | `number`                 | -                        | 7       |
-| **onChange**    | change event                 | `(page: number) => void` | -                        | -       |
-| ...             | native props                 | `HTMLAttributes`         | `'id', 'className', ...` | -       |
-
-<Attributes.Title>Pagination.Previous.Props</Attributes.Title>
-
-| Attribute | Description  | Type                   | Accepted values          | Default |
-| --------- | ------------ | ---------------------- | ------------------------ | ------- |
-| ...       | native props | `ButtonHTMLAttributes` | `'id', 'className', ...` | -       |
-
-<Attributes.Title>Pagination.Next.Props</Attributes.Title>
-
-| Attribute | Description  | Type                   | Accepted values          | Default |
-| --------- | ------------ | ---------------------- | ------------------------ | ------- |
-| ...       | native props | `ButtonHTMLAttributes` | `'id', 'className', ...` | -       |
-
-</Attributes>
+<Attributes component="Pagination" edit="/app/components/pagination.mdx"></Attributes>

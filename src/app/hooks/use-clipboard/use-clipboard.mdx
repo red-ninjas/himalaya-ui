@@ -1,4 +1,4 @@
-import { Layout, Playground, Attributes } from 'lib/components';
+import { Playground, Attributes } from 'lib/components';
 import { useClipboard, Link, Button, useToasts, Spacer } from 'components';
 
 export const meta = {
@@ -31,19 +31,4 @@ This is custom React hooks, you need to follow the <Link target="_blank" color h
 `}
 />
 
-<Attributes edit="/app/hooks/use-clipboard.mdx">
-<Attributes.Title>useClipboard</Attributes.Title>
-
-```ts
-type UseClipboardOptions = {
-  onError: Function;
-};
-
-type CopyResult = {
-  copy: (text: string) => void;
-};
-
-const useClipboard = (options?: UseClipboardOptions) => CopyResult;
-```
-
-</Attributes>
+<Attributes component="useClipboard" edit="/app/hooks/use-clipboard.mdx"></Attributes>

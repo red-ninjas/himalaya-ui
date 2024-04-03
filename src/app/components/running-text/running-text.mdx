@@ -1,4 +1,4 @@
-import { Layout, Playground, Attributes } from 'lib/components';
+import { Playground, Attributes } from 'lib/components';
 import { RunningText, Text } from 'components';
 
 export const meta = {
@@ -21,21 +21,4 @@ The `RunningText` UI component utilizes a margin animation to smoothly move text
   `}
 />
 
-<Attributes edit="/app/components/running-text.mdx" >
-<Attributes.Title>RunningText.Props</Attributes.Title>
-
-| Attribute     | Description                            | Type        | Accepted values | Default |
-| ------------- | -------------------------------------- | ----------- | --------------- | ------- |
-| animationTime | Animation duration in ms               | `number`    | -               | 80000   |
-| gap           | Gap between running text items (in vw) | `number`    | -               | 3       |
-| children      | Running text content                   | `ReactNode` | -               | -       |
-
-<Attributes.Title>Example Usage</Attributes.Title>
-
-```jsx
-<RunningText animationTime={8000} gap={3}>
-  {/* Your running text here */}
-</RunningText>
-```
-
-</Attributes >
+<Attributes component="RunningText" edit="/app/components/running-text.mdx"></Attributes>

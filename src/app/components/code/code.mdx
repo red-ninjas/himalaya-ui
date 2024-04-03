@@ -1,5 +1,5 @@
 import { Code, Text } from 'components';
-import { Layout, Playground, Attributes, ParsedCodes } from 'lib/components';
+import { Playground, Attributes, ParsedCodes } from 'lib/components';
 
 export const meta = {
   title: 'Code',
@@ -46,13 +46,4 @@ Want to display shell code snippets? try [Snippet](/components/snippet).
 `}
 />
 
-<Attributes edit="/app/components/code.mdx">
-<Attributes.Title>Code.Props</Attributes.Title>
-
-| Attribute | Description                                 | Type             | Accepted values    | Default |
-| --------- | ------------------------------------------- | ---------------- | ------------------ | ------- |
-| **block** | show code in `pre`                          | `boolean`        | -                  | `false` |
-| **name**  | text displayed at the top of the code block | `string`         | -                  | -       |
-| ...       | native props                                | `HTMLAttributes` | `'className', ...` | -       |
-
-</Attributes>
+<Attributes component="Code" edit="/app/components/code.mdx"></Attributes>

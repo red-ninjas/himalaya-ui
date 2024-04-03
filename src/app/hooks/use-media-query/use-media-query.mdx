@@ -1,4 +1,4 @@
-import { Layout, Playground, PlaygroundTitle, Attributes } from 'lib/components'
+import { Playground, PlaygroundTitle, Attributes } from 'lib/components'
 import { useMediaQuery, Link, Code, Spacer } from 'components'
 import NextLink from 'next/link'
 
@@ -76,19 +76,4 @@ const App = () => {
 }
 ```
 
-<Attributes edit="/app/hooks/use-media-query.mdx">
-<Attributes.Title>useMediaQuery</Attributes.Title>
-
-```ts
-type ResponsiveBreakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'mobile'
-
-type ResponsiveOptions = {
-  match?: 'up' | 'down'
-  ssrMatchMedia?: (query: string) => { matches: boolean }
-}
-
-const useMediaQuery = (breakpoint: ResponsiveBreakpoint, options?: ResponsiveOptions) =>
-  boolean
-```
-
-</Attributes>
+<Attributes component="useMediaQuery" edit="/app/hooks/use-media-query.mdx"></Attributes>

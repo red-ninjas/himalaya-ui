@@ -1,4 +1,4 @@
-import { Layout, Playground, Attributes } from 'lib/components';
+import { Playground, Attributes } from 'lib/components';
 import { Gauge, Progress, Spacer, Grid, Box, Button } from 'components';
 import { useState } from 'react';
 
@@ -71,23 +71,5 @@ Display `Gauge` UI component to show progress.
 `}
 />
 
-<Attributes edit="/app/components/gauge.mdx">
-<Attributes.Title>Gauge.Props</Attributes.Title>
+<Attributes component="Gauge" edit="/app/components/gauge.mdx"></Attributes>
 
-| Attribute     | Description               | Type                        | Accepted values           | Default   |
-| ------------- | ------------------------- | --------------------------- | ------------------------- | --------- |
-| **value**     | current value             | `number`                    | -                         | 0         |
-| **showValue** | show current value or not | `boolean`                   | `true`/s`false`           | `false`   |
-| **max**       | max value                 | `number`                    | -                         | 100       |
-| **colors**    | custom colors             | `{ [key: number]: string }` | -                         | -         |
-| **type**      | predefined state types    | `guageTypes`                | [GuageTypes](#guagetypes) | `default` |
-| **size**      | size of gauge             | `number`                    | -                         | `50`      |
-| ...           | native props              | `ProgressHTMLAttributes`    | `'aria-busy', ...`        | -         |
-
-<Attributes.Title>GaugeTypes</Attributes.Title>
-
-```ts
-type guageTypes = 'default' | 'primary' | 'secondary' | 'tertiary' | 'success' | 'warning' | 'error';
-```
-
-</Attributes>

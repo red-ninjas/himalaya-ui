@@ -1,4 +1,4 @@
-import { Layout, Playground, Attributes } from 'lib/components'
+import { Playground, Attributes } from 'lib/components'
 import { Link, Text, Code, Spacer } from 'components'
 import NextLink from 'next/link'
 
@@ -80,17 +80,5 @@ Hyperlinks between pages.
 `}
 />
 
-<Attributes edit="/app/components/link.mdx">
-<Attributes.Title>Link.Props</Attributes.Title>
+<Attributes component="Link" edit="/app/components/link.mdx"></Attributes>
 
-| Attribute     | Description                 | Type                             | Accepted values        | Default |
-| ------------- | --------------------------- | -------------------------------- | ---------------------- | ------- |
-| **href**      | link url                    | `string`                         | -                      | -       |
-| **color**     | display color for link      | `boolean`                        | -                      | `false` |
-| **icon**      | show icon                   | `boolean`                        | -                      | `false` |
-| **underline** | display underline           | `boolean or 'hover'`             | -                      | `false` |
-| **block**     | display as a separate block | `boolean`                        | -                      | `false` |
-| **ref**       | forwardRef                  | `Ref<HTMLAnchorElement or null>` | -                      | -       |
-| ...           | native props                | `AnchorHTMLAttributes`           | `'rel', 'target', ...` | -       |
-
-</Attributes>

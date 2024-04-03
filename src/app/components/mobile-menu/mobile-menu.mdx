@@ -1,4 +1,4 @@
-import { Layout, Playground, Attributes } from 'lib/components'
+import { Playground, Attributes } from 'lib/components'
 import { MobileMenu, MobileMenuButton, Mobile, MobileMenuProvider } from 'components'
 import { SwipeProvider } from 'components/swipe';
 
@@ -94,37 +94,5 @@ Create mobile-friendly navigation menus with ease using the `MobileMenu` UI comp
   `}
 />
 
-<Attributes edit="/app/components/mobile-menu.mdx">
-<Attributes.Title>MobileMenu.Props</Attributes.Title>
+<Attributes component="MobileMenu" edit="/app/components/mobile-menu.mdx"></Attributes>
 
-| Attribute      | Description                    | Type             | Accepted values          | Default                 |
-| -------------- | ------------------------------ | ---------------- | ------------------------ | ----------------------- |
-| direction?     | Placement of menu              | `string`         | `left, right`            | `left`                  |
-| isSwipeable?:  | Menu is swipeable              | `boolean`        | `true, false`            | `true`                  |
-| animationTime? | time to complete the animation | `number`         | -                        | `300` (in milliseconds) |
-| ...            | native props                   | `HTMLAttributes` | `'id', 'className', ...` | -                       |
-
-<Attributes.Title>MobileMenuButton.Props</Attributes.Title>
-
-| Attribute | Description             | Type             | Accepted values          | Default |
-| --------- | ----------------------- | ---------------- | ------------------------ | ------- |
-| notHiding | hide menu button or not | `boolean`        | `true, false`            | `false` |
-| ...       | native props            | `HTMLAttributes` | `'id', 'className', ...` | -       |
-
-<Attributes.Title>MobileMenu.Item.Props</Attributes.Title>
-
-| Attribute | Description             | Type             | Accepted values          | Default |
-| --------- | ----------------------- | ---------------- | ------------------------ | ------- |
-| title     | text to display as link | `string`         | -                        | -       |
-| url       | navigation link url     | `string`         | -                        | -       |
-| ...       | native props            | `HTMLAttributes` | `'id', 'className', ...` | -       |
-
-<Attributes.Title>MobileMenu.Group.Props</Attributes.Title>
-
-| Attribute  | Description                         | Type             | Accepted values          | Default |
-| ---------- | ----------------------------------- | ---------------- | ------------------------ | ------- |
-| title      | text to display as group name       | `string`         | -                        | -       |
-| expanded | to keep group expanded or collapsed | `boolean`        | `true, false`            | `false` |
-| ...        | native props                        | `HTMLAttributes` | `'id', 'className', ...` | -       |
-
-</Attributes>

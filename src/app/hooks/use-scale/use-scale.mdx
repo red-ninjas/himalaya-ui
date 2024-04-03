@@ -1,4 +1,4 @@
-import { Layout, Playground, Attributes } from 'lib/components'
+import { Playground, Attributes } from 'lib/components'
 import { Button} from 'components'
 
 export const meta = {
@@ -208,32 +208,4 @@ const MyComponent = () => {
 <MyComponent />           // output -> undefined
 ```
 
-<Attributes edit="/app/hooks/use-scale.mdx">
-<Attributes.Title>withScale</Attributes.Title>
-
-```ts
-type withScale = (Render: React.ComponentType) => React.ComponentType
-```
-
-<Attributes.Title>useScale</Attributes.Title>
-
-```ts
-type useScale = () => ScaleConfig
-
-type ScaleConfig = {
-  // Provides dynamic scaling functions for all accessible parameters
-  SCALE: DynamicScales;
-  // Function to retrieve native or computed values of scale props
-  getScaleProps: GetScalePropsFunction;
-  // Base unit used for scaling calculations, adjustable per component
-  unit: string;
-  // Dynamically generated class names for responsive visibility based on 'hideOn' prop
-  CLASS_NAMES: string;
-  // Applies the calculated scale unit as a CSS variable for the component
-  UNIT: () => string;
-  // Generates custom responsive CSS for any attribute, enhancing styling flexibility
-  customResponsiveAttribute: (property: string, value: any, breakpoints: BreakpointInterface, className?: string) => string;
-}
-```
-
-</Attributes>
+<Attributes component="withScale" edit="/app/hooks/use-scale.mdx"></Attributes>

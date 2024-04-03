@@ -1,4 +1,4 @@
-import { Layout, Playground, Attributes } from 'lib/components';
+import { Playground, Attributes } from 'lib/components';
 import { Text } from 'components';
 
 export const meta = {
@@ -170,43 +170,7 @@ The `Text` component allows you to display text with standardized typographic st
     <Text small del>Indicates if the resource transmitted should be displayed inline (default behavior without the header),</Text>
     <Text small b>or if it should be handled like a download and the browser should present a “Save As” dialog.</Text>
   </Text>
-</>`} />
+</>`}
+/>
 
-<Attributes edit="/app/components/text.mdx">
-<Attributes.Title>Text.Props</Attributes.Title>
-
-| Attribute           | Description         | Type                | Accepted values                         | Default   |
-| ------------------- | ------------------- | ------------------- | --------------------------------------- | --------- |
-| **h1 - h6**         | component name      | `boolean`           | -                                       | `false`   |
-| **small**           | component name      | `boolean`           | -                                       | `false`   |
-| **span**            | component name      | `boolean`           | -                                       | `false`   |
-| **del**             | component name      | `boolean`           | -                                       | `false`   |
-| **i**               | component name      | `boolean`           | -                                       | `false`   |
-| **em**              | component name      | `boolean`           | -                                       | `false`   |
-| **b**               | component name      | `boolean`           | -                                       | `false`   |
-| **blockquote**      | component name      | `boolean`           | -                                       | `false`   |
-| **stroke**          | stroke the text     | `number`            | -                                       | -         |
-| **color**           | color of text       | `TextColor`         | [TextColor](#textcolor)                 | -         |
-| **gradientDegress** | degress of gradient | `GradientPositions` | [GradientPositions](#gradientpositions) | `right`   |
-| **type**            | text type           | `TextTypes`         | [TextTypes](#texttypes)                 | `default` |
-| ...                 | native props        | `HTMLAttributes`    | `'id', 'className', ...`                | -         |
-
-<Attributes.Title>TextColor</Attributes.Title>
-
-```ts
-type TextColor = string | Gradient;
-```
-
-<Attributes.Title>TextTypes</Attributes.Title>
-
-```ts
-type TextTypes = 'default' | 'secondary' | 'success' | 'warning' | 'error';
-```
-
-<Attributes.Title>GradientPositions</Attributes.Title>
-
-```ts
-type GradientPositions = 'top' | 'left' | 'right' | 'bottom' | number;
-```
-
-</Attributes>
+<Attributes component="Text" edit="/app/components/text.mdx"></Attributes>

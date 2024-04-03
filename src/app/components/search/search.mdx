@@ -1,4 +1,4 @@
-import { Layout, Playground, Attributes } from 'lib/components'
+import { Playground, Attributes } from 'lib/components'
 import { Spacer, Search, Button, useConfig, ConfigProvider } from 'components'
 import { SearchProvider } from 'components/use-search'
 import useSearch from 'components/use-search'
@@ -45,23 +45,4 @@ The `Search` UI component provides a flexible and customizable search modal for 
 `}
 />
 
-<Attributes edit="/app/components/search.mdx">
-<Attributes.Title>Search.Props</Attributes.Title>
-
-| Attribute          | Description            | Type                                           | Accepted values               | Default |
-| ------------------ | ---------------------- | ---------------------------------------------- | ----------------------------- | ------- |
-| **visible**        | is visibile            | `boolean`                                      | `false`                       | -       |
-| **placeholder**    | placeholder for search | `string`                                       | -                             | -       |
-| **searchFunction** | on search              | `(keyword: string) => Promise<SearchResult[]>` | [SearchResult](#SearchResult) | -       |
-| ...                | native props           | `HTMLAttributes`                               | -                             | -       |
-
-<Attributes.Title>SearchResult</Attributes.Title>
-
-| Attribute  | Description              | Type              | Accepted values | Default |
-| ---------- | ------------------------ | ----------------- | --------------- | ------- |
-| **name**   | Search result title      | `string`          | -               | -       |
-| **symbol** | Icon or symbol           | `React.ReactNode` | -               | -       |
-| **group**  | Name of group for search | `string`          | -               | -       |
-| **url**    | Url of the search item   | `string`          | -               | -       |
-
-</Attributes>
+<Attributes component="Search" edit="/app/components/search.mdx"></Attributes>

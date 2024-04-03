@@ -1,4 +1,4 @@
-import { Layout, Playground, Attributes } from 'lib/components';
+import { Playground, Attributes } from 'lib/components';
 import { Badge, Spacer, Avatar, Button, Link } from 'components';
 import NextLink from 'next/link';
 
@@ -100,32 +100,4 @@ Display an indicator that requires attention.
 `}
 />
 
-<Attributes edit="/app/components/badge.mdx">
-<Attributes.Title>Badge.Props</Attributes.Title>
-
-| Attribute | Description                 | Type             | Accepted values                 | Default   |
-| --------- | --------------------------- | ---------------- | ------------------------------- | --------- |
-| **type**  | badge type                  | `BadgeTypes`     | [BadgeTypes](#badgetypes)       | `default` |
-| **dot**   | show dot and ignore content | `boolean`        | -                               | `false`   |
-| ...       | native props                | `HTMLAttributes` | `'alt', 'id', 'className', ...` | -         |
-
-<Attributes.Title>Badge.Anchor.Props</Attributes.Title>
-
-| Attribute     | Description            | Type              | Accepted values                     | Default    |
-| ------------- | ---------------------- | ----------------- | ----------------------------------- | ---------- |
-| **placement** | fixe position of Badge | `AnchorPlacement` | [AnchorPlacement](#anchorplacement) | `topRight` |
-| ...           | native props           | `HTMLAttributes`  | `'alt', 'id', 'className', ...`     | -          |
-
-<Attributes.Title>BadgeTypes</Attributes.Title>
-
-```ts
-type BadgeTypes = 'default' | 'secondary' | 'success' | 'warning' | 'error';
-```
-
-<Attributes.Title>AnchorPlacement</Attributes.Title>
-
-```ts
-type AnchorPlacement = 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight';
-```
-
-</Attributes>
+<Attributes component="Badge" edit="/app/components/badge.mdx"></Attributes>

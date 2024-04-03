@@ -1,4 +1,4 @@
-import { Layout, Playground, Attributes } from 'lib/components'
+import { Playground, Attributes } from 'lib/components'
 import { BottomNavigation } from 'components'
 import { Home, BarChart, Bell, Bookmark } from 'components/icons'
 
@@ -25,21 +25,4 @@ Fixed `BottomNavigation` UI component designed for mobile devices, providing sea
 `}
 />
 
-<Attributes edit="/app/components/bottom-navigation.mdx">
-<Attributes.Title>BottomNavigation.Props</Attributes.Title>
-
-| Attribute   | Description                                         | Type      | Accepted values | Default |
-| ----------- | --------------------------------------------------- | --------- | --------------- | ------- |
-| transcluent | is header is using transcluent effect (transparent) | `boolean` | -               | `true`  |
-| mobileOnly  | show only for mobile devices                        | `boolean` | -               | `true`  |
-
-<Attributes.Title>BottomNavigation.Item.Props</Attributes.Title>
-
-| Attribute  | Description                                 | Type             | Accepted values          | Default |
-| ---------- | ------------------------------------------- | ---------------- | ------------------------ | ------- |
-| icon       | icon to display                             | `icon`           | -                        | -       |
-| url        | url for onclick                             | `string`         | -                        | `#`     |
-| exactMatch | URL must exactly match the current pathname | `boolean`        | -                        | `true`  |
-| ...        | native props                                | `HTMLAttributes` | `'id', 'className', ...` | -       |
-
-</Attributes>
+<Attributes component="BottomNavigation" edit="/app/components/bottom-navigation.mdx"></Attributes>

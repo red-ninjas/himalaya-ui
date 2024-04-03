@@ -1,4 +1,4 @@
-import { Layout, Playground, Attributes } from 'lib/components'
+import { Playground, Attributes } from 'lib/components'
 import { GradientContent } from 'components'
 
 export const meta = {
@@ -33,14 +33,5 @@ The `GradientContent` UI component enables gradient backgrounds and lazy-loaded 
   `}
 />
 
-<Attributes edit="/app/components/gradient-content.mdx">
-<Attributes.Title>GradientContent.Props</Attributes.Title>
+<Attributes component="GradientContent" edit="/app/components/gradient-content.mdx"></Attributes>
 
-| Attribute      | Description                                             | Type             | Accepted values          | Default                                             |
-| -------------- | ------------------------------------------------------- | ---------------- | ------------------------ | --------------------------------------------------- |
-| gradient       | Gradient in css format for background style             | `string`         | -                        | `linear-gradient(to bottom, accents_1, background)` |
-| img            | path to a image which will be lazy loaded as background | `string`         | -                        | -                                                   |
-| maxHeight      | the max height of the gradient to the relative element  | `string`         | -                        | `50vh`                                              |
-| ...            | native props                                            | `HTMLAttributes` | `'id', 'className', ...` | -                                                   |
-
-</Attributes>

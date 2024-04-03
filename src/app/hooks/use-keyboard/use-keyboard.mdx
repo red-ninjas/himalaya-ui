@@ -1,4 +1,4 @@
-import { Layout, Playground, Attributes } from 'lib/components'
+import { Playground, Attributes } from 'lib/components'
 import { useKeyboard, KeyCode, KeyMod, Keyboard, Input, Link } from 'components'
 
 export const meta = {
@@ -46,33 +46,4 @@ React hooks for listen to multiple keyboard events.
 `}
 />
 
-<Attributes edit="/app/hook/use-keyboard.mdx">
-<Attributes.Title>useKeyboard</Attributes.Title>
-
-```ts
-type KeyboardOptions = {
-  disableGlobalEvent: boolean,
-  stopPropagation: boolean
-  preventDefault: boolean
-  capture: boolean
-  event: 'keydown' | 'keypress' | 'keyup'
-}
-
-const useKeyboard = (
-  handler: (event: React.KeyboardEvent) => void,
-  keyBindings: Array<number> | number,
-  options?: KeyboardOptions,
-) => void
-```
-
-<Attributes.Title>KeyboardOptions</Attributes.Title>
-
-| Option                 | Description                         | Type      | Accepted values                  | Default   |
-| ---------------------- | ----------------------------------- | --------- | -------------------------------- | --------- |
-| **disableGlobalEvent** | disable global events from document | `boolean` | -                                | `false`   |
-| **stopPropagation**    | stop event Propagation              | `boolean` | -                                | `false`   |
-| **preventDefault**     | block the default behavior of event | `boolean` | -                                | `true`    |
-| **capture**            | set event type to "capture"         | `boolean` | -                                | `false`   |
-| **event**              | keyboard event type                 | `string`  | `'keydown', 'keypress', 'keyup'` | `keydown` |
-
-</Attributes>
+<Attributes component="useKeyboard" edit="/app/hook/use-keyboard.mdx"></Attributes>

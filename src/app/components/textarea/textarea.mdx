@@ -1,4 +1,4 @@
-import { Layout, Playground, Attributes } from 'lib/components'
+import { Playground, Attributes } from 'lib/components'
 import { Textarea, Spacer, useInput, Button, Code } from 'components'
 import { useState } from 'react'
 
@@ -111,46 +111,5 @@ Retrieve multi-line user input.
 `}
 />
 
-<Attributes edit="/app/components/textarea.mdx">
-<Attributes.Title alias="Input.Textarea">Textarea.Props</Attributes.Title>
 
-| Attribute        | Description    | Type                             | Accepted values                  | Default   |
-| ---------------- | -------------- | -------------------------------- | -------------------------------- | --------- |
-| **value**        | textarea value | `string`                         | -                                | -         |
-| **initialValue** | textarea value | `string`                         | -                                | -         |
-| **placeholder**  | placeholder    | `string`                         | -                                | -         |
-| **type**         | current type   | `TextareaTypes`                  | [TextareaTypes](#textareatypes)  | `default` |
-| **readOnly**     | native attr    | `boolean`                        | -                                | `false`   |
-| **disabled**     | disable input  | `boolean`                        | -                                | `false`   |
-| **onChange**     | change event   | `(e: React.ChangeEvent) => void` | -                                | -         |
-| **resize**       | CSS attribute  | `CSSResize`                      | [CSSResize](#cssresize)          | `none`    |
-| ...              | native props   | `TextareaHTMLAttributes`         | `'form', 'id', 'className', ...` | -         |
-
-<Attributes.Title>useInput</Attributes.Title>
-
-```ts
-type useInput = (initialValue: string) => {
-  state: string
-  setState: Dispatch<SetStateAction<string>>
-  currentRef: MutableRefObject<string>
-  reset: () => void
-  bindings: {
-    value: string
-    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
-  }
-}
-```
-
-<Attributes.Title>TextareaTypes</Attributes.Title>
-
-```ts
-type TextareaTypes = 'default' | 'secondary' | 'success' | 'warning' | 'error'
-```
-
-<Attributes.Title>CSSResize</Attributes.Title>
-
-```ts
-type CSSResize = 'none' | 'both' | 'horizontal' | 'vertical' | 'initial' | 'inherit'
-```
-
-</Attributes>
+<Attributes component="Textarea" edit="/app/components/textarea.mdx"></Attributes>

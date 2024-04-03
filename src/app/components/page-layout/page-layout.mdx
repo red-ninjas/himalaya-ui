@@ -1,0 +1,38 @@
+import { Playground, Attributes, MockPage } from 'lib/components'
+import { Button, PageLayout } from 'components'
+
+export const meta = {
+  title: 'Page Layout',
+  group: 'Layout',
+}
+
+# Page Layout 
+The `PageLayout` component is a flexible container that enables the easy creation of page layouts with optional headers, sidebars, and quickbars. 
+It's designed to work seamlessly with the `usePageLayout()` hook for responsive and adaptive page layouts.
+
+<Playground
+  desc="Basic usage of the PageLayout component to create a page with a header, sidebar, and content area."
+  scope={{ PageLayout, MockPage, Button }}
+  code={`
+() => {
+  const [visible, setVisible] = React.useState(false);
+  const headerContent = <div>Your Header Content</div>;
+  const sidebarContent = <div>Your Sidebar Content </div>;
+  const mainContent = <div>Your Main Content </div>;
+  return (
+    <>
+      <Button onClick={() => setVisible(true)} auto>Show Page</Button>
+      <MockPage visible={visible} onClose={() => setVisible(false)}>
+      <PageLayout
+        headerContent={headerContent}
+        sidebarContent={sidebarContent}
+      >
+        {mainContent}
+      </PageLayout>
+      </MockPage>
+    </>
+  )
+}
+`}
+/>
+<Attributes component="PageLayout" edit="/app/components/page-layout.mdx"></Attributes>

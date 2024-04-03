@@ -1,4 +1,4 @@
-import { Layout, Playground, Attributes } from 'lib/components'
+import { Playground, Attributes } from 'lib/components'
 import { CountUp, Text, Button } from 'components'
 import React, { useState } from 'react'
 
@@ -9,7 +9,7 @@ export const meta = {
 
 # CountUp
 
-Countup is used to show animation counter
+`CountUp` is used to show animation counter
 
 <Playground
   title="CountUp example"
@@ -26,23 +26,4 @@ Countup is used to show animation counter
 `}
 />
 
-<Attributes edit="/app/components/carousel.mdx">
-<Attributes.Title>Carousel.Props</Attributes.Title>
-
-| Attribute           | Description                                                                                                                             | Type                             | Accepted values  | Default       |
-| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------- | ---------------- | ------------- |
-| isCounting?         | Play and pause counting animation.                                                                                                      | `boolean`                        | `true` / `false` | `false`       |
-| start?              | Initial value.                                                                                                                          | `number`                         | -                | `0`           |
-| end?                | Target value.                                                                                                                           | `number`                         | -                | -             |
-| duration?           | Animation duration in seconds.                                                                                                          | `number`                         | -                | `2`           |
-| decimalPlaces?      | Number of decimal places after the decimal separator.                                                                                   | `number`                         | -                | `0`           |
-| decimalSeparator?   | Decimal separator character.                                                                                                            | `string`                         | -                | `.`           |
-| thousandsSeparator? | Thousands separator character.                                                                                                          | `string`                         | -                | -             |
-| easing?             | Easing function to control how the animation is progressing.                                                                            | `Easing`                         | -                | `easeOutExpo` |
-| updateInterval?     | Update interval in seconds. Determines how often the animated value will change. When set to 0 the value will update on each key frame. | `number`                         | -                | `0`           |
-| onUpdate?           | On value update event handler. It receives the current value.                                                                           | `(value: ReturnValue) => void`   | -                | -             |
-| formatter?          | Function that formats the output value.                                                                                                 | `(value: number) => ReturnValue` | -                | -             |
-| onComplete?         | On animation complete event handler.                                                                                                    | `-`                              | -                | -             |
-| ...                 | native props                                                                                                                            | `HTMLAttributes`                 | -                | -             |
-
-</Attributes>
+<Attributes component="CountUp" edit="/app/components/count-up.mdx"></Attributes>
