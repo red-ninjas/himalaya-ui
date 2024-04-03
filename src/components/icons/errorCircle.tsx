@@ -16,8 +16,8 @@ const ErrorCircle = ({ size = 24, color, style, ...props }: IconPropsNative) => 
       width={size}
       style={{ ...style, color: color }}
     >
-      <circle cx="12" cy="12" r="10" fill="currentColor" />
-      <path stroke="var(--ui-icon-background)" d="m15 9-6 6M9 9l6 6" />
+      <circle cx="12" cy="12" r="10" fill="transparent" />
+      <path stroke="currentColor" d="m15 9-6 6M9 9l6 6" />
     </svg>
   );
 };
