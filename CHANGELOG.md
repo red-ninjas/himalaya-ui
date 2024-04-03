@@ -1,5 +1,12 @@
 
 
+# [2.2.0](https://github.com/red-ninjas/himalaya-ui/compare/v2.2.0-alpha.10...v2.2.0) (2024-04-03)
+
+
+### Bug Fixes
+
+* [alpha] errorCircle ([f3a5f78](https://github.com/red-ninjas/himalaya-ui/commit/f3a5f78c2bdf02d54f0630cd7916f7b1bf7881f4))
+
 # [2.2.0-alpha.10](https://github.com/red-ninjas/himalaya-ui/compare/v2.2.0-alpha.9...v2.2.0-alpha.10) (2024-04-03)
 
 # [2.2.0-alpha.9](https://github.com/red-ninjas/himalaya-ui/compare/v2.2.0-alpha.8...v2.2.0-alpha.9) (2024-04-03)
