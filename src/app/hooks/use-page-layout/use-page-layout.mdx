@@ -1,0 +1,44 @@
+import { Playground, Attributes, MockPage } from 'lib/components'
+import { Button, PageLayout, usePageLayout } from 'components'
+
+export const meta = {
+  title: 'usePageLayout',
+  group: 'Utilities',
+}
+
+# usePageLayout
+
+The `usePageLayout` hook is designed to manage the layout state within the `PageLayout` component. It provides a convenient way to access and manipulate the visibility of layout sections like the header, 
+sidebar, and quickbar, as well as to customize layout configurations dynamically.
+
+## Usage
+To start using `usePageLayout`, you need to wrap your component with the `PageLayout`. This will provide the necessary context for the hook to work.
+
+Here's a basic example demonstrating how to use `usePageLayout` to toggle the visibility of a sidebar:
+
+```tsx
+import { PageLayout, usePageLayout, Button } from 'components';
+
+const App = () => {
+  return (
+    <PageLayout>
+      <MyPageComponent />
+    </PageLayout>
+  );
+};
+
+const MyPageComponent = () => {
+  const { isSidebarVisible, toggleSidebar } = usePageLayout();
+
+  return (
+    <>
+      <Button onClick={toggleSidebar}>
+        {isSidebarVisible ? 'Hide Sidebar' : 'Show Sidebar'}
+      </Button>
+      {/* Additional content and components */}
+    </>
+  );
+};
+```
+
+<Attributes component="usePageLayout" edit="/app/hooks/use-page-layout.mdx"></Attributes>
