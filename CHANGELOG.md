@@ -1,5 +1,12 @@
 
 
+## [2.2.1](https://github.com/red-ninjas/himalaya-ui/compare/v2.2.0...v2.2.1) (2024-04-03)
+
+
+### Bug Fixes
+
+* small css issues ([345274b](https://github.com/red-ninjas/himalaya-ui/commit/345274b9eca18d3cad4d61f9f39f7a732e99a2b4))
+
 # [2.2.0](https://github.com/red-ninjas/himalaya-ui/compare/v2.2.0-alpha.10...v2.2.0) (2024-04-03)
 
 
