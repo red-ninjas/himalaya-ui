@@ -13,7 +13,7 @@ const useDrag = (
   draggingHandler: DraggingHandler = () => {},
   dragStartHandler: DraggingHandler = () => {},
   dragEndHandler: DraggingHandler = () => {},
-  setIsDragging = visible => {},
+  setIsDragging: (visible: boolean) => void = () => {},
 ) => {
   const onDragging = useRef<boolean>(false);
   const [, setStartX, startXRef] = useCurrentState<number>(0);

@@ -30,7 +30,7 @@ import { BrandLogo, BrandTitle } from 'lib/components/icons';
 import _ from 'lodash';
 import NextLink from 'next/link';
 import { usePathname } from 'next/navigation';
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Seeds } from '../data';
 import metaData from '../data/metadata.json';
 export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
@@ -163,112 +163,114 @@ export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
   );
 
   return (
-    <RoutingIndicator>
-      <MobileMenuProvider>
-        <MobileMenu direction="right">
-          {isHome &&
-            metaData.map((df, index) => (
-              <MobileMenu.Group key={index} title={capitalize(df.name)} expanded={index < 1}>
-                {df.children.map((child, childIndex) => (
-                  <MobileMenu.SubGroup key={childIndex} title={capitalize(child.name)}>
-                    {child.children.map((item, itemIndex) => (
-                      <NextLink passHref legacyBehavior href={item.url} key={itemIndex}>
-                        <MobileMenu.Item active={pathName == df.url} title={item.name} />
-                      </NextLink>
-                    ))}
-                  </MobileMenu.SubGroup>
-                ))}
-              </MobileMenu.Group>
-            ))}
+    <Suspense>
+      <RoutingIndicator>
+        <MobileMenuProvider>
+          <MobileMenu direction="right">
+            {isHome &&
+              metaData.map((df, index) => (
+                <MobileMenu.Group key={index} title={capitalize(df.name)} expanded={index < 1}>
+                  {df.children.map((child, childIndex) => (
+                    <MobileMenu.SubGroup key={childIndex} title={capitalize(child.name)}>
+                      {child.children.map((item, itemIndex) => (
+                        <NextLink passHref legacyBehavior href={item.url} key={itemIndex}>
+                          <MobileMenu.Item active={pathName == df.url} title={item.name} />
+                        </NextLink>
+                      ))}
+                    </MobileMenu.SubGroup>
+                  ))}
+                </MobileMenu.Group>
+              ))}
 
-          {!isHome &&
-            groups.map((item, index) => (
-              <MobileMenu.Group key={index} title={item.title}>
-                {item.children.map((subChild, subIndex) => (
-                  <NextLink key={subIndex} href={subChild.url ?? ''} legacyBehavior passHref>
-                    <MobileMenu.Item title={subChild.name}></MobileMenu.Item>
-                  </NextLink>
-                ))}
-              </MobileMenu.Group>
-            ))}
-        </MobileMenu>
-        <SearchProvider>
-          <Search searchFunction={doSearch} placeholder="Search in documentation." />
-          <PageLayoutProvider>
-            <PageLayout
-              sidebarContent={!isHome ? sidebar : undefined}
-              headerContent={header}
-              withPageMargin={!isHome}
-              maximalContentWidth={isHome ? '100%' : undefined}
-              quickbarContent={quickBar}
-              quickbarVisible={{ xs: false, sm: false, md: true, lg: true, xl: true }}
-              sidebarVisible={{ xs: false, sm: false, md: true, lg: true, xl: true }}
-            >
-              {children}
-            </PageLayout>
-          </PageLayoutProvider>
+            {!isHome &&
+              groups.map((item, index) => (
+                <MobileMenu.Group key={index} title={item.title}>
+                  {item.children.map((subChild, subIndex) => (
+                    <NextLink key={subIndex} href={subChild.url ?? ''} legacyBehavior passHref>
+                      <MobileMenu.Item title={subChild.name}></MobileMenu.Item>
+                    </NextLink>
+                  ))}
+                </MobileMenu.Group>
+              ))}
+          </MobileMenu>
+          <SearchProvider>
+            <Search searchFunction={doSearch} placeholder="Search in documentation." />
+            <PageLayoutProvider>
+              <PageLayout
+                sidebarContent={!isHome ? sidebar : undefined}
+                headerContent={header}
+                withPageMargin={!isHome}
+                maximalContentWidth={isHome ? '100%' : undefined}
+                quickbarContent={quickBar}
+                quickbarVisible={{ xs: false, sm: false, md: true, lg: true, xl: true }}
+                sidebarVisible={{ xs: false, sm: false, md: true, lg: true, xl: true }}
+              >
+                {children}
+              </PageLayout>
+            </PageLayoutProvider>
 
-          <style global jsx>{`
-            .attr-name {
-              color: var(--color-background-300);
-            }
-            .attr-value {
-              color: var(--color-background-500);
-            }
-            .language-javascript {
-              color: var(--color-background-500);
-            }
-            .class-name {
-              color: var(--color-warning-1000);
-            }
-            .maybe-class-name {
-              color: var(--color-code-1000);
-            }
-            .token.string {
-              color: var(--color-success-1000);
-            }
-            .token.comment {
-              color: var(--color-background-600);
-            }
-            .keyword {
-              color: var(--color-code-1000);
-            }
-            .attr-name {
-              color: var(--color-tertiary-1000);
-            }
-            .punctuation {
-              color: var(--color-foreground-600);
-            }
-            .property-access {
-              color: var(--color-primary-1100);
-            }
-            .imports {
-              color: var(--color-tertiary-1000);
-            }
-            .plain-text {
-              color: var(--color-background-300);
-            }
-            .tag {
-              color: var(--color-primary-1000);
-            }
-            .logo {
-              padding-bottom: 6px;
-              color: var(--color-foreground-1000);
-            }
+            <style global jsx>{`
+              .attr-name {
+                color: var(--color-background-300);
+              }
+              .attr-value {
+                color: var(--color-background-500);
+              }
+              .language-javascript {
+                color: var(--color-background-500);
+              }
+              .class-name {
+                color: var(--color-warning-1000);
+              }
+              .maybe-class-name {
+                color: var(--color-code-1000);
+              }
+              .token.string {
+                color: var(--color-success-1000);
+              }
+              .token.comment {
+                color: var(--color-background-600);
+              }
+              .keyword {
+                color: var(--color-code-1000);
+              }
+              .attr-name {
+                color: var(--color-tertiary-1000);
+              }
+              .punctuation {
+                color: var(--color-foreground-600);
+              }
+              .property-access {
+                color: var(--color-primary-1100);
+              }
+              .imports {
+                color: var(--color-tertiary-1000);
+              }
+              .plain-text {
+                color: var(--color-background-300);
+              }
+              .tag {
+                color: var(--color-primary-1000);
+              }
+              .logo {
+                padding-bottom: 6px;
+                color: var(--color-foreground-1000);
+              }
 
-            .logo,
-            .brand {
-              display: inline-flex;
-              align-items: center;
-              color: var(--color-foreground-1000);
-            }
+              .logo,
+              .brand {
+                display: inline-flex;
+                align-items: center;
+                color: var(--color-foreground-1000);
+              }
 
-            .brand {
-              margin-left: 6px;
-            }
-          `}</style>
-        </SearchProvider>
-      </MobileMenuProvider>
-    </RoutingIndicator>
+              .brand {
+                margin-left: 6px;
+              }
+            `}</style>
+          </SearchProvider>
+        </MobileMenuProvider>
+      </RoutingIndicator>
+    </Suspense>
   );
 };
