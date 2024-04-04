@@ -15,7 +15,7 @@ Display the current value and an inputable range.
   desc="Accept clicks or drag actions."
   scope={{ Slider }}
   code={`
-<Slider initialValue={20} />
+  <Slider initialValue={20} />
 `}
 />
 
@@ -33,6 +33,15 @@ Display the current value and an inputable range.
       <Spacer />
       <Slider type="error" initialValue={20} />
     </>
+`}
+/>
+
+<Playground
+  title="Position"
+  desc="Set the slider's value label position."
+  scope={{ Slider }}
+  code={`
+  <Slider initialValue={20} valuePosition="bottom"/>
 `}
 />
 

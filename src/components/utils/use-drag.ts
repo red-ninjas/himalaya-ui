@@ -13,6 +13,7 @@ const useDrag = (
   draggingHandler: DraggingHandler = () => {},
   dragStartHandler: DraggingHandler = () => {},
   dragEndHandler: DraggingHandler = () => {},
+  setIsDragging = visible => {},
 ) => {
   const onDragging = useRef<boolean>(false);
   const [, setStartX, startXRef] = useCurrentState<number>(0);
@@ -30,7 +31,9 @@ const useDrag = (
     if (!elementRef || !elementRef.current) return;
     setStartX(elementRef.current.getBoundingClientRect().x);
     dragStartHandler(getCustomEvent());
+    setIsDragging(true);
   };
+
   const globalDraggingHandler = (event: MouseEvent | TouchEvent) => {
     if (!onDragging.current) return;
     if (event.type === 'touchmove') {
@@ -40,10 +43,12 @@ const useDrag = (
     }
     draggingHandler(getCustomEvent());
   };
+
   const globalDragEndHandler = () => {
     if (!onDragging.current) return;
     onDragging.current = false;
     dragEndHandler(getCustomEvent());
+    setIsDragging(false);
   };
 
   useEffect(() => {

@@ -11,6 +11,7 @@ import SliderMark from './slider-mark';
 interface Props {
   hideValue?: boolean;
   value?: number;
+  valuePosition?: 'inside' | 'top' | 'bottom';
   type?: UIColorTypes;
   initialValue?: number | [number, number];
   step?: number;
@@ -45,6 +46,7 @@ const SliderComponent: React.FC<React.PropsWithChildren<SliderProps>> = ({
   hideValue = false,
   disabled = false,
   type = 'default' as UIColorTypes,
+  valuePosition = 'inside',
   step = 1,
   max = 100,
   min = 0,
@@ -62,10 +64,15 @@ const SliderComponent: React.FC<React.PropsWithChildren<SliderProps>> = ({
   const [, setLastDargOffset2, lastDargOffsetRef2] = useCurrentState<number>(0);
   const [pendingValue, setPendingValue] = useState<number | [number, number] | null>(null);
   const [isClick, setIsClick] = useState<boolean>(false);
+  const [showTooltipLeft, setShowTooltipLeft] = useState(false);
+  const [showTooltipRight, setShowTooltipRight] = useState(false);
+  const [isDraggingLeft, setIsDraggingLeft] = useState(false);
+  const [isDraggingRight, setIsDraggingRight] = useState(false);
 
   const sliderRef = useRef<HTMLDivElement>(null);
   const dotRef1 = useRef<HTMLDivElement>(null);
   const dotRef2 = useRef<HTMLDivElement>(null);
+
   const currentRatio1 = useMemo(() => {
     const val = Array.isArray(value) ? value[0] : value;
     return ((val - min) / (max - min)) * 100;
@@ -163,8 +170,8 @@ const SliderComponent: React.FC<React.PropsWithChildren<SliderProps>> = ({
     }
   };
 
-  useDrag(dotRef1, event => dragHandler(event, 0), dragStartHandler, dragEndHandler);
-  useDrag(dotRef2, event => dragHandler(event, 1), dragStartHandler, dragEndHandler);
+  useDrag(dotRef1, event => dragHandler(event, 0), dragStartHandler, dragEndHandler, setIsDraggingLeft);
+  useDrag(dotRef2, event => dragHandler(event, 1), dragStartHandler, dragEndHandler, setIsDraggingRight);
 
   useEffect(() => {
     if (pendingValue !== null) {
@@ -198,12 +205,35 @@ const SliderComponent: React.FC<React.PropsWithChildren<SliderProps>> = ({
       ref={sliderRef}
       {...props}
     >
-      <SliderDot disabled={disabled} ref={dotRef1} isClick={isClick} left={currentRatio1}>
-        {hideValue ? undefined : Array.isArray(value) ? value[0] : value}
+      <SliderDot
+        disabled={disabled}
+        ref={dotRef1}
+        isClick={isClick}
+        left={currentRatio1}
+        onMouseEnter={() => setShowTooltipLeft(true)}
+        onMouseLeave={() => setShowTooltipLeft(false)}
+      >
+        {valuePosition === 'inside' && (!hideValue ? (Array.isArray(value) ? value[0] : value) : undefined)}
       </SliderDot>
-      <SliderDot disabled={disabled} ref={dotRef2} isClick={isClick} left={currentRatio2} style={{ visibility: Array.isArray(value) ? 'visible' : 'hidden' }}>
-        {hideValue ? undefined : value[1]}
+      {valuePosition !== 'inside' && (showTooltipLeft || isDraggingLeft) && (
+        <div className={`tooltip left ${valuePosition}`}>{hideValue ? undefined : Array.isArray(value) ? value[0] : value}</div>
+      )}
+
+      <SliderDot
+        disabled={disabled}
+        ref={dotRef2}
+        isClick={isClick}
+        left={currentRatio2}
+        onMouseEnter={() => setShowTooltipRight(true)}
+        onMouseLeave={() => setShowTooltipRight(false)}
+        style={{ visibility: Array.isArray(value) ? 'visible' : 'hidden' }}
+      >
+        {valuePosition === 'inside' && (!hideValue ? (Array.isArray(value) ? value[1] : undefined) : undefined)}
       </SliderDot>
+      {valuePosition !== 'inside' && (showTooltipRight || isDraggingRight) && (
+        <div className={`tooltip right ${valuePosition}`}> {hideValue ? undefined : value[1]}</div>
+      )}
+
       {showMarkers && <SliderMark max={max} min={min} step={step} />}
       <div className="slider-value"></div>
       <style jsx>{`
@@ -234,6 +264,34 @@ const SliderComponent: React.FC<React.PropsWithChildren<SliderProps>> = ({
           background: var(--slider-bg-tint);
           border-radius: var(--border-radius);
         }
+        .tooltip {
+          position: absolute;
+          height: calc(var(--slider-font-size) * 1.25);
+          min-width: calc(var(--slider-font-size) * 1.25);
+          line-height: calc(var(--slider-font-size) * 1.25);
+          border-radius: calc(var(--slider-font-size) * 0.625);
+          font-weight: 700;
+          font-size: calc(var(--slider-font-size) * 0.75);
+          background-color: var(--slider-bg);
+          color: var(--slider-color);
+          text-align: center;
+          padding: 0 calc(0.57 * var(--slider-font-size));
+          z-index: 110;
+
+          &.left {
+            left: ${currentRatio1 - 2}%;
+          }
+          &.right {
+            left: ${currentRatio2 - 2}%;
+          }
+          &.top {
+            top: -30px;
+          }
+          &.bottom {
+            top: 20px;
+          }
+        }
+
         ${SCALE.h(0.5, value => `height: ${value};`, undefined, 'slider')}
         ${SCALE.w(0, value => `width: ${value};`, '100%', 'slider')}
         ${SCALE.font(1, value => `--slider-font-size: ${value};`, undefined, 'slider')}
@@ -248,5 +306,5 @@ const SliderComponent: React.FC<React.PropsWithChildren<SliderProps>> = ({
 };
 
 SliderComponent.displayName = 'HimalayaSlider';
-const Slider = withScale(SliderComponent);
+const Slider = React.memo(withScale(SliderComponent));
 export default Slider;
