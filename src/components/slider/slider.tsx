@@ -158,9 +158,13 @@ const SliderComponent: React.FC<React.PropsWithChildren<SliderProps>> = ({
     setIsClick(true);
     setSliderWidth(getRefWidth(sliderRef));
     const clickOffset = event.clientX - sliderRef.current.getBoundingClientRect().x;
-    const ratio = clickOffset / sideWidthRef.current;
-    const closestIndex = ratio < 0.5 ? 0 : 1;
-    const newOffset = ratio * sideWidthRef.current;
+    const position1 = ((value[0] - min) / (max - min)) * sideWidthRef.current;
+    const position2 = Array.isArray(value) ? ((value[1] - min) / (max - min)) * sideWidthRef.current : position1;
+    const distanceToFirstHandle = Math.abs(clickOffset - position1);
+    const distanceToSecondHandle = Math.abs(clickOffset - position2);
+
+    const closestIndex = distanceToFirstHandle <= distanceToSecondHandle ? 0 : 1;
+    const newOffset = clickOffset;
     if (closestIndex === 0) {
       setLastDargOffset1(newOffset);
       updateValue(newOffset, 0);
