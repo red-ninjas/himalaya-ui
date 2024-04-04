@@ -1,5 +1,12 @@
 
 
+## [2.3.2](https://github.com/red-ninjas/himalaya-ui/compare/v2.3.1...v2.3.2) (2024-04-04)
+
+
+### Bug Fixes
+
+* remove experimental missingSuspenseWithCSRBailout ([bc77523](https://github.com/red-ninjas/himalaya-ui/commit/bc775235dffaffa3daa6374fe7c3b0ceaeaea8e2))
+
 ## [2.3.1](https://github.com/red-ninjas/himalaya-ui/compare/v2.3.0...v2.3.1) (2024-04-04)
 
 
