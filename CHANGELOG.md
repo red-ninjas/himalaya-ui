@@ -1,5 +1,12 @@
 
 
+# [2.3.0](https://github.com/red-ninjas/himalaya-ui/compare/v2.2.1...v2.3.0) (2024-04-04)
+
+
+### Features
+
+* **Slider:** add value label position ([5ac9cf8](https://github.com/red-ninjas/himalaya-ui/commit/5ac9cf82b6c4331838b9e051567f561561119a7c))
+
 ## [2.2.1](https://github.com/red-ninjas/himalaya-ui/compare/v2.2.0...v2.2.1) (2024-04-03)
 
 
