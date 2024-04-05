@@ -270,6 +270,7 @@ const SliderComponent: React.FC<React.PropsWithChildren<SliderProps>> = ({
         }
         .tooltip {
           position: absolute;
+          transform: translate(-50%, -50%);
           height: calc(var(--slider-font-size) * 1.25);
           min-width: calc(var(--slider-font-size) * 1.25);
           line-height: calc(var(--slider-font-size) * 1.25);
@@ -283,16 +284,16 @@ const SliderComponent: React.FC<React.PropsWithChildren<SliderProps>> = ({
           z-index: 110;
 
           &.left {
-            left: ${currentRatio1 - 2}%;
+            left: ${currentRatio1}%;
           }
           &.right {
-            left: ${currentRatio2 - 2}%;
+            left: ${currentRatio2}%;
           }
           &.top {
-            top: -30px;
+            top: -20px;
           }
           &.bottom {
-            top: 20px;
+            top: 28px;
           }
         }
 
