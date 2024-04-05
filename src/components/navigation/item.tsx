@@ -12,6 +12,8 @@ import { useNavigation } from './navigation-context';
 interface NavigationItemProps extends INavigationItem {
   columns?: number;
   transcluent?: boolean;
+  popoverClass?: string;
+  portalClassName?: string;
   offset?: number;
 }
 
@@ -20,7 +22,17 @@ export type NavigationPropsExternal = NavigationItemProps & NativeAttrs;
 
 const NavigationItem = React.forwardRef<HTMLAnchorElement, React.PropsWithChildren<NavigationPropsExternal>>(
   (
-    { children, columns = 2, transcluent = true, active = false, offset = 6, title, ...props }: React.PropsWithChildren<NavigationPropsExternal>,
+    {
+      children,
+      columns = 2,
+      popoverClass,
+      portalClassName,
+      transcluent = true,
+      active = false,
+      offset = 6,
+      title,
+      ...props
+    }: React.PropsWithChildren<NavigationPropsExternal>,
     ref: React.Ref<HTMLAnchorElement>,
   ) => {
     const { onMouseOver } = useNavigation();
@@ -76,14 +88,18 @@ const NavigationItem = React.forwardRef<HTMLAnchorElement, React.PropsWithChildr
         {childExist ? (
           <Popover
             onVisibleChange={visible => setIsPopoverVisibile(visible)}
-            className="menu-popover"
+            className={useClasses('menu-popover', popoverClass)}
             offset={offset}
             placement="bottomStart"
             trigger="hover"
             hideArrow={true}
-            portalClassName={useClasses('menu-popover-item', {
-              'transcluent-popover': transcluent,
-            })}
+            portalClassName={useClasses(
+              'menu-popover-item',
+              {
+                'transcluent-popover': transcluent,
+              },
+              portalClassName,
+            )}
             enterDelay={0}
             leaveDelay={0}
             content={childs}

@@ -13,7 +13,7 @@ export default function Index() {
   const { theme } = useConfig();
   return (
     <>
-      <Hero scrollToId="services" style={{ background: theme.type == 'dark' ? '#141415' : '#ffffff' }}>
+      <Hero scrollToId="services" style={{ background: theme.type == 'dark' ? '#090909' : '#ffffff' }}>
         <Hero.Tag>HIMALAYA UI</Hero.Tag>
         <Hero.Title>
           Scaling Heights of Design Excellence: Your UI Journey <span style={{ textDecoration: 'underline', fontWeight: 300 }}>Begins Here!</span>
