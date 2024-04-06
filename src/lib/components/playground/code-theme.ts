@@ -5,16 +5,17 @@ import { PrismTheme } from 'prism-react-renderer';
 const makeCodeTheme = (): PrismTheme => ({
   plain: {
     backgroundColor: 'var(--color-background-1000)',
-    color: 'var(--color-background-500)',
+    color: 'var(--color-background-600)',
     fontWeight: '400',
     fontStyle: 'normal',
   },
+
   styles: [
     {
       types: ['comment', 'prolog', 'doctype', 'cdata', 'punctuation'],
       style: {
-        color: 'var(--color-background-600)',
-        opacity: 0.5,
+        color: 'var(--color-background-1200)',
+        opacity: 0.8,
       },
     },
     {
@@ -26,25 +27,25 @@ const makeCodeTheme = (): PrismTheme => ({
     {
       types: ['tag', 'operator', 'number'],
       style: {
-        color: 'var(--color-background-300)',
+        color: 'var(--color-warning-1200)',
       },
     },
     {
       types: ['property', 'function'],
       style: {
-        color: 'var(--color-success-1000)',
+        color: 'var(--color-link-1200)',
       },
     },
     {
       types: ['tag-id', 'selector', 'atrule-id'],
       style: {
-        color: '#eeebff',
+        color: 'var(--color-background-100)',
       },
     },
     {
       types: ['attr-name'],
       style: {
-        color: 'var(--color-warning-1000)',
+        color: 'var(--color-success-1200)',
       },
     },
     {
@@ -65,7 +66,7 @@ const makeCodeTheme = (): PrismTheme => ({
         'variable',
       ],
       style: {
-        color: 'var(--color-tertiary-1000)',
+        color: 'var(--color-tertiary-1100)',
       },
     },
     {
@@ -77,7 +78,7 @@ const makeCodeTheme = (): PrismTheme => ({
     {
       types: ['language-javascript', 'script'],
       style: {
-        color: 'var(--color-primary-1000)',
+        color: 'var(--color-warning-1100)',
       },
     },
     {
@@ -101,7 +102,7 @@ const makeCodeTheme = (): PrismTheme => ({
     {
       types: ['important'],
       style: {
-        color: '#c4b9fe',
+        color: 'var(--color-tertiary-1800)',
       },
     },
   ],
