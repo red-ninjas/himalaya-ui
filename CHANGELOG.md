@@ -1,5 +1,21 @@
 
 
+## [2.3.5](https://github.com/red-ninjas/himalaya-ui/compare/v2.3.4...v2.3.5) (2024-04-06)
+
+## [2.3.4](https://github.com/red-ninjas/himalaya-ui/compare/v2.3.3...v2.3.4) (2024-04-05)
+
+
+### Bug Fixes
+
+* **Slider:** tooltip responsive ([7dee695](https://github.com/red-ninjas/himalaya-ui/commit/7dee695a0f4ef80af9fe4f7e1c034968adc7c9d0))
+
+## [2.3.3](https://github.com/red-ninjas/himalaya-ui/compare/v2.3.2...v2.3.3) (2024-04-05)
+
+
+### Bug Fixes
+
+* popover class support for navigation ([cc72bdf](https://github.com/red-ninjas/himalaya-ui/commit/cc72bdf95a59812318036c0378fea90290850120))
+
 ## [2.3.2](https://github.com/red-ninjas/himalaya-ui/compare/v2.3.1...v2.3.2) (2024-04-04)
 
 

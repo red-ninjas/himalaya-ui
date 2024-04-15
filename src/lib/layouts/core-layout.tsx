@@ -223,7 +223,7 @@ export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
                 color: var(--color-warning-1000);
               }
               .maybe-class-name {
-                color: var(--color-code-1000);
+                color: var(--color-foreground-600);
               }
               .token.string {
                 color: var(--color-success-1000);
@@ -266,6 +266,10 @@ export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
 
               .brand {
                 margin-left: 6px;
+              }
+              [class*='language-'],
+              pre[class*='language-'] {
+                font-family: var(--theme-font-mono) !important;
               }
             `}</style>
           </SearchProvider>
