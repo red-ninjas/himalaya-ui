@@ -36,9 +36,7 @@ const NavigationSubItem = React.forwardRef<HTMLAnchorElement, NavigationPropsExt
             color: var(--color-foreground-1000);
             font-weight: 500;
             min-width: 120px;
-
             gap: 8px;
-
             display: inline-flex;
             flex-direction: column;
             align-items: flex-start;
@@ -56,7 +54,6 @@ const NavigationSubItem = React.forwardRef<HTMLAnchorElement, NavigationPropsExt
           }
           .sub-item:hover {
             background-color: rgba(var(--color-background-700-rgb), 0.5);
-
             border-radius: 5px;
           }
           .icon-with-title {
@@ -73,7 +70,7 @@ const NavigationSubItem = React.forwardRef<HTMLAnchorElement, NavigationPropsExt
               left: 0.75,
               right: 0.75,
             },
-            value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left}; --item-right: ${value.right};`,
+            value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`,
             undefined,
             'sub-item',
           )}
