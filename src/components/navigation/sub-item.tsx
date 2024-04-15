@@ -2,8 +2,8 @@
 import React from 'react';
 import { INavigationItem } from '.';
 import Popover from '../popover';
-import useScale, { withScale } from 'components/use-scale';
-import useClasses from 'components/use-classes';
+import useScale, { withScale } from '../use-scale';
+import useClasses from '../use-classes';
 
 export interface NavigationSubItemProps extends INavigationItem {
   onClick?: () => void;
