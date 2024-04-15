@@ -1,5 +1,13 @@
 
 
+## [2.3.6](https://github.com/red-ninjas/himalaya-ui/compare/v2.3.5...v2.3.6) (2024-04-15)
+
+
+### Bug Fixes
+
+* make sub item responsive ([4237d20](https://github.com/red-ninjas/himalaya-ui/commit/4237d205d01be52f25d6a5074d28c2d80cfccb54))
+* Sub item responsive ([7a48aba](https://github.com/red-ninjas/himalaya-ui/commit/7a48aba0d84b94a84a2adcfa36a7b4b7bf85483f))
+
 ## [2.3.5](https://github.com/red-ninjas/himalaya-ui/compare/v2.3.4...v2.3.5) (2024-04-06)
 
 ## [2.3.4](https://github.com/red-ninjas/himalaya-ui/compare/v2.3.3...v2.3.4) (2024-04-05)
