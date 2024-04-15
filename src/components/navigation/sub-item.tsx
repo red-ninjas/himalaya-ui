@@ -2,6 +2,8 @@
 import React from 'react';
 import { INavigationItem } from '.';
 import Popover from '../popover';
+import useScale, { withScale } from 'components/use-scale';
+import useClasses from 'components/use-classes';
 
 export interface NavigationSubItemProps extends INavigationItem {
   onClick?: () => void;
@@ -12,10 +14,11 @@ export type NavigationPropsExternal = NavigationSubItemProps & NativeAttrs;
 
 const NavigationSubItem = React.forwardRef<HTMLAnchorElement, NavigationPropsExternal>(
   ({ icon, title, desc, ...props }: NavigationPropsExternal, ref: React.Ref<HTMLAnchorElement>) => {
+    const { UNIT, CLASS_NAMES, SCALE } = useScale();
     return (
       <>
         <Popover.Item p="6px">
-          <a ref={ref} className="sub-item" {...props}>
+          <a ref={ref} className={useClasses('sub-item', CLASS_NAMES)} {...props}>
             <div className="icon-with-title">
               {icon && <span className="icon-holder">{icon}</span>}
               <span>{title}</span>
@@ -33,12 +36,12 @@ const NavigationSubItem = React.forwardRef<HTMLAnchorElement, NavigationPropsExt
             color: var(--color-foreground-1000);
             font-weight: 500;
             min-width: 120px;
-            padding: 6px 12px;
-            font-size: 14px;
+
+            gap: 8px;
+
             display: inline-flex;
             flex-direction: column;
             align-items: flex-start;
-            gap: 8px;
             width: 100%;
           }
 
@@ -61,10 +64,26 @@ const NavigationSubItem = React.forwardRef<HTMLAnchorElement, NavigationPropsExt
             gap: 6px;
             align-items: center;
           }
+
+          ${SCALE.font(0.875, value => `font-size: ${value};`, undefined, 'sub-item')}
+          ${SCALE.padding(
+            {
+              top: 0.375,
+              bottom: 0.375,
+              left: 0.75,
+              right: 0.75,
+            },
+            value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left}; --item-right: ${value.right};`,
+            undefined,
+            'sub-item',
+          )}
+
+          ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'sub-item')}
+          ${UNIT('sub-item')}
         `}</style>
       </>
     );
   },
 );
 NavigationSubItem.displayName = 'SubItem';
-export default NavigationSubItem;
+export default withScale(NavigationSubItem);
