@@ -5,9 +5,7 @@ import Popover from '../popover';
 import useScale, { withScale } from '../use-scale';
 import useClasses from '../use-classes';
 
-export interface NavigationSubItemProps extends INavigationItem {
-  onClick?: () => void;
-}
+export interface NavigationSubItemProps extends INavigationItem {}
 
 type NativeAttrs = Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, keyof NavigationSubItemProps>;
 export type NavigationPropsExternal = NavigationSubItemProps & NativeAttrs;
@@ -17,7 +15,7 @@ const NavigationSubItem = React.forwardRef<HTMLAnchorElement, NavigationPropsExt
     const { UNIT, CLASS_NAMES, SCALE } = useScale();
     return (
       <>
-        <Popover.Item p="6px">
+        <Popover.Item p={0}>
           <a ref={ref} className={useClasses('sub-item', CLASS_NAMES)} {...props}>
             <div className="icon-with-title">
               {icon && <span className="icon-holder">{icon}</span>}
