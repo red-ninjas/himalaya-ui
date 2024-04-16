@@ -47,7 +47,17 @@ const TabsComponent: React.FC<React.PropsWithChildren<TabsProps>> = ({
   const { SCALE, UNIT, CLASS_NAMES } = useScale();
   const [tabs, setTabs] = useState<Array<TabsHeaderItem>>([]);
   const [selfValue, setSelfValue] = useState<string | undefined>(userCustomInitialValue);
-  const ref = useRef<HTMLDivElement | null>(null);
+  const headerRef = useRef<HTMLDivElement | null>(null);
+  const dragState = useRef({
+    isDown: false,
+    startX: 0,
+    scrollLeft: 0,
+    velocity: 0,
+    lastX: 0,
+    walkFactor: 1,
+    animationFrameId: null as number | null,
+  });
+
   const [displayHighlight, setDisplayHighlight] = useState<boolean>(false);
   const { rect, setRect } = useRect();
 
@@ -81,13 +91,69 @@ const TabsComponent: React.FC<React.PropsWithChildren<TabsProps>> = ({
     setSelfValue(value);
   }, [value]);
 
+  useEffect(() => {
+    const header = headerRef.current;
+    if (!header) return;
+
+    const startDrag = e => {
+      dragState.current.isDown = true;
+      dragState.current.startX = e.pageX;
+      dragState.current.scrollLeft = header.scrollLeft;
+      dragState.current.lastX = e.pageX;
+      if (dragState.current.animationFrameId !== null) {
+        cancelAnimationFrame(dragState.current.animationFrameId);
+      }
+      dragState.current.animationFrameId = null;
+    };
+
+    const endDrag = () => {
+      dragState.current.isDown = false;
+      continueMomentum();
+    };
+
+    const moveDrag = e => {
+      if (!dragState.current.isDown) return;
+      e.preventDefault();
+      const x = e.pageX;
+      const walk = (x - dragState.current.lastX) * dragState.current.walkFactor;
+      header.scrollLeft -= walk;
+      dragState.current.velocity = walk;
+      dragState.current.lastX = x;
+    };
+
+    const continueMomentum = () => {
+      if (Math.abs(dragState.current.velocity) > 1) {
+        header.scrollLeft -= dragState.current.velocity;
+        dragState.current.velocity *= 0.92;
+        dragState.current.animationFrameId = requestAnimationFrame(continueMomentum);
+      } else {
+        dragState.current.animationFrameId = null;
+      }
+    };
+
+    header.addEventListener('mousedown', startDrag);
+    header.addEventListener('mouseup', endDrag);
+    header.addEventListener('mousemove', moveDrag);
+    header.addEventListener('mouseleave', endDrag);
+
+    return () => {
+      if (dragState.current.animationFrameId !== null) {
+        cancelAnimationFrame(dragState.current.animationFrameId);
+      }
+      header.removeEventListener('mousedown', startDrag);
+      header.removeEventListener('mouseup', endDrag);
+      header.removeEventListener('mousemove', moveDrag);
+      header.removeEventListener('mouseleave', endDrag);
+    };
+  }, []);
+
   const clickHandler = (value: string) => {
     setSelfValue(value);
     onChange && onChange(value);
   };
   const tabItemMouseOverHandler = (event: MouseEvent<HTMLDivElement>) => {
     if (!isUIElement(event.target as HTMLDivElement)) return;
-    setRect(event, () => ref.current);
+    setRect(event, () => headerRef.current);
     if (highlight) {
       setDisplayHighlight(true);
     }
@@ -96,7 +162,7 @@ const TabsComponent: React.FC<React.PropsWithChildren<TabsProps>> = ({
   return (
     <TabsContext.Provider value={initialValue}>
       <div className={useClasses('tabs', CLASS_NAMES, className)} {...props}>
-        <header ref={ref} onMouseLeave={() => setDisplayHighlight(false)}>
+        <header ref={headerRef} onMouseLeave={() => setDisplayHighlight(false)}>
           <Highlight
             background={'var(--color-background-900)'}
             rect={rect}
@@ -163,4 +229,4 @@ const TabsComponent: React.FC<React.PropsWithChildren<TabsProps>> = ({
 
 TabsComponent.displayName = 'HimalayaTabs';
 const Tabs = withScale(TabsComponent);
-export default Tabs;
+export default React.memo(Tabs);
