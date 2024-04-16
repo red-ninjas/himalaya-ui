@@ -1,5 +1,12 @@
 
 
+## [2.3.9](https://github.com/red-ninjas/himalaya-ui/compare/v2.3.8...v2.3.9) (2024-04-16)
+
+
+### Bug Fixes
+
+* **Tabs:** Horizontal desktop scrollbar ([78104ed](https://github.com/red-ninjas/himalaya-ui/commit/78104ed8872029f91e912d75e35db50712b03088))
+
 ## [2.3.8](https://github.com/red-ninjas/himalaya-ui/compare/v2.3.7...v2.3.8) (2024-04-15)
 
 ## [2.3.7](https://github.com/red-ninjas/himalaya-ui/compare/v2.3.6...v2.3.7) (2024-04-15)
