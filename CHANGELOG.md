@@ -1,5 +1,12 @@
 
 
+# [2.4.0](https://github.com/red-ninjas/himalaya-ui/compare/v2.3.9...v2.4.0) (2024-04-17)
+
+
+### Features
+
+* **Select:** allow deselect selected value ([1747391](https://github.com/red-ninjas/himalaya-ui/commit/174739144d44b9fa53925f9f59ba3d6a2643d6c1))
+
 ## [2.3.9](https://github.com/red-ninjas/himalaya-ui/compare/v2.3.8...v2.3.9) (2024-04-16)
 
 
