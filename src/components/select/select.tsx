@@ -88,7 +88,9 @@ const SelectComponent = React.forwardRef<SelectRef, React.PropsWithChildren<Sele
     };
     const updateValue = (next: string) => {
       setValue(last => {
-        if (!Array.isArray(last)) return next;
+        if (!Array.isArray(last)) {
+          return last === next ? undefined : next;
+        }
         if (!last.includes(next)) return [...last, next];
         return last.filter(item => item !== next);
       });
