@@ -182,6 +182,7 @@ const AutoCompleteComponent = React.forwardRef<HTMLInputElement, React.PropsWith
             clearable={showClearIcon}
             w={`var(--auto-input-width)`}
             h={`var(--auto-input-height)`}
+            font={`var(--auto-font-size)`}
             iconRight={getSearchIcon(searching, getScaleProps('scale') as ScaleResponsiveParameter<number>)}
             {...inputProps}
           />
@@ -199,6 +200,8 @@ const AutoCompleteComponent = React.forwardRef<HTMLInputElement, React.PropsWith
             .auto-complete :global(.loading) {
               width: max-content;
             }
+
+            ${SCALE.font(0.875, value => `--auto-font-size: ${value};`, undefined, 'auto-complete')}
 
             ${SCALE.w(1, value => `width: ${value};`, 'max-content', 'auto-complete')}
             ${SCALE.h(1, value => `height: ${value};`, 'auto', 'auto-complete')}

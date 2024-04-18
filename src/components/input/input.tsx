@@ -143,6 +143,7 @@ const InputComponent = React.forwardRef<HTMLInputElement, React.PropsWithChildre
             display: inline-block;
             box-sizing: border-box;
             -webkit-box-align: center;
+            font-size: var(--input-font-size);
           }
 
           .input-container {
@@ -197,6 +198,11 @@ const InputComponent = React.forwardRef<HTMLInputElement, React.PropsWithChildre
             --input-background: var(--color-background-900);
           }
 
+
+          .font {
+            font-size: var(--input-font-size);
+          }
+
           input.disabled {
             cursor: not-allowed;
           }
@@ -247,13 +253,11 @@ const InputComponent = React.forwardRef<HTMLInputElement, React.PropsWithChildre
             -webkit-text-fill-color: var(--input-color) !important;
           }
 
-
           ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'with-label')}
           ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'with-label')}
           ${SCALE.w(1, value => `width: ${value};`, 'initial', 'with-label')}
-          ${SCALE.font(0.875, value => `font-size: ${value};`, undefined, 'with-label')}
+          ${SCALE.font(0.875, value => `--input-font-size: ${value};`, undefined, 'with-label')}
           ${SCALE.h(2.25, value => `--input-height: ${value};`, undefined, 'with-label')}
-          ${SCALE.font(0.875, value => `font-size: ${value};`, undefined, 'font')}
           ${SCALE.w(1, value => `width: ${value};`, 'initial', 'input-container')}
           ${SCALE.r(1, value => `border-radius: ${value};`, 'var(--layout-radius)', 'input-wrapper')}
 
