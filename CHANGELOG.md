@@ -1,5 +1,12 @@
 
 
+## [2.4.2](https://github.com/red-ninjas/himalaya-ui/compare/v2.4.1...v2.4.2) (2024-04-18)
+
+
+### Bug Fixes
+
+* replace title with node ([063ac43](https://github.com/red-ninjas/himalaya-ui/commit/063ac43199e49b9da3e1660137a1974bd1d3440e))
+
 ## [2.4.1](https://github.com/red-ninjas/himalaya-ui/compare/v2.4.0...v2.4.1) (2024-04-18)
 
 
