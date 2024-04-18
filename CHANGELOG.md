@@ -1,5 +1,12 @@
 
 
+## [2.4.1](https://github.com/red-ninjas/himalaya-ui/compare/v2.4.0...v2.4.1) (2024-04-18)
+
+
+### Bug Fixes
+
+* **Select:** disabled bg color ([1aae3f5](https://github.com/red-ninjas/himalaya-ui/commit/1aae3f51d1a047e25c622ce05fe92036af73140f))
+
 # [2.4.0](https://github.com/red-ninjas/himalaya-ui/compare/v2.3.9...v2.4.0) (2024-04-17)
 
 
