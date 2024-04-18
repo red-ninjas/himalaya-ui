@@ -98,7 +98,7 @@ const SelectOptionComponent: React.FC<React.PropsWithChildren<SelectOptionProps>
           --option-bg-hover: var(--color-background-900);
           --option-color-hover: var(--color-foreground-1000);
 
-          --option-bg-disabled: var(--color-background-1000);
+          --option-bg-disabled: var(--color-background-900);
           --option-color-disabled: var(--color-foreground-600);
 
           background-color: var(--option-bg);
