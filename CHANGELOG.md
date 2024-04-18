@@ -1,5 +1,12 @@
 
 
+## [2.4.3](https://github.com/red-ninjas/himalaya-ui/compare/v2.4.2...v2.4.3) (2024-04-18)
+
+
+### Bug Fixes
+
+* auto complete font size ([91a4fe3](https://github.com/red-ninjas/himalaya-ui/commit/91a4fe3bb2a3ff6bc0491ddc7f6d431332d1223e))
+
 ## [2.4.2](https://github.com/red-ninjas/himalaya-ui/compare/v2.4.1...v2.4.2) (2024-04-18)
 
 
