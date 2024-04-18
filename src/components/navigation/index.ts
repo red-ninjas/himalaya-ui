@@ -3,7 +3,7 @@ import NavigationSubItem from './sub-item';
 import Navigation from './navigation';
 
 export interface INavigationItem {
-  title?: string;
+  title?: string | React.ReactNode;
   desc?: string;
   icon?: React.ReactNode;
   active?: boolean;
