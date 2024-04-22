@@ -1,0 +1,82 @@
+import { Playground, Attributes } from 'lib/components';
+import { PinCode, Spacer, Button } from 'components';
+import NextLink from 'next/link';
+
+export const meta = {
+  title: 'PinCode',
+  group: 'Data Entry',
+};
+
+# PinCode
+
+A component to input a pin code, commonly used for entering security or verification codes.
+
+<Playground
+  scope={{ PinCode }}
+  desc="Basic usage example."
+  code={`
+  <>
+    <PinCode />
+  </>
+`}
+/>
+
+<Playground
+  title="Numbers Only"
+  desc="Restrict the pin code input to numeric values only."
+  scope={{ PinCode }}
+  code={`
+  <>
+    <PinCode validChars="0-9" />
+  </>
+`}
+/>
+
+<Playground
+  title="Custom Placeholder"
+  desc="Use a custom placeholder for unentered characters."
+  scope={{ PinCode }}
+  code={`
+  <>
+    <PinCode placeholder="*" />
+  </>
+`}
+/>
+
+<Playground
+  title="Password Mode"
+  desc="Obfuscate the pin code input for sensitive data."
+  scope={{ PinCode }}
+  code={`
+  <>
+    <PinCode passwordMode={true} placeholder="*"  onChange={value => console.log(value)} />
+  </>
+`}
+/>
+
+
+<Playground
+  title="Custom Length"
+  desc="Customize the length."
+  scope={{ PinCode, Spacer }}
+  code={`
+  <>
+    <PinCode length={4}  onChange={value => console.log(value)} />
+    <Spacer h={0.5} />
+  </>
+`}
+/>
+
+<Playground
+  title="Disabled"
+  desc="Disable the pin code input."
+  scope={{ PinCode }}
+  code={`
+  <>
+    <PinCode disabled />
+  </>
+`}
+/>
+
+
+<Attributes component="PinCode" edit="/app/components/pincode.mdx"></Attributes>
