@@ -1,5 +1,12 @@
 
 
+# [2.5.0](https://github.com/red-ninjas/himalaya-ui/compare/v2.4.3...v2.5.0) (2024-04-22)
+
+
+### Features
+
+* **PinCode:** add pincode component ([9393143](https://github.com/red-ninjas/himalaya-ui/commit/9393143193f7c371da355569ed556f7a6481894c))
+
 ## [2.4.3](https://github.com/red-ninjas/himalaya-ui/compare/v2.4.2...v2.4.3) (2024-04-18)
 
 
