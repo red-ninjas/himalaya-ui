@@ -66,6 +66,9 @@ export type { ImageBrowserProps, ImageProps } from './image';
 export { default as Input } from './input';
 export type { InputInternalProps, InputPasswordProps, InputProps, InputType } from './input';
 
+export { default as PinCode } from './pin-code';
+export type { PinCodeProps } from './pin-code';
+
 export { default as Keyboard } from './keyboard';
 export type { KeyboardProps } from './keyboard';
 
