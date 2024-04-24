@@ -1,5 +1,12 @@
 
 
+# [2.6.0](https://github.com/red-ninjas/himalaya-ui/compare/v2.5.0...v2.6.0) (2024-04-24)
+
+
+### Features
+
+* **InputGroup:** add InputGroup component ([cfe03a2](https://github.com/red-ninjas/himalaya-ui/commit/cfe03a2d9cd981be7e6de6f11e46e7f2d5ead189))
+
 # [2.5.0](https://github.com/red-ninjas/himalaya-ui/compare/v2.4.3...v2.5.0) (2024-04-22)
 
 
