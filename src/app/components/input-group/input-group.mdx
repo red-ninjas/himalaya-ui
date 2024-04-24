@@ -1,0 +1,72 @@
+import { Playground, Attributes } from 'lib/components';
+import { InputGroup, Input,  Button } from 'components';
+
+export const meta = {
+  title: 'Input Group',
+  group: 'Data Entry',
+};
+
+# Input Group
+
+The `InputGroup` component facilitates efficient form inputs integrated with action buttons. 
+
+<Playground
+  title="Button right"
+  desc="An input group with a button at the end."
+  scope={{ InputGroup, Input, Button }}
+  code={`
+<>
+  <InputGroup buttonPosition="end">
+    <Input placeholder="Enter text here" />
+    <Button>Submit</Button>
+  </InputGroup>
+</>
+`}
+/>
+
+<Playground
+  title="Button left"
+  desc="Place a button at the start of the input group. "
+  scope={{ InputGroup, Input, Button }}
+  code={`
+<>
+  <InputGroup buttonPosition="start">
+    <Input placeholder="Search..." />
+    <Button>Clear</Button>
+  </InputGroup>
+</>
+`}
+/>
+
+<Playground
+  title="Multiple Inputs"
+  desc="Showcases an input group with two input fields, arranged side by side."
+  scope={{ InputGroup, Input, Button }}
+  code={`
+<>
+  <InputGroup>
+    <Input placeholder="First Name" />
+    <Input placeholder="Last Name" />
+    <Button w={0.40}>Submit</Button>
+  </InputGroup>
+</>
+`}
+/>
+
+<Playground
+  title="Multiple Actions"
+  desc="Features an input group with one input field accompanied by two buttons."
+  scope={{ InputGroup, Input, Button }}
+  code={`
+<>
+  <InputGroup buttonPosition="end">
+    <Input placeholder="Search..." />
+    <Button w={0.40} style={{background: "var(--color-background-800)"}}>Search</Button>
+    <Button w={0.40} style={{background: "var(--color-background-800)"}}>Clear</Button>
+  </InputGroup>
+</>
+`}
+/>
+
+
+<Attributes component="InputGroup" edit="/app/components/input-group.mdx"></Attributes>
