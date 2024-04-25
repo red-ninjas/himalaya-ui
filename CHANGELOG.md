@@ -1,5 +1,12 @@
 
 
+## [2.7.1](https://github.com/red-ninjas/himalaya-ui/compare/v2.7.0...v2.7.1) (2024-04-25)
+
+
+### Bug Fixes
+
+* **CollapseGroup:** Use stateRef for state management ([13c7e7b](https://github.com/red-ninjas/himalaya-ui/commit/13c7e7b432a1638403cb2371199a0401274dbb8e))
+
 # [2.7.0](https://github.com/red-ninjas/himalaya-ui/compare/v2.6.1...v2.7.0) (2024-04-25)
 
 
