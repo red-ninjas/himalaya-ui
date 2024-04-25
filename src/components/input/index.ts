@@ -3,7 +3,6 @@ import Textarea from '../textarea';
 import InputPassword from './password';
 import InputDate from './date';
 
-export type { ViewModeType } from './shared';
 export type { InputProps } from './input';
 export type { InputInternalProps } from './input-props';
 export type { InputPasswordProps } from './password';

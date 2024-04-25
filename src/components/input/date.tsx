@@ -53,11 +53,7 @@ const InputDateComponent = React.forwardRef<HTMLInputElement, React.PropsWithChi
       setVisible(v => !v);
       /* istanbul ignore next */
       if (inputRef && inputRef.current) {
-        if (visible) {
-          inputRef.current.focus();
-        } else {
-          inputRef.current.showPicker();
-        }
+        inputRef.current.showPicker();
       }
     };
 
