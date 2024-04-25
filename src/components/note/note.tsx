@@ -1,6 +1,10 @@
 'use client';
 import React from 'react';
-import { AlertTriangle, CheckInCircle, Info, XCircle } from '../icons';
+import AlertTriangle from '../icons/alertTriangle';
+import CheckInCircle from '../icons/checkInCircle';
+import Info from '../icons/info';
+import XCircle from '../icons/xCircle';
+
 import { UIColorTypes } from '../themes/presets';
 import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';

@@ -1,7 +1,7 @@
 'use client';
 
 import { PropsWithChildren, useRef } from 'react';
-import { ArrowDown } from '../icons';
+import ArrowDown from '../icons/arrowDown';
 import PageWidth from '../page-width';
 import useClasses from '../use-classes';
 import { useScale, withScale } from '../use-scale';

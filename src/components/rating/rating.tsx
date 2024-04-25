@@ -1,6 +1,6 @@
 'use client';
 import React, { useCallback, useEffect, useState } from 'react';
-import { StarFill } from '../icons';
+import StarFill from '../icons/starFill';
 import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';
 import { tupleNumber } from '../utils/prop-types';

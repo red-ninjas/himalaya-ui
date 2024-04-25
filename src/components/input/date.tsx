@@ -1,5 +1,5 @@
 'use client';
-import { Calendar } from 'components/icons';
+import Calendar from '../icons/calendar';
 import React, { useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react';
 import { useScale, withScale } from '../use-scale';
 import Input from './input';

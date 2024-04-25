@@ -1,7 +1,7 @@
 'use client';
 
 import { PropsWithChildren, ReactElement } from 'react';
-import { MoreHorizontal } from '../icons';
+import MoreHorizontal from '../icons/moreHorizontal';
 import Menu from '../menu';
 import MenuItem from '../menu/menu-item';
 import useClasses from '../use-classes';

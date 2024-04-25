@@ -1,7 +1,7 @@
 'use client';
 import React, { PropsWithChildren, useEffect, useState } from 'react';
 import Button from '../button';
-import { ChevronDown } from '../icons';
+import ChevronDown from '../icons/chevronDown';
 import { UIColorTypes } from '../themes';
 import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';

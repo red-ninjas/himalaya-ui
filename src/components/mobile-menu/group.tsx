@@ -1,6 +1,6 @@
 'use client';
 import React, { MouseEventHandler, PropsWithChildren, ReactNode, useRef, useState } from 'react';
-import { ChevronDown } from '../icons';
+import ChevronDown from '../icons/chevronDown';
 import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';
 import { pickChild } from '../utils/collections';

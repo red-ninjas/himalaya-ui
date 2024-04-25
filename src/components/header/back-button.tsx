@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation';
 import React from 'react';
 import Button, { ButtonProps } from '../button';
-import { ChevronLeft } from '../icons';
+import ChevronLeft from '../icons/chevronLeft';
 import { ScaleProps } from '../use-scale';
 
 const BackButton: React.FC<

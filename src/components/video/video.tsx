@@ -1,6 +1,11 @@
 'use client';
 import React, { useRef, useState } from 'react';
-import { Maximize, Minimize, PauseFill, PlayFill, Volume2, VolumeX } from '../icons';
+import Maximize from '../icons/maximize';
+import Minimize from '../icons/minimize';
+import PauseFill from '../icons/pauseFill';
+import PlayFill from '../icons/playFill';
+import Volume2 from '../icons/volume2';
+import VolumeX from '../icons/volumeX';
 import useScale, { withScale } from '../use-scale';
 import useClasses from '../use-classes';
 

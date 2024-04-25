@@ -2,7 +2,8 @@
 import React, { useMemo } from 'react';
 import { SearchResults } from './helper';
 import Type from '../icons/type';
-import { FileFunctionFill, Image } from '../icons';
+import Image from '../icons/image';
+import FileFunctionFill from '../icons/fileFunctionFill';
 import Lambda from '../icons/lambda';
 import Package from '../icons/package';
 import Codesandbox from '../icons/codesandbox';
