@@ -36,7 +36,14 @@ const CollapseGroupComponent: React.FC<React.PropsWithChildren<CollapseGroupProp
 
   useEffect(() => {
     if (onChange) {
-      onChange(state);
+      const openIndices = stateRef.current.filter(index => {
+        if (!Array.isArray(hasIndexChildren)) {
+          return true;
+        }
+        const isDisabled = hasIndexChildren.find((child: React.ReactElement) => child.props.index === index)?.props.disabled;
+        return !isDisabled;
+      });
+      onChange(openIndices);
     }
   }, [state]);
 

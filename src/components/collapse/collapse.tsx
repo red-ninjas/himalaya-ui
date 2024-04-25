@@ -50,7 +50,7 @@ const CollapseComponent: React.FC<React.PropsWithChildren<CollapseProps>> = ({
   }
 
   useEffect(() => {
-    if (!values.length) return;
+    if (!values.length || disabled) return;
     const isActive = !!values.find(item => item === index);
     setVisible(isActive);
   }, [values.join(',')]);
@@ -66,7 +66,8 @@ const CollapseComponent: React.FC<React.PropsWithChildren<CollapseProps>> = ({
     <div className={classes} {...props}>
       <div className="view" role="button" onClick={clickHandler}>
         <div className="title">
-          <span>{title}</span> <CollapseIcon active={visible} />
+          <span>{title}</span>
+          {!disabled && <CollapseIcon active={visible} />}
         </div>
         {subtitle && <div className="subtitle">{subtitle}</div>}
       </div>
@@ -77,9 +78,11 @@ const CollapseComponent: React.FC<React.PropsWithChildren<CollapseProps>> = ({
         .collapse {
           border-top: 1px solid var(--color-border-1000);
           border-bottom: 1px solid var(--color-border-1000);
-          &.disabled {
-            background: var(--color-background-900);
-          }
+        }
+
+        .collapse.disabled .title {
+          color: var(--color-foreground-700);
+          cursor: not-allowed;
         }
 
         .shadow {
@@ -92,6 +95,9 @@ const CollapseComponent: React.FC<React.PropsWithChildren<CollapseProps>> = ({
         .view {
           cursor: pointer;
           outline: none;
+        }
+        &.disabled {
+          pointer-events: none;
         }
 
         .title {
