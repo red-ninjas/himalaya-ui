@@ -2,9 +2,9 @@
 import React from 'react';
 import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';
-import { pickChild } from 'components/utils/collections';
-import Button from 'components/button';
-import Input from 'components/input';
+import { pickChild } from '../utils/collections';
+import Button from '../button';
+import Input from '../input';
 
 interface Props {
   buttonPosition?: 'start' | 'end';
@@ -76,14 +76,14 @@ const InputGroupComponent: React.FC<React.PropsWithChildren<InputGroupProps>> = 
             box-shadow 200ms ease 0s;
           &:hover{
             border-color: var(--color-border-800);
-            box-shadow  none;       
+            box-shadow  none;
           }
         }
 
         .input-with-button {
           display: flex;
         }
-       
+
         ${SCALE.w(1, value => `width: ${value};`, 'auto', 'input-group')}
         ${SCALE.h(2.5, value => `--input-group-height: ${value};`, undefined, 'input-group')}
         ${SCALE.r(1, value => `--input-group-border-radius: ${value};`, 'var(--layout-radius)', 'input-group')}
