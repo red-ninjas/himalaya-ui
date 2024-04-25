@@ -1,5 +1,12 @@
 
 
+# [2.9.0](https://github.com/red-ninjas/himalaya-ui/compare/v2.8.5...v2.9.0) (2024-04-25)
+
+
+### Features
+
+* add map pin full icon ([95df710](https://github.com/red-ninjas/himalaya-ui/commit/95df7101f6897cb9a3a3f3a5f8e14fb0d9962878))
+
 ## [2.8.5](https://github.com/red-ninjas/himalaya-ui/compare/v2.8.4...v2.8.5) (2024-04-25)
 
 
