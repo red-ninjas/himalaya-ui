@@ -1,5 +1,12 @@
 
 
+## [2.8.2](https://github.com/red-ninjas/himalaya-ui/compare/v2.8.1...v2.8.2) (2024-04-25)
+
+
+### Bug Fixes
+
+* input group ([fa6d191](https://github.com/red-ninjas/himalaya-ui/commit/fa6d19181c3e06de913a4c49c87fc3bac0cd9763))
+
 ## [2.8.1](https://github.com/red-ninjas/himalaya-ui/compare/v2.8.0...v2.8.1) (2024-04-25)
 
 
