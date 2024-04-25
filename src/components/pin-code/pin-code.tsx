@@ -160,7 +160,7 @@ const PinCodeComponent = forwardRef<HTMLInputElement, PinCodeProps>(
             background-color: var(--color-background-1000);
             border: 1px solid var(--color-background-800);
             border-radius: var(--layout-radius);
-            cursor: default;
+            cursor: text;
             user-select: none;
             box-sizing: border-box;
           }
