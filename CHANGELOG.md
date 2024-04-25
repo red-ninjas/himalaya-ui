@@ -1,5 +1,18 @@
 
 
+# [2.8.0](https://github.com/red-ninjas/himalaya-ui/compare/v2.7.2...v2.8.0) (2024-04-25)
+
+
+### Bug Fixes
+
+* release-it versioning ([aaaf8df](https://github.com/red-ninjas/himalaya-ui/commit/aaaf8df4fced89a5614a2256ac63262d26e31d3b))
+* show date time control ([b98e396](https://github.com/red-ninjas/himalaya-ui/commit/b98e396e973dc064a096cdf55404bd36adb5ffec))
+
+
+### Features
+
+* add datetime input field ([b49cd6a](https://github.com/red-ninjas/himalaya-ui/commit/b49cd6a6f21f91992f5a3e2549eaddf39602be1d))
+
 ## [2.7.2](https://github.com/red-ninjas/himalaya-ui/compare/v2.7.1...v2.7.2) (2024-04-25)
 
 
