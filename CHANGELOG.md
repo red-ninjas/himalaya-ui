@@ -1,5 +1,54 @@
 
 
+## [2.7.2](https://github.com/red-ninjas/himalaya-ui/compare/v2.7.1...v2.7.2) (2024-04-25)
+
+
+### Bug Fixes
+
+* **CollapseGroup:** update default value of multiple ([980e37b](https://github.com/red-ninjas/himalaya-ui/commit/980e37b13af58357a13784b0d4ce41b4f187284f))
+
+## [2.7.1](https://github.com/red-ninjas/himalaya-ui/compare/v2.7.0...v2.7.1) (2024-04-25)
+
+
+### Bug Fixes
+
+* **CollapseGroup:** Use stateRef for state management ([13c7e7b](https://github.com/red-ninjas/himalaya-ui/commit/13c7e7b432a1638403cb2371199a0401274dbb8e))
+
+# [2.7.0](https://github.com/red-ninjas/himalaya-ui/compare/v2.6.1...v2.7.0) (2024-04-25)
+
+
+### Features
+
+* **Collapse:** allow custom multiples & disabled ([a881454](https://github.com/red-ninjas/himalaya-ui/commit/a8814541796146115cf4e8685102247057c197b6))
+
+## [2.6.1](https://github.com/red-ninjas/himalaya-ui/compare/v2.6.0...v2.6.1) (2024-04-24)
+
+
+### Bug Fixes
+
+* component styles ([63cf0dd](https://github.com/red-ninjas/himalaya-ui/commit/63cf0ddb1776e2960c93b9d66379ce2af6d60abf))
+
+# [2.6.0](https://github.com/red-ninjas/himalaya-ui/compare/v2.5.0...v2.6.0) (2024-04-24)
+
+
+### Features
+
+* **InputGroup:** add InputGroup component ([cfe03a2](https://github.com/red-ninjas/himalaya-ui/commit/cfe03a2d9cd981be7e6de6f11e46e7f2d5ead189))
+
+# [2.5.0](https://github.com/red-ninjas/himalaya-ui/compare/v2.4.3...v2.5.0) (2024-04-22)
+
+
+### Features
+
+* **PinCode:** add pincode component ([9393143](https://github.com/red-ninjas/himalaya-ui/commit/9393143193f7c371da355569ed556f7a6481894c))
+
+## [2.4.3](https://github.com/red-ninjas/himalaya-ui/compare/v2.4.2...v2.4.3) (2024-04-18)
+
+
+### Bug Fixes
+
+* auto complete font size ([91a4fe3](https://github.com/red-ninjas/himalaya-ui/commit/91a4fe3bb2a3ff6bc0491ddc7f6d431332d1223e))
+
 ## [2.4.2](https://github.com/red-ninjas/himalaya-ui/compare/v2.4.1...v2.4.2) (2024-04-18)
 
 

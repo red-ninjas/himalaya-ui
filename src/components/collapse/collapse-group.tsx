@@ -1,5 +1,5 @@
 'use client';
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import Collapse from './collapse';
 import useCurrentState from '../utils/use-current-state';
 import { setChildrenIndex } from '../utils/collections';
@@ -8,8 +8,10 @@ import useScale, { withScale } from '../use-scale';
 import useClasses from '../use-classes';
 
 interface Props {
-  accordion?: boolean;
+  multiple?: boolean;
   className?: string;
+  value?: number[];
+  onChange?: (openIndices: number[]) => void;
 }
 
 type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
@@ -17,30 +19,42 @@ export type CollapseGroupProps = Props & NativeAttrs;
 
 const CollapseGroupComponent: React.FC<React.PropsWithChildren<CollapseGroupProps>> = ({
   children,
-  accordion = true,
-  className = '',
+  multiple = false,
+  className,
+  value = [],
+  onChange,
   ...props
 }: React.PropsWithChildren<CollapseGroupProps>) => {
   const { SCALE, UNIT, CLASS_NAMES } = useScale();
 
-  const [state, setState, stateRef] = useCurrentState<Array<number>>([]);
+  const [state, setState, stateRef] = useCurrentState<Array<number>>(value);
   const classes = useClasses('collapse-group', className, CLASS_NAMES);
 
-  const updateValues = (currentIndex: number, nextState: boolean) => {
-    const hasChild = stateRef.current.find(val => val === currentIndex);
-    if (accordion) {
-      if (nextState) return setState([currentIndex]);
-      return setState([]);
-    }
+  useEffect(() => {
+    setState(value);
+  }, [value.join(',')]);
 
-    if (nextState) {
-      // In a few cases, the user will set Collapse Component state manually.
-      // If the user incorrectly set the state, Group component should ignore it.
-      /* istanbul ignore if */
-      if (hasChild) return;
-      return setState([...stateRef.current, currentIndex]);
+  useEffect(() => {
+    if (onChange) {
+      onChange(state);
     }
-    setState(stateRef.current.filter(item => item !== currentIndex));
+  }, [state]);
+
+  const updateValues = (currentIndex: number, nextState: boolean) => {
+    if (!multiple) {
+      if (nextState) {
+        setState([currentIndex]);
+      } else {
+        setState([]);
+      }
+    } else {
+      const currentIndexExists = stateRef.current.includes(currentIndex);
+      if (nextState && !currentIndexExists) {
+        setState([...stateRef.current, currentIndex]);
+      } else if (!nextState && currentIndexExists) {
+        setState(stateRef.current.filter(item => item !== currentIndex));
+      }
+    }
   };
 
   const initialValue = useMemo<CollapseConfig>(

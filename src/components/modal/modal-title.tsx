@@ -29,7 +29,6 @@ const ModalTitleComponent: React.FC<React.PropsWithChildren<ModalTitleProps>> = 
           justify-content: center;
           align-items: center;
           word-break: break-word;
-          text-transform: capitalize;
           color: var(--color-foreground-1000);
         }
 

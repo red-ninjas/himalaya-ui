@@ -100,7 +100,7 @@ export const CoreLayout = ({ children }: { children: React.ReactNode }) => {
               <Navigation.Item active={!df.children || df.children.length <= 0 ? pathName == df.url : pathName.startsWith(df.url)} title={capitalize(df.name)}>
                 {df.children.map((child, childIndex) => (
                   <NextLink passHref key={childIndex} legacyBehavior href={child.children[0].url || df.url}>
-                    <Navigation.Item.Child title={capitalize(child.name)}></Navigation.Item.Child>
+                    <Navigation.Item.Child p={2} title={capitalize(child.name)}></Navigation.Item.Child>
                   </NextLink>
                 ))}
               </Navigation.Item>
