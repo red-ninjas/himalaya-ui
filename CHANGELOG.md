@@ -1,5 +1,13 @@
 
 
+## [2.8.1](https://github.com/red-ninjas/himalaya-ui/compare/v2.8.0...v2.8.1) (2024-04-25)
+
+
+### Bug Fixes
+
+* add lock file ([5f647d6](https://github.com/red-ninjas/himalaya-ui/commit/5f647d659e2c9bcd1b2e6ad7347dd0d244974bac))
+* missing framer motion ([16d58ab](https://github.com/red-ninjas/himalaya-ui/commit/16d58abfa07bb6762e2e7fdc08e2e0d8d3512dfd))
+
 # [2.8.0](https://github.com/red-ninjas/himalaya-ui/compare/v2.7.2...v2.8.0) (2024-04-25)
 
 
