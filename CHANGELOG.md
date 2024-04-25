@@ -1,5 +1,12 @@
 
 
+## [2.8.3](https://github.com/red-ninjas/himalaya-ui/compare/v2.8.2...v2.8.3) (2024-04-25)
+
+
+### Bug Fixes
+
+* replace icon resolves ([a584dcc](https://github.com/red-ninjas/himalaya-ui/commit/a584dcce644c67d364cca975d21a483483d94f9b))
+
 ## [2.8.2](https://github.com/red-ninjas/himalaya-ui/compare/v2.8.1...v2.8.2) (2024-04-25)
 
 
