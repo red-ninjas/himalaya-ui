@@ -85,7 +85,7 @@ const AutoCompleteComponent = React.forwardRef<HTMLInputElement, React.PropsWith
     userRef: React.Ref<HTMLInputElement | null>,
   ) => {
     const resetTimer = useRef<number>();
-    const { SCALE, UNIT, getScaleProps, CLASS_NAMES } = useScale();
+    const { SCALE, UNIT, getScaleProps, getAllScaleProps, CLASS_NAMES } = useScale();
     const ref = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
     const [state, setState, stateRef] = useCurrentState<string>(customInitialValue);
@@ -176,13 +176,11 @@ const AutoCompleteComponent = React.forwardRef<HTMLInputElement, React.PropsWith
           <Input
             ref={inputRef}
             type={type}
+            {...getAllScaleProps()}
             onChange={onInputChange}
             onFocus={() => toggleFocusHandler(true)}
             onBlur={() => toggleFocusHandler(false)}
             clearable={showClearIcon}
-            w={`var(--auto-input-width)`}
-            h={`var(--auto-input-height)`}
-            font={`var(--auto-font-size)`}
             iconRight={getSearchIcon(searching, getScaleProps('scale') as ScaleResponsiveParameter<number>)}
             {...inputProps}
           />
@@ -201,16 +199,8 @@ const AutoCompleteComponent = React.forwardRef<HTMLInputElement, React.PropsWith
               width: max-content;
             }
 
-            ${SCALE.font(0.875, value => `--auto-font-size: ${value};`, undefined, 'auto-complete')}
-
+            ${SCALE.h(2.25, value => `height: ${value};`, undefined, 'auto-complete')}
             ${SCALE.w(1, value => `width: ${value};`, 'max-content', 'auto-complete')}
-            ${SCALE.h(1, value => `height: ${value};`, 'auto', 'auto-complete')}
-
-            ${SCALE.w(1, value => `--auto-input-width: ${value};`, 'initial', 'auto-complete')}
-            ${SCALE.h(2.25, value => `--auto-input-height: ${value};`, undefined, 'auto-complete')}
-
-            ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'auto-complete')}
-            ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'auto-complete')}
 
             ${UNIT('auto-complete')}
           `}</style>
