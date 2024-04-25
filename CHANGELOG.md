@@ -1,5 +1,12 @@
 
 
+## [2.8.5](https://github.com/red-ninjas/himalaya-ui/compare/v2.8.4...v2.8.5) (2024-04-25)
+
+
+### Bug Fixes
+
+* **PinCode:** replace default cursor with text ([eca0b45](https://github.com/red-ninjas/himalaya-ui/commit/eca0b45b6393d2452abf0620f660b0e16ac20620))
+
 ## [2.8.4](https://github.com/red-ninjas/himalaya-ui/compare/v2.8.3...v2.8.4) (2024-04-25)
 
 
