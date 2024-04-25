@@ -48,11 +48,11 @@ const CollapseGroupComponent: React.FC<React.PropsWithChildren<CollapseGroupProp
         setState([]);
       }
     } else {
-      const currentIndexExists = state.includes(currentIndex);
+      const currentIndexExists = stateRef.current.includes(currentIndex);
       if (nextState && !currentIndexExists) {
-        setState([...state, currentIndex]);
+        setState([...stateRef.current, currentIndex]);
       } else if (!nextState && currentIndexExists) {
-        setState(state.filter(item => item !== currentIndex));
+        setState(stateRef.current.filter(item => item !== currentIndex));
       }
     }
   };
