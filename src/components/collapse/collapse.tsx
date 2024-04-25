@@ -14,6 +14,7 @@ interface Props {
   shadow?: boolean;
   className?: string;
   index?: number;
+  disabled?: boolean;
 }
 
 type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
@@ -27,6 +28,7 @@ const CollapseComponent: React.FC<React.PropsWithChildren<CollapseProps>> = ({
   shadow = false,
   className = '',
   index,
+  disabled = false,
   ...props
 }: React.PropsWithChildren<CollapseProps>) => {
   const { SCALE, UNIT, CLASS_NAMES } = useScale();
@@ -39,6 +41,7 @@ const CollapseComponent: React.FC<React.PropsWithChildren<CollapseProps>> = ({
       shadow,
     },
     className,
+    disabled && 'disabled',
     CLASS_NAMES,
   );
 
@@ -53,6 +56,7 @@ const CollapseComponent: React.FC<React.PropsWithChildren<CollapseProps>> = ({
   }, [values.join(',')]);
 
   const clickHandler = () => {
+    if (disabled) return;
     const next = !visibleRef.current;
     setVisible(next);
     updateValues && updateValues(index, next);
@@ -73,6 +77,9 @@ const CollapseComponent: React.FC<React.PropsWithChildren<CollapseProps>> = ({
         .collapse {
           border-top: 1px solid var(--color-border-1000);
           border-bottom: 1px solid var(--color-border-1000);
+          &.disabled {
+            background: var(--color-background-900);
+          }
         }
 
         .shadow {
@@ -123,8 +130,8 @@ const CollapseComponent: React.FC<React.PropsWithChildren<CollapseProps>> = ({
         ${SCALE.padding(
           {
             top: 1.2,
-            right: 0,
-            left: 0,
+            right: 0.5,
+            left: 0.5,
             bottom: 1.2,
           },
           value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`,

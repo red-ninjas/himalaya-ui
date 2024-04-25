@@ -82,4 +82,43 @@ Display large amounts of text in collapsible sections. Commonly referred to as a
 `}
 />
 
+<Playground
+  title="Disabled"
+  desc="Disabled Collapse component where interactions are blocked."
+  scope={{ Collapse, Text }}
+  code={`
+<Collapse disabled title="Disabled Question" >
+  <Text>This content is static and the collapse functionality is disabled. Users cannot expand or collapse this section.</Text>
+</Collapse>
+`}
+/>
+
+<Playground
+  title="Custom Multiple"
+  desc="Controlling multiple collapse components with the 'value' prop and tracking their state."
+  scope={{ Collapse, Collapse, Text }}
+  code={`
+  <Collapse.Group multiple={true} value={[1, 4]} 
+    onChange={(open) => console.log("Open collapses:", open)}>
+    <Collapse title="Question A" index={1}>
+      <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</Text>
+    </Collapse>
+    <Collapse title="Question B" index={2}>
+      <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</Text>
+    </Collapse>
+    <Collapse title="Question C" index={3}>
+      <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</Text>
+    </Collapse>
+    <Collapse title="Question D" index={4}>
+      <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</Text>
+    </Collapse>
+  </Collapse.Group>
+`}
+/>
+
+
 <Attributes component="Collapse" edit="/app/components/collapse.mdx"></Attributes>
