@@ -1,5 +1,12 @@
 
 
+## [2.8.4](https://github.com/red-ninjas/himalaya-ui/compare/v2.8.3...v2.8.4) (2024-04-25)
+
+
+### Bug Fixes
+
+* **Collapse:** close disabled with custom value ([7f7a09b](https://github.com/red-ninjas/himalaya-ui/commit/7f7a09bd136be055a8a3814523b4e3b8f59342ec))
+
 ## [2.8.3](https://github.com/red-ninjas/himalaya-ui/compare/v2.8.2...v2.8.3) (2024-04-25)
 
 
