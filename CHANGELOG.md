@@ -1,5 +1,12 @@
 
 
+## [2.7.2](https://github.com/red-ninjas/himalaya-ui/compare/v2.7.1...v2.7.2) (2024-04-25)
+
+
+### Bug Fixes
+
+* **CollapseGroup:** update default value of multiple ([980e37b](https://github.com/red-ninjas/himalaya-ui/commit/980e37b13af58357a13784b0d4ce41b4f187284f))
+
 ## [2.7.1](https://github.com/red-ninjas/himalaya-ui/compare/v2.7.0...v2.7.1) (2024-04-25)
 
 
