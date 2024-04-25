@@ -19,7 +19,7 @@ export type CollapseGroupProps = Props & NativeAttrs;
 
 const CollapseGroupComponent: React.FC<React.PropsWithChildren<CollapseGroupProps>> = ({
   children,
-  multiple = true,
+  multiple = false,
   className,
   value = [],
   onChange,
