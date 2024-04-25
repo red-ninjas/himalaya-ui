@@ -214,6 +214,7 @@ export { default as LogOut } from './logOut';
 export { default as Mail } from './mail';
 export { default as Map } from './map';
 export { default as MapPin } from './mapPin';
+export { default as MapPinFill } from './mapPinFill';
 export { default as Maximize } from './maximize';
 export { default as Maximize2 } from './maximize2';
 export { default as Meh } from './meh';
