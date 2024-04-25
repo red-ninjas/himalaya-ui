@@ -1,5 +1,12 @@
 
 
+# [2.7.0](https://github.com/red-ninjas/himalaya-ui/compare/v2.6.1...v2.7.0) (2024-04-25)
+
+
+### Features
+
+* **Collapse:** allow custom multiples & disabled ([a881454](https://github.com/red-ninjas/himalaya-ui/commit/a8814541796146115cf4e8685102247057c197b6))
+
 ## [2.6.1](https://github.com/red-ninjas/himalaya-ui/compare/v2.6.0...v2.6.1) (2024-04-24)
 
 
