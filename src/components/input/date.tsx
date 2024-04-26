@@ -84,8 +84,6 @@ const InputDateComponent = React.forwardRef<HTMLInputElement, React.PropsWithChi
         iconRight={!hideToggle ? <Calendar></Calendar> : undefined}
         {...getAllScaleProps()}
         {...inputProps}
-        onBlur={() => console.log('on blur')}
-        onFocus={() => console.log('on focus')}
       >
         {children}
       </Input>
