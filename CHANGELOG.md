@@ -1,5 +1,12 @@
 
 
+## [2.9.4](https://github.com/red-ninjas/himalaya-ui/compare/v2.9.3...v2.9.4) (2024-04-26)
+
+
+### Bug Fixes
+
+* remove logs ([64cba81](https://github.com/red-ninjas/himalaya-ui/commit/64cba8106bb6be2ec6d125873bc84020053c2bce))
+
 ## [2.9.3](https://github.com/red-ninjas/himalaya-ui/compare/v2.9.2...v2.9.3) (2024-04-26)
 
 
