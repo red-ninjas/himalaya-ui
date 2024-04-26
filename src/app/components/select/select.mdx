@@ -84,6 +84,24 @@ The Select contain an additional Hooks, see subsection [useModal](/hooks/use-mod
 />
 
 <Playground
+  title="Clearable"
+  desc="Allow clearing the selected value(s)."
+  scope={{ Select }}
+  code={`
+<>
+  <Select
+    placeholder="Select a value"
+    clearable={true}
+  >
+    <Select.Option value="1">Option 1</Select.Option>
+    <Select.Option value="2">Option 2</Select.Option>
+    <Select.Option value="3">Option 3</Select.Option>
+  </Select>
+</>
+`}
+/>
+
+<Playground
   title="Without Icon"
   desc="Hide icon on right."
   scope={{ Select }}

@@ -54,7 +54,7 @@ const SelectComponent = React.forwardRef<SelectRef, React.PropsWithChildren<Sele
       pure = false,
       multiple = false,
       hasBorder = true,
-      clearable = true,
+      clearable = false,
       placeholder,
       className = '',
       dropdownClassName,
@@ -86,10 +86,14 @@ const SelectComponent = React.forwardRef<SelectRef, React.PropsWithChildren<Sele
       onDropdownVisibleChange(next);
       setVisible(next);
     };
+
     const updateValue = (next: string) => {
       setValue(last => {
         if (!Array.isArray(last)) {
-          return last === next ? undefined : next;
+          if (clearable && last === next) {
+            return undefined;
+          }
+          return next;
         }
         if (!last.includes(next)) return [...last, next];
         return last.filter(item => item !== next);
