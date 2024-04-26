@@ -252,6 +252,12 @@ const InputComponent = React.forwardRef<HTMLInputElement, React.PropsWithChildre
             -webkit-box-shadow: 0 0 0 30px var(--color-background-1000) inset !important;
             -webkit-text-fill-color: var(--input-color) !important;
           }
+          
+          input[type='date']::-webkit-calendar-picker-indicator,
+          input[type='time']::-webkit-calendar-picker-indicator,
+          input[type='datetime-local']::-webkit-calendar-picker-indicator {
+            display: none;
+          }
 
           ${SCALE.padding(0, value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'with-label')}
           ${SCALE.margin(0, value => `margin: ${value.top} ${value.right} ${value.bottom} ${value.left};`, undefined, 'with-label')}
