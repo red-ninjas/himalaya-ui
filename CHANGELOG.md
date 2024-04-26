@@ -1,5 +1,12 @@
 
 
+## [2.9.3](https://github.com/red-ninjas/himalaya-ui/compare/v2.9.2...v2.9.3) (2024-04-26)
+
+
+### Bug Fixes
+
+* **Input:** hide input date icon ([b0f1e09](https://github.com/red-ninjas/himalaya-ui/commit/b0f1e09b6bb11b0bf0f8575801fbf333a0455c3c))
+
 ## [2.9.2](https://github.com/red-ninjas/himalaya-ui/compare/v2.9.1...v2.9.2) (2024-04-26)
 
 
