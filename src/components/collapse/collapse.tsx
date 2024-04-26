@@ -13,7 +13,7 @@ interface Props {
   initialVisible?: boolean;
   shadow?: boolean;
   className?: string;
-  index?: number;
+  index?: number | string;
   disabled?: boolean;
 }
 
@@ -50,10 +50,16 @@ const CollapseComponent: React.FC<React.PropsWithChildren<CollapseProps>> = ({
   }
 
   useEffect(() => {
+    if (disabled) {
+      setVisible(false);
+    }
+  }, [disabled]);
+
+  useEffect(() => {
     if (!values.length || disabled) return;
-    const isActive = !!values.find(item => item === index);
+    const isActive = values.some(item => (item === 0 ? index === 0 : item === index));
     setVisible(isActive);
-  }, [values.join(',')]);
+  }, [values.join(','), index, disabled]);
 
   const clickHandler = () => {
     if (disabled) return;
@@ -136,8 +142,8 @@ const CollapseComponent: React.FC<React.PropsWithChildren<CollapseProps>> = ({
         ${SCALE.padding(
           {
             top: 1.2,
-            right: 0.5,
-            left: 0.5,
+            right: 0,
+            left: 0,
             bottom: 1.2,
           },
           value => `padding: ${value.top} ${value.right} ${value.bottom} ${value.left};`,

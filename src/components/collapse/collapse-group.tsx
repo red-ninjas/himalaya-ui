@@ -1,17 +1,18 @@
 'use client';
-import React, { useEffect, useMemo } from 'react';
+import React, { useCallback, useEffect, useMemo } from 'react';
 import Collapse from './collapse';
 import useCurrentState from '../utils/use-current-state';
 import { setChildrenIndex } from '../utils/collections';
 import { CollapseContext, CollapseConfig } from './collapse-context';
 import useScale, { withScale } from '../use-scale';
 import useClasses from '../use-classes';
+import { isArray } from 'lodash';
 
 interface Props {
   multiple?: boolean;
   className?: string;
-  value?: number[];
-  onChange?: (openIndices: number[]) => void;
+  value?: Array<number | string>;
+  onChange?: (openIndices: Array<number | string>) => void;
 }
 
 type NativeAttrs = Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
@@ -27,8 +28,9 @@ const CollapseGroupComponent: React.FC<React.PropsWithChildren<CollapseGroupProp
 }: React.PropsWithChildren<CollapseGroupProps>) => {
   const { SCALE, UNIT, CLASS_NAMES } = useScale();
 
-  const [state, setState, stateRef] = useCurrentState<Array<number>>(value);
+  const [state, setState, stateRef] = useCurrentState<Array<number | string>>(value);
   const classes = useClasses('collapse-group', className, CLASS_NAMES);
+  const hasIndexChildren = useMemo(() => setChildrenIndex(children, [Collapse]), [children]);
 
   useEffect(() => {
     setState(value);
@@ -37,32 +39,41 @@ const CollapseGroupComponent: React.FC<React.PropsWithChildren<CollapseGroupProp
   useEffect(() => {
     if (onChange) {
       const openIndices = stateRef.current.filter(index => {
-        if (!Array.isArray(hasIndexChildren)) {
-          return true;
-        }
-        const isDisabled = hasIndexChildren.find((child: React.ReactElement) => child.props.index === index)?.props.disabled;
-        return !isDisabled;
+        if (!Array.isArray(hasIndexChildren)) return true;
+        const child = hasIndexChildren.find((child: React.ReactElement) => child.props.index === index);
+        return child && !child.props.disabled;
       });
       onChange(openIndices);
     }
-  }, [state]);
+  }, [state, hasIndexChildren]);
 
-  const updateValues = (currentIndex: number, nextState: boolean) => {
-    if (!multiple) {
-      if (nextState) {
-        setState([currentIndex]);
+  const updateValues = useCallback(
+    (currentIndex: number | string, nextState: boolean) => {
+      if (!multiple) {
+        if (nextState) {
+          const isDisabled =
+            isArray(hasIndexChildren) && hasIndexChildren.find((child: React.ReactElement) => child.props.index === currentIndex)?.props.disabled;
+          if (!isDisabled) {
+            setState([currentIndex]);
+          } else {
+            setState([]);
+          }
+        } else {
+          setState([]);
+        }
       } else {
-        setState([]);
+        const currentIndexExists = stateRef.current.includes(currentIndex);
+        const isDisabled =
+          isArray(hasIndexChildren) && hasIndexChildren.find((child: React.ReactElement) => child.props.index === currentIndex)?.props.disabled;
+        if (nextState && !currentIndexExists && !isDisabled) {
+          setState([...stateRef.current, currentIndex]);
+        } else if (!nextState && currentIndexExists) {
+          setState(stateRef.current.filter(item => item !== currentIndex));
+        }
       }
-    } else {
-      const currentIndexExists = stateRef.current.includes(currentIndex);
-      if (nextState && !currentIndexExists) {
-        setState([...stateRef.current, currentIndex]);
-      } else if (!nextState && currentIndexExists) {
-        setState(stateRef.current.filter(item => item !== currentIndex));
-      }
-    }
-  };
+    },
+    [hasIndexChildren, multiple],
+  );
 
   const initialValue = useMemo<CollapseConfig>(
     () => ({
@@ -71,7 +82,6 @@ const CollapseGroupComponent: React.FC<React.PropsWithChildren<CollapseGroupProp
     }),
     [state.join(',')],
   );
-  const hasIndexChildren = useMemo(() => setChildrenIndex(children, [Collapse]), [children]);
 
   return (
     <CollapseContext.Provider value={initialValue}>

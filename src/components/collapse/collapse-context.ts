@@ -3,8 +3,8 @@
 import React from 'react';
 
 export interface CollapseConfig {
-  values: Array<number>;
-  updateValues?: (currentIndex: number | undefined, nextState: boolean) => unknown;
+  values: Array<number | string>;
+  updateValues?: (currentIndex: number | string | undefined, nextState: boolean) => unknown;
 }
 
 const defaultContext = {
