@@ -1,5 +1,12 @@
 
 
+## [2.9.1](https://github.com/red-ninjas/himalaya-ui/compare/v2.9.0...v2.9.1) (2024-04-26)
+
+
+### Bug Fixes
+
+* **Collapse:** hide disabled ([d82b65c](https://github.com/red-ninjas/himalaya-ui/commit/d82b65ccd216f7bf92cd33c1ad24bb7344abd155))
+
 # [2.9.0](https://github.com/red-ninjas/himalaya-ui/compare/v2.8.5...v2.9.0) (2024-04-25)
 
 
