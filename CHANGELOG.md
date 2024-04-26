@@ -1,5 +1,12 @@
 
 
+## [2.9.2](https://github.com/red-ninjas/himalaya-ui/compare/v2.9.1...v2.9.2) (2024-04-26)
+
+
+### Bug Fixes
+
+* **Select:** clear select field only when clearable is set to true ([f330a1e](https://github.com/red-ninjas/himalaya-ui/commit/f330a1e7627e2b4ddfae9661842609323bb5dc7b))
+
 ## [2.9.1](https://github.com/red-ninjas/himalaya-ui/compare/v2.9.0...v2.9.1) (2024-04-26)
 
 
