@@ -1,5 +1,12 @@
 
 
+## [2.9.7](https://github.com/red-ninjas/himalaya-ui/compare/v2.9.6...v2.9.7) (2024-05-03)
+
+
+### Bug Fixes
+
+* **InnerScroll:** top position ([6828f62](https://github.com/red-ninjas/himalaya-ui/commit/6828f62e769078051a3ce10611516c7c10323308))
+
 ## [2.9.6](https://github.com/red-ninjas/himalaya-ui/compare/v2.9.5...v2.9.6) (2024-05-03)
 
 
