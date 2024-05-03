@@ -1,5 +1,12 @@
 
 
+## [2.9.6](https://github.com/red-ninjas/himalaya-ui/compare/v2.9.5...v2.9.6) (2024-05-03)
+
+
+### Bug Fixes
+
+* Input docs ([df85438](https://github.com/red-ninjas/himalaya-ui/commit/df85438d5fa7b8b5d6666d83698c63da61d51e3f))
+
 ## [2.9.5](https://github.com/red-ninjas/himalaya-ui/compare/v2.9.4...v2.9.5) (2024-04-26)
 
 ## [2.9.4](https://github.com/red-ninjas/himalaya-ui/compare/v2.9.3...v2.9.4) (2024-04-26)
