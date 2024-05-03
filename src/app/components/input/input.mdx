@@ -22,10 +22,11 @@ The Input contain an additional Hooks, see subsection [useInput](/hooks/use-inpu
 />
 
 <Playground
-  desc="Date input field."
+  title="Date"
+  desc="Date & Time input field."
   scope={{ Input }}
   code={`
-<Input.Date placeholder="Uhrzeit angeben" />
+<Input.Date />
 `}
 />
 
@@ -54,21 +55,22 @@ The Input contain an additional Hooks, see subsection [useInput](/hooks/use-inpu
 />
 
 <Playground
-  title="unwritable"
-  desc="Disable interactive inputs."
+  title="Locked"
+  desc="Non-interactive form fields."
   scope={{ Input, Spacer }}
   code={`
 <>
-  <Input disabled placeholder="Disabled" />
+  <Input disabled placeholder="Disabled Input" />
   <Spacer h={.5} />
-  <Input readOnly initialValue="readOnly" />
+  <Input readOnly initialValue="Read-Only Input" />
 </>
 `}
 />
 
+
 <Playground
-  title="inline label"
-  desc="Show a short label in the line."
+  title="Inline label"
+  desc="Show a short label inline."
   scope={{ Input, Spacer }}
   code={`
 <>
@@ -80,7 +82,7 @@ The Input contain an additional Hooks, see subsection [useInput](/hooks/use-inpu
 />
 
 <Playground
-  title="block label"
+  title="Block label"
   desc="Labels for custom styles."
   scope={{ Input, Spacer, Text, Code, Dot }}
   code={`
