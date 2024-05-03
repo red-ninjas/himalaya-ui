@@ -1,6 +1,6 @@
 'use client';
 import { usePathname } from 'next/navigation';
-import React, { createRef, useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { InnerScrollEvent } from '.';
 import useClasses from '../use-classes';
 import useScale, { withScale } from '../use-scale';
@@ -25,7 +25,7 @@ const InnerScrollComponent: React.FC<React.PropsWithChildren<InnerScrollProps>> 
   ...props
 }) => {
   const { UNIT, SCALE, CLASS_NAMES } = useScale();
-  const ref = createRef<HTMLDivElement>();
+  const ref = useRef<HTMLDivElement>(null);
   const pathName = usePathname();
 
   const onScrollHandler = () => {
@@ -38,7 +38,7 @@ const InnerScrollComponent: React.FC<React.PropsWithChildren<InnerScrollProps>> 
   useEffect(() => {
     if (scrollUpOnRouteChange) {
       ref?.current?.scrollTo({
-        top: 0,
+        top: ref.current.scrollTop,
         behavior: 'instant',
       });
     }
